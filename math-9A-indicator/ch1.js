@@ -164,6 +164,28 @@ window.DECK = window.DECK || [];
       + TX(lp[0], lp[1] + 4, lab, { anchor: 'middle', fs: 15, c: col, op: k });
   };
 
+  const VBX = [120, 220, 320], VBW = 84;
+  const vbHead = (y) => VBX.map((x, i) =>
+    TX(x, y, ['x', 'y', 'z'][i], { anchor: 'middle', fs: 15, c: GREY })).join('');
+  const vbRow = (y, cells, o = {}) => {
+    let g = '';
+    cells.forEach((t, i) => {
+      if (t === null) return;
+      const on = (o.hi || []).indexOf(i) >= 0;
+      g += BOX(VBX[i] - VBW / 2, y, VBW, 38, { r: 10,
+        fill: on ? (o.fill || 'rgba(5,150,105,.14)') : '#fbfcfe',
+        stroke: on ? (o.col || GRN) : '#dce3ee', sw: on ? 2.2 : 1.6 });
+      g += TX(VBX[i], y + 26, t, { anchor: 'middle', fs: o.fs || 19, c: o.tc || INK });
+    });
+    for (let i = 0; i < 2; i++) {
+      if (cells[i] !== null && cells[i + 1] !== null)
+        g += TX((VBX[i] + VBX[i + 1]) / 2, y + 26, ':', { anchor: 'middle', fs: 20, c: GREY });
+    }
+    return g;
+  };
+  const vbRule = (y) => SV.seg(56, y, 384, y, '#c3cddd', 2);
+  const vbTag = (y, t, c) => TX(50, y + 26, t, { anchor: 'end', fs: 14, c: c || GREY });
+
   function xoRows(rows) {
     return `<div class="xo-wrap" style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">` +
       rows.map(r => `<div class="xo-row" style="display:flex;gap:8px;align-items:stretch">
@@ -240,31 +262,27 @@ window.DECK = window.DECK || [];
         sec: '1-1', secName: '連比例',
         title: '中間已經一樣大，直接接起來',
         points: [
-          '先看<b>中間那個字母</b>：兩邊都是 4，一樣大。',
-          '一樣大就<b>什麼都不用算</b>，直接抄成三個數。'
+          '兩個比<b>上下疊起來</b>寫，x、y、z 各佔一欄。',
+          '先看<b>中間那一欄</b>：上下都是 4，一樣大。',
+          '一樣大就<b>什麼都不用算</b>，直接往下抄。'
         ],
         formula: { label: '最簡單的那一種<span class="pgref">課本 印 10 隨堂</span>', tex: '\\begin{array}{c}x:y=11:4,\\ y:z=4:9\\\\\\Rightarrow\\ x:y:z=11:4:9\\end{array}' },
         visual: (h) => {
-          const col = (x, t, c, on) =>
-            BOX(x, 78, 74, 52, { r: 10, fill: on ? 'rgba(5,150,105,.14)' : '#fbfcfe', stroke: on ? GRN : '#dce3ee', sw: on ? 2.2 : 1.6 }) +
-            TX(x + 37, 111, t, { anchor: 'middle', fs: 20, c: c || INK });
-          const label = (x, t) => TX(x + 37, 66, t, { anchor: 'middle', fs: 14, c: GREY });
-          SV.stepper(h, '0 0 440 254', [
-            { t: '兩個比：x 比 y 是 11 比 4，y 比 z 是 4 比 9。<b>先看中間的 y</b>。',
-              d: () => TX(120, 40, 'x : y ＝ 11 : 4', { anchor: 'middle', fs: 18, c: BLU }) +
-                       TX(320, 40, 'y : z ＝ 4 : 9', { anchor: 'middle', fs: 18, c: VIO }) +
-                       label(80, 'x') + label(180, 'y') + label(300, 'y') + label(400, 'z') +
-                       col(43, '11', BLU) + col(143, '4', GRN, true) + col(263, '4', GRN, true) + col(363, '9', VIO) +
-                       TX(220, 168, '中間都是 y，而且都是 4', { anchor: 'middle', fs: 18, c: GRN }) +
-                       TX(220, 200, '一樣大 → 不用湊', { anchor: 'middle', fs: 17, c: GRN }) },
-            { t: '一樣大就<b>直接接起來</b>：11、4、9 照抄。',
-              d: () => label(80, 'x') + label(180, 'y') + label(300, 'z') +
-                       col(43, '11', BLU) + col(143, '4', GRN, true) + col(263, '9', VIO) +
-                       BOX(110, 168, 220, 48, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 }) +
-                       TX(220, 199, 'x : y : z ＝ 11 : 4 : 9', { anchor: 'middle', fs: 19, c: GRN }) }
+          const base = () => vbHead(20)
+            + vbRow(28, ['11', '4', null], { hi: [1] })
+            + vbRow(70, [null, '4', '9'], { hi: [1] });
+          SV.stepper(h, '0 0 440 226', [
+            { t: '兩個比<b>上下疊起來</b>寫，x、y、z 各佔一欄——<b>y 要對齊 y</b>。',
+              d: () => base()
+                + TX(220, 148, '中間這一欄上下都是 4', { anchor: 'middle', fs: 18, c: GRN })
+                + TX(220, 182, '一樣大 → 什麼都不用乘', { anchor: 'middle', fs: 17, c: GREY }) },
+            { t: '一樣大就<b>直接往下抄</b>：11、4、9。',
+              d: () => base() + vbRule(116)
+                + vbRow(126, ['11', '4', '9'], { hi: [0, 1, 2] })
+                + TX(220, 198, 'x : y : z ＝ 11 : 4 : 9', { anchor: 'middle', fs: 17, c: GRN }) }
           ], { acc: false });
         },
-        caption: '中間一樣大的時候，這一題<b>一個計算都沒有</b>——先把這種做熟。',
+        caption: '這一階<b>一個計算都沒有</b>——先把「<b>y 對齊 y</b>」這個動作做熟，後面兩階都靠它。',
         example: {
           q: '\\(x:y=5:2\\)、\\(y:z=2:7\\)，求 \\(x:y:z\\)。',
           steps: [
@@ -279,41 +297,31 @@ window.DECK = window.DECK || [];
         sec: '1-1', secName: '連比例',
         title: '只有一邊要乘，另一邊不用動',
         points: [
-          '中間是 2 和 4：<b>4 剛好是 2 的兩倍</b>。',
-          '只要把<b>有 2 的那一整列</b>乘 2，另一列原封不動。'
+          '中間那一欄是 2 和 4：<b>4 剛好是 2 的兩倍</b>。',
+          '把有 2 的<b>那一整列</b>乘 2，另一列<b>原封不動</b>抄下來。',
+          '乘數寫在<b>括號裡</b>，提醒自己整列每一項都要乘。'
         ],
         formula: { label: '只動一列<span class="pgref">課本 印 10–11</span>', tex: '\\begin{array}{c}x:y=3:2,\\ y:z=4:5\\\\\\Rightarrow\\ x:y:z=6:4:5\\end{array}' },
         visual: (h) => {
-          const col = (x, t, c, on) =>
-            BOX(x, 88, 74, 52, { r: 10, fill: on ? 'rgba(217,119,6,.18)' : '#fbfcfe', stroke: on ? AMB : '#dce3ee', sw: on ? 2.2 : 1.6 }) +
-            TX(x + 37, 121, t, { anchor: 'middle', fs: 20, c: c || INK });
-          const label = (x, t) => TX(x + 37, 76, t, { anchor: 'middle', fs: 14, c: GREY });
-          SV.stepper(h, '0 0 440 256', [
-            { t: '中間的 y 一邊是 2、一邊是 4，<b>不一樣</b>——但先別急著找公倍數。',
-              d: () => TX(120, 40, 'x : y ＝ 3 : 2', { anchor: 'middle', fs: 18, c: BLU }) +
-                       TX(320, 40, 'y : z ＝ 4 : 5', { anchor: 'middle', fs: 18, c: VIO }) +
-                       label(80, 'x') + label(180, 'y') + label(300, 'y') + label(400, 'z') +
-                       col(43, '3', BLU) + col(143, '2', AMB, true) + col(263, '4', AMB, true) + col(363, '5', VIO) +
-                       TX(220, 178, '2 和 4：4 剛好是 2 的兩倍', { anchor: 'middle', fs: 18, c: AMB }) +
-                       TX(220, 210, '只要把 2 變成 4 就好', { anchor: 'middle', fs: 17, c: GREY }) },
-            { t: '<b>左邊整列乘 2</b>：3 變 6、2 變 4。右邊<b>一個字都不用改</b>。',
-              d: () => TX(120, 40, '3 : 2', { anchor: 'middle', fs: 17, c: GREY }) +
-                       TX(120, 66, '× 2 ↓', { anchor: 'middle', fs: 14, c: AMB }) +
-                       TX(120, 96, '6 : 4', { anchor: 'middle', fs: 20, c: BLU }) +
-                       TX(320, 40, '4 : 5', { anchor: 'middle', fs: 17, c: GREY }) +
-                       TX(320, 70, '不用動', { anchor: 'middle', fs: 15, c: GREY }) +
-                       TX(320, 96, '4 : 5', { anchor: 'middle', fs: 20, c: VIO }) +
-                       TX(220, 150, '兩邊的 y 都是 4 了', { anchor: 'middle', fs: 17, c: GRN }) +
-
-                       TX(220, 186, '⚠ 乘的時候整列一起乘，不能只乘中間那一項', { anchor: 'middle', fs: 14, c: RED }) },
-            { t: '接起來：x : y : z ＝ 6 : 4 : 5。',
-              d: () => label(80, 'x') + label(180, 'y') + label(300, 'z') +
-                       col(43, '6', BLU) + col(143, '4', GRN, true) + col(263, '5', VIO) +
-                       BOX(110, 178, 220, 48, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 }) +
-                       TX(220, 209, 'x : y : z ＝ 6 : 4 : 5', { anchor: 'middle', fs: 19, c: GRN }) }
+          const base = () => vbHead(20)
+            + vbRow(28, ['3', '2', null], { hi: [1], fill: 'rgba(217,119,6,.18)', col: AMB })
+            + vbRow(70, [null, '4', '5'], { hi: [1], fill: 'rgba(217,119,6,.18)', col: AMB });
+          const worked = () => vbRule(116)
+            + vbTag(124, '× 2', AMB) + vbRow(124, ['(3×2)', '(2×2)', null], { fs: 15 })
+            + vbTag(166, '不動') + vbRow(166, [null, '4', '5'], {});
+          SV.stepper(h, '0 0 440 278', [
+            { t: '中間那一欄是 2 和 4，<b>不一樣</b>——但先別急著找公倍數。',
+              d: () => base()
+                + TX(220, 150, '2 和 4：4 剛好是 2 的兩倍', { anchor: 'middle', fs: 18, c: AMB })
+                + TX(220, 184, '只要把 2 變成 4 就好', { anchor: 'middle', fs: 17, c: GREY }) },
+            { t: '<b>只動一列</b>：有 2 的那一列整列乘 2，另一列原封不動抄下來。',
+              d: () => base() + worked() },
+            { t: '兩列的 y 都是 4 了，接起來：6 : 4 : 5。',
+              d: () => base() + worked() + vbRule(212)
+                + vbRow(220, ['6', '4', '5'], { hi: [0, 1, 2] }) }
           ], { acc: false });
         },
-        caption: '先問一句：<b>大的那個是不是小的倍數？</b>是的話只動一列。',
+        caption: '先問一句：<b>大的那個是不是小的倍數？</b>是的話只動一列——橫線下面另一列照抄。',
         example: {
           q: '\\(x:y=1:3\\)、\\(y:z=6:5\\)，求 \\(x:y:z\\)。',
           steps: [
@@ -328,42 +336,31 @@ window.DECK = window.DECK || [];
         sec: '1-1', secName: '連比例',
         title: '兩邊都要乘：中間先湊成最小公倍數',
         points: [
-          '\\(x:y\\) 和 \\(y:z\\) 要合併，<b>中間的 \\(y\\) 必須一樣大</b>。',
-          '不一樣就各乘一個數，把它<b>湊成一樣</b>。'
+          '中間那一欄是 4 和 6，<b>誰也不是誰的倍數</b>。',
+          '取<b>最小公倍數 12</b>：兩列都要動，一列乘 3、一列乘 2。',
+          '乘數寫在<b>括號裡</b>；<b>橫線下面空一列，就是漏乘了</b>。'
         ],
         formula: { label: '合併的關鍵<span class="pgref">課本 印 10–11</span>', tex: '\\begin{array}{c}x:y=3:4,\\ y:z=6:7\\\\\\Rightarrow\\ x:y:z=9:12:14\\end{array}' },
         visual: (h) => {
-          const col = (x, t, c, on) =>
-            BOX(x, 78, 74, 52, { r: 10, fill: on ? 'rgba(217,119,6,.18)' : '#fbfcfe', stroke: on ? AMB : '#dce3ee', sw: on ? 2.2 : 1.6 }) +
-            TX(x + 37, 111, t, { anchor: 'middle', fs: 20, c: c || INK });
-          const label = (x, t) => TX(x + 37, 66, t, { anchor: 'middle', fs: 14, c: GREY });
-          SV.stepper(h, '0 0 440 262', [
-            { t: '兩個比：x 比 y 是 3 比 4，y 比 z 是 6 比 7。',
-              d: () => TX(120, 40, 'x : y ＝ 3 : 4', { anchor: 'middle', fs: 18, c: BLU }) +
-                       TX(320, 40, 'y : z ＝ 6 : 7', { anchor: 'middle', fs: 18, c: VIO }) +
-                       TX(220, 130, '中間都是 y，但一邊是 4、一邊是 6', { anchor: 'middle', fs: 16, c: RED }) +
-                       TX(220, 168, '4 和 6 不一樣，接不起來', { anchor: 'middle', fs: 17, c: RED }) },
-            { t: '找 4 和 6 的<b>最小公倍數</b>：12。兩邊都要湊成 12。',
-              d: () => TX(220, 44, '4 和 6 的最小公倍數是 12', { anchor: 'middle', fs: 18, c: AMB }) +
-                       label(80, 'x') + label(180, 'y') + label(300, 'z') +
-                       col(43, '3', BLU) + col(143, '4', AMB, true) + col(263, '6', AMB, true) + col(363, '7', VIO) +
-                       TX(220, 168, '把 4 變 12、把 6 也變 12', { anchor: 'middle', fs: 16, c: GREY }) },
-            { t: '左邊整個乘 3（4×3＝12），右邊整個乘 2（6×2＝12）。',
-              d: () => TX(120, 40, '3 : 4', { anchor: 'middle', fs: 17, c: GREY }) +
-                       TX(120, 66, '× 3 ↓', { anchor: 'middle', fs: 14, c: AMB }) +
-                       TX(120, 96, '9 : 12', { anchor: 'middle', fs: 20, c: BLU }) +
-                       TX(320, 40, '6 : 7', { anchor: 'middle', fs: 17, c: GREY }) +
-                       TX(320, 66, '× 2 ↓', { anchor: 'middle', fs: 14, c: AMB }) +
-                       TX(320, 96, '12 : 14', { anchor: 'middle', fs: 20, c: VIO }) +
-                       TX(220, 150, '兩邊的 y 都變成 12 了', { anchor: 'middle', fs: 17, c: GRN }) },
-            { t: '中間對齊，直接接起來：x : y : z ＝ 9 : 12 : 14。',
-              d: () => label(80, 'x') + label(180, 'y') + label(300, 'z') +
-                       col(43, '9', BLU) + col(143, '12', GRN, true) + col(263, '12', GRN, true) + col(363, '14', VIO) +
-                       BOX(110, 168, 220, 48, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 }) +
-                       TX(220, 199, 'x : y : z ＝ 9 : 12 : 14', { anchor: 'middle', fs: 19, c: GRN }) }
+          const base = () => vbHead(20)
+            + vbRow(28, ['3', '4', null], { hi: [1], fill: 'rgba(217,119,6,.18)', col: AMB })
+            + vbRow(70, [null, '6', '7'], { hi: [1], fill: 'rgba(217,119,6,.18)', col: AMB });
+          const worked = () => vbRule(116)
+            + vbTag(124, '× 3', AMB) + vbRow(124, ['(3×3)', '(4×3)', null], { fs: 15 })
+            + vbTag(166, '× 2', AMB) + vbRow(166, [null, '(6×2)', '(7×2)'], { fs: 15 });
+          SV.stepper(h, '0 0 440 278', [
+            { t: '中間那一欄是 4 和 6，不一樣，而且<b>誰也不是誰的倍數</b>。',
+              d: () => base()
+                + TX(220, 150, '4 和 6 的最小公倍數是 12', { anchor: 'middle', fs: 18, c: AMB })
+                + TX(220, 184, '兩列都要動', { anchor: 'middle', fs: 17, c: GREY }) },
+            { t: '上面那列整列乘 3、下面那列整列乘 2，<b>乘數寫在括號裡</b>。',
+              d: () => base() + worked() },
+            { t: '兩列的 y 都變成 12，接起來：9 : 12 : 14。',
+              d: () => base() + worked() + vbRule(212)
+                + vbRow(220, ['9', '12', '14'], { hi: [0, 1, 2] }) }
           ], { acc: false });
         },
-        caption: '整個比要一起乘，<b>不能只乘中間那一項</b>。',
+        caption: '<b>巡堂就看這個</b>：沒有用直式兩列對齊的，錯的多半不是計算，是漏乘。',
         example: {
           q: '\\(x:y=2:5\\)、\\(y:z=3:4\\)，求 \\(x:y:z\\)。',
           steps: [
