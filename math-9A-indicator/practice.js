@@ -255,5 +255,6 @@ window.PRACTICE = (function () {
     };
     render();
   }
-  return { page, detail };
+
+  return { page, detail, refit: refitAll };
 })();
