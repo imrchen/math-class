@@ -200,5 +200,38 @@ window.PRACTICE = (function () {
     render();
   }
 
-  return { page, detail, merged };
+  function answerKey(h, sec, groups) {
+
+    const splitChoice = (a) => {
+      const m = /^選\s*(\([A-Da-d]\))\s*(.*)$/.exec(String(a || '').trim());
+      return m ? { big: m[1], sub: m[2] } : { big: String(a || ''), sub: '' };
+    };
+    const cell = (no, tag) => {
+      const d = merged(sec, tag);
+      const a = d ? d.ans : '';
+      const { big, sub } = splitChoice(a);
+      const miss = !a;
+      return `<div style="border:1.5px solid #dbe3f0;border-radius:10px;background:#fff;
+          padding:7px 9px;display:flex;align-items:baseline;gap:8px;min-width:0">
+        <span style="flex:0 0 auto;font-size:15px;font-weight:700;color:${GREY}">${no}</span>
+        <span style="min-width:0;flex:1">
+          <span style="font-size:21px;font-weight:700;color:${miss ? '#e11d48' : GRN};
+            display:block;line-height:1.3;word-break:break-word">${miss ? '（查無答案）' : tex(big)}</span>
+          ${sub ? `<span style="font-size:13.5px;color:${GREY};display:block;line-height:1.4">${tex(sub)}</span>` : ''}
+        </span>
+      </div>`;
+    };
+    const block = (g) => `<div>
+      <div style="font-size:14px;font-weight:700;color:${C};margin:0 0 6px 2px">${g.label}</div>
+      <div style="display:grid;grid-template-columns:repeat(${g.cols || 4},minmax(0,1fr));gap:7px">
+        ${g.items.map(it => cell(it[0], it[1])).join('')}
+      </div>
+    </div>`;
+    h.innerHTML = `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:12px">`
+      + groups.map(block).join('') + `</div>`;
+    if (window.MJ) MJ(h);
+    fit(h);
+  }
+
+  return { page, detail, merged, answerKey };
 })();
