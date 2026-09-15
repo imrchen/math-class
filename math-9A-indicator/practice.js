@@ -91,7 +91,9 @@ window.PRACTICE = (function () {
       </div>
       <div class="q-body" style="display:flex;gap:10px;align-items:stretch">
         ${hasFig ? `<div class="q-fig" style="flex:0 0 44%;min-width:0;overflow:hidden;background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:6px;display:flex;align-items:center;justify-content:center"></div>` : ''}
-        <div style="flex:1 1 0;min-width:0;background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:12px 16px 26px;display:flex;flex-direction:column;gap:20px">${stepsHtml}</div>
+        <div class="q-stepbox" style="flex:1 1 0;min-width:0;background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:12px 16px 26px">
+          <div class="q-steps" style="display:flex;flex-direction:column;gap:20px">${stepsHtml}</div>
+        </div>
       </div>
       <div style="display:flex;gap:8px;justify-content:center">
         <button class="q-next" style="border:1.5px solid #2563eb;background:#2563eb;color:#fff;font-weight:900;font-size:13px;border-radius:999px;padding:5px 20px;cursor:pointer">下一步</button>
@@ -121,7 +123,7 @@ window.PRACTICE = (function () {
       if (k >= total) { next.disabled = true; next.style.opacity = '.4'; next.style.cursor = 'default'; }
     };
 
-    if (figBox && typeof ResizeObserver !== 'undefined') new ResizeObserver(refitAll).observe(figBox);
+    if (figBox && typeof ResizeObserver !== 'undefined') new ResizeObserver(scheduleRefit).observe(figBox);
 
     next.onclick = () => { if (k < total) { k++; while (k < lines.length && isAsk[k]) k++; paint(); } };
     h.querySelector('.q-all').onclick = () => { k = total; paint(); };
@@ -129,6 +131,8 @@ window.PRACTICE = (function () {
     paint();
     if (window.MJ) MJ(h);
     fit(h);
+
+    setTimeout(() => { const box = h.querySelector('.q-stepbox'); if (box) fitSteps(box); }, 120);
     return true;
   }
 
@@ -146,6 +150,26 @@ window.PRACTICE = (function () {
     };
     if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([h]).then(go).catch(go);
     else setTimeout(go, 60);
+  }
+
+  function fitSteps(outer) {
+    if (typeof window === 'undefined') return;
+    const wrap = outer.querySelector('.q-steps');
+    if (!wrap) return;
+    wrap.style.zoom = '';
+    outer.querySelectorAll('mjx-container svg').forEach(v => { v.style.maxWidth = 'none'; });
+    const cs = window.getComputedStyle(outer);
+    const have = outer.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+    let need = 0;
+    wrap.querySelectorAll('.q-line').forEach(l => {
+      const pl = parseFloat(window.getComputedStyle(l).paddingLeft) || 0;
+      let w = l.scrollWidth;
+      l.querySelectorAll('mjx-container').forEach(c => { w = Math.max(w, pl + c.offsetWidth); });
+      need = Math.max(need, w);
+    });
+
+    if (have > 0 && need > have) wrap.style.zoom = Math.max(0.55, (have / need) * 0.985).toFixed(3);
+    outer.dataset.fitW = Math.round(outer.clientWidth);
   }
 
   function figWide(box, capH) {
@@ -170,19 +194,48 @@ window.PRACTICE = (function () {
     box.dataset.fitW = Math.round(box.clientWidth);
   }
 
+  function needsRefit(box) {
+    const w = Math.round(box.clientWidth);
+    if (!w) return false;
+    if (w !== +box.dataset.fitW) return true;
+    const inner = box.querySelector('.q-figin');
+    if (!inner) return false;
+    const wide = inner.querySelector('table, svg');
+    const z = parseFloat(inner.style.zoom) || 1;
+    const need = Math.max(inner.scrollWidth, wide ? wide.scrollWidth : 0) * z;
+    return need > w - 11;
+  }
+
   function refitAll() {
     document.querySelectorAll('.q-fig').forEach(box => {
-      const w = Math.round(box.clientWidth);
-      if (!w || w === +box.dataset.fitW) return;
+      if (!needsRefit(box)) return;
       const host = box.closest('.visual-host');
       figWide(box, host ? Math.round(host.clientHeight * 0.52) : 0);
     });
+
+    document.querySelectorAll('.q-stepbox').forEach(box => {
+      const w = Math.round(box.clientWidth);
+      if (w && w !== +box.dataset.fitW) fitSteps(box);
+    });
   }
+
+  function scheduleRefit() {
+    if (scheduleRefit._q) return;
+    scheduleRefit._q = true;
+    requestAnimationFrame(() => { scheduleRefit._q = false; refitAll(); });
+  }
+  function settle() { [100, 320, 700, 1200, 1900, 2800, 3800].forEach(t => setTimeout(refitAll, t)); }
   if (typeof document !== 'undefined') {
-    document.addEventListener('click', () => {
-      setTimeout(refitAll, 120);
-      setTimeout(refitAll, 600);
-    }, true);
+    document.addEventListener('click', settle, true);
+    if (typeof MutationObserver !== 'undefined') {
+      new MutationObserver(recs => {
+        for (const r of recs) {
+          const t = r.target;
+          if (t.nodeType === 1 && t.classList && t.classList.contains('visual-host')) { scheduleRefit(); return; }
+        }
+      }).observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['style'] });
+    }
+    if (typeof window !== 'undefined') window.addEventListener('resize', scheduleRefit);
   }
 
   function page(h, sec, groups) {
