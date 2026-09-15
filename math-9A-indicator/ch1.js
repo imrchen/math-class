@@ -403,10 +403,11 @@ window.DECK = window.DECK || [];
               s += TX(X0 + i * y * u + y * u / 2, 139, String(y), { anchor: 'middle', fs: 18, c: AMB });
             }
             s += TX(220, 180, '一個 x 的長度 ＝ 兩個 y 接起來', { anchor: 'middle', fs: 15, c: GREY });
-            s += TX(220, 250, '（這一頁的 x、y 都是正數）', { anchor: 'middle', fs: 13.5, c: GREY });
+
+            s += TX(220, 260, '（這一頁的 x、y 都是正數）', { anchor: 'middle', fs: 13.5, c: GREY });
             s += BOX(96, 196, 248, 48, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 });
             s += TX(220, 226, 'x ＝ ' + (2 * y) + ' ＞ y ＝ ' + y + '，x 比較大', { anchor: 'middle', fs: 18, c: GRN });
-            h.querySelector('#fig').innerHTML = svg('0 0 440 262', s);
+            h.querySelector('#fig').innerHTML = svg('0 0 440 274', s);
           };
           h.querySelector('#ys').oninput = draw;
           draw();
