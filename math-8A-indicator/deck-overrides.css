@@ -282,3 +282,65 @@
   max-height: 2lh;
   overflow: hidden;
 }
+
+
+/* ===== 版本識別（Roger 2026-09-15）=====
+   三站的前兩三頁長得幾乎一樣——尤其兩個八上，封面只差 eyebrow 那一個「南一版」——
+   他的話是「我要點開兩頁內容，才會認知這是哪個版本」。
+   所以每一站給一個**固定的顏色＋角落徽章**，封面、投影片頂列、目錄欄、圖解放大層
+   四個地方一致：橘＝八上課本版、青＝八上指標版、洋紅＝九上指標版。
+   ⚠ 徽章只寫「課本版／指標版」——那是**描述編排依據**的中性說法，
+   守 AGENTS 的命名原則（任何學生看得到的地方都不得暗示程度）。
+   ⚠ 全部走 `deck-overrides.css` 的偽元素，**不改 engine.js／style.css**，
+   也不必動每一頁的 `chN.js`。 */
+:root { --edition: #0e7490; --edition-soft: #e6f6fa; }
+
+/* 投影片頂列：站名後面掛徽章，整條頂列換成站別的淡色底＋3px 色線
+   （投影時遠遠就看得到，而且不吃到內容區的任何空間） */
+.topbar { background: var(--edition-soft); border-bottom: 3px solid var(--edition); }
+.home-btn::after {
+  content: "指標版";
+  display: inline-block;
+  margin-left: 9px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--edition);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  vertical-align: 2px;
+}
+/* 目錄欄左緣一條同色帶：側欄開著時也認得出來 */
+.toc { border-left: 5px solid var(--edition); }
+
+/* 封面：eyebrow 那一行接同一顆徽章（封面是最容易認錯的一頁） */
+.cover-eyebrow::after {
+  content: "指標版";
+  display: inline-block;
+  margin-left: 10px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--edition);
+  color: #fff;
+  letter-spacing: 0.12em;
+  vertical-align: 1px;
+}
+.cover { border-top: 6px solid var(--edition); }
+
+/* 圖解／範例的放大層：整頁只剩那一張卡，頂欄的徽章是唯一的辨識點。
+   ⚠ 這一顆要**連年級一起寫**：放大層沒有 `.home-btn`，畫面上找不到「八上／九上」，
+   只寫「指標版」的話兩個指標版就只剩顏色可分。 */
+.zoom-bar { border-bottom: 3px solid var(--edition); }
+.zoom-badge::before {
+  content: "八上 指標版";
+  display: inline-block;
+  margin-right: 10px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--edition);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
