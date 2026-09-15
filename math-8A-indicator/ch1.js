@@ -425,10 +425,16 @@ window.DECK = window.DECK || [];
           const glyph = (x, t, col) => TX(x, 62, t, { anchor: 'middle', fs: 22, c: col || INK });
           const head = glyph(84, '(') + glyph(P.a, 'a', BLU) + glyph(144, '＋') + glyph(P.t3, '3', AMB) + glyph(206, ')') +
             glyph(236, '(') + glyph(P.b, 'b', BLU) + glyph(296, '＋') + glyph(P.t5, '5', AMB) + glyph(358, ')');
+
           const arc = (x1, x2, col, k, up) => {
             const y0 = up ? 44 : 78, cy = up ? 6 : 122;
-            const xe = x1 + (x2 - x1) * k;
-            return `<path d="M${x1},${y0} Q${(x1 + x2) / 2},${cy} ${xe},${y0}" fill="none" stroke="${col}" stroke-width="2.4" opacity=".85"/>`;
+            const cx = (x1 + x2) / 2;
+            const t = Math.max(0, Math.min(1, k)), u = 1 - t;
+            const qx = x1 + (cx - x1) * t, qy = y0 + (cy - y0) * t;
+            const ex = u * u * x1 + 2 * u * t * cx + t * t * x2;
+            const ey = u * u * y0 + 2 * u * t * cy + t * t * y0;
+            return `<path d="M${x1},${y0} Q${qx.toFixed(1)},${qy.toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)}"`
+              + ` fill="none" stroke="${col}" stroke-width="2.4" stroke-linecap="round" opacity=".85"/>`;
           };
           const item = (i, txt, col, k) => TX(120, 152 + i * 30, txt, { fs: 17, c: col, op: k });
           SV.stepper(h, '0 0 440 290', [
@@ -1134,7 +1140,7 @@ window.DECK = window.DECK || [];
 
               pItem('印3 ①', '-4.9x^2+5x+60', '二次') +
               pItem('印3 ②', 'x^3+\\tfrac{1}{2}x^2-3', '三次') +
-              pText('印3 續', '\\(10x^2+4x^3-4-6x\\) 的<b>降冪</b>與<b>升冪</b>排列。',
+              pText('印3 續一', '\\(10x^2+4x^3-4-6x\\) 的<b>降冪</b>與<b>升冪</b>排列。',
                 '降冪 \\(4x^3+10x^2-6x-4\\)<br>升冪 \\(-4-6x+10x^2+4x^3\\)') +
               pText('印4', '合併 \\(3x^2+5-4x+6x+7x^2-9\\) 的同類項。', '\\(10x^2+2x-4\\)')), '1-2');
         },
