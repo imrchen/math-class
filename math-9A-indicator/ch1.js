@@ -374,12 +374,13 @@ window.DECK = window.DECK || [];
       {
         sec: '1-1', secName: '連比例',
         title: 'x ＝ 2y 讀成「一個 x 換得到兩個 y」',
+
         points: [
           '等號的意思是<b>兩邊一樣多</b>：一個 \\(x\\) 換得到兩個 \\(y\\)。',
-          '換得到比較多的那個<b>比較大</b>——所以 \\(x\\) 比 \\(y\\) 大。',
+          '\\(x\\)、\\(y\\) 都是<b>正數</b>時，換得到比較多的那個<b>比較大</b>——所以 \\(x\\) 比 \\(y\\) 大。',
           '不確定就<b>代一個數</b>：\\(y=1\\) 就 \\(x=2\\)。'
         ],
-        formula: { label: '等號在說什麼', tex: 'x=2y\\quad\\Rightarrow\\quad x>y' },
+        formula: { label: '等號在說什麼', tex: 'x=2y\\ ,\\ y>0\\quad\\Rightarrow\\quad x>y' },
         visual: (h) => {
           h.innerHTML = `<div style="width:100%"><div id="fig"></div>
             <div class="ictrl"><label>\\(y\\) ＝ <span class="ival" id="yv">3</span></label>
@@ -401,9 +402,10 @@ window.DECK = window.DECK || [];
               s += TX(X0 + i * y * u + y * u / 2, 139, String(y), { anchor: 'middle', fs: 18, c: AMB });
             }
             s += TX(220, 180, '一個 x 的長度 ＝ 兩個 y 接起來', { anchor: 'middle', fs: 15, c: GREY });
+            s += TX(220, 250, '（這一頁的 x、y 都是正數）', { anchor: 'middle', fs: 13.5, c: GREY });
             s += BOX(96, 196, 248, 48, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 });
             s += TX(220, 226, 'x ＝ ' + (2 * y) + ' ＞ y ＝ ' + y + '，x 比較大', { anchor: 'middle', fs: 18, c: GRN });
-            h.querySelector('#fig').innerHTML = svg('0 0 440 256', s);
+            h.querySelector('#fig').innerHTML = svg('0 0 440 262', s);
           };
           h.querySelector('#ys').oninput = draw;
           draw();
@@ -411,7 +413,7 @@ window.DECK = window.DECK || [];
         },
         caption: '⚠ 看到 \\(2y\\) 就說「\\(y\\) 比較大」是最常見的錯——那個 <b>2 是個數</b>，不是 \\(y\\) 本身變大。',
         example: {
-          q: '\\(x=3y\\)，誰比較大？大幾倍？',
+          q: '\\(x=3y\\)（\\(x\\)、\\(y\\) 都是<b>正數</b>），誰比較大？大幾倍？',
           steps: [
             '一個 \\(x\\) 換得到<b>三個</b> \\(y\\)。',
             '代 \\(y=1\\)：\\(x=3\\)。'
@@ -425,7 +427,7 @@ window.DECK = window.DECK || [];
         title: '3x ＝ 4y：切得越多，每一份越小',
         points: [
           '兩邊一樣多：<b>3 個 \\(x\\)</b> 和 <b>4 個 \\(y\\)</b> 一樣長。',
-          '同樣長，<b>切得越多每一份越小</b> → \\(x\\) 比 \\(y\\) 大。',
+          '同樣長，<b>切得越多每一份越小</b> → \\(x\\) 比 \\(y\\) 大（\\(x\\)、\\(y\\) 都是正數時）。',
           '取 \\(12\\) 當共同長度：\\(x=4\\)、\\(y=3\\)，所以 \\(x:y=4:3\\)。'
         ],
         formula: { label: '由等式求比<span class="pgref">課本 印 13</span>', tex: '3x=4y\\ \\Rightarrow\\ x:y=4:3' },
@@ -450,7 +452,7 @@ window.DECK = window.DECK || [];
               d: () => TX(220, 30, '3x ＝ 4y', { anchor: 'middle', fs: 20, c: INK }) + labels()
                 + bar(YA, 3, BLU, 'rgba(37,99,235,.12)') + bar(YB, 4, AMB, 'rgba(217,119,6,.12)')
                 + TX(220, 202, '一樣長，卻切得比較多 → 每一段比較短', { anchor: 'middle', fs: 16, c: RED })
-                + TX(220, 230, '所以 x 比 y 大', { anchor: 'middle', fs: 17, c: INK }) },
+                + TX(220, 230, '所以 x 比 y 大（x、y 都是正數時）', { anchor: 'middle', fs: 16, c: INK }) },
             { t: '兩條都取 <b>12</b>：上面每段 12 ÷ 3 ＝ 4，下面每段 12 ÷ 4 ＝ 3。',
               d: () => TX(220, 30, '兩條都取 12', { anchor: 'middle', fs: 19, c: AMB }) + labels()
                 + bar(YA, 3, BLU, 'rgba(37,99,235,.12)', '4') + bar(YB, 4, AMB, 'rgba(217,119,6,.12)', '3')

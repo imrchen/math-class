@@ -91,6 +91,7 @@ window.DECK = window.DECK || [];
     const QNUM = /^\s*[\u2460-\u2473]/;
     const lines = [...d.steps.map(t => ({ t: tex(t), q: QNUM.test(String(t)) })),
                    ...(d.ans ? [{ t: '答：' + tex(d.ans), fin: 1 }] : [])];
+
     h.innerHTML =
       `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">
          <div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;overflow:hidden">
@@ -98,10 +99,10 @@ window.DECK = window.DECK || [];
              <span style="font-size:13px;font-weight:900;color:#fff">${d.src} ${pLabel(sec, tag)}</span>
              <span style="font-size:13px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:8px;padding:1px 9px">${d.page}</span>
            </div>
-           <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 14px">
-             <div style="flex:1 1 0;min-width:0;font-size:19px;color:${INK};line-height:1.5">${String(d.q || '').split('\n').filter(Boolean).map((seg, i) => `<div style="${i ? 'margin-top:7px' : ''}">${tex(seg)}</div>`).join('')}
+           <div style="padding:10px 14px">
+             <div style="font-size:19px;color:${INK};line-height:1.5">${String(d.q || '').split('\n').filter(Boolean).map((seg, i) => `<div style="${i ? 'margin-top:7px' : ''}">${tex(seg)}</div>`).join('')}
                ${d.fig && !pFig(d) ? `<div style="margin-top:6px;font-size:13px;font-weight:900;color:#8a5a00;background:#fff4d6;border:1px solid #f0dba8;border-radius:8px;padding:4px 10px;display:inline-block">⚠ ocho 沒有這張圖，請看紙本 ${d.page}</div>` : ''}</div>
-             ${pFig(d) ? `<div class="q-fig" style="flex:0 0 38%;max-width:38%;height:210px;display:flex;align-items:center;justify-content:center">${pFig(d)}</div>` : ''}
+             ${pFig(d) ? `<div class="q-fig" style="margin-top:8px;width:100%;height:220px;display:flex;align-items:center;justify-content:center">${pFig(d)}</div>` : ''}
            </div>
          </div>
          <div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:14px 18px 30px;display:flex;flex-direction:column;gap:26px;min-height:${Math.max(150, lines.length * 62)}px">
@@ -136,9 +137,38 @@ window.DECK = window.DECK || [];
 
     const cs = window.getComputedStyle(h);
     const pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
+
+    if (h.closest && h.closest('#zoomBody')) {
+
+      const W = h.clientWidth, Hh = h.clientHeight - pad;
+      let bw = +h.dataset.zoomBase || 460, bz = 0;
+      [bw, Math.round(W * 0.42), Math.round(W * 0.52), Math.round(W * 0.64), Math.round(W * 0.78)]
+        .forEach(w => {
+          if (w < 280 || w > W) return;
+          stack.style.width = w + 'px';
+          const z = Math.min(W / w, Hh / (stack.scrollHeight || 1), 2.8);
+          if (z > bz) { bz = z; bw = w; }
+        });
+      stack.style.width = bw + 'px';
+      stack.style.margin = '0 auto';
+
+      if (bz < 0.995 || bz > 1.02) stack.style.zoom = Math.max(0.6, bz).toFixed(3);
+      return;
+    }
+    stack.style.width = '';
+    stack.style.margin = '';
+
     const need = stack.scrollHeight, have = h.clientHeight - pad;
     if (have > 0 && need > have) stack.style.zoom = Math.max(0.62, (have / need) * 0.985).toFixed(3);
   };
+
+  if (typeof document !== 'undefined' && typeof window !== 'undefined' && !window.__pFitZoomHook) {
+    window.__pFitZoomHook = true;
+    const sweep = () => document.querySelectorAll('.visual-host').forEach(el => {
+      if (el.firstElementChild && el.querySelector('.p-line, .p-ask')) pFit(el);
+    });
+    document.addEventListener('click', () => { setTimeout(sweep, 150); setTimeout(sweep, 700); }, true);
+  }
 
   const pAfter = (h) => {
     if (typeof window === 'undefined' || typeof setTimeout !== 'function') return;
