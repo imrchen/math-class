@@ -484,6 +484,115 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '連比例',
+        title: 'x／4 ＝ y／5：先交叉相乘',
+        points: [
+          '分數不好比大小，先<b>把分母消掉</b>：<b>交叉相乘</b>（就是你們說的「十字交乘」）。',
+          '\\(\\frac{x}{4}=\\frac{y}{5}\\) 交叉相乘得 \\(5x=4y\\)——<b>回到上一頁那種等式</b>。',
+          '再用上一頁的<b>係數對調</b>：\\(x:y=4:5\\)。'
+        ],
+        formula: { label: '分數等式求比<span class="pgref">課本 印 13</span>', tex: '\\tfrac{x}{4}=\\tfrac{y}{5}\\ \\Rightarrow\\ x:y=4:5' },
+        visual: (h) => {
+
+          const FR = (cx, num, den, cn, cd) => TX(cx, 52, num, { anchor: 'middle', fs: 24, c: cn || INK })
+            + SV.seg(cx - 24, 62, cx + 24, 62, INK, 2)
+            + TX(cx, 92, den, { anchor: 'middle', fs: 24, c: cd || INK });
+          const eq = () => FR(128, 'x', '4', BLU, AMB) + TX(220, 72, '＝', { anchor: 'middle', fs: 20, c: GREY })
+            + FR(312, 'y', '5', GRN, VIO);
+          const prem = () => TX(220, 268, '（這一頁的 x、y 都是正數）', { anchor: 'middle', fs: 13.5, c: GREY });
+          SV.stepper(h, '0 0 440 282', [
+            { t: '兩邊都是分數，分母又不一樣——先想辦法<b>把分母消掉</b>。',
+              d: () => eq() + TX(220, 140, '分母 4 和 5 擋在那裡', { anchor: 'middle', fs: 17, c: GREY })
+                + TX(220, 170, '先把它們消掉再說', { anchor: 'middle', fs: 17, c: INK }) + prem() },
+            { t: '<b>交叉相乘</b>：分子乘對面的分母，兩條線交叉。',
+              d: () => eq()
+
+                + SV.seg(139, 46, 301, 82, AMB, 2.6) + SV.seg(139, 82, 301, 46, VIO, 2.6)
+                + '<ellipse cx="220" cy="64" rx="19" ry="15" fill="#fafbfd"/>'
+                + TX(220, 72, '＝', { anchor: 'middle', fs: 20, c: GREY })
+                + TX(220, 158, 'x 乘 5、y 乘 4', { anchor: 'middle', fs: 18, c: INK })
+                + TX(220, 190, '（就是你們說的「十字交乘」）', { anchor: 'middle', fs: 14.5, c: GREY }) + prem() },
+            { t: '得到 5x ＝ 4y——<b>這就是上一頁那種等式</b>。',
+              d: () => BOX(128, 44, 184, 56, { r: 13, fill: 'rgba(37,99,235,.10)', stroke: BLU, sw: 2.4 })
+                + TX(220, 80, '5x ＝ 4y', { anchor: 'middle', fs: 26, c: BLU })
+                + TX(220, 140, '上一頁：3x ＝ 4y → 係數對調', { anchor: 'middle', fs: 16, c: GREY })
+                + TX(220, 172, '同一招再用一次就好', { anchor: 'middle', fs: 17, c: INK }) + prem() },
+            { t: '係數對調：x : y ＝ 4 : 5。<b>剛好就是原來的兩個分母</b>。',
+              d: () => BOX(104, 44, 232, 56, { r: 13, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.4 })
+                + TX(220, 80, 'x : y ＝ 4 : 5', { anchor: 'middle', fs: 26, c: GRN })
+                + TX(220, 134, '5x ＝ 4y 的 5 和 4 對調', { anchor: 'middle', fs: 16, c: GREY })
+                + TX(220, 166, '課本寫「分母照抄」，就是這個結果', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 202, '驗算：x ＝ 4、y ＝ 5 代回 4／4 ＝ 5／5 ✓', { anchor: 'middle', fs: 15, c: GRN })
+                + prem() }
+          ], { acc: false });
+        },
+        caption: '課本（印 13）直接寫「<b>分母照抄</b>」；這一頁是說明<b>為什麼</b>——交叉相乘之後，就是上一頁那一招。',
+        example: {
+          q: '\\(\\frac{a}{3}=\\frac{b}{7}\\)，求 \\(a:b\\)。',
+          steps: [
+            '交叉相乘：\\(7a=3b\\)。',
+            '係數對調：\\(a:b=3:7\\)（就是兩個分母）。'
+          ],
+          ans: '\\(a:b=3:7\\)'
+        }
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
+        title: '三個分數連等：拆成兩句，再用直式接起來',
+        points: [
+          '\\(\\frac{x}{4}=\\frac{y}{5}=\\frac{z}{7}\\) 太長，先<b>拆成兩句</b>：\\(\\frac{x}{4}=\\frac{y}{5}\\)、\\(\\frac{y}{5}=\\frac{z}{7}\\)。',
+          '各自求比（上一頁那一招）：\\(x:y=4:5\\)、\\(y:z=5:7\\)。',
+          '中間的 \\(y\\) 上下都是 \\(5\\)，<b>直接接起來</b>：\\(x:y:z=4:5:7\\)。'
+        ],
+        formula: { label: '拆兩句再接起來<span class="pgref">課本 印 13 同型</span>', tex: 'x:y=4:5,\\ y:z=5:7\\ \\Rightarrow\\ 4:5:7' },
+        visual: (h) => {
+          const FR = (cx, cy, num, den, cn, cd) => TX(cx, cy, num, { anchor: 'middle', fs: 20, c: cn || INK })
+            + SV.seg(cx - 20, cy + 8, cx + 20, cy + 8, INK, 1.8)
+            + TX(cx, cy + 34, den, { anchor: 'middle', fs: 20, c: cd || INK });
+          const prem = () => TX(220, 268, '（這一頁的 x、y、z 都是正數）', { anchor: 'middle', fs: 13.5, c: GREY });
+          SV.stepper(h, '0 0 440 282', [
+            { t: '三個分數都相等。<b>先拆成兩句</b>——每一句只管兩個字母。',
+              d: () => FR(120, 40, 'x', '4', BLU, AMB) + TX(170, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
+                + FR(220, 40, 'y', '5', GRN, VIO) + TX(270, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
+                + FR(320, 40, 'z', '7', RED, AMB)
+                + TX(140, 150, 'x／4 ＝ y／5', { anchor: 'middle', fs: 19, c: BLU })
+                + TX(300, 150, 'y／5 ＝ z／7', { anchor: 'middle', fs: 19, c: GRN })
+                + TX(220, 190, '拆成兩句，中間的 y 兩句都有', { anchor: 'middle', fs: 16, c: GREY }) + prem() },
+            { t: '每一句各自求比——就是上一頁的<b>交叉相乘、係數對調</b>。',
+              d: () => TX(140, 60, 'x／4 ＝ y／5', { anchor: 'middle', fs: 18, c: GREY })
+                + TX(300, 60, 'y／5 ＝ z／7', { anchor: 'middle', fs: 18, c: GREY })
+                + TX(220, 96, '↓', { anchor: 'middle', fs: 18, c: GREY })
+                + BOX(56, 112, 160, 48, { r: 12, fill: 'rgba(37,99,235,.10)', stroke: BLU, sw: 2.2 })
+                + TX(136, 143, 'x : y ＝ 4 : 5', { anchor: 'middle', fs: 20, c: BLU })
+                + BOX(224, 112, 160, 48, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(304, 143, 'y : z ＝ 5 : 7', { anchor: 'middle', fs: 20, c: GRN })
+                + TX(220, 196, '兩個比都拿到了，接下來就是直式', { anchor: 'middle', fs: 16, c: INK }) + prem() },
+            { t: '上下疊起來，<b>y 要對齊 y</b>：中間這一欄上下都是 5。',
+              d: () => vbHead(24) + vbRow(32, ['4', '5', null], { hi: [1] })
+                + vbRow(74, [null, '5', '7'], { hi: [1] })
+                + TX(220, 152, '中間這一欄上下都是 5', { anchor: 'middle', fs: 18, c: GRN })
+                + TX(220, 184, '一樣大 → 什麼都不用乘（階梯①）', { anchor: 'middle', fs: 16, c: GREY }) + prem() },
+            { t: '直接往下抄：x : y : z ＝ 4 : 5 : 7。',
+              d: () => vbHead(24) + vbRow(32, ['4', '5', null], { hi: [1] })
+                + vbRow(74, [null, '5', '7'], { hi: [1] }) + vbRule(120)
+                + vbRow(130, ['4', '5', '7'], { hi: [0, 1, 2] })
+                + TX(220, 200, '剛好就是三個分母，抄下來就對了', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 232, '驗算：4／4 ＝ 5／5 ＝ 7／7 ＝ 1 ✓', { anchor: 'middle', fs: 15, c: GRN }) + prem() }
+          ], { acc: false });
+        },
+        caption: '⚠ 這一頁<b>問的是比</b>。同樣看到分數、但問「x、y、z 各是多少」的，要走後面<b>設 r</b> 那一頁。',
+        example: {
+          q: '\\(\\frac{x}{2}=\\frac{y}{3}=\\frac{z}{4}\\)，求 \\(x:y:z\\)。',
+          steps: [
+            '拆兩句：\\(\\frac{x}{2}=\\frac{y}{3}\\)、\\(\\frac{y}{3}=\\frac{z}{4}\\)。',
+            '各自求比：\\(x:y=2:3\\)、\\(y:z=3:4\\)；中間都是 \\(3\\)。'
+          ],
+          ans: '\\(x:y:z=2:3:4\\)'
+        }
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
         title: '比不能每項各加一個數，加了就變成別的比',
         points: [
           '每一項<b>同乘</b>或<b>同除</b>一個數，比不變。',
@@ -676,6 +785,61 @@ window.DECK = window.DECK || [];
             '代入：\\(4r-3r+12r=13r=65\\)，\\(r=5\\)。'
           ],
           ans: '\\(x=10\\)、\\(y=15\\)、\\(z=20\\)'
+        }
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
+        title: '同一件事的三種寫法（課本節末）',
+        points: [
+          '\\(x:y:z=2:3:5\\)、\\(\\frac{x}{2}=\\frac{y}{3}=\\frac{z}{5}\\)、\\(x=2r,\\ y=3r,\\ z=5r\\)：<b>三句話意思一樣</b>。',
+          '題目給哪一種，就<b>換成好算的那一種</b>——要「比」用第一種，要「算出數值」用第三種。',
+          '⚠ 前提：<b>比的三個數都不是 \\(0\\)</b>，\\(r\\) 也不是 \\(0\\)。'
+        ],
+        formula: { label: '三種寫法同一件事<span class="pgref">課本 1-1 節末整理</span>', tex: 'x:y:z=2:3:5\\ \\Leftrightarrow\\ \\tfrac{x}{2}=\\tfrac{y}{3}=\\tfrac{z}{5}' },
+        visual: (h) => {
+          const FR3 = (y) => {
+            const F = (cx, num, den, c) => TX(cx, y, num, { anchor: 'middle', fs: 19, c: c })
+              + SV.seg(cx - 17, y + 8, cx + 17, y + 8, INK, 1.7)
+              + TX(cx, y + 32, den, { anchor: 'middle', fs: 19, c: c });
+            return F(150, 'x', '2', BLU) + TX(196, y + 22, '＝', { anchor: 'middle', fs: 17, c: GREY })
+              + F(240, 'y', '3', GRN) + TX(286, y + 22, '＝', { anchor: 'middle', fs: 17, c: GREY })
+              + F(330, 'z', '5', VIO);
+          };
+          const tag = (y, n) => TX(44, y, n, { anchor: 'middle', fs: 15, c: AMB });
+          const prem = () => TX(220, 266, '（2、3、5 都不是 0，r 也不是 0）', { anchor: 'middle', fs: 13.5, c: GREY });
+          SV.stepper(h, '0 0 440 280', [
+            { t: '第一種：<b>比</b>。題目最常這樣給。',
+              d: () => tag(78, '①') + BOX(76, 52, 300, 46, { r: 12, fill: 'rgba(37,99,235,.10)', stroke: BLU, sw: 2.2 })
+                + TX(226, 84, 'x : y : z ＝ 2 : 3 : 5', { anchor: 'middle', fs: 23, c: BLU })
+                + TX(220, 150, '「x 佔 2 份、y 佔 3 份、z 佔 5 份」', { anchor: 'middle', fs: 16, c: GREY }) + prem() },
+            { t: '第二種：<b>分數</b>。比的三個數，就是三個分母。',
+              d: () => tag(78, '①') + TX(226, 84, 'x : y : z ＝ 2 : 3 : 5', { anchor: 'middle', fs: 19, c: GREY })
+                + tag(160, '②') + FR3(138)
+                + TX(220, 214, '分母 2、3、5 就是比的三個數', { anchor: 'middle', fs: 16, c: INK }) + prem() },
+            { t: '第三種：<b>設 r</b>。要算出「各是多少」時最好用。',
+              d: () => tag(60, '②') + FR3(38)
+                + tag(140, '③') + BOX(76, 116, 300, 46, { r: 12, fill: 'rgba(217,119,6,.12)', stroke: AMB, sw: 2.2 })
+                + TX(226, 148, 'x ＝ 2r，y ＝ 3r，z ＝ 5r', { anchor: 'middle', fs: 20, c: AMB })
+                + TX(220, 206, '前面那一頁就是在做這件事', { anchor: 'middle', fs: 16, c: GREY }) + prem() },
+            { t: '<b>三句話是同一件事</b>——題目給哪一種，就換成好算的那一種。',
+              d: () => tag(52, '①') + TX(226, 58, 'x : y : z ＝ 2 : 3 : 5', { anchor: 'middle', fs: 18, c: BLU })
+                + tag(104, '②') + TX(226, 110, 'x／2 ＝ y／3 ＝ z／5', { anchor: 'middle', fs: 18, c: GRN })
+                + tag(156, '③') + TX(226, 162, 'x ＝ 2r，y ＝ 3r，z ＝ 5r', { anchor: 'middle', fs: 18, c: AMB })
+                + BOX(60, 186, 320, 54, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 208, '要「比」→ 用 ①　　要「算出數值」→ 用 ③', { anchor: 'middle', fs: 15, c: INK })
+                + TX(220, 232, '題目給分數 ② → 先換成 ① 或 ③', { anchor: 'middle', fs: 15, c: GRN })
+                + prem() }
+          ], { acc: false });
+        },
+        caption: '課本節末把三種寫法列在一起。<b>前面三頁各自講過怎麼來的</b>，這一頁只要記得「它們是同一件事」。',
+        example: {
+          q: '\\(x:y:z=4:5:7\\)，把它改寫成分數與 \\(r\\) 兩種寫法。',
+          steps: [
+            '分數：比的三個數就是分母 → \\(\\frac{x}{4}=\\frac{y}{5}=\\frac{z}{7}\\)。',
+            '設 \\(r\\)：\\(x=4r\\)、\\(y=5r\\)、\\(z=7r\\)。'
+          ],
+          ans: '\\(\\frac{x}{4}=\\frac{y}{5}=\\frac{z}{7}\\)；\\(x=4r,\\ y=5r,\\ z=7r\\)'
         }
       },
 
