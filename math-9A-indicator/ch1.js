@@ -373,6 +373,110 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '連比例',
+        title: 'x ＝ 2y 讀成「一個 x 換得到兩個 y」',
+        points: [
+          '等號的意思是<b>兩邊一樣多</b>：一個 \\(x\\) 換得到兩個 \\(y\\)。',
+          '換得到比較多的那個<b>比較大</b>——所以 \\(x\\) 比 \\(y\\) 大。',
+          '不確定就<b>代一個數</b>：\\(y=1\\) 就 \\(x=2\\)。'
+        ],
+        formula: { label: '等號在說什麼', tex: 'x=2y\\quad\\Rightarrow\\quad x>y' },
+        visual: (h) => {
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>\\(y\\) ＝ <span class="ival" id="yv">3</span></label>
+            <input type="range" id="ys" min="1" max="9" step="1" value="3"></div></div>`;
+          const draw = () => {
+            const y = +h.querySelector('#ys').value;
+            h.querySelector('#yv').textContent = y;
+            const u = 17, X0 = 80, HH = 34;
+            let s = TX(220, 26, 'x ＝ 2y', { anchor: 'middle', fs: 20, c: INK });
+
+            s += TX(72, 78, 'x', { anchor: 'end', fs: 17, c: BLU });
+            s += BOX(X0, 58, 2 * y * u, HH, { r: 8, fill: 'rgba(37,99,235,.16)', stroke: BLU, sw: 2.2 });
+            s += TX(X0 + y * u, 81, String(2 * y), { anchor: 'middle', fs: 18, c: BLU });
+
+            s += TX(72, 136, 'y', { anchor: 'end', fs: 17, c: AMB });
+            for (let i = 0; i < 2; i++) {
+              s += BOX(X0 + i * y * u + (i ? 2 : 0), 116, y * u - (i ? 2 : 2), HH,
+                { r: 8, fill: 'rgba(217,119,6,.16)', stroke: AMB, sw: 2.2 });
+              s += TX(X0 + i * y * u + y * u / 2, 139, String(y), { anchor: 'middle', fs: 18, c: AMB });
+            }
+            s += TX(220, 180, '一個 x 的長度 ＝ 兩個 y 接起來', { anchor: 'middle', fs: 15, c: GREY });
+            s += BOX(96, 196, 248, 48, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 });
+            s += TX(220, 226, 'x ＝ ' + (2 * y) + ' ＞ y ＝ ' + y + '，x 比較大', { anchor: 'middle', fs: 18, c: GRN });
+            h.querySelector('#fig').innerHTML = svg('0 0 440 256', s);
+          };
+          h.querySelector('#ys').oninput = draw;
+          draw();
+          MJ(h);
+        },
+        caption: '⚠ 看到 \\(2y\\) 就說「\\(y\\) 比較大」是最常見的錯——那個 <b>2 是個數</b>，不是 \\(y\\) 本身變大。',
+        example: {
+          q: '\\(x=3y\\)，誰比較大？大幾倍？',
+          steps: [
+            '一個 \\(x\\) 換得到<b>三個</b> \\(y\\)。',
+            '代 \\(y=1\\)：\\(x=3\\)。'
+          ],
+          ans: '\\(x\\) 比較大，是 \\(y\\) 的 \\(3\\) 倍'
+        }
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
+        title: '3x ＝ 4y：切得越多，每一份越小',
+        points: [
+          '兩邊一樣多：<b>3 個 \\(x\\)</b> 和 <b>4 個 \\(y\\)</b> 一樣長。',
+          '同樣長，<b>切得越多每一份越小</b> → \\(x\\) 比 \\(y\\) 大。',
+          '取 \\(12\\) 當共同長度：\\(x=4\\)、\\(y=3\\)，所以 \\(x:y=4:3\\)。'
+        ],
+        formula: { label: '由等式求比<span class="pgref">課本 印 13</span>', tex: '3x=4y\\ \\Rightarrow\\ x:y=4:3' },
+        visual: (h) => {
+          const X0 = 96, W = 296, HH = 36, YA = 64, YB = 134;
+          const bar = (y, n, col, fill, nums) => {
+            let g = BOX(X0, y, W, HH, { r: 8, fill: fill, stroke: col, sw: 2.2 });
+            for (let i = 1; i < n; i++) g += SV.seg(X0 + i * W / n, y, X0 + i * W / n, y + HH, col, 2);
+            if (nums) for (let i = 0; i < n; i++)
+              g += TX(X0 + (i + 0.5) * W / n, y + 25, nums, { anchor: 'middle', fs: 18, c: col });
+            return g;
+          };
+          const labels = () => TX(88, YA + 24, '3 個 x', { anchor: 'end', fs: 15, c: BLU })
+            + TX(88, YB + 24, '4 個 y', { anchor: 'end', fs: 15, c: AMB });
+          SV.stepper(h, '0 0 440 268', [
+
+            { t: '3x ＝ 4y 的意思是：<b>3 個 x</b> 和 <b>4 個 y</b> 一樣多。兩條畫成一樣長。',
+              d: () => TX(220, 30, '3x ＝ 4y', { anchor: 'middle', fs: 20, c: INK }) + labels()
+                + bar(YA, 1, BLU, 'rgba(37,99,235,.12)') + bar(YB, 1, AMB, 'rgba(217,119,6,.12)')
+                + TX(220, 202, '兩條一樣長', { anchor: 'middle', fs: 17, c: GRN }) },
+            { t: '上面那條切成 <b>3 段</b>，下面那條切成 <b>4 段</b>。',
+              d: () => TX(220, 30, '3x ＝ 4y', { anchor: 'middle', fs: 20, c: INK }) + labels()
+                + bar(YA, 3, BLU, 'rgba(37,99,235,.12)') + bar(YB, 4, AMB, 'rgba(217,119,6,.12)')
+                + TX(220, 202, '一樣長，卻切得比較多 → 每一段比較短', { anchor: 'middle', fs: 16, c: RED })
+                + TX(220, 230, '所以 x 比 y 大', { anchor: 'middle', fs: 17, c: INK }) },
+            { t: '兩條都取 <b>12</b>：上面每段 12 ÷ 3 ＝ 4，下面每段 12 ÷ 4 ＝ 3。',
+              d: () => TX(220, 30, '兩條都取 12', { anchor: 'middle', fs: 19, c: AMB }) + labels()
+                + bar(YA, 3, BLU, 'rgba(37,99,235,.12)', '4') + bar(YB, 4, AMB, 'rgba(217,119,6,.12)', '3')
+                + TX(220, 202, 'x ＝ 4，y ＝ 3', { anchor: 'middle', fs: 18, c: INK })
+                + TX(220, 230, '（4×3 ＝ 12、3×4 ＝ 12，兩邊都是 12）', { anchor: 'middle', fs: 14, c: GREY }) },
+            { t: '寫成比：x : y ＝ 4 : 3。<b>係數對調</b>了。',
+              d: () => BOX(104, 68, 232, 56, { r: 13, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.4 })
+                + TX(220, 104, 'x : y ＝ 4 : 3', { anchor: 'middle', fs: 26, c: GRN })
+                + TX(220, 158, '不是 3 : 4', { anchor: 'middle', fs: 20, c: RED })
+                + TX(220, 200, '3x ＝ 4y 的 3 和 4 是「幾段」，', { anchor: 'middle', fs: 15, c: GREY })
+                + TX(220, 226, '段數多的那個，每段反而小', { anchor: 'middle', fs: 15, c: GREY }) }
+          ], { acc: false });
+        },
+        caption: '口訣是「<b>係數對調</b>」，但一定要先看過切段圖再用——不然很容易反過來寫成 \\(3:4\\)。',
+        example: {
+          q: '\\(5b=4c\\)，求 \\(b:c\\)。',
+          steps: [
+            '\\(5\\) 個 \\(b\\) 和 \\(4\\) 個 \\(c\\) 一樣長。',
+            '兩條都取 \\(20\\)：\\(b=20\\div5=4\\)、\\(c=20\\div4=5\\)。'
+          ],
+          ans: '\\(b:c=4:5\\)'
+        }
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
         title: '比不能每項各加一個數，加了就變成別的比',
         points: [
           '每一項<b>同乘</b>或<b>同除</b>一個數，比不變。',
