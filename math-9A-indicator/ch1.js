@@ -377,10 +377,11 @@ window.DECK = window.DECK || [];
 
         points: [
           '等號的意思是<b>兩邊一樣多</b>：一個 \\(x\\) 換得到兩個 \\(y\\)。',
-          '\\(x\\)、\\(y\\) 都是<b>正數</b>時，換得到比較多的那個<b>比較大</b>——所以 \\(x\\) 比 \\(y\\) 大。',
+          '換得到比較多的那個<b>比較大</b>——所以 \\(x\\) 比 \\(y\\) 大。',
           '不確定就<b>代一個數</b>：\\(y=1\\) 就 \\(x=2\\)。'
         ],
-        formula: { label: '等號在說什麼', tex: 'x=2y\\ ,\\ y>0\\quad\\Rightarrow\\quad x>y' },
+
+        formula: { label: '等號在說什麼', tex: 'x=2y\\ (x,y>0)\\ \\Rightarrow\\ x>y' },
         visual: (h) => {
           h.innerHTML = `<div style="width:100%"><div id="fig"></div>
             <div class="ictrl"><label>\\(y\\) ＝ <span class="ival" id="yv">3</span></label>
@@ -413,7 +414,7 @@ window.DECK = window.DECK || [];
         },
         caption: '⚠ 看到 \\(2y\\) 就說「\\(y\\) 比較大」是最常見的錯——那個 <b>2 是個數</b>，不是 \\(y\\) 本身變大。',
         example: {
-          q: '\\(x=3y\\)（\\(x\\)、\\(y\\) 都是<b>正數</b>），誰比較大？大幾倍？',
+          q: '\\(x=3y\\)（\\(x\\)、\\(y\\) 都是正數），誰比較大？大幾倍？',
           steps: [
             '一個 \\(x\\) 換得到<b>三個</b> \\(y\\)。',
             '代 \\(y=1\\)：\\(x=3\\)。'
@@ -427,9 +428,10 @@ window.DECK = window.DECK || [];
         title: '3x ＝ 4y：切得越多，每一份越小',
         points: [
           '兩邊一樣多：<b>3 個 \\(x\\)</b> 和 <b>4 個 \\(y\\)</b> 一樣長。',
-          '同樣長，<b>切得越多每一份越小</b> → \\(x\\) 比 \\(y\\) 大（\\(x\\)、\\(y\\) 都是正數時）。',
+          '同樣長，<b>切得越多每一份越小</b> → \\(x\\) 比 \\(y\\) 大。',
           '取 \\(12\\) 當共同長度：\\(x=4\\)、\\(y=3\\)，所以 \\(x:y=4:3\\)。'
         ],
+
         formula: { label: '由等式求比<span class="pgref">課本 印 13</span>', tex: '3x=4y\\ \\Rightarrow\\ x:y=4:3' },
         visual: (h) => {
           const X0 = 96, W = 296, HH = 36, YA = 64, YB = 134;
@@ -442,28 +444,30 @@ window.DECK = window.DECK || [];
           };
           const labels = () => TX(88, YA + 24, '3 個 x', { anchor: 'end', fs: 15, c: BLU })
             + TX(88, YB + 24, '4 個 y', { anchor: 'end', fs: 15, c: AMB });
-          SV.stepper(h, '0 0 440 268', [
+
+          const prem = () => TX(220, 262, '（這一頁的 x、y 都是正數）', { anchor: 'middle', fs: 13.5, c: GREY });
+          SV.stepper(h, '0 0 440 276', [
 
             { t: '3x ＝ 4y 的意思是：<b>3 個 x</b> 和 <b>4 個 y</b> 一樣多。兩條畫成一樣長。',
               d: () => TX(220, 30, '3x ＝ 4y', { anchor: 'middle', fs: 20, c: INK }) + labels()
                 + bar(YA, 1, BLU, 'rgba(37,99,235,.12)') + bar(YB, 1, AMB, 'rgba(217,119,6,.12)')
-                + TX(220, 202, '兩條一樣長', { anchor: 'middle', fs: 17, c: GRN }) },
+                + TX(220, 202, '兩條一樣長', { anchor: 'middle', fs: 17, c: GRN }) + prem() },
             { t: '上面那條切成 <b>3 段</b>，下面那條切成 <b>4 段</b>。',
               d: () => TX(220, 30, '3x ＝ 4y', { anchor: 'middle', fs: 20, c: INK }) + labels()
                 + bar(YA, 3, BLU, 'rgba(37,99,235,.12)') + bar(YB, 4, AMB, 'rgba(217,119,6,.12)')
                 + TX(220, 202, '一樣長，卻切得比較多 → 每一段比較短', { anchor: 'middle', fs: 16, c: RED })
-                + TX(220, 230, '所以 x 比 y 大（x、y 都是正數時）', { anchor: 'middle', fs: 16, c: INK }) },
+                + TX(220, 230, '所以 x 比 y 大', { anchor: 'middle', fs: 17, c: INK }) + prem() },
             { t: '兩條都取 <b>12</b>：上面每段 12 ÷ 3 ＝ 4，下面每段 12 ÷ 4 ＝ 3。',
               d: () => TX(220, 30, '兩條都取 12', { anchor: 'middle', fs: 19, c: AMB }) + labels()
                 + bar(YA, 3, BLU, 'rgba(37,99,235,.12)', '4') + bar(YB, 4, AMB, 'rgba(217,119,6,.12)', '3')
                 + TX(220, 202, 'x ＝ 4，y ＝ 3', { anchor: 'middle', fs: 18, c: INK })
-                + TX(220, 230, '（4×3 ＝ 12、3×4 ＝ 12，兩邊都是 12）', { anchor: 'middle', fs: 14, c: GREY }) },
+                + TX(220, 230, '（4×3 ＝ 12、3×4 ＝ 12，兩邊都是 12）', { anchor: 'middle', fs: 14, c: GREY }) + prem() },
             { t: '寫成比：x : y ＝ 4 : 3。<b>係數對調</b>了。',
               d: () => BOX(104, 68, 232, 56, { r: 13, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.4 })
                 + TX(220, 104, 'x : y ＝ 4 : 3', { anchor: 'middle', fs: 26, c: GRN })
                 + TX(220, 158, '不是 3 : 4', { anchor: 'middle', fs: 20, c: RED })
                 + TX(220, 200, '3x ＝ 4y 的 3 和 4 是「幾段」，', { anchor: 'middle', fs: 15, c: GREY })
-                + TX(220, 226, '段數多的那個，每段反而小', { anchor: 'middle', fs: 15, c: GREY }) }
+                + TX(220, 226, '段數多的那個，每段反而小', { anchor: 'middle', fs: 15, c: GREY }) + prem() }
           ], { acc: false });
         },
         caption: '口訣是「<b>係數對調</b>」，但一定要先看過切段圖再用——不然很容易反過來寫成 \\(3:4\\)。',
