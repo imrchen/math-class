@@ -486,7 +486,7 @@ window.DECK = window.DECK || [];
         sec: '1-1', secName: '連比例',
         title: 'x／4 ＝ y／5：先交叉相乘',
         points: [
-          '分數不好比大小，先<b>把分母消掉</b>：<b>交叉相乘</b>（就是你們說的「十字交乘」）。',
+          '分數不好比大小，先<b>把分母消掉</b>：這個動作叫<b>交叉相乘</b>。',
           '\\(\\frac{x}{4}=\\frac{y}{5}\\) 交叉相乘得 \\(5x=4y\\)——<b>回到上一頁那種等式</b>。',
           '再用上一頁的<b>係數對調</b>：\\(x:y=4:5\\)。'
         ],
@@ -510,7 +510,8 @@ window.DECK = window.DECK || [];
                 + '<ellipse cx="220" cy="64" rx="19" ry="15" fill="#fafbfd"/>'
                 + TX(220, 72, '＝', { anchor: 'middle', fs: 20, c: GREY })
                 + TX(220, 158, 'x 乘 5、y 乘 4', { anchor: 'middle', fs: 18, c: INK })
-                + TX(220, 190, '（就是你們說的「十字交乘」）', { anchor: 'middle', fs: 14.5, c: GREY }) + prem() },
+
+                + TX(220, 190, '和因式分解的「十字交乘」不是同一件事', { anchor: 'middle', fs: 14.5, c: GREY }) + prem() },
             { t: '得到 5x ＝ 4y——<b>這就是上一頁那種等式</b>。',
               d: () => BOX(128, 44, 184, 56, { r: 13, fill: 'rgba(37,99,235,.10)', stroke: BLU, sw: 2.4 })
                 + TX(220, 80, '5x ＝ 4y', { anchor: 'middle', fs: 26, c: BLU })
