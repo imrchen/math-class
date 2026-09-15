@@ -24,11 +24,12 @@ window.DECK = window.DECK || [];
       </div>`).join('') + `</div>`;
   }
 
+  const pDropCont = (t) => t.replace(/\s*續[一二三四五六七八九十]?\s*$/, '');
   const pLabel = (sec, tag) => {
-    if (!/^印\s*\d+/.test(tag)) return tag;
+    if (!/^印\s*\d+/.test(tag)) return pDropCont(tag);
     const S = (window.SOLUTIONS || {})[sec] || {};
     const d = S[tag] || S[tag.replace(/\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫].*$/, '')];
-    return d && d.page ? tag.replace(/^印\s*\d+/, d.page.replace(/\s+/g, ' ')) : tag;
+    return pDropCont(d && d.page ? tag.replace(/^印\s*\d+/, d.page.replace(/\s+/g, ' ')) : tag);
   };
 
   const pRelabel = (h, sec) => h.querySelectorAll('.p-row').forEach(r => {
