@@ -1307,6 +1307,51 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '多項式與其加減運算',
+        title: '相加後是 0，表示每一個係數都是 0',
+        points: [
+          '先相加、<b>同次方合併</b>：得到 \\((a+3)x^2+(-4+b)x+(1+c)\\)。',
+          '「是 \\(0\\)」表示 <b>\\(x\\) 代什麼都等於 \\(0\\)</b>——只有每一項係數都是 \\(0\\) 才辦得到。',
+          '所以<b>一個次方列一個式子</b>：\\(a+3=0\\)、\\(-4+b=0\\)、\\(1+c=0\\)。'
+        ],
+        formula: { label: '係數各自為零<span class="pgref">課本 印 27</span>', tex: '\\text{和}=0\\ \\Rightarrow\\ \\text{每項係數}=0' },
+        visual: (h) => {
+          const cx = [128, 232, 336];
+          const head = () => cx.map((x, i) => TX(x, 48, ['x² 項', 'x 項', '常數項'][i], { anchor: 'middle', fs: 14, c: GREY })).join('');
+          const row = (y, cells, col, fs) => cells.map((t, i) =>
+            TX(cx[i], y, t, { anchor: 'middle', fs: fs || 18, c: col })).join('');
+          SV.stepper(h, '0 0 440 262', [
+            { t: '先把兩個多項式<b>同次方對齊</b>相加。',
+              d: () => TX(220, 26, '(ax² － 4x ＋ 1) ＋ (3x² ＋ bx ＋ c)', { anchor: 'middle', fs: 17, c: INK })
+                + head() + row(82, ['ax²', '－4x', '＋1'], BLU) + row(116, ['＋3x²', '＋bx', '＋c'], VIO)
+                + SV.seg(90, 132, 374, 132, '#c3cddd', 1.8)
+                + row(164, ['(a＋3)x²', '(－4＋b)x', '(1＋c)'], INK, 16) },
+            { t: '題目說<b>結果是 0</b>：不管 x 代什麼都要是 0。',
+              d: () => head() + row(82, ['(a＋3)x²', '(－4＋b)x', '(1＋c)'], INK, 16)
+                + TX(220, 128, '＝ 0', { anchor: 'middle', fs: 22, c: RED })
+                + BOX(52, 152, 336, 50, { r: 12, fill: 'rgba(225,29,72,.08)', stroke: RED, sw: 2.2 })
+                + TX(220, 174, '只有「每一項係數都是 0」', { anchor: 'middle', fs: 17, c: RED })
+                + TX(220, 196, '才可能不管 x 是多少都等於 0', { anchor: 'middle', fs: 15, c: RED }) },
+            { t: '<b>一個次方列一個式子</b>，三個各自解。',
+              d: () => head()
+                + row(74, ['a ＋ 3 ＝ 0', '－4 ＋ b ＝ 0', '1 ＋ c ＝ 0'], INK, 15)
+                + cx.map(x => TX(x, 108, '↓', { anchor: 'middle', fs: 16, c: GREY })).join('')
+                + BOX(52, 124, 336, 52, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + row(158, ['a ＝ －3', 'b ＝ 4', 'c ＝ －1'], GRN, 18)
+                + TX(220, 214, '驗算：(－3x²－4x＋1)＋(3x²＋4x－1) ＝ 0 ✓', { anchor: 'middle', fs: 14, c: GREY }) }
+          ], { acc: false });
+        },
+        caption: '同一招也用在「填入適當的多項式」：<b>比對同次方的係數</b>，一個次方一個式子。',
+        example: {
+          q: '\\(2x^2+px-5\\) 與 \\(qx^2-3x+r\\) 相加後為 \\(0\\)，求 \\(p\\)、\\(q\\)、\\(r\\)。',
+          steps: [
+            '合併：\\((2+q)x^2+(p-3)x+(-5+r)\\)。',
+            '各項係數為 \\(0\\)：\\(2+q=0\\)、\\(p-3=0\\)、\\(-5+r=0\\)。'
+          ],
+          ans: '\\(p=3\\)、\\(q=-2\\)、\\(r=5\\)'
+        }
+      },
+      {
+        sec: '1-2', secName: '多項式與其加減運算',
         title: '最常錯的三件事',
         points: [
           '三個錯分別出在<b>排序、變號、合併</b>。',
@@ -1573,6 +1618,59 @@ window.DECK = window.DECK || [];
         }
       },
 
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
+        title: '缺的邊自己補出來：先看成一個長方形',
+        points: [
+          '圖上<b>沒標的邊</b>要自己組合：左右兩側的高 \\(=x+(2x-1)=3x-1\\)。',
+          '<b>周長</b>：凸出去的兩段推到外框，就等於<b>外框長方形</b>的周長。',
+          '<b>面積</b>：先當成整個長方形，再<b>扣掉</b>上面兩個缺口。'
+        ],
+        formula: { label: '先補成長方形<span class="pgref">課本 印 39</span>', tex: '(3x+2)(3x-1)-2x^2' },
+        visual: (h) => {
+          const X0 = 118, Y0 = 44, W = 208, H = 150, nW = 56, nH = 58;
+          const shape = [[X0 + nW, Y0], [X0 + W - nW, Y0], [X0 + W - nW, Y0 + nH], [X0 + W, Y0 + nH],
+                         [X0 + W, Y0 + H], [X0, Y0 + H], [X0, Y0 + nH], [X0 + nW, Y0 + nH]];
+          const body = (fill) => SV.poly(shape, fill || 'rgba(5,150,105,.14)', GRN, 2.4);
+          const frame = (dash) => BOX(X0, Y0, W, H, { r: 0, fill: 'none', stroke: AMB, sw: 2.2, dash: dash || '7 5' });
+          const lab = () => TX(X0 + nW / 2, Y0 + 34, 'x', { anchor: 'middle', fs: 15, c: INK })
+            + TX(X0 + W - nW / 2, Y0 + 34, 'x', { anchor: 'middle', fs: 15, c: INK })
+            + TX(X0 - 16, Y0 + nH + 16, 'x', { anchor: 'middle', fs: 15, c: INK })
+            + TX(X0 + W + 16, Y0 + nH + 16, 'x', { anchor: 'middle', fs: 15, c: INK })
+            + TX(X0 + W + 30, Y0 + nH + 62, '2x－1', { anchor: 'middle', fs: 15, c: INK })
+            + TX(X0 + W / 2, Y0 + H + 22, '3x＋2', { anchor: 'middle', fs: 16, c: INK });
+          SV.stepper(h, '0 0 440 268', [
+            { t: '圖上標了四個 x、下段 2x－1、整個寬 3x＋2。<b>左右兩側的高沒有標</b>。',
+              d: () => body() + lab()
+                + TX(60, Y0 + 84, '?', { anchor: 'middle', fs: 26, c: RED })
+                + TX(220, 244, '要算周長，得先知道左右兩側有多高', { anchor: 'middle', fs: 15, c: RED }) },
+            { t: '補出來：左右兩側的高 ＝ x ＋ (2x－1) ＝ <b>3x－1</b>。',
+              d: () => body() + lab()
+                + SV.seg(X0 - 34, Y0, X0 - 34, Y0 + H, RED, 2.4)
+                + TX(50, Y0 + 80, '3x－1', { anchor: 'middle', fs: 16, c: RED })
+                + TX(220, 244, 'x ＋ (2x－1) ＝ 3x－1', { anchor: 'middle', fs: 17, c: RED }) },
+            { t: '<b>周長</b>：把凸出去的兩段推到外框——周長就等於<b>外框長方形</b>的周長。',
+              d: () => body('rgba(5,150,105,.08)') + frame() + lab()
+                + TX(220, 232, '周長 ＝ (3x＋2)×2 ＋ (3x－1)×2', { anchor: 'middle', fs: 17, c: AMB })
+                + TX(220, 258, '＝ 12x ＋ 2', { anchor: 'middle', fs: 19, c: GRN }) },
+            { t: '<b>面積</b>：先當成整個長方形，再扣掉上面<b>兩個 x·x 的缺口</b>。',
+              d: () => frame('') + body('rgba(5,150,105,.14)')
+                + BOX(X0, Y0, nW, nH, { r: 0, fill: 'rgba(225,29,72,.14)', stroke: RED, sw: 2 })
+                + BOX(X0 + W - nW, Y0, nW, nH, { r: 0, fill: 'rgba(225,29,72,.14)', stroke: RED, sw: 2 })
+                + TX(220, 226, '(3x＋2)(3x－1) － 2·x·x', { anchor: 'middle', fs: 17, c: INK })
+                + TX(220, 254, '＝ 9x² ＋ 3x － 2 － 2x² ＝ 7x² ＋ 3x － 2', { anchor: 'middle', fs: 16, c: GRN }) }
+          ], { acc: false });
+        },
+        caption: '⚠ 兩個缺口是 <b>x 乘 x</b>，不是 \\(2x\\)——它們是<b>兩塊面積</b>，要各扣一次。',
+        example: {
+          q: '同一個圖，若上面兩個缺口各是 \\(x\\) 寬 \\(x\\) 高，整個寬 \\(2x+3\\)、下段高 \\(3x-1\\)，求周長。',
+          steps: [
+            '左右兩側的高 \\(=x+(3x-1)=4x-1\\)。',
+            '周長 ＝ 外框：\\((2x+3)\\times2+(4x-1)\\times2\\)。'
+          ],
+          ans: '\\(12x+4\\)'
+        }
+      },
       {
         sec: '1-3', secName: '多項式的乘除運算',
         title: '練習｜用多項式表示周長與面積',

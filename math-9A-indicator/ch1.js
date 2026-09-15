@@ -1082,6 +1082,71 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '比例線段',
+        title: '要分成 2:3，先在旁邊借一條線分好',
+        points: [
+          '直接量 \\(\\overline{AB}\\) 很難剛好分成 5 等份——<b>借一條斜線</b>來分。',
+          '斜線上用圓規截 <b>2＋3＝5</b> 個等長的點，那裡分 2:3 很容易。',
+          '再用<b>平行線</b>把這個比<b>搬回</b> \\(\\overline{AB}\\) 上。'
+        ],
+        formula: { label: '把比搬回來<span class="pgref">課本 印 32</span>', tex: '\\overline{AC}:\\overline{CB}=2:3' },
+        visual: (h) => {
+          const A = [56, 196], B = [380, 196];
+          const DX = 36, DY = -25.2;
+          const P = [1, 2, 3, 4, 5].map(k => [A[0] + DX * k, A[1] + DY * k]);
+          const C = [A[0] + (B[0] - A[0]) * 2 / 5, A[1]];
+          const seg = (p, q, c, w, dash) => SV.seg(p[0], p[1], q[0], q[1], c, w, dash || '');
+          const dot = (p, c) => `<circle cx="${p[0]}" cy="${p[1]}" r="4.6" fill="#fff" stroke="${c}" stroke-width="2.4"/>`;
+          const base = () => seg(A, B, BLU, 3.4)
+            + dot(A, BLU) + dot(B, BLU)
+            + SV.vlabel(A[0] - 16, A[1] + 22, 'A') + SV.vlabel(B[0] + 4, B[1] + 22, 'B');
+          const ray = (k) => {
+            let g = seg(A, [A[0] + DX * 5.6, A[1] + DY * 5.6], GREY, 2, '6 5');
+            for (let i = 0; i < 5; i++) {
+              if (i >= k) break;
+              g += SV.ticks(i ? P[i - 1][0] : A[0], i ? P[i - 1][1] : A[1], P[i][0], P[i][1], 1, AMB);
+              g += dot(P[i], AMB) + TX(P[i][0] - 16, P[i][1] - 6, 'P' + (i + 1), { fs: 13, c: AMB });
+            }
+            return g;
+          };
+          SV.stepper(h, '0 0 440 266', [
+            { t: '要在 AB 上找一點 C，使 AC : CB ＝ 2 : 3。<b>直接量很難剛好分成 5 等份。</b>',
+              d: () => base()
+                + TX(C[0], 178, '?', { anchor: 'middle', fs: 24, c: RED })
+                + TX(220, 46, '要 AC : CB ＝ 2 : 3', { anchor: 'middle', fs: 19, c: INK })
+                + TX(220, 240, 'AB 的長度不一定剛好是 5 的倍數', { anchor: 'middle', fs: 15, c: GREY }) },
+            { t: '過 A 畫一條<b>斜的</b>射線，用圓規截出 <b>5 個等長</b>的點（2 ＋ 3 ＝ 5）。',
+              d: () => base() + ray(5)
+                + TX(220, 46, '圓規開同一個寬度，連續截 5 段', { anchor: 'middle', fs: 17, c: AMB })
+                + TX(220, 240, '在斜線上分 2 : 3 很容易——每段一樣長', { anchor: 'middle', fs: 15, c: GREY }) },
+            { t: '連 <b>P₅B</b>，再過 <b>P₂</b> 作 P₅B 的<b>平行線</b>，交 AB 於 C。',
+              d: () => base() + ray(5)
+                + seg(P[4], B, VIO, 2.6) + seg(P[1], C, GRN, 2.8)
+                + dot(C, GRN) + SV.vlabel(C[0] - 6, C[1] + 22, 'C')
+                + TX(300, 116, 'P₅B', { fs: 14, c: VIO })
+                + TX(140, 186, '平行', { fs: 14, c: GRN })
+                + TX(220, 240, '過 P₂——因為前面那段是 2 份', { anchor: 'middle', fs: 15, c: GREY }) },
+            { t: '為什麼對：P₂ 把 AP₅ 分成 2 : 3，<b>平行線把這個比原封不動搬到 AB 上</b>。',
+              d: () => base() + ray(5)
+                + seg(P[4], B, VIO, 2.6) + seg(P[1], C, GRN, 2.8) + dot(C, GRN)
+                + SV.vlabel(C[0] - 6, C[1] + 22, 'C')
+                + BOX(60, 28, 320, 46, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 58, 'AC : CB ＝ AP₂ : P₂P₅ ＝ 2 : 3', { anchor: 'middle', fs: 18, c: GRN })
+                + TX(220, 240, '用的就是這一節的「上段比下段」', { anchor: 'middle', fs: 15, c: GREY }) }
+          ], { acc: false });
+        },
+        caption: '⚠ 要幾份就截幾個點：\\(2:3\\) 截 <b>5</b> 個、\\(3:2\\) 也截 5 個，差別只在<b>過第幾個點</b>作平行線。',
+        example: {
+          q: '要讓 \\(\\overline{AC}:\\overline{CB}=3:2\\)，該過哪一個點作平行線？',
+          steps: [
+            '\\(3+2=5\\)，一樣截 5 個點。',
+            '前面那段要 3 份，所以過 \\(P_3\\)。'
+          ],
+          ans: '過 \\(P_3\\) 作 \\(\\overline{P_5B}\\) 的平行線'
+        }
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
         title: '比對了，兩條線就平行——但只能用這三種比法',
         points: [
           '前面是<b>有平行 → 得到比</b>；這一頁反過來，<b>有比 → 得到平行</b>。',
@@ -1351,6 +1416,53 @@ window.DECK = window.DECK || [];
             '角度不用動。'
           ],
           ans: '\\(6\\)、\\(8\\)、\\(10\\)'
+        }
+      },
+
+      {
+        sec: '1-3', secName: '縮放與相似',
+        title: '縮放要從一個「中心」量出去',
+        points: [
+          '縮放有一個<b>中心</b> \\(O\\)：從 \\(O\\) 量到每一個點的距離，都乘同一個倍率。',
+          '縮 \\(\\tfrac12\\) 倍就是把 \\(\\overline{OA}\\)、\\(\\overline{OB}\\) 都<b>取一半</b>。',
+          '連起來的 \\(\\overline{A\'B\'}\\) 會<b>平行</b>原來的，長度也是一半。'
+        ],
+        formula: { label: '從中心量出去<span class="pgref">課本 印 44</span>', tex: '\\overline{OA\'}=k\\,\\overline{OA},\\ \\overline{OB\'}=k\\,\\overline{OB}' },
+        visual: (h) => {
+          const O = [70, 64], A = [356, 140], B = [250, 246];
+          const mid = (p) => [(O[0] + p[0]) / 2, (O[1] + p[1]) / 2];
+          const A2 = mid(A), B2 = mid(B);
+          const dot = (p, c, r) => `<circle cx="${p[0]}" cy="${p[1]}" r="${r || 4.8}" fill="#fff" stroke="${c}" stroke-width="2.6"/>`;
+          const seg = (p, q, c, w, dash) => SV.seg(p[0], p[1], q[0], q[1], c, w, dash || '');
+          const base = () => seg(A, B, BLU, 3.4) + dot(A, BLU) + dot(B, BLU) + dot(O, RED, 5.4)
+            + SV.vlabel(O[0] - 22, O[1] + 6, 'O') + SV.vlabel(A[0] + 8, A[1] + 4, 'A') + SV.vlabel(B[0] + 8, B[1] + 8, 'B');
+          SV.stepper(h, '0 0 440 272', [
+            { t: '有一個<b>中心</b> O，和要縮放的線段 AB。',
+              d: () => base() + TX(220, 26, '中心 O　＋　線段 AB', { anchor: 'middle', fs: 18, c: INK }) },
+            { t: '從 O 連到 A、連到 B——<b>縮放量的是這兩條</b>，不是 AB。',
+              d: () => base() + seg(O, A, GREY, 2, '6 5') + seg(O, B, GREY, 2, '6 5')
+                + TX(220, 26, '量 OA 和 OB', { anchor: 'middle', fs: 18, c: GREY }) },
+            { t: '縮 <b>1/2</b> 倍：兩條都取<b>一半</b>，得到 A′、B′。',
+              d: () => base() + seg(O, A, GREY, 2, '6 5') + seg(O, B, GREY, 2, '6 5')
+                + dot(A2, AMB) + dot(B2, AMB)
+                + SV.vlabel(A2[0] + 6, A2[1] - 8, 'A′') + SV.vlabel(B2[0] - 26, B2[1] + 4, 'B′')
+                + TX(220, 26, 'OA′ ＝ OA 的一半　OB′ ＝ OB 的一半', { anchor: 'middle', fs: 16, c: AMB }) },
+            { t: '連起來：<b>A′B′ 平行 AB，長度也是一半</b>。',
+              d: () => base() + seg(O, A, GREY, 2, '6 5') + seg(O, B, GREY, 2, '6 5')
+                + seg(A2, B2, AMB, 3.4) + dot(A2, AMB) + dot(B2, AMB)
+                + SV.vlabel(A2[0] + 6, A2[1] - 8, 'A′') + SV.vlabel(B2[0] - 26, B2[1] + 4, 'B′')
+                + BOX(96, 14, 248, 42, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 42, 'A′B′ ∥ AB，長度一半', { anchor: 'middle', fs: 18, c: GRN }) }
+          ], { acc: false });
+        },
+        caption: '⚠ 中心 <b>O 也可以在線段上</b>（課本印 44 第 2 題就是）：一樣從 O 量出去，\\(A\'\\)、\\(B\'\\) 與原來<b>在同一側</b>。',
+        example: {
+          q: '\\(O\\) 在 \\(\\overline{AB}\\) 上，\\(\\overline{OA}=1\\) 格、\\(\\overline{OB}=3\\) 格，放大 \\(3\\) 倍後呢？',
+          steps: [
+            '兩條都乘 \\(3\\)：\\(\\overline{OA\'}=3\\) 格、\\(\\overline{OB\'}=9\\) 格。',
+            '方向不變，\\(A\'\\)、\\(B\'\\) 和原來在 \\(O\\) 的同一側。'
+          ],
+          ans: '\\(\\overline{A\'B\'}\\) 在同一直線上，長 \\(12\\) 格'
         }
       },
 
