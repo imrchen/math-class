@@ -572,6 +572,114 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '連比例',
+        title: '「一份」還不知道是多少，就先叫它 r',
+        points: [
+          '上一頁的<b>一份多少</b>，在還算不出來時，先給它一個名字叫 <b>r</b>。',
+          '\\(7:5:4\\) 就寫成 <b>\\(7r\\)、\\(5r\\)、\\(4r\\)</b>：份數不變，每一份都是 \\(r\\)。',
+          '把條件代進去解出 \\(r\\)，再<b>乘回去</b>。'
+        ],
+        formula: { label: '給「一份」取個名字<span class="pgref">課本 印 16</span>', tex: 'a:b:c\\ \\Rightarrow\\ ar,\\ br,\\ cr' },
+        visual: (h) => {
+          const u = 20, X0 = 60, Y = 74, HH = 30;
+          const P = [7, 5, 4], CO = [BLU, GRN, VIO], NM = ['籃球', '爬山', '游泳'];
+          const bars = (lab) => {
+            let g = '', x = X0;
+            P.forEach((p, i) => {
+              for (let j = 0; j < p; j++) {
+                g += BOX(x + j * u + 1, Y, u - 2, HH, { r: 4, fill: CO[i], stroke: CO[i], sw: 0 });
+                if (lab) g += TX(x + j * u + u / 2, Y + 21, lab, { anchor: 'middle', fs: 12, c: '#fff' });
+              }
+              g += TX(x + p * u / 2, Y - 10, NM[i], { anchor: 'middle', fs: 13, c: CO[i] });
+              g += TX(x + p * u / 2, Y + 48, p + ' 份', { anchor: 'middle', fs: 14, c: CO[i] });
+              x += p * u;
+            });
+            return g;
+          };
+          SV.stepper(h, '0 0 440 272', [
+            { t: '全班 32 人，籃球 : 爬山 : 游泳 ＝ 7 : 5 : 4。先把份數畫出來。',
+              d: () => TX(220, 30, '全班 32 人　7 : 5 : 4', { anchor: 'middle', fs: 19, c: INK })
+                + bars('') + TX(220, 148, '一共 7 ＋ 5 ＋ 4 ＝ 16 份', { anchor: 'middle', fs: 17, c: GREY })
+                + TX(220, 182, '但這時候還不知道「一份是幾個人」', { anchor: 'middle', fs: 16, c: RED }) },
+            { t: '還不知道就先給它一個名字：<b>每一格都叫 r</b>。',
+              d: () => TX(220, 30, '每一格都叫 r', { anchor: 'middle', fs: 19, c: AMB })
+                + bars('r')
+                + TX(220, 152, '籃球 7r 人　爬山 5r 人　游泳 4r 人', { anchor: 'middle', fs: 18, c: INK })
+                + TX(220, 186, '份數沒有變，只是每一份先叫 r', { anchor: 'middle', fs: 15, c: GREY }) },
+            { t: '把條件代進去：全部加起來是 32 人。',
+              d: () => TX(220, 44, '7r ＋ 5r ＋ 4r ＝ 32', { anchor: 'middle', fs: 22, c: INK })
+                + TX(220, 88, '16r ＝ 32', { anchor: 'middle', fs: 22, c: AMB })
+                + BOX(150, 110, 140, 46, { r: 12, fill: 'rgba(217,119,6,.12)', stroke: AMB, sw: 2.2 })
+                + TX(220, 141, 'r ＝ 2', { anchor: 'middle', fs: 22, c: AMB })
+                + TX(220, 186, '一份 ＝ 2 個人', { anchor: 'middle', fs: 17, c: GREY }) },
+            { t: '再<b>乘回去</b>：7r ＝ 14、5r ＝ 10、4r ＝ 8。',
+              d: () => TX(220, 44, '籃球 7×2 ＝ 14 人', { anchor: 'middle', fs: 19, c: BLU })
+                + TX(220, 80, '爬山 5×2 ＝ 10 人', { anchor: 'middle', fs: 19, c: GRN })
+                + TX(220, 116, '游泳 4×2 ＝ 8 人', { anchor: 'middle', fs: 19, c: VIO })
+                + SV.seg(120, 136, 320, 136, '#c9d3e2', 1.6)
+                + TX(220, 166, '驗算 14 ＋ 10 ＋ 8 ＝ 32 ✓', { anchor: 'middle', fs: 17, c: GRN })
+                + TX(220, 206, 'r 就是「一份多少」，只是先取了名字', { anchor: 'middle', fs: 15, c: GREY }) }
+          ], { acc: false });
+        },
+        caption: '份數法算得出來的，設 \\(r\\) 也算得出來——<b>\\(r\\) 真正的好處在下一頁</b>。',
+        example: {
+          q: '三角形三個內角的比是 \\(3:2:4\\)，求三個角。',
+          steps: [
+            '設三個角是 \\((3r)^\\circ\\)、\\((2r)^\\circ\\)、\\((4r)^\\circ\\)。',
+            '內角和 \\(180^\\circ\\)：\\(9r=180\\)，\\(r=20\\)。'
+          ],
+          ans: '\\(60^\\circ\\)、\\(40^\\circ\\)、\\(80^\\circ\\)'
+        }
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
+        title: '看到分母：x／4 ＝ y／3，分母是幾就幾個 r',
+        points: [
+          '\\(\\frac{x}{4}=\\frac{y}{3}=\\frac{z}{8}\\)：把它們<b>都設成 \\(r\\)</b>。',
+          '\\(\\frac{x}{4}=r\\) 就是 \\(x=4r\\)——<b>分母是幾，就幾個 \\(r\\)</b>。',
+          '⚠ 這裡<b>分母不用對調</b>，和 \\(3x=4y\\) 那一頁不一樣。'
+        ],
+        formula: { label: '分數等式直接設 r<span class="pgref">課本 印 15</span>', tex: '\\tfrac{x}{4}=r\\ \\Rightarrow\\ x=4r' },
+        visual: (h) => {
+          const col = (x, t, c) => BOX(x - 46, 96, 92, 44, { r: 10, fill: '#fbfcfe', stroke: '#dce3ee', sw: 1.6 })
+            + TX(x, 125, t, { anchor: 'middle', fs: 19, c: c });
+          SV.stepper(h, '0 0 440 280', [
+            { t: '三個分數都相等。<b>把它們都設成 r</b>。',
+              d: () => TX(220, 40, 'x／4 ＝ y／3 ＝ z／8', { anchor: 'middle', fs: 22, c: INK })
+                + TX(220, 76, '＝ r', { anchor: 'middle', fs: 22, c: AMB })
+                + TX(220, 140, '三個都等於同一個 r', { anchor: 'middle', fs: 17, c: GREY }) },
+            { t: '一個一個乘回去：<b>分母是幾，就幾個 r</b>。',
+              d: () => TX(220, 40, 'x／4 ＝ r　→　x ＝ 4r', { anchor: 'middle', fs: 19, c: BLU })
+                + TX(220, 76, 'y／3 ＝ r　→　y ＝ 3r', { anchor: 'middle', fs: 19, c: GRN })
+                + TX(220, 112, 'z／8 ＝ r　→　z ＝ 8r', { anchor: 'middle', fs: 19, c: VIO })
+                + BOX(64, 134, 312, 44, { r: 12, fill: 'rgba(225,29,72,.07)', stroke: RED, sw: 2 })
+                + TX(220, 162, '⚠ 分母不用對調（和 3x ＝ 4y 那頁不同）', { anchor: 'middle', fs: 15.5, c: RED }) },
+            { t: '代進題目給的條件 x ＋ 2y ＋ 3z ＝ 68。',
+              d: () => TX(220, 44, '4r ＋ 2×3r ＋ 3×8r ＝ 68', { anchor: 'middle', fs: 20, c: INK })
+                + TX(220, 86, '4r ＋ 6r ＋ 24r ＝ 34r', { anchor: 'middle', fs: 19, c: GREY })
+                + BOX(150, 108, 140, 46, { r: 12, fill: 'rgba(217,119,6,.12)', stroke: AMB, sw: 2.2 })
+                + TX(220, 139, '34r ＝ 68', { anchor: 'middle', fs: 20, c: AMB })
+                + TX(220, 180, 'r ＝ 2', { anchor: 'middle', fs: 22, c: AMB }) },
+            { t: '乘回去就得到三個數。',
+              d: () => col(110, 'x ＝ 8', BLU) + col(220, 'y ＝ 6', GRN) + col(330, 'z ＝ 16', VIO)
+                + TX(220, 60, 'x ＝ 4×2　y ＝ 3×2　z ＝ 8×2', { anchor: 'middle', fs: 17, c: GREY })
+                + TX(220, 186, '驗算 8 ＋ 2×6 ＋ 3×16 ＝ 68 ✓', { anchor: 'middle', fs: 17, c: GRN })
+                + TX(220, 224, '⚠ 這種條件不是「總共多少」，份數法做不了', { anchor: 'middle', fs: 15, c: RED }) }
+          ], { acc: false });
+        },
+        caption: '⚠ <b>係數要對調、分母不用對調</b>——這是最容易搞混的一組，兩頁擺在一起講。',
+        example: {
+          q: '\\(\\frac{x}{2}=\\frac{y}{3}=\\frac{z}{4}\\)，且 \\(2x-y+3z=65\\)，求 \\(x\\)、\\(y\\)、\\(z\\)。',
+          steps: [
+            '設比值為 \\(r\\)，則 \\(x=2r\\)、\\(y=3r\\)、\\(z=4r\\)。',
+            '代入：\\(4r-3r+12r=13r=65\\)，\\(r=5\\)。'
+          ],
+          ans: '\\(x=10\\)、\\(y=15\\)、\\(z=20\\)'
+        }
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
         title: '最常錯的四件事',
         points: [
           '把份數當實際數量，是這一節最常見的錯。',
