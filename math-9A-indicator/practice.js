@@ -89,7 +89,7 @@ window.PRACTICE = (function () {
         <div style="padding:8px 14px;font-size:15px;color:${INK};line-height:1.55">${d.q.replace(/\n/g, '<br>')}
           ${!hasFig && d.ref ? `<div style="font-size:12px;color:${GREY};margin-top:4px">（${d.ref}）</div>` : ''}</div>
       </div>
-      <div style="display:flex;gap:10px;align-items:stretch">
+      <div class="q-body" style="display:flex;gap:10px;align-items:stretch">
         ${hasFig ? `<div class="q-fig" style="flex:0 0 44%;min-width:0;overflow:hidden;background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:6px;display:flex;align-items:center;justify-content:center"></div>` : ''}
         <div style="flex:1 1 0;min-width:0;background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:12px 16px 26px;display:flex;flex-direction:column;gap:20px">${stepsHtml}</div>
       </div>
@@ -117,8 +117,11 @@ window.PRACTICE = (function () {
 
         figWide(figBox, Math.round(h.clientHeight * 0.52));
       }
+
       if (k >= total) { next.disabled = true; next.style.opacity = '.4'; next.style.cursor = 'default'; }
     };
+
+    if (figBox && typeof ResizeObserver !== 'undefined') new ResizeObserver(refitAll).observe(figBox);
 
     next.onclick = () => { if (k < total) { k++; while (k < lines.length && isAsk[k]) k++; paint(); } };
     h.querySelector('.q-all').onclick = () => { k = total; paint(); };
@@ -150,15 +153,36 @@ window.PRACTICE = (function () {
     const inner = box.querySelector('.q-figin');
     if (!inner) return;
     inner.style.zoom = '';
-    const haveW = box.clientWidth - 12, needW = inner.scrollWidth;
+
+    const wide = inner.querySelector('table, svg');
+    const haveW = box.clientWidth - 12;
+    const needW = Math.max(inner.scrollWidth, wide ? wide.scrollWidth : 0);
     let z = 1;
     if (haveW > 0 && needW > haveW) z = Math.min(z, (haveW / needW) * 0.99);
-    if (z < 1) inner.style.zoom = Math.max(0.42, z).toFixed(3);
+
+    const inZoom = !!box.closest('#zoomBody');
+    if (z < 1) inner.style.zoom = Math.max(inZoom ? 0.25 : 0.42, z).toFixed(3);
 
     box.style.maxHeight = capH > 0 ? capH + 'px' : '';
 
     const art = inner.querySelector('svg');
     if (art && capH > 0) { art.style.maxHeight = (capH - 14) + 'px'; art.style.height = 'auto'; }
+    box.dataset.fitW = Math.round(box.clientWidth);
+  }
+
+  function refitAll() {
+    document.querySelectorAll('.q-fig').forEach(box => {
+      const w = Math.round(box.clientWidth);
+      if (!w || w === +box.dataset.fitW) return;
+      const host = box.closest('.visual-host');
+      figWide(box, host ? Math.round(host.clientHeight * 0.52) : 0);
+    });
+  }
+  if (typeof document !== 'undefined') {
+    document.addEventListener('click', () => {
+      setTimeout(refitAll, 120);
+      setTimeout(refitAll, 600);
+    }, true);
   }
 
   function page(h, sec, groups) {

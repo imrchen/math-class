@@ -331,14 +331,15 @@ window.FIG = (function () {
     const hidden = (i) => lim !== undefined && blockOf(i) > lim;
     const cell = (v, r, c) => {
       const inBox = box && c === box.col && r >= box.from && r <= box.to;
-      return `<td style="padding:5px 16px;text-align:center;font-size:16px;color:${INK};
+
+      return `<td style="padding:5px 10px;text-align:center;font-size:16px;color:${INK};
         ${inBox ? `background:#fdeef2;` : ''}
         ${inBox && r === box.from ? `border-top:2px solid ${ANS};` : ''}
         ${inBox && r === box.to ? `border-bottom:2px solid ${ANS};` : ''}
         ${inBox ? `border-left:2px solid ${ANS};border-right:2px solid ${ANS};` : ''}">${v == null ? '' : esc(tx(v))}</td>`;
     };
     let html = `<table style="margin:0 auto;border-collapse:collapse">
-      <tr>${head.map(h => `<th style="padding:4px 16px;font-size:14px;color:#3b4a5e">${esc(tx(h))}</th>`).join('<th></th>')}</tr>`;
+      <tr>${head.map(h => `<th style="padding:4px 10px;font-size:14px;color:#3b4a5e">${esc(tx(h))}</th>`).join('<th></th>')}</tr>`;
     rows.forEach((r, i) => {
       const tds = [];
       r.forEach((v, c) => {
