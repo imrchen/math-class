@@ -1,0 +1,284 @@
+/* ============================================================
+   math-deck 專案覆寫層
+   ------------------------------------------------------------
+   上游共用檔（style.css／engine.js／svg.js）一律不改，本檔疊在
+   style.css 之後修正兩個「投影時要捲頁」的版面問題。新增一冊時
+   要把本檔一起複製過去，並在該冊 index.html 補上 <link>。
+
+   2026-09-08 由 Roger 在 pilot 檢視後提出：
+     1. 封面的「開始複習」被章節卡片擠到摺線下，要捲頁才點得到
+     2. 圖解「放大成整頁」時，滑桿控制列掉出畫面外，要捲頁才看得到
+   ============================================================ */
+
+/* ---------- 1. 封面：一屏放得下，不必捲頁 ---------- */
+
+.cover {
+  min-height: 100dvh;
+  padding: 24px;
+}
+
+.cover-inner {
+  max-width: 1180px;
+  padding: 34px 40px 32px;
+}
+
+.cover-title { font-size: clamp(40px, 5.6vw, 62px); }
+
+.cover-sub {
+  margin: 12px 0 22px;
+  font-size: clamp(14px, 1.7vw, 17px);
+}
+
+/* 章節卡：寬螢幕一律排成一列，不換行。上游的 auto-fit 在 5 章時會
+   斷成 4＋1 兩列，正是把「開始複習」推出畫面的原因。 */
+.cover-chapters {
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 1000px) {
+  .cover-chapters {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-template-columns: none;
+  }
+}
+
+.cover-card { padding: 12px 14px; }
+.cover-card .cc-title { font-size: 17px; margin: 3px 0 5px; }
+.cover-card .cc-list { font-size: 12.5px; line-height: 1.65; }
+
+.cover-start { padding: 13px 34px; font-size: 18px; }
+.cover-hint { margin-top: 16px; }
+
+/* 矮螢幕再壓一次，確保按鈕永遠在摺線以上 */
+@media (max-height: 760px) {
+  .cover-inner { padding: 24px 32px 22px; }
+  .cover-title { font-size: clamp(34px, 4.6vw, 48px); }
+  .cover-sub { margin: 8px 0 16px; }
+  .cover-chapters { margin-bottom: 18px; }
+  .cover-card .cc-list { font-size: 12px; line-height: 1.55; }
+  .cover-hint { display: none; }
+}
+
+/* ---------- 2. 圖解放大：圖＋滑桿一起塞進一屏 ---------- */
+
+/* 放大層本身不再捲動——圖解模式下捲頁等於講到一半畫面要拉，投影很難用。
+   （範例放大模式仍需要捲動，因此只鎖圖解那一種。） */
+.zoom-modal { padding-bottom: 28px; }
+
+.zoom-body > .visual-host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 有滑桿或步驟滑桿時，SVG 要讓出控制列的高度。
+   上游只寫死 max-height:80vh，沒有把 .ictrl 算進去，所以控制列會掉出畫面。 */
+.zoom-body > .visual-host:has(.ictrl) svg {
+  max-height: calc(100vh - 300px);
+}
+
+.zoom-body > .visual-host .ictrl {
+  flex: none;
+  margin-top: 12px;
+}
+
+/* 放大時版面寬得多，步驟說明不必再擠成三行 */
+.zoom-body > .visual-host .ictrl .step-txt {
+  max-width: min(760px, 70vw);
+}
+
+/* ---------- 3. 「🔍 放大」鈕不要壓到內容 ---------- */
+
+/* 放大鈕是 position:absolute 浮在視覺欄右上角，SVG 圖那一類頁面右上角通常留白，
+   不會擋到；但視覺欄放 HTML（✗／✓ 對照表、SV.fbox 公式卡）時，內容從最上緣就開始排，
+   第一列會被鈕蓋住。
+   判別方式：繪圖頁的結構一定是 host > div > svg（自訂的 svg() 包裝與 SV.stepper 都是），
+   HTML 頁的 svg 只會出現在更深層的 mjx-container 裡，所以用直接子代選擇器就能分開，
+   只在 HTML 頁讓出鈕的高度。 */
+.slide-visual .visual-host:not(:has(> div > svg)) {
+  padding-top: 30px;
+}
+
+/* ---------- 4. 視覺欄的 MathJax 公式要縮到欄寬，不要被切掉 ---------- */
+
+/* MathJax 的 SVG 輸出是固定寬度，不會換行也不會縮。視覺欄放對照表或公式卡時，
+   欄寬一窄（例如 1280×720 的投影機）公式就會直接被 .slide-visual 的 overflow:hidden
+   切掉右半。讓 mjx-container 及其 svg 等比縮到容器寬度即可，字會小一點但完整。 */
+.visual-host mjx-container[jax="SVG"] {
+  max-width: 100%;
+}
+.visual-host mjx-container[jax="SVG"] > svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- 5. ✗／✓ 對照列在窄欄下壓緊一點 ---------- */
+
+/* 1280 寬的投影機下，視覺欄只有約 390px，對照表三列很容易超出欄高被切掉。
+   （上游 engine.js 的 fitEl() 是對 host 自己 transform:scale()，而 host 的
+   overflow:hidden 在縮放之前就已經裁掉超出的部分，所以縮放救不回來——只能讓內容變矮。）
+   這裡在窄欄時收緊留白與行高；仍然放不下的部分靠「🔍 放大」看完整版。 */
+/* xoRows 產生的元素帶內聯 style，內聯優先序高於任何選擇器，因此這裡必須用 !important。 */
+@media (max-width: 1400px) {
+  .visual-host .xo-wrap { gap: 7px !important; }
+  .visual-host .xo-row { gap: 6px !important; }
+  .visual-host .xo-cell { padding: 7px 10px !important; }
+  .visual-host .xo-tag { font-size: 11px !important; margin-bottom: 2px !important; }
+  .visual-host .xo-body { font-size: 12.5px !important; line-height: 1.5 !important; }
+
+}
+
+/* ---------- 6. 窄／矮視窗下，HTML 視覺欄整組縮到欄內 ---------- */
+
+/* 承上：engine.js 的 fitEl() 對 HTML 內容無效（它 transform:scale 的是 host 自己，
+   而 host 的 overflow:hidden 在縮放前就已經裁掉超出的部分），所以只能讓內容實際變矮。
+   用 zoom 而不是 transform：zoom 會真的改變版面尺寸，host 的 scrollHeight 跟著變小；
+   transform 只改繪製結果，量到的高度不變，救不了裁切。
+
+   0.75 是同時容納「✗／✓ 三列對照表」與「四列公式卡」兩種最擠版面的值
+   （實測 1280 寬視窗：對照表需 0.78、公式卡需 0.75）。投影片上的字會小一點，
+   要放大講解時點「🔍 放大」就是原尺寸。
+
+   ⚠️ 這個斷點是拿 1280 寬的視窗量出來的，不是拿實際教室投影機量的。
+   確認投影解析度後應該回頭調整 max-width 與 zoom 值。 */
+@media (max-width: 1400px) {
+  .slide-visual .visual-host:not(:has(> div > svg)) > * {
+    zoom: 0.75;
+  }
+}
+
+/* ---------- 7. 左欄的公式卡不要被 flex 擠扁 ---------- */
+
+/* `.col-fit` 是 flex column，子項預設 flex-shrink:1。矮視窗下內容比欄高，
+   公式卡就先被壓扁（實測 125px 被擠成 19px，只剩一條），裡面的 MathJax 直接被裁掉。
+   engine.js 的 fitEl() 本來就會等比縮放這一欄，不需要 flex 再幫忙擠——
+   關掉收縮，量到的才是真實高度，縮放後每個區塊都保持完整比例。 */
+.slide-info .col-fit > * {
+  flex-shrink: 0;
+}
+
+/* ---------- 8. 有滑桿的頁：圖與控制列自己分配欄高 ---------- */
+
+/* 上游 style.css:382 對含 .ictrl 的頁把 svg 的 max-height 設成 none，刻意改由
+   engine.js 的 fitSlide() 把「圖＋滑桿」當一整組等比縮放。但 fitSlide 走的是
+   fitEl(host, host)——縮放對象就是 host 自己，而 host 的 overflow:hidden 會在縮放
+   之前先裁掉超出的部分，所以矮視窗下滑桿仍然會被切掉（實測 1280×679：需要 422px、
+   只有 366px，底部的滑桿整條不見）。
+
+   這裡不再依賴那個縮放：把 host 內的包裝層改成 flex column，SVG 吃剩餘空間、
+   控制列固定不收縮，兩者一定塞得進欄內。圖會小一點，但滑桿一定看得到——
+   投影時滑桿不見比圖小一點嚴重得多。 */
+.slide-visual .visual-host:has(.ictrl) > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.slide-visual .visual-host:has(.ictrl) > div > svg {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+}
+.slide-visual .visual-host:has(.ictrl) > div > .ictrl {
+  flex: 0 0 auto;
+}
+
+/* ---- 課本頁碼徽章（Roger 2026-09-13） ----
+   「與課本的可見聯繫」那條原則的系統化做法（見 AGENTS.md 內容規則）：
+   每張講解頁在公式卡的標籤列右端標出對應的課本印刷頁，
+   讓學生隨時翻得到——附帶的心理暗示是「課本我們都有講喔」。
+
+   為什麼放在 `.formula-label` 裡：投影片物件沒有專用的出處欄位，
+   而 `engine.js` 是上游共用檔、不能改（AGENTS.md 安全邊界）。
+   `formula.label` 是以 HTML 注入的，所以塞一個 span 進去即可，零上游改動。
+   標籤列改成 flex，主標籤靠左、頁碼靠右。 */
+.formula .formula-label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.formula .formula-label .pgref {
+  margin-left: auto;
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #5b6b86;
+  background: #eef2f9;
+  border: 1px solid #d7e0ee;
+  border-radius: 999px;
+  padding: 1px 9px;
+  white-space: nowrap;
+}
+
+/* ---- HTML 裡的根號：不要用 CSS 畫 ----
+   試過 `text-decoration: overline`（class `.radh`，2026-09-14 當天加、當天移除）：
+   線落在**字型的 ascender**，比被開方數的字頂高一截，左端又接不上 √ 字元的斜勾，
+   投影出去就是一條浮在半空的短線（Roger：「46、47、50 右邊的根號還是沒有很乾淨」）。
+   結論：**SVG 裡的根號自己畫**（ch2.js 的 `RT()`＋`radBars()` 用 polyline）；
+   **HTML 裡一律寫成「根號 N」**，或用 MathJax 的 `\(\sqrt{N}\)`（points 本來就是這樣）。 */
+
+/* ---- 目錄的「節」層折疊（2026-09-15 Roger 指示）----
+   章級折疊已經不夠：一章 40 頁以上，打開還是要滑很久。
+   DOM 由本站自有的 `toc-sections.js` 後處理產生（不改上游的 engine.js）：
+   `.toc-items > .toc-section > .toc-shead + .toc-item…`
+   ‧ 預設收起，只有「目前所在的那一節」展開
+   ‧ 節標頭左邊有三角形指示，展開時轉 90°
+   ‧ 節標頭已經寫了節號，所以把每一列裡重複的 `.ti-sec` 藏起來，列也就更短 */
+.toc-section { margin: 2px 0 4px; }
+.toc-shead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 6px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  color: #44526b;
+}
+.toc-shead:hover { background: rgba(37, 99, 235, 0.07); }
+.toc-shead::before {
+  content: '▸';
+  font-size: 11px;
+  line-height: 1;
+  color: #97a3b8;
+  transition: transform .12s;
+}
+.toc-section.open > .toc-shead::before { transform: rotate(90deg); }
+.toc-shead .ts-sec { font-size: 12.5px; font-weight: 900; color: var(--ct); flex: none; }
+.toc-shead .ts-name { font-size: 12.5px; font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.toc-shead .ts-n {
+  margin-left: auto;
+  flex: none;
+  font-size: 11px;
+  font-weight: 800;
+  color: #8a94a6;
+  background: #eef2f9;
+  border-radius: 999px;
+  padding: 0 7px;
+}
+.toc-section > .toc-item { display: none; }
+.toc-section > .toc-item .ti-sec { display: none; }
+.toc-section > .toc-item { padding-left: 22px; }
+/* 節內的列最多兩行（一節 20 頁以上時，三四行的列會讓清單長到不能掃）。
+   ⚠ 不用單行截尾：那會把「（選擇 5～8）」這種**辨識點**切掉——
+   目錄字級 20px、側欄 280px，一行只放得下約 13 個字。兩行剛好容得下標題全文，
+   真的超長才截尾；完整標題另外掛在 `title` 屬性上，滑過去看得到。 */
+/* 列最多兩行，用 `max-height` 裁掉第三行以後。
+   ⚠ **不要改回 `-webkit-line-clamp`**：`.toc-item` 是 `<button>`，
+   Chrome（實測 153）會把 button 子樹裡的 `display:-webkit-box` 正規化成
+   `flow-root`，clamp 就靜靜失效——列仍然三行、computed display 是 flow-root。
+   標準的 `line-clamp` 這版 Chrome 也還不吃（computed 讀不到）。
+   `max-height` 沒有 ellipsis，但完整標題掛在 `title` 屬性上（`toc-sections.js`）。
+   ⚠ 用 `2lh`（＝兩個行高），**不要寫 `2.7em`**：實測那條 em 解成 35px 而不是
+   2×27px，第二行會被切一半（2026-09-15 截圖確認）。`lh` 跟著 line-height 走，
+   之後調字級或行高都不用動這裡。太舊的瀏覽器不吃 `lh` 時這條會被忽略，
+   退回「列可以三行」——就是這個功能之前的樣子，不會壞掉。 */
+.toc-section.open > .toc-item { display: block; }
+.toc-section > .toc-item > .ti-txt {
+  display: block;
+  max-height: 2lh;
+  overflow: hidden;
+}
