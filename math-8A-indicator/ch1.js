@@ -183,6 +183,38 @@ window.DECK = window.DECK || [];
     } else { setTimeout(go, 60); }
   };
 
+  const pAnswerKey = (h, sec, groups) => {
+    const S = (window.SOLUTIONS || {})[sec] || {};
+    const tex = t => String(t || '').replace(/\$([^$]+)\$/g, (_, m) => '\\(' + m + '\\)');
+
+    const splitChoice = (a) => {
+      const m = /^選\s*(\([A-Da-d]\))\s*(.*)$/.exec(String(a || '').trim());
+      return m ? { big: m[1], sub: m[2] } : { big: String(a || ''), sub: '' };
+    };
+    const cell = (no, tag) => {
+      const d = pMerge(S, tag);
+      const a = d ? d.ans : '';
+      const { big, sub } = splitChoice(a);
+      return `<div style="border:1.5px solid #dbe3f0;border-radius:10px;background:#fff;
+          padding:7px 9px;display:flex;align-items:baseline;gap:8px;min-width:0">
+        <span style="flex:0 0 auto;font-size:15px;font-weight:700;color:${GREY}">${no}</span>
+        <span style="min-width:0;flex:1">
+          <span style="font-size:21px;font-weight:700;color:${a ? GRN : '#e11d48'};
+            display:block;line-height:1.3;word-break:break-word">${a ? tex(big) : '（查無答案）'}</span>
+          ${sub ? `<span style="font-size:13.5px;color:${GREY};display:block;line-height:1.4">${tex(sub)}</span>` : ''}
+        </span>
+      </div>`;
+    };
+    h.innerHTML = `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:12px">`
+      + groups.map(g => `<div>
+          <div style="font-size:14px;font-weight:700;color:${C};margin:0 0 6px 2px">${g.label}</div>
+          <div style="display:grid;grid-template-columns:repeat(${g.cols || 4},minmax(0,1fr));gap:7px">
+            ${g.items.map(it => cell(it[0], it[1])).join('')}
+          </div></div>`).join('')
+      + `</div>`;
+    pAfter(h);
+  };
+
   const pMount = (h, cards, sec) => {
     const render = () => {
       h.innerHTML = pWrap(cards);
@@ -890,6 +922,33 @@ window.DECK = window.DECK || [];
               pText('精熟2', '\\(\\frac{133^2}{135}\\) 最接近哪個正整數？', '131')), '1-1');
         },
         caption: '做不完不追；精熟兩題標「進階」。'
+      },
+
+      {
+        sec: '1-1', secName: '乘法公式',
+        title: '對答案｜習作（基礎、精熟練習）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁，老師唸題號，改同學的本子。',
+          '答案錯的那幾題，回前面的練習頁點題號看<b>逐行詳解</b>。'
+        ],
+        visual: (h) => {
+          pAnswerKey(h, '1-1', [
+            { label: '基礎 1（印 2）、基礎 2（印 3）', cols: 4, items: [
+              ['1 ①', '基礎1 ①'], ['1 ②', '基礎1 ②'], ['1 ③', '基礎1 ③'], ['1 ④', '基礎1 ④'],
+              ['2 ①', '基礎2 ①'], ['2 ②', '基礎2 ②'], ['2 ③', '基礎2 ③'], ['2 ④', '基礎2 ④']
+            ] },
+            { label: '基礎 3　判斷 ○／×（印 3）', cols: 6, items: [
+              ['①', '基礎3 ①'], ['②', '基礎3 ②'], ['③', '基礎3 ③'],
+              ['④', '基礎3 ④'], ['⑤', '基礎3 ⑤'], ['⑥', '基礎3 ⑥']
+            ] },
+            { label: '基礎 4～6（印 4）、精熟 1～2（印 5）', cols: 3, items: [
+              ['基 4', '基礎4'], ['基 5', '基礎5'], ['基 6', '基礎6'],
+              ['精 1', '精熟1'], ['精 2', '精熟2']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，回前面的練習頁點題號看詳解。'
       },
 
       {
