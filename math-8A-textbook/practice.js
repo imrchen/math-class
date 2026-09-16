@@ -84,15 +84,26 @@ window.PRACTICE = (function () {
   function parts(sec, tag) {
     const d0 = S(sec)[tag];
     if (!d0) return [];
-    const out = [];
+    const raw = [];
     for (const suf of CONT) {
       const d = S(sec)[tag + suf];
       if (!d) continue;
       const q = String(d.q || '').trim();
-      out.push({
+      raw.push({
         q: (!q || BOILER.test(q)) ? String(d0.q || '') : q,
         steps: d.steps || [], ans: d.ans || '', fig: d.fig || d0.fig || null
       });
+    }
+
+    const nOf = (p) => p.steps.length + (p.ans ? 1 : 0) + (p.fig ? 3 : 0);
+    const out = [];
+    for (const p of raw) {
+      const last = out[out.length - 1];
+      if (last && last.q === p.q && nOf(last) + nOf(p) - (last.fig && p.fig ? 3 : 0) <= 7) {
+        last.steps = last.steps.concat(p.steps);
+        last.ans = [last.ans, p.ans].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join('　');
+        last.fig = last.fig || p.fig;
+      } else out.push({ q: p.q, steps: p.steps.slice(), ans: p.ans, fig: p.fig });
     }
     return out;
   }
