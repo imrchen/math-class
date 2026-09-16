@@ -31,6 +31,17 @@ window.DECK = window.DECK || [];
       </div>`).join('') + `</div>`;
   }
 
+  function gradeRows(rows) {
+    return `<div class="xo-wrap" style="width:99.5%;margin:0 auto;display:flex;flex-direction:column;gap:5px">` +
+      rows.map(r => `<div class="xo-row" style="border:1.5px solid #dde4ef;border-radius:12px;background:#fff;padding:4px 10px">
+        <div class="xo-tag" style="font-size:12px;font-weight:900;color:${C};margin-bottom:2px">${r.tag}</div>
+        <div class="xo-body" style="display:flex;gap:8px;align-items:baseline;font-size:12.5px;line-height:1.4;color:${INK}">
+          <span style="flex:0 0 auto;font-weight:900;color:${RED}">✗</span><span style="flex:1;min-width:0">${r.bad}</span></div>
+        <div class="xo-body" style="display:flex;gap:8px;align-items:baseline;font-size:12.5px;line-height:1.4;color:${INK}">
+          <span style="flex:0 0 auto;font-weight:900;color:${GRN}">✓</span><span style="flex:1;min-width:0">${r.good}</span></div>
+      </div>`).join('') + `</div>`;
+  }
+
   function qaRows(rows) {
     return `<div class="xo-wrap" style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">` +
       rows.map(r => `<div class="xo-row" style="display:flex;gap:8px;align-items:stretch">
@@ -92,6 +103,36 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '乘法公式',
+        title: '對答案｜習作（基礎、精熟練習）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的本子。',
+          '⚠ 這一節有好幾題<b>答案對、過程沒寫</b>也不算完成——標準在後面那一頁總結。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-1', [
+            { label: '基礎 1（印 2）、基礎 2（印 3）', cols: 4, items: [
+              ['1 ①', '基礎1 ①'], ['1 ②', '基礎1 ②'], ['1 ③', '基礎1 ③'], ['1 ④', '基礎1 ④'],
+              ['2 ①', '基礎2 ①'], ['2 ②', '基礎2 ②'], ['2 ③', '基礎2 ③'], ['2 ④', '基礎2 ④']
+            ] },
+            { label: '基礎 3　判斷 ○／×（印 3）', cols: 6, items: [
+              ['①', '基礎3 ①'], ['②', '基礎3 ②'], ['③', '基礎3 ③'],
+              ['④', '基礎3 ④'], ['⑤', '基礎3 ⑤'], ['⑥', '基礎3 ⑥']
+            ] },
+            { label: '基礎 4～6（印 4）、精熟 1～2（印 5）', cols: 3, items: [
+              ['基 4', '基礎4'], ['基 5', '基礎5'], ['基 6', '基礎6'],
+              ['精 1', '精熟1'], ['精 2', '精熟2']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯、過程該寫什麼，留給後面的檢討頁與總結頁。'
+      },
+
+      {
+        sec: '1-1', secName: '乘法公式',
         title: '檢討｜習作 ①（基礎練習）',
         points: [
           '點題號看<b>逐行詳解</b>；帶圖的題圖就在題目卡裡。',
@@ -148,6 +189,46 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+
+      {
+        sec: '1-1', secName: '乘法公式',
+        title: '習作總結：題目要的是過程，不是只有答案',
+        points: [
+          '這五筆是<b>這次改習作真的看到的</b>，不是一般性的提醒。',
+          '四筆同一個病：<b>中間那一步沒寫</b>，看不出公式用在哪裡；第 4 題則是<b>漏了單位</b>。',
+          '寫下來的那一步，就是<b>給分的地方</b>，也是自己檢查的地方。'
+        ],
+        formula: { label: '這幾題的題目都寫著這一句<span class="pgref">習作 印 2–5</span>', tex: '\\text{「利用分配律」「利用乘法公式」}' },
+        visual: (h) => {
+          h.innerHTML = gradeRows([
+            { tag: '基礎 1 ①　跳過分配律那一步',
+              bad: '化成假分數硬乘 \\(\\frac{22}{3}\\times\\frac{22}{7}\\)，答案對但<b>分配律沒出現</b>',
+              good: '\\((7+\\frac{1}{3})(3+\\frac{1}{7})=21+1+1+\\frac{1}{21}=23\\frac{1}{21}\\)' },
+            { tag: '基礎 4　算出數字就交卷，沒寫單位',
+              bad: '只寫 \\(37600\\)，面積題<b>沒有單位</b>',
+              good: '\\(\\frac{1}{2}(288+88)(288-88)=37600\\)　→　單位是<b>平方公尺</b>' },
+            { tag: '基礎 5　沒有計算過程',
+              bad: '卷面只有一個 (D)，<b>看不出是算的還是猜的</b>',
+              good: '\\((100+2)^2+(100-2)^2=(100^2+2^2)\\times2\\)　→　選 (D)' },
+            { tag: '基礎 6　a、b 沒算出來就有答案了',
+              bad: '直接寫 \\(b>a\\)，紙上<b>沒有 \\(a\\)、\\(b\\) 的值</b>',
+              good: '\\(a=(65+15)(65-15)=4000\\)，\\(b\\) 同法得 \\(4300\\)　→　\\(b>a\\)' },
+            { tag: '精熟 2　沒算出數值就答「最接近」',
+              bad: '只寫 \\(131\\)，<b>沒把 \\(\\frac{133^2}{135}\\) 算成一個數</b>',
+              good: '\\(\\frac{(135-2)^2}{135}=131\\frac{4}{135}\\)　→　最接近 \\(131\\)' }
+          ]);
+          MJ(h);
+        },
+        caption: '左邊是這次本子上真的出現的寫法；右邊多的那一行，抄下來就是分數。',
+        example: {
+          q: '\\(38\\times13+38\\times7+42\\times13+42\\times7\\)（基礎 2 ①）要怎麼把分配律寫出來？',
+          steps: [
+            '前兩項提 \\(38\\)、後兩項提 \\(42\\)：\\(38(13+7)+42(13+7)\\)。',
+            '再把 \\((13+7)\\) 提出來：\\((38+42)(13+7)=80\\times20\\)。'
+          ],
+          ans: '\\(1600\\)'
+        }
       },
 
       {
