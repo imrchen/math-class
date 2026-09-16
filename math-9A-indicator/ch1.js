@@ -1008,6 +1008,69 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '比例線段',
+        title: '比例式畫一個叉：兩條線各自相乘，答案一樣大',
+        points: [
+          '\\(a:b=c:d\\) 就是<b>對角相乘</b>：\\(a\\times d=b\\times c\\)。<b>不是同一側相乘</b>。',
+          '算出 \\(6x=36\\) <b>還沒完</b>——要<b>再除回去</b>才是答案。',
+          '未知數<b>在哪一格都一樣</b>畫叉，只是最後除的那個數不同。'
+        ],
+        formula: { label: '由比例式求未知數<span class="pgref">課本 印 28 例 2</span>', tex: 'a:b=c:d\\ \\Rightarrow\\ a\\times d=b\\times c' },
+        visual: (h) => {
+
+          const XL = 150, XR = 290, YA = 92, YB = 160, CA = 83, CB = 151;
+          const T = (x, y, t, c, fs) => TX(x, y, t, { anchor: 'middle', fs: fs || 26, c: c || INK });
+          const orig = (a, b, c, d) => T(220, 40, a + '：' + b + ' ＝ ' + c + '：' + d, GREY, 18);
+          const grid = (a, b, c, d, ca, cb, cc, cd) =>
+            T(XL, YA, a, ca) + T(220, YA, '：', GREY, 20) + T(XR, YA, b, cb)
+            + T(XL, YB, c, cc) + T(220, YB, '：', GREY, 20) + T(XR, YB, d, cd);
+          const cross = () => SV.seg(XL + 13, CA, XR - 13, CB, AMB, 2.6)
+            + SV.seg(XR - 13, CA, XL + 13, CB, VIO, 2.6);
+          const cut = () => TX(220, 266, '和因式分解的「十字交乘」不是同一件事', { anchor: 'middle', fs: 14.5, c: GREY });
+          SV.stepper(h, '0 0 440 280', [
+            { t: '課本例 2 解到一半會出現這一行：<b>6：4 ＝ 9：QC</b>。先看這四個數字就好。',
+              d: () => T(220, 80, '6：4 ＝ 9：QC', INK, 28)
+                + TX(220, 140, '四個位置，只有一個不知道', { anchor: 'middle', fs: 17, c: INK })
+                + TX(220, 176, '等一下在三角形上就會看到這種式子', { anchor: 'middle', fs: 15, c: GREY })
+                + cut() },
+            { t: '換成<b>上下兩排</b>寫，就看得到那個叉：左上連右下、右上連左下。<b>兩條線要交叉</b>。',
+              d: () => orig('6', '4', '9', 'QC') + grid('6', '4', '9', 'QC', BLU, AMB, GRN, VIO) + cross()
+                + TX(220, 206, '琥珀線：6 和 QC　　紫線：4 和 9', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 236, '✗ 不是 6 × 9（那兩個在同一邊，沒有交叉）', { anchor: 'middle', fs: 16, c: RED })
+                + cut() },
+            { t: '兩條線<b>各自相乘</b>，答案一樣大。右邊那條兩個都是數字，先算出來。',
+              d: () => orig('6', '4', '9', 'QC') + grid('6', '4', '9', 'QC', BLU, AMB, GRN, VIO) + cross()
+                + TX(220, 206, '6 × QC ＝ 4 × 9', { anchor: 'middle', fs: 21, c: INK })
+                + TX(220, 240, '4 × 9 ＝ 36，所以 6 × QC ＝ 36', { anchor: 'middle', fs: 18, c: VIO })
+                + cut() },
+            { t: '到這裡<b>還沒完</b>：6 乘幾等於 36？把 6 <b>除回去</b>。',
+              d: () => TX(220, 44, '6 × QC ＝ 36', { anchor: 'middle', fs: 22, c: INK })
+                + TX(220, 84, '✗ 答成 QC ＝ 36 × 6', { anchor: 'middle', fs: 16, c: RED })
+                + BOX(120, 104, 200, 54, { r: 13, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.4 })
+                + TX(220, 140, 'QC ＝ 36 ÷ 6 ＝ 6', { anchor: 'middle', fs: 24, c: GRN })
+                + TX(220, 190, '驗算：6：4 ＝ 9：6 ✓（都是 1.5 倍）', { anchor: 'middle', fs: 15, c: GRN })
+                + TX(220, 224, '六題裡有四題都要多除這一次', { anchor: 'middle', fs: 15, c: GREY })
+                + cut() },
+            { t: '同一組數字，未知數<b>換到第 2 格</b>——叉的畫法<b>完全沒變</b>。',
+              d: () => orig('6', 'x', '9', '6') + grid('6', 'x', '9', '6', BLU, VIO, GRN, AMB) + cross()
+                + TX(220, 206, '6 × 6 ＝ x × 9　→　x ＝ 36 ÷ 9 ＝ 4', { anchor: 'middle', fs: 19, c: GRN })
+                + TX(220, 240, '對角是看位置，不是看未知數在哪', { anchor: 'middle', fs: 16, c: INK })
+                + cut() }
+          ], { acc: false });
+        },
+        caption: '1-1 用過的<b>交叉相乘</b>，這裡拿來<b>求長度</b>——同一招，換一個方向用。',
+        example: {
+          q: '\\(3:x=6:8\\)，求 \\(x\\)。',
+          steps: [
+            '對角相乘：\\(3\\times8\\) 和 \\(x\\times6\\)。',
+            '\\(3\\times8=24\\)，所以 \\(6x=24\\)。',
+            '兩邊除以 \\(6\\)。'
+          ],
+          ans: '\\(x=4\\)'
+        }
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
         title: '高一樣的時候，底邊幾比幾，面積就是幾比幾',
         points: [
           '兩個三角形<b>頂點同一個</b>、底邊在<b>同一條線</b>上，高就一樣。',
