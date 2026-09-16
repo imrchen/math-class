@@ -359,3 +359,31 @@
   font-weight: 900;
   letter-spacing: 0.08em;
 }
+
+/* 放大層的局部放大（`zoom-pan.js`，本專案自有）。
+   ⚠ 樣式一律寫在這裡，不改上游的 `style.css`。 */
+.zp-group { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; }
+.zp-btn { min-width: 42px; font-weight: 900; }
+.zp-btn:disabled { opacity: 0.4; cursor: default; }
+.zp-level {
+  min-width: 46px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  color: var(--ct);
+}
+/* 放大中：關掉原生捲軸，改由拖曳平移；游標要讓老師看得出可以拖。
+   ⚠ `overflow:hidden` 是必要的——transform 會擴大可捲動範圍，
+   捲軸與拖曳同時存在時，投影畫面會在拖曳中忽然多出兩條捲軸。 */
+.zoom-modal.zp-on {
+  overflow: hidden;
+  cursor: grab;
+  /* ⚠ `touch-action: none` 只在放大時掛：沒有它，大型觸摸螢幕上手指的滑動
+     會被瀏覽器當成頁面捲動而吞掉 `pointermove`；但 1× 要留著原生捲動。 */
+  touch-action: none;
+  /* 拖曳經過詳解文字時不要選字（滑鼠與觸控都會） */
+  -webkit-user-select: none;
+  user-select: none;
+}
+.zoom-modal.zp-on.zp-drag { cursor: grabbing; }
