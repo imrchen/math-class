@@ -32,12 +32,12 @@ window.DECK = window.DECK || [];
   }
 
   function gradeRows(rows) {
-    return `<div class="xo-wrap" style="width:99.5%;margin:0 auto;display:flex;flex-direction:column;gap:5px">` +
-      rows.map(r => `<div class="xo-row" style="border:1.5px solid #dde4ef;border-radius:12px;background:#fff;padding:4px 10px">
-        <div class="xo-tag" style="font-size:12px;font-weight:900;color:${C};margin-bottom:2px">${r.tag}</div>
-        <div class="xo-body" style="display:flex;gap:8px;align-items:baseline;font-size:12.5px;line-height:1.4;color:${INK}">
+    return `<div class="xo-wrap" style="width:99.5%;margin:0 auto;display:flex;flex-direction:column;gap:9px">` +
+      rows.map(r => `<div class="xo-row" style="border:1.5px solid #dde4ef;border-radius:12px;background:#fff;padding:9px 13px">
+        <div class="xo-tag" style="font-size:14px;font-weight:900;color:${C};margin-bottom:5px">${r.tag}</div>
+        <div class="xo-body" style="display:flex;gap:8px;align-items:baseline;font-size:15px;line-height:1.6;color:${INK}">
           <span style="flex:0 0 auto;font-weight:900;color:${RED}">✗</span><span style="flex:1;min-width:0">${r.bad}</span></div>
-        <div class="xo-body" style="display:flex;gap:8px;align-items:baseline;font-size:12.5px;line-height:1.4;color:${INK}">
+        <div class="xo-body" style="display:flex;gap:8px;align-items:baseline;font-size:15px;line-height:1.6;color:${INK}">
           <span style="flex:0 0 auto;font-weight:900;color:${GRN}">✓</span><span style="flex:1;min-width:0">${r.good}</span></div>
       </div>`).join('') + `</div>`;
   }
@@ -193,10 +193,10 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '乘法公式',
-        title: '習作總結：題目要的是過程，不是只有答案',
+        title: '習作總結 ①：算了，但沒寫出來',
         points: [
           '這五筆是<b>這次改習作真的看到的</b>，不是一般性的提醒。',
-          '四筆同一個病：<b>中間那一步沒寫</b>，看不出公式用在哪裡；第 4 題則是<b>漏了單位</b>。',
+          '這三筆都是<b>中間那一步沒寫</b>，看不出公式用在哪裡；基礎 4 是<b>漏了單位</b>。',
           '寫下來的那一步，就是<b>給分的地方</b>，也是自己檢查的地方。'
         ],
         formula: { label: '這幾題的題目都寫著這一句<span class="pgref">習作 印 2–5</span>', tex: '\\text{「利用分配律」「利用乘法公式」}' },
@@ -210,13 +210,7 @@ window.DECK = window.DECK || [];
               good: '\\(\\frac{1}{2}(288+88)(288-88)=37600\\)　→　單位是<b>平方公尺</b>' },
             { tag: '基礎 5　沒有計算過程',
               bad: '卷面只有一個 (D)，<b>看不出是算的還是猜的</b>',
-              good: '\\((100+2)^2+(100-2)^2=(100^2+2^2)\\times2\\)　→　選 (D)' },
-            { tag: '基礎 6　a、b 沒算出來就有答案了',
-              bad: '直接寫 \\(b>a\\)，紙上<b>沒有 \\(a\\)、\\(b\\) 的值</b>',
-              good: '\\(a=(65+15)(65-15)=4000\\)，\\(b\\) 同法得 \\(4300\\)　→　\\(b>a\\)' },
-            { tag: '精熟 2　沒算出數值就答「最接近」',
-              bad: '只寫 \\(131\\)，<b>沒把 \\(\\frac{133^2}{135}\\) 算成一個數</b>',
-              good: '\\(\\frac{(135-2)^2}{135}=131\\frac{4}{135}\\)　→　最接近 \\(131\\)' }
+              good: '\\((100+2)^2+(100-2)^2=(100^2+2^2)\\times2\\)　→　選 (D)' }
           ]);
           MJ(h);
         },
@@ -228,6 +222,37 @@ window.DECK = window.DECK || [];
             '再把 \\((13+7)\\) 提出來：\\((38+42)(13+7)=80\\times20\\)。'
           ],
           ans: '\\(1600\\)'
+        }
+      },
+
+      {
+        sec: '1-1', secName: '乘法公式',
+        title: '習作總結 ②：答案先出現，算式沒出現',
+        points: [
+          '這兩筆都是<b>先有答案、沒有算式</b>——看不出那個答案是怎麼來的。',
+          '基礎 6 要先把 \\(a\\)、\\(b\\) <b>算成數字</b>才能比大小。',
+          '精熟 2 問「最接近哪個正整數」：<b>沒有算出那個數，就沒有最接近</b>。'
+        ],
+        formula: { label: '這兩題都要先算出一個數<span class="pgref">習作 印 4–5</span>', tex: '\\text{先算出來，再回答問題}' },
+        visual: (h) => {
+          h.innerHTML = gradeRows([
+            { tag: '基礎 6　a、b 沒算出來就有答案了',
+              bad: '直接寫 \\(b>a\\)，紙上<b>沒有 \\(a\\)、\\(b\\) 的值</b>',
+              good: '\\(a=(65+15)(65-15)=4000\\)，\\(b\\) 同法得 \\(4300\\)　→　\\(b>a\\)' },
+            { tag: '精熟 2　沒算出數值就答「最接近」',
+              bad: '只寫 \\(131\\)，<b>沒把 \\(\\frac{133^2}{135}\\) 算成一個數</b>',
+              good: '\\(\\frac{(135-2)^2}{135}=135-4+\\frac{4}{135}=131\\frac{4}{135}\\)　→　最接近 \\(131\\)' }
+          ]);
+          MJ(h);
+        },
+        caption: '兩題都一樣：先把式子算成一個數，問題自然就回答得出來。',
+        example: {
+          q: '\\(a=51^2-49^2\\)、\\(b=52^2-48^2\\)，哪一個大？',
+          steps: [
+            '\\(a=(51+49)(51-49)=100\\times2=200\\)。',
+            '\\(b=(52+48)(52-48)=100\\times4=400\\)。'
+          ],
+          ans: '\\(b>a\\)'
         }
       },
 
