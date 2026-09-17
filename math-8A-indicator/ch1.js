@@ -1525,6 +1525,53 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-3', secName: '多項式的乘除運算',
+        title: '一格一格都要乘：括號裡有幾項就乘幾次',
+        points: [
+          '前面乘的是一個「數＋字母」，現在乘的是<b>一整個括號</b>。',
+          '把括號拆成<b>一格一格</b>，外面那個要跟<b>每一格</b>都乘一次。',
+          '每一格的算法就是上一頁的<b>係數乘係數、字母乘字母</b>。',
+          '括號裡的<b>減號要一起帶進去</b>。'
+        ],
+        formula: { label: '例<span class="pgref">課本 印 34</span>', tex: '4x(3x+5)=12x^2+20x' },
+        visual: (h) => {
+
+          const x0 = 128, y0 = 84, w = 108, hh = 66;
+          const grid = `${SQFRAME(x0, y0, w * 2, hh, C)}
+            ${SV.seg(x0 + w, y0, x0 + w, y0 + hh, '#9fb3d9', 1.6)}
+            ${TX(x0 + w / 2, y0 - 14, '3x', { anchor: 'middle', fs: 16, c: GREY })}
+            ${TX(x0 + w * 1.5, y0 - 14, '＋5', { anchor: 'middle', fs: 16, c: GREY })}
+            ${TX(x0 - 14, y0 + hh / 2 + 6, '4x', { anchor: 'end', fs: 16, c: GREY })}`;
+          const cell = (cx, col, s, k) =>
+            `<rect x="${cx}" y="${y0}" width="${w}" height="${hh}" fill="${col}" opacity="${0.12 + 0.22 * k}"/>`
+            + TX(cx + w / 2, y0 + hh / 2 + 7, s, { anchor: 'middle', fs: 19, c: col, op: k });
+          SV.stepper(h, '0 0 440 288', [
+            { t: '只乘了第一格：<b>這是錯的</b>——第二格根本沒乘到。',
+              d: () => grid + cell(x0, BLU, '12x²', 1)
+                + BOX(72, 186, 296, 58, { r: 12, fill: '#fdeef2', stroke: RED, sw: 2.4 })
+                + TX(220, 214, '✗　4x(3x ＋ 5) ＝ 12x²', { anchor: 'middle', fs: 20, c: RED })
+                + TX(220, 236, '第二格留白，就是漏乘的長相', { anchor: 'middle', fs: 14, c: RED })
+                + TX(220, 272, '括號裡有兩項，就要乘兩次', { anchor: 'middle', fs: 15, c: GREY }) },
+            { t: '兩格都乘到：<b>4x·3x ＝ 12x²</b>、<b>4x·5 ＝ 20x</b>，相加就是答案。',
+              d: () => grid + cell(x0, BLU, '12x²', 1) + cell(x0 + w, GRN, '20x', 1)
+                + BOX(72, 186, 296, 58, { r: 12, fill: '#eef7f2', stroke: GRN, sw: 2.4 })
+                + TX(220, 214, '✓　4x(3x ＋ 5) ＝ 12x² ＋ 20x', { anchor: 'middle', fs: 20, c: GRN })
+                + TX(220, 236, '兩塊面積加起來，就是整個長方形', { anchor: 'middle', fs: 14, c: GRN })
+                + TX(220, 272, '帶負號也一樣：3x(2x － 5) ＝ 6x² － 15x', { anchor: 'middle', fs: 15, c: GREY }) }
+          ], { acc: false });
+        },
+        caption: '<b>每一格都要乘到，一格都不能漏。</b>下一頁的四格，就是這一列再長一列。',
+        example: {
+          q: '計算 \\(3x(2x-5)\\)。',
+          steps: [
+            '第一格：\\(3x\\cdot 2x=6x^2\\)。',
+            '第二格：\\(3x\\cdot(-5)=-15x\\)——<b>減號要帶進去</b>。'
+          ],
+          ans: '\\(6x^2-15x\\)'
+        }
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
         title: '練習｜單項式的乘法（課本隨堂）',
         points: [
           '先算<b>係數乘係數</b>，再算<b>字母乘字母</b>，兩步分開做。',
@@ -1648,7 +1695,9 @@ window.DECK = window.DECK || [];
         points: [
           '直式只做三件事：<b>降冪、缺項留位、同類項對齊</b>。',
           '橫式還會漏乘的時候，不要同時練兩種版面。',
-          '排直式前先確認<b>每一項的位置</b>，缺的寫 \\(0x\\)。'
+          '排直式前先確認<b>每一項的位置</b>，缺的寫 \\(0x\\)。',
+
+          '相加會抵消、<b>相乘不會</b>：最高次項乘出來一定留得下來，所以<b>二次乘一次一定是三次</b>。'
         ],
         formula: { label: '例<span class="pgref">課本 印 36–37</span>', tex: '(x+3)(2x-1)=2x^2+5x-3' },
         visual: (h) => {
@@ -1880,6 +1929,56 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-3', secName: '多項式的乘除運算',
+        title: '停的條件是次數，不是除得盡',
+        points: [
+          '國小停在「餘數比除數<b>小</b>」，多項式停在「餘式次數比除式<b>低</b>」。',
+          '餘式是 \\(0\\) <b>也算完成</b>；除不盡照樣有答案。',
+          '次數<b>還沒降下來就不能停</b>，要再除一回合。'
+        ],
+        formula: { label: '停的條件<span class="pgref">課本 印 43</span>', tex: '\\text{餘式次數}\\lt\\text{除式次數}' },
+        visual: (h) => {
+
+          const head = () =>
+            TX(108, 34, '國小', { anchor: 'middle', fs: 14, c: GREY })
+            + TX(108, 66, '47 ÷ 5 ＝ 9 … 2', { anchor: 'middle', fs: 17, c: INK })
+            + TX(108, 96, '餘數 2 ＜ 除數 5', { anchor: 'middle', fs: 15, c: GRN })
+            + SV.seg(220, 24, 220, 108, '#dce3ee', 1.6)
+            + TX(332, 34, '多項式', { anchor: 'middle', fs: 14, c: GREY })
+            + TX(332, 62, '(6x² ＋ 15x － 4) ÷ 3x', { anchor: 'middle', fs: 15, c: INK })
+            + TX(332, 88, '＝ 2x ＋ 5 … －4', { anchor: 'middle', fs: 16, c: INK })
+            + TX(332, 116, '餘式 0 次 ＜ 除式 1 次', { anchor: 'middle', fs: 15, c: GRN });
+
+          const judge = (rem, dr, ok) =>
+            TX(220, 156, '現在的餘式：' + rem, { anchor: 'middle', fs: 18, c: INK })
+            + TX(220, 186, '餘式 ' + dr + ' 次　　除式 1 次（3x）', { anchor: 'middle', fs: 15, c: GREY })
+            + BOX(116, 204, 208, 54, { r: 14, fill: ok ? '#eef7f2' : '#fdeef2', stroke: ok ? GRN : RED, sw: 2.4 })
+            + TX(220, 238, ok ? '✓ 低了 → 完成' : '✗ 沒有比較低 → 再除',
+                { anchor: 'middle', fs: ok ? 20 : 19, c: ok ? GRN : RED });
+          SV.stepper(h, '0 0 440 288', [
+            { t: '才剛開始：餘式 <b>6x²＋15x－4</b> 是 <b>二次</b>，比除式高。',
+              d: () => head() + judge('6x² ＋ 15x － 4', 2, false) },
+            { t: '除掉一回合之後：餘式 <b>15x－4</b> 是<b>一次</b>——和除式<b>一樣高，不算低</b>。',
+              d: () => head() + judge('15x － 4', 1, false)
+                + TX(220, 274, '⚠ 很多人在這裡就停了', { anchor: 'middle', fs: 14, c: RED }) },
+            { t: '再除一回合：餘式 <b>－4</b> 是 <b>0 次</b>，比除式低了 → <b>完成</b>。',
+              d: () => head() + judge('－4', 0, true)
+                + TX(220, 274, '商 2x ＋ 5，餘 －4：3x(2x＋5)－4 ＝ 6x²＋15x－4 ✓',
+                    { anchor: 'middle', fs: 13.5, c: GREY }) }
+          ], { acc: false });
+        },
+        caption: '停的條件是<b>次數</b>，不是「除得盡」。\\((10x^2+4x)\\div 2x\\) 餘 \\(4x\\) 時<b>還不能停</b>——\\(4x\\) 和 \\(2x\\) 一樣是一次。',
+        example: {
+          q: '\\((10x^2+4x)\\div 2x\\)，有人算到餘 \\(4x\\) 就停，對嗎？',
+          steps: [
+            '\\(4x\\) 是一次，除式 \\(2x\\) 也是一次——<b>沒有比較低，不能停</b>。',
+            '再除一回合：\\(4x\\div 2x=2\\)，減掉餘 \\(0\\)。'
+          ],
+          ans: '不對。商 \\(5x+2\\)、餘 \\(0\\)'
+        }
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
         title: '練習｜單項式的除法',
         points: [
           '單項式除單項式：<b>係數除係數、字母除字母</b>，兩步分開做。',
@@ -1952,6 +2051,16 @@ window.DECK = window.DECK || [];
                 TX(220, 180, '如果餘式還是一次或更高', { anchor: 'middle', fs: 15, c: INK, op: k }) +
                 TX(220, 204, '代表最高項還消得掉，要繼續除', { anchor: 'middle', fs: 16, c: RED, op: k }) +
                 TX(220, 252, '停不停，看的是次數，不是算了幾步', { anchor: 'middle', fs: 14, c: GREY, op: k })
+            },
+
+            {
+              t: '反過來求除式：先把餘式搬走，剩下的才除得盡', d: k =>
+                `<rect x="0" y="0" width="440" height="284" fill="#fff"/>` +
+                TX(220, 44, '2x² ＋ 7x ＋ 4 除以 □，商 2x ＋ 1、餘 1', { anchor: 'middle', fs: 16, c: C }) +
+                L(0, '先把餘式 1 搬走：2x² ＋ 7x ＋ 4 － 1', BLU, k) +
+                L(1, '＝ 2x² ＋ 7x ＋ 3　← 這個才除得盡', AMB, k > .4 ? (k - .4) / .6 : 0) +
+                L(2, '再除以商式 2x ＋ 1，得除式 x ＋ 3', GRN, k > .75 ? (k - .75) * 4 : 0) +
+                TX(220, 252, '先把餘式搬走，剩下的才除得盡', { anchor: 'middle', fs: 14, c: GREY, op: k })
             }
           ], { acc: false });
         },
