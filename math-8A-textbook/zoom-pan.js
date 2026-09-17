@@ -1,5 +1,7 @@
 (function () {
-  var K_MIN = 1, K_MAX = 4, STEP = 1.5, DBL_K = 2.5;
+
+  var LEVELS = [1, 1.5, 2, 3, 4];
+  var K_MIN = LEVELS[0], K_MAX = LEVELS[LEVELS.length - 1], DBL_K = 2;
   var k = 1, tx = 0, ty = 0;
   var dragging = false, sx = 0, sy = 0, stx = 0, sty = 0, moved = 0, activeId = null;
 
@@ -71,6 +73,15 @@
     if (!quiet) clearPen();
   }
 
+  function nextK(dir) {
+    if (dir > 0) {
+      for (var i = 0; i < LEVELS.length; i++) if (LEVELS[i] > k + 1e-4) return LEVELS[i];
+      return K_MAX;
+    }
+    for (var j = LEVELS.length - 1; j >= 0; j--) if (LEVELS[j] < k - 1e-4) return LEVELS[j];
+    return K_MIN;
+  }
+
   function setK(nk, clientX, clientY) {
     nk = Math.max(K_MIN, Math.min(K_MAX, nk));
     if (Math.abs(nk - k) < 1e-4) return;
@@ -104,8 +115,8 @@
       '<button class="zoom-btn zp-btn" id="zpIn" title="放大">＋</button>' +
       '<button class="zoom-btn zp-btn" id="zpReset" title="回到 1 倍" disabled>重設</button>';
     if (close) bar.insertBefore(wrap, close); else bar.appendChild(wrap);
-    document.getElementById('zpIn').onclick    = function () { setK(k * STEP); };
-    document.getElementById('zpOut').onclick   = function () { setK(k / STEP); };
+    document.getElementById('zpIn').onclick    = function () { setK(nextK(1)); };
+    document.getElementById('zpOut').onclick   = function () { setK(nextK(-1)); };
     document.getElementById('zpReset').onclick = function () { reset(); };
     apply(true);
   }
