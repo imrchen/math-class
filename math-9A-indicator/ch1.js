@@ -1197,23 +1197,27 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '比例線段',
-        title: '比例式畫一個叉：兩條線各自相乘，答案一樣大',
+        title: '比例式畫兩條弧：頭尾相乘＝中間相乘',
         points: [
-          '\\(a:b=c:d\\) 就是<b>對角相乘</b>：\\(a\\times d=b\\times c\\)。<b>不是同一側相乘</b>。',
+          '\\(a:b=c:d\\)：<b>頭尾相乘</b>等於<b>中間相乘</b>——\\(a\\times d=b\\times c\\)。<b>不是相鄰兩個相乘</b>。',
           '算出 \\(6x=36\\) <b>還沒完</b>——要<b>再除回去</b>才是答案。',
-          '未知數<b>在哪一格都一樣</b>畫叉，只是最後除的那個數不同。'
+          '未知數<b>在哪一格都一樣</b>畫弧，只是最後除的那個數不同。'
         ],
         formula: { label: '由比例式求未知數<span class="pgref">課本 印 28 例 2</span>', tex: 'a:b=c:d\\ \\Rightarrow\\ a\\times d=b\\times c' },
         visual: (h) => {
 
-          const XL = 150, XR = 290, YA = 92, YB = 160, CA = 83, CB = 151;
           const T = (x, y, t, c, fs) => TX(x, y, t, { anchor: 'middle', fs: fs || 26, c: c || INK });
-          const orig = (a, b, c, d) => T(220, 40, a + '：' + b + ' ＝ ' + c + '：' + d, GREY, 18);
-          const grid = (a, b, c, d, ca, cb, cc, cd) =>
-            T(XL, YA, a, ca) + T(220, YA, '：', GREY, 20) + T(XR, YA, b, cb)
-            + T(XL, YB, c, cc) + T(220, YB, '：', GREY, 20) + T(XR, YB, d, cd);
-          const cross = () => SV.seg(XL + 13, CA, XR - 13, CB, AMB, 2.6)
-            + SV.seg(XR - 13, CA, XL + 13, CB, VIO, 2.6);
+
+          const EX = [108, 176, 262, 336];
+          const EY = 104;
+          const line4 = (a, b, c, d, ca, cb, cc, cd) =>
+            T(EX[0], EY, a, ca) + T(142, EY, '：', GREY, 22) + T(EX[1], EY, b, cb)
+            + T(219, EY, '＝', GREY, 24)
+            + T(EX[2], EY, c, cc) + T(299, EY, '：', GREY, 22) + T(EX[3], EY, d, cd);
+
+          const arcs = (col1, col2) =>
+            ARC([EX[0], EY + 10], [EX[3], EY + 10], 30, col1 || AMB, '', 1)
+            + ARC([EX[1], EY - 28], [EX[2], EY - 28], -22, col2 || VIO, '', 1);
           const cut = () => TX(220, 266, '和因式分解的「十字交乘」不是同一件事', { anchor: 'middle', fs: 14.5, c: GREY });
 
           const ex2fig = () => {
@@ -1250,15 +1254,15 @@ window.DECK = window.DECK || [];
                 + T(220, 208, '6：4 ＝ 9：QC', INK, 26)
                 + TX(220, 238, '四個位置，只有一個不知道——這一頁就在解它', { anchor: 'middle', fs: 16, c: INK })
                 + cut() },
-            { t: '換成<b>上下兩排</b>寫，就看得到那個叉：左上連右下、右上連左下。<b>兩條線要交叉</b>。',
-              d: () => orig('6', '4', '9', 'QC') + grid('6', '4', '9', 'QC', BLU, AMB, GRN, VIO) + cross()
-                + TX(220, 206, '琥珀線：6 和 QC　　紫線：4 和 9', { anchor: 'middle', fs: 16, c: INK })
-                + TX(220, 236, '✗ 不是 6 × 9（那兩個在同一邊，沒有交叉）', { anchor: 'middle', fs: 16, c: RED })
+            { t: '在式子上<b>畫兩條弧</b>：<b>頭尾</b>那兩個連一條（走外面），<b>中間</b>那兩個連一條。',
+              d: () => line4('6', '4', '9', 'QC', AMB, VIO, VIO, AMB) + arcs()
+                + TX(220, 196, '琥珀弧：頭尾的 6 和 QC　　紫弧：中間的 4 和 9', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 228, '✗ 不是 6 × 9（那是頭配中間，弧連不起來）', { anchor: 'middle', fs: 16, c: RED })
                 + cut() },
-            { t: '兩條線<b>各自相乘</b>，答案一樣大。右邊那條兩個都是數字，先算出來。',
-              d: () => orig('6', '4', '9', 'QC') + grid('6', '4', '9', 'QC', BLU, AMB, GRN, VIO) + cross()
-                + TX(220, 206, '6 × QC ＝ 4 × 9', { anchor: 'middle', fs: 21, c: INK })
-                + TX(220, 240, '4 × 9 ＝ 36，所以 6 × QC ＝ 36', { anchor: 'middle', fs: 18, c: VIO })
+            { t: '<b>一條弧就是一個乘法</b>，兩條弧的積一樣大。紫弧那兩個都是數字，先算出來。',
+              d: () => line4('6', '4', '9', 'QC', AMB, VIO, VIO, AMB) + arcs()
+                + TX(220, 196, '6 × QC ＝ 4 × 9', { anchor: 'middle', fs: 21, c: INK })
+                + TX(220, 228, '4 × 9 ＝ 36，所以 6 × QC ＝ 36', { anchor: 'middle', fs: 18, c: VIO })
                 + cut() },
             { t: '到這裡<b>還沒完</b>：6 乘幾等於 36？把 6 <b>除回去</b>。',
               d: () => TX(220, 44, '6 × QC ＝ 36', { anchor: 'middle', fs: 22, c: INK })
@@ -1268,10 +1272,10 @@ window.DECK = window.DECK || [];
                 + TX(220, 190, '驗算：6：4 ＝ 9：6 ✓（都是 1.5 倍）', { anchor: 'middle', fs: 15, c: GRN })
                 + TX(220, 224, '六題裡有四題都要多除這一次', { anchor: 'middle', fs: 15, c: GREY })
                 + cut() },
-            { t: '同一組數字，未知數<b>換到第 2 格</b>——叉的畫法<b>完全沒變</b>。',
-              d: () => orig('6', 'x', '9', '6') + grid('6', 'x', '9', '6', BLU, VIO, GRN, AMB) + cross()
-                + TX(220, 206, '6 × 6 ＝ x × 9　→　x ＝ 36 ÷ 9 ＝ 4', { anchor: 'middle', fs: 19, c: GRN })
-                + TX(220, 240, '對角是看位置，不是看未知數在哪', { anchor: 'middle', fs: 16, c: INK })
+            { t: '同一組數字，未知數<b>換到第 2 格</b>——弧的畫法<b>完全沒變</b>。',
+              d: () => line4('6', 'x', '9', '6', AMB, VIO, VIO, AMB) + arcs()
+                + TX(220, 196, '6 × 6 ＝ x × 9　→　x ＝ 36 ÷ 9 ＝ 4', { anchor: 'middle', fs: 19, c: GRN })
+                + TX(220, 228, '弧是看位置，不是看未知數在哪', { anchor: 'middle', fs: 16, c: INK })
                 + cut() }
           ], { acc: false });
         },
@@ -1279,7 +1283,7 @@ window.DECK = window.DECK || [];
         example: {
           q: '\\(3:x=6:8\\)，求 \\(x\\)。',
           steps: [
-            '對角相乘：\\(3\\times8\\) 和 \\(x\\times6\\)。',
+            '頭尾相乘、中間相乘：\\(3\\times8\\) 和 \\(x\\times6\\)。',
             '\\(3\\times8=24\\)，所以 \\(6x=24\\)。',
             '兩邊除以 \\(6\\)。'
           ],
