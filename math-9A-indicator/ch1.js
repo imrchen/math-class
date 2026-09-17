@@ -1660,7 +1660,7 @@ window.DECK = window.DECK || [];
             h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
           }
           PRACTICE.page(h, '1-2', [
-            { src: '習作', page: '印 8–9', sub: '基礎題，今天寫完', tags: ['基礎1', '基礎2', '基礎3'] }
+            { src: '習作', page: '印 9–10', sub: '基礎題，今天寫完', tags: ['基礎1', '基礎2', '基礎3'] }
           ]);
         },
         caption: '基礎前三題，當堂寫完。'
@@ -1681,7 +1681,7 @@ window.DECK = window.DECK || [];
           }
           PRACTICE.page(h, '1-2', [
             { src: '習作', page: '印 10–11', sub: '基礎題，今天寫完', tags: ['基礎4', '基礎5', '基礎6'] },
-            { src: '習作', page: '印 11', sub: '精熟題，行有餘力', tags: ['精熟1', '精熟2'], level: '進階' }
+            { src: '習作', page: '印 12', sub: '精熟題，行有餘力', tags: ['精熟1', '精熟2'], level: '進階' }
           ]);
         },
         caption: '基礎六題到這裡寫完；精熟行有餘力再做。'
@@ -2297,7 +2297,7 @@ window.DECK = window.DECK || [];
             h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
           }
           PRACTICE.page(h, '1-3', [
-            { src: '習作', page: '印 12–13', sub: '基礎題，今天寫完', tags: ['基礎1', '基礎2', '基礎3'] }
+            { src: '習作', page: '印 14–15', sub: '基礎題，今天寫完', tags: ['基礎1', '基礎2', '基礎3'] }
           ]);
         },
         caption: '基礎前三題，當堂寫完。'
@@ -2317,8 +2317,8 @@ window.DECK = window.DECK || [];
             h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
           }
           PRACTICE.page(h, '1-3', [
-            { src: '習作', page: '印 14–15', sub: '基礎題，今天寫完', tags: ['基礎4', '基礎5'] },
-            { src: '習作', page: '印 15', sub: '精熟題，行有餘力', tags: ['精熟1', '精熟2'], level: '進階' }
+            { src: '習作', page: '印 15', sub: '基礎題，今天寫完', tags: ['基礎4', '基礎5'] },
+            { src: '習作', page: '印 16', sub: '精熟題，行有餘力', tags: ['精熟1', '精熟2'], level: '進階' }
           ]);
         },
         caption: '習作基礎五題到這裡寫完。'
