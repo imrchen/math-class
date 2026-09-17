@@ -594,6 +594,60 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '連比例',
+        title: '分母是什麼，比就是什麼（字母版）',
+        points: [
+          '上一頁的 \\(4\\)、\\(5\\)、\\(7\\) 換成字母，做法<b>一個字都沒變</b>。',
+          '\\(\\frac{x}{a}=\\frac{y}{b}=\\frac{z}{c}\\Rightarrow x:y:z=a:b:c\\)：<b>三個分母抄下來就是答案</b>。',
+          '⚠ 前提：\\(a\\)、\\(b\\)、\\(c\\) 都<b>不是 \\(0\\)</b>（分母不能是 \\(0\\)）。'
+        ],
+        formula: { label: '分母就是比<span class="pgref">課本 印 13 同型</span>', tex: '\\tfrac{x}{a}=\\tfrac{y}{b}=\\tfrac{z}{c}\\ \\Rightarrow\\ x:y:z=a:b:c' },
+        visual: (h) => {
+          const FR = (cx, cy, num, den, cn, cd) => TX(cx, cy, num, { anchor: 'middle', fs: 20, c: cn || INK })
+            + SV.seg(cx - 20, cy + 8, cx + 20, cy + 8, INK, 1.8)
+            + TX(cx, cy + 34, den, { anchor: 'middle', fs: 20, c: cd || INK });
+          const prem = () => TX(220, 268, '（a、b、c 都不是 0）', { anchor: 'middle', fs: 13.5, c: GREY });
+          SV.stepper(h, '0 0 440 282', [
+            { t: '上一頁做完的是<b>數字</b>：分母 4、5、7，答案就是 4:5:7。',
+              d: () => FR(120, 40, 'x', '4', BLU, AMB) + TX(170, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
+                + FR(220, 40, 'y', '5', GRN, AMB) + TX(270, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
+                + FR(320, 40, 'z', '7', VIO, AMB)
+                + TX(220, 128, '↓', { anchor: 'middle', fs: 20, c: GREY })
+                + BOX(76, 146, 300, 46, { r: 12, fill: 'rgba(37,99,235,.10)', stroke: BLU, sw: 2.2 })
+                + TX(226, 178, 'x : y : z ＝ 4 : 5 : 7', { anchor: 'middle', fs: 22, c: BLU })
+                + TX(220, 224, '三個分母，抄下來', { anchor: 'middle', fs: 16, c: GREY }) },
+            { t: '把 4、5、7 換成 <b>a、b、c</b>——題目沒給數字時就長這樣。',
+              d: () => FR(120, 40, 'x', 'a', BLU, AMB) + TX(170, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
+                + FR(220, 40, 'y', 'b', GRN, AMB) + TX(270, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
+                + FR(320, 40, 'z', 'c', VIO, AMB)
+                + TX(220, 150, '拆成兩句：x／a ＝ y／b、y／b ＝ z／c', { anchor: 'middle', fs: 17, c: INK })
+                + TX(220, 186, '各自交叉相乘、係數對調', { anchor: 'middle', fs: 16, c: GREY })
+                + TX(140, 224, 'x : y ＝ a : b', { anchor: 'middle', fs: 19, c: BLU })
+                + TX(300, 224, 'y : z ＝ b : c', { anchor: 'middle', fs: 19, c: GRN }) + prem() },
+            { t: '直式疊起來：中間這一欄<b>上下都是 b</b>，本來就一樣大。',
+              d: () => vbHead(24) + vbRow(32, ['a', 'b', null], { hi: [1] })
+                + vbRow(74, [null, 'b', 'c'], { hi: [1] })
+                + TX(220, 152, '中間上下都是 b', { anchor: 'middle', fs: 18, c: GRN })
+                + TX(220, 184, '一樣大 → 什麼都不用乘（階梯①）', { anchor: 'middle', fs: 16, c: GREY }) + prem() },
+            { t: '往下抄：<b>x : y : z ＝ a : b : c</b>。分母是什麼，比就是什麼。',
+              d: () => vbHead(24) + vbRow(32, ['a', 'b', null], { hi: [1] })
+                + vbRow(74, [null, 'b', 'c'], { hi: [1] }) + vbRule(120)
+                + vbRow(130, ['a', 'b', 'c'], { hi: [0, 1, 2] })
+                + TX(220, 200, '換成任何數字都成立，不用重推一次', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 232, '驗算：x／a ＝ y／b ＝ z／c，三個都等於同一個數 ✓', { anchor: 'middle', fs: 14.5, c: GRN }) + prem() }
+          ], { acc: false });
+        },
+        caption: '⚠ 這一頁記的是<b>「分母就是比」</b>。要算出 x、y、z <b>各是多少</b>，仍然走後面<b>設 r</b> 那一頁。',
+        example: {
+          q: '\\(\\frac{x}{3}=\\frac{y}{7}=\\frac{z}{2}\\)，求 \\(x:y:z\\)。',
+          steps: [
+            '分母是 \\(3\\)、\\(7\\)、\\(2\\)，直接抄下來。'
+          ],
+          ans: '\\(x:y:z=3:7:2\\)'
+        }
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
         title: '比不能每項各加一個數，加了就變成別的比',
         points: [
           '每一項<b>同乘</b>或<b>同除</b>一個數，比不變。',
