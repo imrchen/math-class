@@ -466,9 +466,251 @@ window.SOLUTIONS = {
     "由 \\(9y=8z\\)，得 \\(y：z=8：9\\)"
    ],
    "ans": "\\(x：y：z=6：8：9\\)",
-   "fig": "1-1-p18-equal-area-rectangles",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 14,
+    "gap": 72,
+    "placement": "below",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0
+       },
+       {
+        "x": 12,
+        "y": 0
+       },
+       {
+        "x": 12,
+        "y": 6
+       },
+       {
+        "x": 0,
+        "y": 6
+       }
+      ],
+      "fill": "#DCEEF8",
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$12$",
+        "nudge": [
+         0,
+         10
+        ]
+       },
+       {
+        "from": 0,
+        "to": 3,
+        "text": "$x$"
+       }
+      ],
+      "caption": "妙麗"
+     },
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0
+       },
+       {
+        "x": 9,
+        "y": 0
+       },
+       {
+        "x": 9,
+        "y": 8
+       },
+       {
+        "x": 0,
+        "y": 8
+       }
+      ],
+      "fill": "#DCEEF8",
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$9$",
+        "nudge": [
+         0,
+         10
+        ]
+       },
+       {
+        "from": 0,
+        "to": 3,
+        "text": "$y$"
+       }
+      ],
+      "caption": "威利"
+     },
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0
+       },
+       {
+        "x": 8,
+        "y": 0
+       },
+       {
+        "x": 8,
+        "y": 9
+       },
+       {
+        "x": 0,
+        "y": 9
+       }
+      ],
+      "fill": "#DCEEF8",
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$8$",
+        "nudge": [
+         0,
+         10
+        ]
+       },
+       {
+        "from": 0,
+        "to": 3,
+        "text": "$z$"
+       }
+      ],
+      "caption": "艾美"
+     }
+    ]
+   },
    "figs": [
-    "1-1-p18-equal-area-rectangles",
+    {
+     "type": "polygon-group",
+     "unit": 14,
+     "gap": 72,
+     "placement": "below",
+     "shapes": [
+      {
+       "points": [
+        {
+         "x": 0,
+         "y": 0
+        },
+        {
+         "x": 12,
+         "y": 0
+        },
+        {
+         "x": 12,
+         "y": 6
+        },
+        {
+         "x": 0,
+         "y": 6
+        }
+       ],
+       "fill": "#DCEEF8",
+       "sides": [
+        {
+         "from": 0,
+         "to": 1,
+         "text": "$12$",
+         "nudge": [
+          0,
+          10
+         ]
+        },
+        {
+         "from": 0,
+         "to": 3,
+         "text": "$x$"
+        }
+       ],
+       "caption": "妙麗"
+      },
+      {
+       "points": [
+        {
+         "x": 0,
+         "y": 0
+        },
+        {
+         "x": 9,
+         "y": 0
+        },
+        {
+         "x": 9,
+         "y": 8
+        },
+        {
+         "x": 0,
+         "y": 8
+        }
+       ],
+       "fill": "#DCEEF8",
+       "sides": [
+        {
+         "from": 0,
+         "to": 1,
+         "text": "$9$",
+         "nudge": [
+          0,
+          10
+         ]
+        },
+        {
+         "from": 0,
+         "to": 3,
+         "text": "$y$"
+        }
+       ],
+       "caption": "威利"
+      },
+      {
+       "points": [
+        {
+         "x": 0,
+         "y": 0
+        },
+        {
+         "x": 8,
+         "y": 0
+        },
+        {
+         "x": 8,
+         "y": 9
+        },
+        {
+         "x": 0,
+         "y": 9
+        }
+       ],
+       "fill": "#DCEEF8",
+       "sides": [
+        {
+         "from": 0,
+         "to": 1,
+         "text": "$8$",
+         "nudge": [
+          0,
+          10
+         ]
+        },
+        {
+         "from": 0,
+         "to": 3,
+         "text": "$z$"
+        }
+       ],
+       "caption": "艾美"
+      }
+     ]
+    },
     {
      "type": "ratio-table",
      "header": [
@@ -984,7 +1226,78 @@ window.SOLUTIONS = {
       }
      ]
     },
-    "1-1-wb-p7-fold",
+    {
+     "type": "polygon-group",
+     "unit": 34,
+     "gap": 90,
+     "placement": "below",
+     "shapes": [
+      {
+       "outline": [],
+       "points": [
+        {
+         "x": 0,
+         "y": 0,
+         "label": "$B$"
+        },
+        {
+         "x": 7,
+         "y": 0,
+         "label": "$P$"
+        },
+        {
+         "x": 2,
+         "y": 0,
+         "label": "$A'$",
+         "nudge": [
+          0,
+          10
+         ]
+        },
+        {
+         "x": 5,
+         "y": 0,
+         "label": "$O'$",
+         "nudge": [
+          0,
+          10
+         ]
+        },
+        {
+         "x": 1.532,
+         "y": 1.286,
+         "label": "$A$"
+        },
+        {
+         "x": 3.83,
+         "y": 3.214,
+         "label": "$O$"
+        }
+       ],
+       "segments": [
+        {
+         "from": 0,
+         "to": 1
+        },
+        {
+         "from": 0,
+         "to": 5
+        },
+        {
+         "from": 4,
+         "to": 2,
+         "dashed": true
+        },
+        {
+         "from": 5,
+         "to": 3,
+         "dashed": true
+        }
+       ],
+       "caption": "圖二"
+      }
+     ]
+    },
     {
      "type": "segment-line",
      "span": 12,
@@ -1521,7 +1834,132 @@ window.SOLUTIONS = {
     "　　\\(10x+30=9x+45\\)"
    ],
    "ans": "\\(x=15\\)",
-   "fig": "1-2-p31-transversals"
+   "fig": {
+    "type": "polygon-group",
+    "unit": 15,
+    "gap": 90,
+    "placement": "below",
+    "shapes": [
+     {
+      "outline": [],
+      "points": [
+       {
+        "x": 2.1,
+        "y": 0,
+        "label": "$C$",
+        "nudge": [
+         0,
+         -32
+        ]
+       },
+       {
+        "x": 5.12,
+        "y": 9,
+        "label": "$B$"
+       },
+       {
+        "x": 6.8,
+        "y": 14,
+        "label": "$A$"
+       },
+       {
+        "x": 17.4,
+        "y": 0,
+        "label": "$F$",
+        "nudge": [
+         -40,
+         -8
+        ]
+       },
+       {
+        "x": 17.4,
+        "y": 9,
+        "label": "$E$",
+        "nudge": [
+         -44,
+         -6
+        ]
+       },
+       {
+        "x": 17.4,
+        "y": 14,
+        "label": "$D$",
+        "nudge": [
+         -40,
+         0
+        ]
+       },
+       {
+        "x": 0,
+        "y": 14
+       },
+       {
+        "x": 22,
+        "y": 14,
+        "label": "$L_1$"
+       },
+       {
+        "x": 0,
+        "y": 9
+       },
+       {
+        "x": 22,
+        "y": 9,
+        "label": "$L_2$"
+       },
+       {
+        "x": 0,
+        "y": 0
+       },
+       {
+        "x": 22,
+        "y": 0,
+        "label": "$L_3$"
+       },
+       {
+        "x": 1.46,
+        "y": -1.9,
+        "label": "$M_1$"
+       },
+       {
+        "x": 7.27,
+        "y": 15.4
+       },
+       {
+        "x": 17.4,
+        "y": -1.9,
+        "label": "$M_2$"
+       },
+       {
+        "x": 17.4,
+        "y": 15.4
+       }
+      ],
+      "segments": [
+       {
+        "from": 6,
+        "to": 7
+       },
+       {
+        "from": 8,
+        "to": 9
+       },
+       {
+        "from": 10,
+        "to": 11
+       },
+       {
+        "from": 12,
+        "to": 13
+       },
+       {
+        "from": 14,
+        "to": 15
+       }
+      ]
+     }
+    ]
+   }
   },
   "課P32": {
    "src": "課本・隨堂練習",

@@ -1215,11 +1215,40 @@ window.DECK = window.DECK || [];
           const cross = () => SV.seg(XL + 13, CA, XR - 13, CB, AMB, 2.6)
             + SV.seg(XR - 13, CA, XL + 13, CB, VIO, 2.6);
           const cut = () => TX(220, 266, '和因式分解的「十字交乘」不是同一件事', { anchor: 'middle', fs: 14.5, c: GREY });
+
+          const ex2fig = () => {
+            const A = [150, 32], B = [38, 168], C = [262, 168], t = 0.6;
+            const P = [A[0] + t * (B[0] - A[0]), A[1] + t * (B[1] - A[1])];
+            const Q = [A[0] + t * (C[0] - A[0]), A[1] + t * (C[1] - A[1])];
+            const mid = (u, v) => [(u[0] + v[0]) / 2, (u[1] + v[1]) / 2];
+            const L = (u, v, dx, dy, txt, col) => {
+              const m = mid(u, v);
+              return TX(m[0] + dx, m[1] + dy, txt, { anchor: 'middle', fs: 16, c: col });
+            };
+            let g = SV.poly([A, B, C], 'rgba(37,99,235,.05)', BLU, 2.2);
+            g += `<line x1="${A[0]}" y1="${A[1]}" x2="${P[0]}" y2="${P[1]}" stroke="${BLU}" stroke-width="5"/>`;
+            g += `<line x1="${A[0]}" y1="${A[1]}" x2="${Q[0]}" y2="${Q[1]}" stroke="${BLU}" stroke-width="5"/>`;
+            g += `<line x1="${P[0]}" y1="${P[1]}" x2="${B[0]}" y2="${B[1]}" stroke="${AMB}" stroke-width="5"/>`;
+            g += `<line x1="${Q[0]}" y1="${Q[1]}" x2="${C[0]}" y2="${C[1]}" stroke="${AMB}" stroke-width="5"/>`;
+            g += `<line x1="${P[0]}" y1="${P[1]}" x2="${Q[0]}" y2="${Q[1]}" stroke="${GRN}" stroke-width="3"/>`;
+            g += SV.vlabel(A[0] - 5, A[1] - 9, 'A') + SV.vlabel(B[0] - 19, B[1] + 9, 'B')
+               + SV.vlabel(C[0] + 9, C[1] + 9, 'C')
+               + SV.vlabel(P[0] - 20, P[1] + 4, 'P') + SV.vlabel(Q[0] + 10, Q[1] + 4, 'Q');
+            g += L(A, P, -16, -1, '6', BLU) + L(P, B, -16, -1, '4', AMB)
+               + L(A, Q, 16, -1, '9', BLU) + L(Q, C, 17, -1, '?', RED);
+            g += TX((P[0] + Q[0]) / 2, P[1] - 9, 'PQ ∥ BC', { anchor: 'middle', fs: 13, c: GRN });
+
+            g += TX(360, 76, '上段：下段', { anchor: 'middle', fs: 14, c: GREY })
+               + TX(360, 106, 'AP：PB', { anchor: 'middle', fs: 17, c: BLU })
+               + TX(360, 132, '＝', { anchor: 'middle', fs: 15, c: GREY })
+               + TX(360, 158, 'AQ：QC', { anchor: 'middle', fs: 17, c: GRN });
+            return g;
+          };
           SV.stepper(h, '0 0 440 280', [
-            { t: '前兩頁那種式子，列出來就長這樣：<b>6：4 ＝ 9：QC</b>（課本例 2）。先看這四個數字就好。',
-              d: () => T(220, 80, '6：4 ＝ 9：QC', INK, 28)
-                + TX(220, 140, '四個位置，只有一個不知道', { anchor: 'middle', fs: 17, c: INK })
-                + TX(220, 176, '這一頁只解這種式子，先不看圖', { anchor: 'middle', fs: 15, c: GREY })
+            { t: '這就是<b>課本印 28 例 2</b> 的圖。前兩頁那一式讀出來就是 <b>6：4 ＝ 9：QC</b>。',
+              d: () => ex2fig()
+                + T(220, 208, '6：4 ＝ 9：QC', INK, 26)
+                + TX(220, 238, '四個位置，只有一個不知道——這一頁就在解它', { anchor: 'middle', fs: 16, c: INK })
                 + cut() },
             { t: '換成<b>上下兩排</b>寫，就看得到那個叉：左上連右下、右上連左下。<b>兩條線要交叉</b>。',
               d: () => orig('6', '4', '9', 'QC') + grid('6', '4', '9', 'QC', BLU, AMB, GRN, VIO) + cross()
@@ -1306,6 +1335,70 @@ window.DECK = window.DECK || [];
             '上段是 3 份。'
           ],
           ans: '\\(\\overline{AP}:\\overline{AB}=3:7\\)'
+        }
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
+        title: '同一張圖，三種比法：看題目要比哪兩段',
+        points: [
+          '性質（一）其實有<b>三式</b>：上段比下段、上段比整條、<b>下段比整條</b>。',
+          '左右要<b>位置對齊</b>：\\(AP\\leftrightarrow AQ\\)、\\(PB\\leftrightarrow QC\\)、\\(AB\\leftrightarrow AC\\)。',
+          '題目問哪兩段就挑那一式，<b>不必三式都背</b>——圖上讀得出來。'
+        ],
+        formula: { label: '第三式：下段比整條<span class="pgref">課本 印 27 性質（一）③</span>', tex: '\\overline{PB}:\\overline{AB}=\\overline{QC}:\\overline{AC}' },
+        visual: (h) => {
+          const A = [220, 30], B = [96, 152], C = [344, 152], t = 0.4;
+          const P = [A[0] + t * (B[0] - A[0]), A[1] + t * (B[1] - A[1])];
+          const Q = [A[0] + t * (C[0] - A[0]), A[1] + t * (C[1] - A[1])];
+          const seg = (u, v, col, w) =>
+            `<line x1="${u[0]}" y1="${u[1]}" x2="${v[0]}" y2="${v[1]}" stroke="${col}" stroke-width="${w}"/>`;
+
+          const whole = (k) => ARC(A, B, 20, GRN, '', k) + ARC(A, C, -20, GRN, '', k);
+          const base = (hi) => {
+            let g = SV.poly([A, B, C], 'rgba(37,99,235,.05)', BLU, 2);
+            g += seg(P, Q, GRN, 2.4);
+            const upW = hi === 3 ? 2.4 : 6, dnW = hi === 2 ? 2.4 : 6;
+            const upC = hi === 3 ? '#c3cddd' : BLU, dnC = hi === 2 ? '#c3cddd' : AMB;
+            g += seg(A, P, upC, upW) + seg(A, Q, upC, upW);
+            g += seg(P, B, dnC, dnW) + seg(Q, C, dnC, dnW);
+            g += SV.vlabel(A[0] - 5, A[1] - 9, 'A') + SV.vlabel(B[0] - 19, B[1] + 9, 'B')
+               + SV.vlabel(C[0] + 9, C[1] + 9, 'C')
+               + SV.vlabel(P[0] - 20, P[1] + 4, 'P') + SV.vlabel(Q[0] + 10, Q[1] + 4, 'Q');
+            return g;
+          };
+          const eq = (y, txt, col, fs) => TX(220, y, txt, { anchor: 'middle', fs: fs || 22, c: col });
+          SV.stepper(h, '0 0 440 282', [
+            { t: '<b>第一式</b>：左邊的上段比下段，等於右邊的上段比下段。',
+              d: () => base(1)
+                + eq(200, 'AP : PB ＝ AQ : QC', INK)
+                + TX(220, 234, '藍比琥珀，左右各讀一次', { anchor: 'middle', fs: 16, c: GREY }) },
+            { t: '<b>第二式</b>：上段比<b>整條</b>——整條就是上段加下段（前一頁那件事）。',
+              d: () => base(2) + whole(1)
+                + eq(200, 'AP : AB ＝ AQ : AC', GRN)
+                + TX(220, 234, '綠弧圈的是整條 AB 與整條 AC', { anchor: 'middle', fs: 16, c: GREY }) },
+            { t: '<b>第三式</b>：<b>下段</b>也可以比整條。這一式課本有，習作也常考。',
+              d: () => base(3) + whole(1)
+                + eq(200, 'PB : AB ＝ QC : AC', AMB)
+                + TX(220, 234, '琥珀比整條——別把左邊的下段配到右邊的整條', { anchor: 'middle', fs: 15.5, c: RED }) },
+            { t: '三式<b>同一張圖</b>都讀得出來。題目問哪兩段，就挑哪一式。',
+              d: () => BOX(64, 40, 312, 130, { r: 14, fill: 'rgba(5,150,105,.08)', stroke: GRN, sw: 2.2 })
+                + eq(78, 'AP : PB ＝ AQ : QC', INK, 20)
+                + eq(120, 'AP : AB ＝ AQ : AC', GRN, 20)
+                + eq(162, 'PB : AB ＝ QC : AC', AMB, 20)
+                + TX(220, 206, '左右位置要對齊：AP↔AQ、PB↔QC、AB↔AC', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 240, '不必三式都背——圖上讀得出來', { anchor: 'middle', fs: 15, c: GREY }) }
+          ], { acc: false });
+        },
+        caption: '課本印 27 那個方塊就是這三式。<b>上段、下段、整條</b>三段先認出來，要比哪兩段再挑式子。',
+        example: {
+          q: '\\(PQ\\parallel BC\\)，\\(\\overline{PB}=4\\)、\\(\\overline{AB}=10\\)、\\(\\overline{AC}=15\\)，求 \\(\\overline{QC}\\)。'
+            + exTri({ t: 0.6, pb: '4', qc: '?' }),
+          steps: [
+            '問的是<b>下段比整條</b>，用第三式：\\(\\overline{PB}:\\overline{AB}=\\overline{QC}:\\overline{AC}\\)。',
+            '\\(4:10=\\overline{QC}:15\\)，交叉相乘：\\(10\\overline{QC}=60\\)。'
+          ],
+          ans: '\\(\\overline{QC}=6\\)'
         }
       },
 

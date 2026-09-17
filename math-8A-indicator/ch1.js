@@ -1195,7 +1195,7 @@ window.DECK = window.DECK || [];
         formula: { label: '這一組在練', tex: '2x-1-3x^2\\;\\Rightarrow\\;-3x^2+2x-1' },
         visual: (h) => {
           pMount(h,
-            pCard('課本・隨堂練習', '印 23', BLU, '判斷次數與係數、排列、合併',
+            pCard('課本・隨堂練習', '印 23–24', BLU, '判斷次數與係數、排列、合併',
 
               pItem('印3 ①', '-4.9x^2+5x+60', '二次') +
               pItem('印3 ②', 'x^3+\\tfrac{1}{2}x^2-3', '三次') +
