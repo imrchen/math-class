@@ -184,6 +184,13 @@ window.DECK = window.DECK || [];
     return g;
   };
   const vbRule = (y) => SV.seg(56, y, 384, y, '#c3cddd', 2);
+
+  const FRS = (cx, cy, num, den, o = {}) => {
+    const fs = o.fs || 20, hw = o.w || fs * 0.62, cn = o.cn || o.c || INK, cd = o.cd || o.c || INK;
+    return TX(cx, cy - fs * 0.42, num, { anchor: 'middle', fs, c: cn })
+      + SV.seg(cx - hw, cy, cx + hw, cy, o.bar || o.c || INK, Math.max(1.5, fs / 12))
+      + TX(cx, cy + fs * 1.3, den, { anchor: 'middle', fs, c: cd });
+  };
   const vbTag = (y, t, c) => TX(50, y + 26, t, { anchor: 'end', fs: 14, c: c || GREY });
 
   function xoRows(rows) {
@@ -484,7 +491,7 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '連比例',
-        title: 'x／4 ＝ y／5：先交叉相乘',
+        title: '兩個分數相等：先交叉相乘',
         points: [
           '分數不好比大小，先<b>把分母消掉</b>：這個動作叫<b>交叉相乘</b>。',
           '\\(\\frac{x}{4}=\\frac{y}{5}\\) 交叉相乘得 \\(5x=4y\\)——<b>回到上一頁那種等式</b>。',
@@ -498,7 +505,8 @@ window.DECK = window.DECK || [];
             + TX(cx, 92, den, { anchor: 'middle', fs: 24, c: cd || INK });
           const eq = () => FR(128, 'x', '4', BLU, AMB) + TX(220, 72, '＝', { anchor: 'middle', fs: 20, c: GREY })
             + FR(312, 'y', '5', GRN, VIO);
-          const prem = () => TX(220, 268, '（這一頁的 x、y 都是正數）', { anchor: 'middle', fs: 13.5, c: GREY });
+
+          const prem = () => TX(220, 268, '（這一頁的 x、y 都不是 0）', { anchor: 'middle', fs: 13.5, c: GREY });
           SV.stepper(h, '0 0 440 282', [
             { t: '兩邊都是分數，分母又不一樣——先想辦法<b>把分母消掉</b>。',
               d: () => eq() + TX(220, 140, '分母 4 和 5 擋在那裡', { anchor: 'middle', fs: 17, c: GREY })
@@ -522,7 +530,10 @@ window.DECK = window.DECK || [];
                 + TX(220, 80, 'x : y ＝ 4 : 5', { anchor: 'middle', fs: 26, c: GRN })
                 + TX(220, 134, '5x ＝ 4y 的 5 和 4 對調', { anchor: 'middle', fs: 16, c: GREY })
                 + TX(220, 166, '課本寫「分母照抄」，就是這個結果', { anchor: 'middle', fs: 16, c: INK })
-                + TX(220, 202, '驗算：x ＝ 4、y ＝ 5 代回 4／4 ＝ 5／5 ✓', { anchor: 'middle', fs: 15, c: GRN })
+                + TX(196, 208, '驗算：x ＝ 4、y ＝ 5 代回', { anchor: 'end', fs: 15, c: GRN })
+                + FRS(216, 202, '4', '4', { fs: 14, c: GRN }) + TX(240, 208, '＝', { anchor: 'middle', fs: 13, c: GRN })
+                + FRS(264, 202, '5', '5', { fs: 14, c: GRN })
+                + TX(284, 208, '✓', { anchor: 'start', fs: 15, c: GRN })
                 + prem() }
           ], { acc: false });
         },
@@ -550,18 +561,23 @@ window.DECK = window.DECK || [];
           const FR = (cx, cy, num, den, cn, cd) => TX(cx, cy, num, { anchor: 'middle', fs: 20, c: cn || INK })
             + SV.seg(cx - 20, cy + 8, cx + 20, cy + 8, INK, 1.8)
             + TX(cx, cy + 34, den, { anchor: 'middle', fs: 20, c: cd || INK });
-          const prem = () => TX(220, 268, '（這一頁的 x、y、z 都是正數）', { anchor: 'middle', fs: 13.5, c: GREY });
+
+          const prem = () => TX(220, 268, '（這一頁的 x、y、z 都不是 0）', { anchor: 'middle', fs: 13.5, c: GREY });
           SV.stepper(h, '0 0 440 282', [
             { t: '三個分數都相等。<b>先拆成兩句</b>——每一句只管兩個字母。',
               d: () => FR(120, 40, 'x', '4', BLU, AMB) + TX(170, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
                 + FR(220, 40, 'y', '5', GRN, VIO) + TX(270, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
                 + FR(320, 40, 'z', '7', RED, AMB)
-                + TX(140, 150, 'x／4 ＝ y／5', { anchor: 'middle', fs: 19, c: BLU })
-                + TX(300, 150, 'y／5 ＝ z／7', { anchor: 'middle', fs: 19, c: GRN })
-                + TX(220, 190, '拆成兩句，中間的 y 兩句都有', { anchor: 'middle', fs: 16, c: GREY }) + prem() },
+                + FRS(112, 154, 'x', '4', { fs: 18, c: BLU }) + TX(140, 160, '＝', { anchor: 'middle', fs: 16, c: INK })
+                + FRS(168, 154, 'y', '5', { fs: 18, c: BLU })
+                + FRS(272, 154, 'y', '5', { fs: 18, c: GRN }) + TX(300, 160, '＝', { anchor: 'middle', fs: 16, c: INK })
+                + FRS(328, 154, 'z', '7', { fs: 18, c: GRN })
+                + TX(220, 212, '拆成兩句，中間的 y 兩句都有', { anchor: 'middle', fs: 16, c: GREY }) + prem() },
             { t: '每一句各自求比——就是上一頁的<b>交叉相乘、係數對調</b>。',
-              d: () => TX(140, 60, 'x／4 ＝ y／5', { anchor: 'middle', fs: 18, c: GREY })
-                + TX(300, 60, 'y／5 ＝ z／7', { anchor: 'middle', fs: 18, c: GREY })
+              d: () => FRS(114, 62, 'x', '4', { fs: 17, c: GREY }) + TX(140, 68, '＝', { anchor: 'middle', fs: 15, c: GREY })
+                + FRS(166, 62, 'y', '5', { fs: 17, c: GREY })
+                + FRS(274, 62, 'y', '5', { fs: 17, c: GREY }) + TX(300, 68, '＝', { anchor: 'middle', fs: 15, c: GREY })
+                + FRS(326, 62, 'z', '7', { fs: 17, c: GREY })
                 + TX(220, 96, '↓', { anchor: 'middle', fs: 18, c: GREY })
                 + BOX(56, 112, 160, 48, { r: 12, fill: 'rgba(37,99,235,.10)', stroke: BLU, sw: 2.2 })
                 + TX(136, 143, 'x : y ＝ 4 : 5', { anchor: 'middle', fs: 20, c: BLU })
@@ -578,7 +594,11 @@ window.DECK = window.DECK || [];
                 + vbRow(74, [null, '5', '7'], { hi: [1] }) + vbRule(120)
                 + vbRow(130, ['4', '5', '7'], { hi: [0, 1, 2] })
                 + TX(220, 200, '剛好就是三個分母，抄下來就對了', { anchor: 'middle', fs: 16, c: INK })
-                + TX(220, 232, '驗算：4／4 ＝ 5／5 ＝ 7／7 ＝ 1 ✓', { anchor: 'middle', fs: 15, c: GRN }) + prem() }
+                + TX(148, 238, '驗算：', { anchor: 'end', fs: 15, c: GRN })
+                + FRS(168, 232, '4', '4', { fs: 14, c: GRN }) + TX(192, 238, '＝', { anchor: 'middle', fs: 13, c: GRN })
+                + FRS(216, 232, '5', '5', { fs: 14, c: GRN }) + TX(240, 238, '＝', { anchor: 'middle', fs: 13, c: GRN })
+                + FRS(264, 232, '7', '7', { fs: 14, c: GRN })
+                + TX(288, 238, '＝ 1 ✓', { anchor: 'start', fs: 15, c: GRN }) + prem() }
           ], { acc: false });
         },
         caption: '⚠ 這一頁<b>問的是比</b>。同樣看到分數、但問「x、y、z 各是多少」的，要走後面<b>設 r</b> 那一頁。',
@@ -605,7 +625,7 @@ window.DECK = window.DECK || [];
           const FR = (cx, cy, num, den, cn, cd) => TX(cx, cy, num, { anchor: 'middle', fs: 20, c: cn || INK })
             + SV.seg(cx - 20, cy + 8, cx + 20, cy + 8, INK, 1.8)
             + TX(cx, cy + 34, den, { anchor: 'middle', fs: 20, c: cd || INK });
-          const prem = () => TX(220, 268, '（a、b、c 都不是 0）', { anchor: 'middle', fs: 13.5, c: GREY });
+          const prem = (y) => TX(220, y || 268, '（a、b、c 都不是 0）', { anchor: 'middle', fs: 13.5, c: GREY });
           SV.stepper(h, '0 0 440 282', [
             { t: '上一頁做完的是<b>數字</b>：分母 4、5、7，答案就是 4:5:7。',
               d: () => FR(120, 40, 'x', '4', BLU, AMB) + TX(170, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
@@ -619,10 +639,14 @@ window.DECK = window.DECK || [];
               d: () => FR(120, 40, 'x', 'a', BLU, AMB) + TX(170, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
                 + FR(220, 40, 'y', 'b', GRN, AMB) + TX(270, 66, '＝', { anchor: 'middle', fs: 20, c: INK })
                 + FR(320, 40, 'z', 'c', VIO, AMB)
-                + TX(220, 150, '拆成兩句：x／a ＝ y／b、y／b ＝ z／c', { anchor: 'middle', fs: 17, c: INK })
-                + TX(220, 186, '各自交叉相乘、係數對調', { anchor: 'middle', fs: 16, c: GREY })
-                + TX(140, 224, 'x : y ＝ a : b', { anchor: 'middle', fs: 19, c: BLU })
-                + TX(300, 224, 'y : z ＝ b : c', { anchor: 'middle', fs: 19, c: GRN }) + prem() },
+                + TX(220, 136, '拆成兩句，每一句只管兩個字母', { anchor: 'middle', fs: 16, c: INK })
+                + FRS(112, 172, 'x', 'a', { fs: 18, c: BLU }) + TX(140, 178, '＝', { anchor: 'middle', fs: 16, c: INK })
+                + FRS(168, 172, 'y', 'b', { fs: 18, c: BLU })
+                + FRS(272, 172, 'y', 'b', { fs: 18, c: GRN }) + TX(300, 178, '＝', { anchor: 'middle', fs: 16, c: INK })
+                + FRS(328, 172, 'z', 'c', { fs: 18, c: GRN })
+                + TX(220, 222, '各自交叉相乘、係數對調', { anchor: 'middle', fs: 15, c: GREY })
+                + TX(140, 250, 'x : y ＝ a : b', { anchor: 'middle', fs: 18, c: BLU })
+                + TX(300, 250, 'y : z ＝ b : c', { anchor: 'middle', fs: 18, c: GRN }) + prem(274) },
             { t: '直式疊起來：中間這一欄<b>上下都是 b</b>，本來就一樣大。',
               d: () => vbHead(24) + vbRow(32, ['a', 'b', null], { hi: [1] })
                 + vbRow(74, [null, 'b', 'c'], { hi: [1] })
@@ -633,7 +657,7 @@ window.DECK = window.DECK || [];
                 + vbRow(74, [null, 'b', 'c'], { hi: [1] }) + vbRule(120)
                 + vbRow(130, ['a', 'b', 'c'], { hi: [0, 1, 2] })
                 + TX(220, 200, '換成任何數字都成立，不用重推一次', { anchor: 'middle', fs: 16, c: INK })
-                + TX(220, 232, '驗算：x／a ＝ y／b ＝ z／c，三個都等於同一個數 ✓', { anchor: 'middle', fs: 14.5, c: GRN }) + prem() }
+                + TX(220, 232, '驗算：三個分數都等於同一個數 ✓', { anchor: 'middle', fs: 15, c: GRN }) + prem() }
           ], { acc: false });
         },
         caption: '⚠ 這一頁記的是<b>「分母就是比」</b>。要算出 x、y、z <b>各是多少</b>，仍然走後面<b>設 r</b> 那一頁。',
@@ -798,7 +822,7 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '連比例',
-        title: '看到分母：x／4 ＝ y／3，分母是幾就幾個 r',
+        title: '看到分母就設 r：分母是幾，就幾個 r',
         points: [
           '\\(\\frac{x}{4}=\\frac{y}{3}=\\frac{z}{8}\\)：把它們<b>都設成 \\(r\\)</b>。',
           '\\(\\frac{x}{4}=r\\) 就是 \\(x=4r\\)——<b>分母是幾，就幾個 \\(r\\)</b>。',
@@ -810,15 +834,23 @@ window.DECK = window.DECK || [];
             + TX(x, 125, t, { anchor: 'middle', fs: 19, c: c });
           SV.stepper(h, '0 0 440 280', [
             { t: '三個分數都相等。<b>把它們都設成 r</b>。',
-              d: () => TX(220, 40, 'x／4 ＝ y／3 ＝ z／8', { anchor: 'middle', fs: 22, c: INK })
-                + TX(220, 76, '＝ r', { anchor: 'middle', fs: 22, c: AMB })
-                + TX(220, 140, '三個都等於同一個 r', { anchor: 'middle', fs: 17, c: GREY }) },
+
+              d: () => FRS(109, 60, 'x', '4', { fs: 22, c: INK }) + TX(149, 68, '＝', { anchor: 'middle', fs: 20, c: INK })
+                + FRS(189, 60, 'y', '3', { fs: 22, c: INK }) + TX(229, 68, '＝', { anchor: 'middle', fs: 20, c: INK })
+                + FRS(269, 60, 'z', '8', { fs: 22, c: INK })
+                + TX(309, 68, '＝', { anchor: 'middle', fs: 20, c: AMB })
+                + TX(339, 68, 'r', { anchor: 'middle', fs: 24, c: AMB })
+                + TX(220, 150, '三個都等於同一個 r', { anchor: 'middle', fs: 17, c: GREY }) },
             { t: '一個一個乘回去：<b>分母是幾，就幾個 r</b>。',
-              d: () => TX(220, 40, 'x／4 ＝ r　→　x ＝ 4r', { anchor: 'middle', fs: 19, c: BLU })
-                + TX(220, 76, 'y／3 ＝ r　→　y ＝ 3r', { anchor: 'middle', fs: 19, c: GRN })
-                + TX(220, 112, 'z／8 ＝ r　→　z ＝ 8r', { anchor: 'middle', fs: 19, c: VIO })
-                + BOX(64, 134, 312, 44, { r: 12, fill: 'rgba(225,29,72,.07)', stroke: RED, sw: 2 })
-                + TX(220, 162, '⚠ 分母不用對調（和 3x ＝ 4y 那頁不同）', { anchor: 'middle', fs: 15.5, c: RED }) },
+
+              d: () => [['x', '4', 'x ＝ 4r', BLU, 44], ['y', '3', 'y ＝ 3r', GRN, 96], ['z', '8', 'z ＝ 8r', VIO, 148]]
+                .map(([n, d2, out, col2, y]) =>
+                  FRS(140, y, n, d2, { fs: 18, c: col2 })
+                  + TX(172, y + 6, '＝ r', { anchor: 'start', fs: 18, c: col2 })
+                  + TX(238, y + 6, '→', { anchor: 'middle', fs: 17, c: GREY })
+                  + TX(266, y + 6, out, { anchor: 'start', fs: 18, c: col2 })).join('')
+                + BOX(64, 196, 312, 44, { r: 12, fill: 'rgba(225,29,72,.07)', stroke: RED, sw: 2 })
+                + TX(220, 224, '⚠ 分母不用對調（和 3x ＝ 4y 那頁不同）', { anchor: 'middle', fs: 15.5, c: RED }) },
             { t: '代進題目給的條件 x ＋ 2y ＋ 3z ＝ 68。',
               d: () => TX(220, 44, '4r ＋ 2×3r ＋ 3×8r ＝ 68', { anchor: 'middle', fs: 20, c: INK })
                 + TX(220, 86, '4r ＋ 6r ＋ 24r ＝ 34r', { anchor: 'middle', fs: 19, c: GREY })
@@ -879,7 +911,10 @@ window.DECK = window.DECK || [];
                 + TX(220, 206, '前面那一頁就是在做這件事', { anchor: 'middle', fs: 16, c: GREY }) + prem() },
             { t: '<b>三句話是同一件事</b>——題目給哪一種，就換成好算的那一種。',
               d: () => tag(52, '①') + TX(226, 58, 'x : y : z ＝ 2 : 3 : 5', { anchor: 'middle', fs: 18, c: BLU })
-                + tag(104, '②') + TX(226, 110, 'x／2 ＝ y／3 ＝ z／5', { anchor: 'middle', fs: 18, c: GRN })
+                + tag(112, '②')
+                + FRS(150, 104, 'x', '2', { fs: 17, c: GRN }) + TX(186, 110, '＝', { anchor: 'middle', fs: 15, c: GRN })
+                + FRS(222, 104, 'y', '3', { fs: 17, c: GRN }) + TX(258, 110, '＝', { anchor: 'middle', fs: 15, c: GRN })
+                + FRS(294, 104, 'z', '5', { fs: 17, c: GRN })
                 + tag(156, '③') + TX(226, 162, 'x ＝ 2r，y ＝ 3r，z ＝ 5r', { anchor: 'middle', fs: 18, c: AMB })
                 + BOX(60, 186, 320, 54, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
                 + TX(220, 208, '要「比」→ 用 ①　　要「算出數值」→ 用 ③', { anchor: 'middle', fs: 15, c: INK })
