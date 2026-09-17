@@ -59,12 +59,18 @@ window.PRACTICE = (function () {
   function detail(h, sec, tag, back) {
     const d = S(sec)[tag];
     if (!d) return false;
+
     const fig = d.fig;
-    const figSteps = (window.FIG && window.FIG.accentCount) ? window.FIG.accentCount(fig) : 0;
+    const canDraw = (f) => !!(f && window.FIG && window.FIG.render(f, { accentStep: 0 }));
+    const figList = (d.figs && d.figs.length ? d.figs : (fig ? [fig] : [])).filter(canDraw);
+    const figSteps = (window.FIG && window.FIG.accentCount) ? window.FIG.accentCount(figList[0]) : 0;
     const lines = d.steps.concat(d.ans ? ['答：' + d.ans] : []);
     const total = Math.max(lines.length, figSteps);
     const col = SRCCOL[d.src] || '#2563eb';
-    const hasFig = !!(fig && window.FIG && window.FIG.render(fig, { accentStep: 0 }));
+    const hasFig = figList.length > 0;
+
+    const allFigs = (d.figs && d.figs.length ? d.figs : (fig ? [fig] : []));
+    const needRef = figList.length < allFigs.length || !hasFig;
 
     const cpt = conceptOf(sec, tag);
     const cptHtml = cpt ? `<div style="margin:8px 14px 0;background:#ecfeff;border:1.5px solid #67e8f9;
@@ -87,7 +93,7 @@ window.PRACTICE = (function () {
         </div>
         ${cptHtml}
         <div style="padding:8px 14px;font-size:15px;color:${INK};line-height:1.55">${d.q.replace(/\n/g, '<br>')}
-          ${!hasFig && d.ref ? `<div style="font-size:12px;color:${GREY};margin-top:4px">（${d.ref}）</div>` : ''}</div>
+          ${needRef && d.ref ? `<div style="font-size:12px;color:${GREY};margin-top:4px">（${d.ref}）</div>` : ''}</div>
       </div>
       <div class="q-body" style="display:flex;gap:10px;align-items:stretch">
         ${hasFig ? `<div class="q-fig" style="flex:0 0 44%;min-width:0;overflow:hidden;background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:6px;display:flex;align-items:center;justify-content:center"></div>` : ''}
@@ -115,7 +121,10 @@ window.PRACTICE = (function () {
     const paint = () => {
       els.forEach((e, i) => { e.style.visibility = (isAsk[i] || i < Math.min(k, lines.length)) ? 'visible' : 'hidden'; });
       if (figBox) {
-        figBox.innerHTML = `<div class="q-figin" style="width:100%">${window.FIG.render(fig, { accentStep: figStepAt(k) }) || ''}</div>`;
+        figBox.innerHTML = `<div class="q-figin" style="width:100%;display:flex;flex-direction:column;gap:6px">`
+          + figList.map((f, idx) => window.FIG.render(f,
+              { accentStep: idx === 0 ? figStepAt(k) : window.FIG.accentCount(f) }) || '').join('')
+          + `</div>`;
 
         figWide(figBox, Math.round(h.clientHeight * 0.52));
       }
@@ -189,8 +198,11 @@ window.PRACTICE = (function () {
 
     box.style.maxHeight = capH > 0 ? capH + 'px' : '';
 
-    const art = inner.querySelector('svg');
-    if (art && capH > 0) { art.style.maxHeight = (capH - 14) + 'px'; art.style.height = 'auto'; }
+    const arts = inner.querySelectorAll('svg');
+    if (arts.length && capH > 0) {
+      const each = (capH - 14 - (arts.length - 1) * 6) / arts.length;
+      arts.forEach(a => { a.style.maxHeight = Math.max(60, each) + 'px'; a.style.height = 'auto'; });
+    }
     box.dataset.fitW = Math.round(box.clientWidth);
   }
 
