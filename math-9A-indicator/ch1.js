@@ -283,6 +283,60 @@ window.DECK = window.DECK || [];
     };
   };
 
+  const RT = (n) => `<tspan class="radsign">√</tspan><tspan class="rad">${n}</tspan>`;
+  const radBars = (h) => {
+    if (typeof document === 'undefined') return;
+    h.querySelectorAll('svg').forEach(sv => {
+      sv.querySelectorAll('.radmark').forEach(l => l.remove());
+      sv.querySelectorAll('tspan.rad').forEach(t => {
+        const sign = t.previousElementSibling;
+        if (!sign || !sign.classList.contains('radsign') || !t.getBBox) return;
+        let b, sb;
+        try { b = t.getBBox(); sb = sign.getBBox(); } catch (e) { return; }
+        if (!b || !b.width || !sb || !sb.width) return;
+        const cs = getComputedStyle(t.parentNode);
+        const fill = cs.fill || INK;
+        const fs = parseFloat(cs.fontSize) || 16;
+        const baseY = parseFloat(t.parentNode.getAttribute('y')) || (b.y + b.height * 0.8);
+        sign.setAttribute('fill', 'transparent');
+        const top = baseY - fs * 0.80;
+        const x0 = sb.x + sb.width * 0.10, x1 = sb.x + sb.width * 0.42;
+        const x2 = sb.x + sb.width * 0.86, x3 = b.x + b.width + fs * 0.06;
+        const p = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+        p.setAttribute('class', 'radmark');
+        p.setAttribute('points', `${x0},${baseY - fs * 0.40} ${x1},${baseY - fs * 0.03} ${x2},${top} ${x3},${top}`);
+        p.setAttribute('fill', 'none'); p.setAttribute('stroke', fill);
+        p.setAttribute('stroke-width', Math.max(1.6, fs * 0.085));
+        p.setAttribute('stroke-linecap', 'round'); p.setAttribute('stroke-linejoin', 'round');
+        t.parentNode.parentNode.appendChild(p);
+      });
+    });
+  };
+
+  const withRad = (h) => { radBars(h); const sl = h.querySelector('.steps-r'); if (sl) sl.addEventListener('input', () => radBars(h)); };
+
+  const RTRI = (ox, oy, s, kind, o = {}) => {
+    const long = kind === '30' ? Math.sqrt(3) : 1;
+    const C = [ox, oy], B = [ox + s * long, oy], A = [ox, oy - s];
+    let g = SV.poly([A, B, C], 'rgba(37,99,235,.06)', BLU, 2.4);
+    g += SV.rightAngle(C[0], C[1], 0, 90, 13, '#7b8699');
+
+    if (o.angs !== false) {
+      const aB = kind === '30' ? 30 : 45, aA = kind === '30' ? 60 : 45;
+      g += SV.angle(B[0], B[1], 24, 180 - aB, 180, VIO, aB + '°', { fs: 13.5, lr: 13 });
+      g += SV.angle(A[0], A[1], 24, 270, 270 + aA, VIO, aA + '°', { fs: 13.5, lr: 13 });
+    }
+    return { g, A, B, C };
+  };
+
+  const EXTRA = (t) =>
+    BOX(300, 6, 132, 26, { r: 13, fill: '#f4f6fa', stroke: '#d7dde8', sw: 1.4 })
+    + TX(366, 24, t || '額外的，不是過關條件', { anchor: 'middle', fs: 12, c: GREY });
+
+  const xoBar = (x, y, w, t, col) =>
+    BOX(x, y, w, 44, { r: 11, fill: col === RED ? 'rgba(225,29,72,.07)' : 'rgba(5,150,105,.09)', stroke: col, sw: 2 })
+    + TX(x + w / 2, y + 29, t, { anchor: 'middle', fs: 18, c: col });
+
   window.DECK.push({
     ch: 1,
     title: '相似形與三角比',
@@ -2847,7 +2901,818 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '習作基礎五題到這裡寫完。'
-      }
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '這一節在學：用相似去量量不到的東西',
+        points: [
+          '前面學<b>怎麼判斷相似</b>，這一節學<b>相似有什麼用</b>。',
+          '工具只有兩個：<b>由邊比推面積比</b>、<b>由角度讀出邊長比</b>。',
+          '兩個工具都從同一句話開始：<b>邊比是幾比幾？</b>',
+          '樹高、湖寬這些<b>量不到的長度</b>，就是這樣算出來的。'
+        ],
+        formula: { label: '這一節的主角<span class="pgref">課本 印 63–77</span>', tex: '\\text{邊比}=k\\ \\Rightarrow\\ \\text{高比}=k,\\ \\text{面積比}=k^2' },
+        visual: (h) => {
+          const tri = (cx, cy, k, col) => {
+            const P = [[cx, cy - 34 * k], [cx - 38 * k, cy + 26 * k], [cx + 46 * k, cy + 26 * k]];
+            return SV.poly(P, 'rgba(37,99,235,.06)', col || BLU, 2.2);
+          };
+          SV.stepper(h, SECVB, [
+            { t: '前面三節在問「像不像」，這一節開始問「<b>那又怎樣</b>」。',
+              d: () => SECBG
+                + TX(220, 34, '1-3 問「像不像」，1-4 問「所以呢」', { anchor: 'middle', fs: 16, c: GREY })
+                + tri(120, 130, 0.78) + tri(300, 124, 1.18)
+                + TX(220, 214, '像，就可以拿小的去算大的', { anchor: 'middle', fs: 18, c: INK })
+                + TX(220, 248, '樹有多高、湖有多寬，不必爬上去也不必游過去', { anchor: 'middle', fs: 14, c: GREY }) },
+            { t: '工具只有兩個：<b>邊比 → 面積比</b>，以及<b>角度 → 邊長比</b>。',
+              d: () => SECBG + TX(220, 32, '整節只有兩個工具', { anchor: 'middle', fs: 16, c: GREY })
+                + BOX(16, 50, 200, 96, { r: 12, fill: 'rgba(5,150,105,.07)', stroke: GRN, sw: 2 })
+                + TX(116, 78, '① 邊比 → 面積比', { anchor: 'middle', fs: 16, c: GRN })
+                + TX(116, 106, '邊 2 倍，面積 4 倍', { anchor: 'middle', fs: 15, c: INK })
+                + TX(116, 132, '（不是 2 倍）', { anchor: 'middle', fs: 13.5, c: RED })
+                + BOX(224, 50, 200, 96, { r: 12, fill: 'rgba(37,99,235,.07)', stroke: BLU, sw: 2 })
+                + TX(324, 78, '② 角度 → 邊長比', { anchor: 'middle', fs: 16, c: BLU })
+                + TX(324, 106, '看到 30°、45°', { anchor: 'middle', fs: 15, c: INK })
+                + TX(324, 132, '三邊的比就固定了', { anchor: 'middle', fs: 13.5, c: INK })
+                + TX(220, 182, '兩個工具都先問同一句話', { anchor: 'middle', fs: 15, c: GREY })
+                + BOX(120, 196, 200, 44, { r: 11, fill: '#fff', stroke: AMB, sw: 2.2 })
+                + TX(220, 226, '邊比是幾比幾？', { anchor: 'middle', fs: 19, c: AMB })
+                + TX(220, 266, '答得出來，後面都是算術', { anchor: 'middle', fs: 14, c: GREY }) },
+            { t: '過關條件只有兩條；<b>測量</b>和<b>三角比</b>是額外的，右上角會標出來。',
+              d: () => SECBG + TX(220, 34, '哪些是過關條件', { anchor: 'middle', fs: 16, c: GREY })
+                + secActTwo([
+                    ['① 邊比、高比、面積比', '邊 k 倍 → 高 k 倍 → 面積 k² 倍', GRN],
+                    ['② 兩款三角板的邊長比', '1 : 1 : 根號2　和　1 : 根號3 : 2', BLU]
+                  ], ['量樹高、算坡度、sin cos tan 都是額外的', '頁面右上角有「額外」兩個字的就是']) }
+          ], { acc: false });
+        },
+        caption: '整節只問一句話：<b>邊比是幾比幾</b>？答得出來，剩下都是算術。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '邊長 2 倍，高也跟著 2 倍',
+        points: [
+          '兩個三角形相似，<b>對應高的比</b>就等於<b>對應邊的比</b>。',
+          '高<b>不用另外算</b>——邊變幾倍，高就變幾倍。',
+          '拖滑桿看：底變長，虛線的高跟著一起變長。'
+        ],
+        formula: { label: '對應高比＝對應邊比<span class="pgref">課本 印 63</span>', tex: '\\overline{BC}:\\overline{B\'C\'}=h:h\'' },
+        visual: (h) => {
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>大的是小的 <span class="ival" id="kv">2</span> 倍</label>
+            <input type="range" id="ks" min="1" max="3" step="0.5" value="2"></div></div>`;
+          const draw = () => {
+            const k = +h.querySelector('#ks').value;
+            h.querySelector('#kv').textContent = k;
+            const u = 34;
+            const one = (ox, oy, m, col, nm) => {
+              const b = 2 * u * m, ht = 1.6 * u * m;
+              const B = [ox, oy], C = [ox + b, oy], A = [ox + b * 0.42, oy - ht];
+              const F = [A[0], oy];
+              let g = SV.poly([A, B, C], 'rgba(37,99,235,.06)', col, 2.2);
+              g += SV.seg(A[0], A[1], F[0], F[1], GREY, 2, '5 4');
+              g += SV.rightAngle(F[0], F[1], 0, 90, 9, '#9aa3b2');
+              g += TX((B[0] + C[0]) / 2, oy + 20, '底 ' + (2 * m).toFixed(1).replace('.0', ''), { anchor: 'middle', fs: 14, c: col });
+              g += TX(F[0] + 7, oy - ht / 2, '高 ' + (1.6 * m).toFixed(2).replace(/\.?0+$/, ''), { fs: 13.5, c: GREY });
+              g += TX(ox + b / 2, oy - ht - 14, nm, { anchor: 'middle', fs: 14, c: col });
+              return g;
+            };
+            let s = one(28, 150, 1, BLU, '小的');
+            s += one(210, 150 + 0, k, AMB, '大的');
+            s += BOX(70, 190, 300, 58, { r: 12, fill: 'rgba(5,150,105,.09)', stroke: GRN, sw: 2.2 });
+            s += TX(220, 214, '底的比 ＝ 1 : ' + k, { anchor: 'middle', fs: 17, c: INK });
+            s += TX(220, 240, '高的比 ＝ 1 : ' + k + '　（一樣）', { anchor: 'middle', fs: 17, c: GRN });
+            h.querySelector('#fig').innerHTML = svg('0 0 440 256', s);
+          };
+          h.querySelector('#ks').oninput = draw;
+          draw();
+        },
+        caption: '盯住兩個比值——<b>底的比和高的比永遠一樣</b>。',
+        example: {
+          q: '\\(\\triangle ABC\\sim\\triangle DEF\\)，\\(\\overline{BC}:\\overline{EF}=3:5\\)，\\(\\triangle ABC\\) 在 \\(\\overline{BC}\\) 上的高是 \\(6\\)，求 \\(\\triangle DEF\\) 在 \\(\\overline{EF}\\) 上的高。'
+            + exTriPair({ l: { k: 0.8, bc: '3' }, r: { k: 1.2, names: ['D', 'E', 'F'], bc: '5' }, note: '高的比＝底的比' }),
+          steps: [
+            '高的比就是邊的比，也是 \\(3:5\\)。',
+            '\\(6:h=3:5\\)。'
+          ],
+          ans: '\\(h=10\\)'
+        }
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '邊長 2 倍，面積是 4 倍不是 2 倍',
+        points: [
+          '一張 A3 對摺是 A4，再對摺是 A5——<b>邊長剛好 2 倍</b>。',
+          '但要 <b>4 張</b> A5 才蓋得滿一張 A3，不是 2 張。',
+          '所以邊長 2 倍的時候，<b>面積是 4 倍</b>。'
+        ],
+        formula: { label: '先看見，再記公式<span class="pgref">課本 印 63 眉批</span>', tex: '\\text{邊長 }2\\text{ 倍}\\ \\Rightarrow\\ \\text{面積 }4\\text{ 倍}' },
+        visual: (h) => {
+          const X = 120, Y = 40, W = 200, H = 150;
+          const sheet = (x, y, w, hh, col, lab, fs) =>
+            BOX(x, y, w, hh, { r: 6, fill: col, stroke: '#9fb0c9', sw: 1.6 })
+            + (lab ? TX(x + w / 2, y + hh / 2 + 6, lab, { anchor: 'middle', fs: fs || 16, c: INK }) : '');
+          SV.stepper(h, '0 0 440 268', [
+            { t: '一張 <b>A3</b>。先記住它的大小。',
+              d: () => sheet(X, Y, W, H, '#eef3fb', 'A3', 22)
+                + TX(220, 220, '這是一張 A3', { anchor: 'middle', fs: 17, c: GREY }) },
+            { t: '對摺一次是 <b>A4</b>，再對摺一次是 <b>A5</b>——A5 的邊長是 A3 的一半。',
+              d: () => sheet(X, Y, W / 2, H, '#eef3fb', 'A4', 17)
+                + sheet(X + W / 2, Y, W / 2, H / 2, '#e9f4ee', 'A5', 15)
+                + sheet(X + W / 2, Y + H / 2, W / 2, H / 2, '#f7f9fc', '', 0)
+                + TX(220, 220, 'A5 的長和寬，都是 A3 的一半', { anchor: 'middle', fs: 17, c: INK })
+                + TX(220, 248, '反過來說：A3 的邊長是 A5 的 2 倍', { anchor: 'middle', fs: 14.5, c: GREY }) },
+            { t: '把 A5 一張一張蓋上去——<b>要 4 張才蓋得滿</b>。',
+              d: (k) => {
+                const n = Math.min(4, Math.floor(k * 4 + 0.001));
+                let g = sheet(X, Y, W, H, '#f7f9fc', '', 0);
+                const pos = [[0, 0], [1, 0], [0, 1], [1, 1]];
+                for (let i = 0; i < n; i++) {
+                  const [cx, cy] = pos[i];
+                  g += sheet(X + cx * W / 2, Y + cy * H / 2, W / 2, H / 2, '#dcefe4', 'A5', 15);
+                }
+                return g + TX(220, 220, n + ' 張', { anchor: 'middle', fs: 22, c: n === 4 ? GRN : AMB })
+                  + TX(220, 248, n < 4 ? '還有空位，繼續拖' : '剛好蓋滿——4 張', { anchor: 'middle', fs: 15, c: GREY });
+              } },
+            { t: '邊長 2 倍、面積 <b>4</b> 倍。<b>4 是 2 的平方</b>，不是 2 的 2 倍。',
+              d: () => sheet(X, Y, W, H, '#f7f9fc', '', 0)
+                + [[0, 0], [1, 0], [0, 1], [1, 1]].map(([cx, cy]) =>
+                    sheet(X + cx * W / 2, Y + cy * H / 2, W / 2, H / 2, '#dcefe4', 'A5', 15)).join('')
+                + BOX(70, 206, 300, 54, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 230, '邊長 2 倍　→　面積 2² ＝ 4 倍', { anchor: 'middle', fs: 18, c: GRN })
+                + TX(220, 252, '不是 2 倍', { anchor: 'middle', fs: 15, c: RED }) }
+          ], { acc: false });
+        },
+        caption: '⚠ 這一頁要<b>先看見</b>再記公式——只講「平方」講不動，先數紙張數。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '先問邊比是幾比幾，再把它平方',
+        points: [
+          '順序固定：<b>先讀出邊比</b>，再平方，就是面積比。',
+          '邊比 \\(2:3\\) → 面積比 \\(2^2:3^2=4:9\\)。',
+          '不放心就<b>兩個面積各算一次</b>，比出來一定一樣。'
+        ],
+        formula: { label: '面積比＝邊比的平方<span class="pgref">課本 印 65</span>', tex: '\\text{邊比}=a:b\\ \\Rightarrow\\ \\text{面積比}=a^2:b^2' },
+        visual: (h) => {
+          const box = (x, y, w, hh, col, fill) => BOX(x, y, w, hh, { r: 10, fill: fill, stroke: col, sw: 2.2 });
+          SV.stepper(h, SECVB, [
+            { t: '兩個相似三角形，邊比是 <b>2 : 3</b>。',
+              d: () => SECBG + box(30, 44, 170, 62, BLU, 'rgba(37,99,235,.07)')
+                + TX(115, 82, '邊比　2 : 3', { anchor: 'middle', fs: 19, c: BLU })
+                + TX(220, 150, '先把這一句讀出來，再往下做', { anchor: 'middle', fs: 16, c: GREY }) },
+            { t: '高比<b>也是</b> 2 : 3——高跟著邊走，不用另外算。',
+              d: () => SECBG + box(30, 44, 170, 62, BLU, 'rgba(37,99,235,.07)')
+                + TX(115, 82, '邊比　2 : 3', { anchor: 'middle', fs: 19, c: BLU })
+                + TX(215, 82, '→', { anchor: 'middle', fs: 22, c: GREY })
+                + box(240, 44, 170, 62, AMB, 'rgba(217,119,6,.07)')
+                + TX(325, 82, '高比　2 : 3', { anchor: 'middle', fs: 19, c: AMB })
+                + TX(220, 150, '一樣的比，換個名字而已', { anchor: 'middle', fs: 16, c: GREY }) },
+            { t: '面積比要<b>各自平方</b>：\\(2^2:3^2\\)，也就是 <b>4 : 9</b>。',
+              d: () => SECBG + box(30, 44, 170, 62, BLU, 'rgba(37,99,235,.07)')
+                + TX(115, 82, '邊比　2 : 3', { anchor: 'middle', fs: 19, c: BLU })
+                + TX(215, 82, '→', { anchor: 'middle', fs: 22, c: GREY })
+                + box(240, 44, 170, 62, AMB, 'rgba(217,119,6,.07)')
+                + TX(325, 82, '高比　2 : 3', { anchor: 'middle', fs: 19, c: AMB })
+                + TX(220, 128, '↓　各自平方', { anchor: 'middle', fs: 15, c: GREY })
+                + box(120, 146, 200, 62, GRN, 'rgba(5,150,105,.09)')
+                + TX(220, 184, '面積比　4 : 9', { anchor: 'middle', fs: 21, c: GRN })
+                + TX(220, 238, '2² ＝ 4、3² ＝ 9', { anchor: 'middle', fs: 16, c: INK }) },
+            { t: '不放心就<b>各算一次</b>：底 2 高 2 → 面積 2；底 3 高 3 → 面積 4.5。比一比還是 4 : 9。',
+              d: () => SECBG + TX(220, 32, '自己驗一次', { anchor: 'middle', fs: 16, c: GREY })
+                + box(30, 50, 170, 90, BLU, 'rgba(37,99,235,.06)')
+                + TX(115, 78, '底 2、高 2', { anchor: 'middle', fs: 16, c: INK })
+                + TX(115, 108, '面積 ＝ 2×2÷2', { anchor: 'middle', fs: 15, c: GREY })
+                + TX(115, 132, '＝ 2', { anchor: 'middle', fs: 17, c: BLU })
+                + box(240, 50, 170, 90, AMB, 'rgba(217,119,6,.06)')
+                + TX(325, 78, '底 3、高 3', { anchor: 'middle', fs: 16, c: INK })
+                + TX(325, 108, '面積 ＝ 3×3÷2', { anchor: 'middle', fs: 15, c: GREY })
+                + TX(325, 132, '＝ 4.5', { anchor: 'middle', fs: 17, c: AMB })
+                + BOX(90, 166, 260, 54, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 190, '2 : 4.5 ＝ 4 : 9', { anchor: 'middle', fs: 19, c: GRN })
+                + TX(220, 212, '（兩邊都乘 2）', { anchor: 'middle', fs: 13.5, c: GREY })
+                + TX(220, 252, '跟平方算出來的一樣', { anchor: 'middle', fs: 15, c: INK }) }
+          ], { acc: false });
+        },
+        caption: '⚠ 這一節<b>只做順推</b>（邊比 → 面積比）。由面積比反推邊比留到練習頁，老師帶著做。',
+        example: {
+          q: '\\(\\triangle ABC\\sim\\triangle DEF\\)，\\(\\overline{AB}:\\overline{DE}=1:4\\)，\\(\\triangle ABC\\) 的面積是 \\(3\\)，求 \\(\\triangle DEF\\) 的面積。'
+            + exTriPair({ l: { k: 0.6, ab: '1' }, r: { k: 1.3, names: ['D', 'E', 'F'], ab: '4' }, note: '面積比＝邊比的平方' }),
+          steps: [
+            '邊比 \\(1:4\\)，面積比是 \\(1^2:4^2=1:16\\)。',
+            '\\(3:S=1:16\\)。'
+          ],
+          ans: '\\(S=48\\)'
+        }
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '今天的教具你已經帶來了：兩款三角板',
+        points: [
+          '直角三角板只有<b>兩款</b>：45°-45°-90° 和 30°-60°-90°。',
+          '同一款的三角板，<b>不管大小，三邊的比都一樣</b>——因為它們相似。',
+          '所以只要看<b>角度</b>，就知道三邊的比。'
+        ],
+        formula: { label: '兩款，就這兩款<span class="pgref">課本 印 69–71</span>', tex: '45\\degree\\text{-}45\\degree\\text{-}90\\degree\\quad 30\\degree\\text{-}60\\degree\\text{-}90\\degree' },
+        visual: (h) => {
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>三角板大小 <span class="ival" id="kv">中</span></label>
+            <input type="range" id="ks" min="0" max="2" step="1" value="1"></div></div>`;
+          const draw = () => {
+            const i = +h.querySelector('#ks').value;
+            h.querySelector('#kv').textContent = ['小', '中', '大'][i];
+            const m = [0.66, 0.86, 1.06][i];
+            const a = RTRI(40, 40 + 108 * m, 84 * m, '45');
+            const b = RTRI(250, 40 + 108 * m, 66 * m, '30');
+            let s = a.g + b.g;
+            s += TX(100, 250, '45°-45°-90°', { anchor: 'middle', fs: 16, c: BLU });
+            s += TX(320, 250, '30°-60°-90°', { anchor: 'middle', fs: 16, c: BLU });
+            s += TX(220, 278, '拖滑桿改變大小——角度一個都沒變', { anchor: 'middle', fs: 14.5, c: GREY });
+            h.querySelector('#fig').innerHTML = svg('0 0 440 290', s);
+          };
+          h.querySelector('#ks').oninput = draw;
+          draw();
+        },
+        caption: '拖滑桿把三角板放大縮小：<b>角度不變</b>，所以三邊的比也不變。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '45-45-90：兩股一樣長，斜邊是根號2 倍',
+        points: [
+          '兩個角都是 45°，所以<b>兩股一樣長</b>。',
+          '斜邊 ＝ 股長 × <b>根號2</b>。根號2 大約 <b>1.4</b>。',
+          '答案<b>留著根號就是答案</b>，不用再算成小數。'
+        ],
+        formula: { label: '三邊比<span class="pgref">課本 印 70</span>', tex: '1:1:\\sqrt2' },
+        visual: (h) => {
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>股長 ＝ <span class="ival" id="kv">5</span></label>
+            <input type="range" id="ks" min="2" max="10" step="1" value="5"></div></div>`;
+          const draw = () => {
+            const k = +h.querySelector('#ks').value;
+            h.querySelector('#kv').textContent = k;
+            const t = RTRI(110, 210, 140, '45');
+            let s = t.g;
+            s += TX(96, 145, String(k), { anchor: 'end', fs: 18, c: AMB });
+            s += TX(180, 234, String(k), { anchor: 'middle', fs: 18, c: AMB });
+            s += TX(215, 140, k + RT(2), { fs: 19, c: GRN });
+            s += BOX(28, 246, 384, 38, { r: 11, fill: 'rgba(5,150,105,.09)', stroke: GRN, sw: 2 });
+            s += TX(220, 272, '兩股 ' + k + '、' + k + '　斜邊 ' + k + RT(2), { anchor: 'middle', fs: 18, c: INK });
+            h.querySelector('#fig').innerHTML = svg('0 0 440 292', s);
+            withRad(h);
+          };
+          h.querySelector('#ks').oninput = draw;
+          draw();
+        },
+        caption: '股長換成幾，斜邊就是<b>幾乘根號2</b>——形狀完全沒變。',
+        example: {
+          q: '等腰直角三角形中 \\(\\angle A=\\angle B=45\\degree\\)，一股長 \\(7\\)，求斜邊。',
+          steps: [
+            '兩股一樣長，三邊比是 \\(1:1:\\sqrt2\\)。',
+            '股長 \\(7\\)，斜邊就是 \\(7\\times\\sqrt2\\)。'
+          ],
+          ans: '斜邊 \\(=7\\sqrt2\\)'
+        }
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '正三角形對摺，就得到 1 : 根號3 : 2',
+        points: [
+          '正三角形<b>沿中線對摺</b>，摺出來就是 30-60-90。',
+          '邊長 2 的正三角形：底邊<b>剩一半</b>，變成 1。',
+          '再用畢氏定理算高：\\(1^2+h^2=2^2\\)，所以 \\(h=\\sqrt3\\)。'
+        ],
+        formula: { label: '三邊比<span class="pgref">課本 印 69</span>', tex: '1:\\sqrt3:2' },
+        visual: (h) => {
+          const A = [190, 42], B = [110, 190], Cc = [270, 190], M = [190, 190];
+          SV.stepper(h, '0 0 440 280', [
+            { t: '一個<b>邊長 2</b> 的正三角形，三個角都是 60°。',
+              d: () => SV.poly([A, B, Cc], 'rgba(37,99,235,.06)', BLU, 2.4)
+                + TX(138, 112, '2', { anchor: 'middle', fs: 18, c: BLU })
+                + TX(242, 112, '2', { anchor: 'middle', fs: 18, c: BLU })
+                + TX(190, 212, '2', { anchor: 'middle', fs: 18, c: BLU })
+                + TX(190, 250, '三個角都是 60°', { anchor: 'middle', fs: 16, c: GREY }) },
+            { t: '沿著<b>中線對摺</b>：底邊被切成兩半，每半是 <b>1</b>。',
+              d: () => SV.poly([A, B, Cc], 'rgba(37,99,235,.04)', '#c9d3e2', 2)
+                + SV.poly([A, M, Cc], 'rgba(5,150,105,.10)', GRN, 2.6)
+                + SV.seg(A[0], A[1], M[0], M[1], GRN, 2.6, '5 4')
+                + SV.rightAngle(M[0], M[1], 0, 90, 12, '#7b8699')
+                + TX(232, 212, '1', { anchor: 'middle', fs: 18, c: GRN })
+                + TX(150, 212, '1', { anchor: 'middle', fs: 18, c: '#9aa3b2' })
+                + TX(242, 112, '2', { anchor: 'middle', fs: 18, c: BLU })
+                + TX(190, 254, '右半邊就是一個 30-60-90', { anchor: 'middle', fs: 16, c: INK }) },
+            { t: '高還不知道，叫它 \\(h\\)。用<b>畢氏定理</b>：\\(1^2+h^2=2^2\\)。',
+              d: () => SV.poly([A, M, Cc], 'rgba(5,150,105,.10)', GRN, 2.6)
+                + SV.rightAngle(M[0], M[1], 0, 90, 12, '#7b8699')
+                + TX(232, 212, '1', { anchor: 'middle', fs: 18, c: GRN })
+                + TX(242, 112, '2', { anchor: 'middle', fs: 18, c: BLU })
+                + TX(178, 120, 'h', { anchor: 'end', fs: 18, c: AMB })
+                + BOX(60, 236, 320, 40, { r: 11, fill: '#fff', stroke: AMB, sw: 2 })
+                + TX(220, 262, '1² ＋ h² ＝ 2²　→　h² ＝ 3', { anchor: 'middle', fs: 18, c: INK }) },
+            { t: '\\(h^2=3\\)，所以 \\(h=\\) 根號3。三邊就是 <b>1、根號3、2</b>。',
+              d: () => SV.poly([A, M, Cc], 'rgba(5,150,105,.10)', GRN, 2.6)
+                + SV.rightAngle(M[0], M[1], 0, 90, 12, '#7b8699')
+                + TX(232, 212, '1', { anchor: 'middle', fs: 18, c: GRN })
+                + TX(242, 112, '2', { anchor: 'middle', fs: 18, c: BLU })
+                + TX(178, 120, RT(3), { anchor: 'end', fs: 19, c: AMB })
+                + BOX(90, 236, 260, 40, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 263, '1 : ' + RT(3) + ' : 2', { anchor: 'middle', fs: 21, c: GRN }) }
+          ], { acc: false });
+          withRad(h);
+        },
+        caption: '⚠ 這一頁用<b>邊長 2</b> 的正三角形——根號3 剛好不用化簡。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '根號3 不是 2：把它念成「一、一點七、二」',
+        points: [
+          '根號3 大約 <b>1.7</b>，它<b>比 2 小</b>。',
+          '所以三邊比是 \\(1:\\sqrt3:2\\)，<b>不是</b> \\(1:2:\\sqrt3\\)。',
+          '每次寫的時候<b>念出來</b>：「一、一點七、二」，由小到大。'
+        ],
+        formula: { label: '念出來就不會寫反<span class="pgref">課本 印 69</span>', tex: '1\\lt\\sqrt3\\lt2' },
+        visual: (h) => {
+          const x0 = 44, x1 = 400, y = 96;
+          const at = (v) => x0 + (x1 - x0) * (v / 2.4);
+          const tick = (v, lab, col, fs) =>
+            SV.seg(at(v), y - 9, at(v), y + 9, col, 2.4)
+            + TX(at(v), y + 32, lab, { anchor: 'middle', fs: fs || 18, c: col });
+          let s = SV.seg(x0, y, x1, y, '#9aa3b2', 2.4);
+          s += tick(0, '0', GREY, 15);
+          s += tick(1, '1', BLU);
+          s += tick(1.732, RT(3), AMB, 20);
+          s += tick(2, '2', GRN);
+          s += TX(at(1.732), y - 20, '≒ 1.7', { anchor: 'middle', fs: 15, c: AMB });
+          s += TX(220, 158, '在數線上，根號3 就卡在 1 和 2 中間', { anchor: 'middle', fs: 16, c: INK });
+          s += xoBar(28, 172, 180, '✗ 1 : 2 : ' + RT(3), RED);
+          s += xoBar(232, 172, 180, '✓ 1 : ' + RT(3) + ' : 2', GRN);
+          s += TX(220, 268, '由小到大念一次：一、一點七、二', { anchor: 'middle', fs: 16, c: GREY });
+          h.innerHTML = svg('0 0 440 284', s);
+          withRad(h);
+        },
+        caption: '⚠ 本節的<b>頭號錯誤</b>就是把 \\(\\sqrt3\\) 當成比 2 大。念出來，就不會寫反。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '小角對小邊：先看角，再決定哪一邊',
+        points: [
+          '不是背「1、根號3、2」的順序，是看<b>哪個角對哪一邊</b>。',
+          '<b>小角對小邊</b>：30° 對 1、60° 對 根號3、90° 對 2。',
+          '圖轉過來也一樣——<b>角在哪裡，邊就跟到哪裡</b>。'
+        ],
+        formula: { label: '角配邊<span class="pgref">課本 印 69</span>', tex: '30\\degree\\to1,\\quad 60\\degree\\to\\sqrt3,\\quad 90\\degree\\to2' },
+        visual: (h) => {
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>把圖轉一轉 <span class="ival" id="rv">0°</span></label>
+            <input type="range" id="rs" min="0" max="3" step="1" value="0"></div></div>`;
+          const draw = () => {
+            const i = +h.querySelector('#rs').value;
+            const deg = [0, 90, 180, 270][i];
+            h.querySelector('#rv').textContent = deg + '°';
+
+            const cx = 210, cy = 146, s = 74;
+            const raw = [[-s * 0.87, s * 0.5], [s * 0.87, s * 0.5], [-s * 0.87, -s * 0.5]];
+            const r = deg * Math.PI / 180;
+            const P = raw.map(([x, y]) => [cx + x * Math.cos(r) - y * Math.sin(r), cy + x * Math.sin(r) + y * Math.cos(r)]);
+            const [C, B, A] = P;
+            const mid = (p, q) => [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
+
+            const out = (m) => [m[0] + (m[0] - cx) * 0.46, m[1] + (m[1] - cy) * 0.46];
+            let g = SV.poly([A, B, C], 'rgba(37,99,235,.06)', BLU, 2.4);
+            const lab = (p, q, t, col) => { const m = out(mid(p, q)); return TX(m[0], m[1] + 5, t, { anchor: 'middle', fs: 18, c: col }); };
+            g += lab(A, C, '1', AMB);
+            g += lab(B, C, RT(3), VIO);
+            g += lab(A, B, '2', GRN);
+            const tag = (p, t, col) => { const q = [p[0] + (p[0] - cx) * 0.22, p[1] + (p[1] - cy) * 0.22]; return TX(q[0], q[1] + 5, t, { anchor: 'middle', fs: 14, c: col }); };
+            g += tag(B, '30°', AMB) + tag(A, '60°', VIO) + tag(C, '90°', GRN);
+            g += TX(220, 266, '30° 對 1　60° 對 ' + RT(3) + '　90° 對 2', { anchor: 'middle', fs: 17, c: INK });
+            h.querySelector('#fig').innerHTML = svg('0 0 440 284', g);
+            withRad(h);
+          };
+          h.querySelector('#rs').oninput = draw;
+          draw();
+        },
+        caption: '每一個角<b>牽著它的對邊</b>一起轉——所以看角就好，不必記圖長什麼樣。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '給一邊，求另外兩邊：先認出它是誰的對邊',
+        points: [
+          '三步：<b>認角</b> → <b>看它對哪一邊</b> → <b>照比例放大</b>。',
+          '短股是 1 份，長股是 根號3 份，斜邊是 2 份。',
+          '知道一份是多少，另外兩邊就都算得出來。'
+        ],
+        formula: { label: '一份是多少<span class="pgref">課本 印 69–70</span>', tex: 'k:\\sqrt3\\,k:2k' },
+        visual: (h) => {
+          SV.stepper(h, '0 0 440 280', [
+            { t: '題目給<b>短股 ＝ 4</b>。短股是 30° 的對邊。',
+              d: () => RTRI(96, 206, 118, '30').g
+                + TX(84, 150, '4', { anchor: 'end', fs: 19, c: AMB })
+                + TX(220, 250, '短股 4，另外兩邊呢？', { anchor: 'middle', fs: 17, c: GREY }) },
+            { t: '短股是 <b>1 份</b>，所以<b>一份就是 4</b>。',
+              d: () => RTRI(96, 206, 118, '30').g
+                + TX(84, 150, '4', { anchor: 'end', fs: 19, c: AMB })
+                + BOX(120, 232, 200, 40, { r: 11, fill: '#fff', stroke: AMB, sw: 2 })
+                + TX(220, 258, '一份 ＝ 4', { anchor: 'middle', fs: 19, c: AMB }) },
+            { t: '長股是 <b>根號3 份</b>，所以長股 ＝ 4 × 根號3。',
+              d: () => RTRI(96, 206, 118, '30').g
+                + TX(84, 150, '4', { anchor: 'end', fs: 19, c: AMB })
+                + TX(200, 230, '4' + RT(3), { anchor: 'middle', fs: 19, c: VIO })
+                + TX(220, 266, '長股 ＝ 一份 × ' + RT(3), { anchor: 'middle', fs: 16, c: GREY }) },
+            { t: '斜邊是 <b>2 份</b>，所以斜邊 ＝ 4 × 2 ＝ <b>8</b>。',
+              d: () => RTRI(96, 206, 118, '30').g
+                + TX(84, 150, '4', { anchor: 'end', fs: 19, c: AMB })
+                + TX(200, 230, '4' + RT(3), { anchor: 'middle', fs: 19, c: VIO })
+                + TX(186, 132, '8', { fs: 19, c: GRN })
+                + BOX(60, 240, 320, 36, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 265, '4 、 4' + RT(3) + ' 、 8', { anchor: 'middle', fs: 19, c: GRN }) }
+          ], { acc: false });
+          withRad(h);
+        },
+        caption: '⚠ 答案有根號<b>不代表算錯</b>——\\(4\\sqrt3\\) 就是最後答案，不用再動它。',
+        example: {
+          q: '\\(30\\degree\\text{-}60\\degree\\text{-}90\\degree\\) 三角形的斜邊是 \\(12\\)，求另外兩邊。',
+          steps: [
+            '斜邊是 \\(2\\) 份，所以一份 \\(=12\\div2=6\\)。',
+            '短股 \\(=6\\)，長股 \\(=6\\sqrt3\\)。'
+          ],
+          ans: '短股 \\(6\\)、長股 \\(6\\sqrt3\\)'
+        }
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '量不到的長度：把它放進一對相似三角形',
+        points: [
+          '人和樹<b>站在同一片陽光下</b>，影子的方向一樣，兩個三角形相似。',
+          '所以 <b>身高 : 影長</b> ＝ <b>樹高 : 樹影長</b>。',
+          '⚠ 四個數字要<b>同一個單位</b>，先全部換成公分再列式。'
+        ],
+        formula: { label: '一條比例式就夠<span class="pgref">課本 印 67</span>', tex: '\\text{身高}:\\text{影長}=\\text{樹高}:\\text{樹影長}' },
+        visual: (h) => {
+          const G = 210;
+          SV.stepper(h, '0 0 440 268', [
+            { t: '小妍身高 <b>160</b>，影子長 <b>200</b>；旁邊的樹影長 <b>500</b>。',
+              d: () => EXTRA()
+                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
+                + SV.seg(70, G, 70, G - 58, BLU, 4)
+                + SV.seg(70, G, 140, G, AMB, 4)
+                + TX(58, G - 28, '160', { anchor: 'end', fs: 14, c: BLU })
+                + TX(105, G + 20, '200', { anchor: 'middle', fs: 14, c: AMB })
+                + SV.seg(250, G, 250, G - 130, GRN, 5)
+                + SV.seg(250, G, 420, G, AMB, 4)
+                + TX(238, G - 66, '?', { anchor: 'end', fs: 22, c: RED })
+                + TX(335, G + 20, '500', { anchor: 'middle', fs: 14, c: AMB })
+                + TX(220, 258, '單位全部是公分', { anchor: 'middle', fs: 14, c: GREY }) },
+            { t: '兩個都是<b>直角三角形</b>，而且<b>太陽的角度一樣</b>——所以相似。',
+              d: () => EXTRA()
+                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
+                + SV.poly([[70, G], [140, G], [70, G - 58]], 'rgba(37,99,235,.08)', BLU, 2.2)
+                + SV.poly([[250, G], [420, G], [250, G - 130]], 'rgba(5,150,105,.08)', GRN, 2.2)
+                + SV.angle(140, G, 26, 180, 180 - 40, VIO, '', { w: 2.2 })
+                + SV.angle(420, G, 26, 180, 180 - 40, VIO, '', { w: 2.2 })
+                + TX(220, 252, '兩個三角形的角度一模一樣 → 相似', { anchor: 'middle', fs: 16, c: INK }) },
+            { t: '列式：\\(160:200=?:500\\)。用<b>頭尾相乘＝中間相乘</b>解。',
+              d: () => EXTRA()
+                + BOX(50, 44, 340, 44, { r: 11, fill: '#fff', stroke: BLU, sw: 2 })
+                + TX(220, 74, '160 : 200 ＝ ? : 500', { anchor: 'middle', fs: 20, c: INK })
+                + TX(220, 118, '160 × 500 ＝ 200 × ?', { anchor: 'middle', fs: 18, c: GREY })
+                + TX(220, 152, '80000 ＝ 200 × ?', { anchor: 'middle', fs: 18, c: GREY })
+                + BOX(120, 172, 200, 46, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 203, '? ＝ 400 公分', { anchor: 'middle', fs: 20, c: GRN })
+                + TX(220, 244, '樹高 400 公分 ＝ 4 公尺', { anchor: 'middle', fs: 16, c: INK }) }
+          ], { acc: false });
+        },
+        caption: '⚠ 這一頁是<b>額外的</b>，不是過關條件——但它是本節最像「真的用得到」的一段。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '算出來的是哪一段？牆高要記得加眼高',
+        points: [
+          '比例式算出來的，常常<b>只是其中一段</b>，不是全部。',
+          '視線題：算出來的是<b>眼睛以上</b>那一段，要<b>再加上眼高</b>。',
+          '習慣動作：算完先問一句「<b>我算的是哪一段</b>」。'
+        ],
+        formula: { label: '最後一步別忘了<span class="pgref">課本 印 68</span>', tex: '\\text{總高}=\\text{算出來的那段}+\\text{眼高}' },
+        visual: (h) => {
+          const G = 224, WX = 330, EX = 90;
+          SV.stepper(h, '0 0 440 272', [
+            { t: '艾美站在牆前，<b>眼睛高 1.6</b>，往上看牆頂。',
+              d: () => EXTRA()
+                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
+                + SV.seg(WX, G, WX, G - 150, '#8a94a6', 6)
+                + SV.seg(EX, G, EX, G - 52, BLU, 4)
+                + SV.seg(EX, G - 52, WX, G - 150, RED, 2.4, '6 4')
+                + TX(EX - 12, G - 26, '1.6', { anchor: 'end', fs: 15, c: BLU })
+                + TX(WX + 12, G - 78, '牆高 4', { fs: 15, c: GREY })
+                + TX(220, 256, '虛線是視線', { anchor: 'middle', fs: 14, c: RED }) },
+            { t: '比例式算出來的是<b>眼睛以上</b>那一段——圖上的綠色那段。',
+              d: () => EXTRA()
+                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
+                + SV.seg(WX, G, WX, G - 52, '#c9d3e2', 6)
+                + SV.seg(WX, G - 52, WX, G - 150, GRN, 6)
+                + SV.seg(EX, G, EX, G - 52, BLU, 4)
+                + SV.seg(EX, G - 52, WX, G - 150, RED, 2.4, '6 4')
+                + SV.seg(EX, G - 52, WX, G - 52, '#9aa3b2', 1.8, '4 4')
+                + TX(WX + 12, G - 104, '這一段', { fs: 15, c: GRN })
+                + TX(WX + 12, G - 24, '這一段是 1.6', { fs: 14, c: '#9aa3b2' })
+                + TX(220, 256, '算出來的只有綠色那一段', { anchor: 'middle', fs: 16, c: INK }) },
+            { t: '所以最後<b>要把 1.6 加回去</b>，才是牆的總高。',
+              d: () => EXTRA()
+                + BOX(60, 60, 320, 46, { r: 11, fill: '#fff', stroke: GRN, sw: 2 })
+                + TX(220, 90, '算出來的那段 ＝ 2.4', { anchor: 'middle', fs: 19, c: GRN })
+                + TX(220, 132, '＋　眼高 1.6', { anchor: 'middle', fs: 18, c: BLU })
+                + BOX(110, 152, 220, 48, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 184, '牆高 ＝ 4', { anchor: 'middle', fs: 21, c: GRN })
+                + TX(220, 234, '算完先問：我算的是哪一段？', { anchor: 'middle', fs: 16, c: RED }) }
+          ], { acc: false });
+        },
+        caption: '⚠ 這種題<b>最後一步最常掉</b>——算對了卻忘記加回去。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '三角比：先學會邊怎麼改名字',
+        points: [
+          '直角三角形裡，<b>斜邊永遠是斜邊</b>（90° 的對邊）。',
+          '另外兩條的名字<b>看你在講哪一個角</b>：對面的叫對邊，靠著的叫鄰邊。',
+          '\\(\\sin\\) 是對邊÷斜邊、\\(\\cos\\) 是鄰邊÷斜邊、\\(\\tan\\) 是對邊÷鄰邊。'
+        ],
+        formula: { label: '三個名字<span class="pgref">課本 印 72–74</span>', tex: '\\sin A=\\dfrac{\\text{對邊}}{\\text{斜邊}},\\ \\cos A=\\dfrac{\\text{鄰邊}}{\\text{斜邊}},\\ \\tan A=\\dfrac{\\text{對邊}}{\\text{鄰邊}}' },
+        visual: (h) => {
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>現在在講 <span class="ival" id="av">A</span> 這個角</label>
+            <input type="range" id="as" min="0" max="1" step="1" value="0"></div></div>`;
+          const draw = () => {
+            const i = +h.querySelector('#as').value;
+            h.querySelector('#av').textContent = i ? 'B' : 'A';
+            const C = [100, 214], B = [340, 214], A = [100, 74];
+            let s = EXTRA();
+            s += SV.poly([A, B, C], 'rgba(37,99,235,.06)', BLU, 2.4);
+            s += SV.rightAngle(C[0], C[1], 0, 90, 14, '#7b8699');
+            s += SV.vlabel(A[0] - 22, A[1] + 2, 'A') + SV.vlabel(B[0] + 8, B[1] + 6, 'B') + SV.vlabel(C[0] - 22, C[1] + 16, 'C');
+
+            s += SV.seg(A[0], A[1], B[0], B[1], GRN, 5);
+            s += TX(232, 130, '斜邊', { anchor: 'middle', fs: 16, c: GRN });
+            const vert = { p: [C, A], lab: [78, 144], anchor: 'end' };
+            const horiz = { p: [C, B], lab: [220, 240], anchor: 'middle' };
+            const oppo = i ? vert : horiz;
+            const adja = i ? horiz : vert;
+            s += SV.seg(oppo.p[0][0], oppo.p[0][1], oppo.p[1][0], oppo.p[1][1], AMB, 5);
+            s += SV.seg(adja.p[0][0], adja.p[0][1], adja.p[1][0], adja.p[1][1], VIO, 5);
+            s += TX(oppo.lab[0], oppo.lab[1], '對邊', { anchor: oppo.anchor, fs: 16, c: AMB });
+            s += TX(adja.lab[0], adja.lab[1], '鄰邊', { anchor: adja.anchor, fs: 16, c: VIO });
+
+            const V = i ? B : A, W = i ? A : C;
+            s += SV.angle(V[0], V[1], 26, SV.angleOf(V[0], V[1], W[0], W[1]),
+                          SV.angleOf(V[0], V[1], (i ? C : B)[0], (i ? C : B)[1]), RED, '', { w: 2.6 });
+            s += TX(220, 268, '換一個角：斜邊沒變，對邊和鄰邊互換', { anchor: 'middle', fs: 15, c: GREY });
+            h.querySelector('#fig').innerHTML = svg('0 0 440 282', s);
+          };
+          h.querySelector('#as').oninput = draw;
+          draw();
+        },
+        caption: '⚠ 這一頁<b>只練改名字，不算數</b>。先把哪條是對邊講清楚，數字下一步才有意義。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '坡度百分比：鉛直除以水平，不是除以斜坡',
+        points: [
+          '坡度百分比 ＝ <b>爬升的高度 ÷ 走過的水平距離</b> × 100%。',
+          '⚠ 分母是<b>水平那一段</b>，不是斜坡本身的長度。',
+          '\\(10\\%\\) 的意思是：水平走 \\(100\\)，就升高 \\(10\\)。'
+        ],
+        formula: { label: '分母是水平距離<span class="pgref">課本 印 77</span>', tex: '\\text{坡度}\\%=\\dfrac{\\text{鉛直高度}}{\\text{水平距離}}\\times100\\%' },
+        visual: (h) => {
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>坡度 <span class="ival" id="pv">10</span>%</label>
+            <input type="range" id="ps" min="5" max="40" step="5" value="10"></div></div>`;
+          const draw = () => {
+            const p = +h.querySelector('#ps').value;
+            h.querySelector('#pv').textContent = p;
+            const x0 = 60, x1 = 360, G = 210;
+            const rise = Math.min(140, 300 * p / 100);
+            const A = [x0, G], B = [x1, G], T = [x1, G - rise];
+            let s = EXTRA();
+            s += SV.poly([A, B, T], 'rgba(217,119,6,.08)', AMB, 2.4);
+            s += SV.rightAngle(B[0], B[1], 90, 180, 13, '#7b8699');
+            s += SV.seg(A[0], A[1], B[0], B[1], BLU, 5);
+            s += SV.seg(B[0], B[1], T[0], T[1], GRN, 5);
+            s += TX((x0 + x1) / 2, G + 24, '水平 100', { anchor: 'middle', fs: 16, c: BLU });
+            s += TX(x1 + 10, G - rise / 2, '升高 ' + p, { fs: 16, c: GRN });
+            s += BOX(90, 236, 260, 42, { r: 11, fill: 'rgba(5,150,105,.09)', stroke: GRN, sw: 2.2 });
+            s += TX(220, 264, p + ' ÷ 100 × 100% ＝ ' + p + '%', { anchor: 'middle', fs: 18, c: INK });
+            h.querySelector('#fig').innerHTML = svg('0 0 440 286', s);
+          };
+          h.querySelector('#ps').oninput = draw;
+          draw();
+        },
+        caption: '⚠ 這一頁是<b>額外的</b>。但坡度題只要記住「分母是水平」，就幾乎不會錯。',
+        example: {
+          q: '滑板坡道的坡度百分比是 \\(10\\%\\)，水平距離 \\(\\overline{AC}=60\\) 公尺，求垂直高度。',
+          steps: [
+            '坡度 \\(10\\%\\) 表示 \\(\\dfrac{\\text{高}}{60}=\\dfrac{10}{100}\\)。',
+            '高 \\(=60\\times0.1\\)。'
+          ],
+          ans: '高 \\(=6\\) 公尺'
+        }
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '回頭看：兩個工具，一句開場白',
+        points: [
+          '不管題目在問樹高、湖寬還是面積，第一句都是<b>邊比是幾比幾</b>。',
+          '<b>邊比</b>會自己變成高比；<b>平方</b>之後就是面積比。',
+          '看到 30°、45°，<b>邊長比直接讀出來</b>，不必再找相似。',
+          '測量和三角比是<b>額外的</b>，過關條件是上面兩條。'
+        ],
+        formula: { label: '全部回到這兩句<span class="pgref">課本 印 78–79 重點整理</span>', tex: '\\text{邊比}=k\\Rightarrow\\text{面積比}=k^2\\ ;\\quad 1:1:\\sqrt2\\ ,\\ 1:\\sqrt3:2' },
+        visual: (h) => {
+          const CARD = [
+            ['算面積', '邊比平方就好', GRN],
+            ['算量不到的長度', '列一條比例式', BLU],
+            ['看到 30°、45°', '邊長比直接讀', VIO],
+            ['算坡度、sin cos tan', '額外的，不是過關條件', GREY]
+          ];
+          SV.stepper(h, SECVB, [
+            { t: '這一節的題目長成<b>四種樣子</b>。',
+              d: () => SECBG + TX(14, 34, '題目的四種問法', { fs: 15, c: GREY }) + secCards(CARD, false, -1) },
+            { t: '但前三種都從<b>同一句話</b>開始：邊比是幾比幾。',
+              d: () => SECBG + TX(14, 34, '前三種的第一步是同一句', { fs: 15, c: GREY })
+                + secCards(CARD, true, -1)
+                + TX(220, 278, '第四種是額外的，不影響過關', { anchor: 'middle', fs: 14.5, c: GREY }) },
+            { t: '所以整節只剩<b>兩個工具</b>，加一句開場白。',
+              d: () => SECBG + TX(220, 34, '整節只剩兩個工具', { anchor: 'middle', fs: 16, c: GREY })
+                + secActTwo([
+                    ['① 邊比 → 高比 → 面積比', '高跟著邊走；面積要平方', GRN],
+                    ['② 角度 → 邊長比', '1 : 1 : 根號2　和　1 : 根號3 : 2', BLU]
+                  ], ['開場白永遠是那一句：邊比是幾比幾？']) }
+          ], { acc: false });
+        },
+        caption: '四種問法看起來差很多，但<b>前三種的第一步是同一句話</b>。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '最常錯的三件事',
+        points: [
+          '寫 \\(1:\\sqrt3:2\\) 的時候<b>念出來</b>，就不會把根號3 寫到 2 後面。',
+          '面積要<b>平方</b>；算完先問一句「<b>我算的是哪一段</b>」。'
+        ],
+        formula: { label: '先問這兩句<span class="pgref">課本 印 78–79 重點整理</span>', tex: '\\text{邊比是幾比幾？我算的是哪一段？}' },
+        visual: (h) => {
+          h.innerHTML = xoRows([
+            { tag: '根號3 寫到後面',
+              bad: '三邊比寫成<br>\\(1:2:\\sqrt3\\)',
+              good: '\\(\\sqrt3\\approx1.7\\)，比 \\(2\\) <b>小</b><br>要寫 \\(1:\\sqrt3:2\\)' },
+            { tag: '面積忘了平方',
+              bad: '邊長 \\(2\\) 倍<br>面積寫成 \\(2\\) 倍',
+              good: '面積是 \\(2^2=4\\) 倍<br>（4 張 A5 才蓋滿 A3）' },
+            { tag: '只算了一段',
+              bad: '視線題算出 \\(2.4\\)<br>就當成牆高',
+              good: '那是<b>眼睛以上</b>那段<br>要再加眼高 \\(1.6\\)' }
+          ]);
+          MJ(h);
+        },
+        caption: '三件事各對應一個動作：<b>念出來</b>、<b>平方</b>、<b>問哪一段</b>。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜習作暖身題',
+        points: [
+          '三題暖身：一題面積比、兩題特殊角。',
+          '暖身 1 是<b>順推</b>：先讀邊比，再平方。',
+          '暖身 2、3 只要<b>認出是哪一款三角板</b>就會了。'
+        ],
+        formula: { label: '暖身重點', tex: '\\text{邊比}\\to\\text{面積比}\\ ;\\ 1:1:\\sqrt2\\ ,\\ 1:\\sqrt3:2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '習作', page: '印 17', sub: '暖身題，課堂一起做', tags: ['暖身1 ⑴', '暖身1 ⑵', '暖身2', '暖身3'] }
+          ]);
+        },
+        caption: '暖身題點開有逐行詳解——<b>先自己算，再點開對</b>。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜課本隨堂（邊比、高比與面積比）',
+        points: [
+          '三題都是<b>順推</b>：先把邊比讀出來。',
+          '問面積比就<b>平方</b>，問長度就<b>直接用邊比</b>。',
+          '⚠ 先抄問句再作答——<b>問誰在前，誰就寫前面</b>。'
+        ],
+        formula: { label: '這一節在練<span class="pgref">課本 印 64–66</span>', tex: '\\text{邊比}=a:b\\Rightarrow\\text{面積比}=a^2:b^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '課本', page: '印 64–66', sub: '隨堂練習', tags: ['課P64', '課P65', '課P66'] }
+          ]);
+        },
+        caption: '⚠ 問「甲和乙的面積比」就<b>甲在前</b>——順序寫反是本節常見的丟分。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜課本隨堂（測量與特殊角）',
+        points: [
+          '前兩題是<b>測量</b>：列一條比例式，注意算出來的是哪一段。',
+          '後兩題看<b>角度</b>：先認出 45-45-90 還是 30-60-90。',
+          '測量題屬<b>額外的</b>，但算法跟前面完全一樣。'
+        ],
+        formula: { label: '這一節在練<span class="pgref">課本 印 67–71</span>', tex: '\\text{相似}\\Rightarrow\\text{比例式}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '課本', page: '印 67–68', sub: '簡易測量', tags: ['課P67', '課P68'] },
+            { src: '課本', page: '印 70–71', sub: '特殊直角三角形', tags: ['課P70', '課P71'] }
+          ]);
+        },
+        caption: '⚠ 印 68 那題算出來的是<b>眼睛以上</b>那段，最後要加眼高。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜課本隨堂（三角比與坡度）',
+        points: [
+          '三題都屬<b>額外的</b>，不是過關條件。',
+          '三角比先問：<b>現在在講哪一個角</b>，對邊是哪一條。',
+          '坡度題記住<b>分母是水平距離</b>。'
+        ],
+        formula: { label: '這一節在練<span class="pgref">課本 印 74–77</span>', tex: '\\tan A=\\dfrac{\\text{對邊}}{\\text{鄰邊}}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '課本', page: '印 74–77', sub: '三角比與坡度（額外的）', tags: ['課P74', '課P76', '課P77'], level: '標準' }
+          ]);
+        },
+        caption: '⚠ 這一頁<b>不影響過關</b>——前面的邊長比做熟，比這三題重要。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜習作基礎（1～3）',
+        points: [
+          '<b>基礎 1 是底線題</b>，每個人都要做完。',
+          '基礎 2 是<b>由面積比反推邊比</b>——反過來想，老師帶著做。',
+          '基礎 3 是樹折斷的測量題，先把<b>直角三角形找出來</b>。'
+        ],
+        formula: { label: '這一節在練<span class="pgref">課本 印 63–68</span>', tex: '\\text{邊比}\\leftrightarrow\\text{面積比}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '習作', page: '印 18', sub: '基礎題，今天寫完', tags: ['基礎1'] },
+            { src: '習作', page: '印 18–19', sub: '老師帶著做', tags: ['基礎2', '基礎3'], level: '標準' }
+          ]);
+        },
+        caption: '⚠ 基礎 2 是<b>逆推</b>，講解頁沒教過——那一題跟著老師做，不算獨立作業。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜習作基礎（4～6）與精熟',
+        points: [
+          '基礎 4、6 自己做；<b>基礎 5 要用到根式化簡</b>，老師搭鷹架。',
+          '精熟兩題是<b>會考題</b>，課堂上一起完成，不是回家作業。',
+          '第 5 節結束前<b>把基礎 1～6 收齊</b>。'
+        ],
+        formula: { label: '這一節在練<span class="pgref">課本 印 69–77</span>', tex: '1:\\sqrt3:2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '習作', page: '印 19–20', sub: '基礎題，今天寫完', tags: ['基礎4', '基礎6'] },
+            { src: '習作', page: '印 20', sub: '含根式化簡，老師搭鷹架', tags: ['基礎5'], level: '標準' },
+            { src: '習作', page: '印 21', sub: '會考題，課堂共同完成', tags: ['精熟1', '精熟2'], level: '進階' }
+          ]);
+        },
+        caption: '⚠ 精熟兩題<b>課內一起做</b>，不當回家獨立題——作業抽查看的是基礎 1～6。'
+      },
     ]
   });
 })();
