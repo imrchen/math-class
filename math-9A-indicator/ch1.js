@@ -205,12 +205,109 @@ window.DECK = window.DECK || [];
       </div>`).join('') + `</div>`;
   }
 
+  const SECVB = '0 0 440 286';
+  const SECBG = `<rect x="0" y="0" width="440" height="286" fill="#fff"/>`;
+
+  const secKey = (y, col, name, k, arc) =>
+    (arc
+      ? `<path d="M316,${y + 13} Q327,${y - 4} 338,${y + 13}" fill="none" stroke="${col}" stroke-width="2.6" stroke-linecap="round" opacity="${k}"/>`
+      : BOX(316, y, 22, 12, { r: 3, fill: col, stroke: col, sw: 1, op: k }))
+    + TX(346, y + 12, name, { fs: 16, c: INK });
+
+  const secCards = (cards, showTag, star) => {
+    const n = cards.length, top = 52 + (4 - n) * 26;
+    return cards.map((c, i) => {
+      const y = top + i * 52, on = showTag && i === star;
+      return BOX(14, y, 214, 42, { r: 11, fill: on ? 'rgba(5,150,105,.09)' : '#fbfcfe',
+        stroke: on ? GRN : '#dce3ee', sw: on ? 2.2 : 1.6 })
+        + TX(28, y + 27, c[0], { fs: 16, c: INK })
+        + (showTag ? TX(244, y + 27, c[1], { fs: 14.5, c: c[2] || GREY }) : '');
+    }).join('');
+  };
+
+  const secActOne = (lines, k, col) => {
+    const c = col || GRN, hh = 16 + lines.length * 34, y = 274 - hh;
+    return BOX(16, y, 408, hh, { r: 12, fill: 'rgba(5,150,105,.07)', stroke: c, sw: 2, op: k })
+      + lines.map((t, i) => TX(220, y + 30 + i * 34, t, { anchor: 'middle', fs: 16, c: INK })).join('');
+  };
+
+  const secActTwo = (rows, notes) =>
+    rows.map((r, i) => {
+      const y = 50 + i * 76;
+      return BOX(16, y, 408, 66, { r: 12,
+        fill: r[2] === BLU ? 'rgba(37,99,235,.07)' : 'rgba(5,150,105,.07)', stroke: r[2], sw: 2 })
+        + TX(220, y + 28, r[0], { anchor: 'middle', fs: 17, c: r[2] })
+        + TX(220, y + 54, r[1], { anchor: 'middle', fs: 15, c: INK });
+    }).join('')
+    + (notes || []).map((t, i) =>
+      TX(220, 224 + i * 26, t, { anchor: 'middle', fs: i ? 14 : 15, c: GREY })).join('');
+
   window.DECK.push({
     ch: 1,
     title: '相似形與三角比',
     color: C,
     sections: ['1-1 連比例', '1-2 比例線段', '1-3 縮放與相似', '1-4 相似三角形的應用'],
     slides: [
+
+      {
+        sec: '1-1', secName: '連比例',
+        title: '這一節只做兩件事：變成一個比、再用比去分',
+        points: [
+          '連比 \\(a:b:c\\) 講的是<b>份數</b>，不是實際有多少。',
+          '題目<b>不會直接給你連比</b>，會用三種長相出現。',
+          '要做的只有兩件事：<b>先變成一個比</b>、<b>再用比去分</b>。',
+          '卡住就先問一句：<b>一份是多少？</b>'
+        ],
+        formula: { label: '這一節的主角<span class="pgref">課本 印 8–19</span>', tex: 'x:y:z=a:b:c' },
+        visual: (h) => {
+
+          const bars = () => {
+            const NAME = ['冰糖', '醬油', '米酒'], N = [1, 2, 3], COL = [BLU, AMB, VIO];
+            let g = '';
+            N.forEach((n, r) => {
+              const y = 56 + r * 48;
+              g += TX(74, y + 26, NAME[r], { anchor: 'end', fs: 15, c: GREY });
+              for (let i = 0; i < n; i++) {
+                g += BOX(86 + i * 46, y, 40, 36, { r: 7, fill: COL[r], stroke: COL[r], sw: 1 });
+              }
+              g += TX(86 + n * 46 + 12, y + 26, n + ' 份', { fs: 15, c: COL[r] });
+            });
+            return g;
+          };
+          const chip = (x, lab, draw) =>
+            TX(x + 66, 96, lab, { anchor: 'middle', fs: 13, c: GREY })
+            + BOX(x, 104, 132, 76, { r: 12, fill: '#fbfcfe', stroke: '#dce3ee', sw: 1.6 })
+            + draw(x + 66);
+          SV.stepper(h, SECVB, [
+            { t: '連比講的是<b>份數</b>——每一份多大，還不知道。',
+              d: () => SECBG + TX(220, 32, '1 : 2 : 3 是「配方」', { anchor: 'middle', fs: 16, c: GREY })
+                + bars()
+                + TX(220, 232, '份數不變，味道就不變', { anchor: 'middle', fs: 17, c: INK })
+                + TX(220, 262, '一份是幾匙？題目說了才知道', { anchor: 'middle', fs: 14.5, c: GREY }) },
+            { t: '題目<b>不會直接給你連比</b>，會用這三種長相出現。',
+              d: () => SECBG + TX(220, 36, '題目會長成這三種樣子', { anchor: 'middle', fs: 16, c: GREY })
+                + chip(14, '兩個比', cx =>
+                    TX(cx, 134, 'x : y ＝ 3 : 4', { anchor: 'middle', fs: 16, c: INK })
+                  + TX(cx, 164, 'y : z ＝ 6 : 7', { anchor: 'middle', fs: 16, c: INK }))
+                + chip(154, '一個等式', cx =>
+                    TX(cx, 150, '3x ＝ 4y', { anchor: 'middle', fs: 19, c: INK }))
+
+                + chip(294, '分數連等', cx =>
+                    FRS(cx - 34, 142, 'x', '2', { fs: 18, c: INK })
+                  + TX(cx, 148, '＝', { anchor: 'middle', fs: 16, c: GREY })
+                  + FRS(cx + 34, 142, 'y', '3', { fs: 18, c: INK }))
+                + TX(220, 214, '三種都要先變成 a : b : c', { anchor: 'middle', fs: 17, c: GRN })
+                + TX(220, 246, '變成比之後，後面的做法完全一樣', { anchor: 'middle', fs: 14.5, c: GREY }) },
+            { t: '整節要做的只有兩件事：先<b>變成一個比</b>，再<b>用比去分</b>。',
+              d: () => SECBG + TX(220, 34, '所以整節只有兩個動作', { anchor: 'middle', fs: 16, c: GREY })
+                + secActTwo([
+                    ['① 先變成一個比', '兩個比接起來，或由等式、分數讀出來', GRN],
+                    ['② 再用比去分', '一份是多少，算出來再乘回去', BLU]
+                  ], ['不確定的時候，先問「一份是多少？」']) }
+          ], { acc: false });
+        },
+        caption: '先記住「<b>份數</b>」兩個字——這一節每一頁都在處理份數。'
+      },
 
       {
         sec: '1-1', secName: '連比例',
@@ -935,6 +1032,42 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '連比例',
+        title: '回頭看：四種長相，其實只有兩個動作',
+        points: [
+          '題目有<b>四種長相</b>，但前三種都在做同一件事：<b>變成一個比</b>。',
+          '變成比之後，後面的做法<b>完全一樣</b>。',
+          '第四種（比 ＋ 總量）才是真正的第二個動作：<b>用比去分</b>。',
+          '⚠ 係數對調<b>只限兩個量</b>；三個以上要拆成兩句或設 \\(r\\)。'
+        ],
+        formula: { label: '全部回到這一式<span class="pgref">課本 印 19 重點回顧</span>', tex: 'x:y:z=a:b:c\\ \\Leftrightarrow\\ x=ar,\\ y=br,\\ z=cr' },
+        visual: (h) => {
+          const CARD = [
+            ['給你兩個比', '中間先湊成一樣', GRN],
+            ['給你一個等式', '係數對調（只限兩個量）', AMB],
+            ['給你分數連等', '分母是什麼，比就是什麼', VIO],
+            ['給你比和總量', '設 r，再乘回去', BLU]
+          ];
+          SV.stepper(h, SECVB, [
+            { t: '題目會用這<b>四種長相</b>出現。',
+              d: () => SECBG + TX(14, 34, '題目的四種長相', { fs: 15, c: GREY })
+                + secCards(CARD, false, -1) },
+            { t: '前三種都在做<b>同一件事</b>：把題目變成一個比。',
+              d: () => SECBG + TX(14, 34, '前三種都在做同一件事', { fs: 15, c: GREY })
+                + secCards(CARD, true, -1)
+                + TX(220, 278, '前三種 → 變成比；第四種 → 用比去分', { anchor: 'middle', fs: 14.5, c: GREY }) },
+            { t: '所以整節只剩<b>兩個動作</b>；三個以上的量不要整組對調。',
+              d: () => SECBG + TX(220, 34, '所以整節只剩兩個動作', { anchor: 'middle', fs: 16, c: GREY })
+                + secActTwo([
+                    ['① 先變成一個比', '合併、或由等式、分數讀出來', GRN],
+                    ['② 再用比去分', '設 r：一份是多少，再乘回去', BLU]
+                  ], ['⚠ 三個以上的量不要整組對調', '拆成兩句，或直接設 r']) }
+          ], { acc: false });
+        },
+        caption: '四種長相看起來完全不像，但<b>前三種的終點是同一個</b>：一個比。'
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
         title: '最常錯的四件事',
         points: [
           '把份數當實際數量，是這一節最常見的錯。',
@@ -1116,24 +1249,17 @@ window.DECK = window.DECK || [];
             + SV.vlabel(A[0] - 6, A[1] - 6, 'A') + SV.vlabel(B[0] - 18, B[1] + 20, 'B')
             + SV.vlabel(Cc[0] + 6, Cc[1] + 20, 'C')
             + SV.vlabel(P[0] - 20, P[1] + 5, 'P') + SV.vlabel(Q[0] + 9, Q[1] + 5, 'Q');
-
-          const key = (y, col, name, k, arc) =>
-            (arc
-              ? `<path d="M316,${y + 13} Q327,${y - 4} 338,${y + 13}" fill="none" stroke="${col}" stroke-width="2.6" stroke-linecap="round" opacity="${k}"/>`
-              : BOX(316, y, 22, 12, { r: 3, fill: col, stroke: col, sw: 1, op: k }))
-            + TX(346, y + 12, name, { fs: 16, c: INK });
-          SV.stepper(h, '0 0 440 286', [
+          SV.stepper(h, SECVB, [
             { t: '一條<b>平行</b>線橫過三角形，兩邊各被切成<b>兩段</b>。',
               d: () => base + TX(170, 122, 'PQ ∥ BC', { anchor: 'middle', fs: 15, c: GRN }) },
             { t: '三個名字：<b>上段</b>（藍）、<b>下段</b>（琥珀）、<b>整條</b>（綠弧）。',
               d: k => ln(A, P, BLU, 5) + ln(A, Q, BLU, 5) + ln(P, B, AMB, 5) + ln(Q, Cc, AMB, 5)
 
                 + ARC(A, B, 18, GRN, '', k) + ARC(A, Cc, -18, GRN, '', k)
-                + key(52, BLU, '上段', k) + key(92, AMB, '下段', k) + key(132, GRN, '整條', k, true) },
+                + secKey(52, BLU, '上段', k) + secKey(92, AMB, '下段', k) + secKey(132, GRN, '整條', k, true) },
             { t: '整節要做的只有兩件事：先<b>讀出比</b>，再<b>解出未知</b>。',
-              d: k => BOX(16, 190, 408, 84, { r: 12, fill: 'rgba(5,150,105,.07)', stroke: GRN, sw: 2, op: k })
-                + TX(220, 220, '① 讀出比：題目問哪兩段，就挑哪一式', { anchor: 'middle', fs: 16, c: INK })
-                + TX(220, 254, '② 解出未知：頭尾相乘＝中間相乘', { anchor: 'middle', fs: 16, c: INK }) }
+              d: k => secActOne(['① 讀出比：題目問哪兩段，就挑哪一式',
+                                 '② 解出未知：頭尾相乘＝中間相乘'], k) }
           ]);
         },
         caption: '先認得這張圖和三個名字——後面每一頁都在<b>這張圖</b>上加東西。'
@@ -1690,31 +1816,20 @@ window.DECK = window.DECK || [];
             ['兩邊中點連線', '＝ 比 1 : 1 的情形', VIO],
             ['判別兩線平行', '同一式反過來用', AMB]
           ];
-          const bg = `<rect x="0" y="0" width="440" height="286" fill="#fff"/>`;
-          const rows = (tag) => CARD.map((c, i) => {
-            const y = 52 + i * 52;
-            const on = tag && i === 1;
-            return BOX(14, y, 214, 42, { r: 11, fill: on ? 'rgba(5,150,105,.09)' : '#fbfcfe',
-              stroke: on ? GRN : '#dce3ee', sw: on ? 2.2 : 1.6 })
-              + TX(28, y + 27, c[0], { fs: 16, c: INK })
-              + (tag ? TX(244, y + 27, c[1], { fs: 14.5, c: c[2] }) : '');
-          }).join('');
-          SV.stepper(h, '0 0 440 286', [
+          SV.stepper(h, SECVB, [
             { t: '課本印 39 的重點回顧，這一節列了<b>四件事</b>。',
-              d: () => bg + TX(14, 34, '課本 印 39「重點回顧」', { fs: 15, c: GREY }) + rows(false) },
+              d: () => SECBG + TX(14, 34, '課本 印 39「重點回顧」', { fs: 15, c: GREY })
+                + secCards(CARD, false, 1) },
             { t: '其中<b>兩件不是新規則</b>，是同一式換個情形、或反過來用。',
-              d: () => bg + TX(14, 34, '其中只有一件是新的', { fs: 15, c: GREY }) + rows(true)
+              d: () => SECBG + TX(14, 34, '其中只有一件是新的', { fs: 15, c: GREY })
+                + secCards(CARD, true, 1)
                 + TX(220, 278, '中點連線和判別平行，都回到第二件', { anchor: 'middle', fs: 14.5, c: GREY }) },
             { t: '所以整節只剩<b>兩個動作</b>；不用比例式的只有尺規作圖那一頁。',
-              d: () => bg + TX(220, 34, '所以整節只剩兩個動作', { anchor: 'middle', fs: 16, c: GREY })
-                + BOX(16, 50, 408, 66, { r: 12, fill: 'rgba(5,150,105,.07)', stroke: GRN, sw: 2 })
-                + TX(220, 78, '① 讀出比', { anchor: 'middle', fs: 17, c: GRN })
-                + TX(220, 104, '題目問哪兩段，就挑哪一式', { anchor: 'middle', fs: 15, c: INK })
-                + BOX(16, 126, 408, 66, { r: 12, fill: 'rgba(37,99,235,.07)', stroke: BLU, sw: 2 })
-                + TX(220, 154, '② 解出未知', { anchor: 'middle', fs: 17, c: BLU })
-                + TX(220, 180, '頭尾相乘＝中間相乘，算完再除回去', { anchor: 'middle', fs: 15, c: INK })
-                + TX(220, 224, '例外只有一個：把線段分成 2:3 的尺規作圖', { anchor: 'middle', fs: 15, c: GREY })
-                + TX(220, 250, '那一頁是動手畫的，不用比例式', { anchor: 'middle', fs: 14, c: GREY }) }
+              d: () => SECBG + TX(220, 34, '所以整節只剩兩個動作', { anchor: 'middle', fs: 16, c: GREY })
+                + secActTwo([
+                    ['① 讀出比', '題目問哪兩段，就挑哪一式', GRN],
+                    ['② 解出未知', '頭尾相乘＝中間相乘，算完再除回去', BLU]
+                  ], ['例外只有一個：把線段分成 2:3 的尺規作圖', '那一頁是動手畫的，不用比例式']) }
           ], { acc: false });
         },
         caption: '四個名字裡，只有<b>平行線截比例線段</b>是新的；另外兩個是它的變形。'
@@ -1873,6 +1988,51 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '基礎六題到這裡寫完；精熟行有餘力再做。'
+      },
+
+      {
+        sec: '1-3', secName: '縮放與相似',
+        title: '這一節在問一句話：這兩個圖形像不像',
+        points: [
+          '相似＝<b>形狀一樣</b>，大小可以不一樣。',
+          '放大縮小時<b>邊長會變，角度不會變</b>。',
+          '對應關係看<b>名字的順序</b>，不看圖上誰在左邊。',
+          '一般多邊形要過<b>兩道門</b>；三角形有<b>三張捷徑</b>。'
+        ],
+        formula: { label: '這一節的主角<span class="pgref">課本 印 44–59</span>', tex: '\\triangle ABC\\sim\\triangle DEF' },
+        visual: (h) => {
+
+          const T = (cx, cy, k) => [[cx, cy - 38 * k], [cx - 42 * k, cy + 30 * k], [cx + 50 * k, cy + 30 * k]];
+          const L = T(104, 116, 0.74), R = T(304, 110, 1.18);
+          const ang = (P, i) => exAng(P[i], P[(i + 1) % 3], P[(i + 2) % 3], VIO);
+          const shape = (P, col) => SV.poly(P, 'rgba(37,99,235,.06)', col || BLU, 2.2)
+            + ang(P, 0) + ang(P, 1) + ang(P, 2);
+          const names = (P, nm) =>
+            SV.vlabel(P[0][0] - 6, P[0][1] - 10, nm[0])
+            + SV.vlabel(P[1][0] - 20, P[1][1] + 20, nm[1])
+            + SV.vlabel(P[2][0] + 8, P[2][1] + 20, nm[2]);
+          SV.stepper(h, SECVB, [
+            { t: '兩個圖形<b>形狀一樣</b>、大小不一樣，就叫相似。',
+              d: () => SECBG + shape(L) + shape(R)
+                + TX(104, 186, '小的', { anchor: 'middle', fs: 14, c: GREY })
+                + TX(304, 186, '大的', { anchor: 'middle', fs: 14, c: GREY })
+                + TX(220, 226, '角度一樣，邊長乘同一個倍數', { anchor: 'middle', fs: 17, c: INK })
+                + TX(220, 258, '紫色小弧標的就是「角度沒變」', { anchor: 'middle', fs: 14, c: GREY }) },
+            { t: '對應關係看<b>名字的順序</b>：A 配 D、B 配 E、C 配 F。',
+              d: () => SECBG + shape(L) + shape(R)
+                + names(L, ['A', 'B', 'C']) + names(R, ['D', 'E', 'F'])
+                + TX(220, 210, '△ABC ∼ △DEF', { anchor: 'middle', fs: 20, c: GRN })
+                + TX(220, 242, 'A↔D、B↔E、C↔F', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 268, '念名字就知道誰配誰，不看圖上誰在左邊', { anchor: 'middle', fs: 14, c: GREY }) },
+            { t: '整節要做的就是<b>判斷像不像</b>：多邊形查兩道門，三角形有捷徑。',
+              d: () => SECBG + TX(220, 34, '整節就在做一件事：判斷像不像', { anchor: 'middle', fs: 16, c: GREY })
+                + secActTwo([
+                    ['一般多邊形：兩道門', '角相等 ＋ 邊成比例，兩個都要過', GRN],
+                    ['三角形：三張捷徑', 'SSS、SAS、AA，過一張就夠', BLU]
+                  ], ['為什麼三角形可以省？那是後半每一頁在講的事']) }
+          ], { acc: false });
+        },
+        caption: '整節只在回答一句話：<b>這兩個圖形像不像</b>。'
       },
 
       {
@@ -2353,6 +2513,42 @@ window.DECK = window.DECK || [];
           ],
           ans: '\\(\\overline{AE}=\\dfrac83\\)'
         }
+      },
+
+      {
+        sec: '1-3', secName: '縮放與相似',
+        title: '回頭看：兩道門，和三張可以少查一點的捷徑',
+        points: [
+          '定義是<b>兩道門</b>：角相等 ＋ 邊成比例，一般多邊形兩道都要查。',
+          '三角形有<b>三張捷徑</b>，查一部分就能斷定相似。',
+          '三張<b>查的東西不一樣</b>：SSS 只看邊、AA 只看角、SAS 兩者都要一點。',
+          '但前提只有一個：<b>對應要對齊</b>，先念一遍名字再列式。'
+        ],
+        formula: { label: '三張裡過一張就夠<span class="pgref">課本 印 59 重點回顧</span>', tex: '\\text{SSS}\\ \\text{或}\\ \\text{SAS}\\ \\text{或}\\ \\text{AA}\\ \\Rightarrow\\ \\triangle ABC\\sim\\triangle DEF' },
+        visual: (h) => {
+          const CARD = [
+            ['一般多邊形', '兩道門都要查', GREY],
+            ['SSS', '只看邊：三邊成比例', GRN],
+            ['SAS', '兩邊 ＋ 中間那個角', VIO],
+            ['AA', '只看角：兩個角相等', AMB]
+          ];
+          SV.stepper(h, SECVB, [
+            { t: '課本印 59 的重點回顧，判斷相似有這<b>四種說法</b>。',
+              d: () => SECBG + TX(14, 34, '課本 印 59「重點回顧」', { fs: 15, c: GREY })
+                + secCards(CARD, false, -1) },
+            { t: '第一列是<b>定義</b>，下面三列是<b>捷徑</b>——查的東西各自不同。',
+              d: () => SECBG + TX(14, 34, '第一列是定義，下面三列是捷徑', { fs: 15, c: GREY })
+                + secCards(CARD, true, -1)
+                + TX(220, 278, '三角形不必兩道門都查，過一張就夠', { anchor: 'middle', fs: 14.5, c: GREY }) },
+            { t: '所以整節只剩<b>兩句話</b>：挑一張捷徑，然後把對應對齊。',
+              d: () => SECBG + TX(220, 34, '所以整節只剩兩句話', { anchor: 'middle', fs: 16, c: GREY })
+                + secActTwo([
+                    ['① 三張裡挑一張', '題目把哪一種條件給得最完整，就用哪一張', GRN],
+                    ['② 對應一定要對齊', '先把名字念一遍，再列式', BLU]
+                  ], ['不平行的那種圖，要先把小三角形翻過來', '翻過來之後，對應才看得出來']) }
+          ], { acc: false });
+        },
+        caption: '定義是兩道門；三張捷徑的意思是「<b>查一部分就夠</b>」，不是三套新規則。'
       },
 
       {
