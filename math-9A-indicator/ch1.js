@@ -1097,6 +1097,48 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '比例線段',
+        title: '這一節只做兩件事：讀出比、解出未知',
+        points: [
+          '整節都在<b>同一張圖</b>上：三角形被一條<b>平行線</b>切開。',
+          '要認的名字只有三個：<b>上段</b>、<b>下段</b>、<b>整條</b>。',
+          '要做的動作只有兩個：<b>讀出比</b>、<b>解出未知</b>。',
+          '<b>沒有平行</b>，後面每一條比例式都不能用。'
+        ],
+        formula: { label: '這一節的主角<span class="pgref">課本 印 23–39</span>', tex: '\\overline{AP}:\\overline{PB}=\\overline{AQ}:\\overline{QC}' },
+        visual: (h) => {
+          const A = [170, 22], B = [40, 156], Cc = [300, 156], t = 0.42;
+          const P = [A[0] + t * (B[0] - A[0]), A[1] + t * (B[1] - A[1])];
+          const Q = [A[0] + t * (Cc[0] - A[0]), A[1] + t * (Cc[1] - A[1])];
+          const ln = (p, q, col, w) =>
+            `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="${col}" stroke-width="${w}"/>`;
+          const base = SV.poly([A, B, Cc], 'rgba(37,99,235,.05)', BLU, 2.2)
+            + ln(P, Q, GRN, 4)
+            + SV.vlabel(A[0] - 6, A[1] - 6, 'A') + SV.vlabel(B[0] - 18, B[1] + 20, 'B')
+            + SV.vlabel(Cc[0] + 6, Cc[1] + 20, 'C')
+            + SV.vlabel(P[0] - 20, P[1] + 5, 'P') + SV.vlabel(Q[0] + 9, Q[1] + 5, 'Q');
+
+          const key = (y, col, name, k) =>
+            BOX(316, y, 22, 12, { r: 3, fill: col, stroke: col, sw: 1, op: k })
+            + TX(346, y + 12, name, { fs: 16, c: INK });
+          SV.stepper(h, '0 0 440 286', [
+            { t: '一條<b>平行</b>線橫過三角形，兩邊各被切成<b>兩段</b>。',
+              d: () => base + TX(170, 122, 'PQ ∥ BC', { anchor: 'middle', fs: 15, c: GRN }) },
+            { t: '三個名字：<b>上段</b>（藍）、<b>下段</b>（琥珀）、<b>整條</b>（綠弧）。',
+              d: k => ln(A, P, BLU, 5) + ln(A, Q, BLU, 5) + ln(P, B, AMB, 5) + ln(Q, Cc, AMB, 5)
+
+                + ARC(A, B, 40, GRN, '', k) + ARC(A, Cc, -40, GRN, '', k)
+                + key(52, BLU, '上段', k) + key(92, AMB, '下段', k) + key(132, GRN, '整條', k) },
+            { t: '整節要做的只有兩件事：先<b>讀出比</b>，再<b>解出未知</b>。',
+              d: k => BOX(16, 190, 408, 84, { r: 12, fill: 'rgba(5,150,105,.07)', stroke: GRN, sw: 2, op: k })
+                + TX(220, 220, '① 讀出比：題目問哪兩段，就挑哪一式', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 254, '② 解出未知：頭尾相乘＝中間相乘', { anchor: 'middle', fs: 16, c: INK }) }
+          ]);
+        },
+        caption: '先認得這張圖和三個名字——後面每一頁都在<b>這張圖</b>上加東西。'
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
         title: '高一樣的時候，底邊幾比幾，面積就是幾比幾',
         points: [
           '兩個三角形<b>頂點同一個</b>、底邊在<b>同一條線</b>上，高就一樣。',
@@ -1627,6 +1669,53 @@ window.DECK = window.DECK || [];
           ],
           ans: '平行'
         }
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
+        title: '回頭看：四個名字，其實是同一式',
+        points: [
+          '<b>等高三角形</b>是這些性質的<b>來源</b>，不是解題的招式。',
+          '<b>中點連線</b>就是比 <b>1:1</b> 的情形，不是新規則。',
+          '<b>判別平行</b>是同一式<b>反過來用</b>：有比 → 有平行。',
+          '所以整節只剩兩個動作：<b>讀出比</b>、<b>解出未知</b>。'
+        ],
+        formula: { label: '全部回到這一式<span class="pgref">課本 印 39 重點回顧</span>', tex: '\\overline{AP}:\\overline{PB}=\\overline{AQ}:\\overline{QC}' },
+        visual: (h) => {
+          const CARD = [
+            ['等高三角形', '來源，不是招式', GREY],
+            ['平行線截比例線段', '★ 這一節的主角', GRN],
+            ['兩邊中點連線', '＝ 比 1 : 1 的情形', VIO],
+            ['判別兩線平行', '同一式反過來用', AMB]
+          ];
+          const bg = `<rect x="0" y="0" width="440" height="286" fill="#fff"/>`;
+          const rows = (tag) => CARD.map((c, i) => {
+            const y = 52 + i * 52;
+            const on = tag && i === 1;
+            return BOX(14, y, 214, 42, { r: 11, fill: on ? 'rgba(5,150,105,.09)' : '#fbfcfe',
+              stroke: on ? GRN : '#dce3ee', sw: on ? 2.2 : 1.6 })
+              + TX(28, y + 27, c[0], { fs: 16, c: INK })
+              + (tag ? TX(244, y + 27, c[1], { fs: 14.5, c: c[2] }) : '');
+          }).join('');
+          SV.stepper(h, '0 0 440 286', [
+            { t: '課本印 39 的重點回顧，這一節列了<b>四件事</b>。',
+              d: () => bg + TX(14, 34, '課本 印 39「重點回顧」', { fs: 15, c: GREY }) + rows(false) },
+            { t: '其中<b>兩件不是新規則</b>，是同一式換個情形、或反過來用。',
+              d: () => bg + TX(14, 34, '其中只有一件是新的', { fs: 15, c: GREY }) + rows(true)
+                + TX(220, 278, '中點連線和判別平行，都回到第二件', { anchor: 'middle', fs: 14.5, c: GREY }) },
+            { t: '所以整節只剩<b>兩個動作</b>；不用比例式的只有尺規作圖那一頁。',
+              d: () => bg + TX(220, 34, '所以整節只剩兩個動作', { anchor: 'middle', fs: 16, c: GREY })
+                + BOX(16, 50, 408, 66, { r: 12, fill: 'rgba(5,150,105,.07)', stroke: GRN, sw: 2 })
+                + TX(220, 78, '① 讀出比', { anchor: 'middle', fs: 17, c: GRN })
+                + TX(220, 104, '題目問哪兩段，就挑哪一式', { anchor: 'middle', fs: 15, c: INK })
+                + BOX(16, 126, 408, 66, { r: 12, fill: 'rgba(37,99,235,.07)', stroke: BLU, sw: 2 })
+                + TX(220, 154, '② 解出未知', { anchor: 'middle', fs: 17, c: BLU })
+                + TX(220, 180, '頭尾相乘＝中間相乘，算完再除回去', { anchor: 'middle', fs: 15, c: INK })
+                + TX(220, 224, '例外只有一個：把線段分成 2:3 的尺規作圖', { anchor: 'middle', fs: 15, c: GREY })
+                + TX(220, 250, '那一頁是動手畫的，不用比例式', { anchor: 'middle', fs: 14, c: GREY }) }
+          ], { acc: false });
+        },
+        caption: '四個名字裡，只有<b>平行線截比例線段</b>是新的；另外兩個是它的變形。'
       },
 
       {
