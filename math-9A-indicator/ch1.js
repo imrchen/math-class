@@ -1117,8 +1117,10 @@ window.DECK = window.DECK || [];
             + SV.vlabel(Cc[0] + 6, Cc[1] + 20, 'C')
             + SV.vlabel(P[0] - 20, P[1] + 5, 'P') + SV.vlabel(Q[0] + 9, Q[1] + 5, 'Q');
 
-          const key = (y, col, name, k) =>
-            BOX(316, y, 22, 12, { r: 3, fill: col, stroke: col, sw: 1, op: k })
+          const key = (y, col, name, k, arc) =>
+            (arc
+              ? `<path d="M316,${y + 13} Q327,${y - 4} 338,${y + 13}" fill="none" stroke="${col}" stroke-width="2.6" stroke-linecap="round" opacity="${k}"/>`
+              : BOX(316, y, 22, 12, { r: 3, fill: col, stroke: col, sw: 1, op: k }))
             + TX(346, y + 12, name, { fs: 16, c: INK });
           SV.stepper(h, '0 0 440 286', [
             { t: '一條<b>平行</b>線橫過三角形，兩邊各被切成<b>兩段</b>。',
@@ -1126,8 +1128,8 @@ window.DECK = window.DECK || [];
             { t: '三個名字：<b>上段</b>（藍）、<b>下段</b>（琥珀）、<b>整條</b>（綠弧）。',
               d: k => ln(A, P, BLU, 5) + ln(A, Q, BLU, 5) + ln(P, B, AMB, 5) + ln(Q, Cc, AMB, 5)
 
-                + ARC(A, B, 40, GRN, '', k) + ARC(A, Cc, -40, GRN, '', k)
-                + key(52, BLU, '上段', k) + key(92, AMB, '下段', k) + key(132, GRN, '整條', k) },
+                + ARC(A, B, 18, GRN, '', k) + ARC(A, Cc, -18, GRN, '', k)
+                + key(52, BLU, '上段', k) + key(92, AMB, '下段', k) + key(132, GRN, '整條', k, true) },
             { t: '整節要做的只有兩件事：先<b>讀出比</b>，再<b>解出未知</b>。',
               d: k => BOX(16, 190, 408, 84, { r: 12, fill: 'rgba(5,150,105,.07)', stroke: GRN, sw: 2, op: k })
                 + TX(220, 220, '① 讀出比：題目問哪兩段，就挑哪一式', { anchor: 'middle', fs: 16, c: INK })
