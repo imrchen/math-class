@@ -34,17 +34,18 @@ window.DECK = window.DECK || [];
 
   const pRelabel = (h, sec) => h.querySelectorAll('.p-row').forEach(r => {
     const el = r.querySelector('.p-tag');
-    if (el) el.textContent = pLabel(sec, r.dataset.tag);
+
+    if (el) el.textContent = r.dataset.label || pLabel(sec, r.dataset.tag);
   });
 
-  const pRow = (tag, bodyHtml, ans, fs) =>
-    `<div class="p-row" data-tag="${tag}" style="display:flex;gap:9px;align-items:baseline;padding:2px 0;border-radius:8px">
+  const pRow = (tag, bodyHtml, ans, fs, label) =>
+    `<div class="p-row" data-tag="${tag}"${label ? ` data-label="${label}"` : ''} style="display:flex;gap:9px;align-items:baseline;padding:2px 0;border-radius:8px">
        <span class="p-tag" style="flex:0 0 72px;font-size:11px;font-weight:900;color:${GREY};white-space:nowrap">${tag}</span>
        <span style="flex:1;font-size:${fs};color:${INK};line-height:1.55">${bodyHtml}</span>
        ${ans ? `<span class="p-ans" style="flex:0 0 auto;font-size:12.5px;font-weight:900;color:${GRN};white-space:nowrap;overflow:hidden;max-width:0;opacity:0;transition:opacity .12s">${ans}</span>` : ''}
        <span class="p-go" style="flex:0 0 auto;width:12px;text-align:right;font-size:16px;font-weight:900;color:${C};opacity:0">›</span></div>`;
-  const pItem = (tag, tex, ans) => pRow(tag, `\\(${tex}\\)`, ans, '13.5px');
-  const pText = (tag, html, ans) => pRow(tag, html, ans, '13px');
+  const pItem = (tag, tex, ans, label) => pRow(tag, `\\(${tex}\\)`, ans, '13.5px', label);
+  const pText = (tag, html, ans, label) => pRow(tag, html, ans, '13px', label);
   const pCard = (src, page, col, sub, rows) =>
     `<div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;overflow:hidden">
        <div style="display:flex;justify-content:space-between;align-items:center;background:${col};padding:4px 13px">
@@ -579,8 +580,8 @@ window.DECK = window.DECK || [];
           pMount(h,
             pCard('習作・基礎練習 3', '印 20', AMB, '六小題，求值',
               pItem('基礎3 ④', '\\sqrt{1.69}', '1.3') +
-              pItem('基礎3 ⑤', '\\sqrt{\\tfrac{81}{25}}', '\\(\\tfrac{9}{5}\\)') +
-              pItem('基礎3 ⑥', '\\sqrt{2^2\\times 3^4}', '18')), '2-1');
+              pItem('基礎3 續一', '\\sqrt{\\tfrac{81}{25}}', '\\(\\tfrac{9}{5}\\)', '基礎3 ⑤') +
+              pItem('基礎3 續二', '\\sqrt{2^2\\times 3^4}', '18', '基礎3 ⑥')), '2-1');
         },
         caption: '習作印 20 基礎 3 的 ④⑤⑥；分數就分子分母各自開。'
       },
