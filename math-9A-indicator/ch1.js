@@ -242,6 +242,47 @@ window.DECK = window.DECK || [];
     + (notes || []).map((t, i) =>
       TX(220, 224 + i * 26, t, { anchor: 'middle', fs: i ? 14 : 15, c: GREY })).join('');
 
+  const PARA = () => {
+    const A = [44, 104], B = [392, 104], U = [48, 36], R = 42;
+    const P = [1, 2, 3].map(k => [A[0] + U[0] * k, A[1] + U[1] * k]);
+    const C = [A[0] + (B[0] - A[0]) / 3, A[1]];
+    const un = (p, q) => { const dx = q[0] - p[0], dy = q[1] - p[1], L = Math.hypot(dx, dy) || 1; return [dx / L, dy / L]; };
+    const go = (o, d, r) => [o[0] + d[0] * r, o[1] + d[1] * r];
+    const dA3 = un(P[2], A), dB3 = un(P[2], B);
+    const M = go(P[2], dA3, R), N = go(P[2], dB3, R);
+    const Mq = go(P[0], un(P[0], A), R), Nq = go(P[0], dB3, R);
+    const rMN = Math.hypot(N[0] - M[0], N[1] - M[1]);
+    const seg = (p, q, c, w, dash) => SV.seg(p[0], p[1], q[0], q[1], c, w, dash || '');
+    const pt = (p, c, lab, dx, dy) =>
+      `<circle cx="${p[0]}" cy="${p[1]}" r="4.4" fill="#fff" stroke="${c}" stroke-width="2.4"/>`
+      + (lab ? TX(p[0] + (dx || 0), p[1] + (dy || 0), lab, { fs: 15, c: c }) : '');
+
+    const arc = (o, r, p1, p2, c) =>
+      `<polyline points="${SV.arcPoints(o[0], o[1], r, SV.angleOf(o[0], o[1], p1[0], p1[1]), SV.angleOf(o[0], o[1], p2[0], p2[1]))}" fill="none" stroke="${c}" stroke-width="2.2"/>`;
+    return {
+      A, B, P, C, R, M, N, Mq, Nq, seg, pt, arc,
+      base: () => seg(A, B, BLU, 3.2) + pt(A, BLU) + pt(B, BLU)
+        + TX(A[0] - 16, A[1] - 10, 'A', { fs: 16, c: BLU }) + TX(B[0] + 6, B[1] - 10, 'B', { fs: 16, c: BLU }),
+      ray: () => {
+        let g = seg(A, go(A, un(A, P[2]), 268), GREY, 2, '6 5');
+        for (let i = 0; i < 3; i++) {
+          const a = i ? P[i - 1] : A;
+          g += SV.ticks(a[0], a[1], P[i][0], P[i][1], 1, AMB);
+          g += pt(P[i], AMB) + TX(P[i][0] - 30, P[i][1] + 6, 'P' + '₁₂₃'[i], { fs: 14, c: AMB });
+        }
+        return g + TX(go(A, un(A, P[2]), 276)[0] + 4, go(A, un(A, P[2]), 276)[1] + 6, 'L', { fs: 14, c: GREY });
+      },
+      link: () => seg(P[2], B, VIO, 2.6) + TX(310, 172, 'P₃B', { fs: 14, c: VIO }),
+      par: () => seg(P[0], go(P[0], dB3, 118), GRN, 2.8),
+      angle: (v, to, c) =>
+        `<polyline points="${SV.arcPoints(v[0], v[1], 26, SV.angleOf(v[0], v[1], to[0], to[1]), SV.angleOf(v[0], v[1], A[0], A[1]))}" fill="none" stroke="${c}" stroke-width="2.6"/>`,
+      crossArc: () => {
+        const a = SV.angleOf(Mq[0], Mq[1], Nq[0], Nq[1]);
+        return `<polyline points="${SV.arcPoints(Mq[0], Mq[1], rMN, a - 14, a + 14)}" fill="none" stroke="${GRN}" stroke-width="2.2"/>`;
+      }
+    };
+  };
+
   window.DECK.push({
     ch: 1,
     title: '相似形與三角比',
@@ -1728,6 +1769,106 @@ window.DECK = window.DECK || [];
           ],
           ans: '過 \\(P_3\\) 作 \\(\\overline{P_5B}\\) 的平行線'
         }
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
+        title: '為什麼「複製一個角」，兩條線就會平行',
+        points: [
+          '斜射線 \\(L\\) 同時穿過 \\(P_1\\) 和 \\(P_3\\)，它是<b>截線</b>。',
+          '\\(\\angle AP_3B\\) 和 \\(\\angle AP_1Q\\) 是<b>同位角</b>：同一個方向量起。',
+          '同位角<b>一樣大</b>，兩條線就平行——所以把角<b>原樣複製</b>過去就好。'
+        ],
+        formula: { label: '為什麼會平行<span class="pgref">課本 印 32 例 5</span>', tex: '\\angle AP_1Q=\\angle AP_3B\\ \\Rightarrow\\ \\overline{P_1Q}\\parallel\\overline{P_3B}' },
+        visual: (h) => {
+          const G = PARA();
+          SV.stepper(h, SECVB, [
+            { t: '斜射線 <b>L</b> 穿過 P₁、P₃ 兩個點——它就是<b>截線</b>。',
+              d: () => G.base() + G.ray()
+                + TX(220, 40, 'L 同時穿過 P₁ 和 P₃，它是截線', { anchor: 'middle', fs: 16, c: GREY }) },
+            { t: '∠AP₃B：在 P₃，從<b>往 A 的方向</b>量到 P₃B。',
+              d: () => G.base() + G.ray() + G.link()
+                + G.angle(G.P[2], G.B, AMB)
+                + TX(220, 40, '先看 P₃ 這個角', { anchor: 'middle', fs: 16, c: AMB }) },
+            { t: '∠AP₁Q 要<b>一樣大</b>，而且<b>同樣從往 A 的方向量起</b>。',
+              d: () => G.base() + G.ray() + G.link() + G.par()
+                + G.angle(G.P[2], G.B, AMB) + G.angle(G.P[0], G.Nq, GRN)
+                + TX(220, 40, '兩個角同方向、一樣大 ＝ 同位角', { anchor: 'middle', fs: 16, c: GRN })
+                + TX(220, 268, '同位角相等 → 兩條線平行', { anchor: 'middle', fs: 17, c: INK }) }
+          ], { acc: false });
+        },
+        caption: '所以問題只剩一個：<b>怎麼把 \\(\\angle AP_3B\\) 原樣搬到 \\(P_1\\)</b>——下一頁。'
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
+        title: '複製角的五個動作：圓規只開兩次',
+        points: [
+          '前兩個動作用<b>同一個圓規寬度</b>——畫完第一段弧<b>不要碰圓規</b>。',
+          '第三個動作才重新開圓規：量 <b>\\(M\\) 到 \\(N\\)</b> 的長。',
+          '兩條弧有<b>兩個交點</b>，取跟 \\(B\\) <b>同一邊</b>的那一個。'
+        ],
+        formula: { label: '一句話拆成五步<span class="pgref">課本 印 32 例 5 作法⑷</span>', tex: '\\text{過 }P_1\\text{ 作 }\\overline{P_1Q}\\parallel\\overline{P_3B}' },
+        visual: (h) => {
+          const G = PARA();
+          SV.stepper(h, SECVB, [
+            { t: '① 以 P₃ 為圓心畫一段弧，交射線於 <b>M</b>、交 P₃B 於 <b>N</b>。',
+              d: () => G.base() + G.ray() + G.link()
+                + G.arc(G.P[2], G.R, G.N, G.M, AMB) + G.pt(G.M, AMB, 'M', -4, -14) + G.pt(G.N, AMB, 'N', 6, -6)
+                + TX(220, 40, '圓規隨便開一個寬度都可以', { anchor: 'middle', fs: 15, c: GREY }) },
+            { t: '② <b>圓規不要動</b>，以 P₁ 為圓心畫一段一樣大的弧，交射線於 <b>M′</b>。',
+              d: () => G.base() + G.ray() + G.link()
+                + G.arc(G.P[2], G.R, G.N, G.M, '#d9c9a8') + G.pt(G.M, '#d9c9a8', '', 0, 0) + G.pt(G.N, '#d9c9a8', '', 0, 0)
+                + G.arc(G.P[0], G.R, G.Nq, G.Mq, AMB) + G.pt(G.Mq, AMB, 'M′', -24, 16)
+                + TX(220, 40, '同一個寬度：這一步不要重開圓規', { anchor: 'middle', fs: 15, c: RED }) },
+            { t: '③ 用圓規<b>量 M 到 N</b> 的長度。',
+              d: () => G.base() + G.ray() + G.link()
+                + G.arc(G.P[2], G.R, G.N, G.M, AMB) + G.pt(G.M, AMB, 'M', -4, -14) + G.pt(G.N, AMB, 'N', 6, -6)
+                + G.arc(G.P[0], G.R, G.Nq, G.Mq, '#d9c9a8') + G.pt(G.Mq, '#d9c9a8', 'M′', -24, 16)
+                + SV.seg(G.M[0], G.M[1], G.N[0], G.N[1], VIO, 3)
+                + TX((G.M[0] + G.N[0]) / 2, G.M[1] + 26, '量這一段', { anchor: 'middle', fs: 15, c: VIO })
+                + TX(220, 40, '這一步才重新開圓規', { anchor: 'middle', fs: 15, c: GREY }) },
+            { t: '④ 以 <b>M′</b> 為圓心、剛剛量的長畫弧，與第 ② 步的弧交於 <b>Q</b>。',
+              d: () => G.base() + G.ray() + G.link()
+                + G.arc(G.P[2], G.R, G.N, G.M, '#d9c9a8') + G.pt(G.M, '#d9c9a8', '', 0, 0) + G.pt(G.N, '#d9c9a8', '', 0, 0)
+                + G.arc(G.P[0], G.R, G.Nq, G.Mq, AMB) + G.pt(G.Mq, AMB, 'M′', -24, 16)
+                + G.crossArc() + G.pt(G.Nq, GRN, 'Q', 2, 18)
+                + TX(220, 40, '兩個交點，取跟 B 同一邊的那個', { anchor: 'middle', fs: 15, c: RED }) },
+            { t: '⑤ 連 P₁ 和 <b>Q</b> 並延長，交 AB 於 <b>C</b>——就是要找的點。',
+              d: () => G.base() + G.ray() + G.link() + G.par()
+                + G.pt(G.Nq, GRN, 'Q', 2, 18)
+                + G.pt(G.C, GRN, 'C', -6, -12)
+
+                + BOX(120, 24, 200, 42, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 52, 'AC : CB ＝ 1 : 2', { anchor: 'middle', fs: 18, c: GRN }) }
+          ], { acc: false });
+        },
+        caption: '⚠ 要 \\(2:3\\) 就截 5 個點、過 \\(P_2\\) 作平行線——<b>畫弧的五個動作完全一樣</b>。'
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
+        title: '複製角最常錯的三件事',
+        points: [
+          '前兩段弧<b>一定要同一個寬度</b>，這是整個作法的關鍵。',
+          '兩個角都要<b>從往 A 的方向量起</b>，量反了就不是同位角。'
+        ],
+        formula: { label: '畫之前先確認<span class="pgref">課本 印 32 例 5</span>', tex: '\\text{同一個寬度、同一個方向、同一邊}' },
+        visual: (h) => {
+          h.innerHTML = xoRows([
+            { tag: '中途改了圓規寬度',
+              bad: '畫完 \\(P_3\\) 的弧，手滑把圓規合起來<br>再重開一個寬度畫 \\(P_1\\)',
+              good: '第 ①② 步<b>同一個寬度</b><br>畫完第 ① 步<b>不要碰圓規</b>' },
+            { tag: '角量反邊',
+              bad: '\\(P_3\\) 從往 A 的方向量<br>\\(P_1\\) 卻從<b>往 \\(P_3\\) 的方向</b>量',
+              good: '兩個都從<b>往 A 的方向</b>量起<br>方向一樣才是同位角' },
+            { tag: '取錯交點',
+              bad: '兩條弧有<b>兩個</b>交點<br>取到射線另一邊那個',
+              good: '取<b>跟 \\(B\\) 同一邊</b>的那個<br>畫出來的線才會往 \\(\\overline{AB}\\) 去' }
+          ]);
+          MJ(h);
+        },
+        caption: '三件事都只是「同一個」：同一個寬度、同一個方向、同一邊。'
       },
 
       {
