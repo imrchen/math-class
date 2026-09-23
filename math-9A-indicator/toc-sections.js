@@ -45,14 +45,53 @@
     });
     items.querySelectorAll('.toc-section').forEach(sec => {
       sec.querySelector('.ts-n').textContent = sec.querySelectorAll('.toc-item').length;
+      subgroup(sec);
     });
     items.dataset.sectioned = '1';
   }
 
-  let lastSec = null;
+  const RULES = (window.TOC_GROUPS || []).map(([name, re]) => [name, new RegExp(re)]);
+  const REST = window.TOC_GROUP_REST || '其他';
+  function kind(btn) {
+    const t = btn.title || btn.textContent;
+    for (const [name, re] of RULES) if (re.test(t)) return name;
+    return REST;
+  }
+  function subgroup(sec) {
+    if (!RULES.length) return;
+    const btns = [...sec.querySelectorAll(':scope > .toc-item')];
+    if (new Set(btns.map(kind)).size < 2) return;
+    let box = null, cur = null;
+    btns.forEach(btn => {
+      const k = kind(btn);
+      if (k !== cur) {
+        cur = k;
+        const self = document.createElement('div');
+        box = self;
+        self.className = 'toc-group';
+        const head = document.createElement('div');
+        head.className = 'toc-ghead';
+        head.innerHTML = '<span class="tg-name">' + k + '</span><span class="tg-n"></span>';
+        head.addEventListener('click', (e) => {
+          e.stopPropagation();
+          self.classList.toggle('open');
+        });
+        self.appendChild(head);
+        sec.appendChild(self);
+      }
+      box.appendChild(btn);
+    });
+    sec.querySelectorAll(':scope > .toc-group').forEach(g => {
+      g.querySelector('.tg-n').textContent = g.querySelectorAll('.toc-item').length;
+    });
+  }
+
+  let lastSec = null, lastGroup = null;
   function openActive() {
     const act = document.querySelector('.toc-item.active');
     if (!act) return;
+    const grp = act.closest('.toc-group');
+    if (grp && grp !== lastGroup) { lastGroup = grp; grp.classList.add('open'); }
     const sec = act.closest('.toc-section');
     if (!sec || sec === lastSec) return;
     lastSec = sec;

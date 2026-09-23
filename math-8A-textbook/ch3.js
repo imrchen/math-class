@@ -1,22 +1,22 @@
 window.DECK = window.DECK || [];
 (function () {
-  const C = '#059669';
-  const RED = '#e11d48', GRN = '#059669', BLU = '#2563eb', VIO = '#7c3aed', AMB = '#d97706';
+  const C = '#065f46';
+  const RED = '#be123c', GRN = '#065f46', BLU = '#1e40af', VIO = '#6d28d9', AMB = '#92400e';
 
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;
   }
 
   const TX = (x, y, s, o = {}) =>
-    `<text x="${x}" y="${y}" ${o.anchor ? `text-anchor="${o.anchor}"` : ''} font-size="${o.fs || 15}" font-weight="${o.fw || 800}" fill="${o.c || '#172033'}">${s}</text>`;
+    `<text x="${x}" y="${y}" ${o.anchor ? `text-anchor="${o.anchor}"` : ''} font-size="${o.fs || 15}" font-weight="${o.fw || 800}" fill="${o.c || '#0b1220'}">${s}</text>`;
   const BOX = (x, y, w, h, o = {}) =>
-    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 12}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#dce3ee'}" stroke-width="${o.sw || 1.8}"/>`;
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 12}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#94a3b8'}" stroke-width="${o.sw || 1.8}"/>`;
 
   window.DECK.push({
     ch: 3,
     title: '因式分解',
     color: C,
-    sections: ['3-1 提公因式法與乘法公式因式分解', '3-2 利用十字交乘法因式分解'],
+    sections: ['3-1 提公因式法與乘法公式因式分解', '3-2 利用十字交乘法因式分解', '附錄本 精熟、素養題型'],
     slides: [
 
       {
@@ -748,6 +748,44 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '一頁最多四題；附錄本的題型與課堂評量互補。'
+      },
+
+      {
+        sec: '附錄本', secName: '精熟、素養題型',
+        title: '檢討｜習作附錄本（精熟題型）',
+        points: [
+          '這是<b>習作附錄本的精熟題型</b>，一章一份，兩題依序對應 3-1、3-2。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第3章', [
+            { src: '習作・附錄本（精熟題型）', page: '印 16', sub: '精熟題型 1～2', tags: ['附精1', '附精2'] }
+          ]);
+        },
+        caption: '一頁最多四題；這一類是整章的綜合題，沒有對答案頁。'
+      },
+
+      {
+        sec: '附錄本', secName: '精熟、素養題型',
+        title: '檢討｜習作附錄本（素養題型）',
+        points: [
+          '這是<b>習作附錄本的素養題型</b>，一章一份，跨整章。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第3章', [
+            { src: '習作・附錄本（素養題型）', page: '印 22', sub: '素養題型 1', tags: ['附素1(1)', '附素1(2)', '附素1(3)'] }
+          ]);
+        },
+        caption: '一頁最多四題；這一類是整章的綜合題，沒有對答案頁。'
       },
     ]
   });

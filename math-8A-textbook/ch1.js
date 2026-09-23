@@ -1,8 +1,8 @@
 window.DECK = window.DECK || [];
 (function () {
-  const C = '#2563eb';
-  const RED = '#e11d48', GRN = '#059669', BLU = '#2563eb', VIO = '#7c3aed', AMB = '#d97706';
-  const INK = '#172033', GREY = '#8a94a6';
+  const C = '#1e40af';
+  const RED = '#be123c', GRN = '#065f46', BLU = '#1e40af', VIO = '#6d28d9', AMB = '#92400e';
+  const INK = '#0b1220', GREY = '#475569';
 
   window.FIGURES_LOCAL = window.FIGURES_LOCAL || {};
   window.FIGURES_LOCAL['long-division-21x2-x-2'] = (() => {
@@ -23,7 +23,7 @@ window.DECK = window.DECK || [];
       + `</svg>`;
   })();
 
-  window.FIGURES_LOCAL['door-six-panes'] = '<svg viewBox="-24 -4 356 306" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="Noto Sans TC, PingFang TC, sans-serif"><rect x="56" y="40" width="180" height="220" fill="#EFE3D2" stroke="#17212B" stroke-width="2.4"/><rect x="72" y="52" width="62" height="44" fill="#FFFFFF" stroke="#2563eb" stroke-width="3.2"/><rect x="158" y="52" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><line x1="72" y1="52" x2="72" y2="18" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="134" y1="52" x2="134" y2="18" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="24" x2="134" y2="24" stroke="#2563eb" stroke-width="1.8"/><line x1="72" y1="18" x2="72" y2="30" stroke="#2563eb" stroke-width="1.8"/><line x1="134" y1="18" x2="134" y2="30" stroke="#2563eb" stroke-width="1.8"/><text x="103" y="16" text-anchor="middle" font-size="20" font-weight="800" fill="#2563eb">x－1</text><line x1="72" y1="52" x2="30" y2="52" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="96" x2="30" y2="96" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="38" y1="52" x2="38" y2="96" stroke="#2563eb" stroke-width="1.8"/><line x1="32" y1="52" x2="44" y2="52" stroke="#2563eb" stroke-width="1.8"/><line x1="32" y1="96" x2="44" y2="96" stroke="#2563eb" stroke-width="1.8"/><text x="30" y="81" text-anchor="end" font-size="20" font-weight="800" fill="#2563eb">x＋1</text><line x1="56" y1="272" x2="236" y2="272" stroke="#17212B" stroke-width="1.8"/><line x1="56" y1="266" x2="56" y2="278" stroke="#17212B" stroke-width="1.8"/><line x1="236" y1="266" x2="236" y2="278" stroke="#17212B" stroke-width="1.8"/><text x="146" y="296" text-anchor="middle" font-size="22" font-weight="800" fill="#17212B">3x－2</text><line x1="248" y1="40" x2="248" y2="260" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="40" x2="254" y2="40" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="260" x2="254" y2="260" stroke="#17212B" stroke-width="1.8"/><text x="256" y="158" text-anchor="start" font-size="22" font-weight="800" fill="#17212B">7x＋11</text></svg>';
+  window.FIGURES_LOCAL['door-six-panes'] = '<svg viewBox="-24 -4 356 306" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="Noto Sans TC, PingFang TC, sans-serif"><rect x="56" y="40" width="180" height="220" fill="#EFE3D2" stroke="#17212B" stroke-width="2.4"/><rect x="72" y="52" width="62" height="44" fill="#FFFFFF" stroke="#1e40af" stroke-width="3.2"/><rect x="158" y="52" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><line x1="72" y1="52" x2="72" y2="18" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="134" y1="52" x2="134" y2="18" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="24" x2="134" y2="24" stroke="#1e40af" stroke-width="1.8"/><line x1="72" y1="18" x2="72" y2="30" stroke="#1e40af" stroke-width="1.8"/><line x1="134" y1="18" x2="134" y2="30" stroke="#1e40af" stroke-width="1.8"/><text x="103" y="16" text-anchor="middle" font-size="20" font-weight="800" fill="#1e40af">x－1</text><line x1="72" y1="52" x2="30" y2="52" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="96" x2="30" y2="96" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="38" y1="52" x2="38" y2="96" stroke="#1e40af" stroke-width="1.8"/><line x1="32" y1="52" x2="44" y2="52" stroke="#1e40af" stroke-width="1.8"/><line x1="32" y1="96" x2="44" y2="96" stroke="#1e40af" stroke-width="1.8"/><text x="30" y="81" text-anchor="end" font-size="20" font-weight="800" fill="#1e40af">x＋1</text><line x1="56" y1="272" x2="236" y2="272" stroke="#17212B" stroke-width="1.8"/><line x1="56" y1="266" x2="56" y2="278" stroke="#17212B" stroke-width="1.8"/><line x1="236" y1="266" x2="236" y2="278" stroke="#17212B" stroke-width="1.8"/><text x="146" y="296" text-anchor="middle" font-size="22" font-weight="800" fill="#17212B">3x－2</text><line x1="248" y1="40" x2="248" y2="260" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="40" x2="254" y2="40" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="260" x2="254" y2="260" stroke="#17212B" stroke-width="1.8"/><text x="256" y="158" text-anchor="start" font-size="22" font-weight="800" fill="#17212B">7x＋11</text></svg>';
 
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;
@@ -33,12 +33,12 @@ window.DECK = window.DECK || [];
     `<text x="${x}" y="${y}" ${o.anchor ? `text-anchor="${o.anchor}"` : ''} font-size="${o.fs || 15}" font-weight="${o.fw || 800}" fill="${o.c || INK}"${o.op !== undefined ? ` opacity="${o.op}"` : ''}>${s}</text>`;
 
   const BOX = (x, y, w, h, o = {}) =>
-    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 12}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#dce3ee'}" stroke-width="${o.sw || 1.8}"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}${o.op !== undefined ? ` opacity="${o.op}"` : ''}/>`;
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 12}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#94a3b8'}" stroke-width="${o.sw || 1.8}"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}${o.op !== undefined ? ` opacity="${o.op}"` : ''}/>`;
   const RECT = (x, y, w, h, o = {}) =>
-    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 0}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#c9d3e2'}" stroke-width="${o.sw || 1.8}"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}/>`;
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 0}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#94a3b8'}" stroke-width="${o.sw || 1.8}"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}/>`;
 
   const CELL = (x, y, w, h, label, o = {}) =>
-    RECT(x, y, w, h, { fill: o.fill || '#fff', stroke: o.stroke || '#c9d3e2', sw: o.sw || 1.8 }) +
+    RECT(x, y, w, h, { fill: o.fill || '#fff', stroke: o.stroke || '#94a3b8', sw: o.sw || 1.8 }) +
     (label && w > 26 && h > 20
       ? TX(x + w / 2, y + h / 2 + 5, label, { anchor: 'middle', fs: o.fs || 15, c: o.c || INK })
       : '');
@@ -46,10 +46,10 @@ window.DECK = window.DECK || [];
   function xoRows(rows) {
     return `<div class="xo-wrap" style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">` +
       rows.map(r => `<div class="xo-row" style="display:flex;gap:8px;align-items:stretch">
-        <div class="xo-cell" style="flex:1;background:#fdeef2;border:1.5px solid #f3c4d0;border-radius:12px;padding:9px 12px">
+        <div class="xo-cell" style="flex:1;background:#fdeef2;border:1.5px solid #e0849b;border-radius:12px;padding:9px 12px">
           <div class="xo-tag" style="font-size:11.5px;font-weight:900;color:${RED};margin-bottom:4px">✗ ${r.tag || '常見錯誤'}</div>
           <div class="xo-body" style="font-size:13.5px;color:${INK};line-height:1.7;overflow-wrap:anywhere">${r.bad}</div></div>
-        <div class="xo-cell" style="flex:1;background:#eef7f2;border:1.5px solid #bfe0d1;border-radius:12px;padding:9px 12px">
+        <div class="xo-cell" style="flex:1;background:#eef7f2;border:1.5px solid #5fb28e;border-radius:12px;padding:9px 12px">
           <div class="xo-tag" style="font-size:11.5px;font-weight:900;color:${GRN};margin-bottom:4px">✓ 正確</div>
           <div class="xo-body" style="font-size:13.5px;color:${INK};line-height:1.7;overflow-wrap:anywhere">${r.good}</div></div>
       </div>`).join('') + `</div>`;
@@ -57,7 +57,7 @@ window.DECK = window.DECK || [];
 
   function gradeRows(rows) {
     return `<div class="xo-wrap" style="width:99.5%;margin:0 auto;display:flex;flex-direction:column;gap:9px">` +
-      rows.map(r => `<div class="xo-row" style="border:1.5px solid #dde4ef;border-radius:12px;background:#fff;padding:9px 13px">
+      rows.map(r => `<div class="xo-row" style="border:1.5px solid #94a3b8;border-radius:12px;background:#fff;padding:9px 13px">
         <div class="xo-tag" style="font-size:14px;font-weight:900;color:${C};margin-bottom:5px">${r.tag}</div>
         <div class="xo-body" style="display:flex;gap:8px;align-items:baseline;font-size:15px;line-height:1.6;color:${INK}">
           <span style="flex:0 0 auto;font-weight:900;color:${RED}">✗</span><span style="flex:1;min-width:0">${r.bad}</span></div>
@@ -69,10 +69,10 @@ window.DECK = window.DECK || [];
   function qaRows(rows) {
     return `<div class="xo-wrap" style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">` +
       rows.map(r => `<div class="xo-row" style="display:flex;gap:8px;align-items:stretch">
-        <div class="xo-cell" style="flex:1;background:#eef4ff;border:1.5px solid #cfdcf5;border-radius:12px;padding:9px 12px">
+        <div class="xo-cell" style="flex:1;background:#eef4ff;border:1.5px solid #7d9be0;border-radius:12px;padding:9px 12px">
           <div class="xo-tag" style="font-size:11.5px;font-weight:900;color:${BLU};margin-bottom:4px">問 ${r.tag || ''}</div>
           <div class="xo-body" style="font-size:13.5px;color:${INK};line-height:1.7;overflow-wrap:anywhere">${r.q}</div></div>
-        <div class="xo-cell" style="flex:1;background:#eef7f2;border:1.5px solid #bfe0d1;border-radius:12px;padding:9px 12px">
+        <div class="xo-cell" style="flex:1;background:#eef7f2;border:1.5px solid #5fb28e;border-radius:12px;padding:9px 12px">
           <div class="xo-tag" style="font-size:11.5px;font-weight:900;color:${GRN};margin-bottom:4px">答</div>
           <div class="xo-body" style="font-size:13.5px;color:${INK};line-height:1.7;overflow-wrap:anywhere">${r.a}</div></div>
       </div>`).join('') + `</div>`;
@@ -82,7 +82,7 @@ window.DECK = window.DECK || [];
     ch: 1,
     title: '乘法公式與多項式',
     color: C,
-    sections: ['1-1 乘法公式', '1-2 多項式的加法與減法', '1-3 多項式的乘法與除法'],
+    sections: ['1-1 乘法公式', '1-2 多項式的加法與減法', '1-3 多項式的乘法與除法', '附錄本 精熟、素養題型'],
     slides: [
 
       {
@@ -681,7 +681,7 @@ window.DECK = window.DECK || [];
             s += TX(RX, 92, `a² ＝ ${a * a}`, { fs: 15, c: BLU });
             s += TX(RX, 120, `2ab ＝ 2×${a}×${b} ＝ ${2 * a * b}`, { fs: 15, c: AMB });
             s += TX(RX, 148, `b² ＝ ${b * b}`, { fs: 15, c: GRN });
-            s += `<line x1="${RX}" y1="162" x2="428" y2="162" stroke="#c9d3e2" stroke-width="1.6"/>`;
+            s += `<line x1="${RX}" y1="162" x2="428" y2="162" stroke="#94a3b8" stroke-width="1.6"/>`;
             s += TX(RX, 188, `合計 ＝ ${a * a + 2 * a * b + b * b}`, { fs: 16, c: GRN });
             s += TX(220, 250, `少算一塊 ab 就會變成 ${a * a + a * b + b * b}，差了 ${a * b}`, { anchor: 'middle', fs: 14.5, c: RED });
             h.querySelector('#fig').innerHTML = svg('0 0 440 266', s);
@@ -771,7 +771,7 @@ window.DECK = window.DECK || [];
             s += TX(RX, 54, `a² ＝ 100`, { fs: 15, c: BLU });
             s += TX(RX, 82, `－2ab ＝ －2×10×${b} ＝ －${2 * a * b}`, { fs: 14, c: RED });
             s += TX(RX, 110, `＋b² ＝ ＋${b * b}（角落補回）`, { fs: 14, c: AMB });
-            s += `<line x1="${RX}" y1="124" x2="430" y2="124" stroke="#c9d3e2" stroke-width="1.6"/>`;
+            s += `<line x1="${RX}" y1="124" x2="430" y2="124" stroke="#94a3b8" stroke-width="1.6"/>`;
             s += TX(RX, 150, `(10－${b})² ＝ ${(a - b) * (a - b)}`, { fs: 17, c: GRN });
             s += TX(RX, 182, `直接算：${a - b}² ＝ ${(a - b) * (a - b)} ✓`, { fs: 14.5, c: GREY });
             s += TX(220, 250, `若寫成 100－${b * b} ＝ ${100 - b * b}，就錯了 ${(100 - b * b) - (a - b) * (a - b)}`, { anchor: 'middle', fs: 14.5, c: RED });
@@ -853,11 +853,11 @@ window.DECK = window.DECK || [];
             { label: '和的平方', tex: '203^2=(200+3)^2=41209',
               color: BLU, fill: '#eef4ff', border: BLU, size: 17 },
             { label: '差的平方', tex: '98^2=(100-2)^2=9604',
-              color: VIO, border: '#d9cdf5', size: 17 },
+              color: VIO, border: '#a78bea', size: 17 },
             { label: '平方差', tex: '203\\times197=(200+3)(200-3)=39991',
-              color: GRN, border: '#cfe8dd', size: 17 },
+              color: GRN, border: '#5fb28e', size: 17 },
             { label: '結構不合就展開', tex: '199\\times203=(200-1)\\times203=40397',
-              color: AMB, border: '#f0dcbb', size: 16,
+              color: AMB, border: '#d49a4c', size: 16,
               note: '199 與 203 不是同一個數的一多一少，硬套平方差會錯' }
           ], { gap: 11 });
         },
@@ -1058,7 +1058,7 @@ window.DECK = window.DECK || [];
                 + heads(k)
                 + TX(55, 84, '－B', { anchor: 'middle', fs: 16, c: RED, op: k })
                 + ['－x³', '＋2x²', '－3x', '＋4'].map((s, i) => TX(cx[i], 84, s, { anchor: 'middle', fs: 18, c: RED, op: k })).join('')
-                + SV.seg(30, 102, 470, 102, '#c3cddd', 1.6) },
+                + SV.seg(30, 102, 470, 102, '#94a3b8', 1.6) },
             { t: '如果 A＝ax³：它落在 <b>x³ 欄</b>，x² 欄還是只有 2——<b>不會是 7</b>。',
               d: k => cand(140, 'A＝ax³', 0, 'ax³', '2 ✗', false, k) },
             { t: 'A＝ax、A＝a 也一樣：落在別欄，x² 欄<b>都還是 2</b>。',
@@ -1096,7 +1096,7 @@ window.DECK = window.DECK || [];
             { t: '減 B ＝ 加上 <b>－B</b>：B 的每一項都變號。',
               d: k => row(118, '－B', ['－x³', '＋2x²', '－3x', '＋4'], [RED], k) },
             { t: '一欄一欄相加：x² 欄是 ax² ＋ 2x² ＝ <b>(a＋2)x²</b>。',
-              d: k => SV.seg(90, 142, 430, 142, '#c3cddd', 2)
+              d: k => SV.seg(90, 142, 430, 142, '#94a3b8', 2)
                 + row(178, '', ['－x³', '(a＋2)x²', '－3x', '＋4'], [GRN], k, 18) },
             { t: 'x² 係數是 7：<b>a＋2＝7</b>，a＝5。',
               d: k => BOX(186, 156, 84, 32, { r: 8, fill: 'none', stroke: VIO, sw: 2.4, op: k })
@@ -1129,7 +1129,7 @@ window.DECK = window.DECK || [];
                 + `<circle cx="${cx[2]}" cy="158" r="${22 * k}" fill="none" stroke="${AMB}" stroke-width="2.4"/>`
                 + TX(230, 272, 'C ＝ 4x² － 11x　→　－C ＝ －4x² ＋ 11x ＋ 0', { anchor: 'middle', fs: 15, c: RED, op: k }) },
             { t: '一欄一欄相加，就是 <b>A＋B－C</b>。',
-              d: k => SV.seg(96, 184, 430, 184, '#c3cddd', 2)
+              d: k => SV.seg(96, 184, 430, 184, '#94a3b8', 2)
                 + row(222, '', ['(a＋b－4)x²', '(b－2a＋11)x', '－1'], GRN, k, 16) }
           ]);
         },
@@ -1196,7 +1196,7 @@ window.DECK = window.DECK || [];
                 + row(106, ['2a', '－', 'b', '＝', '11'], AMB, k) + TX(398, 106, '⋯ ②', { fs: 17, c: AMB, op: k }) },
             { t: '上下<b>相加</b>：＋b 和 －b 加起來是 0，<b>b 不見了</b>。',
               d: k => TX(92, 106, '＋)', { anchor: 'middle', fs: 19, c: INK, op: k })
-                + SV.seg(80, 124, 370, 124, '#c3cddd', 2)
+                + SV.seg(80, 124, 370, 124, '#94a3b8', 2)
                 + `<g opacity="${k}">` + SV.seg(222, 44, 262, 70, RED, 2.6) + SV.seg(222, 86, 262, 112, RED, 2.6) + '</g>'
                 + row(162, ['3a', '', '', '＝', '15'], GRN, k)
                 + TX(242, 162, '0', { anchor: 'middle', fs: 17, c: RED, op: k * 0.8 }) },
@@ -1227,7 +1227,7 @@ window.DECK = window.DECK || [];
             { t: '(－1)x 就是 －x，整理好就是答案。',
               d: k => TX(60, 126, '　＝ 5x² － x － 6', { fs: 22, c: GRN, op: k }) },
             { t: '<b>驗算</b>：a、b 代回兩欄，都要是 0。',
-              d: k => SV.seg(40, 150, 420, 150, '#c3cddd', 1.6)
+              d: k => SV.seg(40, 150, 420, 150, '#94a3b8', 1.6)
                 + TX(40, 190, 'x² 欄：5 ＋ (－1) － 4 ＝ 0 ✓', { fs: 17, c: VIO, op: k })
                 + TX(40, 226, 'x 欄：(－1) － 2×5 ＋ 11 ＝ 0 ✓', { fs: 17, c: AMB, op: k })
                 + TX(40, 262, 'A ＋ B － C ＝ －1，真的是常數 ✓', { fs: 17, c: GRN, op: k }) }
@@ -1541,12 +1541,12 @@ window.DECK = window.DECK || [];
         formula: { label: '一般的樣子<span class="pgref">課本 印 21–22</span>', tex: 'a_nx^n+\\cdots+a_1x+a_0' },
         visual: (h) => {
           h.innerHTML = SV.fbox([
-            { label: '是多項式', tex: '3x^2-5x+1', color: GRN, fill: '#eef7f2', border: '#bfe0d1', size: 19 },
-            { label: '是多項式（只有常數也算）', tex: '7', color: GRN, border: '#cfe8dd', size: 18,
+            { label: '是多項式', tex: '3x^2-5x+1', color: GRN, fill: '#eef7f2', border: '#5fb28e', size: 19 },
+            { label: '是多項式（只有常數也算）', tex: '7', color: GRN, border: '#5fb28e', size: 18,
               note: '常數多項式；0 也是，只是不談它幾次' },
-            { label: '不是', tex: '\\dfrac{2}{x}+1', color: RED, fill: '#fdeef2', border: '#f3c4d0', size: 19,
+            { label: '不是', tex: '\\dfrac{2}{x}+1', color: RED, fill: '#fdeef2', border: '#e0849b', size: 19,
               note: 'x 在分母' },
-            { label: '不是', tex: '|x|+3', color: RED, border: '#f3c4d0', size: 18, note: 'x 包在絕對值裡' }
+            { label: '不是', tex: '|x|+3', color: RED, border: '#e0849b', size: 18, note: 'x 包在絕對值裡' }
           ], { gap: 10 });
           MJ(h);
         },
@@ -1574,7 +1574,7 @@ window.DECK = window.DECK || [];
           const XS = [112, 192, 272, 352], Y0 = 96;
           const head = (t, x) => TX(x, 60, t, { anchor: 'middle', fs: 14, c: GREY });
           const col = (i, term, coef, deg, hi) =>
-            RECT(XS[i] - 36, Y0 - 26, 72, 132, { r: 10, fill: hi ? 'rgba(37,99,235,.10)' : '#fbfcfe', stroke: hi ? BLU : '#dce3ee' }) +
+            RECT(XS[i] - 36, Y0 - 26, 72, 132, { r: 10, fill: hi ? 'rgba(37,99,235,.10)' : '#fbfcfe', stroke: hi ? BLU : '#94a3b8' }) +
             TX(XS[i], Y0, term, { anchor: 'middle', fs: 16, c: INK }) +
             TX(XS[i], Y0 + 38, coef, { anchor: 'middle', fs: 17, c: hi ? RED : GREY }) +
             TX(XS[i], Y0 + 76, deg, { anchor: 'middle', fs: 15, c: hi ? BLU : GREY });
@@ -1675,7 +1675,7 @@ window.DECK = window.DECK || [];
           ];
           const card = (i, reveal) => {
             const d = Q[i], y = 40 + i * 54;
-            const col = !reveal ? '#dce3ee' : (d.ok ? GRN : RED);
+            const col = !reveal ? '#94a3b8' : (d.ok ? GRN : RED);
             const fill = !reveal ? '#fbfcfe' : (d.ok ? 'rgba(5,150,105,.08)' : 'rgba(225,29,72,.07)');
             return RECT(34, y, 372, 46, { r: 11, fill: fill, stroke: col, sw: 1.8 }) +
               TX(52, y + 29, d.q, { fs: 17, c: INK }) +
@@ -1763,7 +1763,7 @@ window.DECK = window.DECK || [];
           const CX = [176, 250, 322];
           const line = (y, cells, c, fs) => cells.map((t, i) => t ? TX(CX[i], y, t, { anchor: 'middle', fs: fs || 18, c: c || INK }) : '').join('');
           const head = () => TX(220, 40, '(4x + 3x² + 9) ＋ (2x² + 5)', { anchor: 'middle', fs: 17, c: GREY });
-          const cols = (on) => on ? CX.map(x => RECT(x - 30, 62, 60, 118, { r: 8, fill: 'rgba(37,99,235,.07)', stroke: '#cfdcf5', sw: 1.4 })).join('') +
+          const cols = (on) => on ? CX.map(x => RECT(x - 30, 62, 60, 118, { r: 8, fill: 'rgba(37,99,235,.07)', stroke: '#7d9be0', sw: 1.4 })).join('') +
             TX(CX[0], 78, 'x²', { anchor: 'middle', fs: 13, c: BLU }) + TX(CX[1], 78, 'x', { anchor: 'middle', fs: 13, c: BLU }) + TX(CX[2], 78, '常數', { anchor: 'middle', fs: 13, c: BLU }) : '';
           const bar = (y) => `<line x1="120" y1="${y}" x2="352" y2="${y}" stroke="${INK}" stroke-width="2"/>`;
           SV.stepper(h, '0 0 440 268', [
@@ -2484,11 +2484,11 @@ window.DECK = window.DECK || [];
             { label: '用乘法公式（最快）', tex: '(x+5)(x-5)=x^2-25',
               color: GRN, fill: '#eef7f2', border: GRN, size: 18, note: '一和一差 → 平方差' },
             { label: '用乘法公式', tex: '(x+4)^2=x^2+8x+16',
-              color: GRN, border: '#cfe8dd', size: 18, note: '和的平方，中間別漏 2ab' },
+              color: GRN, border: '#5fb28e', size: 18, note: '和的平方，中間別漏 2ab' },
             { label: '結構不合就橫式展開', tex: '(2x+1)(x+4)=2x^2+9x+4',
-              color: BLU, border: '#cfdcf5', size: 18 },
+              color: BLU, border: '#7d9be0', size: 18 },
             { label: '項數多就用直式', tex: '(x^2+2x+3)(x+1)',
-              color: AMB, border: '#f0dcbb', size: 17, note: '逐行乘、對齊、再相加，不容易漏項' }
+              color: AMB, border: '#d49a4c', size: 17, note: '逐行乘、對齊、再相加，不容易漏項' }
           ], { gap: 10 });
           MJ(h);
         },
@@ -2608,12 +2608,12 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           h.innerHTML = SV.fbox([
             { label: '只是一種記法，不是等式', tex: '(2x^2+6x+7)\\div(x-3)=2x+12\\cdots43',
-              color: RED, fill: '#fdeef2', border: '#f3c4d0', size: 16,
+              color: RED, fill: '#fdeef2', border: '#e0849b', size: 16,
               note: '這個等號兩邊並不相等，不能同加同減' },
             { label: '這才是等式，可以操作', tex: '2x^2+6x+7=(x-3)(2x+12)+43',
               color: GRN, fill: '#eef7f2', border: GRN, size: 16 },
             { label: '拿它驗算', tex: '(x-3)(2x+12)=2x^2+6x-36',
-              color: BLU, border: '#cfdcf5', size: 16,
+              color: BLU, border: '#7d9be0', size: 16,
               note: '再加 43 得 2x²+6x+7，與被除式相同 ✓' }
           ], { gap: 10 });
           MJ(h);
@@ -2661,8 +2661,45 @@ window.DECK = window.DECK || [];
           ],
           ans: '錯，正確是 \\(x^2+5x+6\\)'
         }
-      }
+      },
 
+      {
+        sec: '附錄本', secName: '精熟、素養題型',
+        title: '檢討｜習作附錄本（精熟題型）',
+        points: [
+          '這是<b>習作附錄本的精熟題型</b>，一章一份，三題依序對應 1-1、1-2、1-3。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第1章', [
+            { src: '習作・附錄本（精熟題型）', page: '印 14', sub: '精熟題型 1～3', tags: ['附精1', '附精2', '附精3'] }
+          ]);
+        },
+        caption: '一頁最多四題；這一類是整章的綜合題，沒有對答案頁。'
+      },
+
+      {
+        sec: '附錄本', secName: '精熟、素養題型',
+        title: '檢討｜習作附錄本（素養題型）',
+        points: [
+          '這是<b>習作附錄本的素養題型</b>，一章一份，跨整章。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第1章', [
+            { src: '習作・附錄本（素養題型）', page: '印 20', sub: '素養題型 1～2', tags: ['附素1', '附素2(1)', '附素2(2)'] }
+          ]);
+        },
+        caption: '一頁最多四題；這一類是整章的綜合題，沒有對答案頁。'
+      },
     ]
   });
 })();

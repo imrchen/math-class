@@ -195,9 +195,15 @@ window.DECK = window.DECK || [];
       const m = /^選\s*(\([A-Da-d]\))\s*(.*)$/.exec(String(a || '').trim());
       return m ? { big: m[1], sub: m[2] } : { big: String(a || ''), sub: '' };
     };
+
+    const dropLab = (no, a) => {
+      const labs = String(a).match(/[①-⑳]|[(（]\d+[)）]/g) || [];
+      const m = /^\s*([①-⑳]|[(（]\d+[)）])\s*/.exec(a);
+      return m && labs.length === 1 && String(no).includes(m[1]) ? a.slice(m[0].length) : a;
+    };
     const cell = (no, tag) => {
       const d = pMerge(S, tag);
-      const a = d ? d.ans : '';
+      const a = d ? dropLab(no, d.ans) : '';
       const { big, sub } = splitChoice(a);
       return `<div style="border:1.5px solid #dbe3f0;border-radius:10px;background:#fff;
           padding:7px 9px;display:flex;align-items:baseline;gap:8px;min-width:0">

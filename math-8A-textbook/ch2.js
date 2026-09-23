@@ -1,17 +1,17 @@
 window.DECK = window.DECK || [];
 (function () {
-  const C = '#7c3aed';
-  const RED = '#e11d48', GRN = '#059669', BLU = '#2563eb', VIO = '#7c3aed', AMB = '#d97706';
+  const C = '#6d28d9';
+  const RED = '#be123c', GRN = '#065f46', BLU = '#1e40af', VIO = '#6d28d9', AMB = '#92400e';
 
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;
   }
 
   const TX = (x, y, s, o = {}) =>
-    `<text x="${x}" y="${y}" ${o.anchor ? `text-anchor="${o.anchor}"` : ''} font-size="${o.fs || 15}" font-weight="${o.fw || 800}" fill="${o.c || '#172033'}">${s}</text>`;
+    `<text x="${x}" y="${y}" ${o.anchor ? `text-anchor="${o.anchor}"` : ''} font-size="${o.fs || 15}" font-weight="${o.fw || 800}" fill="${o.c || '#0b1220'}">${s}</text>`;
   const BOX = (x, y, w, h, o = {}) =>
-    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 12}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#dce3ee'}" stroke-width="${o.sw || 1.8}"/>`;
-  const INK = '#172033', GREY = '#8a94a6';
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 12}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#94a3b8'}" stroke-width="${o.sw || 1.8}"/>`;
+  const INK = '#0b1220', GREY = '#475569';
 
   const RT = (n) => `<tspan class="radsign">√</tspan><tspan class="rad">${n}</tspan>`;
   const radBars = (h) => {
@@ -51,10 +51,10 @@ window.DECK = window.DECK || [];
   function xoRows(rows) {
     return `<div class="xo-wrap" style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">` +
       rows.map(r => `<div class="xo-row" style="display:flex;gap:8px;align-items:stretch">
-        <div class="xo-cell" style="flex:1;background:#fdeef2;border:1.5px solid #f3c4d0;border-radius:12px;padding:9px 12px">
+        <div class="xo-cell" style="flex:1;background:#fdeef2;border:1.5px solid #e0849b;border-radius:12px;padding:9px 12px">
           <div class="xo-tag" style="font-size:11.5px;font-weight:900;color:${RED};margin-bottom:4px">✗ ${r.tag || '常見錯誤'}</div>
           <div class="xo-body" style="font-size:13.5px;color:${INK};line-height:1.7;overflow-wrap:anywhere">${r.bad}</div></div>
-        <div class="xo-cell" style="flex:1;background:#eef7f2;border:1.5px solid #bfe0d1;border-radius:12px;padding:9px 12px">
+        <div class="xo-cell" style="flex:1;background:#eef7f2;border:1.5px solid #5fb28e;border-radius:12px;padding:9px 12px">
           <div class="xo-tag" style="font-size:11.5px;font-weight:900;color:${GRN};margin-bottom:4px">✓ 正確</div>
           <div class="xo-body" style="font-size:13.5px;color:${INK};line-height:1.7;overflow-wrap:anywhere">${r.good}</div></div>
       </div>`).join('') + `</div>`;
@@ -64,7 +64,7 @@ window.DECK = window.DECK || [];
     ch: 2,
     title: '平方根與畢氏定理',
     color: C,
-    sections: ['2-1 平方根與近似值', '2-2 根式的運算', '2-3 畢氏定理'],
+    sections: ['2-1 平方根與近似值', '2-2 根式的運算', '2-3 畢氏定理', '附錄本 精熟、素養題型'],
     slides: [
 
       {
@@ -558,7 +558,7 @@ window.DECK = window.DECK || [];
             const X0 = 40, W = 360, mid = X0 + W * (6 / 22);
             let s = '';
 
-            s += `<line x1="${X0}" y1="72" x2="${X0 + W}" y2="72" stroke="#c9d3e2" stroke-width="2.4"/>`;
+            s += `<line x1="${X0}" y1="72" x2="${X0 + W}" y2="72" stroke="#94a3b8" stroke-width="2.4"/>`;
             s += `<rect x="${X0}" y="64" width="${mid - X0}" height="16" fill="rgba(225,29,72,.16)"/>`;
             s += `<rect x="${mid}" y="64" width="${X0 + W - mid}" height="16" fill="rgba(5,150,105,.16)"/>`;
             s += TX(mid, 52, '0', { anchor: 'middle', fs: 14, c: INK });
@@ -704,7 +704,7 @@ window.DECK = window.DECK || [];
         formula: { label: '逼近的依據<span class="pgref">課本 印 66</span>', tex: '0\\lt a\\lt b\\ \\Longrightarrow\\ \\sqrt{a}\\lt\\sqrt{b}' },
         visual: (h) => {
           const cell = (x, y, w, t, o = {}) =>
-            BOX(x, y, w, 40, { r: 9, fill: o.fill || '#fbfcfe', stroke: o.stroke || '#dce3ee', sw: o.sw || 1.6 }) +
+            BOX(x, y, w, 40, { r: 9, fill: o.fill || '#fbfcfe', stroke: o.stroke || '#94a3b8', sw: o.sw || 1.6 }) +
             TX(x + w / 2, y + 26, t, { anchor: 'middle', fs: o.fs || 15, c: o.c || INK });
           SV.stepper(h, '0 0 440 268', [
             { t: '要估 根號 5。先用整數夾：2²＝4 太小、3²＝9 太大。',
@@ -853,16 +853,16 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           h.innerHTML = SV.fbox([
             { label: '常見說法', tex: '0.3\\text{ 是 }0.9\\text{ 的平方根}',
-              color: RED, fill: '#fdeef2', border: '#f3c4d0', size: 17,
+              color: RED, fill: '#fdeef2', border: '#e0849b', size: 17,
               note: '平方回去：0.3² ＝ 0.09，不是 0.9 ✗' },
             { label: '對的', tex: '0.3\\text{ 是 }0.09\\text{ 的平方根}',
               color: GRN, fill: '#eef7f2', border: GRN, size: 17,
               note: '小數平方，位數會變兩倍' },
             { label: '開得盡就寫乾淨', tex: '\\sqrt{1225}=35',
-              color: BLU, border: '#cfdcf5', size: 17,
+              color: BLU, border: '#7d9be0', size: 17,
               note: '1225 ＝ 5²×7² ＝ 35²' },
             { label: '開不盡就留著', tex: '\\sqrt{37}',
-              color: AMB, border: '#f0dcbb', size: 17,
+              color: AMB, border: '#d49a4c', size: 17,
               note: '別硬寫成 6.1，那是近似值不是答案' }
           ], { gap: 9 });
           MJ(h);
@@ -1698,6 +1698,44 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '一頁最多四題；附錄本的題型與課堂評量互補。'
+      },
+
+      {
+        sec: '附錄本', secName: '精熟、素養題型',
+        title: '檢討｜習作附錄本（精熟題型）',
+        points: [
+          '這是<b>習作附錄本的精熟題型</b>，一章一份，三題依序對應 2-1、2-2、2-3。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第2章', [
+            { src: '習作・附錄本（精熟題型）', page: '印 15', sub: '精熟題型 1～3', tags: ['附精1', '附精2', '附精3'] }
+          ]);
+        },
+        caption: '一頁最多四題；這一類是整章的綜合題，沒有對答案頁。'
+      },
+
+      {
+        sec: '附錄本', secName: '精熟、素養題型',
+        title: '檢討｜習作附錄本（素養題型）',
+        points: [
+          '這是<b>習作附錄本的素養題型</b>，一章一份，跨整章。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第2章', [
+            { src: '習作・附錄本（素養題型）', page: '印 21', sub: '素養題型 1～2', tags: ['附素1(1)', '附素1(2)', '附素2'] }
+          ]);
+        },
+        caption: '一頁最多四題；這一類是整章的綜合題，沒有對答案頁。'
       },
     ]
   });

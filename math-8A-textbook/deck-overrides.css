@@ -212,7 +212,7 @@
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.02em;
-  color: #5b6b86;
+  color: #334155;
   background: #eef2f9;
   border: 1px solid #d7e0ee;
   border-radius: 999px;
@@ -243,7 +243,7 @@
   content: '▸';
   font-size: 11px;
   line-height: 1;
-  color: #97a3b8;
+  color: #64748b;
   transition: transform .12s;
 }
 .toc-section.open > .toc-shead::before { transform: rotate(90deg); }
@@ -254,7 +254,7 @@
   flex: none;
   font-size: 11px;
   font-weight: 800;
-  color: #8a94a6;
+  color: #475569;
   background: #eef2f9;
   border-radius: 999px;
   padding: 0 7px;
@@ -282,6 +282,47 @@
   max-height: 2lh;
   overflow: hidden;
 }
+
+/* ---- 目錄的第三層：節之內依類別折疊（Roger 2026-09-23）----
+   `.toc-section > .toc-shead + .toc-group > .toc-ghead + .toc-item…`
+   類別規則在 index.html 的 `window.TOC_GROUPS`，DOM 由 toc-sections.js 產生。
+   節展開 → 看到類別標頭；類別展開 → 看到頁。預設只展開目前所在的類別。 */
+.toc-group { display: none; margin: 0 0 2px 12px; }
+.toc-section.open > .toc-group { display: block; }
+.toc-ghead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 6px;
+  border-radius: 7px;
+  cursor: pointer;
+  user-select: none;
+  color: #2b3649;
+}
+.toc-ghead:hover { background: rgba(217, 72, 15, 0.08); }
+.toc-ghead::before {
+  content: '▸';
+  font-size: 10px;
+  line-height: 1;
+  color: #64748b;
+  transition: transform .12s;
+}
+.toc-group.open > .toc-ghead::before { transform: rotate(90deg); }
+.toc-ghead .tg-name { font-size: 13px; font-weight: 800; }
+.toc-ghead .tg-n {
+  margin-left: auto;
+  flex: none;
+  font-size: 11px;
+  font-weight: 800;
+  color: #475569;
+  background: #f3f5f9;
+  border-radius: 999px;
+  padding: 0 7px;
+}
+.toc-group > .toc-item { display: none; padding-left: 18px; }
+.toc-group > .toc-item .ti-sec { display: none; }
+.toc-group.open > .toc-item { display: block; }
+.toc-group > .toc-item > .ti-txt { display: block; max-height: 2lh; overflow: hidden; }
 
 
 /* ===== 版本識別（Roger 2026-09-15）=====
@@ -372,3 +413,36 @@
   user-select: none;
 }
 .zoom-modal.zp-on.zp-drag { cursor: grabbing; }
+
+
+/* ===== 投影對比（Roger 2026-09-23）=====
+   「除了對答案頁，所有頁面的配色，是不是都檢視一次，讓頁面醒目一點。硬體現實限制，不得不調整。」
+   普通班那間教室的投影機流明、對比、銳利度在三間裡最差，淺色字與淺框線一投出去就糊成一片。
+   2026-09-23 逐頁掃過 214 頁量對比度（白底）：次要灰 #8a94a6 只有 3.1、說明灰 #657187 4.8、
+   綠 #059669 3.8、琥珀 #d97706 3.2、主色藍 #2563eb 5.2、卡片框線 #dce3ee 1.3。
+   換成同色相的深一階，文字目標是白底 7:1 上下，框線 2.5:1 以上。
+   ‧ 變數覆寫 style.css（上游檔不改）；chN.js／practice.js 的常數已同步換成同一套色號。
+   ‧ 紫只到 #6d28d9、紅只到 #be123c：再深會跟藍分不開、不像紅色，失去「✗」的意思。
+   ‧ ⚠ 只改課本版。兩個指標版在另外兩間教室，投影正常，沒有被要求。 */
+:root {
+  --ink: #0b1220;
+  --muted: #334155;
+  --faint: #475569;
+  --line: #94a3b8;
+  --blue: #1e40af;   --c1: #1e40af;
+  --violet: #6d28d9; --c2: #6d28d9;
+  --green: #065f46;  --c3: #065f46;
+  --amber: #92400e;  --c4: #92400e;
+  --rose: #be123c;
+  --teal: #155e75;
+}
+.zoom-x { border-color: #be123c; color: #be123c; }
+.zoom-x:hover { background: #be123c; color: #fff; }
+/* svg.js（上游）的預設色：直角記號 #657187、等長記號 #e11d48、多邊形與箭頭 #2563eb，
+   以及 rows() 卡片的淺框 #dce3ee 與註腳 #657187。SVG 的屬性色可以被 CSS 蓋掉。 */
+svg [stroke="#657187"] { stroke: #334155; }
+svg [stroke="#e11d48"] { stroke: #be123c; }
+svg [stroke="#2563eb"] { stroke: #1e40af; }
+svg [fill="#2563eb"] { fill: #1e40af; }
+[style*="solid #dce3ee"] { border-color: #94a3b8 !important; }
+[style*="color:#657187"] { color: #334155 !important; }
