@@ -688,24 +688,6 @@ window.DECK = window.DECK || [];
 
       {
         sec: '2-1', secName: '點、直線與圓之間的位置關係',
-        title: '練習｜習作暖身題',
-        points: [
-          '四題暖身橫跨三個主題：弧長、扇形面積、切線、弦心距。',
-          '先問自己：<b>這一題要套公式，還是比距離</b>？',
-          '暖身 3 是弦心距——<b>記得乘 2</b>。'
-        ],
-        formula: { label: '暖身重點', tex: '\\dfrac{x}{360}\\ ;\\quad \\sqrt{r^2-d^2}\\times2' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
-          PRACTICE.page(h, '2-1', [
-            { src: '習作', page: '印 28', sub: '暖身題，課堂一起做', tags: ['暖身1 ⑴', '暖身1 ⑵', '暖身2', '暖身3'] }
-          ]);
-        },
-        caption: '暖身題點開有逐行詳解——<b>先自己算，再點開對</b>。'
-      },
-
-      {
-        sec: '2-1', secName: '點、直線與圓之間的位置關係',
         title: '練習｜課本隨堂（圓的名詞、弧長與扇形）',
         points: [
           '四題都在第 1～3 節的範圍：認名詞、算弧長、算面積。',
@@ -781,6 +763,24 @@ window.DECK = window.DECK || [];
 
       {
         sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '練習｜習作暖身題',
+        points: [
+          '四題暖身橫跨三個主題：弧長、扇形面積、切線、弦心距。',
+          '先問自己：<b>這一題要套公式，還是比距離</b>？',
+          '暖身 3 是弦心距——<b>記得乘 2</b>。'
+        ],
+        formula: { label: '暖身重點', tex: '\\dfrac{x}{360}\\ ;\\quad \\sqrt{r^2-d^2}\\times2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-1', [
+            { src: '習作', page: '印 28', sub: '暖身題，課堂一起做', tags: ['暖身1 ⑴', '暖身1 ⑵', '暖身2', '暖身3'] }
+          ]);
+        },
+        caption: '暖身題點開有逐行詳解——<b>先自己算，再點開對</b>。'
+      },
+
+      {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
         title: '練習｜習作基礎（1～4）',
         points: [
           '四題都是底線題，<b>每個人都要做完</b>。',
@@ -832,6 +832,29 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '⚠ 12/14–12/16 作業抽查的範圍是 1-1 ~ 2-2，<b>基礎題一定要收齊</b>。'
+      },
+
+      {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '對答案｜習作（暖身、基礎、精熟）',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的練習頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-1', [
+            { label: '暖身 1～3（印 28）', cols: 2, items: [['暖 1 ⑴', '暖身1 ⑴'], ['暖 1 ⑵', '暖身1 ⑵'], ['暖 2', '暖身2'], ['暖 3', '暖身3']] },
+            { label: '基礎 1～4（印 29–30）', cols: 2, items: [['1', '基礎1'], ['2', '基礎2'], ['3', '基礎3'], ['4', '基礎4']] },
+            { label: '基礎 6（印 30）', cols: 3, items: [['6', '基礎6']] },
+            { label: '基礎 5、7、8（印 30–31）', cols: 2, items: [['5', '基礎5'], ['7', '基礎7'], ['8', '基礎8']] },
+            { label: '精熟 1、2（印 32）', cols: 3, items: [['精 1', '精熟1'], ['精 2', '精熟2']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的練習頁點題號看詳解</b>。'
       },
 
       {
@@ -1280,24 +1303,6 @@ window.DECK = window.DECK || [];
 
       {
         sec: '2-2', secName: '圓心角、圓周角與弧的關係',
-        title: '練習｜習作暖身題',
-        points: [
-          '三題暖身剛好走完三個重點：弧的度數、圓周角、內接四邊形。',
-          '每一題先做同一個動作：<b>把角對的那段弧描出來</b>。',
-          '再決定要不要除以 2。'
-        ],
-        formula: { label: '暖身重點', tex: '\\text{圓心角}=\\overarc{AB}\\ ;\\ \\text{圓周角}=\\tfrac12\\overarc{AB}' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
-          PRACTICE.page(h, '2-2', [
-            { src: '習作', page: '印 33', sub: '暖身題，課堂一起做', tags: ['暖身1 ⑴', '暖身1 ⑵', '暖身2'] }
-          ]);
-        },
-        caption: '暖身題點開有逐行詳解——<b>先自己算，再點開對</b>。'
-      },
-
-      {
-        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
         title: '練習｜課本隨堂（圓心角與弧）',
         points: [
           '三題都在第 1 節的範圍：<b>弧的度數就是圓心角</b>。',
@@ -1372,6 +1377,24 @@ window.DECK = window.DECK || [];
 
       {
         sec: '2-2', secName: '圓心角、圓周角與弧的關係',
+        title: '練習｜習作暖身題',
+        points: [
+          '三題暖身剛好走完三個重點：弧的度數、圓周角、內接四邊形。',
+          '每一題先做同一個動作：<b>把角對的那段弧描出來</b>。',
+          '再決定要不要除以 2。'
+        ],
+        formula: { label: '暖身重點', tex: '\\text{圓心角}=\\overarc{AB}\\ ;\\ \\text{圓周角}=\\tfrac12\\overarc{AB}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作', page: '印 33', sub: '暖身題，課堂一起做', tags: ['暖身1 ⑴', '暖身1 ⑵', '暖身2'] }
+          ]);
+        },
+        caption: '暖身題點開有逐行詳解——<b>先自己算，再點開對</b>。'
+      },
+
+      {
+        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
         title: '練習｜習作基礎（1～3）',
         points: [
           '三題都是底線題，<b>每個人都要做完</b>。',
@@ -1406,6 +1429,29 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '⚠ 第 4 節末<b>收齊基礎 1～6</b>——12/14–12/16 作業抽查含這一節。'
+      },
+
+      {
+        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
+        title: '對答案｜習作（暖身、基礎、精熟）',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的練習頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-2', [
+            { label: '暖身 1、2（印 33）', cols: 3, items: [['暖 1 ⑴', '暖身1 ⑴'], ['暖 1 ⑵', '暖身1 ⑵'], ['暖 2', '暖身2']] },
+            { label: '基礎 1～3（印 34）', cols: 2, items: [['1', '基礎1'], ['2', '基礎2'], ['3', '基礎3']] },
+            { label: '基礎 4（印 35）', cols: 3, items: [['4', '基礎4']] },
+            { label: '基礎 5、6（印 35）', cols: 3, items: [['5', '基礎5'], ['6', '基礎6']] },
+            { label: '精熟 1、2（印 36）', cols: 2, items: [['精 1', '精熟1'], ['精 2', '精熟2']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的練習頁點題號看詳解</b>。'
       },
     ]
   });

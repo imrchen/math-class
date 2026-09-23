@@ -1324,6 +1324,28 @@ window.DECK = window.DECK || [];
       },
 
       {
+        sec: '1-1', secName: '連比例',
+        title: '對答案｜習作（暖身、基礎、精熟）',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的練習頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-1', [
+            { label: '暖身 1、2（印 3）', cols: 3, items: [['暖 1 ⑴', '暖身1 ⑴'], ['暖 1 ⑵', '暖身1 ⑵'], ['暖 2 ⑴', '暖身2 ⑴'], ['暖 2 ⑵', '暖身2 ⑵']] },
+            { label: '基礎 1～4（印 4–5）', cols: 2, items: [['1', '基礎1'], ['2', '基礎2'], ['3', '基礎3'], ['4', '基礎4']] },
+            { label: '基礎 5、6（印 6）', cols: 3, items: [['5', '基礎5'], ['6', '基礎6']] },
+            { label: '精熟 1、2（印 7）', cols: 3, items: [['精 1', '精熟1'], ['精 2', '精熟2']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的練習頁點題號看詳解</b>。'
+      },
+
+      {
         sec: '1-2', secName: '比例線段',
         title: '這一節只做兩件事：讀出比、解出未知',
         points: [
@@ -1762,6 +1784,78 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '比例線段',
+        title: '梯形兩腰的中點連線：上底加下底，再除以 2',
+        points: [
+          '梯形兩腰的<b>中點</b>連起來，一樣<b>平行</b>上底和下底。',
+          '長度是<b>上底＋下底的一半</b>，也就是兩底的平均。',
+          '上底縮到 <b>0</b>，梯形就變成三角形——回到上一頁的「一半」。'
+        ],
+        formula: { label: '八年級學過<span class="pgref">習作 印 11 會用到</span>', tex: '\\overline{EF}=\\tfrac12(\\overline{AD}+\\overline{BC})' },
+        visual: (h) => {
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>上底 AD ＝ <span class="ival" id="tv">6</span></label>
+            <input type="range" id="ts" min="0" max="14" step="2" value="6"></div></div>`;
+          const BCv = 16, U = 17;
+          const draw = () => {
+            const ad = +h.querySelector('#ts').value;
+            h.querySelector('#tv').textContent = ad;
+            const yT = 44, yB = 184, cx = 220;
+            const B = [cx - BCv * U / 2, yB], Cc = [cx + BCv * U / 2, yB];
+            const A = [cx - ad * U / 2, yT], D = [cx + ad * U / 2, yT];
+            const E = [(A[0] + B[0]) / 2, (yT + yB) / 2], F = [(D[0] + Cc[0]) / 2, (yT + yB) / 2];
+            const ef = (ad + BCv) / 2;
+            let s = '';
+            s += SV.poly(ad ? [A, D, Cc, B] : [A, Cc, B], 'rgba(37,99,235,.05)', BLU, 2.2);
+            s += `<line x1="${E[0]}" y1="${E[1]}" x2="${F[0]}" y2="${F[1]}" stroke="${GRN}" stroke-width="4.5"/>`;
+            s += SV.ticks(A[0], A[1], E[0], E[1], 1, VIO) + SV.ticks(E[0], E[1], B[0], B[1], 1, VIO);
+            s += SV.ticks(D[0], D[1], F[0], F[1], 2, VIO) + SV.ticks(F[0], F[1], Cc[0], Cc[1], 2, VIO);
+            if (ad) {
+              s += SV.vlabel(A[0] - 14, A[1] - 6, 'A') + SV.vlabel(D[0] + 6, D[1] - 6, 'D');
+              s += TX(cx, yT - 12, 'AD ＝ ' + ad, { anchor: 'middle', fs: 15, c: AMB });
+            } else {
+              s += SV.vlabel(A[0] - 6, A[1] - 8, 'A');
+            }
+            s += SV.vlabel(B[0] - 18, B[1] + 8, 'B') + SV.vlabel(Cc[0] + 8, Cc[1] + 8, 'C');
+            s += SV.vlabel(E[0] - 20, E[1] + 4, 'E') + SV.vlabel(F[0] + 10, F[1] + 4, 'F');
+            s += TX(cx, E[1] - 10, 'EF ＝ ' + ef, { anchor: 'middle', fs: 16, c: GRN });
+            s += TX(cx, yB + 20, 'BC ＝ ' + BCv, { anchor: 'middle', fs: 16, c: BLU });
+            if (ad) {
+              s += BOX(40, 220, 360, 44, { r: 12, fill: 'rgba(5,150,105,.09)', stroke: GRN, sw: 2 });
+              s += TX(cx, 248, 'EF ＝ (' + ad + ' ＋ ' + BCv + ') ÷ 2 ＝ ' + ef, { anchor: 'middle', fs: 17, c: GRN });
+            } else {
+              s += BOX(20, 220, 400, 44, { r: 12, fill: 'rgba(217,119,6,.09)', stroke: AMB, sw: 2 });
+              s += TX(cx, 248, '變成三角形：(0 ＋ ' + BCv + ') ÷ 2 ＝ ' + ef + '，就是 BC 的一半', { anchor: 'middle', fs: 16, c: AMB });
+            }
+            h.querySelector('#fig').innerHTML = svg('0 0 440 272', s);
+          };
+          h.querySelector('#ts').oninput = draw;
+          draw();
+        },
+        caption: '先記三角形的「一半」，梯形就是「兩底平均」——把上底拉到 0 看看兩句話怎麼接起來。',
+        example: {
+          q: '梯形 \\(ABCD\\) 中 \\(\\overline{AD}\\parallel\\overline{BC}\\)，\\(E\\)、\\(F\\) 分別是兩腰的中點，'
+            + '\\(\\overline{AD}=6\\)、\\(\\overline{BC}=14\\)，求 \\(\\overline{EF}\\)。'
+            + exWrap(
+                `<polygon points="88,18 148,18 218,112 18,112" fill="rgba(37,99,235,.05)" stroke="${BLU}" stroke-width="1.8"/>`
+                + `<line x1="53" y1="65" x2="183" y2="65" stroke="${GRN}" stroke-width="2.6"/>`
+                + SV.ticks(88, 18, 53, 65, 1, VIO) + SV.ticks(53, 65, 18, 112, 1, VIO)
+                + SV.ticks(148, 18, 183, 65, 2, VIO) + SV.ticks(183, 65, 218, 112, 2, VIO)
+                + exTX(84, 13, 'A', { anchor: 'middle', fs: 12 }) + exTX(152, 13, 'D', { anchor: 'middle', fs: 12 })
+                + exTX(12, 124, 'B', { anchor: 'middle', fs: 12 }) + exTX(224, 124, 'C', { anchor: 'middle', fs: 12 })
+                + exTX(42, 68, 'E', { anchor: 'middle', fs: 12 }) + exTX(194, 68, 'F', { anchor: 'middle', fs: 12 })
+                + exTX(118, 30, '6', { anchor: 'middle', fs: 12, c: AMB })
+                + exTX(118, 60, '?', { anchor: 'middle', fs: 13, c: GRN })
+                + exTX(118, 126, '14', { anchor: 'middle', fs: 12, c: BLU })),
+          steps: [
+            '兩腰的中點連線 ＝ 上底與下底的一半（兩底的平均）。',
+            '\\(\\overline{EF}=(6+14)\\div2\\)。'
+          ],
+          ans: '\\(\\overline{EF}=10\\)'
+        }
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
         title: '要分成 2:3，先在旁邊借一條線分好',
         points: [
           '直接量 \\(\\overline{AB}\\) 很難剛好分成 5 等份——<b>借一條斜線</b>來分。',
@@ -2066,26 +2160,6 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '比例線段',
-        title: '練習｜習作暖身題',
-        points: [
-          '這三題是<b>選擇題</b>，先熱身，不用寫過程。',
-          '前兩題上方有<b>概念提示</b>方塊，先看方塊再選。',
-          '站穩兩件事：<b>上段比下段</b>、<b>比 PQ 和 BC 要用整條</b>。'
-        ],
-        formula: { label: '暖身重點', tex: '\\overline{AP}:\\overline{PB}=\\overline{AQ}:\\overline{QC}' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-2', [
-            { src: '習作・暖身題', page: '印 8', sub: '先看概念提示方塊，再選答案', tags: ['暖身1', '暖身2 ⑴', '暖身2 ⑵'] }
-          ]);
-        },
-        caption: '三題都是選擇，答對了再往下寫基礎題。'
-      },
-
-      {
-        sec: '1-2', secName: '比例線段',
         title: '練習｜課本隨堂（上段比下段、部分比全體）',
         points: [
           '看到平行線先問：<b>哪兩段對哪兩段</b>，寫下來再算。',
@@ -2146,6 +2220,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '比例線段',
+        title: '練習｜習作暖身題',
+        points: [
+          '這三題是<b>選擇題</b>，先熱身，不用寫過程。',
+          '前兩題上方有<b>概念提示</b>方塊，先看方塊再選。',
+          '站穩兩件事：<b>上段比下段</b>、<b>比 PQ 和 BC 要用整條</b>。'
+        ],
+        formula: { label: '暖身重點', tex: '\\overline{AP}:\\overline{PB}=\\overline{AQ}:\\overline{QC}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-2', [
+            { src: '習作・暖身題', page: '印 8', sub: '先看概念提示方塊，再選答案', tags: ['暖身1', '暖身2 ⑴', '暖身2 ⑵'] }
+          ]);
+        },
+        caption: '三題都是選擇，答對了再往下寫基礎題。'
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
         title: '練習｜習作基礎（1～3）',
         points: [
           '<b>今天當堂寫完</b>，寫完自己對一次詳解。',
@@ -2183,6 +2277,28 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '基礎六題到這裡寫完；精熟行有餘力再做。'
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
+        title: '對答案｜習作（暖身、基礎、精熟）',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的練習頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-2', [
+            { label: '暖身 1、2（印 8）', cols: 3, items: [['暖 1', '暖身1'], ['暖 2 ⑴', '暖身2 ⑴'], ['暖 2 ⑵', '暖身2 ⑵']] },
+            { label: '基礎 1～3（印 9–10）', cols: 3, items: [['1', '基礎1'], ['2', '基礎2'], ['3', '基礎3']] },
+            { label: '基礎 4～6（印 10–11）', cols: 2, items: [['4', '基礎4'], ['5', '基礎5'], ['6', '基礎6']] },
+            { label: '精熟 1、2（印 12）', cols: 2, items: [['精 1', '精熟1'], ['精 2', '精熟2']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的練習頁點題號看詳解</b>。'
       },
 
       {
@@ -2784,26 +2900,6 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-3', secName: '縮放與相似',
-        title: '練習｜習作暖身題',
-        points: [
-          '這三題是<b>選擇題</b>，先熱身，不用寫過程。',
-          '前兩題上方有<b>概念提示</b>方塊，先看方塊再選。',
-          '站穩兩件事：<b>相似要兩道門都過</b>、<b>判別法先看題目給什麼</b>。'
-        ],
-        formula: { label: '暖身重點', tex: '\\text{SSS}\\ /\\ \\text{SAS}\\ /\\ \\text{AA}' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-3', [
-            { src: '習作・暖身題', page: '印 13', sub: '先看概念提示方塊，再選答案', tags: ['暖身1', '暖身2 ⑴', '暖身2 ⑵'] }
-          ]);
-        },
-        caption: '三題都是選擇，答對了再往下寫基礎題。'
-      },
-
-      {
-        sec: '1-3', secName: '縮放與相似',
         title: '練習｜課本隨堂（縮放）',
         points: [
           '縮放題先找<b>縮放中心</b>，再量倍數。',
@@ -2864,6 +2960,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-3', secName: '縮放與相似',
+        title: '練習｜習作暖身題',
+        points: [
+          '這三題是<b>選擇題</b>，先熱身，不用寫過程。',
+          '前兩題上方有<b>概念提示</b>方塊，先看方塊再選。',
+          '站穩兩件事：<b>相似要兩道門都過</b>、<b>判別法先看題目給什麼</b>。'
+        ],
+        formula: { label: '暖身重點', tex: '\\text{SSS}\\ /\\ \\text{SAS}\\ /\\ \\text{AA}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-3', [
+            { src: '習作・暖身題', page: '印 13', sub: '先看概念提示方塊，再選答案', tags: ['暖身1', '暖身2 ⑴', '暖身2 ⑵'] }
+          ]);
+        },
+        caption: '三題都是選擇，答對了再往下寫基礎題。'
+      },
+
+      {
+        sec: '1-3', secName: '縮放與相似',
         title: '練習｜習作基礎（1～3）',
         points: [
           '<b>今天當堂寫完</b>，寫完自己對一次詳解。',
@@ -2901,6 +3017,28 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '習作基礎五題到這裡寫完。'
+      },
+
+      {
+        sec: '1-3', secName: '縮放與相似',
+        title: '對答案｜習作（暖身、基礎、精熟）',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的練習頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-3', [
+            { label: '暖身 1、2（印 13）', cols: 3, items: [['暖 1', '暖身1'], ['暖 2 ⑴', '暖身2 ⑴'], ['暖 2 ⑵', '暖身2 ⑵']] },
+            { label: '基礎 1～3（印 14–15）', cols: 1, items: [['1', '基礎1'], ['2', '基礎2'], ['3', '基礎3']] },
+            { label: '基礎 4、5（印 15）', cols: 3, items: [['4', '基礎4'], ['5', '基礎5']] },
+            { label: '精熟 1、2（印 16）', cols: 2, items: [['精 1', '精熟1'], ['精 2', '精熟2']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的練習頁點題號看詳解</b>。'
       },
 
       {
@@ -3592,26 +3730,6 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-4', secName: '相似三角形的應用',
-        title: '練習｜習作暖身題',
-        points: [
-          '三題暖身：一題面積比、兩題特殊角。',
-          '暖身 1 是<b>順推</b>：先讀邊比，再平方。',
-          '暖身 2、3 只要<b>認出是哪一款三角板</b>就會了。'
-        ],
-        formula: { label: '暖身重點', tex: '\\text{邊比}\\to\\text{面積比}\\ ;\\ 1:1:\\sqrt2\\ ,\\ 1:\\sqrt3:2' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-4', [
-            { src: '習作', page: '印 17', sub: '暖身題，課堂一起做', tags: ['暖身1 ⑴', '暖身1 ⑵', '暖身2', '暖身3'] }
-          ]);
-        },
-        caption: '暖身題點開有逐行詳解——<b>先自己算，再點開對</b>。'
-      },
-
-      {
-        sec: '1-4', secName: '相似三角形的應用',
         title: '練習｜課本隨堂（邊比、高比與面積比）',
         points: [
           '三題都是<b>順推</b>：先把邊比讀出來。',
@@ -3673,6 +3791,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜習作暖身題',
+        points: [
+          '三題暖身：一題面積比、兩題特殊角。',
+          '暖身 1 是<b>順推</b>：先讀邊比，再平方。',
+          '暖身 2、3 只要<b>認出是哪一款三角板</b>就會了。'
+        ],
+        formula: { label: '暖身重點', tex: '\\text{邊比}\\to\\text{面積比}\\ ;\\ 1:1:\\sqrt2\\ ,\\ 1:\\sqrt3:2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '習作', page: '印 17', sub: '暖身題，課堂一起做', tags: ['暖身1 ⑴', '暖身1 ⑵', '暖身2', '暖身3'] }
+          ]);
+        },
+        caption: '暖身題點開有逐行詳解——<b>先自己算，再點開對</b>。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
         title: '練習｜習作基礎（1～3）',
         points: [
           '<b>基礎 1 是底線題</b>，每個人都要做完。',
@@ -3712,6 +3850,30 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '⚠ 精熟兩題<b>課內一起做</b>，不當回家獨立題——作業抽查看的是基礎 1～6。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '對答案｜習作（暖身、基礎、精熟）',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的練習頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-4', [
+            { label: '暖身 1～3（印 17）', cols: 2, items: [['暖 1 ⑴', '暖身1 ⑴'], ['暖 1 ⑵', '暖身1 ⑵'], ['暖 2', '暖身2'], ['暖 3', '暖身3']] },
+            { label: '基礎 1（印 18）', cols: 2, items: [['1', '基礎1']] },
+            { label: '基礎 2、3（印 18–19）', cols: 2, items: [['2', '基礎2'], ['3', '基礎3']] },
+            { label: '基礎 4、6（印 19–20）', cols: 2, items: [['4', '基礎4'], ['6', '基礎6']] },
+            { label: '基礎 5（印 20）', cols: 3, items: [['5', '基礎5']] },
+            { label: '精熟 1、2（印 21）', cols: 2, items: [['精 1', '精熟1'], ['精 2', '精熟2']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的練習頁點題號看詳解</b>。'
       },
     ]
   });

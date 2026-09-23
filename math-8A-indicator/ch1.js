@@ -84,7 +84,11 @@ window.DECK = window.DECK || [];
     return Object.assign({}, d0, { q: qs.join('\n'), steps, ans: ans.join('　') });
   };
 
-  const pFig = (d) => (d && d.fig && (window.FIGURES || {})[d.fig]) || null;
+  window.FIGURES_LOCAL = window.FIGURES_LOCAL || {};
+
+  window.FIGURES_LOCAL['door-six-panes'] = '<svg viewBox="-24 -4 356 306" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="Noto Sans TC, PingFang TC, sans-serif"><rect x="56" y="40" width="180" height="220" fill="#EFE3D2" stroke="#17212B" stroke-width="2.4"/><rect x="72" y="52" width="62" height="44" fill="#FFFFFF" stroke="#2563eb" stroke-width="3.2"/><rect x="158" y="52" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><line x1="72" y1="52" x2="72" y2="18" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="134" y1="52" x2="134" y2="18" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="24" x2="134" y2="24" stroke="#2563eb" stroke-width="1.8"/><line x1="72" y1="18" x2="72" y2="30" stroke="#2563eb" stroke-width="1.8"/><line x1="134" y1="18" x2="134" y2="30" stroke="#2563eb" stroke-width="1.8"/><text x="103" y="16" text-anchor="middle" font-size="20" font-weight="800" fill="#2563eb">x－1</text><line x1="72" y1="52" x2="30" y2="52" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="96" x2="30" y2="96" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="38" y1="52" x2="38" y2="96" stroke="#2563eb" stroke-width="1.8"/><line x1="32" y1="52" x2="44" y2="52" stroke="#2563eb" stroke-width="1.8"/><line x1="32" y1="96" x2="44" y2="96" stroke="#2563eb" stroke-width="1.8"/><text x="30" y="81" text-anchor="end" font-size="20" font-weight="800" fill="#2563eb">x＋1</text><line x1="56" y1="272" x2="236" y2="272" stroke="#17212B" stroke-width="1.8"/><line x1="56" y1="266" x2="56" y2="278" stroke="#17212B" stroke-width="1.8"/><line x1="236" y1="266" x2="236" y2="278" stroke="#17212B" stroke-width="1.8"/><text x="146" y="296" text-anchor="middle" font-size="22" font-weight="800" fill="#17212B">3x－2</text><line x1="248" y1="40" x2="248" y2="260" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="40" x2="254" y2="40" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="260" x2="254" y2="260" stroke="#17212B" stroke-width="1.8"/><text x="256" y="158" text-anchor="start" font-size="22" font-weight="800" fill="#17212B">7x＋11</text></svg>';
+
+  const pFig = (d) => (d && d.fig && ((window.FIGURES_LOCAL || {})[d.fig] || (window.FIGURES || {})[d.fig])) || null;
 
   const pDetail = (h, sec, tag, back) => {
     const S = (window.SOLUTIONS || {})[sec] || {};
@@ -492,19 +496,15 @@ window.DECK = window.DECK || [];
         title: '練習｜分配律與四項展開',
         points: [
           '課本那題<b>先把括號拆開</b>，四個乘積一個都不能少。',
-          '習作兩題都是<b>湊整十整百</b>：一題拆成整數加分數，一題找共同的因數。',
-          '兩題都抄到本子上，<b>習作這兩題今天寫完</b>。'
+          '拆開後<b>一格一個乘積</b>，數一數是不是四項。'
         ],
         formula: { label: '這一組在練', tex: '(a+b)(c+d)=ac+ad+bc+bd' },
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 8', BLU, '填入適當的數再計算',
-              pItem('印5 ①', '97\\times104=(100-3)(100+4)', '10088')) +
-            pCard('習作・基礎練習', '印 2、3', AMB, '用分配律求值，寫完整過程',
-              pItem('基礎1 ①', '7\\tfrac{1}{3}\\times3\\tfrac{1}{7}', '\\(23\\tfrac{1}{21}\\)') +
-              pItem('基礎2 ①', '38\\times13+38\\times7+42\\times13+42\\times7', '1600')), '1-1');
+              pItem('印5 ①', '97\\times104=(100-3)(100+4)', '10088')), '1-1');
         },
-        caption: '課本印 5、習作印 1 與 2。<b>習作這兩題今天當堂寫完</b>。'
+        caption: '課本印 5：四個乘積一個都不能少。'
       },
 
       {
@@ -744,25 +744,6 @@ window.DECK = window.DECK || [];
         },
         caption: '課本印 7、9：判斷對錯，錯的要說出錯在哪再更正。'
       },
-      {
-        sec: '1-1', secName: '乘法公式',
-        title: '練習｜和的平方與差的平方（習作）',
-        points: [
-          '把公式<b>反過來用</b>：看到三項就想「湊得回去嗎」。',
-          '\\(108^2\\)、\\(97^2\\) 先拆成 \\(100\\pm\\) 幾，再套公式。',
-          '<b>這四題今天當堂寫完</b>，寫完自己對一次詳解。'
-        ],
-        formula: { label: '這一組在練', tex: '(a\\pm b)^2=a^2\\pm 2ab+b^2' },
-        visual: (h) => {
-          pMount(h,
-            pCard('習作・基礎練習', '印 2、3', AMB, '用公式求值，寫完整過程',
-              pItem('基礎1 ②', '108^2', '11664') +
-              pItem('基礎1 ③', '97^2', '9409') +
-              pItem('基礎2 ②', '59^2+2\\times 59\\times 1+1^2', '3600') +
-              pItem('基礎2 ③', '89^2-2\\times 89\\times 39+39^2', '2500')), '1-1');
-        },
-        caption: '習作印 1、2 這四題<b>今天當堂寫完</b>，不留到回家。'
-      },
 
       {
         sec: '1-1', secName: '乘法公式',
@@ -782,25 +763,6 @@ window.DECK = window.DECK || [];
               pItem('印11 ④', '101^2-100^2=(101-100)^2', '✗')), '1-1');
         },
         caption: '課本印 11：四題判斷，看中間是不是減號。'
-      },
-      {
-        sec: '1-1', secName: '乘法公式',
-        title: '練習｜平方差（習作）',
-        points: [
-          '前兩題<b>湊整十整百</b>：\\(96\\times104=(100-4)(100+4)\\)。',
-          '後兩題是<b>把平方差當工具用</b>，先找出「哪兩個數的和與差」。',
-          '基礎 4 先把兩個正方形的面積相減，再除以 2。'
-        ],
-        formula: { label: '這一組在練', tex: '(a+b)(a-b)=a^2-b^2' },
-        visual: (h) => {
-          pMount(h,
-            pCard('習作・基礎練習', '印 2–4', AMB, '用平方差求值與應用',
-              pItem('基礎1 ④', '96\\times104', '9984') +
-              pItem('基礎2 ④', '125^2-25^2', '15000') +
-              pText('基礎4', '等腰直角三角形農地切出小三角形停車場，其餘是草莓園。\\(\\overline{AB}=288\\)、\\(\\overline{CD}=88\\) 公尺，求草莓園面積。', '37600 平方公尺') +
-              pText('基礎6', '\\(a=65^2-15^2\\)、\\(b=68^2-18^2\\)，比較 \\(a\\) 與 \\(b\\) 的大小。', '\\(b\\gt a\\)')), '1-1');
-        },
-        caption: '習作印 1～4：前兩題湊整十整百，後兩題把平方差當工具用。'
       },
 
       {
@@ -871,49 +833,102 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '乘法公式',
-        title: '練習｜三個公式一起判斷（前三小題）',
+        title: '練習｜習作（基礎 1）',
         points: [
-          '這六題<b>三個公式混在一起</b>，先看是平方還是相乘，再決定套哪一條。',
-          '有字母的題目一樣做，\\(a\\)、\\(x\\) 和數字的角色完全一樣。',
-          '下面三題是<b>行有餘力才做</b>，今天做不完不要緊。'
+          '從這裡開始是<b>習作</b>，一路做到本節結束。',
+          '四題都是<b>把數字拆成好算的樣子</b>：整數加分數、100 加減幾。',
+          '先認出是哪一條公式再動筆：\\(108^2\\) 是和的平方，\\(96\\times104\\) 是平方差。'
+        ],
+        formula: { label: '基礎 1 在練', tex: '108^2=(100+8)^2\\qquad 96\\times104=(100-4)(100+4)' },
+        visual: (h) => {
+          pMount(h,
+            pCard('習作・基礎練習', '印 2', AMB, '利用乘法公式求值，寫完整過程',
+              pItem('基礎1 ①', '7\\tfrac{1}{3}\\times3\\tfrac{1}{7}', '\\(23\\tfrac{1}{21}\\)') +
+              pItem('基礎1 ②', '108^2', '11664') +
+              pItem('基礎1 ③', '97^2', '9409') +
+              pItem('基礎1 ④', '96\\times104', '9984')), '1-1');
+        },
+        caption: '習作印 2 基礎 1：四小題各用一條公式，<b>自己寫完</b>再對答案。'
+      },
+      {
+        sec: '1-1', secName: '乘法公式',
+        title: '練習｜習作（基礎 2）',
+        points: [
+          '四題都是把公式<b>反過來用</b>：先看出算式是哪一條公式展開的樣子。',
+          '① 找共同的因數；②③ 湊回 \\((a\\pm b)^2\\)；④ 用平方差。',
+          '湊回去之後，<b>算的是整十整百</b>，不用硬乘。'
+        ],
+        formula: { label: '基礎 2 在練', tex: '59^2+2\\times59\\times1+1^2=(59+1)^2' },
+        visual: (h) => {
+          pMount(h,
+            pCard('習作・基礎練習', '印 3', AMB, '利用乘法公式求值，寫完整過程',
+              pItem('基礎2 ①', '38\\times13+38\\times7+42\\times13+42\\times7', '1600') +
+              pItem('基礎2 ②', '59^2+2\\times 59\\times 1+1^2', '3600') +
+              pItem('基礎2 ③', '89^2-2\\times 89\\times 39+39^2', '2500') +
+              pItem('基礎2 ④', '125^2-25^2', '15000')), '1-1');
+        },
+        caption: '習作印 3 基礎 2：<b>自己寫完</b>再對答案。'
+      },
+      {
+        sec: '1-1', secName: '乘法公式',
+        title: '練習｜習作（基礎 3　前三小題）',
+        points: [
+          '判斷對錯：先看左邊是<b>平方</b>還是<b>相乘</b>，再決定對哪一條。',
+          '錯的要<b>寫出正確的式子</b>，不是只打 ✗。'
         ],
         formula: { label: '三條一起用', tex: '(a\\pm b)^2\\;\\;(a+b)(a-b)\\;\\;(a+b)(c+d)' },
         visual: (h) => {
           pMount(h,
-            pCard('習作・基礎練習 3', '印 3', AMB, '判斷對錯，錯的請更正',
+            pCard('習作・基礎練習', '印 3', AMB, '判斷對錯，錯的請更正',
               pItem('基礎3 ①', '(10+0.3)^2=10^2+0.3^2', '✗') +
               pItem('基礎3 ②', '(5-\\tfrac{1}{4})(5+\\tfrac{1}{4})=5^2-(\\tfrac{1}{4})^2', '✓') +
               pItem('基礎3 ③', '9.8\\times10.2=10^2-0.2^2', '✓')), '1-1');
         },
-        caption: '習作基礎 3 的 ①②③：先說用哪一條公式，再判斷對錯。'
+        caption: '習作印 3 基礎 3 的 ①～③。'
       },
       {
         sec: '1-1', secName: '乘法公式',
-        title: '練習｜三個公式一起判斷（後三小題）',
+        title: '練習｜習作（基礎 3　後三小題）',
         points: [
-          '這六題<b>三個公式混在一起</b>，先看是平方還是相乘，再決定套哪一條。',
           '有字母的題目一樣做，\\(a\\)、\\(x\\) 和數字的角色完全一樣。',
-          '下面三題是<b>行有餘力才做</b>，今天做不完不要緊。'
+          '\\((x-y)^2\\) 的中間項是 <b>\\(2xy\\)</b>，不是 \\(xy\\)。'
         ],
         formula: { label: '三條一起用', tex: '(a\\pm b)^2\\;\\;(a+b)(a-b)\\;\\;(a+b)(c+d)' },
         visual: (h) => {
           pMount(h,
-            pCard('習作・基礎練習 3', '印 3', AMB, '判斷對錯，錯的請更正',
+            pCard('習作・基礎練習', '印 3', AMB, '判斷對錯，錯的請更正',
               pItem('基礎3 ④', '(a+10)^2=a^2+10a+10^2', '✗') +
               pItem('基礎3 ⑤', '(x-y)^2=x^2-xy+y^2', '✗') +
               pItem('基礎3 ⑥', 'm^2-n^2=(m+n)(m-n)', '✓')), '1-1');
         },
-        caption: '習作基礎 3 的 ④⑤⑥：同樣先說公式，再判斷。'
+        caption: '習作印 3 基礎 3 的 ④～⑥。'
       },
       {
         sec: '1-1', secName: '乘法公式',
-        title: '練習｜基礎 5 與精熟（行有餘力）',
+        title: '練習｜習作（基礎 4、6）',
         points: [
-          '這六題<b>三個公式混在一起</b>，先看是平方還是相乘，再決定套哪一條。',
-          '有字母的題目一樣做，\\(a\\)、\\(x\\) 和數字的角色完全一樣。',
-          '下面三題是<b>行有餘力才做</b>，今天做不完不要緊。'
+          '兩題都是<b>把平方差當工具用</b>：先找出「哪兩個數的和與差」。',
+          '基礎 4 先把兩個正方形的面積相減，再除以 2。',
+          '基礎 6 化成相乘再比：\\(65^2-15^2=80\\times50\\)。'
         ],
-        formula: { label: '三條一起用', tex: '(a\\pm b)^2\\;\\;(a+b)(a-b)\\;\\;(a+b)(c+d)' },
+        formula: { label: '這一組在練', tex: '(a+b)(a-b)=a^2-b^2' },
+        visual: (h) => {
+          pMount(h,
+            pCard('習作・基礎練習', '印 4', AMB, '用平方差求值與應用',
+              pText('基礎4', '等腰直角三角形農地切出小三角形停車場，其餘是草莓園。\\(\\overline{AB}=288\\)、\\(\\overline{CD}=88\\) 公尺，求草莓園面積。', '37600 平方公尺') +
+              pText('基礎6', '\\(a=65^2-15^2\\)、\\(b=68^2-18^2\\)，比較 \\(a\\) 與 \\(b\\) 的大小。', '\\(b\\gt a\\)')), '1-1');
+        },
+        caption: '習作印 4：<b>自己寫完</b>再對答案。'
+      },
+      {
+        sec: '1-1', secName: '乘法公式',
+        title: '練習｜習作（基礎 5 與精熟）',
+        points: [
+          '這三題是<b>行有餘力</b>，今天做不完不要緊。',
+          '基礎 5 先把 \\(102^2+98^2\\) 拆成 \\((100\\pm2)^2\\) 再比選項。',
+          '精熟 2 先把 \\(133\\) 寫成 \\(135-2\\)。'
+        ],
+        formula: { label: '拆成 100 加減幾', tex: '102^2+98^2=(100+2)^2+(100-2)^2' },
         visual: (h) => {
           pMount(h,
             pCard('習作・行有餘力', '印 4、5', GRN, '基礎 5 與精熟練習，做不完不追',
@@ -921,7 +936,7 @@ window.DECK = window.DECK || [];
               pText('精熟1', '大正方形分割成小正方形與四個直角三角形（兩股 \\(9\\)、\\(40\\)），求大正方形面積。', '1681') +
               pText('精熟2', '\\(\\frac{133^2}{135}\\) 最接近哪個正整數？', '131')), '1-1');
         },
-        caption: '做不完不追；精熟兩題標「進階」。'
+        caption: '習作印 4、5：做不完不追。'
       },
 
       {

@@ -914,105 +914,791 @@ window.DECK = window.DECK || [];
 
       {
         sec: '2-2', secName: '根式的運算',
-        title: '請填：這一頁的單一重點（一句話，看得懂就記得住）',
+        title: '檢討｜課本隨堂 ①（根式的簡記、數與根式的乘積等）',
         points: [
-          '重點一（≤45 字，可用 <b>粗體</b>、<span class="k">關鍵詞</span>、行內數學 \\(a+b\\)）。',
-          '重點二。',
-          '重點三。'
+          '點題號看<b>逐行詳解</b>，一行一行出現，可以邊講邊圈。',
+          '行與行之間留了空白，<b>直接用畫筆補寫</b>。',
+          '哪一題錯的人多，就從那一題開始。'
         ],
-        formula: { label: '公式標籤', tex: 'a^2+b^2=c^2' },
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
         visual: (h) => {
-          h.innerHTML = svg('0 0 440 280', TX(220, 140, '請畫圖', { fs: 18, c: C, anchor: 'middle' }));
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '課本・隨堂練習', page: '印 76–81', sub: '根式的簡記、數與根式的乘積等', tags: ['印2', '印3', '印5', '印7'] }
+          ]);
         },
-        caption: '圖下方一行說明。',
-        example: {
-          q: '請填題目。',
-          steps: ['第一步。', '第二步。'],
-          ans: '答案'
-        }
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
       },
-
       {
         sec: '2-2', secName: '根式的運算',
-        title: '請填：這一頁的單一重點（互動頁）',
+        title: '檢討｜課本隨堂 ②（根式的化簡、有理化分母等）',
         points: [
-          '重點一。',
-          '重點二。',
-          '拖滑桿看○○怎麼變。'
+          '點題號看<b>逐行詳解</b>，一行一行出現，可以邊講邊圈。',
+          '行與行之間留了空白，<b>直接用畫筆補寫</b>。',
+          '哪一題錯的人多，就從那一題開始。'
         ],
-        formula: { label: '公式標籤', tex: 'y=ax' },
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
         visual: (h) => {
-          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
-            <div class="ictrl"><label>參數 a ＝ <span class="ival" id="av">2</span></label>
-            <input type="range" id="as" min="1" max="6" step="1" value="2"></div></div>`;
-          const draw = () => {
-            const a = +h.querySelector('#as').value;
-            h.querySelector('#av').textContent = a;
-            let s = TX(220, 40, `目前 a = ${a}`, { fs: 18, c: C, anchor: 'middle' });
-            s += BOX(80, 70, 40 * a, 90, { fill: 'rgba(37,99,235,.12)', stroke: C });
-            h.querySelector('#fig').innerHTML = svg('0 0 440 280', s);
-            radBars(h);
-          };
-          h.querySelector('#as').oninput = draw; draw();
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '課本・隨堂練習', page: '印 82–85', sub: '根式的化簡、有理化分母等', tags: ['印8', '印9', '印11'] }
+          ]);
         },
-        caption: '互動頁的圖下方說明。',
-        example: {
-          q: '請填題目。',
-          steps: ['第一步。', '第二步。'],
-          ans: '答案'
-        }
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜課本隨堂 ③（同類方根的判斷、同類方根的加減等）',
+        points: [
+          '點題號看<b>逐行詳解</b>，一行一行出現，可以邊講邊圈。',
+          '行與行之間留了空白，<b>直接用畫筆補寫</b>。',
+          '哪一題錯的人多，就從那一題開始。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '課本・隨堂練習', page: '印 86–88', sub: '同類方根的判斷、同類方根的加減等', tags: ['印12', '印13', '印14'] }
+          ]);
+        },
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜課本隨堂 ④（計算並簡化根式 II、用乘法公式化簡等）',
+        points: [
+          '點題號看<b>逐行詳解</b>，一行一行出現，可以邊講邊圈。',
+          '行與行之間留了空白，<b>直接用畫筆補寫</b>。',
+          '哪一題錯的人多，就從那一題開始。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '課本・隨堂練習', page: '印 89–91', sub: '計算並簡化根式 II、用乘法公式化簡等', tags: ['印15', '印16', '印17'] }
+          ]);
+        },
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '對答案｜習作（基礎、精熟練習）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的本子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-2', [
+            { label: '基礎練習（印 23–26）', cols: 2, items: [
+              ['基 1', '基礎1'], ['基 2', '基礎2'], ['基 3', '基礎3'], ['基 4', '基礎4'], ['基 5', '基礎5'], ['基 6', '基礎6'], ['基 7', '基礎7']
+            ] },
+            { label: '精熟練習（印 26）', cols: 4, items: [
+              ['精 1', '精熟1']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜習作 ①（基礎練習）',
+        points: [
+          '點題號看<b>逐行詳解</b>；帶圖的題圖就在題目卡裡。',
+          '一頁只放四題，<b>看清楚再挑</b>。',
+          '哪一題錯的人多，就從那一題開始。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作・基礎練習', page: '印 23–24', sub: '基礎練習', tags: ['基礎1', '基礎2', '基礎3', '基礎4'] }
+          ]);
+        },
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜習作 ②（基礎練習）',
+        points: [
+          '點題號看<b>逐行詳解</b>；帶圖的題圖就在題目卡裡。',
+          '一頁只放四題，<b>看清楚再挑</b>。',
+          '哪一題錯的人多，就從那一題開始。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作・基礎練習', page: '印 25–26', sub: '基礎練習', tags: ['基礎5', '基礎6', '基礎7'] }
+          ]);
+        },
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜習作 ③（精熟練習）',
+        points: [
+          '點題號看<b>逐行詳解</b>；帶圖的題圖就在題目卡裡。',
+          '一頁只放四題，<b>看清楚再挑</b>。',
+          '哪一題錯的人多，就從那一題開始。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作・基礎練習', page: '印 26', sub: '精熟練習', tags: ['精熟1'] }
+          ]);
+        },
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜自我評量 ①（自我評量與錯誤診療）',
+        points: [
+          '自我評量是<b>段考前最像考題</b>的一份，整份走一遍。',
+          '長題會<b>分段顯示</b>，用標頭的 ‹ › 翻段。',
+          '最後的<b>錯誤診療</b>是課本自己列的迷思，別跳過。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '課本・自我評量', page: '印 93', sub: '自我評量與錯誤診療', tags: ['自評1', '自評2', '自評3'] }
+          ]);
+        },
+        caption: '整份走一遍；錯誤診療那一列是課本點名的常見錯。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜自我評量 ②（自我評量與錯誤診療）',
+        points: [
+          '自我評量是<b>段考前最像考題</b>的一份，整份走一遍。',
+          '長題會<b>分段顯示</b>，用標頭的 ‹ › 翻段。',
+          '最後的<b>錯誤診療</b>是課本自己列的迷思，別跳過。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '課本・自我評量', page: '印 93–94', sub: '自我評量與錯誤診療', tags: ['自評4', '自評5', '錯誤診療'] }
+          ]);
+        },
+        caption: '整份走一遍；錯誤診療那一列是課本點名的常見錯。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '對答案｜課堂評量 ①（選擇 1～10）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-2', [
+            { label: '選擇 1～10（印 16–17）', cols: 4, items: [
+              ['1', '評選1'], ['2', '評選2'], ['3', '評選3'], ['4', '評選4'], ['5', '評選5'], ['6', '評選6'], ['7', '評選7'], ['8', '評選8'], ['9', '評選9'], ['10', '評選10']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '對答案｜課堂評量 ②（填充、計算）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-2', [
+            { label: '填充（印 17）', cols: 2, items: [
+              ['填 1', '評填1'], ['填 2', '評填2'], ['填 3', '評填3']
+            ] },
+            { label: '計算（印 18）', cols: 4, items: [
+              ['計 1', '評計1'], ['計 2', '評計2']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜課堂評量 ①（選擇 1～4）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・課堂評量', page: '印 16', sub: '選擇 1～4', tags: ['評選1', '評選2', '評選3', '評選4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜課堂評量 ②（選擇 5～7）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・課堂評量', page: '印 16', sub: '選擇 5～7', tags: ['評選5', '評選6', '評選7'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜課堂評量 ③（選擇 8～10）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・課堂評量', page: '印 17', sub: '選擇 8～10', tags: ['評選8', '評選9', '評選10'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜課堂評量 ④（填充 1～3）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・課堂評量', page: '印 17', sub: '填充 1～3', tags: ['評填1', '評填2', '評填3'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜課堂評量 ⑤（計算 1、2）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・課堂評量', page: '印 18', sub: '計算 1、2', tags: ['評計1', '評計2'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '對答案｜習作附錄本（選擇、填充）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-2', [
+            { label: '選擇（印 5）', cols: 4, items: [
+              ['選 1', '附選1'], ['選 2', '附選2'], ['選 3', '附選3'], ['選 4', '附選4'], ['選 5', '附選5'], ['選 6', '附選6']
+            ] },
+            { label: '填充（印 5）', cols: 4, items: [
+              ['填 1', '附填1'], ['填 2', '附填2'], ['填 3', '附填3'], ['填 4', '附填4']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜習作附錄本 ①（選擇 1～3）',
+        points: [
+          '這是<b>習作附錄本（基礎題型篇）</b>，一節一頁的選填題。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作・附錄本', page: '印 5', sub: '選擇 1～3', tags: ['附選1', '附選2', '附選3'] }
+          ]);
+        },
+        caption: '一頁最多四題；附錄本的題型與課堂評量互補。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜習作附錄本 ②（選擇 4～6）',
+        points: [
+          '這是<b>習作附錄本（基礎題型篇）</b>，一節一頁的選填題。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作・附錄本', page: '印 5', sub: '選擇 4～6', tags: ['附選4', '附選5', '附選6'] }
+          ]);
+        },
+        caption: '一頁最多四題；附錄本的題型與課堂評量互補。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜習作附錄本 ③（填充 1～4）',
+        points: [
+          '這是<b>習作附錄本（基礎題型篇）</b>，一節一頁的選填題。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作・附錄本', page: '印 5', sub: '填充 1～4', tags: ['附填1', '附填2', '附填3', '附填4'] }
+          ]);
+        },
+        caption: '一頁最多四題；附錄本的題型與課堂評量互補。'
       },
 
       {
         sec: '2-3', secName: '畢氏定理',
-        title: '請填：這一頁的單一重點（一句話，看得懂就記得住）',
+        title: '檢討｜課本隨堂 ①（用畢氏定理求長度、正三角形的高與面積等）',
         points: [
-          '重點一（≤45 字，可用 <b>粗體</b>、<span class="k">關鍵詞</span>、行內數學 \\(a+b\\)）。',
-          '重點二。',
-          '重點三。'
+          '點題號看<b>逐行詳解</b>，一行一行出現，可以邊講邊圈。',
+          '行與行之間留了空白，<b>直接用畫筆補寫</b>。',
+          '哪一題錯的人多，就從那一題開始。'
         ],
-        formula: { label: '公式標籤', tex: 'a^2+b^2=c^2' },
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
         visual: (h) => {
-          h.innerHTML = svg('0 0 440 280', TX(220, 140, '請畫圖', { fs: 18, c: C, anchor: 'middle' }));
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '課本・隨堂練習', page: '印 99–103', sub: '用畢氏定理求長度、正三角形的高與面積等', tags: ['印5', '印6', '印7', '印9'] }
+          ]);
         },
-        caption: '圖下方一行說明。',
-        example: {
-          q: '請填題目。',
-          steps: ['第一步。', '第二步。'],
-          ans: '答案'
-        }
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
       },
-
       {
         sec: '2-3', secName: '畢氏定理',
-        title: '請填：這一頁的單一重點（互動頁）',
+        title: '檢討｜課本隨堂 ②（畢氏定理的應用、水平、鉛垂線的距離等）',
         points: [
-          '重點一。',
-          '重點二。',
-          '拖滑桿看○○怎麼變。'
+          '點題號看<b>逐行詳解</b>，一行一行出現，可以邊講邊圈。',
+          '行與行之間留了空白，<b>直接用畫筆補寫</b>。',
+          '哪一題錯的人多，就從那一題開始。'
         ],
-        formula: { label: '公式標籤', tex: 'y=ax' },
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
         visual: (h) => {
-          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
-            <div class="ictrl"><label>參數 a ＝ <span class="ival" id="av">2</span></label>
-            <input type="range" id="as" min="1" max="6" step="1" value="2"></div></div>`;
-          const draw = () => {
-            const a = +h.querySelector('#as').value;
-            h.querySelector('#av').textContent = a;
-            let s = TX(220, 40, `目前 a = ${a}`, { fs: 18, c: C, anchor: 'middle' });
-            s += BOX(80, 70, 40 * a, 90, { fill: 'rgba(37,99,235,.12)', stroke: C });
-            h.querySelector('#fig').innerHTML = svg('0 0 440 280', s);
-            radBars(h);
-          };
-          h.querySelector('#as').oninput = draw; draw();
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '課本・隨堂練習', page: '印 104–108', sub: '畢氏定理的應用、水平、鉛垂線的距離等', tags: ['印10', '印11', '印13', '印14'] }
+          ]);
         },
-        caption: '互動頁的圖下方說明。',
-        example: {
-          q: '請填題目。',
-          steps: ['第一步。', '第二步。'],
-          ans: '答案'
-        }
-      }
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '對答案｜習作（基礎、精熟練習）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的本子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-3', [
+            { label: '基礎練習（印 27–29）', cols: 3, items: [
+              ['基 1', '基礎1'], ['基 2', '基礎2'], ['基 3', '基礎3'], ['基 4', '基礎4'], ['基 5', '基礎5']
+            ] },
+            { label: '精熟練習（印 30）', cols: 3, items: [
+              ['精 1', '精熟1'], ['精 2', '精熟2']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜習作 ①（基礎練習）',
+        points: [
+          '點題號看<b>逐行詳解</b>；帶圖的題圖就在題目卡裡。',
+          '一頁只放四題，<b>看清楚再挑</b>。',
+          '哪一題錯的人多，就從那一題開始。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '習作・基礎練習', page: '印 27–28', sub: '基礎練習', tags: ['基礎1', '基礎2', '基礎3'] }
+          ]);
+        },
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜習作 ②（基礎練習）',
+        points: [
+          '點題號看<b>逐行詳解</b>；帶圖的題圖就在題目卡裡。',
+          '一頁只放四題，<b>看清楚再挑</b>。',
+          '哪一題錯的人多，就從那一題開始。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '習作・基礎練習', page: '印 28–29', sub: '基礎練習', tags: ['基礎4', '基礎5'] }
+          ]);
+        },
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜習作 ③（精熟練習）',
+        points: [
+          '點題號看<b>逐行詳解</b>；帶圖的題圖就在題目卡裡。',
+          '一頁只放四題，<b>看清楚再挑</b>。',
+          '哪一題錯的人多，就從那一題開始。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '習作・基礎練習', page: '印 30', sub: '精熟練習', tags: ['精熟1', '精熟2'] }
+          ]);
+        },
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜自我評量 ①（自我評量與錯誤診療）',
+        points: [
+          '自我評量是<b>段考前最像考題</b>的一份，整份走一遍。',
+          '長題會<b>分段顯示</b>，用標頭的 ‹ › 翻段。',
+          '最後的<b>錯誤診療</b>是課本自己列的迷思，別跳過。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '課本・自我評量', page: '印 110', sub: '自我評量與錯誤診療', tags: ['自評1', '自評2', '自評3'] }
+          ]);
+        },
+        caption: '整份走一遍；錯誤診療那一列是課本點名的常見錯。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜自我評量 ②（自我評量與錯誤診療）',
+        points: [
+          '自我評量是<b>段考前最像考題</b>的一份，整份走一遍。',
+          '長題會<b>分段顯示</b>，用標頭的 ‹ › 翻段。',
+          '最後的<b>錯誤診療</b>是課本自己列的迷思，別跳過。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '課本・自我評量', page: '印 111–112', sub: '自我評量與錯誤診療', tags: ['自評4', '自評5', '錯誤診療'] }
+          ]);
+        },
+        caption: '整份走一遍；錯誤診療那一列是課本點名的常見錯。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '對答案｜課堂評量 ①（選擇 1～10）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-3', [
+            { label: '選擇 1～10（印 19–20）', cols: 4, items: [
+              ['1', '評選1'], ['2', '評選2'], ['3', '評選3'], ['4', '評選4'], ['5', '評選5'], ['6', '評選6'], ['7', '評選7'], ['8', '評選8'], ['9', '評選9'], ['10', '評選10']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '對答案｜課堂評量 ②（填充、計算）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-3', [
+            { label: '填充（印 20–21）', cols: 2, items: [
+              ['填 1', '評填1'], ['填 2', '評填2'], ['填 3', '評填3'], ['填 4', '評填4'], ['填 5', '評填5']
+            ] },
+            { label: '計算（印 21）', cols: 2, items: [
+              ['計 1', '評計1'], ['計 2', '評計2']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜課堂評量 ①（選擇 1～4）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・課堂評量', page: '印 19', sub: '選擇 1～4', tags: ['評選1', '評選2', '評選3', '評選4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜課堂評量 ②（選擇 5～7）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・課堂評量', page: '印 19–20', sub: '選擇 5～7', tags: ['評選5', '評選6', '評選7'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜課堂評量 ③（選擇 8～10）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・課堂評量', page: '印 20', sub: '選擇 8～10', tags: ['評選8', '評選9', '評選10'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜課堂評量 ④（填充 1～3）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・課堂評量', page: '印 20–21', sub: '填充 1～3', tags: ['評填1', '評填2', '評填3'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜課堂評量 ⑤（填充 4、5）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・課堂評量', page: '印 21', sub: '填充 4、5', tags: ['評填4', '評填5'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜課堂評量 ⑥（計算 1、2）',
+        points: [
+          '這是<b>課堂評量卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・課堂評量', page: '印 21', sub: '計算 1、2', tags: ['評計1', '評計2'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '對答案｜習作附錄本（選擇、填充）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-3', [
+            { label: '選擇（印 6）', cols: 4, items: [
+              ['選 1', '附選1'], ['選 2', '附選2'], ['選 3', '附選3'], ['選 4', '附選4'], ['選 5', '附選5'], ['選 6', '附選6']
+            ] },
+            { label: '填充（印 6）', cols: 2, items: [
+              ['填 1', '附填1']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜習作附錄本 ①（選擇 1～3）',
+        points: [
+          '這是<b>習作附錄本（基礎題型篇）</b>，一節一頁的選填題。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '習作・附錄本', page: '印 6', sub: '選擇 1～3', tags: ['附選1', '附選2', '附選3'] }
+          ]);
+        },
+        caption: '一頁最多四題；附錄本的題型與課堂評量互補。'
+      },
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜習作附錄本 ②（選擇 4～6、填充 1）',
+        points: [
+          '這是<b>習作附錄本（基礎題型篇）</b>，一節一頁的選填題。',
+          '題號跟紙本一樣，<b>錯的人多的先講</b>。',
+          '點題號看逐行詳解，一行一行出現。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '習作・附錄本', page: '印 6', sub: '選擇 4～6、填充 1', tags: ['附選4', '附選5', '附選6', '附填1'] }
+          ]);
+        },
+        caption: '一頁最多四題；附錄本的題型與課堂評量互補。'
+      },
     ]
   });
 })();
