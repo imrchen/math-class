@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>國中數學 八上</title>
   <meta name="description" content="國中數學 八上" />
-  <link rel="stylesheet" href="style.css?v=20260923i" />
-  <link rel="stylesheet" href="deck-overrides.css?v=20260923i" />
+  <link rel="stylesheet" href="style.css?v=20260924c" />
+  <link rel="stylesheet" href="deck-overrides.css?v=20260924c" />
   <script>
     window.MathJax = {
       tex: {
@@ -24,7 +24,7 @@
   </script>
   <!-- MathJax 改為隨站打包：教室電腦不一定有網路，CDN 掛掉整份公式就不會排版。
        來源 https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js（2026-09-13 取得）。 -->
-  <script src="vendor/tex-svg.js?v=20260923i" id="MathJax-script" async></script>
+  <script src="vendor/tex-svg.js?v=20260924c" id="MathJax-script" async></script>
 </head>
 <body>
   <!-- 封面 -->
@@ -110,20 +110,43 @@
     </div>
   </div>
 
-  <script src="svg.js?v=20260923i"></script>
+  <script src="svg.js?v=20260924c"></script>
   <!-- 逐題詳解：由 scripts/extract_solutions.py 從 ocho 產生，不要手改 -->
-  <script src="solutions.js?v=20260923i"></script>
+  <script src="solutions.js?v=20260924c"></script>
   <!-- 習作／隨堂練習帶圖的題：圖由 scripts/extract_figures.mjs 從 ocho 轉出 -->
-  <script src="figures.js?v=20260923i"></script>
-  <script src="ch1.js?v=20260923i"></script>
-  <script src="ch2.js?v=20260923i"></script>
-  <script src="ch3.js?v=20260923i"></script>
-  <script src="ch4.js?v=20260923i"></script>
-  <script src="ch5.js?v=20260923i"></script>
-  <script src="engine.js?v=20260923i"></script>
-  <script src="toc-sections.js?v=20260923i"></script>
-  <script src="zoom-mixed.js?v=20260923i"></script>
-  <script src="zoom-pan.js?v=20260923i"></script>
-  <script src="mathjax-catchup.js?v=20260923i"></script>
+  <script src="figures.js?v=20260924c"></script>
+  <script>
+    /* 練習／檢討元件（practice.js，與八上-課本版共用同一份檔）的站別設定：
+       子題列＋藏起來的答案欄、整題一畫面、放大層自己試寬度。accent 由各章 chN.js 以章色覆寫。 */
+    window.PRACTICE_CONFIG = {
+      site: 'indicator', list: 'item', detail: 'single', zoomFit: 'trial', fitFloor: 0.62,
+      theme: { ink: '#172033', grey: '#8a94a6', grn: '#059669', accent: '#2563eb',
+               border: '#dce3ee', sub: '#657187', back: '#c3cddd', hover: '#f2f6ff' },
+      font: { tag: '11px', tex: '13.5px', text: '13px', ans: '12.5px', go: '16px' },
+      srcColors: {}
+    };
+  </script>
+  <!-- 練習頁元件：與八上-課本版逐位元組相同的共用檔 -->
+  <script src="practice.js?v=20260924c"></script>
+  <script src="ch1.js?v=20260924c"></script>
+  <script src="ch2.js?v=20260924c"></script>
+  <script src="ch3.js?v=20260924c"></script>
+  <script src="ch4.js?v=20260924c"></script>
+  <script src="ch5.js?v=20260924c"></script>
+  <script src="engine.js?v=20260924c"></script>
+  <script>
+    /* 目錄第三層：節之內依類別折疊（Roger 2026-09-24：「指標版的習作也加上折疊」）。
+       規則由 toc-sections.js 讀（三站同一份），依序比對標題、第一個命中的算數。
+       指標版的習作一律收在節末（2026-09-23 定案），對答案頁與 1-2 的精熟思路頁也接在後面，所以歸同一類；
+       講解頁與穿插在講解之間的隨堂練習都沒命中，歸「講解與隨堂」。 */
+    window.TOC_GROUPS = [
+      ['習作', '習作|對答案|思路'],
+    ];
+    window.TOC_GROUP_REST = '講解與隨堂';
+  </script>
+  <script src="toc-sections.js?v=20260924c"></script>
+  <script src="zoom-mixed.js?v=20260924c"></script>
+  <script src="zoom-pan.js?v=20260924c"></script>
+  <script src="mathjax-catchup.js?v=20260924c"></script>
 </body>
 </html>

@@ -28,242 +28,23 @@ window.DECK = window.DECK || [];
       </div>`).join('') + `</div>`;
   }
 
-  const pDropCont = (t) => t.replace(/\s*續[一二三四五六七八九十]?\s*$/, '');
-  const pLabel = (sec, tag) => {
-    if (!/^印\s*\d+/.test(tag)) return pDropCont(tag);
-    const S = (window.SOLUTIONS || {})[sec] || {};
-    const d = S[tag] || S[tag.replace(/\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫].*$/, '')];
-    return pDropCont(d && d.page ? tag.replace(/^印\s*\d+/, d.page.replace(/\s+/g, ' ')) : tag);
-  };
-
-  const pRelabel = (h, sec) => h.querySelectorAll('.p-row').forEach(r => {
-    const el = r.querySelector('.p-tag');
-    if (el) el.textContent = pLabel(sec, r.dataset.tag);
-  });
-
-  const pRow = (tag, bodyHtml, ans, fs) =>
-    `<div class="p-row" data-tag="${tag}" style="display:flex;gap:9px;align-items:baseline;padding:2px 0;border-radius:8px">
-       <span class="p-tag" style="flex:0 0 72px;font-size:11px;font-weight:900;color:${GREY};white-space:nowrap">${tag}</span>
-       <span style="flex:1;font-size:${fs};color:${INK};line-height:1.55">${bodyHtml}</span>
-       ${ans ? `<span class="p-ans" style="flex:0 0 auto;font-size:12.5px;font-weight:900;color:${GRN};white-space:nowrap;overflow:hidden;max-width:0;opacity:0;transition:opacity .12s">${ans}</span>` : ''}
-       <span class="p-go" style="flex:0 0 auto;width:12px;text-align:right;font-size:16px;font-weight:900;color:${C};opacity:0">›</span></div>`;
-  const pItem = (tag, tex, ans) => pRow(tag, `\\(${tex}\\)`, ans, '13.5px');
-  const pText = (tag, html, ans) => pRow(tag, html, ans, '13px');
-  const pCard = (src, page, col, sub, rows) =>
-    `<div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;overflow:hidden">
-       <div style="display:flex;justify-content:space-between;align-items:center;background:${col};padding:4px 13px">
-         <span style="font-size:13px;font-weight:900;color:#fff;letter-spacing:.03em">${src}</span>
-         <span style="font-size:13px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:8px;padding:1px 9px">${page}</span>
-       </div>
-       <div style="padding:5px 13px 7px">
-         ${sub ? `<div style="font-size:11.5px;color:#657187;margin-bottom:1px">${sub}</div>` : ''}
-         ${rows}</div></div>`;
-  const pWrap = (cards) =>
-    `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:8px">${cards}
-       <button class="p-sol" style="align-self:center;margin-top:2px;border:1.5px solid ${GRN};background:#fff;color:${GRN};font-weight:900;font-size:13px;border-radius:999px;padding:4px 18px;cursor:pointer">顯示解答</button></div>`;
-
-  const CONT = ['', ' 續', ' 續一', ' 續二', ' 續三', ' 續四', ' 續五'];
-  const SUBRE = /\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫].*$/;
-
-  const BOILER = /^承上[，,]?[^$]{0,24}。?$/;
-  const pMerge = (S, tag) => {
-    if (SUBRE.test(tag) && S[tag]) return S[tag];
-    const base = S[tag] ? tag : tag.replace(SUBRE, '');
-    const d0 = S[base];
-    if (!d0) return null;
-    const steps = [], ans = [], qs = [];
-    for (const suf of CONT) {
-      const d = S[base + suf];
-      if (!d) continue;
-
-      const q = String(d.q || '').trim();
-      if (q && qs.indexOf(q) < 0 && !BOILER.test(q)) qs.push(q);
-      for (const st of d.steps || []) steps.push(st);
-      if (d.ans && ans.indexOf(d.ans) < 0) ans.push(d.ans);
-    }
-    return Object.assign({}, d0, { q: qs.join('\n'), steps, ans: ans.join('　') });
+  const PR = () => (typeof window !== 'undefined' && window.PRACTICE) || null;
+  const PO = { accent: C };
+  const pItem = (tag, tex, ans, label) => PR() ? PR().item(tag, tex, ans, label, PO)
+    : `<div class="p-row" data-tag="${tag}">\\(${tex}\\) ${ans || ''}</div>`;
+  const pText = (tag, html, ans, label) => PR() ? PR().text(tag, html, ans, label, PO)
+    : `<div class="p-row" data-tag="${tag}">${html} ${ans || ''}</div>`;
+  const pCard = (src, page, col, sub, rows) => PR() ? PR().card(src, page, col, sub, rows)
+    : `<div>${src} ${page} ${sub || ''}${rows}</div>`;
+  const pMount = (h, cards, sec) => { if (PR()) PR().mount(h, cards, sec, PO); else h.innerHTML = cards; };
+  const pAnswerKey = (h, sec, groups) => {
+    if (PR()) PR().answerKey(h, sec, groups);
+    else h.innerHTML = '<div>對答案（需 practice.js）</div>';
   };
 
   window.FIGURES_LOCAL = window.FIGURES_LOCAL || {};
 
   window.FIGURES_LOCAL['door-six-panes'] = '<svg viewBox="-24 -4 356 306" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="Noto Sans TC, PingFang TC, sans-serif"><rect x="56" y="40" width="180" height="220" fill="#EFE3D2" stroke="#17212B" stroke-width="2.4"/><rect x="72" y="52" width="62" height="44" fill="#FFFFFF" stroke="#2563eb" stroke-width="3.2"/><rect x="158" y="52" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><line x1="72" y1="52" x2="72" y2="18" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="134" y1="52" x2="134" y2="18" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="24" x2="134" y2="24" stroke="#2563eb" stroke-width="1.8"/><line x1="72" y1="18" x2="72" y2="30" stroke="#2563eb" stroke-width="1.8"/><line x1="134" y1="18" x2="134" y2="30" stroke="#2563eb" stroke-width="1.8"/><text x="103" y="16" text-anchor="middle" font-size="20" font-weight="800" fill="#2563eb">x－1</text><line x1="72" y1="52" x2="30" y2="52" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="96" x2="30" y2="96" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="38" y1="52" x2="38" y2="96" stroke="#2563eb" stroke-width="1.8"/><line x1="32" y1="52" x2="44" y2="52" stroke="#2563eb" stroke-width="1.8"/><line x1="32" y1="96" x2="44" y2="96" stroke="#2563eb" stroke-width="1.8"/><text x="30" y="81" text-anchor="end" font-size="20" font-weight="800" fill="#2563eb">x＋1</text><line x1="56" y1="272" x2="236" y2="272" stroke="#17212B" stroke-width="1.8"/><line x1="56" y1="266" x2="56" y2="278" stroke="#17212B" stroke-width="1.8"/><line x1="236" y1="266" x2="236" y2="278" stroke="#17212B" stroke-width="1.8"/><text x="146" y="296" text-anchor="middle" font-size="22" font-weight="800" fill="#17212B">3x－2</text><line x1="248" y1="40" x2="248" y2="260" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="40" x2="254" y2="40" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="260" x2="254" y2="260" stroke="#17212B" stroke-width="1.8"/><text x="256" y="158" text-anchor="start" font-size="22" font-weight="800" fill="#17212B">7x＋11</text></svg>';
-
-  const pFig = (d) => (d && d.fig && ((window.FIGURES_LOCAL || {})[d.fig] || (window.FIGURES || {})[d.fig])) || null;
-
-  const pDetail = (h, sec, tag, back) => {
-    const S = (window.SOLUTIONS || {})[sec] || {};
-
-    const d = pMerge(S, tag);
-    if (!d) return false;
-    const tex = t => (t || '').replace(/\$([^$]+)\$/g, (_, m) => '\\(' + m + '\\)');
-
-    const QNUM = /^\s*[\u2460-\u2473]/;
-    const lines = [...d.steps.map(t => ({ t: tex(t), q: QNUM.test(String(t)) })),
-                   ...(d.ans ? [{ t: '答：' + tex(d.ans), fin: 1 }] : [])];
-
-    h.innerHTML =
-      `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">
-         <div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;overflow:hidden">
-           <div style="display:flex;justify-content:space-between;align-items:center;background:${C};padding:5px 13px">
-             <span style="font-size:13px;font-weight:900;color:#fff">${d.src} ${pLabel(sec, tag)}</span>
-             <span style="font-size:13px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:8px;padding:1px 9px">${d.page}</span>
-           </div>
-           <div style="padding:10px 14px">
-             <div style="font-size:19px;color:${INK};line-height:1.5">${String(d.q || '').split('\n').filter(Boolean).map((seg, i) => `<div style="${i ? 'margin-top:7px' : ''}">${tex(seg)}</div>`).join('')}
-               ${d.fig && !pFig(d) ? `<div style="margin-top:6px;font-size:13px;font-weight:900;color:#8a5a00;background:#fff4d6;border:1px solid #f0dba8;border-radius:8px;padding:4px 10px;display:inline-block">⚠ ocho 沒有這張圖，請看紙本 ${d.page}</div>` : ''}</div>
-             ${pFig(d) ? `<div class="q-fig" style="margin-top:8px;width:100%;height:220px;display:flex;align-items:center;justify-content:center">${pFig(d)}</div>` : ''}
-           </div>
-         </div>
-         <div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:14px 18px 30px;display:flex;flex-direction:column;gap:26px;min-height:${Math.max(150, lines.length * 62)}px">
-           ${lines.map((l, i) => `<div class="${l.q ? 'p-ask' : 'p-line'}" data-i="${i}" style="${l.q ? '' : 'visibility:hidden;'}font-size:${l.fin ? 22 : 20}px;font-weight:${l.fin ? 900 : l.q ? 800 : 700};color:${l.fin ? GRN : INK}${l.q ? '' : ';padding-left:20px'}">${l.t}</div>`).join('')}
-         </div>
-         <div style="display:flex;gap:8px;justify-content:center">
-           <button class="p-next" style="border:1.5px solid ${C};background:${C};color:#fff;font-weight:900;font-size:13px;border-radius:999px;padding:5px 20px;cursor:pointer">下一行</button>
-           <button class="p-all" style="border:1.5px solid ${GRN};background:#fff;color:${GRN};font-weight:900;font-size:13px;border-radius:999px;padding:5px 16px;cursor:pointer">全部顯示</button>
-           <button class="p-back" style="border:1.5px solid #c3cddd;background:#fff;color:${GREY};font-weight:900;font-size:13px;border-radius:999px;padding:5px 16px;cursor:pointer">← 回題目列表</button>
-         </div>
-       </div>`;
-    const els = [...h.querySelectorAll('.p-line')];
-    let shown = 0;
-    const next = h.querySelector('.p-next');
-    const step = () => {
-      if (shown < els.length) els[shown++].style.visibility = 'visible';
-      if (shown >= els.length) { next.disabled = true; next.style.opacity = '.4'; next.style.cursor = 'default'; }
-    };
-    next.onclick = step;
-    h.querySelector('.p-all').onclick = () => { while (shown < els.length) step(); };
-    h.querySelector('.p-back').onclick = back;
-    MJ(h);
-    pAfter(h);
-    return true;
-  };
-
-  const pFit = (h) => {
-    if (typeof window === 'undefined') return;
-    const stack = h.firstElementChild;
-    if (!stack || !h.clientHeight) return;
-    stack.style.zoom = '';
-
-    const cs = window.getComputedStyle(h);
-    const pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
-
-    if (h.closest && h.closest('#zoomBody')) {
-
-      const W = h.clientWidth, Hh = h.clientHeight - pad;
-      let bw = +h.dataset.zoomBase || 460, bz = 0;
-      [bw, Math.round(W * 0.42), Math.round(W * 0.52), Math.round(W * 0.64), Math.round(W * 0.78)]
-        .forEach(w => {
-          if (w < 280 || w > W) return;
-          stack.style.width = w + 'px';
-          const z = Math.min(W / w, Hh / (stack.scrollHeight || 1), 2.8);
-          if (z > bz) { bz = z; bw = w; }
-        });
-      stack.style.width = bw + 'px';
-      stack.style.margin = '0 auto';
-
-      if (bz < 0.995 || bz > 1.02) stack.style.zoom = Math.max(0.6, bz).toFixed(3);
-      return;
-    }
-    stack.style.width = '';
-    stack.style.margin = '';
-
-    const need = stack.scrollHeight, have = h.clientHeight - pad;
-    if (have > 0 && need > have) stack.style.zoom = Math.max(0.62, (have / need) * 0.985).toFixed(3);
-  };
-
-  if (typeof document !== 'undefined' && typeof window !== 'undefined' && !window.__pFitZoomHook) {
-    window.__pFitZoomHook = true;
-    const sweep = () => document.querySelectorAll('.visual-host').forEach(el => {
-      if (el.firstElementChild && el.querySelector('.p-line, .p-ask')) pFit(el);
-    });
-    document.addEventListener('click', () => { setTimeout(sweep, 150); setTimeout(sweep, 700); }, true);
-  }
-
-  const pAfter = (h) => {
-    if (typeof window === 'undefined' || typeof setTimeout !== 'function') return;
-    const go = () => { pFit(h); if (window.dispatchEvent) window.dispatchEvent(new Event('resize')); };
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise([h]).then(go).catch(go);
-    } else { setTimeout(go, 60); }
-  };
-
-  const pAnswerKey = (h, sec, groups) => {
-    const S = (window.SOLUTIONS || {})[sec] || {};
-    const tex = t => String(t || '').replace(/\$([^$]+)\$/g, (_, m) => '\\(' + m + '\\)');
-
-    const splitChoice = (a) => {
-      const m = /^選\s*(\([A-Da-d]\))\s*(.*)$/.exec(String(a || '').trim());
-      return m ? { big: m[1], sub: m[2] } : { big: String(a || ''), sub: '' };
-    };
-
-    const dropLab = (no, a) => {
-      const labs = String(a).match(/[①-⑳]|[(（]\d+[)）]/g) || [];
-      const m = /^\s*([①-⑳]|[(（]\d+[)）])\s*/.exec(a);
-      return m && labs.length === 1 && String(no).includes(m[1]) ? a.slice(m[0].length) : a;
-    };
-    const cell = (no, tag) => {
-      const d = pMerge(S, tag);
-      const a = d ? dropLab(no, d.ans) : '';
-      const { big, sub } = splitChoice(a);
-      return `<div style="border:1.5px solid #dbe3f0;border-radius:10px;background:#fff;
-          padding:7px 9px;display:flex;align-items:baseline;gap:8px;min-width:0">
-        <span style="flex:0 0 auto;font-size:15px;font-weight:700;color:${GREY}">${no}</span>
-        <span style="min-width:0;flex:1">
-          <span style="font-size:21px;font-weight:700;color:${a ? GRN : '#e11d48'};
-            display:block;line-height:1.3;word-break:break-word">${a ? tex(big) : '（查無答案）'}</span>
-          ${sub ? `<span style="font-size:13.5px;color:${GREY};display:block;line-height:1.4">${tex(sub)}</span>` : ''}
-        </span>
-      </div>`;
-    };
-    h.innerHTML = `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:12px">`
-      + groups.map(g => `<div>
-          <div style="font-size:14px;font-weight:700;color:${C};margin:0 0 6px 2px">${g.label}</div>
-          <div style="display:grid;grid-template-columns:repeat(${g.cols || 4},minmax(0,1fr));gap:7px">
-            ${g.items.map(it => cell(it[0], it[1])).join('')}
-          </div></div>`).join('')
-      + `</div>`;
-    pAfter(h);
-  };
-
-  const pMount = (h, cards, sec) => {
-    const render = () => {
-      h.innerHTML = pWrap(cards);
-      const btn = h.querySelector('.p-sol');
-      const ans = [...h.querySelectorAll('.p-ans')];
-      if (btn) btn.onclick = () => {
-        const on = !(ans[0] && ans[0].style.opacity === '1');
-        ans.forEach(e => {
-          e.style.maxWidth = on ? 'none' : '0';
-          e.style.opacity = on ? '1' : '0';
-        });
-        btn.textContent = on ? '收起解答' : '顯示解答';
-        pAfter(h);
-      };
-
-      if (!(sec && window.SOLUTIONS && window.SOLUTIONS[sec])) {
-        h.querySelectorAll('.p-go').forEach(e => e.remove());
-      }
-
-      if (sec && window.SOLUTIONS && window.SOLUTIONS[sec]) {
-        h.querySelectorAll('.p-row').forEach(row => {
-          const tag = row.dataset.tag;
-          const S = window.SOLUTIONS[sec];
-          if (!(S[tag] || S[tag.replace(/\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫].*$/, '')])) {
-            row.querySelector('.p-go').remove(); return;
-          }
-          row.style.cursor = 'pointer';
-          row.querySelector('.p-go').style.opacity = '.55';
-          row.onmouseenter = () => { row.style.background = '#f2f6ff'; };
-          row.onmouseleave = () => { row.style.background = ''; };
-          row.onclick = () => pDetail(h, sec, tag, render);
-        });
-      }
-      pRelabel(h, sec);
-      MJ(h);
-      pAfter(h);
-    };
-    render();
-  };
 
   window.DECK.push({
     ch: 1,
@@ -508,7 +289,7 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 8', BLU, '填入適當的數再計算',
-              pItem('印5 ①', '97\\times104=(100-3)(100+4)', '10088')), '1-1');
+              pItem('印5 ①', '97\\times104=(100-3)(100+4)')), '1-1');
         },
         caption: '課本印 5：四個乘積一個都不能少。'
       },
@@ -849,10 +630,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 2', AMB, '利用乘法公式求值，寫完整過程',
-              pItem('基礎1 ①', '7\\tfrac{1}{3}\\times3\\tfrac{1}{7}', '\\(23\\tfrac{1}{21}\\)') +
-              pItem('基礎1 ②', '108^2', '11664') +
-              pItem('基礎1 ③', '97^2', '9409') +
-              pItem('基礎1 ④', '96\\times104', '9984')), '1-1');
+              pItem('基礎1 ①', '7\\tfrac{1}{3}\\times3\\tfrac{1}{7}') +
+              pItem('基礎1 ②', '108^2') +
+              pItem('基礎1 ③', '97^2') +
+              pItem('基礎1 ④', '96\\times104')), '1-1');
         },
         caption: '習作印 2 基礎 1：四小題各用一條公式，<b>自己寫完</b>再對答案。'
       },
@@ -868,10 +649,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 3', AMB, '利用乘法公式求值，寫完整過程',
-              pItem('基礎2 ①', '38\\times13+38\\times7+42\\times13+42\\times7', '1600') +
-              pItem('基礎2 ②', '59^2+2\\times 59\\times 1+1^2', '3600') +
-              pItem('基礎2 ③', '89^2-2\\times 89\\times 39+39^2', '2500') +
-              pItem('基礎2 ④', '125^2-25^2', '15000')), '1-1');
+              pItem('基礎2 ①', '38\\times13+38\\times7+42\\times13+42\\times7') +
+              pItem('基礎2 ②', '59^2+2\\times 59\\times 1+1^2') +
+              pItem('基礎2 ③', '89^2-2\\times 89\\times 39+39^2') +
+              pItem('基礎2 ④', '125^2-25^2')), '1-1');
         },
         caption: '習作印 3 基礎 2：<b>自己寫完</b>再對答案。'
       },
@@ -921,7 +702,7 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 4', AMB, '用平方差求值與應用',
-              pText('基礎4', '等腰直角三角形農地切出小三角形停車場，其餘是草莓園。\\(\\overline{AB}=288\\)、\\(\\overline{CD}=88\\) 公尺，求草莓園面積。', '37600 平方公尺') +
+              pText('基礎4', '等腰直角三角形農地切出小三角形停車場，其餘是草莓園。\\(\\overline{AB}=288\\)、\\(\\overline{CD}=88\\) 公尺，求草莓園面積。') +
               pText('基礎6', '\\(a=65^2-15^2\\)、\\(b=68^2-18^2\\)，比較 \\(a\\) 與 \\(b\\) 的大小。', '\\(b\\gt a\\)')), '1-1');
         },
         caption: '習作印 4：<b>自己寫完</b>再對答案。'
@@ -938,9 +719,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・行有餘力', '印 4、5', GRN, '基礎 5 與精熟練習，做不完不追',
-              pText('基礎5', '選擇：哪個與 \\(102^2+98^2\\) 相同？（四個選項見習作）', '(D)') +
-              pText('精熟1', '大正方形分割成小正方形與四個直角三角形（兩股 \\(9\\)、\\(40\\)），求大正方形面積。', '1681') +
-              pText('精熟2', '\\(\\frac{133^2}{135}\\) 最接近哪個正整數？', '131')), '1-1');
+              pText('基礎5', '選擇：哪個與 \\(102^2+98^2\\) 相同？（四個選項見習作）') +
+              pText('精熟1', '大正方形分割成小正方形與四個直角三角形（兩股 \\(9\\)、\\(40\\)），求大正方形面積。') +
+              pText('精熟2', '\\(\\frac{133^2}{135}\\) 最接近哪個正整數？')), '1-1');
         },
         caption: '習作印 4、5：做不完不追。'
       },
@@ -1282,10 +1063,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 25、26', BLU, '計算下列各式',
-              pItem('印5 ①', '(x^2+3x-5)+(7x^2-7x-7)', '\\(8x^2-4x-12\\)') +
-              pItem('印5 ②', '(4+3x^2+x)+(3x^2-2x-4)', '\\(6x^2-x\\)') +
-              pItem('印6 ①', '(-x^2+3x)+(6x^2-4+2x)', '\\(5x^2+5x-4\\)') +
-              pItem('印6 ②', '(x^3-6-3x)+(-4x^2+5x-1)', '\\(x^3-4x^2+2x-7\\)')), '1-2');
+              pItem('印5 ①', '(x^2+3x-5)+(7x^2-7x-7)') +
+              pItem('印5 ②', '(4+3x^2+x)+(3x^2-2x-4)') +
+              pItem('印6 ①', '(-x^2+3x)+(6x^2-4+2x)') +
+              pItem('印6 ②', '(x^3-6-3x)+(-4x^2+5x-1)')), '1-2');
         },
         caption: '課本印 25、26：先降冪排好，再一欄一欄加。<b>習作的加法題在節末一起做</b>。'
       },
@@ -1345,8 +1126,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 28', BLU, '計算下列各式（點任一題看詳解）',
-              pItem('印8 ①', '(x^3-7+x-x^2)-(x^3+2x^2-x+3)', '\\(-3x^2+2x-10\\)') +
-              pItem('印8 ②', '(4x^3+x-7)-(3x^2-1+5x)', '\\(4x^3-3x^2-4x-6\\)')), '1-2');
+              pItem('印8 ①', '(x^3-7+x-x^2)-(x^3+2x^2-x+3)') +
+              pItem('印8 ②', '(4x^3+x-7)-(3x^2-1+5x)')), '1-2');
         },
         caption: '課本印 28 兩題：先變號，再合併。<b>習作的減法與反推在節末一起做</b>。'
       },
@@ -1433,9 +1214,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 27、29', BLU, '',
-              pText('印7 例3', '\\(ax^2-4x+1\\) 與 \\(3x^2+bx+c\\) 相加為 \\(0\\)，求係數。', '\\(a=-3,b=4,c=-1\\)') +
-              pItem('印9 ①', '(6x^3+2x)+(x^2+4x+5)+(3x^2+7)', '\\(6x^3+4x^2+6x+12\\)') +
-              pItem('印9 ②', '(2x^2+5x-1)-(3x^2-5x)+(4x^2-x+1)', '\\(3x^2+9x\\)')), '1-2');
+              pText('印7 例3', '\\(ax^2-4x+1\\) 與 \\(3x^2+bx+c\\) 相加為 \\(0\\)，求係數。') +
+              pItem('印9 ①', '(6x^3+2x)+(x^2+4x+5)+(3x^2+7)') +
+              pItem('印9 ②', '(2x^2+5x-1)-(3x^2-5x)+(4x^2-x+1)')), '1-2');
         },
         caption: '課本印 27、29：混合題先把括號處理完再合併。<b>習作從下一頁開始一起做</b>。'
       },
@@ -1458,8 +1239,8 @@ window.DECK = window.DECK || [];
               pItem('基礎1 ②', '-5x^3+\\tfrac{4}{3}x', '三次；\\(-5,\\;0,\\;\\tfrac{4}{3},\\;0\\)') +
               pItem('基礎2', '7x-x^2+4x-6+2x^2+4',
                 '\\(x^2\\)、\\(11x\\)、\\(-2\\)；\\(x^2+11x-2\\)') +
-              pItem('基礎3 ①', '3x^2-4x+5-2x+7x^2-9', '\\(10x^2-6x-4\\)') +
-              pItem('基礎3 ②', '9x^3+8x^2-7x+6-5x^3+4x^2+3', '\\(4x^3+12x^2-7x+9\\)')), '1-2');
+              pItem('基礎3 ①', '3x^2-4x+5-2x+7x^2-9') +
+              pItem('基礎3 ②', '9x^3+8x^2-7x+6-5x^3+4x^2+3')), '1-2');
         },
         caption: '習作印 6、7 五題。<b>次數、係數、合併同類項</b>——判斷題先做完再做計算題。'
       },
@@ -1476,10 +1257,10 @@ window.DECK = window.DECK || [];
 
           pMount(h,
             pCard('習作・基礎練習', '印 7', AMB, '計算下列各式，寫出分欄過程',
-              pItem('基礎4 ①', '(3x^2+x-6)+(2x^2-5x+3)', '\\(5x^2-4x-3\\)') +
-              pItem('基礎4 ②', '(7x^2-x-3)-(5x^2-x-4)', '\\(2x^2+1\\)') +
-              pItem('基礎4 ③', '(5x^3-x^2+8x+9)-(9-2x^2+4x^3)', '\\(x^3+x^2+8x\\)') +
-              pItem('基礎4 ④', '(2-4x-3x^2)-[(2x^2-5x+7)+(x^2+x-3)]', '\\(-6x^2-2\\)')), '1-2');
+              pItem('基礎4 ①', '(3x^2+x-6)+(2x^2-5x+3)') +
+              pItem('基礎4 ②', '(7x^2-x-3)-(5x^2-x-4)') +
+              pItem('基礎4 ③', '(5x^3-x^2+8x+9)-(9-2x^2+4x^3)') +
+              pItem('基礎4 ④', '(2-4x-3x^2)-[(2x^2-5x+7)+(x^2+x-3)]')), '1-2');
         },
         caption: '⚠ ④ 是<b>兩層括號</b>，超出本節底線——做不出來不要卡住，先把①②③交出來。'
       },
@@ -1495,11 +1276,11 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 8', AMB, '在空格內填入適當的多項式',
-              pItem('基礎5 ①', '(4+5x-x^2)+(\\quad)=2x^2-x+6', '\\(3x^2-6x+2\\)') +
-              pItem('基礎5 ②', '(\\quad)-(x^2+5x-7)=2x^3-8x^2+3x', '\\(2x^3-7x^2+8x-7\\)')) +
+              pItem('基礎5 ①', '(4+5x-x^2)+(\\quad)=2x^2-x+6') +
+              pItem('基礎5 ②', '(\\quad)-(x^2+5x-7)=2x^3-8x^2+3x')) +
             pCard('習作・行有餘力', '印 9', GRN, '精熟練習，做不完不追',
-              pText('精熟1', '\\(A\\) 為單項式，\\(A-B\\) 的二次項係數為 \\(7\\)，求 \\(A\\)。', '\\(A=5x^2\\)') +
-              pText('精熟2', '\\(A+B-C\\) 為常數多項式，求 \\(A\\)（三式見習作）。', '\\(A=5x^2-x-6\\)')), '1-2');
+              pText('精熟1', '\\(A\\) 為單項式，\\(A-B\\) 的二次項係數為 \\(7\\)，求 \\(A\\)。') +
+              pText('精熟2', '\\(A+B-C\\) 為常數多項式，求 \\(A\\)（三式見習作）。')), '1-2');
         },
         caption: '基礎 5 兩題是反推；精熟兩題標「進階」，做不完不追。'
       },
@@ -1836,10 +1617,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 33、34', BLU, '計算下列各式',
-              pItem('印1 ①', '4(5x^2-6x+7)', '\\(20x^2-24x+28\\)') +
-              pItem('印2 ①', '(-x)\\cdot 7x^2', '\\(-7x^3\\)') +
-              pItem('印2 ②', '(-6x^2)(-5x)', '\\(30x^3\\)') +
-              pItem('印2 ③', '(-4x)^2', '\\(16x^2\\)') +
+              pItem('印1 ①', '4(5x^2-6x+7)') +
+              pItem('印2 ①', '(-x)\\cdot 7x^2') +
+              pItem('印2 ②', '(-6x^2)(-5x)') +
+              pItem('印2 ③', '(-4x)^2') +
 
               pItem('印2 例1', '5x(3x^2-x+1)', '\\(15x^3-5x^2+5x\\)')), '1-3');
         },
@@ -1898,8 +1679,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 35', BLU, '計算下列各式',
-              pItem('印3 ①', '(2x+1)(3x-1)', '\\(6x^2+x-1\\)') +
-              pItem('印3 ②', '(3x-4)(3x-2)', '\\(9x^2-18x+8\\)')), '1-3');
+              pItem('印3 ①', '(2x+1)(3x-1)') +
+              pItem('印3 ②', '(3x-4)(3x-2)')), '1-3');
         },
         caption: '課本印 35 兩題：四塊都要，算完數項數。<b>習作的乘法題在節末一起做</b>。'
       },
@@ -2015,8 +1796,7 @@ window.DECK = window.DECK || [];
           pMount(h,
 
             pCard('課本・隨堂練習', '印 39', BLU, '看課本的圖作答',
-              pText('印7 例5', '求凸形圖案的<b>周長</b>與<b>面積</b>（用 \\(x\\) 表示）。',
-                '周長 \\(12x+4\\)；面積 \\(6x^2+10x-3\\)')), '1-3');
+              pText('印7 例5', '求凸形圖案的<b>周長</b>與<b>面積</b>（用 \\(x\\) 表示）。')), '1-3');
         },
         caption: '課本印 39：先把每一段邊長標出來。<b>習作的兩題圖形在節末一起做</b>。'
       },
@@ -2204,8 +1984,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 41、42', BLU, '先把單項式除法做穩',
-              pItem('印9 ①', '30x^2\\div 6x', '\\(5x\\)') +
-              pItem('印9 ③', 'x^2\\div 2x', '\\(\\tfrac{x}{2}\\)') +
+              pItem('印9 ①', '30x^2\\div 6x') +
+              pItem('印9 ③', 'x^2\\div 2x') +
               pText('印10', '求 \\((15x^2-6x)\\div 3x\\) 的商式與餘式；\\(3x\\) 會不會整除它？', '商 \\(5x-2\\)、餘 \\(0\\)，會')), '1-3');
         },
         caption: '課本印 9、10：先把單項式除法做穩，再進長除法。'
@@ -2307,10 +2087,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 10', AMB, '計算下列各式，合併同類項後作答',
-              pItem('基礎1 ①', '3x^2\\cdot(-\\tfrac{1}{2}x)', '\\(-\\tfrac{3}{2}x^3\\)') +
-              pItem('基礎1 ②', '2x(5x-3)', '\\(10x^2-6x\\)') +
-              pItem('基礎1 ③', '(2x+7)(3x-1)', '\\(6x^2+19x-7\\)') +
-              pItem('基礎1 ④', '(5-2x)(4x+3)', '\\(-8x^2+14x+15\\)')), '1-3');
+              pItem('基礎1 ①', '3x^2\\cdot(-\\tfrac{1}{2}x)') +
+              pItem('基礎1 ②', '2x(5x-3)') +
+              pItem('基礎1 ③', '(2x+7)(3x-1)') +
+              pItem('基礎1 ④', '(5-2x)(4x+3)')), '1-3');
         },
         caption: '習作印 10 的 ①～④：前兩題是單項式，後兩題要四塊都乘到。'
       },
@@ -2326,10 +2106,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 10', AMB, '計算下列各式，合併同類項後作答',
-              pItem('基礎1 ⑤', '(2x^2+5x-3)(x+2)', '\\(2x^3+9x^2+7x-6\\)') +
-              pItem('基礎1 ⑥', '(x^2-7)(3x+4)', '\\(3x^3+4x^2-21x-28\\)') +
-              pItem('基礎1 ⑦', '(3x-7)^2', '\\(9x^2-42x+49\\)') +
-              pItem('基礎1 ⑧', '(3x^2+2)(3x^2-2)', '\\(9x^4-4\\)')), '1-3');
+              pItem('基礎1 ⑤', '(2x^2+5x-3)(x+2)') +
+              pItem('基礎1 ⑥', '(x^2-7)(3x+4)') +
+              pItem('基礎1 ⑦', '(3x-7)^2') +
+              pItem('基礎1 ⑧', '(3x^2+2)(3x^2-2)')), '1-3');
         },
         caption: '習作印 10 的 ⑤～⑧。⑦⑧ 認得出公式就<b>省掉四塊的工</b>。'
       },
@@ -2346,8 +2126,8 @@ window.DECK = window.DECK || [];
           pMount(h,
             pCard('習作・基礎練習', '印 11', AMB, '看習作的圖作答',
               pText('基礎2', '求凸字形圖案的<b>周長</b>。（以 \\(x\\) 的多項式表示）', '\\(12x+2\\)') +
-              pText('基礎2 續', '承上，求該凸字形圖案的<b>面積</b>。', '\\(7x^2+3x-2\\)') +
-              pText('基礎3', '國旗手稿如圖，求塗上<b>紅色部分</b>的面積。（以 \\(x\\) 的多項式表示）', '\\(54x^2-39x+3\\)')), '1-3');
+              pText('基礎2 續', '承上，求該凸字形圖案的<b>面積</b>。') +
+              pText('基礎3', '國旗手稿如圖，求塗上<b>紅色部分</b>的面積。（以 \\(x\\) 的多項式表示）')), '1-3');
         },
         caption: '習作印 11 三小題。<b>周長和面積是同一張圖的兩問</b>，先把邊長標完再分頭算。'
       },
@@ -2382,12 +2162,12 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 13', AMB, '三題都用四者關係',
-              pText('基礎5', '\\(A\\div(4x+1)\\) 得商式 \\(4x-1\\)、餘式 \\(-10\\)，求 \\(A\\)。', '\\(A=16x^2-11\\)') +
-              pText('基礎6', '\\((20x^2+2x-5)\\div B\\) 得商式 \\(4x+2\\)、餘式 \\(-1\\)，求 \\(B\\)。', '\\(B=5x-2\\)') +
-              pText('基礎7', '\\((5x^2-7x+a)\\div(x-3)\\) 得餘式 \\(16\\)，求 \\(a\\)。', '\\(a=-8\\)')) +
+              pText('基礎5', '\\(A\\div(4x+1)\\) 得商式 \\(4x-1\\)、餘式 \\(-10\\)，求 \\(A\\)。') +
+              pText('基礎6', '\\((20x^2+2x-5)\\div B\\) 得商式 \\(4x+2\\)、餘式 \\(-1\\)，求 \\(B\\)。') +
+              pText('基礎7', '\\((5x^2-7x+a)\\div(x-3)\\) 得餘式 \\(16\\)，求 \\(a\\)。')) +
             pCard('習作・行有餘力', '印 14', GRN, '精熟練習，要看圖，做不完不追',
-              pText('精熟1', '\\(\\triangle ABC\\) 面積為 \\(6x^2+13x+6\\)，\\(\\overline{AB}=6x+4\\)，求 \\(\\overline{AB}\\) 對應的高。', '\\(2x+3\\)') +
-              pText('精熟2', '木門寬 \\(3x-2\\)、高 \\(7x+11\\)，內有六塊寬 \\(x-1\\)、高 \\(x+1\\) 的玻璃，求要油漆的面積。', '\\(15x^2+19x-16\\)')), '1-3');
+              pText('精熟1', '\\(\\triangle ABC\\) 面積為 \\(6x^2+13x+6\\)，\\(\\overline{AB}=6x+4\\)，求 \\(\\overline{AB}\\) 對應的高。') +
+              pText('精熟2', '木門寬 \\(3x-2\\)、高 \\(7x+11\\)，內有六塊寬 \\(x-1\\)、高 \\(x+1\\) 的玻璃，求要油漆的面積。')), '1-3');
         },
         caption: '習作印 13 基礎 5～7 今天當堂寫完；印 14 精熟兩題行有餘力再做。'
       },

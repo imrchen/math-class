@@ -2613,7 +2613,8 @@ window.SOLUTIONS = {
       ]
      }
     ]
-   }
+   },
+   "key": "① \\(9\\)　② \\(12\\)"
   },
   "基礎3": {
    "src": "習作",
@@ -2704,7 +2705,8 @@ window.SOLUTIONS = {
       ]
      }
     ]
-   }
+   },
+   "key": "\\(45\\) 公分"
   },
   "基礎4": {
    "src": "習作",
@@ -2837,7 +2839,8 @@ window.SOLUTIONS = {
       ]
      }
     ]
-   }
+   },
+   "key": "\\(70\\) 公分"
   },
   "基礎5": {
    "src": "習作",
@@ -2951,7 +2954,8 @@ window.SOLUTIONS = {
       ]
      }
     ]
-   }
+   },
+   "key": "\\(18\\)"
   },
   "精熟1": {
    "src": "習作",
@@ -3162,7 +3166,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(9：1\\)"
   }
  },
  "1-3": {
@@ -4661,7 +4666,8 @@ window.SOLUTIONS = {
       ]
      }
     ]
-   }
+   },
+   "key": "\\(12\\)"
   },
   "基礎2": {
    "src": "習作",
@@ -4678,7 +4684,8 @@ window.SOLUTIONS = {
     "又 \\(\\overline{RS}=16\\)，\\(16÷4=4\\)（一份的長）"
    ],
    "ans": "① \\(\\angle Q+\\angle R=72\\degree+144\\degree=216\\degree\\)　② \\(\\overline{PQ}=9×4=36\\)，\\(\\overline{SP}=8×4=32\\)",
-   "fig": null
+   "fig": null,
+   "key": "① \\(216\\degree\\)　② \\(\\overline{PQ}=36\\)，\\(\\overline{SP}=32\\)"
   },
   "基礎3": {
    "src": "習作",
@@ -4765,7 +4772,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(4\\)"
   },
   "基礎4": {
    "src": "習作",
@@ -4858,7 +4866,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(5\\)"
   },
   "基礎5": {
    "src": "習作",
@@ -5085,7 +5094,8 @@ window.SOLUTIONS = {
       ]
      }
     ]
-   }
+   },
+   "key": "\\(\\frac{9}{2}\\)"
   },
   "精熟2": {
    "src": "習作",
@@ -5198,7 +5208,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "① \\(1：2\\)　② \\(9\\)"
   }
  },
  "1-4": {
@@ -6375,7 +6386,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(56\\)"
   },
   "基礎2": {
    "src": "習作",
@@ -6558,7 +6570,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(16\\) 公尺"
   },
   "基礎4": {
    "src": "習作",
@@ -6670,7 +6683,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(42\\) 公分"
   },
   "基礎5": {
    "src": "習作",
@@ -6760,7 +6774,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(6\\sqrt{6}\\)"
   },
   "基礎6": {
    "src": "習作",
@@ -6844,7 +6859,8 @@ window.SOLUTIONS = {
       ]
      }
     ]
-   }
+   },
+   "key": "\\(600\\) 公分"
   },
   "精熟1": {
    "src": "習作",
@@ -6935,7 +6951,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(12\\)"
   },
   "精熟2": {
    "src": "習作",
@@ -7027,7 +7044,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(4：1\\)"
   }
  },
  "2-1": {
@@ -8317,7 +8335,8 @@ window.SOLUTIONS = {
     "\\(L_3\\)：\\(9>8\\) → 交點 \\(0\\) 個"
    ],
    "ans": "① \\(2\\)、\\(1\\)、\\(0\\) 個　② \\(L_2\\)　③ \\(L_1\\)",
-   "fig": null
+   "fig": null,
+   "key": "① \\(2\\)、\\(1\\)、\\(0\\)　② \\(L_2\\)　③ \\(L_1\\)"
   },
   "基礎3": {
    "src": "習作",
@@ -8412,7 +8431,8 @@ window.SOLUTIONS = {
       "text": "$18$"
      }
     ]
-   }
+   },
+   "key": "\\(16\\) 公分"
   },
   "基礎4": {
    "src": "習作",
@@ -8495,7 +8515,8 @@ window.SOLUTIONS = {
       "size": 0.16
      }
     ]
-   }
+   },
+   "key": "\\(65\\degree\\)"
   },
   "基礎5": {
    "src": "習作",
@@ -8585,7 +8606,8 @@ window.SOLUTIONS = {
       "text": "$6$"
      }
     ]
-   }
+   },
+   "key": "\\(6\\)"
   },
   "基礎6": {
    "src": "習作",
@@ -8672,7 +8694,8 @@ window.SOLUTIONS = {
       "text": "$4$"
      }
     ]
-   }
+   },
+   "key": "\\(6\\)"
   },
   "基礎7": {
    "src": "習作",
@@ -8767,7 +8790,8 @@ window.SOLUTIONS = {
       "text": "$2$"
      }
     ]
-   }
+   },
+   "key": "\\(2\\sqrt{2}\\)"
   },
   "基礎8": {
    "src": "習作",
@@ -8908,7 +8932,8 @@ window.SOLUTIONS = {
       "size": 0.7
      }
     ]
-   }
+   },
+   "key": "① \\(10\\sqrt{3}\\)　② \\(17\\)"
   },
   "精熟1": {
    "src": "習作",
@@ -9042,7 +9067,8 @@ window.SOLUTIONS = {
     "axes": {
      "span": 14
     }
-   }
+   },
+   "key": "\\(（7，\\frac{11}{2}）\\)"
   },
   "精熟2": {
    "src": "習作",
@@ -9158,7 +9184,8 @@ window.SOLUTIONS = {
       "text": "$10$"
      }
     ]
-   }
+   },
+   "key": "\\(20\\)"
   }
  },
  "2-2": {
@@ -10892,7 +10919,8 @@ window.SOLUTIONS = {
       "to": 3
      }
     ]
-   }
+   },
+   "key": "① \\(45\\degree\\)　② \\(\\frac{15}{2}\\pi\\)"
   },
   "基礎2": {
    "src": "習作",
@@ -10980,7 +11008,8 @@ window.SOLUTIONS = {
       "to": 3
      }
     ]
-   }
+   },
+   "key": "① \\(84\\degree\\)　② \\(90\\degree\\)　③ \\(132\\degree\\)"
   },
   "基礎3": {
    "src": "習作",
@@ -11230,7 +11259,8 @@ window.SOLUTIONS = {
       "size": 0.2
      }
     ]
-   }
+   },
+   "key": "\\(180\\degree\\)"
   },
   "基礎5": {
    "src": "習作",
@@ -11310,7 +11340,8 @@ window.SOLUTIONS = {
       "to": 4
      }
     ]
-   }
+   },
+   "key": "\\(60\\degree\\)"
   },
   "基礎6": {
    "src": "習作",
@@ -11410,7 +11441,8 @@ window.SOLUTIONS = {
       "size": 0.8
      }
     ]
-   }
+   },
+   "key": "\\(110\\degree\\)"
   },
   "精熟1": {
    "src": "習作",
@@ -11688,7 +11720,8 @@ window.SOLUTIONS = {
       "size": 0.14
      }
     ]
-   }
+   },
+   "key": "\\(36\\degree\\)"
   }
  },
  "3-1": {
@@ -12955,7 +12988,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "故 \\(\\triangle BDE\\) 為等腰三角形　\\(12\\)"
   },
   "基礎2": {
    "src": "習作",
@@ -13301,7 +13335,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "故 \\(\\angle 1=\\angle 2\\)　③ \\(1：\\sqrt{2}\\)"
   },
   "基礎5": {
    "src": "習作",
@@ -16486,7 +16521,8 @@ window.SOLUTIONS = {
       "size": 0.5
      }
     ]
-   }
+   },
+   "key": "\\(\\frac{169}{4}\\pi\\)"
   },
   "基礎2": {
    "src": "習作",
@@ -16590,7 +16626,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(16\\)"
   },
   "基礎3": {
    "src": "習作",
@@ -16677,7 +16714,8 @@ window.SOLUTIONS = {
       "text": "$80\\degree$"
      }
     ]
-   }
+   },
+   "key": "\\(160\\degree\\)"
   },
   "基礎4": {
    "src": "習作",
@@ -16767,7 +16805,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(72\\degree\\)"
   },
   "基礎5": {
    "src": "習作",
@@ -17031,7 +17070,8 @@ window.SOLUTIONS = {
      ],
      "placement": "right"
     }
-   ]
+   ],
+   "key": "① \\(60\\)　② \\(\\frac{120}{23}\\)"
   },
   "基礎6": {
    "src": "習作",
@@ -17113,7 +17153,8 @@ window.SOLUTIONS = {
       "size": 0.6
      }
     ]
-   }
+   },
+   "key": "\\(3\\)"
   },
   "基礎7": {
    "src": "習作",
@@ -17245,7 +17286,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(2：3\\)"
   },
   "基礎8": {
    "src": "習作",
@@ -17350,7 +17392,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "① \\(\\frac{13}{6}\\)　② \\(10\\)"
   },
   "基礎9": {
    "src": "習作",
@@ -17464,7 +17507,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(8\\)"
   },
   "精熟1": {
    "src": "習作",
@@ -17572,7 +17616,8 @@ window.SOLUTIONS = {
       "ticks": 1
      }
     ]
-   }
+   },
+   "key": "\\(\\frac{25}{3}\\)"
   },
   "精熟2": {
    "src": "習作",
@@ -17705,7 +17750,8 @@ window.SOLUTIONS = {
      }
     ],
     "placement": "right"
-   }
+   },
+   "key": "\\(24\\)"
   }
  },
  "第1章": {

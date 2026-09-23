@@ -312,7 +312,8 @@ window.PRACTICE = (function () {
           font-size:24px;font-weight:800;color:${K}">
         <span style="display:inline-block;width:9px;height:26px;border-radius:2px;background:var(--edition,#d9480f)"></span>${g.label}</div>`;
       if (its.every(it => it.tiny)) {
-        const n = its.length, cols = n <= 10 ? n : Math.ceil(n / 2);
+
+        const n = its.length, cols = n <= 10 ? Math.max(n, 4) : Math.ceil(n / 2);
         return `<div>${head}<div style="display:grid;grid-template-columns:repeat(${cols},minmax(0,1fr));gap:10px">
           ${its.map(big).join('')}</div></div>`;
       }

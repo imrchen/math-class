@@ -24,238 +24,18 @@ window.DECK = window.DECK || [];
       </div>`).join('') + `</div>`;
   }
 
-  const pDropCont = (t) => t.replace(/\s*續[一二三四五六七八九十]?\s*$/, '');
-  const pLabel = (sec, tag) => {
-    if (!/^印\s*\d+/.test(tag)) return pDropCont(tag);
-    const S = (window.SOLUTIONS || {})[sec] || {};
-    const d = S[tag] || S[tag.replace(/\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫].*$/, '')];
-    return pDropCont(d && d.page ? tag.replace(/^印\s*\d+/, d.page.replace(/\s+/g, ' ')) : tag);
-  };
-
-  const pRelabel = (h, sec) => h.querySelectorAll('.p-row').forEach(r => {
-    const el = r.querySelector('.p-tag');
-
-    if (el) el.textContent = r.dataset.label || pLabel(sec, r.dataset.tag);
-  });
-
-  const pRow = (tag, bodyHtml, ans, fs, label) =>
-    `<div class="p-row" data-tag="${tag}"${label ? ` data-label="${label}"` : ''} style="display:flex;gap:9px;align-items:baseline;padding:2px 0;border-radius:8px">
-       <span class="p-tag" style="flex:0 0 72px;font-size:11px;font-weight:900;color:${GREY};white-space:nowrap">${tag}</span>
-       <span style="flex:1;font-size:${fs};color:${INK};line-height:1.55">${bodyHtml}</span>
-       ${ans ? `<span class="p-ans" style="flex:0 0 auto;font-size:12.5px;font-weight:900;color:${GRN};white-space:nowrap;overflow:hidden;max-width:0;opacity:0;transition:opacity .12s">${ans}</span>` : ''}
-       <span class="p-go" style="flex:0 0 auto;width:12px;text-align:right;font-size:16px;font-weight:900;color:${C};opacity:0">›</span></div>`;
-  const pItem = (tag, tex, ans, label) => pRow(tag, `\\(${tex}\\)`, ans, '13.5px', label);
-  const pText = (tag, html, ans, label) => pRow(tag, html, ans, '13px', label);
-  const pCard = (src, page, col, sub, rows) =>
-    `<div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;overflow:hidden">
-       <div style="display:flex;justify-content:space-between;align-items:center;background:${col};padding:4px 13px">
-         <span style="font-size:13px;font-weight:900;color:#fff;letter-spacing:.03em">${src}</span>
-         <span style="font-size:13px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:8px;padding:1px 9px">${page}</span>
-       </div>
-       <div style="padding:5px 13px 7px">
-         ${sub ? `<div style="font-size:11.5px;color:#657187;margin-bottom:1px">${sub}</div>` : ''}
-         ${rows}</div></div>`;
-  const pWrap = (cards) =>
-    `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:8px">${cards}
-       <button class="p-sol" style="align-self:center;margin-top:2px;border:1.5px solid ${GRN};background:#fff;color:${GRN};font-weight:900;font-size:13px;border-radius:999px;padding:4px 18px;cursor:pointer">顯示解答</button></div>`;
-
-  const CONT = ['', ' 續', ' 續一', ' 續二', ' 續三', ' 續四', ' 續五'];
-  const SUBRE = /\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫].*$/;
-
-  const BOILER = /^承上[，,]?[^$]{0,24}。?$/;
-  const pMerge = (S, tag) => {
-    if (SUBRE.test(tag) && S[tag]) return S[tag];
-    const base = S[tag] ? tag : tag.replace(SUBRE, '');
-    const d0 = S[base];
-    if (!d0) return null;
-    const steps = [], ans = [], qs = [];
-    for (const suf of CONT) {
-      const d = S[base + suf];
-      if (!d) continue;
-
-      const q = String(d.q || '').trim();
-      if (q && qs.indexOf(q) < 0 && !BOILER.test(q)) qs.push(q);
-      for (const st of d.steps || []) steps.push(st);
-      if (d.ans && ans.indexOf(d.ans) < 0) ans.push(d.ans);
-    }
-    return Object.assign({}, d0, { q: qs.join('\n'), steps, ans: ans.join('　') });
-  };
-
-  const pFig = (d) => (d && d.fig && ((window.FIGURES_LOCAL || {})[d.fig] || (window.FIGURES || {})[d.fig])) || null;
-
-  const pDetail = (h, sec, tag, back) => {
-    const S = (window.SOLUTIONS || {})[sec] || {};
-
-    const d = pMerge(S, tag);
-    if (!d) return false;
-    const tex = t => (t || '').replace(/\$([^$]+)\$/g, (_, m) => '\\(' + m + '\\)');
-
-    const QNUM = /^\s*[\u2460-\u2473]/;
-    const lines = [...d.steps.map(t => ({ t: tex(t), q: QNUM.test(String(t)) })),
-                   ...(d.ans ? [{ t: '答：' + tex(d.ans), fin: 1 }] : [])];
-
-    h.innerHTML =
-      `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">
-         <div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;overflow:hidden">
-           <div style="display:flex;justify-content:space-between;align-items:center;background:${C};padding:5px 13px">
-             <span style="font-size:13px;font-weight:900;color:#fff">${d.src} ${pLabel(sec, tag)}</span>
-             <span style="font-size:13px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:8px;padding:1px 9px">${d.page}</span>
-           </div>
-           <div style="padding:10px 14px">
-             <div style="font-size:19px;color:${INK};line-height:1.5">${String(d.q || '').split('\n').filter(Boolean).map((seg, i) => `<div style="${i ? 'margin-top:7px' : ''}">${tex(seg)}</div>`).join('')}
-               ${d.fig && !pFig(d) ? `<div style="margin-top:6px;font-size:13px;font-weight:900;color:#8a5a00;background:#fff4d6;border:1px solid #f0dba8;border-radius:8px;padding:4px 10px;display:inline-block">⚠ ocho 沒有這張圖，請看紙本 ${d.page}</div>` : ''}</div>
-             ${pFig(d) ? `<div class="q-fig" style="margin-top:8px;width:100%;height:220px;display:flex;align-items:center;justify-content:center">${pFig(d)}</div>` : ''}
-           </div>
-         </div>
-         <div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:14px 18px 30px;display:flex;flex-direction:column;gap:26px;min-height:${Math.max(150, lines.length * 62)}px">
-           ${lines.map((l, i) => `<div class="${l.q ? 'p-ask' : 'p-line'}" data-i="${i}" style="${l.q ? '' : 'visibility:hidden;'}font-size:${l.fin ? 22 : 20}px;font-weight:${l.fin ? 900 : l.q ? 800 : 700};color:${l.fin ? GRN : INK}${l.q ? '' : ';padding-left:20px'}">${l.t}</div>`).join('')}
-         </div>
-         <div style="display:flex;gap:8px;justify-content:center">
-           <button class="p-next" style="border:1.5px solid ${C};background:${C};color:#fff;font-weight:900;font-size:13px;border-radius:999px;padding:5px 20px;cursor:pointer">下一行</button>
-           <button class="p-all" style="border:1.5px solid ${GRN};background:#fff;color:${GRN};font-weight:900;font-size:13px;border-radius:999px;padding:5px 16px;cursor:pointer">全部顯示</button>
-           <button class="p-back" style="border:1.5px solid #c3cddd;background:#fff;color:${GREY};font-weight:900;font-size:13px;border-radius:999px;padding:5px 16px;cursor:pointer">← 回題目列表</button>
-         </div>
-       </div>`;
-    const els = [...h.querySelectorAll('.p-line')];
-    let shown = 0;
-    const next = h.querySelector('.p-next');
-    const step = () => {
-      if (shown < els.length) els[shown++].style.visibility = 'visible';
-      if (shown >= els.length) { next.disabled = true; next.style.opacity = '.4'; next.style.cursor = 'default'; }
-    };
-    next.onclick = step;
-    h.querySelector('.p-all').onclick = () => { while (shown < els.length) step(); };
-    h.querySelector('.p-back').onclick = back;
-    MJ(h);
-    pAfter(h);
-    return true;
-  };
-
-  const pFit = (h) => {
-    if (typeof window === 'undefined') return;
-    const stack = h.firstElementChild;
-    if (!stack || !h.clientHeight) return;
-    stack.style.zoom = '';
-
-    const cs = window.getComputedStyle(h);
-    const pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
-
-    if (h.closest && h.closest('#zoomBody')) {
-
-      const W = h.clientWidth, Hh = h.clientHeight - pad;
-      let bw = +h.dataset.zoomBase || 460, bz = 0;
-      [bw, Math.round(W * 0.42), Math.round(W * 0.52), Math.round(W * 0.64), Math.round(W * 0.78)]
-        .forEach(w => {
-          if (w < 280 || w > W) return;
-          stack.style.width = w + 'px';
-          const z = Math.min(W / w, Hh / (stack.scrollHeight || 1), 2.8);
-          if (z > bz) { bz = z; bw = w; }
-        });
-      stack.style.width = bw + 'px';
-      stack.style.margin = '0 auto';
-
-      if (bz < 0.995 || bz > 1.02) stack.style.zoom = Math.max(0.6, bz).toFixed(3);
-      return;
-    }
-    stack.style.width = '';
-    stack.style.margin = '';
-
-    const need = stack.scrollHeight, have = h.clientHeight - pad;
-    if (have > 0 && need > have) stack.style.zoom = Math.max(0.62, (have / need) * 0.985).toFixed(3);
-  };
-
-  if (typeof document !== 'undefined' && typeof window !== 'undefined' && !window.__pFitZoomHook) {
-    window.__pFitZoomHook = true;
-    const sweep = () => document.querySelectorAll('.visual-host').forEach(el => {
-      if (el.firstElementChild && el.querySelector('.p-line, .p-ask')) pFit(el);
-    });
-    document.addEventListener('click', () => { setTimeout(sweep, 150); setTimeout(sweep, 700); }, true);
-  }
-
-  const pAfter = (h) => {
-    if (typeof window === 'undefined' || typeof setTimeout !== 'function') return;
-    const go = () => { pFit(h); if (window.dispatchEvent) window.dispatchEvent(new Event('resize')); };
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise([h]).then(go).catch(go);
-    } else { setTimeout(go, 60); }
-  };
-
+  const PR = () => (typeof window !== 'undefined' && window.PRACTICE) || null;
+  const PO = { accent: C };
+  const pItem = (tag, tex, ans, label) => PR() ? PR().item(tag, tex, ans, label, PO)
+    : `<div class="p-row" data-tag="${tag}">\\(${tex}\\) ${ans || ''}</div>`;
+  const pText = (tag, html, ans, label) => PR() ? PR().text(tag, html, ans, label, PO)
+    : `<div class="p-row" data-tag="${tag}">${html} ${ans || ''}</div>`;
+  const pCard = (src, page, col, sub, rows) => PR() ? PR().card(src, page, col, sub, rows)
+    : `<div>${src} ${page} ${sub || ''}${rows}</div>`;
+  const pMount = (h, cards, sec) => { if (PR()) PR().mount(h, cards, sec, PO); else h.innerHTML = cards; };
   const pAnswerKey = (h, sec, groups) => {
-    const S = (window.SOLUTIONS || {})[sec] || {};
-    const tex = t => String(t || '').replace(/\$([^$]+)\$/g, (_, m) => '\\(' + m + '\\)');
-
-    const splitChoice = (a) => {
-      const m = /^選\s*(\([A-Da-d]\))\s*(.*)$/.exec(String(a || '').trim());
-      return m ? { big: m[1], sub: m[2] } : { big: String(a || ''), sub: '' };
-    };
-
-    const dropLab = (no, a) => {
-      const labs = String(a).match(/[①-⑳]|[(（]\d+[)）]/g) || [];
-      const m = /^\s*([①-⑳]|[(（]\d+[)）])\s*/.exec(a);
-      return m && labs.length === 1 && String(no).includes(m[1]) ? a.slice(m[0].length) : a;
-    };
-    const cell = (no, tag) => {
-      const d = pMerge(S, tag);
-      const a = d ? dropLab(no, d.ans) : '';
-      const { big, sub } = splitChoice(a);
-      return `<div style="border:1.5px solid #dbe3f0;border-radius:10px;background:#fff;
-          padding:7px 9px;display:flex;align-items:baseline;gap:8px;min-width:0">
-        <span style="flex:0 0 auto;font-size:15px;font-weight:700;color:${GREY}">${no}</span>
-        <span style="min-width:0;flex:1">
-          <span style="font-size:21px;font-weight:700;color:${a ? GRN : '#e11d48'};
-            display:block;line-height:1.3;word-break:break-word">${a ? tex(big) : '（查無答案）'}</span>
-          ${sub ? `<span style="font-size:13.5px;color:${GREY};display:block;line-height:1.4">${tex(sub)}</span>` : ''}
-        </span>
-      </div>`;
-    };
-    h.innerHTML = `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:12px">`
-      + groups.map(g => `<div>
-          <div style="font-size:14px;font-weight:700;color:${C};margin:0 0 6px 2px">${g.label}</div>
-          <div style="display:grid;grid-template-columns:repeat(${g.cols || 4},minmax(0,1fr));gap:7px">
-            ${g.items.map(it => cell(it[0], it[1])).join('')}
-          </div></div>`).join('')
-      + `</div>`;
-    pAfter(h);
-  };
-
-  const pMount = (h, cards, sec) => {
-    const render = () => {
-      h.innerHTML = pWrap(cards);
-      const btn = h.querySelector('.p-sol');
-      const ans = [...h.querySelectorAll('.p-ans')];
-      if (btn) btn.onclick = () => {
-        const on = !(ans[0] && ans[0].style.opacity === '1');
-        ans.forEach(e => {
-          e.style.maxWidth = on ? 'none' : '0';
-          e.style.opacity = on ? '1' : '0';
-        });
-        btn.textContent = on ? '收起解答' : '顯示解答';
-        pAfter(h);
-      };
-
-      if (!(sec && window.SOLUTIONS && window.SOLUTIONS[sec])) {
-        h.querySelectorAll('.p-go').forEach(e => e.remove());
-      }
-
-      if (sec && window.SOLUTIONS && window.SOLUTIONS[sec]) {
-        h.querySelectorAll('.p-row').forEach(row => {
-          const tag = row.dataset.tag;
-          const S = window.SOLUTIONS[sec];
-          if (!(S[tag] || S[tag.replace(/\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫].*$/, '')])) {
-            row.querySelector('.p-go').remove(); return;
-          }
-          row.style.cursor = 'pointer';
-          row.querySelector('.p-go').style.opacity = '.55';
-          row.onmouseenter = () => { row.style.background = '#f2f6ff'; };
-          row.onmouseleave = () => { row.style.background = ''; };
-          row.onclick = () => pDetail(h, sec, tag, render);
-        });
-      }
-      pRelabel(h, sec);
-      MJ(h);
-      pAfter(h);
-    };
-    render();
+    if (PR()) PR().answerKey(h, sec, groups);
+    else h.innerHTML = '<div>對答案（需 practice.js）</div>';
   };
 
   const RT = (n) => `<tspan class="radsign">√</tspan><tspan class="rad">${n}</tspan>`;
@@ -557,11 +337,11 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 63、64', BLU, '',
-              pItem('印6 ①', '\\sqrt{121}', '11') +
-              pItem('印6 ②', '\\sqrt{\\tfrac{36}{49}}', '\\(\\tfrac{6}{7}\\)') +
-              pItem('印6 續', '\\sqrt{1.96}', '1.4') +
-              pItem('印7 ①', '\\sqrt{2^6\\times 3^2}', '24') +
-              pItem('印7 ②', '\\sqrt{2025}', '45')), '2-1');
+              pItem('印6 ①', '\\sqrt{121}') +
+              pItem('印6 ②', '\\sqrt{\\tfrac{36}{49}}') +
+              pItem('印6 續', '\\sqrt{1.96}') +
+              pItem('印7 ①', '\\sqrt{2^6\\times 3^2}') +
+              pItem('印7 ②', '\\sqrt{2025}')), '2-1');
         },
         caption: '課本印 6、7：根號裡是平方數就開得出來。'
       },
@@ -768,9 +548,8 @@ window.DECK = window.DECK || [];
               pText('印9 例4', '已知 \\(2.6^2=6.76\\)、\\(2.7^2=7.29\\)⋯⋯，求 \\(\\sqrt{7}\\) 介於哪兩個相鄰的一位小數之間？', '\\(2.6\\) 與 \\(2.7\\)') +
               pText('印10 例5', '\\(\\sqrt{12}\\) 介於哪兩個連續整數之間？', '\\(3\\) 與 \\(4\\)') +
 
-              pText('印10 例5續', '承上，\\(3.4^2=11.56\\)、\\(3.5^2=12.25\\)、\\(3.45^2=11.9025\\)，求 \\(\\sqrt{12}\\) 到小數第一位。',
-                '\\(\\sqrt{12}\\doteq 3.5\\)') +
-              pText('印11 例6', '面積 \\(1\\) 分的正方形土地（\\(1\\) 分約 \\(293.4\\) 坪、\\(1\\) 坪約 \\(3.3\\) 平方公尺），求邊長約幾公尺？', '約 31.1 公尺')), '2-1');
+              pText('印10 例5續', '承上，\\(3.4^2=11.56\\)、\\(3.5^2=12.25\\)、\\(3.45^2=11.9025\\)，求 \\(\\sqrt{12}\\) 到小數第一位。') +
+              pText('印11 例6', '面積 \\(1\\) 分的正方形土地（\\(1\\) 分約 \\(293.4\\) 坪、\\(1\\) 坪約 \\(3.3\\) 平方公尺），求邊長約幾公尺？')), '2-1');
         },
         caption: '課本印 9～11：夾擠、整數部分、計算機。'
       },
@@ -828,8 +607,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 69、70', BLU, '判斷與求平方根',
-              pText('印12', '兩句敘述判斷對錯：誰是誰的平方根，主詞不要顛倒。', '① ○　② ×') +
-              pItem('印13 ②', '13', '\\(\\pm\\sqrt{13}\\)')), '2-1');
+              pText('印12', '兩句敘述判斷對錯：誰是誰的平方根，主詞不要顛倒。') +
+              pItem('印13 ②', '13')), '2-1');
         },
         caption: '課本印 12、13：問「平方根」就要寫 ±。'
       },
@@ -871,10 +650,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 19', AMB, '填入適當的數、比較大小',
-              pText('基礎1 ①', '面積 \\(8\\) 的正方形，邊長為？', '\\(\\sqrt{8}\\)') +
-              pText('基礎1 ②', '面積 \\(15\\) 的正方形，邊長為？', '\\(\\sqrt{15}\\)') +
-              pItem('基礎1 ③', '(\\sqrt{10})^2', '10') +
-              pItem('基礎1 ④', '(\\sqrt{\\tfrac{15}{4}})^2', '\\(\\tfrac{15}{4}\\)')), '2-1');
+              pText('基礎1 ①', '面積 \\(8\\) 的正方形，邊長為？') +
+              pText('基礎1 ②', '面積 \\(15\\) 的正方形，邊長為？') +
+              pItem('基礎1 ③', '(\\sqrt{10})^2') +
+              pItem('基礎1 ④', '(\\sqrt{\\tfrac{15}{4}})^2')), '2-1');
         },
         caption: '習作印 19：<b>自己寫完</b>再對答案。'
       },
@@ -893,9 +672,9 @@ window.DECK = window.DECK || [];
               pItem('基礎2 ①', '\\sqrt{9}\\;\\square\\;\\sqrt{8}', '\\(\\gt\\)') +
               pItem('基礎2 ②', '\\sqrt{\\tfrac{13}{3}}\\;\\square\\;3', '\\(\\lt\\)')) +
             pCard('習作・基礎練習 3', '印 20', AMB, '六小題，求值',
-              pItem('基礎3 ①', '\\sqrt{5^2}', '5') +
-              pItem('基礎3 ②', '\\sqrt{(\\tfrac{7}{19})^2}', '\\(\\tfrac{7}{19}\\)') +
-              pItem('基礎3 ③', '\\sqrt{169}', '13')), '2-1');
+              pItem('基礎3 ①', '\\sqrt{5^2}') +
+              pItem('基礎3 ②', '\\sqrt{(\\tfrac{7}{19})^2}') +
+              pItem('基礎3 ③', '\\sqrt{169}')), '2-1');
         },
         caption: '習作印 19、印 20：<b>自己寫完</b>再對答案。'
       },
@@ -911,9 +690,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習 3', '印 20', AMB, '六小題，求值',
-              pItem('基礎3 ④', '\\sqrt{1.69}', '1.3') +
-              pItem('基礎3 續一', '\\sqrt{\\tfrac{81}{25}}', '\\(\\tfrac{9}{5}\\)', '基礎3 ⑤') +
-              pItem('基礎3 續二', '\\sqrt{2^2\\times 3^4}', '18', '基礎3 ⑥')), '2-1');
+              pItem('基礎3 ④', '\\sqrt{1.69}') +
+              pItem('基礎3 續一', '\\sqrt{\\tfrac{81}{25}}', '', '基礎3 ⑤') +
+              pItem('基礎3 續二', '\\sqrt{2^2\\times 3^4}', '', '基礎3 ⑥')), '2-1');
         },
         caption: '習作印 20：<b>自己寫完</b>再對答案。'
       },
@@ -931,8 +710,8 @@ window.DECK = window.DECK || [];
             pCard('習作・基礎練習', '印 20、21', AMB, '十分逼近、計算機、整數部分',
               pText('基礎4', '用十分逼近法求 \\(\\sqrt{11}\\) 的近似值（四捨五入到小數點後第一位）。', '3.3') +
               pText('基礎4 續', '用計算機求 \\(\\sqrt{11}\\)（原題要第三位；<b>今天先做第一位</b>）。', '3.3（第三位 3.317）') +
-              pText('基礎5 ①', '\\(m\\) 為正整數，\\(m\\lt\\sqrt{180}\\lt m+1\\)，求 \\(m\\)。', '\\(m=13\\)') +
-              pText('基礎5 ②', '\\(n\\) 為正整數，使 \\(\\sqrt{180+n}\\) 為正整數，求最小的 \\(n\\)。', '\\(n=16\\)')), '2-1');
+              pText('基礎5 ①', '\\(m\\) 為正整數，\\(m\\lt\\sqrt{180}\\lt m+1\\)，求 \\(m\\)。') +
+              pText('基礎5 ②', '\\(n\\) 為正整數，使 \\(\\sqrt{180+n}\\) 為正整數，求最小的 \\(n\\)。')), '2-1');
         },
         caption: '習作印 20、21：<b>自己寫完</b>再對答案。'
       },
@@ -948,12 +727,12 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 21、22', AMB, '求平方根；最後一題是反推',
-              pItem('基礎6 ①', '64', '\\(\\pm 8\\)') +
-              pItem('基礎6 ②', '0.64', '\\(\\pm 0.8\\)')) +
+              pItem('基礎6 ①', '64') +
+              pItem('基礎6 ②', '0.64')) +
             pCard('習作・基礎練習', '印 21、22', AMB, '求平方根；最後一題是反推',
-              pItem('基礎6 ③', '1\\tfrac{21}{100}', '\\(\\pm\\tfrac{11}{10}\\)') +
-              pItem('基礎6 ④', '47', '\\(\\pm\\sqrt{47}\\)') +
-              pText('基礎7', '已知 \\(3x+4\\) 的平方根為 \\(\\pm 4\\)，求 \\(x\\)。', '\\(x=4\\)')), '2-1');
+              pItem('基礎6 ③', '1\\tfrac{21}{100}') +
+              pItem('基礎6 ④', '47') +
+              pText('基礎7', '已知 \\(3x+4\\) 的平方根為 \\(\\pm 4\\)，求 \\(x\\)。')), '2-1');
         },
         caption: '問「平方根」就要寫 ±；基礎 7 是反過來求未知數。'
       },
@@ -969,7 +748,7 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・行有餘力', '印 22', GRN, '',
-              pText('精熟1', '已知 \\(\\sqrt{3x+4}\\) 的平方根為 \\(\\pm 4\\)，求 \\(x\\)。', '\\(x=84\\)') +
+              pText('精熟1', '已知 \\(\\sqrt{3x+4}\\) 的平方根為 \\(\\pm 4\\)，求 \\(x\\)。') +
               pText('精熟2', 'BMI \\(=\\frac{W}{H^2}\\) 的應用題（見習作印 4）。', '見習作')), '2-1');
         },
         caption: '習作印 22：<b>自己寫完</b>再對答案。'
@@ -1158,10 +937,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 76', BLU, '簡記下列各式',
-              pItem('印2 ①', '3\\times\\sqrt{11}', '\\(3\\sqrt{11}\\)') +
-              pItem('印2 ②', '\\left(-\\tfrac{7}{2}\\right)\\times\\sqrt{6}', '\\(-\\tfrac{7}{2}\\sqrt{6}\\)') +
-              pItem('印2 ③', '(-1)\\times\\sqrt{15}', '\\(-\\sqrt{15}\\)') +
-              pItem('印2 ④', '\\sqrt{5}\\div 3', '\\(\\tfrac{\\sqrt{5}}{3}\\)')), '2-2');
+              pItem('印2 ①', '3\\times\\sqrt{11}') +
+              pItem('印2 ②', '\\left(-\\tfrac{7}{2}\\right)\\times\\sqrt{6}') +
+              pItem('印2 ③', '(-1)\\times\\sqrt{15}') +
+              pItem('印2 ④', '\\sqrt{5}\\div 3')), '2-2');
         },
         caption: '課本印 76 的隨堂：四題都只是換一種寫法，不用算出答案。'
       },
@@ -1178,9 +957,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 77', BLU, '數與根式的乘積',
-              pItem('印3 ①', '2\\sqrt{2}\\times(-8)', '\\(-16\\sqrt{2}\\)') +
-              pItem('印3 ②', '(-2\\sqrt{6})\\times\\left(-\\tfrac{3}{2}\\right)', '\\(3\\sqrt{6}\\)') +
-              pItem('印3 例1續', '-24\\sqrt{15}\\div 3', '\\(-8\\sqrt{15}\\)')), '2-2');
+              pItem('印3 ①', '2\\sqrt{2}\\times(-8)') +
+              pItem('印3 ②', '(-2\\sqrt{6})\\times\\left(-\\tfrac{3}{2}\\right)') +
+              pItem('印3 例1續', '-24\\sqrt{15}\\div 3')), '2-2');
         },
         caption: '第三題是除法，做法一樣：只動前面的數。'
       },
@@ -1243,9 +1022,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 79', BLU, '根式的乘法',
-              pItem('印5 ①', '\\sqrt{2}\\times\\sqrt{11}', '\\(\\sqrt{22}\\)') +
-              pItem('印5 ②', '-3\\sqrt{10}\\times(-5\\sqrt{3})', '\\(15\\sqrt{30}\\)') +
-              pItem('印5 例2續', '\\tfrac{\\sqrt{5}}{3}\\times 6\\sqrt{5}', '\\(10\\)')), '2-2');
+              pItem('印5 ①', '\\sqrt{2}\\times\\sqrt{11}') +
+              pItem('印5 ②', '-3\\sqrt{10}\\times(-5\\sqrt{3})') +
+              pItem('印5 例2續', '\\tfrac{\\sqrt{5}}{3}\\times 6\\sqrt{5}')), '2-2');
         },
         caption: '第三題算完根號會整個消失——\\(\\sqrt{5}\\times\\sqrt{5}=5\\)。'
       },
@@ -1301,9 +1080,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 81', BLU, '根式的除法',
-              pItem('印7 ①', '\\sqrt{85}\\div\\sqrt{5}', '\\(\\sqrt{17}\\)') +
-              pItem('印7 ②', '\\sqrt{39}\\div\\tfrac{\\sqrt{13}}{\\sqrt{3}}', '\\(3\\)') +
-              pItem('印7 例3續', '\\sqrt{\\tfrac{5}{3}}\\div\\left(-\\tfrac{1}{\\sqrt{33}}\\right)', '\\(-\\sqrt{55}\\)')), '2-2');
+              pItem('印7 ①', '\\sqrt{85}\\div\\sqrt{5}') +
+              pItem('印7 ②', '\\sqrt{39}\\div\\tfrac{\\sqrt{13}}{\\sqrt{3}}') +
+              pItem('印7 例3續', '\\sqrt{\\tfrac{5}{3}}\\div\\left(-\\tfrac{1}{\\sqrt{33}}\\right)')), '2-2');
         },
         caption: '第二、三題都要先改成乘倒數，再把根號併起來。'
       },
@@ -1369,9 +1148,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 82', BLU, '化為最簡根式',
-              pItem('印8 ①', '\\sqrt{8}', '\\(2\\sqrt{2}\\)') +
-              pItem('印8 ②', '\\sqrt{300}', '\\(10\\sqrt{3}\\)') +
-              pItem('印8 ③', '\\sqrt{27}\\times\\sqrt{6}', '\\(9\\sqrt{2}\\)')), '2-2');
+              pItem('印8 ①', '\\sqrt{8}') +
+              pItem('印8 ②', '\\sqrt{300}') +
+              pItem('印8 ③', '\\sqrt{27}\\times\\sqrt{6}')), '2-2');
         },
         caption: '課本印 8：先找最大的平方因數，一次搬完。'
       },
@@ -1435,8 +1214,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 83', BLU, '計算並化簡',
-              pItem('印9 ①', '\\tfrac{10}{\\sqrt{5}}', '\\(2\\sqrt{5}\\)') +
-              pItem('印9 ②', '\\sqrt{\\tfrac{1}{2}}', '\\(\\tfrac{\\sqrt{2}}{2}\\)')), '2-2');
+              pItem('印9 ①', '\\tfrac{10}{\\sqrt{5}}') +
+              pItem('印9 ②', '\\sqrt{\\tfrac{1}{2}}')), '2-2');
         },
         caption: '課本印 9：分母有根號，分子分母同乘那個根號。'
       },
@@ -1479,8 +1258,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 85', BLU, '已知 \\(\\sqrt{7}\\doteq 2.646\\)',
-              pItem('印11 ①', '\\sqrt{700}', '\\(26.46\\)') +
-              pItem('印11 ②', '\\sqrt{28}', '\\(5.292\\)')), '2-2');
+              pItem('印11 ①', '\\sqrt{700}') +
+              pItem('印11 ②', '\\sqrt{28}')), '2-2');
         },
         caption: '課本印 11：先化成最簡，再代近似值。'
       },
@@ -1614,8 +1393,8 @@ window.DECK = window.DECK || [];
           pMount(h,
             pCard('課本・隨堂練習', '印 86、87', BLU, '計算並化最簡根式',
               pItem('印12 ②', '5\\sqrt{13}-2\\sqrt{13}', '\\(3\\sqrt{13}\\)') +
-              pItem('印13 ①', '3\\sqrt{2}-2\\sqrt{75}+\\sqrt{72}-5\\sqrt{3}', '\\(9\\sqrt{2}-15\\sqrt{3}\\)') +
-              pItem('印13 ②', '\\sqrt{\\tfrac{4}{7}}-\\sqrt{28}', '\\(-\\tfrac{12}{7}\\sqrt{7}\\)')), '2-2');
+              pItem('印13 ①', '3\\sqrt{2}-2\\sqrt{75}+\\sqrt{72}-5\\sqrt{3}') +
+              pItem('印13 ②', '\\sqrt{\\tfrac{4}{7}}-\\sqrt{28}')), '2-2');
         },
         caption: '第二題有兩個家族：\\(\\sqrt{2}\\) 一邊、\\(\\sqrt{3}\\) 一邊，各自合併。'
       },
@@ -1675,10 +1454,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 88、89', BLU, '計算並化最簡根式',
-              pItem('印14 ①', '2\\sqrt{7}\\,(3\\sqrt{7}-\\sqrt{14})', '\\(42-14\\sqrt{2}\\)') +
-              pItem('印14 ②', '(\\sqrt{3}-\\sqrt{5})(1+\\sqrt{15})', '\\(2\\sqrt{5}-4\\sqrt{3}\\)') +
-              pItem('印15 ①', '\\sqrt{\\tfrac{3}{5}}\\div\\sqrt{1\\tfrac{1}{4}}\\times\\sqrt{\\tfrac{1}{6}}', '\\(\\tfrac{\\sqrt{2}}{5}\\)') +
-              pItem('印15 ②', '(2\\sqrt{6}-3)\\div\\sqrt{3}', '\\(2\\sqrt{2}-\\sqrt{3}\\)')), '2-2');
+              pItem('印14 ①', '2\\sqrt{7}\\,(3\\sqrt{7}-\\sqrt{14})') +
+              pItem('印14 ②', '(\\sqrt{3}-\\sqrt{5})(1+\\sqrt{15})') +
+              pItem('印15 ①', '\\sqrt{\\tfrac{3}{5}}\\div\\sqrt{1\\tfrac{1}{4}}\\times\\sqrt{\\tfrac{1}{6}}') +
+              pItem('印15 ②', '(2\\sqrt{6}-3)\\div\\sqrt{3}')), '2-2');
         },
         caption: '印 15 ① 全部是乘除，可以一口氣併進同一個根號。'
       },
@@ -1720,10 +1499,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 90、91', BLU, '課本延伸，不列過關條件',
-              pItem('印16 ①', '(2\\sqrt{3}+\\sqrt{7})(2\\sqrt{3}-\\sqrt{7})', '\\(5\\)') +
-              pItem('印16 ②', '(\\sqrt{5}+\\sqrt{3})^2', '\\(8+2\\sqrt{15}\\)') +
-              pItem('印17 ①', '\\tfrac{3}{\\sqrt{7}-1}', '\\(\\tfrac{\\sqrt{7}+1}{2}\\)') +
-              pItem('印17 ②', '\\tfrac{\\sqrt{2}}{2\\sqrt{3}+2}', '\\(\\tfrac{\\sqrt{6}-\\sqrt{2}}{4}\\)')), '2-2');
+              pItem('印16 ①', '(2\\sqrt{3}+\\sqrt{7})(2\\sqrt{3}-\\sqrt{7})') +
+              pItem('印16 ②', '(\\sqrt{5}+\\sqrt{3})^2') +
+              pItem('印17 ①', '\\tfrac{3}{\\sqrt{7}-1}') +
+              pItem('印17 ②', '\\tfrac{\\sqrt{2}}{2\\sqrt{3}+2}')), '2-2');
         },
         caption: '四題都由老師帶做；做不完不影響這一節的過關。'
       },
@@ -1767,9 +1546,9 @@ window.DECK = window.DECK || [];
             pCard('習作・基礎練習', '印 23', AMB, '判斷哪一個是最簡根式',
               pText('基礎1', '四個選項：\\(\\tfrac{1}{\\sqrt{6}}\\)、\\(\\sqrt{6}\\)、\\(\\sqrt{12}\\)、\\(\\sqrt{0.5}\\)。', '\\(\\sqrt{6}\\)')) +
             pCard('習作・基礎練習', '印 23', AMB, '化為最簡根式',
-              pItem('基礎2 ①', '3\\sqrt{5}\\times 4\\sqrt{2}', '\\(12\\sqrt{10}\\)') +
-              pItem('基礎2 ②', '10\\sqrt{30}\\div 2\\sqrt{5}', '\\(5\\sqrt{6}\\)') +
-              pItem('基礎2 ③', '\\sqrt{32}', '\\(4\\sqrt{2}\\)')), '2-2');
+              pItem('基礎2 ①', '3\\sqrt{5}\\times 4\\sqrt{2}') +
+              pItem('基礎2 ②', '10\\sqrt{30}\\div 2\\sqrt{5}') +
+              pItem('基礎2 ③', '\\sqrt{32}')), '2-2');
         },
         caption: '基礎 1 把兩個判準都考了：分母有根號、根號裡有平方因數。'
       },
@@ -1785,12 +1564,12 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 23、24', AMB, '化為最簡根式',
-              pItem('基礎2 ④', '\\sqrt{120}', '\\(2\\sqrt{30}\\)') +
-              pItem('基礎2 ⑤', '\\sqrt{200}\\times\\sqrt{8}', '\\(40\\)') +
-              pItem('基礎2 ⑥', '\\sqrt{69}\\div\\sqrt{3}', '\\(\\sqrt{23}\\)')) +
+              pItem('基礎2 ④', '\\sqrt{120}') +
+              pItem('基礎2 ⑤', '\\sqrt{200}\\times\\sqrt{8}') +
+              pItem('基礎2 ⑥', '\\sqrt{69}\\div\\sqrt{3}')) +
             pCard('習作・基礎練習', '印 24', AMB, '化為最簡根式',
-              pItem('基礎2 ⑦', '\\sqrt{27}\\times 5\\sqrt{6}', '\\(45\\sqrt{2}\\)') +
-              pItem('基礎2 ⑧', '\\sqrt{72}\\div\\sqrt{20}', '\\(\\tfrac{3\\sqrt{10}}{5}\\)')), '2-2');
+              pItem('基礎2 ⑦', '\\sqrt{27}\\times 5\\sqrt{6}') +
+              pItem('基礎2 ⑧', '\\sqrt{72}\\div\\sqrt{20}')), '2-2');
         },
         caption: '基礎 2 ⑧ 算到 \\(\\sqrt{\\tfrac{18}{5}}\\) 還沒完——分母有根號，要再有理化一次。'
       },
@@ -1806,8 +1585,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 24', AMB, '已知 \\(\\sqrt{10}\\doteq 3.162\\)，四捨五入到小數第二位',
-              pItem('基礎3 ①', '\\sqrt{250}', '\\(15.81\\)') +
-              pItem('基礎3 ②', '\\sqrt{0.009}', '\\(0.09\\)')) +
+              pItem('基礎3 ①', '\\sqrt{250}') +
+              pItem('基礎3 ②', '\\sqrt{0.009}')) +
             pCard('習作・基礎練習', '印 24、25', AMB, '判斷敘述與同類方根',
               pText('基礎4', '四個加減式中哪一個正確？（點開看選項）', '\\(\\sqrt{18}+\\sqrt{2}=4\\sqrt{2}\\)') +
               pText('基礎5', '哪一組是同類方根？（點開看四組）', '\\(\\sqrt{20}\\)、\\(\\sqrt{0.2}\\)')), '2-2');
@@ -1826,10 +1605,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 25', AMB, '計算並化簡',
-              pItem('基礎6 ①', '7\\sqrt{3}-5\\sqrt{3}', '\\(2\\sqrt{3}\\)') +
-              pItem('基礎6 ②', '\\sqrt{52}+5\\sqrt{13}', '\\(7\\sqrt{13}\\)') +
-              pItem('基礎6 ③', '\\sqrt{50}+\\sqrt{98}-\\sqrt{162}', '\\(3\\sqrt{2}\\)') +
-              pItem('基礎6 續一', '\\sqrt{\\tfrac{2}{5}}-\\sqrt{\\tfrac{5}{2}}', '\\(-\\tfrac{3\\sqrt{10}}{10}\\)', '基礎6 ④')), '2-2');
+              pItem('基礎6 ①', '7\\sqrt{3}-5\\sqrt{3}') +
+              pItem('基礎6 ②', '\\sqrt{52}+5\\sqrt{13}') +
+              pItem('基礎6 ③', '\\sqrt{50}+\\sqrt{98}-\\sqrt{162}') +
+              pItem('基礎6 續一', '\\sqrt{\\tfrac{2}{5}}-\\sqrt{\\tfrac{5}{2}}', '', '基礎6 ④')), '2-2');
         },
         caption: '習作印 25：<b>自己寫完</b>再對答案。'
       },
@@ -1845,12 +1624,12 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 26', AMB, '計算並化簡',
-              pItem('基礎7 ①', '\\sqrt{\\tfrac{9}{7}}\\times\\sqrt{\\tfrac{1}{2}}\\div\\sqrt{\\tfrac{3}{14}}+\\sqrt{3}', '\\(2\\sqrt{3}\\)') +
-              pItem('基礎7 ②', '\\tfrac{1}{\\sqrt{5}+2}+\\tfrac{1}{\\sqrt{5}-2}', '\\(2\\sqrt{5}\\)') +
-              pItem('基礎7 ③', '(\\sqrt{3}+\\sqrt{5})^2(\\sqrt{3}-\\sqrt{5})^2', '\\(4\\)') +
-              pItem('基礎7 ④', '\\sqrt{5}\\times\\sqrt{3}-\\sqrt{3}\\div(\\sqrt{5}+2)', '\\(2\\sqrt{3}\\)')) +
+              pItem('基礎7 ①', '\\sqrt{\\tfrac{9}{7}}\\times\\sqrt{\\tfrac{1}{2}}\\div\\sqrt{\\tfrac{3}{14}}+\\sqrt{3}') +
+              pItem('基礎7 ②', '\\tfrac{1}{\\sqrt{5}+2}+\\tfrac{1}{\\sqrt{5}-2}') +
+              pItem('基礎7 ③', '(\\sqrt{3}+\\sqrt{5})^2(\\sqrt{3}-\\sqrt{5})^2') +
+              pItem('基礎7 ④', '\\sqrt{5}\\times\\sqrt{3}-\\sqrt{3}\\div(\\sqrt{5}+2)')) +
             pCard('習作・行有餘力', '印 26', GRN, '',
-              pText('精熟1', '\\(m\\) 為正整數，\\(m\\lt\\dfrac{1}{2-\\sqrt{3}}\\lt m+1\\)，求 \\(m\\)。', '\\(m=3\\)')), '2-2');
+              pText('精熟1', '\\(m\\) 為正整數，\\(m\\lt\\dfrac{1}{2-\\sqrt{3}}\\lt m+1\\)，求 \\(m\\)。')), '2-2');
         },
         caption: '習作印 26：<b>自己寫完</b>再對答案。'
       },
@@ -2332,7 +2111,7 @@ window.DECK = window.DECK || [];
           pMount(h,
             pCard('課本・隨堂練習', '印 100', BLU, '邊長 10 的正三角形',
               pText('印6 ①', '求它的高。', '\\(5\\sqrt{3}\\)') +
-              pText('印6 ②', '求它的面積。', '\\(25\\sqrt{3}\\)')), '2-3');
+              pText('印6 ②', '求它的面積。')), '2-3');
         },
         caption: '課本用邊長 10 做一次，節末的習作基礎 2 用邊長 1 再做一次，公式就記得住了。'
       },
@@ -2488,8 +2267,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 107、108', BLU, '兩點距離',
-              pText('印13 ①', '\\(A(\\tfrac{1}{2},-3)\\)、\\(B(-2,-3)\\) 的距離。', '\\(\\tfrac{5}{2}\\)') +
-              pText('印13 ②', '\\(C(1,-3)\\)、\\(D(1,5)\\) 的距離。', '\\(8\\)') +
+              pText('印13 ①', '\\(A(\\tfrac{1}{2},-3)\\)、\\(B(-2,-3)\\) 的距離。') +
+              pText('印13 ②', '\\(C(1,-3)\\)、\\(D(1,5)\\) 的距離。') +
               pText('印14', '\\(A(-1,3)\\)、\\(B(1,-1)\\)、\\(C(4,3)\\)，求 \\(\\triangle ABC\\) 的周長。', '\\(10+2\\sqrt{5}\\)')), '2-3');
         },
         caption: '前兩題是同軸、第三題要算三次距離——先各自算完再相加。'
@@ -2574,11 +2353,11 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 27', AMB, '求缺邊',
-              pText('基礎1 ①', '兩股 \\(9\\)、\\(12\\)，求斜邊。', '\\(15\\)') +
-              pText('基礎1 ②', '一股 \\(6\\)、斜邊 \\(7\\)，求另一股。', '\\(\\sqrt{13}\\)')) +
+              pText('基礎1 ①', '兩股 \\(9\\)、\\(12\\)，求斜邊。') +
+              pText('基礎1 ②', '一股 \\(6\\)、斜邊 \\(7\\)，求另一股。')) +
             pCard('習作・基礎練習', '印 27', AMB, '邊長 1 的正三角形',
-              pText('基礎2 ①', '求 \\(\\overline{AH}\\)（\\(\\overline{BC}\\) 上的高）。', '\\(\\tfrac{\\sqrt{3}}{2}\\)') +
-              pText('基礎2 ②', '求 \\(\\triangle ABC\\) 的面積。', '\\(\\tfrac{\\sqrt{3}}{4}\\)')) +
+              pText('基礎2 ①', '求 \\(\\overline{AH}\\)（\\(\\overline{BC}\\) 上的高）。') +
+              pText('基礎2 ②', '求 \\(\\triangle ABC\\) 的面積。')) +
             pCard('習作・基礎練習', '印 28', AMB, '兩股 3、2',
               pText('基礎3', '求斜邊上的高 \\(\\overline{BD}\\)。', '\\(\\tfrac{6\\sqrt{13}}{13}\\)')), '2-3');
         },
@@ -2596,8 +2375,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 28', AMB, '長方形坑洞（長 36、寬 27）',
-              pText('基礎4 ①', '求對角線長。', '\\(45\\) 公分') +
-              pText('基礎4 ②', '要用圓形鐵片蓋住它，直徑至少多少？', '\\(45\\) 公分')) +
+              pText('基礎4 ①', '求對角線長。') +
+              pText('基礎4 ②', '要用圓形鐵片蓋住它，直徑至少多少？')) +
             pCard('習作・基礎練習', '印 29', AMB, '\\(A(2,2)\\)、\\(B(-3,0)\\)、\\(C(1,-4)\\)',
               pText('基礎5', '求 \\(\\overline{BC}\\)、高 \\(\\overline{AD}\\) 與 \\(\\triangle ABC\\) 的面積。（\\(D(-\\tfrac{3}{2},-\\tfrac{3}{2})\\)）', '\\(4\\sqrt{2}\\)、\\(\\tfrac{7}{2}\\sqrt{2}\\)、\\(14\\)')), '2-3');
         },
@@ -2615,9 +2394,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・行有餘力', '印 30', GRN, '',
-              pText('精熟1', '正方形對角線 \\(\\overline{AC}=2\\sqrt{2}\\)，求邊長。', '\\(2\\)') +
-              pText('精熟2 ①', '圓交 \\(x\\) 軸於 \\(A(-12,0)\\)、\\(B(2,0)\\)，求圓心 \\(C\\)。', '\\(C(-5,0)\\)') +
-              pText('精熟2 ②', '求 \\(P(4,6)\\) 到 \\(C\\) 的距離。', '\\(3\\sqrt{13}\\)')), '2-3');
+              pText('精熟1', '正方形對角線 \\(\\overline{AC}=2\\sqrt{2}\\)，求邊長。') +
+              pText('精熟2 ①', '圓交 \\(x\\) 軸於 \\(A(-12,0)\\)、\\(B(2,0)\\)，求圓心 \\(C\\)。') +
+              pText('精熟2 ②', '求 \\(P(4,6)\\) 到 \\(C\\) 的距離。')), '2-3');
         },
         caption: '精熟兩題行有餘力再做；圓的題目先找直徑，只求圓心與距離，不做圓的面積。'
       },

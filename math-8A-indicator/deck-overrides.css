@@ -283,6 +283,47 @@
   overflow: hidden;
 }
 
+/* ---- 目錄的第三層：節之內依類別折疊（Roger 2026-09-23 課本版；指標版 2026-09-24 比照）----
+   `.toc-section > .toc-shead + .toc-group > .toc-ghead + .toc-item…`
+   類別規則在本站 index.html 的 `window.TOC_GROUPS`，DOM 由 toc-sections.js 產生。
+   節展開 → 看到類別標頭；類別展開 → 看到頁。預設只展開目前所在的類別。 */
+.toc-group { display: none; margin: 0 0 2px 12px; }
+.toc-section.open > .toc-group { display: block; }
+.toc-ghead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 6px;
+  border-radius: 7px;
+  cursor: pointer;
+  user-select: none;
+  color: #2b3649;
+}
+.toc-ghead:hover { background: rgba(15, 118, 110, 0.08); }
+.toc-ghead::before {
+  content: '▸';
+  font-size: 10px;
+  line-height: 1;
+  color: #64748b;
+  transition: transform .12s;
+}
+.toc-group.open > .toc-ghead::before { transform: rotate(90deg); }
+.toc-ghead .tg-name { font-size: 13px; font-weight: 800; }
+.toc-ghead .tg-n {
+  margin-left: auto;
+  flex: none;
+  font-size: 11px;
+  font-weight: 800;
+  color: #475569;
+  background: #f3f5f9;
+  border-radius: 999px;
+  padding: 0 7px;
+}
+.toc-group > .toc-item { display: none; padding-left: 18px; }
+.toc-group > .toc-item .ti-sec { display: none; }
+.toc-group.open > .toc-item { display: block; }
+.toc-group > .toc-item > .ti-txt { display: block; max-height: 2lh; overflow: hidden; }
+
 
 /* ===== 版本識別（Roger 2026-09-15）=====
    三站的前兩三頁長得幾乎一樣——尤其兩個八上，封面只差 eyebrow 那一個「南一版」——

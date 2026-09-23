@@ -24,238 +24,18 @@ window.DECK = window.DECK || [];
       </div>`).join('') + `</div>`;
   }
 
-  const pDropCont = (t) => t.replace(/\s*續[一二三四五六七八九十]?\s*$/, '');
-  const pLabel = (sec, tag) => {
-    if (!/^印\s*\d+/.test(tag)) return pDropCont(tag);
-    const S = (window.SOLUTIONS || {})[sec] || {};
-    const d = S[tag] || S[tag.replace(/\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫].*$/, '')];
-    return pDropCont(d && d.page ? tag.replace(/^印\s*\d+/, d.page.replace(/\s+/g, ' ')) : tag);
-  };
-
-  const pRelabel = (h, sec) => h.querySelectorAll('.p-row').forEach(r => {
-    const el = r.querySelector('.p-tag');
-
-    if (el) el.textContent = r.dataset.label || pLabel(sec, r.dataset.tag);
-  });
-
-  const pRow = (tag, bodyHtml, ans, fs, label) =>
-    `<div class="p-row" data-tag="${tag}"${label ? ` data-label="${label}"` : ''} style="display:flex;gap:9px;align-items:baseline;padding:2px 0;border-radius:8px">
-       <span class="p-tag" style="flex:0 0 72px;font-size:11px;font-weight:900;color:${GREY};white-space:nowrap">${tag}</span>
-       <span style="flex:1;font-size:${fs};color:${INK};line-height:1.55">${bodyHtml}</span>
-       ${ans ? `<span class="p-ans" style="flex:0 0 auto;font-size:12.5px;font-weight:900;color:${GRN};white-space:nowrap;overflow:hidden;max-width:0;opacity:0;transition:opacity .12s">${ans}</span>` : ''}
-       <span class="p-go" style="flex:0 0 auto;width:12px;text-align:right;font-size:16px;font-weight:900;color:${C};opacity:0">›</span></div>`;
-  const pItem = (tag, tex, ans, label) => pRow(tag, `\\(${tex}\\)`, ans, '13.5px', label);
-  const pText = (tag, html, ans, label) => pRow(tag, html, ans, '13px', label);
-  const pCard = (src, page, col, sub, rows) =>
-    `<div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;overflow:hidden">
-       <div style="display:flex;justify-content:space-between;align-items:center;background:${col};padding:4px 13px">
-         <span style="font-size:13px;font-weight:900;color:#fff;letter-spacing:.03em">${src}</span>
-         <span style="font-size:13px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:8px;padding:1px 9px">${page}</span>
-       </div>
-       <div style="padding:5px 13px 7px">
-         ${sub ? `<div style="font-size:11.5px;color:#657187;margin-bottom:1px">${sub}</div>` : ''}
-         ${rows}</div></div>`;
-  const pWrap = (cards) =>
-    `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:8px">${cards}
-       <button class="p-sol" style="align-self:center;margin-top:2px;border:1.5px solid ${GRN};background:#fff;color:${GRN};font-weight:900;font-size:13px;border-radius:999px;padding:4px 18px;cursor:pointer">顯示解答</button></div>`;
-
-  const CONT = ['', ' 續', ' 續一', ' 續二', ' 續三', ' 續四', ' 續五'];
-  const SUBRE = /\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫].*$/;
-
-  const BOILER = /^承上[，,]?[^$]{0,24}。?$/;
-  const pMerge = (S, tag) => {
-    if (SUBRE.test(tag) && S[tag]) return S[tag];
-    const base = S[tag] ? tag : tag.replace(SUBRE, '');
-    const d0 = S[base];
-    if (!d0) return null;
-    const steps = [], ans = [], qs = [];
-    for (const suf of CONT) {
-      const d = S[base + suf];
-      if (!d) continue;
-
-      const q = String(d.q || '').trim();
-      if (q && qs.indexOf(q) < 0 && !BOILER.test(q)) qs.push(q);
-      for (const st of d.steps || []) steps.push(st);
-      if (d.ans && ans.indexOf(d.ans) < 0) ans.push(d.ans);
-    }
-    return Object.assign({}, d0, { q: qs.join('\n'), steps, ans: ans.join('　') });
-  };
-
-  const pFig = (d) => (d && d.fig && ((window.FIGURES_LOCAL || {})[d.fig] || (window.FIGURES || {})[d.fig])) || null;
-
-  const pDetail = (h, sec, tag, back) => {
-    const S = (window.SOLUTIONS || {})[sec] || {};
-
-    const d = pMerge(S, tag);
-    if (!d) return false;
-    const tex = t => (t || '').replace(/\$([^$]+)\$/g, (_, m) => '\\(' + m + '\\)');
-
-    const QNUM = /^\s*[\u2460-\u2473]/;
-    const lines = [...d.steps.map(t => ({ t: tex(t), q: QNUM.test(String(t)) })),
-                   ...(d.ans ? [{ t: '答：' + tex(d.ans), fin: 1 }] : [])];
-
-    h.innerHTML =
-      `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">
-         <div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;overflow:hidden">
-           <div style="display:flex;justify-content:space-between;align-items:center;background:${C};padding:5px 13px">
-             <span style="font-size:13px;font-weight:900;color:#fff">${d.src} ${pLabel(sec, tag)}</span>
-             <span style="font-size:13px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:8px;padding:1px 9px">${d.page}</span>
-           </div>
-           <div style="padding:10px 14px">
-             <div style="font-size:19px;color:${INK};line-height:1.5">${String(d.q || '').split('\n').filter(Boolean).map((seg, i) => `<div style="${i ? 'margin-top:7px' : ''}">${tex(seg)}</div>`).join('')}
-               ${d.fig && !pFig(d) ? `<div style="margin-top:6px;font-size:13px;font-weight:900;color:#8a5a00;background:#fff4d6;border:1px solid #f0dba8;border-radius:8px;padding:4px 10px;display:inline-block">⚠ ocho 沒有這張圖，請看紙本 ${d.page}</div>` : ''}</div>
-             ${pFig(d) ? `<div class="q-fig" style="margin-top:8px;width:100%;height:220px;display:flex;align-items:center;justify-content:center">${pFig(d)}</div>` : ''}
-           </div>
-         </div>
-         <div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:14px 18px 30px;display:flex;flex-direction:column;gap:26px;min-height:${Math.max(150, lines.length * 62)}px">
-           ${lines.map((l, i) => `<div class="${l.q ? 'p-ask' : 'p-line'}" data-i="${i}" style="${l.q ? '' : 'visibility:hidden;'}font-size:${l.fin ? 22 : 20}px;font-weight:${l.fin ? 900 : l.q ? 800 : 700};color:${l.fin ? GRN : INK}${l.q ? '' : ';padding-left:20px'}">${l.t}</div>`).join('')}
-         </div>
-         <div style="display:flex;gap:8px;justify-content:center">
-           <button class="p-next" style="border:1.5px solid ${C};background:${C};color:#fff;font-weight:900;font-size:13px;border-radius:999px;padding:5px 20px;cursor:pointer">下一行</button>
-           <button class="p-all" style="border:1.5px solid ${GRN};background:#fff;color:${GRN};font-weight:900;font-size:13px;border-radius:999px;padding:5px 16px;cursor:pointer">全部顯示</button>
-           <button class="p-back" style="border:1.5px solid #c3cddd;background:#fff;color:${GREY};font-weight:900;font-size:13px;border-radius:999px;padding:5px 16px;cursor:pointer">← 回題目列表</button>
-         </div>
-       </div>`;
-    const els = [...h.querySelectorAll('.p-line')];
-    let shown = 0;
-    const next = h.querySelector('.p-next');
-    const step = () => {
-      if (shown < els.length) els[shown++].style.visibility = 'visible';
-      if (shown >= els.length) { next.disabled = true; next.style.opacity = '.4'; next.style.cursor = 'default'; }
-    };
-    next.onclick = step;
-    h.querySelector('.p-all').onclick = () => { while (shown < els.length) step(); };
-    h.querySelector('.p-back').onclick = back;
-    MJ(h);
-    pAfter(h);
-    return true;
-  };
-
-  const pFit = (h) => {
-    if (typeof window === 'undefined') return;
-    const stack = h.firstElementChild;
-    if (!stack || !h.clientHeight) return;
-    stack.style.zoom = '';
-
-    const cs = window.getComputedStyle(h);
-    const pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
-
-    if (h.closest && h.closest('#zoomBody')) {
-
-      const W = h.clientWidth, Hh = h.clientHeight - pad;
-      let bw = +h.dataset.zoomBase || 460, bz = 0;
-      [bw, Math.round(W * 0.42), Math.round(W * 0.52), Math.round(W * 0.64), Math.round(W * 0.78)]
-        .forEach(w => {
-          if (w < 280 || w > W) return;
-          stack.style.width = w + 'px';
-          const z = Math.min(W / w, Hh / (stack.scrollHeight || 1), 2.8);
-          if (z > bz) { bz = z; bw = w; }
-        });
-      stack.style.width = bw + 'px';
-      stack.style.margin = '0 auto';
-
-      if (bz < 0.995 || bz > 1.02) stack.style.zoom = Math.max(0.6, bz).toFixed(3);
-      return;
-    }
-    stack.style.width = '';
-    stack.style.margin = '';
-
-    const need = stack.scrollHeight, have = h.clientHeight - pad;
-    if (have > 0 && need > have) stack.style.zoom = Math.max(0.62, (have / need) * 0.985).toFixed(3);
-  };
-
-  if (typeof document !== 'undefined' && typeof window !== 'undefined' && !window.__pFitZoomHook) {
-    window.__pFitZoomHook = true;
-    const sweep = () => document.querySelectorAll('.visual-host').forEach(el => {
-      if (el.firstElementChild && el.querySelector('.p-line, .p-ask')) pFit(el);
-    });
-    document.addEventListener('click', () => { setTimeout(sweep, 150); setTimeout(sweep, 700); }, true);
-  }
-
-  const pAfter = (h) => {
-    if (typeof window === 'undefined' || typeof setTimeout !== 'function') return;
-    const go = () => { pFit(h); if (window.dispatchEvent) window.dispatchEvent(new Event('resize')); };
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise([h]).then(go).catch(go);
-    } else { setTimeout(go, 60); }
-  };
-
+  const PR = () => (typeof window !== 'undefined' && window.PRACTICE) || null;
+  const PO = { accent: C };
+  const pItem = (tag, tex, ans, label) => PR() ? PR().item(tag, tex, ans, label, PO)
+    : `<div class="p-row" data-tag="${tag}">\\(${tex}\\) ${ans || ''}</div>`;
+  const pText = (tag, html, ans, label) => PR() ? PR().text(tag, html, ans, label, PO)
+    : `<div class="p-row" data-tag="${tag}">${html} ${ans || ''}</div>`;
+  const pCard = (src, page, col, sub, rows) => PR() ? PR().card(src, page, col, sub, rows)
+    : `<div>${src} ${page} ${sub || ''}${rows}</div>`;
+  const pMount = (h, cards, sec) => { if (PR()) PR().mount(h, cards, sec, PO); else h.innerHTML = cards; };
   const pAnswerKey = (h, sec, groups) => {
-    const S = (window.SOLUTIONS || {})[sec] || {};
-    const tex = t => String(t || '').replace(/\$([^$]+)\$/g, (_, m) => '\\(' + m + '\\)');
-
-    const splitChoice = (a) => {
-      const m = /^選\s*(\([A-Da-d]\))\s*(.*)$/.exec(String(a || '').trim());
-      return m ? { big: m[1], sub: m[2] } : { big: String(a || ''), sub: '' };
-    };
-
-    const dropLab = (no, a) => {
-      const labs = String(a).match(/[①-⑳]|[(（]\d+[)）]/g) || [];
-      const m = /^\s*([①-⑳]|[(（]\d+[)）])\s*/.exec(a);
-      return m && labs.length === 1 && String(no).includes(m[1]) ? a.slice(m[0].length) : a;
-    };
-    const cell = (no, tag) => {
-      const d = pMerge(S, tag);
-      const a = d ? dropLab(no, d.ans) : '';
-      const { big, sub } = splitChoice(a);
-      return `<div style="border:1.5px solid #dbe3f0;border-radius:10px;background:#fff;
-          padding:7px 9px;display:flex;align-items:baseline;gap:8px;min-width:0">
-        <span style="flex:0 0 auto;font-size:15px;font-weight:700;color:${GREY}">${no}</span>
-        <span style="min-width:0;flex:1">
-          <span style="font-size:21px;font-weight:700;color:${a ? GRN : '#e11d48'};
-            display:block;line-height:1.3;word-break:break-word">${a ? tex(big) : '（查無答案）'}</span>
-          ${sub ? `<span style="font-size:13.5px;color:${GREY};display:block;line-height:1.4">${tex(sub)}</span>` : ''}
-        </span>
-      </div>`;
-    };
-    h.innerHTML = `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:12px">`
-      + groups.map(g => `<div>
-          <div style="font-size:14px;font-weight:700;color:${C};margin:0 0 6px 2px">${g.label}</div>
-          <div style="display:grid;grid-template-columns:repeat(${g.cols || 4},minmax(0,1fr));gap:7px">
-            ${g.items.map(it => cell(it[0], it[1])).join('')}
-          </div></div>`).join('')
-      + `</div>`;
-    pAfter(h);
-  };
-
-  const pMount = (h, cards, sec) => {
-    const render = () => {
-      h.innerHTML = pWrap(cards);
-      const btn = h.querySelector('.p-sol');
-      const ans = [...h.querySelectorAll('.p-ans')];
-      if (btn) btn.onclick = () => {
-        const on = !(ans[0] && ans[0].style.opacity === '1');
-        ans.forEach(e => {
-          e.style.maxWidth = on ? 'none' : '0';
-          e.style.opacity = on ? '1' : '0';
-        });
-        btn.textContent = on ? '收起解答' : '顯示解答';
-        pAfter(h);
-      };
-
-      if (!(sec && window.SOLUTIONS && window.SOLUTIONS[sec])) {
-        h.querySelectorAll('.p-go').forEach(e => e.remove());
-      }
-
-      if (sec && window.SOLUTIONS && window.SOLUTIONS[sec]) {
-        h.querySelectorAll('.p-row').forEach(row => {
-          const tag = row.dataset.tag;
-          const S = window.SOLUTIONS[sec];
-          if (!(S[tag] || S[tag.replace(/\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫].*$/, '')])) {
-            row.querySelector('.p-go').remove(); return;
-          }
-          row.style.cursor = 'pointer';
-          row.querySelector('.p-go').style.opacity = '.55';
-          row.onmouseenter = () => { row.style.background = '#f2f6ff'; };
-          row.onmouseleave = () => { row.style.background = ''; };
-          row.onclick = () => pDetail(h, sec, tag, render);
-        });
-      }
-      pRelabel(h, sec);
-      MJ(h);
-      pAfter(h);
-    };
-    render();
+    if (PR()) PR().answerKey(h, sec, groups);
+    else h.innerHTML = '<div>對答案（需 practice.js）</div>';
   };
 
   const xterm = (a) => (a === 1 ? 'x' : a === -1 ? '−x' : `${a}x`).replace('-', '−');
@@ -430,8 +210,8 @@ window.DECK = window.DECK || [];
           pMount(h,
             pCard('課本・隨堂練習', '印 120', BLU, '已知 \\(A=6x^2-11x-7=(3x-7)(2x+1)\\)，打 ○ 或 ✕',
               pText('印5 ①', '\\(3x-7\\) 是 \\(A\\) 的因式。', '○') +
-              pText('印5 ②', '\\(A\\) 是 \\(3x-7\\) 的因式。', '✕') +
-              pText('印5 ③', '\\(2x+1\\) 是 \\(A\\) 的倍式。', '✕') +
+              pText('印5 ②', '\\(A\\) 是 \\(3x-7\\) 的因式。') +
+              pText('印5 ③', '\\(2x+1\\) 是 \\(A\\) 的倍式。') +
               pText('印5 ④', '\\(A\\) 是 \\(2x+1\\) 的倍式。', '○')), '3-1');
         },
         caption: '四句話只有主詞順序不同——每一句都先問「誰在乘法算式裡」。'
@@ -643,9 +423,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 123', BLU, '因式分解',
-              pItem('印8 ①', '2y^2-7y', '\\(y(2y-7)\\)') +
-              pItem('印8 ②', '5b^2+10b', '\\(5b(b+2)\\)') +
-              pItem('印8 ③', 'm(1-2m)+m(4m+3)', '\\(2m(m+2)\\)')), '3-1');
+              pItem('印8 ①', '2y^2-7y') +
+              pItem('印8 ②', '5b^2+10b') +
+              pItem('印8 ③', 'm(1-2m)+m(4m+3)')), '3-1');
         },
         caption: '課本印 8：數字的公因數也要一起提。'
       },
@@ -662,9 +442,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 124', BLU, '因式分解',
-              pItem('印9 ①', '(2x+1)+x(1+2x)', '\\((2x+1)(x+1)\\)') +
-              pItem('印9 ②', '(x+3)(x-4)+(x+3)(2x-1)', '\\((x+3)(3x-5)\\)') +
-              pItem('印9 例3續', '(2x-3)(4x-1)-(3x-1)(2x-3)', '\\(x(2x-3)\\)')), '3-1');
+              pItem('印9 ①', '(2x+1)+x(1+2x)') +
+              pItem('印9 ②', '(x+3)(x-4)+(x+3)(2x-1)') +
+              pItem('印9 例3續', '(2x-3)(4x-1)-(3x-1)(2x-3)')), '3-1');
         },
         caption: '課本印 9：括號重複出現就整塊提，順序相反先補負號。'
       },
@@ -681,8 +461,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 125', BLU, '因式分解',
-              pItem('印10 ①', '(6x-4)+(2-3x)^2', '\\(3x(3x-2)\\)') +
-              pItem('印10 ②', '(4x^2+6x)+(10x+15)', '\\((2x+3)(2x+5)\\)')), '3-1');
+              pItem('印10 ①', '(6x-4)+(2-3x)^2') +
+              pItem('印10 ②', '(4x^2+6x)+(10x+15)')), '3-1');
         },
         caption: '課本印 10：兩項兩項分一組，各自提完會出現同一個括號。'
       },
@@ -744,11 +524,11 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 126、127', BLU, '填空與因式分解',
-              pText('印11 ①', '\\(x^2-1^2=(x+\\square)(x-\\square)\\)', '\\(1\\)、\\(1\\)') +
-              pText('印11 ②', '\\(x^2-8^2=(x+\\square)(x-\\square)\\)', '\\(8\\)、\\(8\\)') +
-              pText('印11 ③', '\\((3x)^2-2^2=(\\square+2)(\\square-2)\\)', '\\(3x\\)、\\(3x\\)') +
-              pItem('印12 ①', '4x^2-81', '\\((2x+9)(2x-9)\\)') +
-              pItem('印12 ②', '5x^2-20', '\\(5(x+2)(x-2)\\)')), '3-1');
+              pText('印11 ①', '\\(x^2-1^2=(x+\\square)(x-\\square)\\)') +
+              pText('印11 ②', '\\(x^2-8^2=(x+\\square)(x-\\square)\\)') +
+              pText('印11 ③', '\\((3x)^2-2^2=(\\square+2)(\\square-2)\\)') +
+              pItem('印12 ①', '4x^2-81') +
+              pItem('印12 ②', '5x^2-20')), '3-1');
         },
         caption: '最後一題要先提 \\(5\\)——沒提出來就看不到平方差。'
       },
@@ -765,8 +545,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 128', BLU, '課本延伸，不列評量',
-              pItem('印13 ①', '(5x-2)^2-1', '\\((5x-1)(5x-3)\\)') +
-              pItem('印13 ②', '16-(2x-3)^2', '\\(-(2x+1)(2x-7)\\)')), '3-1');
+              pItem('印13 ①', '(5x-2)^2-1') +
+              pItem('印13 ②', '16-(2x-3)^2')), '3-1');
         },
         caption: '課本印 13：把整個括號當成 \\(a\\)。'
       },
@@ -825,11 +605,11 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 129、130', BLU, '填空與因式分解',
-              pText('印14 ①', '\\(x^2+2\\cdot x\\cdot 2+2^2=(x+\\square)^2\\)', '\\(2\\)') +
-              pText('印14 ②', '\\((4x)^2+2\\cdot(4x)\\cdot 1+1^2=(\\square+1)^2\\)', '\\(4x\\)') +
+              pText('印14 ①', '\\(x^2+2\\cdot x\\cdot 2+2^2=(x+\\square)^2\\)') +
+              pText('印14 ②', '\\((4x)^2+2\\cdot(4x)\\cdot 1+1^2=(\\square+1)^2\\)') +
               pText('印14 續', '差的平方兩格：\\(x^2-2\\cdot x\\cdot 5+5^2\\)、\\((7x)^2-2\\cdot(7x)\\cdot 1+1^2\\)', '\\(5\\)、\\(7x\\)') +
-              pItem('印15 ①', 'x^2+4x+4', '\\((x+2)^2\\)') +
-              pItem('印15 ②', 'x^2-10x+25', '\\((x-5)^2\\)')), '3-1');
+              pItem('印15 ①', 'x^2+4x+4') +
+              pItem('印15 ②', 'x^2-10x+25')), '3-1');
         },
         caption: '填空題不要跳過：它練的正是「平方的對象」這一步。'
       },
@@ -872,8 +652,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 131', BLU, '因式分解',
-              pItem('印16 ①', '9x^2+12x+4', '\\((3x+2)^2\\)') +
-              pItem('印16 ②', '18x^2-24x+8', '\\(2(3x-2)^2\\)')), '3-1');
+              pItem('印16 ①', '9x^2+12x+4') +
+              pItem('印16 ②', '18x^2-24x+8')), '3-1');
         },
         caption: '課本印 16：先提，再數剩幾項。'
       },
@@ -944,8 +724,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 37', AMB, '判別因式與倍式',
-              pText('基礎1 ①', '\\(x^2-6x+8\\) 是不是 \\(x-2\\) 的倍式？', '是') +
-              pText('基礎1 ②', '\\(x-4\\) 是不是 \\(x^2-6x+8\\) 的因式？', '是') +
+              pText('基礎1 ①', '\\(x^2-6x+8\\) 是不是 \\(x-2\\) 的倍式？') +
+              pText('基礎1 ②', '\\(x-4\\) 是不是 \\(x^2-6x+8\\) 的因式？') +
               pText('基礎2', '由 \\((x+3)(4x-3)=4x^2+9x-9\\) 判斷：四個敘述哪一個錯？', '\\(4x+3\\) 那一個')) +
             pCard('習作・基礎練習', '印 38', AMB, '因式分解與公因式',
               pText('基礎3', '已知 \\(2x-3\\) 是 \\(6x^2-7x-3\\) 的因式，把它因式分解。', '\\((2x-3)(3x+1)\\)') +
@@ -965,11 +745,11 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 38', AMB, '因式分解',
-              pItem('基礎5 ①', 'x-3x^2', '\\(x(1-3x)\\)') +
-              pItem('基礎5 ②', 'x(x-3)-3x^2', '\\(-x(2x+3)\\)')) +
+              pItem('基礎5 ①', 'x-3x^2') +
+              pItem('基礎5 ②', 'x(x-3)-3x^2')) +
             pCard('習作・基礎練習', '印 38', AMB, '因式分解',
-              pItem('基礎5 ③', 'x(x-3)-2(3-x)', '\\((x-3)(x+2)\\)') +
-              pItem('基礎5 ④', '(3x+4)(2x-5)-(2x-5)^2', '\\((2x-5)(x+9)\\)')), '3-1');
+              pItem('基礎5 ③', 'x(x-3)-2(3-x)') +
+              pItem('基礎5 ④', '(3x+4)(2x-5)-(2x-5)^2')), '3-1');
         },
         caption: '基礎 5 ② 提出的是 \\(-x\\)：先把負號一起提走；③ 是變號題、④ 是整塊括號題——這兩種是這一節的重點。'
       },
@@ -985,10 +765,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 39', AMB, '因式分解',
-              pItem('基礎5 續一', '(3x-1)(2x-5)-3x+1', '\\(2(3x-1)(x-3)\\)', '基礎5 ⑤') +
-              pItem('基礎5 續二', '(4x^2-7x)+(8x-14)', '\\((4x-7)(x+2)\\)', '基礎5 ⑥')) +
+              pItem('基礎5 續一', '(3x-1)(2x-5)-3x+1', '', '基礎5 ⑤') +
+              pItem('基礎5 續二', '(4x^2-7x)+(8x-14)', '', '基礎5 ⑥')) +
             pCard('習作・基礎練習', '印 39', AMB, '填空與因式分解',
-              pText('基礎6 ①', '\\(x^2-25=(x+\\square)(x-\\square)\\)', '\\(5\\)、\\(5\\)') +
+              pText('基礎6 ①', '\\(x^2-25=(x+\\square)(x-\\square)\\)') +
               pText('基礎6 ②', '\\(4x^2+12x+9=(2x+\\square)^2\\)', '\\(3\\)') +
               pText('基礎6 續', '\\(9x^2-60x+100=(\\square x-10)^2\\)', '\\(3\\)', '基礎6 ③')), '3-1');
         },
@@ -1006,11 +786,11 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 40', AMB, '因式分解',
-              pItem('基礎7 ①', '48x^2-3', '\\(3(4x+1)(4x-1)\\)') +
-              pItem('基礎7 ②', '(x-1)^2-25', '\\((x+4)(x-6)\\)')) +
+              pItem('基礎7 ①', '48x^2-3') +
+              pItem('基礎7 ②', '(x-1)^2-25')) +
             pCard('習作・基礎練習', '印 40', AMB, '因式分解',
-              pItem('基礎7 ③', 'x^2-6x+9', '\\((x-3)^2\\)') +
-              pItem('基礎7 ④', '25x^2+40x+16', '\\((5x+4)^2\\)')), '3-1');
+              pItem('基礎7 ③', 'x^2-6x+9') +
+              pItem('基礎7 ④', '25x^2+40x+16')), '3-1');
         },
         caption: '基礎 7 ② 是整份習作裡唯一一題「\\(a\\) 是一次式」的，老師會帶做並在訂正本註明。'
       },
@@ -1026,9 +806,9 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・行有餘力', '印 40', GRN, '',
-              pText('精熟1 ①', '因式分解 \\(6x-30-(x-5)^2\\)。', '\\((x-5)(11-x)\\)') +
-              pText('精熟1 ②', '承上，求 \\(6\\times 111-30-(111-5)^2\\)。', '\\(-10600\\)') +
-              pText('精熟2', '\\(9x^2-ax+4=(3x+b)^2\\)，\\(a\\) 為正整數，求 \\(a\\)、\\(b\\)。', '\\(a=12,\\;b=-2\\)')), '3-1');
+              pText('精熟1 ①', '因式分解 \\(6x-30-(x-5)^2\\)。') +
+              pText('精熟1 ②', '承上，求 \\(6\\times 111-30-(111-5)^2\\)。') +
+              pText('精熟2', '\\(9x^2-ax+4=(3x+b)^2\\)，\\(a\\) 為正整數，求 \\(a\\)、\\(b\\)。')), '3-1');
         },
         caption: '習作印 40：<b>自己寫完</b>再對答案。'
       },
@@ -1238,10 +1018,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 138、140', BLU, '十字交乘（常數正）',
-              pItem('印4 ①', 'x^2+6x+5', '\\((x+1)(x+5)\\)') +
-              pItem('印4 ②', 'x^2-6x+5', '\\((x-1)(x-5)\\)') +
-              pItem('印6 ①', 'x^2+22x+21', '\\((x+1)(x+21)\\)') +
-              pItem('印6 ②', 'x^2-10x+21', '\\((x-3)(x-7)\\)')), '3-2');
+              pItem('印4 ①', 'x^2+6x+5') +
+              pItem('印4 ②', 'x^2-6x+5') +
+              pItem('印6 ①', 'x^2+22x+21') +
+              pItem('印6 ②', 'x^2-10x+21')), '3-2');
         },
         caption: '同一個常數項，中間是正是負決定兩個數<b>都正還是都負</b>。'
       },
@@ -1331,8 +1111,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 141', BLU, '十字交乘（常數負）',
-              pItem('印7 ①', 'x^2+2x-35', '\\((x-5)(x+7)\\)') +
-              pItem('印7 ②', 'x^2-34x-35', '\\((x+1)(x-35)\\)')), '3-2');
+              pItem('印7 ①', 'x^2+2x-35') +
+              pItem('印7 ②', 'x^2-34x-35')), '3-2');
         },
         caption: '課本印 7：常數負，兩個數一正一負。'
       },
@@ -1390,8 +1170,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 143', BLU, '十字交乘（係數不為 1）',
-              pItem('印9 ①', '2x^2+7x-15', '\\((x+5)(2x-3)\\)') +
-              pItem('印9 ②', '6x^2-11x-10', '\\((2x-5)(3x+2)\\)')), '3-2');
+              pItem('印9 ①', '2x^2+7x-15') +
+              pItem('印9 ②', '6x^2-11x-10')), '3-2');
         },
         caption: '課本印 9：左欄先固定一種拆法，右欄試完再換。'
       },
@@ -1434,8 +1214,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 144', BLU, '先提再十字交乘',
-              pItem('印10 ①', '10x^2-35x+30', '\\(5(x-2)(2x-3)\\)') +
-              pItem('印10 ②', '-6x^2-15x-9', '\\(-3(x+1)(2x+3)\\)')), '3-2');
+              pItem('印10 ①', '10x^2-35x+30') +
+              pItem('印10 ②', '-6x^2-15x-9')), '3-2');
         },
         caption: '課本印 10：先提公因數或負號，再拆括號裡。'
       },
@@ -1486,7 +1266,7 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 145', BLU, '兩種解法各做一次',
-              pItem('印11', '-9x^2+12x-4', '\\(-(3x-2)^2\\)')), '3-2');
+              pItem('印11', '-9x^2+12x-4')), '3-2');
         },
         caption: '課本那一題要先提負號，提完括號裡才是熟悉的樣子。'
       },
@@ -1574,8 +1354,8 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 41', AMB, '填入適當的整數',
-              pText('基礎1 ①', '\\(x^2+\\square x+12=[x+\\square](x+3)\\)', '\\(7\\)、\\(4\\)') +
-              pText('基礎1 ②', '\\(x^2-12x+11=[x+\\square][x+\\square]\\)', '\\(-1\\)、\\(-11\\)')), '3-2');
+              pText('基礎1 ①', '\\(x^2+\\square x+12=[x+\\square](x+3)\\)') +
+              pText('基礎1 ②', '\\(x^2-12x+11=[x+\\square][x+\\square]\\)')), '3-2');
         },
         caption: '基礎 1 兩題是填空：先決定符號，剩下的只要試一兩組。'
       },
@@ -1591,10 +1371,10 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 42', AMB, '因式分解',
-              pItem('基礎2 ①', 'x^2-x-20', '\\((x+4)(x-5)\\)') +
-              pItem('基礎2 ②', 'x^2-8x-20', '\\((x+2)(x-10)\\)') +
-              pItem('基礎2 ③', 'x^2-11x+24', '\\((x-3)(x-8)\\)') +
-              pItem('基礎2 ④', 'x^2+12x-45', '\\((x-3)(x+15)\\)')), '3-2');
+              pItem('基礎2 ①', 'x^2-x-20') +
+              pItem('基礎2 ②', 'x^2-8x-20') +
+              pItem('基礎2 ③', 'x^2-11x+24') +
+              pItem('基礎2 ④', 'x^2+12x-45')), '3-2');
         },
         caption: '習作印 42：<b>自己寫完</b>再對答案。'
       },
@@ -1610,11 +1390,11 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 42', AMB, '因式分解',
-              pItem('基礎3 ①', '3x^2+13x+10', '\\((x+1)(3x+10)\\)') +
-              pItem('基礎3 ②', '3x^2-13x-10', '\\((x-5)(3x+2)\\)')) +
+              pItem('基礎3 ①', '3x^2+13x+10') +
+              pItem('基礎3 ②', '3x^2-13x-10')) +
             pCard('習作・基礎練習', '印 42', AMB, '因式分解',
-              pItem('基礎3 ③', '3x^2+20x+32', '\\((x+4)(3x+8)\\)') +
-              pItem('基礎3 ④', '3x^2+8x-35', '\\((x+5)(3x-7)\\)')), '3-2');
+              pItem('基礎3 ③', '3x^2+20x+32') +
+              pItem('基礎3 ④', '3x^2+8x-35')), '3-2');
         },
         caption: '基礎 3 前兩題的二次項係數都是 \\(3\\)，左欄固定 \\(x\\) 和 \\(3x\\) 就好。'
       },
@@ -1630,12 +1410,12 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・基礎練習', '印 43', AMB, '先提公因數再分解',
-              pItem('基礎4 ①', '-x^2+13x-36', '\\(-(x-4)(x-9)\\)') +
-              pItem('基礎4 ②', '2x^2-6x-20', '\\(2(x+2)(x-5)\\)') +
-              pItem('基礎4 續', '-5x^2+50x-105', '\\(-5(x-3)(x-7)\\)', '基礎4 ③')) +
+              pItem('基礎4 ①', '-x^2+13x-36') +
+              pItem('基礎4 ②', '2x^2-6x-20') +
+              pItem('基礎4 續', '-5x^2+50x-105', '', '基礎4 ③')) +
             pCard('習作・基礎練習', '印 43', AMB, '十字交乘或乘法公式',
-              pItem('基礎5 ①', '4x^2+12x+9', '\\((2x+3)^2\\)') +
-              pItem('基礎5 ②', '50x^2-40x+8', '\\(2(5x-2)^2\\)')), '3-2');
+              pItem('基礎5 ①', '4x^2+12x+9') +
+              pItem('基礎5 ②', '50x^2-40x+8')), '3-2');
         },
         caption: '基礎 4 ③ 兩件事一起做：先提 \\(-5\\)（負號和公因數一起），括號裡再拆。'
       },
@@ -1651,11 +1431,11 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('習作・行有餘力', '印 44', GRN, '',
-              pText('精熟1', 'A 型 \\(4\\)、B 型 \\(m\\)、C 型 \\(49\\) 塊拼成正方形，求 \\(m\\)。', '\\(m=28\\)')) +
+              pText('精熟1', 'A 型 \\(4\\)、B 型 \\(m\\)、C 型 \\(49\\) 塊拼成正方形，求 \\(m\\)。')) +
             pCard('習作・行有餘力', '印 44', GRN, '甲＝邊 \\(x\\) 正方形、乙＝\\((x+1)\\times x\\)、丙＝\\(x\\times1\\)、丁＝\\((x+1)\\times1\\)',
-              pText('精熟2 ①', '\\(2\\) 甲 ＋ \\(1\\) 乙 拼成長方形。', '\\(3x+1\\)、\\(x\\)') +
-              pText('精熟2 ②', '\\(2\\) 丙 ＋ \\(1\\) 丁 拼成長方形。', '\\(3x+1\\)、\\(1\\)') +
-              pText('精熟2 ③', '六塊一起拼成長方形。', '\\(3x+1\\)、\\(x+1\\)')), '3-2');
+              pText('精熟2 ①', '\\(2\\) 甲 ＋ \\(1\\) 乙 拼成長方形。') +
+              pText('精熟2 ②', '\\(2\\) 丙 ＋ \\(1\\) 丁 拼成長方形。') +
+              pText('精熟2 ③', '六塊一起拼成長方形。')), '3-2');
         },
         caption: '精熟題是行有餘力的，做不完不影響過關；第一步一樣是把面積加起來。'
       },
