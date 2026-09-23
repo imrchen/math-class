@@ -9,7 +9,8 @@ window.PRACTICE = (function () {
   const CONT = ['', ' 續', ' 續一', ' 續二', ' 續三', ' 續四', ' 續五'];
 
   const S = (sec) => (window.SOLUTIONS || {})[sec] || {};
-  const figSvg = (d) => (d && d.fig && (window.FIGURES || {})[d.fig]) || null;
+
+  const figSvg = (d) => (d && d.fig && ((window.FIGURES_LOCAL || {})[d.fig] || (window.FIGURES || {})[d.fig])) || null;
   const tex = (t) => String(t || '').replace(/\$([^$]+)\$/g, (_, m) => '\\(' + m + '\\)');
 
   const BOILER = /^承上[，,]?[^$]{0,24}。?$/;

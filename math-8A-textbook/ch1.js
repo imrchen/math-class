@@ -4,12 +4,34 @@ window.DECK = window.DECK || [];
   const RED = '#e11d48', GRN = '#059669', BLU = '#2563eb', VIO = '#7c3aed', AMB = '#d97706';
   const INK = '#172033', GREY = '#8a94a6';
 
+  window.FIGURES_LOCAL = window.FIGURES_LOCAL || {};
+  window.FIGURES_LOCAL['long-division-21x2-x-2'] = (() => {
+    const cx = [106, 170, 224];
+    const T = (col, y, s, c, fs) => `<text x="${cx[col]}" y="${y}" text-anchor="middle" font-size="${fs || 22}" font-weight="800" fill="${c}">${s}</text>`;
+    return `<svg viewBox="0 0 250 262" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + T(1, 40, '7x', GRN) + T(2, 40, '－2', GRN)
+      + `<text x="60" y="84" text-anchor="end" font-size="22" font-weight="800" fill="${VIO}">3x＋1</text>`
+      + `<path d="M65,96 Q78,77 65,56 H248" fill="none" stroke="${INK}" stroke-width="2.4"/>`
+      + T(0, 84, '21x²', INK) + T(1, 84, '＋x', INK) + T(2, 84, '－2', INK)
+      + T(0, 122, '21x²', BLU) + T(1, 122, '＋7x', BLU)
+      + `<line x1="76" y1="136" x2="248" y2="136" stroke="${INK}" stroke-width="2"/>`
+      + T(1, 166, '－6x', INK) + T(2, 166, '－2', INK)
+      + T(1, 204, '－6x', BLU) + T(2, 204, '－2', BLU)
+      + `<line x1="140" y1="218" x2="248" y2="218" stroke="${INK}" stroke-width="2"/>`
+      + T(2, 250, '0', GRN)
+      + `<text x="204" y="250" text-anchor="end" font-size="14" font-weight="800" fill="${GREY}">餘式</text>`
+      + `</svg>`;
+  })();
+
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;
   }
 
   const TX = (x, y, s, o = {}) =>
-    `<text x="${x}" y="${y}" ${o.anchor ? `text-anchor="${o.anchor}"` : ''} font-size="${o.fs || 15}" font-weight="${o.fw || 800}" fill="${o.c || INK}">${s}</text>`;
+    `<text x="${x}" y="${y}" ${o.anchor ? `text-anchor="${o.anchor}"` : ''} font-size="${o.fs || 15}" font-weight="${o.fw || 800}" fill="${o.c || INK}"${o.op !== undefined ? ` opacity="${o.op}"` : ''}>${s}</text>`;
+
+  const BOX = (x, y, w, h, o = {}) =>
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 12}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#dce3ee'}" stroke-width="${o.sw || 1.8}"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}${o.op !== undefined ? ` opacity="${o.op}"` : ''}/>`;
   const RECT = (x, y, w, h, o = {}) =>
     `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 0}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#c9d3e2'}" stroke-width="${o.sw || 1.8}"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}/>`;
 
@@ -1011,6 +1033,209 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '多項式與其加減運算',
+        title: '精熟 1 思路 2（一）：為什麼設 A＝ax²',
+        points: [
+          '<b>單項式</b>只有一項：放進直式，只會佔<b>一欄</b>。',
+          '\\(-B\\) 的 \\(x^2\\) 項是 \\(+2x^2\\)；A 不在 \\(x^2\\) 欄，係數就卡在 \\(2\\)。',
+          '要從 2 變成 7，A 一定要落在 \\(x^2\\) 欄 → 設 \\(A=ax^2\\)。'
+        ],
+        formula: { label: '關卡：A 放在哪一欄？<span class="pgref">習作 印 9</span>', tex: 'A=ax^2' },
+        visual: (h) => {
+          const cx = [140, 215, 285, 345], RX = 432;
+          const heads = k => ['x³ 欄', 'x² 欄', 'x 欄', '常數欄'].map((s, i) =>
+              TX(cx[i], 40, s, { anchor: 'middle', fs: 13, c: i === 1 ? VIO : GREY, op: k })).join('')
+            + TX(RX, 34, 'A－B 的', { anchor: 'middle', fs: 12, c: GREY, op: k })
+            + TX(RX, 50, 'x² 係數', { anchor: 'middle', fs: 12, c: GREY, op: k });
+          const cand = (y, name, col, term, res, ok, k) =>
+            TX(55, y, name, { anchor: 'middle', fs: 15, c: ok ? GRN : INK, op: k })
+            + TX(cx[col], y, term, { anchor: 'middle', fs: 18, c: ok ? GRN : BLU, op: k })
+            + TX(RX, y, res, { anchor: 'middle', fs: 17, c: ok ? GRN : RED, op: k });
+          SV.stepper(h, '0 0 480 290', [
+            { t: '先看 <b>－B</b>：它的 x² 欄是 <b>＋2x²</b>。A 只有一項，只會落在<b>某一欄</b>。',
+              d: k => `<rect x="182" y="20" width="66" height="258" rx="8" fill="rgba(124,58,237,.08)" opacity="${k}"/>`
+                + heads(k)
+                + TX(55, 84, '－B', { anchor: 'middle', fs: 16, c: RED, op: k })
+                + ['－x³', '＋2x²', '－3x', '＋4'].map((s, i) => TX(cx[i], 84, s, { anchor: 'middle', fs: 18, c: RED, op: k })).join('')
+                + SV.seg(30, 102, 470, 102, '#c3cddd', 1.6) },
+            { t: '如果 A＝ax³：它落在 <b>x³ 欄</b>，x² 欄還是只有 2——<b>不會是 7</b>。',
+              d: k => cand(140, 'A＝ax³', 0, 'ax³', '2 ✗', false, k) },
+            { t: 'A＝ax、A＝a 也一樣：落在別欄，x² 欄<b>都還是 2</b>。',
+              d: k => cand(184, 'A＝ax', 2, 'ax', '2 ✗', false, k) + cand(228, 'A＝a', 3, 'a', '2 ✗', false, k) },
+            { t: '只有 <b>A＝ax²</b> 落進 x² 欄，係數才變成 <b>a＋2</b>，才有機會等於 7。',
+              d: k => cand(272, 'A＝ax²', 1, 'ax²', 'a＋2 ✓', true, k) }
+          ]);
+        },
+        caption: '⚠ 題目說「<b>單項式</b>」，就是在告訴你：A 只有一項，只能挑一欄。',
+        example: {
+          q: '已知多項式 \\(A\\) 為單項式，\\(B=x^3-2x^2+3x-4\\)，若 \\(A-B\\) 的二次項係數為 \\(7\\)，求 \\(A\\)。',
+          steps: ['想清楚 A 會落在哪一欄（這一頁）', '直式算 \\(A-B\\)', '\\(x^2\\) 欄的係數等於 7，解出 \\(a\\)'],
+          ans: '\\(A=5x^2\\)'
+        }
+      },
+      {
+        sec: '1-2', secName: '多項式與其加減運算',
+        title: '精熟 1 思路 2（二）：直式算 A－B',
+        points: [
+          'A 補成 \\(0x^3+ax^2+0x+0\\)，欄位才對得齊。',
+          '減 B ＝ 加 \\(-B\\)：每一項都變號，\\(-B=-x^3+2x^2-3x+4\\)。',
+          '只看 \\(x^2\\) 欄：\\(a+2=7\\)，\\(a=5\\)。'
+        ],
+        formula: { label: '只看 x² 欄', tex: 'a+2=7\\quad\\Rightarrow\\quad a=5' },
+        visual: (h) => {
+          const cx = [140, 228, 318, 390];
+          const row = (y, name, cells, cols, k, fs) => TX(55, y, name, { anchor: 'middle', fs: 16, c: cols[0], op: k })
+            + cells.map((s, i) => TX(cx[i], y, s, { anchor: 'middle', fs: fs || 19, c: cols[i + 1] || cols[cols.length - 1], op: k })).join('');
+          const heads = k => ['x³ 欄', 'x² 欄', 'x 欄', '常數欄'].map((s, i) =>
+            TX(cx[i], 38, s, { anchor: 'middle', fs: 13, c: i === 1 ? VIO : GREY, op: k })).join('');
+          SV.stepper(h, '0 0 460 300', [
+            { t: '設好的 <b>A＝ax²</b> 寫進 x² 欄，缺的欄<b>補 0</b>。',
+              d: k => `<rect x="190" y="20" width="76" height="178" rx="8" fill="rgba(124,58,237,.08)" opacity="${k}"/>`
+                + heads(k) + row(78, 'A', ['0x³', 'ax²', '0x', '0'], [INK, GREY, INK, GREY, GREY], k) },
+            { t: '減 B ＝ 加上 <b>－B</b>：B 的每一項都變號。',
+              d: k => row(118, '－B', ['－x³', '＋2x²', '－3x', '＋4'], [RED], k) },
+            { t: '一欄一欄相加：x² 欄是 ax² ＋ 2x² ＝ <b>(a＋2)x²</b>。',
+              d: k => SV.seg(90, 142, 430, 142, '#c3cddd', 2)
+                + row(178, '', ['－x³', '(a＋2)x²', '－3x', '＋4'], [GRN], k, 18) },
+            { t: 'x² 係數是 7：<b>a＋2＝7</b>，a＝5。',
+              d: k => BOX(186, 156, 84, 32, { r: 8, fill: 'none', stroke: VIO, sw: 2.4, op: k })
+                + TX(230, 240, 'a ＋ 2 ＝ 7，a ＝ 5', { anchor: 'middle', fs: 20, c: VIO, op: k })
+                + TX(230, 280, 'A ＝ 5x²', { anchor: 'middle', fs: 22, c: GRN, op: k }) }
+          ]);
+        },
+        caption: '⚠ 其他三欄（\\(-x^3\\)、\\(-3x\\)、\\(4\\)）題目沒問，<b>不用管</b>。驗算：\\(5+2=7\\) ✓'
+      },
+
+      {
+        sec: '1-2', secName: '多項式與其加減運算',
+        title: '精熟 2 思路 2（一）：直式排好三式',
+        points: [
+          '減掉 \\(C\\) ＝ 加上 \\(C\\) 的<b>相反</b>：\\(-C=-4x^2+11x\\)，每一項都變號。',
+          '三式照<b>降冪</b>排進 \\(x^2\\)、\\(x\\)、常數三欄，\\(C\\) 沒有常數項就<b>補 0</b>。',
+          '字母 \\(a\\)、\\(b\\) 當成係數的一部分，跟數字一樣<b>一欄一欄加</b>。'
+        ],
+        formula: { label: '先把 A＋B－C 算出來<span class="pgref">習作 印 9</span>', tex: '(a+b-4)x^2+(b-2a+11)x-1' },
+        visual: (h) => {
+          const cx = [165, 280, 385];
+          const row = (y, name, cells, col, k, fs) => TX(52, y, name, { anchor: 'middle', fs: 17, c: col, op: k })
+            + cells.map((s, i) => TX(cx[i], y, s, { anchor: 'middle', fs: fs || 19, c: col, op: k })).join('');
+          const heads = k => cx.map((x, i) => TX(x, 38, ['x² 欄', 'x 欄', '常數欄'][i], { anchor: 'middle', fs: 13, c: GREY, op: k })).join('');
+          SV.stepper(h, '0 0 460 290', [
+            { t: '<b>A</b>、<b>B</b> 照降冪寫進三個欄位：x² 對 x²、x 對 x、常數對常數。',
+              d: k => heads(k) + row(80, 'A', ['ax²', '＋bx', '－6'], INK, k) + row(122, 'B', ['bx²', '－2ax', '＋5'], BLU, k) },
+            { t: '減 C ＝ 加上 <b>－C</b>：每一項都變號；C 沒有常數項，<b>補 0</b>。',
+              d: k => row(164, '－C', ['－4x²', '＋11x', '＋0'], RED, k)
+                + `<circle cx="${cx[2]}" cy="158" r="${22 * k}" fill="none" stroke="${AMB}" stroke-width="2.4"/>`
+                + TX(230, 272, 'C ＝ 4x² － 11x　→　－C ＝ －4x² ＋ 11x ＋ 0', { anchor: 'middle', fs: 15, c: RED, op: k }) },
+            { t: '一欄一欄相加，就是 <b>A＋B－C</b>。',
+              d: k => SV.seg(96, 184, 430, 184, '#c3cddd', 2)
+                + row(222, '', ['(a＋b－4)x²', '(b－2a＋11)x', '－1'], GRN, k, 16) }
+          ]);
+        },
+        caption: '先不要急著找 \\(a\\)、\\(b\\)——<b>先把 \\(A+B-C\\) 長什麼樣算出來</b>，後面三頁都從這一行出發。',
+        example: {
+          q: '已知 \\(A=ax^2+bx-6\\)、\\(B=bx^2-2ax+5\\)、\\(C=4x^2-11x\\)，且 \\(A+B-C\\) 為常數多項式，求 \\(A\\)。',
+          steps: ['直式排出 \\(A+B-C\\)（這一頁）', '\\(x^2\\) 欄、\\(x\\) 欄都等於 0，列出兩個方程式', '兩式相加消掉 \\(b\\)，解出 \\(a\\)、\\(b\\)', '代回 \\(A\\)'],
+          ans: '\\(A=5x^2-x-6\\)'
+        }
+      },
+      {
+        sec: '1-2', secName: '多項式與其加減運算',
+        title: '精熟 2 思路 2（二）：兩欄都是 0',
+        points: [
+          '<b>常數多項式</b>只剩常數項：\\(x^2\\) 項、\\(x\\) 項的<b>係數都是 0</b>。',
+          '一欄給一個方程式：\\(x^2\\) 欄一個、\\(x\\) 欄一個，<b>兩欄 → 兩個方程式</b>。',
+          '② 整理成 \\(2a-b=11\\)，下一頁 \\(b\\) 才消得掉。'
+        ],
+        formula: { label: '係數等於 0', tex: 'a+b-4=0\\qquad b-2a+11=0' },
+        visual: (h) => {
+          SV.stepper(h, '0 0 460 300', [
+            { t: '上一頁算出的 A＋B－C。要是<b>常數多項式</b>，x² 欄和 x 欄都得消失。',
+              d: k => TX(120, 44, '(a＋b－4)', { anchor: 'middle', fs: 20, c: INK, op: k })
+                + TX(186, 44, 'x²', { fs: 20, c: INK, op: k })
+                + TX(226, 44, '＋', { anchor: 'middle', fs: 20, c: INK, op: k })
+                + TX(310, 44, '(b－2a＋11)', { anchor: 'middle', fs: 20, c: INK, op: k })
+                + TX(384, 44, 'x', { fs: 20, c: INK, op: k })
+                + TX(408, 44, '－ 1', { fs: 20, c: INK, op: k })
+                + BOX(58, 18, 124, 36, { r: 8, fill: 'none', stroke: VIO, sw: 2.2, op: k })
+                + BOX(242, 18, 136, 36, { r: 8, fill: 'none', stroke: AMB, sw: 2.2, op: k })
+                + TX(120, 82, '係數 ＝ 0', { anchor: 'middle', fs: 15, c: VIO, op: k })
+                + TX(310, 82, '係數 ＝ 0', { anchor: 'middle', fs: 15, c: AMB, op: k })
+                + TX(422, 82, '留下來', { anchor: 'middle', fs: 15, c: GREY, op: k }) },
+            { t: '<b>x² 欄</b>：把 －4 搬到右邊（變號），得 <b>a ＋ b ＝ 4</b>。',
+              d: k => TX(40, 128, 'x² 欄', { fs: 16, c: VIO, op: k })
+                + TX(120, 128, 'a ＋ b － 4 ＝ 0', { fs: 19, c: INK, op: k })
+                + TX(120, 160, 'a ＋ b ＝ 4', { fs: 19, c: VIO, op: k })
+                + TX(330, 160, '⋯ ①', { fs: 19, c: VIO, op: k }) },
+            { t: '<b>x 欄</b>：把 b、－2a 搬到右邊（變號），得 <b>2a － b ＝ 11</b>。',
+              d: k => TX(40, 208, 'x 欄', { fs: 16, c: AMB, op: k })
+                + TX(120, 208, 'b － 2a ＋ 11 ＝ 0', { fs: 19, c: INK, op: k })
+                + TX(120, 240, '11 ＝ 2a － b', { fs: 19, c: INK, op: k })
+                + TX(120, 272, '2a － b ＝ 11', { fs: 19, c: AMB, op: k })
+                + TX(330, 272, '⋯ ②', { fs: 19, c: AMB, op: k }) }
+          ]);
+        },
+        caption: '⚠ 等於 0 的是<b>係數</b>（\\(a+b-4\\)），不是 \\(a\\) 或 \\(b\\) 本身。'
+      },
+      {
+        sec: '1-2', secName: '多項式與其加減運算',
+        title: '精熟 2 思路 2（三）：相加消掉 b',
+        points: [
+          '①、② 上下排好，<b>a 對 a、b 對 b</b>，跟多項式的直式一樣。',
+          '相加：\\(+b\\) 和 \\(-b\\) <b>抵消</b>，只剩 \\(3a=15\\)，\\(a=5\\)。',
+          '把 \\(a=5\\) 代回 ①：\\(5+b=4\\)，\\(b=-1\\)。'
+        ],
+        formula: { label: '加減消去法', tex: '(a+b)+(2a-b)=4+11\\;\\Rightarrow\\;3a=15' },
+        visual: (h) => {
+          const cx = [150, 196, 242, 290, 340];
+          const row = (y, cells, col, k) => cells.map((s, i) => s ? TX(cx[i], y, s, { anchor: 'middle', fs: 21, c: col, op: k }) : '').join('');
+          SV.stepper(h, '0 0 460 300', [
+            { t: '把 ①、② 上下排好：a 對 a、b 對 b、等號對等號。',
+              d: k => row(64, ['a', '＋', 'b', '＝', '4'], VIO, k) + TX(398, 64, '⋯ ①', { fs: 17, c: VIO, op: k })
+                + row(106, ['2a', '－', 'b', '＝', '11'], AMB, k) + TX(398, 106, '⋯ ②', { fs: 17, c: AMB, op: k }) },
+            { t: '上下<b>相加</b>：＋b 和 －b 加起來是 0，<b>b 不見了</b>。',
+              d: k => TX(92, 106, '＋)', { anchor: 'middle', fs: 19, c: INK, op: k })
+                + SV.seg(80, 124, 370, 124, '#c3cddd', 2)
+                + `<g opacity="${k}">` + SV.seg(222, 44, 262, 70, RED, 2.6) + SV.seg(222, 86, 262, 112, RED, 2.6) + '</g>'
+                + row(162, ['3a', '', '', '＝', '15'], GRN, k)
+                + TX(242, 162, '0', { anchor: 'middle', fs: 17, c: RED, op: k * 0.8 }) },
+            { t: '兩邊除以 3：<b>a ＝ 5</b>。',
+              d: k => row(204, ['a', '', '', '＝', '5'], GRN, k) },
+            { t: '把 a ＝ 5 代回 ①：5 ＋ b ＝ 4，<b>b ＝ －1</b>。',
+              d: k => TX(60, 254, '代回 ①', { fs: 16, c: VIO, op: k })
+                + TX(150, 254, '5 ＋ b ＝ 4', { fs: 21, c: INK, op: k })
+                + TX(150, 288, 'b ＝ 4 － 5 ＝ －1', { fs: 21, c: GRN, op: k }) }
+          ]);
+        },
+        caption: '這是七年級學過的<b>加減消去法</b>：讓某個字母上下相加剛好變 0。'
+      },
+      {
+        sec: '1-2', secName: '多項式與其加減運算',
+        title: '精熟 2 思路 2（四）：代回求 A',
+        points: [
+          '題目問的是 \\(A\\)，不是 \\(a\\)、\\(b\\)：<b>代回去</b>才算答完。',
+          '\\((-1)x\\) 寫成 \\(-x\\)，係數 1 不寫。',
+          '驗算：\\(a\\)、\\(b\\) 代回兩欄，<b>都得 0</b> 才對。'
+        ],
+        formula: { label: '答', tex: 'A=5x^2-x-6' },
+        visual: (h) => {
+          SV.stepper(h, '0 0 460 300', [
+            { t: '把 a ＝ 5、b ＝ －1 代進 A ＝ ax² ＋ bx － 6。',
+              d: k => TX(60, 50, 'A ＝ a x² ＋ b x － 6', { fs: 20, c: INK, op: k })
+                + TX(60, 88, '　＝ 5x² ＋ (－1)x － 6', { fs: 20, c: INK, op: k }) },
+            { t: '(－1)x 就是 －x，整理好就是答案。',
+              d: k => TX(60, 126, '　＝ 5x² － x － 6', { fs: 22, c: GRN, op: k }) },
+            { t: '<b>驗算</b>：a、b 代回兩欄，都要是 0。',
+              d: k => SV.seg(40, 150, 420, 150, '#c3cddd', 1.6)
+                + TX(40, 190, 'x² 欄：5 ＋ (－1) － 4 ＝ 0 ✓', { fs: 17, c: VIO, op: k })
+                + TX(40, 226, 'x 欄：(－1) － 2×5 ＋ 11 ＝ 0 ✓', { fs: 17, c: AMB, op: k })
+                + TX(40, 262, 'A ＋ B － C ＝ －1，真的是常數 ✓', { fs: 17, c: GRN, op: k }) }
+          ]);
+        },
+        caption: '⚠ 算出 \\(a\\)、\\(b\\) 就停，是這一題最常見的漏答。'
+      },
+
+      {
+        sec: '1-2', secName: '多項式與其加減運算',
         title: '檢討｜自我評量 ①（自我評量與錯誤診療）',
         points: [
           '自我評量是<b>段考前最像考題</b>的一份，整份走一遍。',
@@ -1731,6 +1956,26 @@ window.DECK = window.DECK || [];
           }
           PRACTICE.page(h, '1-3', [
             { src: '課本・隨堂練習', page: '印 47–50', sub: '商式係數為分數、四者關係、綜合', tags: ['印15', '印16', '印17', '印18'] }
+          ]);
+        },
+        caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
+        title: '檢討｜課本延伸演練（已知商式與餘式，求除式）',
+        points: [
+          '先點<b>「延伸」</b>：把等式看成除法，<b>被除式 ＝ 除式 × 商式 ＋ 餘式</b>，回頭變成一個直式除法。',
+          '再點<b>「延伸另解」</b>：不做除法，設 \\(C=ax+b\\)，展開後比較係數。',
+          '兩種方法答案一樣，<b>選一種會的就好</b>。'
+        ],
+        formula: { label: '被除式 ＝ 除式 × 商式 ＋ 餘式<span class="pgref">課本 印 48</span>', tex: '21x^2+x+1=C(3x+1)+3' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-3', [
+            { src: '課本・延伸演練', page: '印 48', sub: '電子書的延伸演練，兩種解法', tags: ['延伸', '延伸另解'] }
           ]);
         },
         caption: '點任一題號 → 逐行詳解；「回題目列表」可以再挑下一題。'
