@@ -1737,7 +1737,8 @@ window.DECK = window.DECK || [];
           const shape = [[X0 + nW, Y0], [X0 + W - nW, Y0], [X0 + W - nW, Y0 + nH], [X0 + W, Y0 + nH],
                          [X0 + W, Y0 + H], [X0, Y0 + H], [X0, Y0 + nH], [X0 + nW, Y0 + nH]];
           const body = (fill) => SV.poly(shape, fill || 'rgba(5,150,105,.14)', GRN, 2.4);
-          const frame = (dash) => BOX(X0, Y0, W, H, { r: 0, fill: 'none', stroke: AMB, sw: 2.2, dash: dash || '7 5' });
+
+          const frame = () => BOX(X0, Y0, W, H, { r: 0.001, fill: 'none', stroke: AMB, sw: 2.2, dash: '7 5' });
           const lab = () => TX(X0 + nW / 2, Y0 + 34, 'x', { anchor: 'middle', fs: 15, c: INK })
             + TX(X0 + W - nW / 2, Y0 + 34, 'x', { anchor: 'middle', fs: 15, c: INK })
             + TX(X0 - 16, Y0 + nH + 16, 'x', { anchor: 'middle', fs: 15, c: INK })
@@ -1759,9 +1760,10 @@ window.DECK = window.DECK || [];
                 + TX(220, 232, '周長 ＝ (3x＋2)×2 ＋ (3x－1)×2', { anchor: 'middle', fs: 17, c: AMB })
                 + TX(220, 258, '＝ 12x ＋ 2', { anchor: 'middle', fs: 19, c: GRN }) },
             { t: '<b>面積</b>：先當成整個長方形，再扣掉上面<b>兩個 x·x 的缺口</b>。',
-              d: () => frame('') + body('rgba(5,150,105,.14)')
-                + BOX(X0, Y0, nW, nH, { r: 0, fill: 'rgba(225,29,72,.14)', stroke: RED, sw: 2 })
-                + BOX(X0 + W - nW, Y0, nW, nH, { r: 0, fill: 'rgba(225,29,72,.14)', stroke: RED, sw: 2 })
+
+              d: () => BOX(X0, Y0, W, H, { r: 0.001, fill: 'rgba(5,150,105,.14)', stroke: GRN, sw: 2.4 })
+                + BOX(X0, Y0, nW, nH, { r: 0.001, fill: 'rgba(225,29,72,.18)', stroke: RED, sw: 2 })
+                + BOX(X0 + W - nW, Y0, nW, nH, { r: 0.001, fill: 'rgba(225,29,72,.18)', stroke: RED, sw: 2 })
                 + TX(220, 226, '(3x＋2)(3x－1) － 2·x·x', { anchor: 'middle', fs: 17, c: INK })
                 + TX(220, 254, '＝ 9x² ＋ 3x － 2 － 2x² ＝ 7x² ＋ 3x － 2', { anchor: 'middle', fs: 16, c: GRN }) }
           ], { acc: false });
