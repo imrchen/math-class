@@ -87,6 +87,9 @@ window.PRACTICE = (function () {
     const canDraw = (f) => !!(f && window.FIG && window.FIG.render(f, { accentStep: 0 }));
     const figList = (d.figs && d.figs.length ? d.figs : (fig ? [fig] : [])).filter(canDraw);
     const figSteps = (window.FIG && window.FIG.accentCount) ? window.FIG.accentCount(figList[0]) : 0;
+
+    const solFigs = (d.solfigs || []).filter(s => s && canDraw(s.fig));
+    const solAt = (k) => solFigs.reduce((cur, s) => (k > s.from ? s : cur), null);
     const lines = d.steps.concat(d.ans ? ['答：' + d.ans] : []);
     const total = Math.max(lines.length, figSteps);
     const col = SRCCOL[d.src] || '#2563eb';
@@ -148,9 +151,11 @@ window.PRACTICE = (function () {
     const paint = () => {
       els.forEach((e, i) => { e.style.visibility = (isAsk[i] || i < Math.min(k, lines.length)) ? 'visible' : 'hidden'; });
       if (figBox) {
+        const sf = solAt(k);
         figBox.innerHTML = `<div class="q-figin" style="width:100%;display:flex;flex-direction:column;gap:6px">`
-          + figList.map((f, idx) => window.FIG.render(f,
-              { accentStep: idx === 0 ? figStepAt(k) : window.FIG.accentCount(f) }) || '').join('')
+          + (sf ? (window.FIG.render(sf.fig, {}) || '')
+                : figList.map((f, idx) => window.FIG.render(f,
+                    { accentStep: idx === 0 ? figStepAt(k) : window.FIG.accentCount(f) }) || '').join(''))
           + `</div>`;
 
         figWide(figBox, Math.round(h.clientHeight * 0.52));

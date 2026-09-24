@@ -3117,15 +3117,16 @@ window.SOLUTIONS = {
    "src": "習作",
    "page": "印 12",
    "title": "精熟題第 2 題",
-   "q": "如圖，在 \\(\\triangle ABC\\) 中，\\(D\\) 點在 \\(\\overline{AC}\\) 上，\\(E\\)、\\(F\\) 兩點在 \\(\\overline{BC}\\) 上，\\(\\overline{AE}\\) 交 \\(\\overline{BD}\\) 於 \\(G\\) 點。若 \\(\\overline{CD}：\\overline{DA}=2：3\\)，且 \\(\\overline{CF}：\\overline{FE}：\\overline{EB}=2：3：1\\)，求 \\(\\overline{AG}：\\overline{GE}\\)。\n承上，\\(\\overline{CD}：\\overline{DA}=2：3\\)、\\(\\overline{CF}：\\overline{FE}：\\overline{EB}=2：3：1\\)。",
+   "q": "如圖，在 \\(\\triangle ABC\\) 中，\\(D\\) 點在 \\(\\overline{AC}\\) 上，\\(E\\)、\\(F\\) 兩點在 \\(\\overline{BC}\\) 上，\\(\\overline{AE}\\) 交 \\(\\overline{BD}\\) 於 \\(G\\) 點。若 \\(\\overline{CD}：\\overline{DA}=2：3\\)，且 \\(\\overline{CF}：\\overline{FE}：\\overline{EB}=2：3：1\\)，求 \\(\\overline{AG}：\\overline{GE}\\)。",
    "ref": "圖見習作 p.12",
    "steps": [
     "在 \\(\\triangle ACE\\) 中，\\(\\overline{CD}：\\overline{DA}=2：3=\\overline{CF}：\\overline{FE}\\)，故 \\(\\overline{DF} \\parallel \\overline{AE}\\)",
     "　　\\(\\overline{DF}：\\overline{AE}=2：5\\)",
     "在 \\(\\triangle BDF\\) 中，\\(\\overline{GE} \\parallel \\overline{DF}\\)，\\(\\overline{GE}：\\overline{DF}=1：4\\)",
-    "因此 \\(\\overline{GE}：\\overline{DF}：\\overline{AE}=1：4：10\\)"
+    "因此 \\(\\overline{GE}：\\overline{DF}：\\overline{AE}=1：4：10\\)",
+    "\\(\\overline{AG}：\\overline{GE}=（10-1）：1=9：1\\)"
    ],
-   "ans": "\\(\\overline{AG}：\\overline{GE}=（10-1）：1=9：1\\)",
+   "ans": "\\(\\overline{AG}：\\overline{GE}=9：1\\)",
    "fig": {
     "type": "polygon-group",
     "unit": 30,
@@ -3192,6 +3193,244 @@ window.SOLUTIONS = {
     ],
     "placement": "right"
    },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "role": "solution",
+      "unit": 38,
+      "gap": 90,
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 9,
+          "y": 10,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 12,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 2,
+          "y": 0,
+          "label": "$E$",
+          "nudge": [
+           0,
+           12
+          ]
+         },
+         {
+          "x": 8,
+          "y": 0,
+          "label": "$F$",
+          "nudge": [
+           0,
+           12
+          ]
+         },
+         {
+          "x": 10.8,
+          "y": 4.0,
+          "label": "$D$"
+         },
+         {
+          "x": 2.7,
+          "y": 1.0,
+          "label": "$G$",
+          "nudge": [
+           54,
+           -30
+          ]
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "segments": [
+         {
+          "from": 0,
+          "to": 3
+         },
+         {
+          "from": 1,
+          "to": 5
+         },
+         {
+          "from": 5,
+          "to": 4
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           0,
+           3,
+           2
+          ],
+          "fill": "#bfdbfe"
+         }
+        ],
+        "sides": [
+         {
+          "from": 2,
+          "to": 5,
+          "text": "$2$"
+         },
+         {
+          "from": 5,
+          "to": 0,
+          "text": "$3$"
+         },
+         {
+          "from": 2,
+          "to": 4,
+          "text": "$2$",
+          "nudge": [
+           0,
+           14
+          ]
+         },
+         {
+          "from": 4,
+          "to": 3,
+          "text": "$3$",
+          "nudge": [
+           0,
+           14
+          ]
+         }
+        ],
+        "fill": "#FFFFFF"
+       }
+      ],
+      "placement": "right"
+     }
+    },
+    {
+     "from": 2,
+     "fig": {
+      "type": "polygon-group",
+      "role": "solution",
+      "unit": 38,
+      "gap": 90,
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 9,
+          "y": 10,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 12,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 2,
+          "y": 0,
+          "label": "$E$",
+          "nudge": [
+           0,
+           12
+          ]
+         },
+         {
+          "x": 8,
+          "y": 0,
+          "label": "$F$",
+          "nudge": [
+           0,
+           12
+          ]
+         },
+         {
+          "x": 10.8,
+          "y": 4.0,
+          "label": "$D$"
+         },
+         {
+          "x": 2.7,
+          "y": 1.0,
+          "label": "$G$",
+          "nudge": [
+           54,
+           -30
+          ]
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "segments": [
+         {
+          "from": 0,
+          "to": 3
+         },
+         {
+          "from": 1,
+          "to": 5
+         },
+         {
+          "from": 5,
+          "to": 4
+         }
+        ],
+        "polygons": [
+         {
+          "points": [
+           1,
+           5,
+           4
+          ],
+          "fill": "#bfdbfe"
+         }
+        ],
+        "sides": [
+         {
+          "from": 3,
+          "to": 1,
+          "text": "$1$",
+          "nudge": [
+           0,
+           14
+          ]
+         },
+         {
+          "from": 4,
+          "to": 3,
+          "text": "$3$",
+          "nudge": [
+           0,
+           14
+          ]
+         }
+        ],
+        "fill": "#FFFFFF"
+       }
+      ],
+      "placement": "right"
+     }
+    }
+   ],
    "key": "\\(9：1\\)"
   }
  },

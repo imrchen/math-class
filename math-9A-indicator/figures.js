@@ -182,15 +182,18 @@ window.FIG = (function () {
 
       const rings = sh.outlines || (sh.outline ? [sh.outline] : [pts.map((_, i) => i)]);
 
-      (sh.polygons || []).forEach(pg => {
-        const r = (pg.points || []).filter(i => P[i]);
-        if (r.length < 3) return;
-        body += `<polygon points="${r.map(i => P[i].map(v => v.toFixed(1)).join(',')).join(' ')}" fill="${pg.fill || '#dbeafe'}" stroke="none"/>`;
-      });
+      const regions = (sh.polygons || []).map(pg => (pg.points || []).filter(i => P[i]).length >= 3 ? pg : null).filter(Boolean);
+      const ringPts = (r) => r.map(i => P[i].join(',')).join(' ');
+      if (regions.length) {
+        if (sh.fill) rings.forEach(r => { if (r && r.length >= 3) body += `<polygon points="${ringPts(r)}" fill="${sh.fill}" stroke="none"/>`; });
+        regions.forEach(pg => {
+          const r = pg.points.filter(i => P[i]);
+          body += `<polygon points="${r.map(i => P[i].map(v => v.toFixed(1)).join(',')).join(' ')}" fill="${pg.fill || '#dbeafe'}" stroke="none"/>`;
+        });
+      }
       rings.forEach(r => {
         if (!r || r.length < 3) return;
-        const d = r.map(i => P[i].join(',')).join(' ');
-        body += `<polygon points="${d}" fill="${sh.fill || 'none'}" stroke="${INK}" stroke-width="2.2"/>`;
+        body += `<polygon points="${ringPts(r)}" fill="${regions.length ? 'none' : (sh.fill || 'none')}" stroke="${INK}" stroke-width="2.2"/>`;
       });
       const gate = gateOf(sh, opt);
       (sh.segments || []).forEach((g, gi) => {
