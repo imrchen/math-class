@@ -322,8 +322,21 @@ window.PRACTICE = (function () {
       return { no, a, L, tiny: !!L || (a && vis(a) <= 2) };
     });
 
-    const texAns = (a) => !/\\\(/.test(a) ? a : a.split(/(\\\([\s\S]*?\\\))/).map(s =>
+    const texOne = (a) => !/\\\(/.test(a) ? a : a.split(/(\\\([\s\S]*?\\\))/).map(s =>
       /^\\\(/.test(s) ? s : (s.trim() ? `<span style="color:${K};font-size:.82em">${s}</span>` : s)).join('');
+
+    const ALT = '#92400e';
+    const MARK = /([①-⑳]|[(（]\d+[)）])/;
+    const texAns = (a) => {
+      const segs = [''];
+      String(a).split(/(\\\([\s\S]*?\\\))/).forEach(p => {
+        if (/^\\\(/.test(p)) { segs[segs.length - 1] += p; return; }
+        p.split(MARK).forEach(q => { if (MARK.test(q) && q.length <= 4) segs.push(q); else segs[segs.length - 1] += q; });
+      });
+      if (segs.length < 3) return texOne(a);
+      return (segs[0] ? texOne(segs[0]) : '') + segs.slice(1).map((s, i) =>
+        `<span style="color:${i % 2 ? ALT : ANS}">${texOne(s)}</span>`).join('');
+    };
     const big = (it) => `<div style="border:3px solid ${K};border-radius:10px;background:#fff;
         text-align:center;padding:6px 2px 4px;min-width:0">
       <div style="font-size:20px;font-weight:800;color:${K};line-height:1.15;white-space:nowrap">${it.no}</div>

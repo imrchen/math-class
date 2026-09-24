@@ -25,7 +25,8 @@ window.PRACTICE = (function () {
   const S = (sec) => (window.SOLUTIONS || {})[sec] || {};
 
   const figSvg = (d) => (d && d.fig && ((window.FIGURES_LOCAL || {})[d.fig] || (window.FIGURES || {})[d.fig])) || null;
-  const tex = (t) => String(t || '').replace(/\$([^$]+)\$/g, (_, m) => '\\(' + m + '\\)');
+
+  const tex = (t) => String(t || '').replace(/\$([^$]+)\$/g, (_, m) => '\\(' + m.replace(/</g, '\\lt ') + '\\)');
   const MJx = (h) => { if (window.MJ) window.MJ(h); };
 
   function merged(sec, tag) {
