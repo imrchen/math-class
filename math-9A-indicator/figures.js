@@ -181,6 +181,12 @@ window.FIG = (function () {
       const cy = P.reduce((a, p) => a + p[1], 0) / P.length;
 
       const rings = sh.outlines || (sh.outline ? [sh.outline] : [pts.map((_, i) => i)]);
+
+      (sh.polygons || []).forEach(pg => {
+        const r = (pg.points || []).filter(i => P[i]);
+        if (r.length < 3) return;
+        body += `<polygon points="${r.map(i => P[i].map(v => v.toFixed(1)).join(',')).join(' ')}" fill="${pg.fill || '#dbeafe'}" stroke="none"/>`;
+      });
       rings.forEach(r => {
         if (!r || r.length < 3) return;
         const d = r.map(i => P[i].join(',')).join(' ');

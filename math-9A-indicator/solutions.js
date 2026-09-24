@@ -3045,6 +3045,25 @@ window.SOLUTIONS = {
         "to": 6
        }
       ],
+      "polygons": [
+       {
+        "points": [
+         0,
+         4,
+         2,
+         7
+        ],
+        "fill": "#bfdbfe"
+       },
+       {
+        "points": [
+         3,
+         0,
+         7
+        ],
+        "fill": "#fed7aa"
+       }
+      ],
       "sides": [
        {
         "from": 3,
