@@ -12,6 +12,23 @@ window.PRACTICE = (function () {
     const sib = S(sec)[parent + ' ⑴'];
     return sib && sib.concept && sib.concept.length ? sib.concept : null;
   }
+
+  const SEE_ALSO = {
+    '1-2 課P32': { what: '平行線怎麼作', from: '複製一個角', to: '複製角最常錯' },
+    '1-2 基礎5': { what: '平行線怎麼作', from: '複製一個角', to: '複製角最常錯' },
+  };
+  function pageOfTitle(part) {
+    const b = [...document.querySelectorAll('.toc-item')].find(x => x.textContent.includes(part));
+    return b ? +b.dataset.i + 1 : 0;
+  }
+  function seeAlsoHtml(sec, tag) {
+    const h = SEE_ALSO[sec + ' ' + tag];
+    if (!h) return '';
+    const a = pageOfTitle(h.from), z = pageOfTitle(h.to);
+    if (!a || !z) return '';
+    return `<div style="margin-top:6px;display:inline-block;font-size:14px;font-weight:900;color:#be185d;
+      background:#fff0f5;border:1.5px solid #be185d;border-radius:8px;padding:2px 10px">${h.what}：見第 ${a}～${z} 頁</div>`;
+  }
   const strip = (s) => String(s || '').replace(/\\\(|\\\)/g, '').replace(/\s+/g, ' ').trim();
 
   const texWide = (p) => p
@@ -93,7 +110,8 @@ window.PRACTICE = (function () {
         </div>
         ${cptHtml}
         <div style="padding:8px 14px;font-size:15px;color:${INK};line-height:1.55">${d.q.replace(/\n/g, '<br>')}
-          ${needRef && d.ref ? `<div style="font-size:12px;color:${GREY};margin-top:4px">（${d.ref}）</div>` : ''}</div>
+          ${needRef && d.ref ? `<div style="font-size:12px;color:${GREY};margin-top:4px">（${d.ref}）</div>` : ''}
+          ${seeAlsoHtml(sec, tag)}</div>
       </div>
       <div class="q-body" style="display:flex;gap:10px;align-items:stretch">
         ${hasFig ? `<div class="q-fig" style="flex:0 0 44%;min-width:0;overflow:hidden;background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:6px;display:flex;align-items:center;justify-content:center"></div>` : ''}
