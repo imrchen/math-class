@@ -13,9 +13,11 @@ window.PRACTICE = (function () {
     return sib && sib.concept && sib.concept.length ? sib.concept : null;
   }
 
+  const PARALLEL = { what: '平行線怎麼作', from: '複製一個角', to: '複製角最常錯',
+    video: { label: '也可以看均一平台的影片', url: 'https://www.junyiacademy.org/new-video/2onZYAHgjy4?parent-topic-id=n-m8b-c04-1' } };
   const SEE_ALSO = {
-    '1-2 課P32': { what: '平行線怎麼作', from: '複製一個角', to: '複製角最常錯' },
-    '1-2 基礎5': { what: '平行線怎麼作', from: '複製一個角', to: '複製角最常錯' },
+    '1-2 課P32': PARALLEL,
+    '1-2 基礎5': PARALLEL,
   };
   function pageOfTitle(part) {
     const b = [...document.querySelectorAll('.toc-item')].find(x => x.textContent.includes(part));
@@ -26,8 +28,12 @@ window.PRACTICE = (function () {
     if (!h) return '';
     const a = pageOfTitle(h.from), z = pageOfTitle(h.to);
     if (!a || !z) return '';
-    return `<div style="margin-top:6px;display:inline-block;font-size:14px;font-weight:900;color:#be185d;
-      background:#fff0f5;border:1.5px solid #be185d;border-radius:8px;padding:2px 10px">${h.what}：見第 ${a}～${z} 頁</div>`;
+    const vid = h.video ? `<a href="${h.video.url}" target="_blank" rel="noopener noreferrer"
+      style="font-size:14px;font-weight:900;color:#1d4ed8;background:#eff6ff;border:1.5px solid #1d4ed8;
+      border-radius:8px;padding:2px 10px;text-decoration:none;white-space:nowrap">▶ ${h.video.label} ↗</a>` : '';
+    return `<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <span style="font-size:14px;font-weight:900;color:#be185d;background:#fff0f5;border:1.5px solid #be185d;
+      border-radius:8px;padding:2px 10px">${h.what}：見第 ${a}～${z} 頁</span>${vid}</div>`;
   }
   const strip = (s) => String(s || '').replace(/\\\(|\\\)/g, '').replace(/\s+/g, ' ').trim();
 
