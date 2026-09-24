@@ -413,3 +413,30 @@
   user-select: none;
 }
 .zoom-modal.zp-on.zp-drag { cursor: grabbing; }
+
+/* 詳解插圖「🔍 只看圖」（`fig-only.js`，本專案自有；Roger 2026-09-24，三站相同）。
+   圖層 z 760：放大層 700 之上、螢光畫布 799 與畫筆畫布 800 之下，筆才寫得上去。
+   頂列沿用 engine 的 `.zoom-bar` 樣式（z 1300），開著時把 engine 自己那條藏起來。 */
+.q-fig { position: relative; }
+.fo-btn {
+  position: absolute; top: 6px; right: 6px; z-index: 2;
+  border: 1.5px solid var(--edition); color: var(--edition); background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; line-height: 1.4;
+  cursor: pointer; box-shadow: 0 2px 8px rgba(23, 32, 51, 0.12);
+}
+.fo-btn:hover { background: var(--edition); color: #fff; }
+.fo-layer {
+  position: fixed; inset: 0; z-index: 760; background: #fff;
+  padding: 76px clamp(20px, 3vw, 48px) 20px; padding-right: 96px;   /* 右側留給教具列 */
+  display: flex; gap: 24px; align-items: stretch;
+}
+.fo-layer.hidden, .fo-bar.hidden { display: none !important; }
+.fo-cell { flex: 1 1 0; min-width: 0; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+body.fo-open #zoomBar { display: none !important; }
+
+/* 螢光筆（`highlighter.js`，本專案自有；Roger 2026-09-24，三站相同）。
+   筆畫是不透明的黃，透明度與 multiply 由畫布本身負責：同一筆來回塗不會變深、黑字仍是黑的。
+   z 799：在畫筆畫布（800）之下，紅筆寫在螢光上面。 */
+.hl-canvas { position: fixed; inset: 0; z-index: 799; pointer-events: none; opacity: 0.7; mix-blend-mode: multiply; }
+.dhl { width: 34px; height: 34px; }
+.dhl.active { background: #fde047; color: #111827; box-shadow: 0 0 0 2px #eab308; }
