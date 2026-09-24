@@ -2828,6 +2828,94 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-3', secName: '縮放與相似',
+        title: '同樣切一刀：三角形會相似，梯形不會',
+        points: [
+          '三角形畫一條平行底邊的線，切下來的小三角形<b>一定相似</b>。',
+          '梯形照做，角全部對得上，但<b>邊不成比例</b>，所以<b>不相似</b>。',
+          '卡在上底：小梯形的上底<b>就是</b>原來的上底，比永遠是 <b>1</b>。'
+        ],
+        formula: { label: '角過了、邊沒過<span class="pgref">課本 印 60 自評 2</span>', tex: '\\text{四邊形 }AEFD\\text{ 和 }ABCD\\text{ 不相似}' },
+        visual: (h) => {
+          const seg = (p, q, c, w, dash) => SV.seg(p[0], p[1], q[0], q[1], c, w, dash || '');
+          const at = (p, q, t) => [p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1])];
+          const f = (x) => String(+x.toFixed(2));
+          const A = [110, 46], B = [22, 182], Cc = [198, 182];
+          const TA = [294, 46], TD = [366, 46], TB = [240, 182], TC = [420, 182];
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>截線往下拉 <span class="ival" id="tv">AE 是 AB 的 0.5</span></label>
+            <input type="range" id="ts" min="0.2" max="0.8" step="0.1" value="0.5"></div></div>`;
+          const draw = () => {
+            const t = +h.querySelector('#ts').value;
+            h.querySelector('#tv').textContent = 'AE 是 AB 的 ' + f(t);
+            const D = at(A, B, t), E = at(A, Cc, t);
+            const E2 = at(TA, TB, t), F2 = at(TD, TC, t);
+            const ef = 4 + 6 * t;
+            let s = '';
+            s += TX(110, 20, '三角形', { anchor: 'middle', fs: 16, c: INK });
+            s += TX(330, 20, '梯形', { anchor: 'middle', fs: 16, c: INK });
+
+            s += SV.poly([A, B, Cc], 'rgba(37,99,235,.05)', BLU, 2);
+            s += SV.poly([A, D, E], 'rgba(5,150,105,.16)', GRN, 2.6);
+            s += TX(A[0], A[1] - 8, 'A', { anchor: 'middle', fs: 15 });
+            s += TX(B[0] - 8, B[1] + 16, 'B', { anchor: 'middle', fs: 15 });
+            s += TX(Cc[0] + 8, Cc[1] + 16, 'C', { anchor: 'middle', fs: 15 });
+            s += TX(D[0] - 13, D[1] + 5, 'D', { anchor: 'middle', fs: 15, c: GRN });
+            s += TX(E[0] + 13, E[1] + 5, 'E', { anchor: 'middle', fs: 15, c: GRN });
+
+            s += SV.poly([TA, TB, TC, TD], 'rgba(37,99,235,.05)', BLU, 2);
+            s += SV.poly([TA, E2, F2, TD], 'rgba(5,150,105,.16)', GRN, 2.6);
+            s += seg(TA, TD, RED, 4.5);
+            s += TX(TA[0] - 8, TA[1] - 6, 'A', { anchor: 'middle', fs: 15 });
+            s += TX(TD[0] + 8, TD[1] - 6, 'D', { anchor: 'middle', fs: 15 });
+            s += TX(330, 38, '4', { anchor: 'middle', fs: 15, c: RED });
+            s += TX(TB[0] - 8, TB[1] + 16, 'B', { anchor: 'middle', fs: 15 });
+            s += TX(TC[0] + 8, TC[1] + 16, 'C', { anchor: 'middle', fs: 15 });
+            s += TX(330, 198, '10', { anchor: 'middle', fs: 15, c: BLU });
+            s += TX(E2[0] - 13, E2[1] + 5, 'E', { anchor: 'middle', fs: 15, c: GRN });
+            s += TX(F2[0] + 13, F2[1] + 5, 'F', { anchor: 'middle', fs: 15, c: GRN });
+            s += TX(330, E2[1] - 7, f(ef), { anchor: 'middle', fs: 15, c: GRN });
+
+            const panel = (x, rows, ok) => {
+              let g = BOX(x, 206, 204, 90, { r: 12, fill: ok ? 'rgba(5,150,105,.08)' : 'rgba(225,29,72,.07)', stroke: ok ? GRN : RED, sw: 2 });
+              rows.forEach((r, i) => { g += TX(x + 16, 227 + i * 20, r[0], { fs: 14, c: r[1] || INK }); });
+              g += TX(x + 102, 288, ok ? '三組一樣 → 相似 ✓' : '三組不一樣 → 不相似 ✗', { anchor: 'middle', fs: 15, c: ok ? GRN : RED });
+              return g;
+            };
+            s += panel(8, [['AD : AB = ' + f(t)], ['AE : AC = ' + f(t)], ['DE : BC = ' + f(t)]], true);
+            s += panel(228, [['AD : AD = 1', RED], ['AE : AB = ' + f(t)], ['EF : BC = ' + f(ef / 10)]], false);
+            h.querySelector('#fig').innerHTML = svg('0 0 440 300', s);
+          };
+          h.querySelector('#ts').oninput = draw;
+          draw();
+        },
+        caption: '上底被兩個梯形<b>共用</b>，比卡在 1；三角形的「上底」縮成一個點（A），才沒有這個問題。',
+        example: {
+          q: '梯形 \\(ABCD\\) 上底 \\(4\\)、下底 \\(10\\)，\\(E\\)、\\(F\\) 是兩腰中點。\\(AEFD\\) 和 \\(ABCD\\) 相似嗎？'
+            + (() => {
+              const A = [80, 26], D = [156, 26], B = [24, 112], Cc = [212, 112];
+              const E = [(A[0] + B[0]) / 2, (A[1] + B[1]) / 2], F = [(D[0] + Cc[0]) / 2, (D[1] + Cc[1]) / 2];
+              let g = exPolyG([A, B, Cc, D], BLU);
+              g += `<line x1="${E[0]}" y1="${E[1]}" x2="${F[0]}" y2="${F[1]}" stroke="${GRN}" stroke-width="2.2"/>`;
+              g += SV.ticks(A[0], A[1], E[0], E[1], 1, VIO) + SV.ticks(E[0], E[1], B[0], B[1], 1, VIO);
+              g += SV.ticks(D[0], D[1], F[0], F[1], 2, VIO) + SV.ticks(F[0], F[1], Cc[0], Cc[1], 2, VIO);
+              g += exTX(A[0] - 6, A[1] - 5, 'A', { anchor: 'middle' }) + exTX(D[0] + 6, D[1] - 5, 'D', { anchor: 'middle' });
+              g += exTX(B[0] - 7, B[1] + 13, 'B', { anchor: 'middle' }) + exTX(Cc[0] + 7, Cc[1] + 13, 'C', { anchor: 'middle' });
+              g += exTX(E[0] - 11, E[1] + 4, 'E', { anchor: 'middle' }) + exTX(F[0] + 11, F[1] + 4, 'F', { anchor: 'middle' });
+              g += exTX(118, 40, '4', { anchor: 'middle', c: BLU }) + exTX(118, 128, '10', { anchor: 'middle', c: BLU });
+              g += exTX(118, E[1] - 5, '?', { anchor: 'middle', c: GRN });
+              return exWrap(g);
+            })(),
+          steps: [
+            '中點連線：\\(\\overline{EF}=(4+10)\\div2=7\\)（1-2 教過）。',
+            '角：\\(\\angle A\\)、\\(\\angle D\\) 共用，另外兩個是同位角，四個角都相等。',
+            '邊：上底 \\(4:4=1\\)，中線對下底 \\(7:10\\)，不一樣，邊不成比例。'
+          ],
+          ans: '不相似'
+        }
+      },
+
+      {
+        sec: '1-3', secName: '縮放與相似',
         title: '回頭看：兩道門，和三張可以少查一點的捷徑',
         points: [
           '定義是<b>兩道門</b>：角相等 ＋ 邊成比例，一般多邊形兩道都要查。',
