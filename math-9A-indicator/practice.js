@@ -35,33 +35,6 @@ window.PRACTICE = (function () {
       <span style="font-size:14px;font-weight:900;color:#be185d;background:#fff0f5;border:1.5px solid #be185d;
       border-radius:8px;padding:2px 10px">${h.what}：見第 ${a}～${z} 頁</span>${vid}</div>`;
   }
-
-  const STEP_REWRITE = {
-    '1-2 基礎5': {
-      match: /^過 \\\(A\\\) 作一條異於/,
-      first: [
-        '要分成 \\(3：2\\)，\\(3+2=5\\)，所以要先做出 <b>5 段一樣長</b>的線段',
-        '從 \\(A\\) 點畫一條<b>斜斜的射線</b>（不要和 \\(\\overline{AB}\\) 疊在一起）',
-        '圓規張開一個寬度（多寬都可以），針尖放在 \\(A\\)，在射線上畫一小段弧，交點叫 \\(P_1\\)',
-        '<b>圓規的寬度不要動</b>，針尖移到 \\(P_1\\) 再畫一次，得到 \\(P_2\\)；照這樣一段接一段，畫出 \\(P_3\\)、\\(P_4\\)、\\(P_5\\)'
-      ]
-    },
-    '1-2 課P32': {
-      match: /^過 \\\(A\\\) 作一條異於/,
-      first: [
-        '要分成 \\(2：3\\)，\\(2+3=5\\)，所以要先做出 <b>5 段一樣長</b>的線段',
-        '從 \\(A\\) 點畫一條<b>斜斜的射線</b> \\(L\\)（不要和 \\(\\overline{AB}\\) 疊在一起）',
-        '圓規張開一個寬度（多寬都可以），針尖放在 \\(A\\)，在 \\(L\\) 上畫一小段弧，交點叫 \\(P_1\\)',
-        '<b>圓規的寬度不要動</b>，針尖移到 \\(P_1\\) 再畫一次，得到 \\(P_2\\)；照這樣一段接一段，畫出 \\(P_3\\)、\\(P_4\\)、\\(P_5\\)'
-      ]
-    },
-  };
-  function stepsOf(sec, tag, d) {
-    const r = STEP_REWRITE[sec + ' ' + tag];
-    const steps = d.steps || [];
-    if (!r || !steps.length || !r.match.test(String(steps[0]))) return steps;
-    return r.first.concat(steps.slice(1));
-  }
   const strip = (s) => String(s || '').replace(/\\\(|\\\)/g, '').replace(/\s+/g, ' ').trim();
 
   const texWide = (p) => p
@@ -114,7 +87,7 @@ window.PRACTICE = (function () {
     const canDraw = (f) => !!(f && window.FIG && window.FIG.render(f, { accentStep: 0 }));
     const figList = (d.figs && d.figs.length ? d.figs : (fig ? [fig] : [])).filter(canDraw);
     const figSteps = (window.FIG && window.FIG.accentCount) ? window.FIG.accentCount(figList[0]) : 0;
-    const lines = stepsOf(sec, tag, d).concat(d.ans ? ['答：' + d.ans] : []);
+    const lines = d.steps.concat(d.ans ? ['答：' + d.ans] : []);
     const total = Math.max(lines.length, figSteps);
     const col = SRCCOL[d.src] || '#2563eb';
     const hasFig = figList.length > 0;
