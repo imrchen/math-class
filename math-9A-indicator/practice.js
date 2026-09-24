@@ -115,7 +115,10 @@ window.PRACTICE = (function () {
     };
 
     const figBox = h.querySelector('.q-fig');
-    const els = [...h.querySelectorAll('.q-line')];
+
+    if (figBox) figBox.__figOnly = () => figList.map((f, idx) =>
+      window.FIG.render(f, { accentStep: idx === 0 ? 0 : window.FIG.accentCount(f) }) || '').join('');
+    const els =[...h.querySelectorAll('.q-line')];
     const next = h.querySelector('.q-next');
     let k = 0;
     const paint = () => {
