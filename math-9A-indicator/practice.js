@@ -35,6 +35,11 @@ window.PRACTICE = (function () {
       <span style="font-size:14px;font-weight:900;color:#be185d;background:#fff0f5;border:1.5px solid #be185d;
       border-radius:8px;padding:2px 10px">${h.what}：見第 ${a}～${z} 頁</span>${vid}</div>`;
   }
+
+  const EMPH_CONSTRUCT = ['5 段一樣長', '斜斜的射線', '圓規的寬度不要動'];
+  const EMPH = { '1-2 課P32': EMPH_CONSTRUCT, '1-2 基礎5': EMPH_CONSTRUCT };
+  const emph = (sec, tag, line) => (EMPH[sec + ' ' + tag] || []).reduce((t, w) =>
+    t.includes(w) ? t.replace(w, `<b style="font-weight:900;color:var(--ct,#1d4ed8)">${w}</b>`) : t, String(line));
   const strip = (s) => String(s || '').replace(/\\\(|\\\)/g, '').replace(/\s+/g, ' ').trim();
 
   const texWide = (p) => p
@@ -90,7 +95,7 @@ window.PRACTICE = (function () {
 
     const solFigs = (d.solfigs || []).filter(s => s && canDraw(s.fig));
     const solAt = (k) => solFigs.reduce((cur, s) => (k > s.from ? s : cur), null);
-    const lines = d.steps.concat(d.ans ? ['答：' + d.ans] : []);
+    const lines = d.steps.map(t => emph(sec, tag, t)).concat(d.ans ? ['答：' + d.ans] : []);
     const total = Math.max(lines.length, figSteps);
     const col = SRCCOL[d.src] || '#2563eb';
     const hasFig = figList.length > 0;
