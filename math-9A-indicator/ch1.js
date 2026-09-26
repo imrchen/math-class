@@ -2573,7 +2573,7 @@ window.DECK = window.DECK || [];
           '「看起來像」不能當判斷依據，要<b>兩道門都檢查</b>。',
           '大小不同<b>不代表</b>不相似，那正是相似的重點。'
         ],
-        formula: { label: '兩件事分清楚<span class="pgref">課本 印 59 重點回顧</span>', tex: '\\text{全等是倍率 }1\\text{ 的相似}' },
+        formula: { label: '兩件事分清楚<span class="pgref">課本 印 59 重點回顧</span>', tex: '\\text{全等是倍率 }1\\text{ 的相似，反過來不成立}' },
         visual: (h) => {
           h.innerHTML = xoRows([
             { tag: '大小不同就不相似',
