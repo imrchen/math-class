@@ -25,6 +25,32 @@ window.DECK = window.DECK || [];
 
   window.FIGURES_LOCAL['door-six-panes'] = '<svg viewBox="-24 -4 356 306" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="Noto Sans TC, PingFang TC, sans-serif"><rect x="56" y="40" width="180" height="220" fill="#EFE3D2" stroke="#17212B" stroke-width="2.4"/><rect x="72" y="52" width="62" height="44" fill="#FFFFFF" stroke="#1e40af" stroke-width="3.2"/><rect x="158" y="52" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><line x1="72" y1="52" x2="72" y2="18" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="134" y1="52" x2="134" y2="18" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="24" x2="134" y2="24" stroke="#1e40af" stroke-width="1.8"/><line x1="72" y1="18" x2="72" y2="30" stroke="#1e40af" stroke-width="1.8"/><line x1="134" y1="18" x2="134" y2="30" stroke="#1e40af" stroke-width="1.8"/><text x="103" y="16" text-anchor="middle" font-size="20" font-weight="800" fill="#1e40af">x－1</text><line x1="72" y1="52" x2="30" y2="52" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="96" x2="30" y2="96" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="38" y1="52" x2="38" y2="96" stroke="#1e40af" stroke-width="1.8"/><line x1="32" y1="52" x2="44" y2="52" stroke="#1e40af" stroke-width="1.8"/><line x1="32" y1="96" x2="44" y2="96" stroke="#1e40af" stroke-width="1.8"/><text x="30" y="81" text-anchor="end" font-size="20" font-weight="800" fill="#1e40af">x＋1</text><line x1="56" y1="272" x2="236" y2="272" stroke="#17212B" stroke-width="1.8"/><line x1="56" y1="266" x2="56" y2="278" stroke="#17212B" stroke-width="1.8"/><line x1="236" y1="266" x2="236" y2="278" stroke="#17212B" stroke-width="1.8"/><text x="146" y="296" text-anchor="middle" font-size="22" font-weight="800" fill="#17212B">3x－2</text><line x1="248" y1="40" x2="248" y2="260" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="40" x2="254" y2="40" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="260" x2="254" y2="260" stroke="#17212B" stroke-width="1.8"/><text x="256" y="158" text-anchor="start" font-size="22" font-weight="800" fill="#17212B">7x＋11</text></svg>';
 
+  window.FIGURES_LOCAL['four-squares-layout'] = (() => {
+    const R = (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#FFFFFF" stroke="#17212B" stroke-width="2.6"/>`;
+    const L = (x, y, t, fs) => `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="${fs}" font-weight="800" fill="#17212B">${t}</text>`;
+    return `<svg viewBox="-8 -8 322 254" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + R(0, 0, 136, 136) + R(0, 136, 102, 102) + R(102, 136, 34, 34) + R(136, 0, 170, 170)
+      + L(68, 68, '甲', 40) + L(51, 187, '乙', 38) + L(119, 153, '丁', 24) + L(221, 85, '丙', 44)
+      + `</svg>`;
+  })();
+  window.FIGURES_LOCAL['rectangle-afce'] = (() => {
+    const L = (x, y, t) => `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="30" font-weight="800" font-style="italic" fill="#17212B">${t}</text>`;
+    return `<svg viewBox="-34 -128 368 360" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + `<rect x="0" y="0" width="300" height="175" fill="#FFFFFF" stroke="#17212B" stroke-width="2.6"/>`
+      + `<path d="M0,0 L84,175 L300,175 L216,0 Z" fill="#BFC5CC" stroke="#17212B" stroke-width="2.6" stroke-linejoin="round"/>`
+      + L(-16, -20, 'A') + L(216, -22, 'E') + L(314, -20, 'D')
+      + L(-16, 198, 'B') + L(84, 202, 'F') + L(314, 198, 'C')
+      + `</svg>`;
+  })();
+  window.FIGURES_LOCAL['arena-safety-zone'] = (() => {
+    const L = (x, y, t, fs) => `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="${fs}" font-weight="800" fill="#17212B">${t}</text>`;
+    return `<svg viewBox="-6 -6 312 312" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + `<rect x="0" y="0" width="300" height="300" fill="#F1E6D0" stroke="#17212B" stroke-width="2.6"/>`
+      + `<rect x="60" y="60" width="180" height="180" fill="#FFFFFF" stroke="#17212B" stroke-width="2.6"/>`
+      + L(150, 150, '擂台', 40) + L(150, 262, '2x＋5', 26) + L(270, 150, 'x－3', 24)
+      + `</svg>`;
+  })();
+
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;
   }
@@ -2301,6 +2327,178 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '一頁四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
+        title: '對答案｜平時練習卷 ①（選擇 1～10）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-3', [
+            { label: '選擇 1～10（印 1）', cols: 3, items: [
+              ['1', '平選1'], ['2', '平選2'], ['3', '平選3'],
+              ['4', '平選4'], ['5', '平選5'], ['6', '平選6'],
+              ['7', '平選7'], ['8', '平選8'], ['9', '平選9'],
+              ['10', '平選10']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
+        title: '對答案｜平時練習卷 ②（填充、計算）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-3', [
+            { label: '填充 1～5（印 1）', cols: 3, items: [
+              ['填 1', '平填1'], ['填 2', '平填2'], ['填 3', '平填3'],
+              ['填 4', '平填4'], ['填 5', '平填5']
+            ] },
+            { label: '填充 6～8（印 2）', cols: 3, items: [
+              ['填 6', '平填6'], ['填 7', '平填7'], ['填 8', '平填8']
+            ] },
+            { label: '計算（印 2）', cols: 2, items: [
+              ['計 1', '平計1'], ['計 2', '平計2']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
+        title: '檢討｜平時練習卷 ①（選擇 1～4）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'A=B\\times Q+R' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-3', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 1～4', tags: ['平選1', '平選2', '平選3', '平選4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
+        title: '檢討｜平時練習卷 ②（選擇 5～7）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'A=B\\times Q+R' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-3', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 5～7', tags: ['平選5', '平選6', '平選7'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
+        title: '檢討｜平時練習卷 ③（選擇 8～10）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'A=B\\times Q+R' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-3', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 8～10', tags: ['平選8', '平選9', '平選10'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
+        title: '檢討｜平時練習卷 ④（填充 1～4）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'A=B\\times Q+R' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-3', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '填充 1～4', tags: ['平填1', '平填2', '平填3', '平填4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
+        title: '檢討｜平時練習卷 ⑤（填充 5～8）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'A=B\\times Q+R' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-3', [
+            { src: '試卷・平時練習卷', page: '印 1–2', sub: '填充 5～8', tags: ['平填5', '平填6', '平填7', '平填8'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
+        title: '檢討｜平時練習卷 ⑥（計算 1、2）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'A=B\\times Q+R' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-3', [
+            { src: '試卷・平時練習卷', page: '印 2', sub: '計算 1、2', tags: ['平計1', '平計2'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
       },
 
       {
