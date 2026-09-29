@@ -13,6 +13,18 @@ window.DECK = window.DECK || [];
     `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 12}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#94a3b8'}" stroke-width="${o.sw || 1.8}"/>`;
   const INK = '#0b1220', GREY = '#475569';
 
+  window.FIGURES_LOCAL = window.FIGURES_LOCAL || {};
+  window.FIGURES_LOCAL['number-line-abcd'] = (() => {
+    const X = (v) => 225 + v * 75;
+    const T = (x, y, t, o = '') => `<text x="${x}" y="${y}" text-anchor="middle" font-size="34" font-weight="800" fill="#17212B"${o}>${t}</text>`;
+    let g = `<line x1="-12" y1="60" x2="342" y2="60" stroke="#17212B" stroke-width="2.6"/>`;
+    for (let v = -3; v <= 1; v++) g += `<line x1="${X(v)}" y1="50" x2="${X(v)}" y2="70" stroke="#17212B" stroke-width="2.6"/>` + T(X(v), 106, v < 0 ? '−' + (-v) : v);
+    [['A', 45.75], ['B', 119.25], ['C', 192], ['D', 266.25]].forEach(([n, x]) => {
+      g += `<circle cx="${x}" cy="60" r="7" fill="#17212B"/>` + T(x, 34, n, ' font-style="italic"');
+    });
+    return `<svg viewBox="-30 2 390 114" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">${g}</svg>`;
+  })();
+
   const RT = (n) => `<tspan class="radsign">√</tspan><tspan class="rad">${n}</tspan>`;
   const radBars = (h) => {
     if (typeof document === 'undefined') return;
@@ -401,6 +413,177 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '一頁四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-1', secName: '平方根與近似值',
+        title: '對答案｜平時練習卷 ①（選擇 1～10）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-1', [
+            { label: '選擇 1～10（印 1）', cols: 3, items: [
+              ['1', '平選1'], ['2', '平選2'], ['3', '平選3'],
+              ['4', '平選4'], ['5', '平選5'], ['6', '平選6'],
+              ['7', '平選7'], ['8', '平選8'], ['9', '平選9'],
+              ['10', '平選10']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+
+      {
+        sec: '2-1', secName: '平方根與近似值',
+        title: '對答案｜平時練習卷 ②（填充、計算）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-1', [
+            { label: '填充 1～4（印 1）', cols: 3, items: [
+              ['填 1', '平填1'], ['填 2', '平填2'], ['填 3', '平填3'], ['填 4', '平填4']
+            ] },
+            { label: '填充 5～8（印 2）', cols: 3, items: [
+              ['填 5', '平填5'], ['填 6', '平填6'], ['填 7', '平填7'], ['填 8', '平填8']
+            ] },
+            { label: '計算（印 2）', cols: 2, items: [
+              ['計 1', '平計1'], ['計 2', '平計2']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+
+      {
+        sec: '2-1', secName: '平方根與近似值',
+        title: '檢討｜平時練習卷 ①（選擇 1～4）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '(\\sqrt{a})^2=a\\quad(a\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-1', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 1～4', tags: ['平選1', '平選2', '平選3', '平選4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-1', secName: '平方根與近似值',
+        title: '檢討｜平時練習卷 ②（選擇 5～7）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '(\\sqrt{a})^2=a\\quad(a\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-1', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 5～7', tags: ['平選5', '平選6', '平選7'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-1', secName: '平方根與近似值',
+        title: '檢討｜平時練習卷 ③（選擇 8～10）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '(\\sqrt{a})^2=a\\quad(a\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-1', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 8～10', tags: ['平選8', '平選9', '平選10'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-1', secName: '平方根與近似值',
+        title: '檢討｜平時練習卷 ④（填充 1～4）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '(\\sqrt{a})^2=a\\quad(a\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-1', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '填充 1～4', tags: ['平填1', '平填2', '平填3', '平填4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-1', secName: '平方根與近似值',
+        title: '檢討｜平時練習卷 ⑤（填充 5～8）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '(\\sqrt{a})^2=a\\quad(a\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-1', [
+            { src: '試卷・平時練習卷', page: '印 2', sub: '填充 5～8', tags: ['平填5', '平填6', '平填7', '平填8'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-1', secName: '平方根與近似值',
+        title: '檢討｜平時練習卷 ⑥（計算 1、2）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '(\\sqrt{a})^2=a\\quad(a\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-1', [
+            { src: '試卷・平時練習卷', page: '印 2', sub: '計算 1、2', tags: ['平計1', '平計2'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
       },
 
       {
