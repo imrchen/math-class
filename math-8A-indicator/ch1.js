@@ -1731,6 +1731,97 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-3', secName: '多項式的乘除運算',
+        title: '乘法的五種長相：由簡單排到複雜',
+        points: [
+          '由上往下排，每一種只比上一種<b>多一點點</b>。',
+          '動作都一樣：<b>每一項乘到對面每一項</b>，再合併同類項。',
+          '平方就是<b>自己乘自己</b>，負號也要一起乘。'
+        ],
+        formula: { label: '乘完先數一數', tex: '3\\text{ 項}\\times 2\\text{ 項}=6\\text{ 個乘積}' },
+        visual: (h) => {
+          const KINDS = ['數×單項', '數×多項', '單項×單項', '（單項）²', '多項×多項'];
+          const CST = '#475569';
+
+          const ladder = cur => KINDS.map((s, i) => {
+            const x = 8 + i * 86, on = i === cur;
+            return BOX(x, 16, 80, 28, { r: 14, fill: on ? C : '#f1f5f9', stroke: on ? C : '#dce3ee' }) +
+              TX(x + 40, 35, s, { anchor: 'middle', fs: 13, c: on ? '#fff' : GREY });
+          }).join('');
+          const Q = s => TX(220, 84, s, { anchor: 'middle', fs: 25, c: C });
+          const ROW = (y, lab, s, col) =>
+            TX(150, y, lab, { anchor: 'end', fs: 15, c: GREY }) + TX(162, y, s, { fs: 19, c: col });
+          const RES = (y, s) =>
+            BOX(70, y, 300, 46, { r: 12, fill: '#eef7f2', stroke: GRN, sw: 2.2 }) +
+            TX(220, y + 31, s, { anchor: 'middle', fs: 21, c: GRN });
+          const FOOT = (s, col) => TX(220, 286, s, { anchor: 'middle', fs: 14.5, c: col || GREY });
+
+          const GRID = (y0, w, hh, tops, lefts, cells) => {
+            const x0 = 220 - w * tops.length / 2 + 18;
+            let s = SQFRAME(x0, y0, w * tops.length, hh * lefts.length, C);
+            cells.forEach((row, r) => row.forEach(([t, col], c) => {
+              s += `<rect x="${x0 + c * w}" y="${y0 + r * hh}" width="${w}" height="${hh}" fill="${col}" opacity="0.16"/>` +
+                TX(x0 + c * w + w / 2, y0 + r * hh + hh / 2 + 7, t, { anchor: 'middle', fs: 19, c: col });
+            }));
+            for (let c = 1; c < tops.length; c++) s += SV.seg(x0 + c * w, y0, x0 + c * w, y0 + hh * lefts.length, '#9fb3d9', 1.6);
+            for (let r = 1; r < lefts.length; r++) s += SV.seg(x0, y0 + r * hh, x0 + w * tops.length, y0 + r * hh, '#9fb3d9', 1.6);
+            tops.forEach((t, c) => { s += TX(x0 + c * w + w / 2, y0 - 10, t, { anchor: 'middle', fs: 16, c: GREY }); });
+            lefts.forEach((t, r) => { s += TX(x0 - 12, y0 + r * hh + hh / 2 + 6, t, { anchor: 'end', fs: 16, c: GREY }); });
+            return s;
+          };
+          SV.stepper(h, '0 0 440 300', [
+            { t: '① 數 × 單項：<b>係數相乘，字母照抄</b>',
+              d: () => ladder(0) + Q('2 · 3x')
+                + ROW(126, '係數', '2 × 3 ＝ 6', BLU)
+                + ROW(162, '字母', 'x 照抄', AMB)
+                + RES(196, '2 · 3x ＝ 6x')
+                + FOOT('數字只跟係數乘，字母不動') },
+            { t: '② 數 × 多項：<b>括號裡兩項，就乘兩次</b>',
+              d: () => ladder(1)
+                + GRID(78, 100, 60, ['3x', '－1'], ['2'], [[['6x', BLU], ['－2', CST]]])
+                + RES(172, '2(3x － 1) ＝ 6x － 2')
+                + FOOT('減號要跟著 1 一起乘進去：2 ×（－1）＝ －2') },
+            { t: '③ 單項 × 單項：<b>係數乘係數，字母乘字母</b>',
+              d: () => ladder(2) + Q('2x · 8x²')
+                + ROW(126, '係數', '2 × 8 ＝ 16', BLU)
+                + ROW(162, '字母', 'x · x² ＝ x · x · x ＝ x³', AMB)
+                + RES(196, '2x · 8x² ＝ 16x³')
+                + FOOT('x² 寫開成 x · x，數一數共有幾個 x') },
+            { t: '④（單項）²：<b>自己乘自己</b>',
+              d: () => ladder(3) + Q('(－2x)² ＝ (－2x) · (－2x)')
+                + ROW(126, '係數', '(－2) × (－2) ＝ 4', BLU)
+                + ROW(162, '字母', 'x · x ＝ x²', AMB)
+                + RES(186, '(－2x)² ＝ 4x²')
+                + TX(220, 260, '✗ －4x²：負號沒有跟著平方', { anchor: 'middle', fs: 15, c: RED })
+                + TX(220, 286, '✗ 4x：只平方了係數', { anchor: 'middle', fs: 15, c: RED }) },
+            { t: '⑤ 多項 × 多項：<b>2 項 × 2 項 ＝ 4 格</b>',
+              d: () => ladder(4)
+                + GRID(72, 96, 44, ['3x', '－1'], ['2x', '＋1'],
+                  [[['6x²', AMB], ['－2x', VIO]], [['3x', VIO], ['－1', CST]]])
+                + TX(220, 190, '6x² － 2x ＋ 3x － 1', { anchor: 'middle', fs: 18, c: INK })
+                + RES(204, '＝ 6x² ＋ x － 1')
+                + FOOT('同色的格子是同類項，要合併') },
+            { t: '⑥ 多項 × 多項：<b>3 項 × 2 項 ＝ 6 格</b>',
+              d: () => ladder(4)
+                + GRID(74, 96, 36, ['x', '－2'], ['2x²', '＋x', '＋1'],
+                  [[['2x³', BLU], ['－4x²', AMB]], [['x²', AMB], ['－2x', VIO]], [['x', VIO], ['－2', CST]]])
+                + TX(220, 206, '2x³ － 4x² ＋ x² － 2x ＋ x － 2', { anchor: 'middle', fs: 17, c: INK })
+                + RES(218, '＝ 2x³ － 3x² － x － 2')
+                + FOOT('二次乘一次，答案是三次') }
+          ], { acc: false });
+        },
+        caption: '<b>項數乘項數，就是要算幾次。</b>乘完數一數，少一個就是漏乘。',
+        example: {
+          q: '計算 \\((x^2+2x-1)(x+3)\\)。',
+          steps: [
+            '3 項 × 2 項 ＝ 6 個乘積：\\(x^3\\)、\\(3x^2\\)、\\(2x^2\\)、\\(6x\\)、\\(-x\\)、\\(-3\\)。',
+            '同類項合併：\\(3x^2+2x^2=5x^2\\)、\\(6x-x=5x\\)。'
+          ],
+          ans: '\\(x^3+5x^2+5x-3\\)'
+        }
+      },
+
+      {
+        sec: '1-3', secName: '多項式的乘除運算',
         title: '缺的邊自己補出來：先看成一個長方形',
         points: [
           '圖上<b>沒標的邊</b>要自己組合：左右兩側的高 \\(=x+(2x-1)=3x-1\\)。',
