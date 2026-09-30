@@ -440,3 +440,15 @@ body.fo-open #zoomBar { display: none !important; }
 .hl-canvas { position: fixed; inset: 0; z-index: 799; pointer-events: none; opacity: 0.7; mix-blend-mode: multiply; }
 .dhl { width: 34px; height: 34px; }
 .dhl.active { background: #fde047; color: #111827; box-shadow: 0 0 0 2px #eab308; }
+
+/* 計算紙（`whiteboard.js`，本專案自有；Roger 2026-09-30，目前只有八上-指標版）。
+   z 770：放大層 700、只看圖 760 之上，螢光 799／畫筆 800 之下，筆才寫得上去。
+   頂列沿用 `.zoom-bar`（z 1300）；開著時藏起底下各層的頂列，以及會換頁（＝清筆跡）的上一頁／下一頁鈕。 */
+.wb-layer { position: fixed; inset: 0; z-index: 770; background: #fff; }
+.wb-layer.hidden, .wb-bar.hidden { display: none !important; }
+.wb-bar { border-bottom: 3px solid var(--edition); }
+.wb-bar .zoom-badge { color: var(--edition); }
+.wb-note { margin-left: 14px; font-weight: 700; font-size: 0.85em; color: #475569; }
+body.wb-open #zoomBar, body.wb-open #figOnlyBar { display: none !important; }
+body.wb-open #dkPrev, body.wb-open #dkNext { display: none; }
+#dkBoard.active { background: var(--edition); color: #fff; }
