@@ -123,7 +123,7 @@ window.PRACTICE = (function () {
           <span style="font-size:13px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:8px;padding:1px 9px">${d.page}</span>
         </div>
         ${cptHtml}
-        <div style="padding:8px 14px;font-size:15px;color:${INK};line-height:1.55">${d.q.replace(/\n/g, '<br>')}
+        <div style="padding:8px 14px;font-size:15px;color:${INK};line-height:1.55"><span class="p-qtext">${d.q.replace(/\n/g, '<br>')}</span>
           ${needRef && d.ref ? `<div style="font-size:12px;color:${GREY};margin-top:4px">（${d.ref}）</div>` : ''}
           ${seeAlsoHtml(sec, tag)}</div>
       </div>
@@ -147,31 +147,37 @@ window.PRACTICE = (function () {
     };
 
     const figBox = h.querySelector('.q-fig');
-
-    if (figBox) figBox.__figOnly = () => figList.map((f, idx) =>
-      window.FIG.render(f, { accentStep: idx === 0 ? 0 : window.FIG.accentCount(f) }) || '').join('');
     const els =[...h.querySelectorAll('.q-line')];
     const next = h.querySelector('.q-next');
     let k = 0;
+
+    const figAt = (kk) => {
+      const sf = solAt(kk);
+      return sf ? (window.FIG.render(sf.fig, {}) || '')
+                : figList.map((f, idx) => window.FIG.render(f,
+                    { accentStep: idx === 0 ? figStepAt(kk) : window.FIG.accentCount(f) }) || '').join('');
+    };
     const paint = () => {
       els.forEach((e, i) => { e.style.visibility = (isAsk[i] || i < Math.min(k, lines.length)) ? 'visible' : 'hidden'; });
       if (figBox) {
-        const sf = solAt(k);
         figBox.innerHTML = `<div class="q-figin" style="width:100%;display:flex;flex-direction:column;gap:6px">`
-          + (sf ? (window.FIG.render(sf.fig, {}) || '')
-                : figList.map((f, idx) => window.FIG.render(f,
-                    { accentStep: idx === 0 ? figStepAt(k) : window.FIG.accentCount(f) }) || '').join(''))
-          + `</div>`;
+          + figAt(k) + `</div>`;
 
         figWide(figBox, Math.round(h.clientHeight * 0.52));
       }
 
-      if (k >= total) { next.disabled = true; next.style.opacity = '.4'; next.style.cursor = 'default'; }
+      const done = k >= total;
+      next.disabled = done; next.style.opacity = done ? '.4' : ''; next.style.cursor = done ? 'default' : '';
     };
 
     if (figBox && typeof ResizeObserver !== 'undefined') new ResizeObserver(scheduleRefit).observe(figBox);
 
-    next.onclick = () => { if (k < total) { k++; while (k < lines.length && isAsk[k]) k++; paint(); } };
+    const stepNext = () => { if (k < total) { k++; while (k < lines.length && isAsk[k]) k++; paint(); } };
+
+    const stepPrev = () => { if (k > 0) { k--; while (k > 0 && isAsk[k]) k--; paint(); } };
+    next.onclick = stepNext;
+
+    if (figBox) figBox.__board = { fig: () => figAt(k), k: () => k, total, next: stepNext, prev: stepPrev };
     h.querySelector('.q-all').onclick = () => { k = total; paint(); };
     h.querySelector('.q-back').onclick = back;
     paint();

@@ -429,25 +429,6 @@
 }
 .zoom-modal.zp-on.zp-drag { cursor: grabbing; }
 
-/* 詳解插圖「🔍 只看圖」（`fig-only.js`，本專案自有；Roger 2026-09-24，三站相同）。
-   圖層 z 760：放大層 700 之上、螢光畫布 799 與畫筆畫布 800 之下，筆才寫得上去。
-   頂列沿用 engine 的 `.zoom-bar` 樣式（z 1300），開著時把 engine 自己那條藏起來。 */
-.q-fig { position: relative; }
-.fo-btn {
-  position: absolute; top: 6px; right: 6px; z-index: 2;
-  border: 1.5px solid var(--edition); color: var(--edition); background: rgba(255, 255, 255, 0.92);
-  border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; line-height: 1.4;
-  cursor: pointer; box-shadow: 0 2px 8px rgba(23, 32, 51, 0.12);
-}
-.fo-btn:hover { background: var(--edition); color: #fff; }
-.fo-layer {
-  position: fixed; inset: 0; z-index: 760; background: #fff;
-  padding: 76px clamp(20px, 3vw, 48px) 20px; padding-right: 96px;   /* 右側留給教具列 */
-  display: flex; gap: 24px; align-items: stretch;
-}
-.fo-layer.hidden, .fo-bar.hidden { display: none !important; }
-.fo-cell { flex: 1 1 0; min-width: 0; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-body.fo-open #zoomBar { display: none !important; }
 
 /* 螢光筆（`highlighter.js`，本專案自有；Roger 2026-09-24，三站相同）。
    筆畫是不透明的黃，透明度與 multiply 由畫布本身負責：同一筆來回塗不會變深、黑字仍是黑的。
@@ -469,3 +450,43 @@ body.fo-open #zoomBar { display: none !important; }
   font: inherit; font-size: 14px; min-width: 1.6em; text-align: center;
   padding: 1px 6px; border-radius: 5px; background: rgba(255, 255, 255, 0.18); border: 1px solid rgba(255, 255, 255, 0.35);
 }
+
+/* 講解板（`board.js`，本專案自有；Roger 2026-09-30，三站相同）：「只看圖」與「計算紙」合一。
+   z 770：放大層 700 之上、螢光畫布 799 與畫筆畫布 800 之下，筆才寫得上去。頂列沿用 engine 的 `.zoom-bar`（z 1300）。
+   題目、圖、步驟都是 position:absolute，位置由 board.js 的 place() 算；「題目」開關會重排圖並清筆跡，「步驟」開關不動圖。 */
+.q-fig { position: relative; }
+.bd-figbtn {
+  position: absolute; top: 6px; right: 6px; z-index: 2;
+  border: 1.5px solid var(--edition); color: var(--edition); background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; line-height: 1.4;
+  cursor: pointer; box-shadow: 0 2px 8px rgba(23, 32, 51, 0.12);
+}
+.bd-figbtn:hover { background: var(--edition); color: #fff; }
+.bd-layer { position: fixed; inset: 0; z-index: 770; background: #fff; }
+.bd-layer.hidden, .bd-bar.hidden { display: none !important; }
+.bd-bar { border-bottom: 3px solid var(--edition); }
+.bd-bar .zoom-badge { color: var(--edition); }
+.bd-bar .zoom-btn { border-color: var(--edition); color: var(--edition); }
+.bd-bar .zoom-btn.bd-on { background: var(--edition); color: #fff; }
+.bd-bar .zoom-btn:disabled { opacity: .35; cursor: default; }
+.bd-bar .zoom-x { border-color: #e11d48; color: #e11d48; }
+.bd-note { margin-left: 14px; font-weight: 700; font-size: 0.85em; color: #475569; }
+body.bd-open #zoomBar { display: none !important; }
+body.bd-open #dkPrev, body.bd-open #dkNext { display: none; }
+#dkBoard.active { background: var(--edition); color: #fff; }
+/* 題目（左上）：字放大給全班看；八上-指標版的題目取自列表那一列，複製時拿掉 inline style，字級統一跟著這裡 */
+.bd-q {
+  position: absolute; padding: 12px 20px; font-size: 28px; line-height: 1.6; color: #172033; font-weight: 600;
+  background: #f8fafc; border: 2px solid #94a3b8; border-left: 6px solid var(--edition); border-radius: 12px;
+}
+.bd-q:empty { display: none; }
+.bd-q > * + * { margin-top: 6px; }
+.bd-q-label { font-size: 16px; font-weight: 900; color: var(--edition); letter-spacing: .03em; }
+.bd-fig { position: absolute; display: flex; gap: 24px; align-items: stretch; justify-content: center; }
+.bd-cell { flex: 1 1 0; min-width: 0; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.bd-steps {
+  position: absolute; display: flex; flex-direction: column; gap: 14px;
+  font-size: 22px; line-height: 1.55; color: #172033; font-weight: 700;
+  background: #fff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 14px 18px;
+}
+.bd-steps:empty { display: none !important; }
