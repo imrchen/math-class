@@ -99,7 +99,7 @@ window.PRACTICE = (function () {
   const rowLabel = (tag, d) =>
     /^印\s*\d+/.test(tag) && d.page ? tag.replace(/^印\s*\d+/, d.page.replace(/\s+/g, ' ')) : tag;
 
-  const pDropCont = (t) => t.replace(/\s*續[一二三四五六七八九十]?\s*$/, '');
+  const pDropCont = (t) => t.replace(/\s*續[一二三四五六七八九十]?(?=\s*(?:[①-⑳]\s*)?$)/, '');
   const pLabel = (sec, tag) => {
     if (!/^印\s*\d+/.test(tag)) return pDropCont(tag);
     const all = S(sec);

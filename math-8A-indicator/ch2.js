@@ -1392,11 +1392,12 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           pMount(h,
             pCard('課本・隨堂練習', '印 86、87', BLU, '計算並化最簡根式',
-              pItem('印12 ②', '5\\sqrt{13}-2\\sqrt{13}', '\\(3\\sqrt{13}\\)') +
+              pItem('印12 續 ①', '5\\sqrt{13}-2\\sqrt{13}') +
+              pItem('印12 續 ②', '8\\sqrt{3}-5\\sqrt{2}+6\\sqrt{3}+\\sqrt{2}') +
               pItem('印13 ①', '3\\sqrt{2}-2\\sqrt{75}+\\sqrt{72}-5\\sqrt{3}') +
               pItem('印13 ②', '\\sqrt{\\tfrac{4}{7}}-\\sqrt{28}')), '2-2');
         },
-        caption: '第二題有兩個家族：\\(\\sqrt{2}\\) 一邊、\\(\\sqrt{3}\\) 一邊，各自合併。'
+        caption: '有兩個家族的題：\\(\\sqrt{2}\\) 一邊、\\(\\sqrt{3}\\) 一邊，各自合併。'
       },
 
       {
