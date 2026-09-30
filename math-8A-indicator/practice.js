@@ -306,7 +306,7 @@ window.PRACTICE = (function () {
           </span>
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 14px">
-          <div style="flex:1 1 0;min-width:0;font-size:18px;color:${INK};line-height:1.5">${qHtml(p.q)}
+          <div class="p-qtext" style="flex:1 1 0;min-width:0;font-size:18px;color:${INK};line-height:1.5">${qHtml(p.q)}
             ${p.fig && !svg ? `<div style="margin-top:6px;font-size:13px;font-weight:900;color:#8a5a00;background:#fff4d6;border:1px solid #f0dba8;border-radius:8px;padding:4px 10px;display:inline-block">⚠ ocho 沒有這張圖，請看紙本 ${d0.page}</div>` : ''}</div>
           ${svg ? `<div class="q-fig" style="flex:0 0 40%;max-width:40%;height:220px;display:flex;align-items:center;justify-content:center">${svg}</div>` : ''}
         </div>
@@ -358,7 +358,7 @@ window.PRACTICE = (function () {
              <span style="font-size:13px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:8px;padding:1px 9px">${d.page}</span>
            </div>
            <div style="padding:10px 14px">
-             <div style="font-size:19px;color:${INK};line-height:1.5">${String(d.q || '').split('\n').filter(Boolean).map((seg, i) => `<div style="${i ? 'margin-top:7px' : ''}">${tex(seg)}</div>`).join('')}
+             <div class="p-qtext" style="font-size:19px;color:${INK};line-height:1.5">${String(d.q || '').split('\n').filter(Boolean).map((seg, i) => `<div style="${i ? 'margin-top:7px' : ''}">${tex(seg)}</div>`).join('')}
                ${d.fig && !fig ? `<div style="margin-top:6px;font-size:13px;font-weight:900;color:#8a5a00;background:#fff4d6;border:1px solid #f0dba8;border-radius:8px;padding:4px 10px;display:inline-block">⚠ ocho 沒有這張圖，請看紙本 ${d.page}</div>` : ''}</div>
              ${fig ? `<div class="q-fig" style="margin-top:8px;width:100%;height:220px;display:flex;align-items:center;justify-content:center">${fig}</div>` : ''}
            </div>
