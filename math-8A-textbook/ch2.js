@@ -3,27 +3,32 @@ window.DECK = window.DECK || [];
   const C = '#6d28d9';
   const RED = '#be123c', GRN = '#065f46', BLU = '#1e40af', VIO = '#6d28d9', AMB = '#92400e';
 
+  const LINE = '#94a3b8', XO_BAD = '#e0849b', XO_GOOD = '#5fb28e';
+
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;
   }
 
   const TX = (x, y, s, o = {}) =>
-    `<text x="${x}" y="${y}" ${o.anchor ? `text-anchor="${o.anchor}"` : ''} font-size="${o.fs || 15}" font-weight="${o.fw || 800}" fill="${o.c || '#0b1220'}">${s}</text>`;
-  const BOX = (x, y, w, h, o = {}) =>
-    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 12}" fill="${o.fill || '#fff'}" stroke="${o.stroke || '#94a3b8'}" stroke-width="${o.sw || 1.8}"/>`;
-  const INK = '#0b1220', GREY = '#475569';
+    `<text x="${x}" y="${y}" ${o.anchor ? `text-anchor="${o.anchor}"` : ''} font-size="${o.fs || 15}" font-weight="${o.fw || 800}" fill="${o.c || INK}"${o.op !== undefined ? ` opacity="${o.op}"` : ''}>${s}</text>`;
 
-  window.FIGURES_LOCAL = window.FIGURES_LOCAL || {};
-  window.FIGURES_LOCAL['number-line-abcd'] = (() => {
-    const X = (v) => 225 + v * 75;
-    const T = (x, y, t, o = '') => `<text x="${x}" y="${y}" text-anchor="middle" font-size="34" font-weight="800" fill="#17212B"${o}>${t}</text>`;
-    let g = `<line x1="-12" y1="60" x2="342" y2="60" stroke="#17212B" stroke-width="2.6"/>`;
-    for (let v = -3; v <= 1; v++) g += `<line x1="${X(v)}" y1="50" x2="${X(v)}" y2="70" stroke="#17212B" stroke-width="2.6"/>` + T(X(v), 106, v < 0 ? '−' + (-v) : v);
-    [['A', 45.75], ['B', 119.25], ['C', 192], ['D', 266.25]].forEach(([n, x]) => {
-      g += `<circle cx="${x}" cy="60" r="7" fill="#17212B"/>` + T(x, 34, n, ' font-style="italic"');
-    });
-    return `<svg viewBox="-30 2 390 114" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">${g}</svg>`;
-  })();
+  const BOX = (x, y, w, h, o = {}) =>
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r ?? 12}" fill="${o.fill || '#fff'}" stroke="${o.stroke || LINE}" stroke-width="${o.sw || 1.8}"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}${o.op !== undefined ? ` opacity="${o.op}"` : ''}/>`;
+
+  const SQFRAME = (x, y, w, h, col, sw) =>
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="0" fill="none" stroke="${col}" stroke-width="${sw || 2.2}"/>`;
+
+  function xoRows(rows) {
+    return `<div class="xo-wrap" style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">` +
+      rows.map(r => `<div class="xo-row" style="display:flex;gap:8px;align-items:stretch">
+        <div class="xo-cell" style="flex:1;background:#fdeef2;border:1.5px solid ${XO_BAD};border-radius:12px;padding:9px 12px">
+          <div class="xo-tag" style="font-size:11.5px;font-weight:900;color:${RED};margin-bottom:4px">✗ ${r.tag || '常見錯誤'}</div>
+          <div class="xo-body" style="font-size:13.5px;color:${INK};line-height:1.7;overflow-wrap:anywhere">${r.bad}</div></div>
+        <div class="xo-cell" style="flex:1;background:#eef7f2;border:1.5px solid ${XO_GOOD};border-radius:12px;padding:9px 12px">
+          <div class="xo-tag" style="font-size:11.5px;font-weight:900;color:${GRN};margin-bottom:4px">✓ 正確</div>
+          <div class="xo-body" style="font-size:13.5px;color:${INK};line-height:1.7;overflow-wrap:anywhere">${r.good}</div></div>
+      </div>`).join('') + `</div>`;
+  }
 
   const RT = (n) => `<tspan class="radsign">√</tspan><tspan class="rad">${n}</tspan>`;
   const radBars = (h) => {
@@ -60,17 +65,19 @@ window.DECK = window.DECK || [];
     });
   };
 
-  function xoRows(rows) {
-    return `<div class="xo-wrap" style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">` +
-      rows.map(r => `<div class="xo-row" style="display:flex;gap:8px;align-items:stretch">
-        <div class="xo-cell" style="flex:1;background:#fdeef2;border:1.5px solid #e0849b;border-radius:12px;padding:9px 12px">
-          <div class="xo-tag" style="font-size:11.5px;font-weight:900;color:${RED};margin-bottom:4px">✗ ${r.tag || '常見錯誤'}</div>
-          <div class="xo-body" style="font-size:13.5px;color:${INK};line-height:1.7;overflow-wrap:anywhere">${r.bad}</div></div>
-        <div class="xo-cell" style="flex:1;background:#eef7f2;border:1.5px solid #5fb28e;border-radius:12px;padding:9px 12px">
-          <div class="xo-tag" style="font-size:11.5px;font-weight:900;color:${GRN};margin-bottom:4px">✓ 正確</div>
-          <div class="xo-body" style="font-size:13.5px;color:${INK};line-height:1.7;overflow-wrap:anywhere">${r.good}</div></div>
-      </div>`).join('') + `</div>`;
-  }
+  const INK = '#0b1220', GREY = '#475569';
+
+  window.FIGURES_LOCAL = window.FIGURES_LOCAL || {};
+  window.FIGURES_LOCAL['number-line-abcd'] = (() => {
+    const X = (v) => 225 + v * 75;
+    const T = (x, y, t, o = '') => `<text x="${x}" y="${y}" text-anchor="middle" font-size="34" font-weight="800" fill="#17212B"${o}>${t}</text>`;
+    let g = `<line x1="-12" y1="60" x2="342" y2="60" stroke="#17212B" stroke-width="2.6"/>`;
+    for (let v = -3; v <= 1; v++) g += `<line x1="${X(v)}" y1="50" x2="${X(v)}" y2="70" stroke="#17212B" stroke-width="2.6"/>` + T(X(v), 106, v < 0 ? '−' + (-v) : v);
+    [['A', 45.75], ['B', 119.25], ['C', 192], ['D', 266.25]].forEach(([n, x]) => {
+      g += `<circle cx="${x}" cy="60" r="7" fill="#17212B"/>` + T(x, 34, n, ' font-style="italic"');
+    });
+    return `<svg viewBox="-30 2 390 114" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">${g}</svg>`;
+  })();
 
   window.DECK.push({
     ch: 2,
