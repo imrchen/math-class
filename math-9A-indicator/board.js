@@ -40,7 +40,11 @@
     b('bdClose', '✕ 關閉', 'zoom-x').onclick = close;
 
     bQ.onclick = function () { showQ = !showQ; clearPen(); place(); paintToggles(); };
-    bS.onclick = function () { showS = !showS; if (showS) fillSteps(); paintToggles(); };
+    bS.onclick = function () {
+      showS = !showS;
+      if (showS) { fillSteps(); if (!stepsBox.childNodes.length && cur && cur.hook && cur.hook.k() === 0) { step(1); return; } }
+      paintToggles();
+    };
     bPrev.onclick = function () { step(-1); };
     bNext.onclick = function () { step(1); };
     window.addEventListener('resize', function () { if (isOpen()) place(); });
@@ -102,7 +106,7 @@
   function figHtml() {
     var box = cur && cur.figBox;
     if (!box) return '';
-    if (cur.hook) return cur.hook.fig();
+    if (cur.hook && cur.hook.fig) return cur.hook.fig();
     var c = box.cloneNode(true);
     c.querySelectorAll('.bd-figbtn').forEach(function (x) { x.remove(); });
     return c.innerHTML;
@@ -213,6 +217,7 @@
     var h = cur && cur.hook;
     if (!h) return;
     if (d > 0) h.next(); else h.prev();
+    if (!h.fig) showS = true;
     fillFig();
     if (showS) fillSteps();
     paintToggles();
@@ -224,7 +229,9 @@
     var figBox = fromBox || (sc && sc.querySelector('.q-fig')) || null;
     var host = (figBox && figBox.closest('.visual-host')) ||
                (sc && sc.querySelector('.p-qtext') && sc.querySelector('.p-qtext').closest('.visual-host')) || null;
-    cur = { host: host, figBox: figBox, hook: figBox && figBox.__board ? figBox.__board : null };
+    var hs = host && host.__steps;
+    cur = { host: host, figBox: figBox,
+            hook: figBox && figBox.__board ? figBox.__board : (hs && host.contains(hs.live) ? hs : null) };
     showQ = true; showS = false;
     var q = question(host);
     fillQuestion(q);

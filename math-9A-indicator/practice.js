@@ -178,6 +178,8 @@ window.PRACTICE = (function () {
     next.onclick = stepNext;
 
     if (figBox) figBox.__board = { fig: () => figAt(k), k: () => k, total, next: stepNext, prev: stepPrev };
+
+    h.__steps = { k: () => k, total, next: stepNext, prev: stepPrev, live: next };
     h.querySelector('.q-all').onclick = () => { k = total; paint(); };
     h.querySelector('.q-back').onclick = back;
     paint();

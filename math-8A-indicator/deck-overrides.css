@@ -24,7 +24,7 @@
   margin-left: auto;
   flex: 0 0 auto;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.02em;
   color: #5b6b86;
   background: #eef2f9;
@@ -68,13 +68,13 @@
   transition: transform .12s;
 }
 .toc-section.open > .toc-shead::before { transform: rotate(90deg); }
-.toc-shead .ts-sec { font-size: 12.5px; font-weight: 900; color: var(--ct); flex: none; }
-.toc-shead .ts-name { font-size: 12.5px; font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.toc-shead .ts-sec { font-size: 12.5px; font-weight: 700; color: var(--ct); flex: none; }
+.toc-shead .ts-name { font-size: 12.5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .toc-shead .ts-n {
   margin-left: auto;
   flex: none;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 500;
   color: #8a94a6;
   background: #eef2f9;
   border-radius: 999px;
@@ -129,12 +129,12 @@
   transition: transform .12s;
 }
 .toc-group.open > .toc-ghead::before { transform: rotate(90deg); }
-.toc-ghead .tg-name { font-size: 13px; font-weight: 800; }
+.toc-ghead .tg-name { font-size: 13px; font-weight: 500; }
 .toc-ghead .tg-n {
   margin-left: auto;
   flex: none;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 500;
   color: #475569;
   background: #f3f5f9;
   border-radius: 999px;
@@ -168,7 +168,7 @@
   background: var(--edition);
   color: #fff;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.08em;
   vertical-align: 2px;
 }
@@ -202,20 +202,20 @@
   background: var(--edition);
   color: #fff;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 /* 放大層的局部放大（`zoom-pan.js`，本專案自有）。
    ⚠ 樣式一律寫在這裡，不改上游的 `style.css`。 */
 .zp-group { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; }
-.zp-btn { min-width: 42px; font-weight: 900; }
+.zp-btn { min-width: 42px; font-weight: 700; }
 .zp-btn:disabled { opacity: 0.4; cursor: default; }
 .zp-level {
   min-width: 46px;
   text-align: center;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   color: var(--ct);
 }

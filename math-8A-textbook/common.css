@@ -139,24 +139,21 @@
 
 }
 
-/* ---------- 6. 窄／矮視窗下，HTML 視覺欄整組縮到欄內 ---------- */
+/* ---------- 6. HTML 視覺欄：放不下才縮、字級（text-scale.js） ---------- */
 
 /* 承上：engine.js 的 fitEl() 對 HTML 內容無效（它 transform:scale 的是 host 自己，
    而 host 的 overflow:hidden 在縮放前就已經裁掉超出的部分），所以只能讓內容實際變矮。
    用 zoom 而不是 transform：zoom 會真的改變版面尺寸，host 的 scrollHeight 跟著變小；
    transform 只改繪製結果，量到的高度不變，救不了裁切。
 
-   0.75 是同時容納「✗／✓ 三列對照表」與「四列公式卡」兩種最擠版面的值
-   （實測 1280 寬視窗：對照表需 0.78、公式卡需 0.75）。投影片上的字會小一點，
-   要放大講解時點「🔍 放大」就是原尺寸。
-
-   ⚠️ 這個斷點是拿 1280 寬的視窗量出來的，不是拿實際教室投影機量的。
-   確認投影解析度後應該回頭調整 max-width 與 zoom 值。 */
-@media (max-width: 1400px) {
-  .slide-visual .visual-host:not(:has(> div > svg)) > * {
-    zoom: 0.75;
-  }
-}
+   ⚠ 2026-10-01 以前這裡是「視窗 ≤1400px，一律 zoom 0.75」（拿 1280 寬的視窗、為最擠的
+   ✗／✓ 對照表與四列公式卡量出來的）。它套到每一頁：檢討頁的題目卡只佔欄位上半，字仍被縮成 75%。
+   現在由 text-scale.js 逐頁量、寫進兩個變數（都掛在 .slide-visual 上）：
+     --ts-hz   字級（教具列「字級」鈕），套在 host 本身——外框不變、裡面的版面空間等比變小
+     --ts-fit  內容放不下時才縮（練習元件的頁不用它：practice.js 自己在內容上寫 inline zoom）
+   host 被搬進放大層之後就不在 .slide-visual 底下，兩條都不再命中。 */
+.slide-visual > .visual-host { zoom: var(--ts-hz, 1); }
+.slide-visual > .visual-host > * { zoom: var(--ts-fit, 1); }
 
 /* ---------- 7. 左欄的公式卡不要被 flex 擠扁 ---------- */
 
@@ -222,7 +219,7 @@
 .bd-figbtn {
   position: absolute; top: 6px; right: 6px; z-index: 2;
   border: 1.5px solid var(--edition); color: var(--edition); background: rgba(255, 255, 255, 0.92);
-  border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; line-height: 1.4;
+  border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 700; line-height: 1.4;
   cursor: pointer; box-shadow: 0 2px 8px rgba(23, 32, 51, 0.12);
 }
 .bd-figbtn:hover { background: var(--edition); color: #fff; }
@@ -245,7 +242,7 @@ body.bd-open #dkPrev, body.bd-open #dkNext { display: none; }
 }
 .bd-q:empty { display: none; }
 .bd-q > * + * { margin-top: 6px; }
-.bd-q-label { font-size: 16px; font-weight: 900; color: var(--edition); letter-spacing: .03em; }
+.bd-q-label { font-size: 16px; font-weight: 700; color: var(--edition); letter-spacing: .03em; }
 .bd-fig { position: absolute; display: flex; gap: 24px; align-items: stretch; justify-content: center; }
 .bd-cell { flex: 1 1 0; min-width: 0; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .bd-steps {
@@ -254,3 +251,71 @@ body.bd-open #dkPrev, body.bd-open #dkNext { display: none; }
   background: #fff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 14px 18px;
 }
 .bd-steps:empty { display: none !important; }
+
+/* ---------- 9. 字級面板（text-scale.js；Roger 2026-10-01，三站相同） ----------
+   教具列的「字級」鈕打開，面板貼在教具列左邊（教具列的 absolute 子元素，不另開圖層）。
+   最下面一行是這台螢幕的量測（排版寬×高、縮放倍率、中文字型），依教室調整版面時抄回來用。 */
+#dkText.active { background: var(--edition); color: #fff; }
+.ts-pop {
+  position: absolute; right: calc(100% + 10px);
+  display: flex; flex-direction: column; gap: 6px; padding: 8px 10px;
+  background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+  white-space: nowrap;
+}
+.ts-row { display: flex; align-items: center; gap: 6px; }
+.ts-btn, .ts-val {
+  height: 42px; padding: 0 12px; border-radius: 10px; border: 1.5px solid var(--line);
+  background: #fff; color: var(--ink); font-size: 18px; font-weight: 700; cursor: pointer;
+}
+.ts-btn { min-width: 54px; }
+.ts-val { min-width: 74px; font-size: 16px; font-variant-numeric: tabular-nums; }
+.ts-btn:hover:not(:disabled), .ts-val:hover { border-color: var(--edition); color: var(--edition); }
+.ts-btn:disabled { opacity: .35; cursor: default; }
+.ts-note { font-size: 13px; color: #92400e; }
+.ts-note:empty { display: none; }
+.ts-info { font-size: 12px; color: var(--muted); }
+
+/* ---------- 10. 檢討頁的右欄寬一點（Roger 2026-10-01） ----------
+   練習元件的頁（列表、詳解、對答案）左欄只有標題與兩三條提示，題目在右欄。
+   上游是 0.92 : 1.08，這類頁改成 0.8 : 1.2（學生 fork 的 4:3 版面用 0.82 : 1.18）。
+   只在兩欄版面（>1080px）；講解頁不動——指標版的左欄是講觀念的主體。 */
+@media (min-width: 1081px) {
+  .slide:not(.divider):has(> .slide-visual > .visual-host :is(.q-row, .p-row, .q-line, .p-line, .q-ask, .p-ask, .q-body, .ak-root)) {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+  /* 左欄變窄，公式卡的一整串公式（1-1 那張 `(a±b)²  (a+b)(a−b)  (a+b)(c+d)`）會超出欄寬、冒出捲軸。
+     比照第 4 節：MathJax 等比縮到欄寬。 */
+  .slide:not(.divider):has(> .slide-visual > .visual-host :is(.q-row, .p-row, .q-line, .p-line, .q-ask, .p-ask, .q-body, .ak-root))
+    .slide-info .formula mjx-container[jax="SVG"] { max-width: 100%; }
+  .slide:not(.divider):has(> .slide-visual > .visual-host :is(.q-row, .p-row, .q-line, .p-line, .q-ask, .p-ask, .q-body, .ak-root))
+    .slide-info .formula mjx-container[jax="SVG"] > svg { max-width: 100%; height: auto; }
+}
+
+/* ---------- 11. 字重：不要那麼粗重（Roger 2026-10-01） ----------
+   上游與覆寫層大量用 800／900。⚠ Windows 的微軟正黑體只有一般與粗體，600 以上全部畫成同一個粗體；
+   Mac 的蘋方最粗是 Semibold，700～900 也看不出差別。所以「降字重」實際有效的是**哪些元素從粗體改成一般**：
+   頂列的麵包屑、投影片標題、進度文字（這裡）與目錄的節名、類別名、頁數（各站 deck-overrides.css）。
+   其餘 800／900 一律收成 700：在上面兩種系統看起來不變；裝了 Noto Sans TC 的電腦，800／900 會畫成特黑，收成 700 才不過黑。
+   題目、答案、標籤、按鈕維持粗體——投影時那些要遠遠就看得到。 */
+.crumb, .progress-text { font-weight: 400; }
+.slide-title { font-weight: 500; }
+.cover-eyebrow, .cover-title, .cover-card .cc-num, .cover-card .cc-title, .cover-start, .home-btn,
+.ghost-btn, .toc-chead, .toc-item.active, .divider .dv-num, .divider .dv-title, .badge,
+.formula .formula-label, .points .k, .ex-head, .ex-toggle, .ex-ans, .ictrl label, .ibtn, .ival,
+.nav-btn, .ex-zoom, .vis-zoom, .zoom-ans, .zoom-badge, .zoom-btn { font-weight: 700; }
+
+/* ---------- 12. 章節封面頁改成淺底（Roger 2026-10-01） ----------
+   上游是整頁章色漸層＋白色特粗字，是全站最大的一塊實心色，Roger 看了覺得「厚重」。
+   改成章色 7% 的淺底、頂端一條章色帶、標題用章色；章色仍在，一眼還分得出是第幾章。 */
+.slide.divider {
+  background: color-mix(in srgb, var(--ct) 7%, #fff);
+  color: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--ct) 22%, #fff);
+  border-top: 8px solid var(--ct);
+}
+.divider .dv-num { color: var(--ct); opacity: 1; }
+.divider .dv-title { color: var(--ct); }
+.divider .dv-chip {
+  background: #fff; color: var(--ct);
+  border: 1.5px solid color-mix(in srgb, var(--ct) 35%, #fff);
+}

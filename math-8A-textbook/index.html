@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>國中數學 八上 互動教學</title>
   <meta name="description" content="光明國中八上數學課堂投影用互動教材" />
-  <link rel="stylesheet" href="style.css?v=20261001h" />
-  <link rel="stylesheet" href="common.css?v=20261001h" />
-  <link rel="stylesheet" href="deck-overrides.css?v=20261001h" />
+  <link rel="stylesheet" href="style.css?v=20261001j" />
+  <link rel="stylesheet" href="common.css?v=20261001j" />
+  <link rel="stylesheet" href="deck-overrides.css?v=20261001j" />
   <script>
     window.MathJax = {
       tex: {
@@ -25,7 +25,7 @@
   </script>
   <!-- MathJax 改為隨站打包：教室電腦不一定有網路，CDN 掛掉整份公式就不會排版。
        來源 https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js（2026-09-12 取得，與指標版同一份）。 -->
-  <script src="../vendor/tex-svg.js?v=20261001h" id="MathJax-script" async></script>
+  <script src="../vendor/tex-svg.js?v=20261001j" id="MathJax-script" async></script>
 </head>
 <body>
   <!-- 封面 -->
@@ -111,16 +111,19 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="12" y1="16" x2="8" y2="21"/><line x1="12" y1="16" x2="16" y2="21"/><path d="M7 11c1.5-2 2.5-2 3.5 0s2 2 3.5 0"/></svg>
       </button>
       <div class="dsep"></div>
+      <button class="dbtn" id="dkText" title="字級（右欄的題目與文字）">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 19L8 5h1l5.5 14"/><line x1="4.6" y1="14" x2="12.4" y2="14"/><path d="M15 19l3.5-8 3.5 8"/><line x1="16.2" y1="16.4" x2="20.8" y2="16.4"/></svg>
+      </button>
       <button class="dbtn" id="dkFull" title="全螢幕">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
       </button>
     </div>
   </div>
 
-  <script src="svg.js?v=20261001h"></script>
+  <script src="svg.js?v=20261001j"></script>
   <!-- 檢討頁的資料與元件（本站自有；自我評量只有這一站用） -->
-  <script src="solutions.js?v=20261001h"></script>
-  <script src="figures.js?v=20261001h"></script>
+  <script src="solutions.js?v=20261001j"></script>
+  <script src="figures.js?v=20261001j"></script>
   <script>
     /* 練習／檢討元件（practice.js，與八上-指標版共用同一份檔）的站別設定：題層級列、一段一畫面、大字級。 */
     window.PRACTICE_CONFIG = {
@@ -131,14 +134,14 @@
       srcColors: { '課本・隨堂練習': '#1e40af', '習作・基礎練習': '#92400e', '課本・自我評量': '#6d28d9' }
     };
   </script>
-  <script src="answer-key.js?v=20261001h"></script>
-  <script src="practice.js?v=20261001h"></script>
-  <script src="ch1.js?v=20261001h"></script>
-  <script src="ch2.js?v=20261001h"></script>
-  <script src="ch3.js?v=20261001h"></script>
-  <script src="ch4.js?v=20261001h"></script>
-  <script src="ch5.js?v=20261001h"></script>
-  <script src="engine.js?v=20261001h"></script>
+  <script src="answer-key.js?v=20261001j"></script>
+  <script src="practice.js?v=20261001j"></script>
+  <script src="ch1.js?v=20261001j"></script>
+  <script src="ch2.js?v=20261001j"></script>
+  <script src="ch3.js?v=20261001j"></script>
+  <script src="ch4.js?v=20261001j"></script>
+  <script src="ch5.js?v=20261001j"></script>
+  <script src="engine.js?v=20261001j"></script>
   <script>
     /* 目錄第三層：節之內依類別折疊（Roger 2026-09-23）。規則由 toc-sections.js 讀，
        依序比對標題、第一個命中的算數；都沒命中的是講解頁。
@@ -155,12 +158,13 @@
     ];
     window.TOC_GROUP_REST = '講解';
   </script>
-  <script src="toc-sections.js?v=20261001h"></script>
-  <script src="zoom-mixed.js?v=20261001h"></script>
-  <script src="zoom-pan.js?v=20261001h"></script>
-  <script src="board.js?v=20261001h"></script>
-  <script src="highlighter.js?v=20261001h"></script>
-  <script src="dock-tips.js?v=20261001h"></script>
-  <script src="mathjax-catchup.js?v=20261001h"></script>
+  <script src="toc-sections.js?v=20261001j"></script>
+  <script src="zoom-mixed.js?v=20261001j"></script>
+  <script src="zoom-pan.js?v=20261001j"></script>
+  <script src="board.js?v=20261001j"></script>
+  <script src="highlighter.js?v=20261001j"></script>
+  <script src="text-scale.js?v=20261001j"></script>
+  <script src="dock-tips.js?v=20261001j"></script>
+  <script src="mathjax-catchup.js?v=20261001j"></script>
 </body>
 </html>

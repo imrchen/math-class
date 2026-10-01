@@ -337,13 +337,9 @@ window.PRACTICE = (function () {
 
       const els = [...h.querySelectorAll('.q-line')];
       const next = h.querySelector('.q-next');
-      let shown = 0;
-      const step = () => {
-        if (shown < els.length) els[shown++].style.visibility = 'visible';
-        if (shown >= els.length) { next.disabled = true; next.style.opacity = '.4'; next.style.cursor = 'default'; }
-      };
-      next.onclick = step;
-      h.querySelector('.q-all').onclick = () => { while (shown < els.length) step(); };
+      const st = steps(h, els, next);
+      next.onclick = st.next;
+      h.querySelector('.q-all').onclick = st.all;
       h.querySelector('.q-back').onclick = back;
       const go = (i) => { idx = i; render(); };
       const prevB = h.querySelector('.q-prev-part'), nextB = h.querySelector('.q-next-part');
@@ -389,18 +385,31 @@ window.PRACTICE = (function () {
          </div>
        </div>`;
     const els = [...h.querySelectorAll('.p-line')];
-    let shown = 0;
     const next = h.querySelector('.p-next');
-    const step = () => {
-      if (shown < els.length) els[shown++].style.visibility = 'visible';
-      if (shown >= els.length) { next.disabled = true; next.style.opacity = '.4'; next.style.cursor = 'default'; }
-    };
-    next.onclick = step;
-    h.querySelector('.p-all').onclick = () => { while (shown < els.length) step(); };
+    const st = steps(h, els, next);
+    next.onclick = st.next;
+    h.querySelector('.p-all').onclick = st.all;
     h.querySelector('.p-back').onclick = back;
     MJx(h);
     pAfter(h);
     return true;
+  }
+
+  function steps(h, els, next) {
+    let shown = 0;
+    const paint = () => {
+      els.forEach((e, i) => { e.style.visibility = i < shown ? 'visible' : 'hidden'; });
+      const done = shown >= els.length;
+      next.disabled = done; next.style.opacity = done ? '.4' : ''; next.style.cursor = done ? 'default' : 'pointer';
+    };
+    const st = {
+      k: () => shown, total: els.length, live: next,
+      next: () => { if (shown < els.length) { shown++; paint(); } },
+      prev: () => { if (shown > 0) { shown--; paint(); } },
+      all: () => { shown = els.length; paint(); },
+    };
+    h.__steps = st;
+    return st;
   }
 
   function fit(h, floor) {
