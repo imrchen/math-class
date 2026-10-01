@@ -115,11 +115,24 @@
     row.appendChild(dn); row.appendChild(val); row.appendChild(up);
     pop.appendChild(row);
     pop.appendChild(el('div', 'ts-note'));
+
+    var TH = window.DECK_THEME;
+    if (TH && TH.list) {
+      var tr = el('div', 'ts-row ts-theme');
+      tr.appendChild(el('span', 'ts-label', '配色'));
+      TH.list.forEach(function (t) {
+        var b = el('button', 'ts-th', t.label); b.dataset.theme = t.id;
+        b.classList.toggle('on', t.id === TH.current);
+        tr.appendChild(b);
+      });
+      pop.appendChild(tr);
+    }
     pop.appendChild(el('div', 'ts-info'));
     pop.addEventListener('click', function (e) {
       var b = e.target.closest('button');
       if (!b) return;
       e.stopPropagation();
+      if (b.classList.contains('ts-th')) { if (!b.classList.contains('on')) window.DECK_THEME.set(b.dataset.theme); return; }
       set(b.classList.contains('ts-val') ? 1 : want + (+b.dataset.d) * STEP);
     });
     btn.parentNode.appendChild(pop);

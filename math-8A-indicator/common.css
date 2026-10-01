@@ -274,6 +274,12 @@ body.bd-open #dkPrev, body.bd-open #dkNext { display: none; }
 .ts-note { font-size: 13px; color: #92400e; }
 .ts-note:empty { display: none; }
 .ts-info { font-size: 12px; color: var(--muted); }
+.ts-label { font-size: 13px; color: var(--muted); margin-right: 2px; }
+.ts-th {
+  height: 34px; padding: 0 12px; border-radius: 999px; border: 1.5px solid var(--line);
+  background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.ts-th.on { background: var(--edition); border-color: var(--edition); color: #fff; cursor: default; }
 
 /* ---------- 10. 檢討頁的右欄寬一點（Roger 2026-10-01） ----------
    練習元件的頁（列表、詳解、對答案）左欄只有標題與兩三條提示，題目在右欄。
