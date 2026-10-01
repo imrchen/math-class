@@ -115,6 +115,13 @@
   max-width: 100%;
   height: auto;
 }
+/* 表格儲存格例外（2026-10-01，5-1 資料表）：百分比 max-width 在 table 的欄寬計算裡
+   算不出來，瀏覽器把公式的最小寬度當成 0，欄就壓得比內容窄，`40～50` 這種表頭
+   在「放大」裡疊成一團（小卡片剛好夠寬才沒露出來）。表格的字本來就短，不需要縮。 */
+.visual-host td mjx-container[jax="SVG"],
+.visual-host td mjx-container[jax="SVG"] > svg {
+  max-width: none;
+}
 
 /* ---------- 5. ✗／✓ 對照列在窄欄下壓緊一點 ---------- */
 

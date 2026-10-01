@@ -30,9 +30,15 @@ window.PRACTICE = (function () {
   const MJx = (h) => { if (window.MJ) window.MJ(h); };
 
   const isFill = (q) => /完成/.test(String(q || ''));
+
+  const cellHtml = (c) => {
+    const segs = String(c == null ? '' : c).replace(/～/g, '～\u0000').replace(/（/g, '\u0000（').split('\u0000').filter(Boolean);
+    const ok = segs.every(s => (s.match(/\$/g) || []).length % 2 === 0);
+    return (ok ? segs : [String(c == null ? '' : c)]).map(s => `<span style="white-space:nowrap">${tex(s)}</span>`).join('');
+  };
   const tblHtml = (rows) => `<table style="border-collapse:collapse;font-size:16px;margin:2px 0;color:${INK}">${
-    (rows || []).map((r, i) => `<tr>${r.map((c, j) => `<td style="border:1.5px solid ${T.border};padding:3px 8px;text-align:center;white-space:nowrap;${
-      j === 0 ? 'font-weight:800;background:#f3f6fb;' : ''}${i === 0 ? 'font-weight:800;' : ''}">${tex(c)}</td>`).join('')}</tr>`).join('')}</table>`;
+    (rows || []).map((r, i) => `<tr>${r.map((c, j) => `<td style="border:1.5px solid ${T.border};padding:3px 8px;text-align:center;${
+      j === 0 ? 'font-weight:800;background:#f3f6fb;' : ''}${i === 0 ? 'font-weight:800;' : ''}">${cellHtml(c)}</td>`).join('')}</tr>`).join('')}</table>`;
 
   function merged(sec, tag) {
     const all = S(sec);
