@@ -1,10 +1,9 @@
 window.DECK = window.DECK || [];
 (function () {
   const C = '#7c3aed';
-  const RED = '#e11d48', GRN = '#059669', BLU = '#2563eb', VIO = '#7c3aed', AMB = '#d97706';
-  const INK = '#172033', GREY = '#8a94a6';
 
-  const LINE = '#dce3ee', XO_BAD = '#f3c4d0', XO_GOOD = '#bfe0d1';
+  const RED = '#e11d48', GRN = '#059669', BLU = '#2563eb', VIO = '#7c3aed', AMB = '#d97706';
+  const INK = '#172033', GREY = '#8a94a6', LINE = '#dce3ee', XO_BAD = '#f3c4d0', XO_GOOD = '#bfe0d1';
 
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;
@@ -68,6 +67,13 @@ window.DECK = window.DECK || [];
 
   const SECVB = '0 0 440 286';
   const SECBG = `<rect x="0" y="0" width="440" height="286" fill="#fff"/>`;
+
+  const secKey = (y, col, name, k, arc) =>
+    (arc
+      ? `<path d="M316,${y + 13} Q327,${y - 4} 338,${y + 13}" fill="none" stroke="${col}" stroke-width="2.6" stroke-linecap="round" opacity="${k}"/>`
+      : BOX(316, y, 22, 12, { r: 3, fill: col, stroke: col, sw: 1, op: k }))
+    + TX(346, y + 12, name, { fs: 16, c: INK });
+
   const secCards = (cards, showTag, star) => {
     const n = cards.length, top = 52 + (4 - n) * 26;
     return cards.map((c, i) => {
@@ -78,6 +84,13 @@ window.DECK = window.DECK || [];
         + (showTag ? TX(244, y + 27, c[1], { fs: 14.5, c: c[2] || GREY }) : '');
     }).join('');
   };
+
+  const secActOne = (lines, k, col) => {
+    const c = col || GRN, hh = 16 + lines.length * 34, y = 274 - hh;
+    return BOX(16, y, 408, hh, { r: 12, fill: 'rgba(5,150,105,.07)', stroke: c, sw: 2, op: k })
+      + lines.map((t, i) => TX(220, y + 30 + i * 34, t, { anchor: 'middle', fs: 16, c: INK })).join('');
+  };
+
   const secActTwo = (rows, notes) =>
     rows.map((r, i) => {
       const y = 50 + i * 76;

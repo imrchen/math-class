@@ -1,0 +1,249 @@
+/* ============================================================
+   math-deck 三站共用覆寫層（2026-10-01 從各站 deck-overrides.css 抽出）
+   ------------------------------------------------------------
+   **三站逐位元組相同**（`scripts/check_shared_files.py` 驗），改一份要三站一起拷。
+   載入順序：style.css → **本檔** → deck-overrides.css（站別差異：頁碼徽章、目錄折疊、
+   版本識別色、課本版的投影對比）。站別的那一份排在後面，同權重時以它為準。
+   上游共用檔（style.css／engine.js／svg.js）一律不改。
+
+   1～8 節最早由 Roger 2026-09-08 在 pilot 檢視後提出：
+     1. 封面的「開始複習」被章節卡片擠到摺線下，要捲頁才點得到
+     2. 圖解「放大成整頁」時，滑桿控制列掉出畫面外，要捲頁才看得到
+   後三段是三站相同的教具（螢光筆、教具列提示氣泡、講解板）。
+   ============================================================ */
+
+/* ---------- 1. 封面：一屏放得下，不必捲頁 ---------- */
+
+.cover {
+  min-height: 100dvh;
+  padding: 24px;
+}
+
+.cover-inner {
+  max-width: 1180px;
+  padding: 34px 40px 32px;
+}
+
+.cover-title { font-size: clamp(40px, 5.6vw, 62px); }
+
+.cover-sub {
+  margin: 12px 0 22px;
+  font-size: clamp(14px, 1.7vw, 17px);
+}
+
+/* 章節卡：寬螢幕一律排成一列，不換行。上游的 auto-fit 在 5 章時會
+   斷成 4＋1 兩列，正是把「開始複習」推出畫面的原因。 */
+.cover-chapters {
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 1000px) {
+  .cover-chapters {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-template-columns: none;
+  }
+}
+
+.cover-card { padding: 12px 14px; }
+.cover-card .cc-title { font-size: 17px; margin: 3px 0 5px; }
+.cover-card .cc-list { font-size: 12.5px; line-height: 1.65; }
+
+.cover-start { padding: 13px 34px; font-size: 18px; }
+.cover-hint { margin-top: 16px; }
+
+/* 矮螢幕再壓一次，確保按鈕永遠在摺線以上 */
+@media (max-height: 760px) {
+  .cover-inner { padding: 24px 32px 22px; }
+  .cover-title { font-size: clamp(34px, 4.6vw, 48px); }
+  .cover-sub { margin: 8px 0 16px; }
+  .cover-chapters { margin-bottom: 18px; }
+  .cover-card .cc-list { font-size: 12px; line-height: 1.55; }
+  .cover-hint { display: none; }
+}
+
+/* ---------- 2. 圖解放大：圖＋滑桿一起塞進一屏 ---------- */
+
+/* 放大層本身不再捲動——圖解模式下捲頁等於講到一半畫面要拉，投影很難用。
+   （範例放大模式仍需要捲動，因此只鎖圖解那一種。） */
+.zoom-modal { padding-bottom: 28px; }
+
+.zoom-body > .visual-host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 有滑桿或步驟滑桿時，SVG 要讓出控制列的高度。
+   上游只寫死 max-height:80vh，沒有把 .ictrl 算進去，所以控制列會掉出畫面。 */
+.zoom-body > .visual-host:has(.ictrl) svg {
+  max-height: calc(100vh - 300px);
+}
+
+.zoom-body > .visual-host .ictrl {
+  flex: none;
+  margin-top: 12px;
+}
+
+/* 放大時版面寬得多，步驟說明不必再擠成三行 */
+.zoom-body > .visual-host .ictrl .step-txt {
+  max-width: min(760px, 70vw);
+}
+
+/* ---------- 3. 「🔍 放大」鈕不要壓到內容 ---------- */
+
+/* 放大鈕是 position:absolute 浮在視覺欄右上角，SVG 圖那一類頁面右上角通常留白，
+   不會擋到；但視覺欄放 HTML（✗／✓ 對照表、SV.fbox 公式卡）時，內容從最上緣就開始排，
+   第一列會被鈕蓋住。
+   判別方式：繪圖頁的結構一定是 host > div > svg（自訂的 svg() 包裝與 SV.stepper 都是），
+   HTML 頁的 svg 只會出現在更深層的 mjx-container 裡，所以用直接子代選擇器就能分開，
+   只在 HTML 頁讓出鈕的高度。 */
+.slide-visual .visual-host:not(:has(> div > svg)) {
+  padding-top: 30px;
+}
+
+/* ---------- 4. 視覺欄的 MathJax 公式要縮到欄寬，不要被切掉 ---------- */
+
+/* MathJax 的 SVG 輸出是固定寬度，不會換行也不會縮。視覺欄放對照表或公式卡時，
+   欄寬一窄（例如 1280×720 的投影機）公式就會直接被 .slide-visual 的 overflow:hidden
+   切掉右半。讓 mjx-container 及其 svg 等比縮到容器寬度即可，字會小一點但完整。 */
+.visual-host mjx-container[jax="SVG"] {
+  max-width: 100%;
+}
+.visual-host mjx-container[jax="SVG"] > svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- 5. ✗／✓ 對照列在窄欄下壓緊一點 ---------- */
+
+/* 1280 寬的投影機下，視覺欄只有約 390px，對照表三列很容易超出欄高被切掉。
+   （上游 engine.js 的 fitEl() 是對 host 自己 transform:scale()，而 host 的
+   overflow:hidden 在縮放之前就已經裁掉超出的部分，所以縮放救不回來——只能讓內容變矮。）
+   這裡在窄欄時收緊留白與行高；仍然放不下的部分靠「🔍 放大」看完整版。 */
+/* xoRows 產生的元素帶內聯 style，內聯優先序高於任何選擇器，因此這裡必須用 !important。 */
+@media (max-width: 1400px) {
+  .visual-host .xo-wrap { gap: 7px !important; }
+  .visual-host .xo-row { gap: 6px !important; }
+  .visual-host .xo-cell { padding: 7px 10px !important; }
+  .visual-host .xo-tag { font-size: 11px !important; margin-bottom: 2px !important; }
+  .visual-host .xo-body { font-size: 12.5px !important; line-height: 1.5 !important; }
+
+}
+
+/* ---------- 6. 窄／矮視窗下，HTML 視覺欄整組縮到欄內 ---------- */
+
+/* 承上：engine.js 的 fitEl() 對 HTML 內容無效（它 transform:scale 的是 host 自己，
+   而 host 的 overflow:hidden 在縮放前就已經裁掉超出的部分），所以只能讓內容實際變矮。
+   用 zoom 而不是 transform：zoom 會真的改變版面尺寸，host 的 scrollHeight 跟著變小；
+   transform 只改繪製結果，量到的高度不變，救不了裁切。
+
+   0.75 是同時容納「✗／✓ 三列對照表」與「四列公式卡」兩種最擠版面的值
+   （實測 1280 寬視窗：對照表需 0.78、公式卡需 0.75）。投影片上的字會小一點，
+   要放大講解時點「🔍 放大」就是原尺寸。
+
+   ⚠️ 這個斷點是拿 1280 寬的視窗量出來的，不是拿實際教室投影機量的。
+   確認投影解析度後應該回頭調整 max-width 與 zoom 值。 */
+@media (max-width: 1400px) {
+  .slide-visual .visual-host:not(:has(> div > svg)) > * {
+    zoom: 0.75;
+  }
+}
+
+/* ---------- 7. 左欄的公式卡不要被 flex 擠扁 ---------- */
+
+/* `.col-fit` 是 flex column，子項預設 flex-shrink:1。矮視窗下內容比欄高，
+   公式卡就先被壓扁（實測 125px 被擠成 19px，只剩一條），裡面的 MathJax 直接被裁掉。
+   engine.js 的 fitEl() 本來就會等比縮放這一欄，不需要 flex 再幫忙擠——
+   關掉收縮，量到的才是真實高度，縮放後每個區塊都保持完整比例。 */
+.slide-info .col-fit > * {
+  flex-shrink: 0;
+}
+
+/* ---------- 8. 有滑桿的頁：圖與控制列自己分配欄高 ---------- */
+
+/* 上游 style.css:382 對含 .ictrl 的頁把 svg 的 max-height 設成 none，刻意改由
+   engine.js 的 fitSlide() 把「圖＋滑桿」當一整組等比縮放。但 fitSlide 走的是
+   fitEl(host, host)——縮放對象就是 host 自己，而 host 的 overflow:hidden 會在縮放
+   之前先裁掉超出的部分，所以矮視窗下滑桿仍然會被切掉（實測 1280×679：需要 422px、
+   只有 366px，底部的滑桿整條不見）。
+
+   這裡不再依賴那個縮放：把 host 內的包裝層改成 flex column，SVG 吃剩餘空間、
+   控制列固定不收縮，兩者一定塞得進欄內。圖會小一點，但滑桿一定看得到——
+   投影時滑桿不見比圖小一點嚴重得多。 */
+.slide-visual .visual-host:has(.ictrl) > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.slide-visual .visual-host:has(.ictrl) > div > svg {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+}
+.slide-visual .visual-host:has(.ictrl) > div > .ictrl {
+  flex: 0 0 auto;
+}
+
+/* 螢光筆（`highlighter.js`，本專案自有；Roger 2026-09-24，三站相同）。
+   筆畫是不透明的黃，透明度與 multiply 由畫布本身負責：同一筆來回塗不會變深、黑字仍是黑的。
+   z 799：在畫筆畫布（800）之下，紅筆寫在螢光上面。 */
+.hl-canvas { position: fixed; inset: 0; z-index: 799; pointer-events: none; opacity: 0.7; mix-blend-mode: multiply; }
+.dhl { width: 34px; height: 34px; }
+.dhl.active { background: #fde047; color: #111827; box-shadow: 0 0 0 2px #eab308; }
+
+/* 教具列提示氣泡（`dock-tips.js`，本專案自有；Roger 2026-09-30，三站相同）。
+   只接滑鼠（觸控白板沒有 hover）；z 1400 高於各層頂列 1300。 */
+.dock-tip {
+  position: fixed; z-index: 1400; pointer-events: none; white-space: nowrap;
+  background: #172033; color: #fff; font-size: 16px; font-weight: 700; line-height: 1.3;
+  padding: 7px 12px; border-radius: 9px; box-shadow: 0 4px 14px rgba(23, 32, 51, 0.25);
+  display: flex; align-items: center; gap: 8px;
+}
+.dock-tip.hidden { display: none; }
+.dock-tip kbd {
+  font: inherit; font-size: 14px; min-width: 1.6em; text-align: center;
+  padding: 1px 6px; border-radius: 5px; background: rgba(255, 255, 255, 0.18); border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* 講解板（`board.js`，本專案自有；Roger 2026-09-30，三站相同）：「只看圖」與「計算紙」合一。
+   z 770：放大層 700 之上、螢光畫布 799 與畫筆畫布 800 之下，筆才寫得上去。頂列沿用 engine 的 `.zoom-bar`（z 1300）。
+   題目、圖、步驟都是 position:absolute，位置由 board.js 的 place() 算；「題目」開關會重排圖並清筆跡，「步驟」開關不動圖。 */
+.q-fig { position: relative; }
+.bd-figbtn {
+  position: absolute; top: 6px; right: 6px; z-index: 2;
+  border: 1.5px solid var(--edition); color: var(--edition); background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; line-height: 1.4;
+  cursor: pointer; box-shadow: 0 2px 8px rgba(23, 32, 51, 0.12);
+}
+.bd-figbtn:hover { background: var(--edition); color: #fff; }
+.bd-layer { position: fixed; inset: 0; z-index: 770; background: #fff; }
+.bd-layer.hidden, .bd-bar.hidden { display: none !important; }
+.bd-bar { border-bottom: 3px solid var(--edition); }
+.bd-bar .zoom-badge { color: var(--edition); }
+.bd-bar .zoom-btn { border-color: var(--edition); color: var(--edition); }
+.bd-bar .zoom-btn.bd-on { background: var(--edition); color: #fff; }
+.bd-bar .zoom-btn:disabled { opacity: .35; cursor: default; }
+.bd-bar .zoom-x { border-color: #e11d48; color: #e11d48; }
+.bd-note { margin-left: 14px; font-weight: 700; font-size: 0.85em; color: #475569; }
+body.bd-open #zoomBar { display: none !important; }
+body.bd-open #dkPrev, body.bd-open #dkNext { display: none; }
+#dkBoard.active { background: var(--edition); color: #fff; }
+/* 題目（左上）：字放大給全班看；八上-指標版的題目取自列表那一列，複製時拿掉 inline style，字級統一跟著這裡 */
+.bd-q {
+  position: absolute; padding: 12px 20px; font-size: 28px; line-height: 1.6; color: #172033; font-weight: 600;
+  background: #f8fafc; border: 2px solid #94a3b8; border-left: 6px solid var(--edition); border-radius: 12px;
+}
+.bd-q:empty { display: none; }
+.bd-q > * + * { margin-top: 6px; }
+.bd-q-label { font-size: 16px; font-weight: 900; color: var(--edition); letter-spacing: .03em; }
+.bd-fig { position: absolute; display: flex; gap: 24px; align-items: stretch; justify-content: center; }
+.bd-cell { flex: 1 1 0; min-width: 0; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.bd-steps {
+  position: absolute; display: flex; flex-direction: column; gap: 14px;
+  font-size: 22px; line-height: 1.55; color: #172033; font-weight: 700;
+  background: #fff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 14px 18px;
+}
+.bd-steps:empty { display: none !important; }

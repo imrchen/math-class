@@ -1,8 +1,9 @@
 window.DECK = window.DECK || [];
 (function () {
   const C = '#1e40af';
+
   const RED = '#be123c', GRN = '#065f46', BLU = '#1e40af', VIO = '#6d28d9', AMB = '#92400e';
-  const INK = '#0b1220', GREY = '#475569';
+  const INK = '#0b1220', GREY = '#475569', LINE = '#94a3b8', XO_BAD = '#e0849b', XO_GOOD = '#5fb28e';
 
   window.FIGURES_LOCAL = window.FIGURES_LOCAL || {};
   window.FIGURES_LOCAL['long-division-21x2-x-2'] = (() => {
@@ -50,8 +51,6 @@ window.DECK = window.DECK || [];
       + L(150, 150, '擂台', 40) + L(150, 262, '2x＋5', 26) + L(270, 150, 'x－3', 24)
       + `</svg>`;
   })();
-
-  const LINE = '#94a3b8', XO_BAD = '#e0849b', XO_GOOD = '#5fb28e';
 
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;

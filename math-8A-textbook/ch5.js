@@ -1,9 +1,9 @@
 window.DECK = window.DECK || [];
 (function () {
   const C = '#be123c';
-  const RED = '#be123c', GRN = '#065f46', BLU = '#1e40af', VIO = '#6d28d9', AMB = '#92400e';
 
-  const INK = '#0b1220', LINE = '#94a3b8', XO_BAD = '#e0849b', XO_GOOD = '#5fb28e';
+  const RED = '#be123c', GRN = '#065f46', BLU = '#1e40af', VIO = '#6d28d9', AMB = '#92400e';
+  const INK = '#0b1220', GREY = '#475569', LINE = '#94a3b8', XO_BAD = '#e0849b', XO_GOOD = '#5fb28e';
 
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;

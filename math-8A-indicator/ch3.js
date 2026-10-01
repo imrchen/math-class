@@ -1,10 +1,9 @@
 window.DECK = window.DECK || [];
 (function () {
   const C = '#059669';
-  const RED = '#e11d48', GRN = '#059669', BLU = '#2563eb', VIO = '#7c3aed', AMB = '#d97706';
-  const INK = '#172033', GREY = '#8a94a6';
 
-  const LINE = '#dce3ee', XO_BAD = '#f3c4d0', XO_GOOD = '#bfe0d1';
+  const RED = '#e11d48', GRN = '#059669', BLU = '#2563eb', VIO = '#7c3aed', AMB = '#d97706';
+  const INK = '#172033', GREY = '#8a94a6', LINE = '#dce3ee', XO_BAD = '#f3c4d0', XO_GOOD = '#bfe0d1';
 
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;
@@ -236,7 +235,7 @@ window.DECK = window.DECK || [];
               pText('印4 ①', '\\(2x-1\\) 是不是 \\(2x^2+5x-3\\) 的因式？', '是') +
               pText('印4 ②', '\\(2x^2+5x-3\\) 是不是 \\(x+2\\) 的倍式？', '不是')), '3-1');
         },
-        caption: '課本印 4：餘式是 0 才是因式。'
+        caption: '課本印 119：餘式是 0 才是因式。'
       },
 
       {
@@ -469,7 +468,7 @@ window.DECK = window.DECK || [];
               pItem('印8 ②', '5b^2+10b') +
               pItem('印8 ③', 'm(1-2m)+m(4m+3)')), '3-1');
         },
-        caption: '課本印 8：數字的公因數也要一起提。'
+        caption: '課本印 123：數字的公因數也要一起提。'
       },
 
       {
@@ -488,7 +487,7 @@ window.DECK = window.DECK || [];
               pItem('印9 ②', '(x+3)(x-4)+(x+3)(2x-1)') +
               pItem('印9 例3續', '(2x-3)(4x-1)-(3x-1)(2x-3)')), '3-1');
         },
-        caption: '課本印 9：括號重複出現就整塊提，順序相反先補負號。'
+        caption: '課本印 124：括號重複出現就整塊提，順序相反先補負號。'
       },
 
       {
@@ -506,7 +505,7 @@ window.DECK = window.DECK || [];
               pItem('印10 ①', '(6x-4)+(2-3x)^2') +
               pItem('印10 ②', '(4x^2+6x)+(10x+15)')), '3-1');
         },
-        caption: '課本印 10：兩項兩項分一組，各自提完會出現同一個括號。'
+        caption: '課本印 125：兩項兩項分一組，各自提完會出現同一個括號。'
       },
 
       {
@@ -590,7 +589,7 @@ window.DECK = window.DECK || [];
               pItem('印13 ①', '(5x-2)^2-1') +
               pItem('印13 ②', '16-(2x-3)^2')), '3-1');
         },
-        caption: '課本印 13：把整個括號當成 \\(a\\)。'
+        caption: '課本印 128：把整個括號當成 \\(a\\)。'
       },
 
       {
@@ -697,7 +696,7 @@ window.DECK = window.DECK || [];
               pItem('印16 ①', '9x^2+12x+4') +
               pItem('印16 ②', '18x^2-24x+8')), '3-1');
         },
-        caption: '課本印 16：先提，再數剩幾項。'
+        caption: '課本印 131：先提，再數剩幾項。'
       },
 
       {
@@ -1156,7 +1155,7 @@ window.DECK = window.DECK || [];
               pItem('印7 ①', 'x^2+2x-35') +
               pItem('印7 ②', 'x^2-34x-35')), '3-2');
         },
-        caption: '課本印 7：常數負，兩個數一正一負。'
+        caption: '課本印 141：常數負，兩個數一正一負。'
       },
 
       {
@@ -1215,7 +1214,7 @@ window.DECK = window.DECK || [];
               pItem('印9 ①', '2x^2+7x-15') +
               pItem('印9 ②', '6x^2-11x-10')), '3-2');
         },
-        caption: '課本印 9：左欄先固定一種拆法，右欄試完再換。'
+        caption: '課本印 143：左欄先固定一種拆法，右欄試完再換。'
       },
 
       {
@@ -1259,7 +1258,7 @@ window.DECK = window.DECK || [];
               pItem('印10 ①', '10x^2-35x+30') +
               pItem('印10 ②', '-6x^2-15x-9')), '3-2');
         },
-        caption: '課本印 10：先提公因數或負號，再拆括號裡。'
+        caption: '課本印 144：先提公因數或負號，再拆括號裡。'
       },
 
       {
