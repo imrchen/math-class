@@ -313,7 +313,7 @@ window.SOLUTIONS = {
    "src": "課本・隨堂練習",
    "page": "印 13",
    "title": "隨堂練習 課P13 第 2 題",
-   "q": "已知 \\(x\\)、\\(y\\)、\\(z\\) 皆不等於 \\(0\\)，且 \\(\\frac{x}{4}=\\frac{y}{5}\\)，\\(4x=3z\\)，求 \\(x：y：z\\)。\n承上，\\(x：y=4：5\\)、\\(x：z=3：4\\)，合併求連比。",
+   "q": "已知 \\(x\\)、\\(y\\)、\\(z\\) 皆不等於 \\(0\\)，且 \\(\\frac{x}{4}=\\frac{y}{5}\\)，\\(4x=3z\\)，求 \\(x：y：z\\)。",
    "ref": null,
    "steps": [
     "由 \\(\\frac{x}{4}=\\frac{y}{5}\\)，得 \\(x：y=4：5\\)",
@@ -322,6 +322,7 @@ window.SOLUTIONS = {
    "ans": "\\(x：y：z=12：15：16\\)",
    "fig": {
     "type": "ratio-table",
+    "role": "solution",
     "header": [
      "x",
      "y",
@@ -363,7 +364,57 @@ window.SOLUTIONS = {
      "from": 0,
      "to": 4
     }
-   }
+   },
+   "solfigs": [
+    {
+     "from": 2,
+     "fig": {
+      "type": "ratio-table",
+      "role": "solution",
+      "header": [
+       "x",
+       "y",
+       "z"
+      ],
+      "rows": [
+       [
+        "4",
+        "5",
+        null
+       ],
+       [
+        "3",
+        null,
+        "4"
+       ],
+       [
+        "（4×3）",
+        "（5×3）",
+        null
+       ],
+       [
+        "（3×4）",
+        null,
+        "（4×4）"
+       ],
+       [
+        "12",
+        "15",
+        "16"
+       ]
+      ],
+      "rulesAfter": [
+       1,
+       3
+      ],
+      "box": {
+       "col": 0,
+       "from": 0,
+       "to": 4
+      }
+     }
+    }
+   ]
   },
   "課P14": {
    "src": "課本・隨堂練習",
@@ -458,7 +509,7 @@ window.SOLUTIONS = {
    "src": "課本・隨堂練習",
    "page": "印 18",
    "title": "隨堂練習 課P18",
-   "q": "如圖，如果妙麗、威利、艾美打算畫出面積相等的長方形，已知三人分別以 \\(12\\) 公分、\\(9\\) 公分與 \\(8\\) 公分作為長方形的長，則妙麗、威利、艾美三人所畫的長方形中，寬的連比為何？\n承上，由 \\(12x=9y=8z\\) 求寬的連比。",
+   "q": "如圖，如果妙麗、威利、艾美打算畫出面積相等的長方形，已知三人分別以 \\(12\\) 公分、\\(9\\) 公分與 \\(8\\) 公分作為長方形的長，則妙麗、威利、艾美三人所畫的長方形中，寬的連比為何？",
    "ref": "圖見課本 p.18",
    "steps": [
     "因為所畫的三個長方形面積相等，所以 \\(12x=9y=8z\\)",
@@ -588,160 +639,42 @@ window.SOLUTIONS = {
      }
     ]
    },
-   "figs": [
+   "solfigs": [
     {
-     "type": "polygon-group",
-     "unit": 14,
-     "gap": 72,
-     "placement": "below",
-     "shapes": [
-      {
-       "points": [
-        {
-         "x": 0,
-         "y": 0
-        },
-        {
-         "x": 12,
-         "y": 0
-        },
-        {
-         "x": 12,
-         "y": 6
-        },
-        {
-         "x": 0,
-         "y": 6
-        }
+     "from": 1,
+     "fig": {
+      "type": "ratio-table",
+      "role": "solution",
+      "header": [
+       "x",
+       "y",
+       "z"
+      ],
+      "rows": [
+       [
+        "3",
+        "4",
+        null
        ],
-       "fill": "#DCEEF8",
-       "sides": [
-        {
-         "from": 0,
-         "to": 1,
-         "text": "$12$",
-         "nudge": [
-          0,
-          10
-         ]
-        },
-        {
-         "from": 0,
-         "to": 3,
-         "text": "$x$"
-        }
+       [
+        null,
+        "8",
+        "9"
        ],
-       "caption": "妙麗"
-      },
-      {
-       "points": [
-        {
-         "x": 0,
-         "y": 0
-        },
-        {
-         "x": 9,
-         "y": 0
-        },
-        {
-         "x": 9,
-         "y": 8
-        },
-        {
-         "x": 0,
-         "y": 8
-        }
-       ],
-       "fill": "#DCEEF8",
-       "sides": [
-        {
-         "from": 0,
-         "to": 1,
-         "text": "$9$",
-         "nudge": [
-          0,
-          10
-         ]
-        },
-        {
-         "from": 0,
-         "to": 3,
-         "text": "$y$"
-        }
-       ],
-       "caption": "威利"
-      },
-      {
-       "points": [
-        {
-         "x": 0,
-         "y": 0
-        },
-        {
-         "x": 8,
-         "y": 0
-        },
-        {
-         "x": 8,
-         "y": 9
-        },
-        {
-         "x": 0,
-         "y": 9
-        }
-       ],
-       "fill": "#DCEEF8",
-       "sides": [
-        {
-         "from": 0,
-         "to": 1,
-         "text": "$8$",
-         "nudge": [
-          0,
-          10
-         ]
-        },
-        {
-         "from": 0,
-         "to": 3,
-         "text": "$z$"
-        }
-       ],
-       "caption": "艾美"
+       [
+        "6",
+        "8",
+        "9"
+       ]
+      ],
+      "rulesAfter": [
+       1
+      ],
+      "box": {
+       "col": 1,
+       "from": 0,
+       "to": 2
       }
-     ]
-    },
-    {
-     "type": "ratio-table",
-     "header": [
-      "x",
-      "y",
-      "z"
-     ],
-     "rows": [
-      [
-       "3",
-       "4",
-       null
-      ],
-      [
-       null,
-       "8",
-       "9"
-      ],
-      [
-       "6",
-       "8",
-       "9"
-      ]
-     ],
-     "rulesAfter": [
-      1
-     ],
-     "box": {
-      "col": 1,
-      "from": 0,
-      "to": 2
      }
     }
    ]
@@ -806,11 +739,12 @@ window.SOLUTIONS = {
    "src": "習作",
    "page": "印 4",
    "title": "基礎題第 1 題",
-   "q": "求下列各連比：\n承上，② 已知 \\(x：y=\\frac{3}{4}：2\\)，\\(x：z=8：1\\)，求 \\(x：y：z\\)。",
+   "q": "求下列各連比：",
    "ref": null,
    "steps": [
     "① 已知 \\(x：z=11：9\\)，\\(y：z=5：12\\)，求 \\(x：y：z\\)",
     "　　\\(〔9，12〕=36\\)，把兩式的 \\(z\\) 都化成 \\(36\\)：",
+    "② 已知 \\(x：y=\\frac{3}{4}：2\\)，\\(x：z=8：1\\)，求 \\(x：y：z\\)。",
     "先化整數比：\\(x：y=（\\frac{3}{4}×4）：（2×4）=3：8\\)"
    ],
    "ans": "① \\(44：15：36\\)　② \\(24：64：3\\)",
@@ -858,93 +792,53 @@ window.SOLUTIONS = {
      "to": 4
     }
    },
-   "figs": [
+   "solfigs": [
     {
-     "type": "ratio-table",
-     "header": [
-      "x",
-      "y",
-      "z"
-     ],
-     "rows": [
-      [
-       "11",
-       null,
-       "9"
+     "from": 2,
+     "fig": {
+      "type": "ratio-table",
+      "role": "solution",
+      "header": [
+       "x",
+       "y",
+       "z"
       ],
-      [
-       null,
-       "5",
-       "12"
+      "rows": [
+       [
+        "3",
+        "8",
+        null
+       ],
+       [
+        "8",
+        null,
+        "1"
+       ],
+       [
+        "（3×8）",
+        "（8×8）",
+        null
+       ],
+       [
+        "（8×3）",
+        null,
+        "（1×3）"
+       ],
+       [
+        "24",
+        "64",
+        "3"
+       ]
       ],
-      [
-       "（11×4）",
-       null,
-       "（9×4）"
+      "rulesAfter": [
+       1,
+       3
       ],
-      [
-       null,
-       "（5×3）",
-       "（12×3）"
-      ],
-      [
-       "44",
-       "15",
-       "36"
-      ]
-     ],
-     "rulesAfter": [
-      1,
-      3
-     ],
-     "box": {
-      "col": 2,
-      "from": 0,
-      "to": 4
-     }
-    },
-    {
-     "type": "ratio-table",
-     "header": [
-      "x",
-      "y",
-      "z"
-     ],
-     "rows": [
-      [
-       "3",
-       "8",
-       null
-      ],
-      [
-       "8",
-       null,
-       "1"
-      ],
-      [
-       "（3×8）",
-       "（8×8）",
-       null
-      ],
-      [
-       "（8×3）",
-       null,
-       "（1×3）"
-      ],
-      [
-       "24",
-       "64",
-       "3"
-      ]
-     ],
-     "rulesAfter": [
-      1,
-      3
-     ],
-     "box": {
-      "col": 0,
-      "from": 0,
-      "to": 4
+      "box": {
+       "col": 0,
+       "from": 0,
+       "to": 4
+      }
      }
     }
    ]
@@ -1081,7 +975,7 @@ window.SOLUTIONS = {
    "src": "習作",
    "page": "印 6",
    "title": "基礎題第 6 題",
-   "q": "藍天游泳池有甲、乙、丙三個注水的水管，每小時的出水量分別是 \\(16\\) 公升、\\(18\\) 公升和 \\(24\\) 公升。若單獨由一個水管注水，注滿游泳池的時間分別是 \\(x\\) 小時、\\(y\\) 小時和 \\(z\\) 小時，求 \\(x：y：z\\)。\n承上，由 \\(16x=18y=24z\\) 求 \\(x：y：z\\)。",
+   "q": "藍天游泳池有甲、乙、丙三個注水的水管，每小時的出水量分別是 \\(16\\) 公升、\\(18\\) 公升和 \\(24\\) 公升。若單獨由一個水管注水，注滿游泳池的時間分別是 \\(x\\) 小時、\\(y\\) 小時和 \\(z\\) 小時，求 \\(x：y：z\\)。",
    "ref": null,
    "steps": [
     "因為注滿游泳池所需的水量相同，所以 \\(16x=18y=24z\\)",
@@ -1091,6 +985,7 @@ window.SOLUTIONS = {
    "ans": "\\(9：8：6\\)",
    "fig": {
     "type": "ratio-table",
+    "role": "solution",
     "header": [
      "x",
      "y",
@@ -1121,7 +1016,46 @@ window.SOLUTIONS = {
      "from": 0,
      "to": 2
     }
-   }
+   },
+   "solfigs": [
+    {
+     "from": 1,
+     "fig": {
+      "type": "ratio-table",
+      "role": "solution",
+      "header": [
+       "x",
+       "y",
+       "z"
+      ],
+      "rows": [
+       [
+        "9",
+        "8",
+        null
+       ],
+       [
+        null,
+        "4",
+        "3"
+       ],
+       [
+        "9",
+        "8",
+        "6"
+       ]
+      ],
+      "rulesAfter": [
+       1
+      ],
+      "box": {
+       "col": 1,
+       "from": 0,
+       "to": 2
+      }
+     }
+    }
+   ]
   },
   "精熟1": {
    "src": "習作",
@@ -10176,7 +10110,7 @@ window.SOLUTIONS = {
    "src": "課本・隨堂練習",
    "page": "印 121",
    "title": "隨堂練習 課P121 第 2 題",
-   "q": "如圖，\\(A\\)、\\(B\\)、\\(C\\)、\\(D\\)、\\(E\\)、\\(F\\) 為圓上 \\(6\\) 個等分點，作出所有以 \\(\\overline{AB}\\) 為一邊，且頂點皆在圓上的直角三角形。\n承上，\\(A\\) 至 \\(F\\) 為圓上 \\(6\\) 個等分點。",
+   "q": "如圖，\\(A\\)、\\(B\\)、\\(C\\)、\\(D\\)、\\(E\\)、\\(F\\) 為圓上 \\(6\\) 個等分點，作出所有以 \\(\\overline{AB}\\) 為一邊，且頂點皆在圓上的直角三角形。",
    "ref": null,
    "steps": [
     "連接 \\(\\overline{AD}\\)、\\(\\overline{BD}\\)：\\(\\because \\overline{AD}\\) 為直徑，\\(\\therefore \\triangle ABD\\) 為直角三角形",
@@ -10233,126 +10167,80 @@ window.SOLUTIONS = {
      }
     ]
    },
-   "figs": [
+   "solfigs": [
     {
-     "type": "circle-figure",
-     "segments": [
-      {
-       "from": 2,
-       "to": 1
-      }
-     ],
-     "unit": 100,
-     "circles": [
-      {
-       "x": 0,
-       "y": 0,
-       "r": 1,
-       "fill": "#DCE9F7"
-      }
-     ],
-     "points": [
-      {
-       "x": 0.966,
-       "y": 0.259,
-       "label": "$C$"
-      },
-      {
-       "x": 0.259,
-       "y": 0.966,
-       "label": "$B$"
-      },
-      {
-       "x": -0.707,
-       "y": 0.707,
-       "label": "$A$"
-      },
-      {
-       "x": -0.966,
-       "y": -0.259,
-       "label": "$F$"
-      },
-      {
-       "x": -0.259,
-       "y": -0.966,
-       "label": "$E$"
-      },
-      {
-       "x": 0.707,
-       "y": -0.707,
-       "label": "$D$"
-      }
-     ]
-    },
-    {
-     "type": "circle-figure",
-     "segments": [
-      {
-       "from": 2,
-       "to": 1
-      },
-      {
-       "from": 2,
-       "to": 5,
-       "accent": true
-      },
-      {
-       "from": 1,
-       "to": 5,
-       "accent": true
-      },
-      {
-       "from": 2,
-       "to": 4,
-       "accent": true
-      },
-      {
-       "from": 1,
-       "to": 4,
-       "accent": true
-      }
-     ],
-     "unit": 100,
-     "circles": [
-      {
-       "x": 0,
-       "y": 0,
-       "r": 1,
-       "fill": "#DCE9F7"
-      }
-     ],
-     "points": [
-      {
-       "x": 0.966,
-       "y": 0.259,
-       "label": "$C$"
-      },
-      {
-       "x": 0.259,
-       "y": 0.966,
-       "label": "$B$"
-      },
-      {
-       "x": -0.707,
-       "y": 0.707,
-       "label": "$A$"
-      },
-      {
-       "x": -0.966,
-       "y": -0.259,
-       "label": "$F$"
-      },
-      {
-       "x": -0.259,
-       "y": -0.966,
-       "label": "$E$"
-      },
-      {
-       "x": 0.707,
-       "y": -0.707,
-       "label": "$D$"
-      }
-     ]
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "role": "solution",
+      "segments": [
+       {
+        "from": 2,
+        "to": 1
+       },
+       {
+        "from": 2,
+        "to": 5,
+        "accent": true
+       },
+       {
+        "from": 1,
+        "to": 5,
+        "accent": true
+       },
+       {
+        "from": 2,
+        "to": 4,
+        "accent": true
+       },
+       {
+        "from": 1,
+        "to": 4,
+        "accent": true
+       }
+      ],
+      "unit": 100,
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 1,
+        "fill": "#DCE9F7"
+       }
+      ],
+      "points": [
+       {
+        "x": 0.966,
+        "y": 0.259,
+        "label": "$C$"
+       },
+       {
+        "x": 0.259,
+        "y": 0.966,
+        "label": "$B$"
+       },
+       {
+        "x": -0.707,
+        "y": 0.707,
+        "label": "$A$"
+       },
+       {
+        "x": -0.966,
+        "y": -0.259,
+        "label": "$F$"
+       },
+       {
+        "x": -0.259,
+        "y": -0.966,
+        "label": "$E$"
+       },
+       {
+        "x": 0.707,
+        "y": -0.707,
+        "label": "$D$"
+       }
+      ]
+     }
     }
    ]
   },
@@ -10360,9 +10248,10 @@ window.SOLUTIONS = {
    "src": "課本・隨堂練習",
    "page": "印 122",
    "title": "隨堂練習 課P122",
-   "q": "如圖，兩條平行線在圓 \\(O\\) 截出 \\(\\overarc{AC}\\) 和 \\(\\overarc{BD}\\)，已知 \\(\\overarc{AB}=90\\degree\\)，\\(\\overarc{CD}=150\\degree\\)，求 \\(\\overarc{AC}\\) 的度數。\n承上，連接 \\(\\overline{BC}\\)。",
+   "q": "如圖，兩條平行線在圓 \\(O\\) 截出 \\(\\overarc{AC}\\) 和 \\(\\overarc{BD}\\)，已知 \\(\\overarc{AB}=90\\degree\\)，\\(\\overarc{CD}=150\\degree\\)，求 \\(\\overarc{AC}\\) 的度數。",
    "ref": null,
    "steps": [
+    "連接 \\(\\overline{BC}\\)。",
     "\\(\\because \\overleftrightarrow{AB} \\parallel \\overleftrightarrow{CD}\\)，\\(\\therefore \\angle ABC=\\angle BCD\\)（內錯角相等）",
     "\\(\\angle ABC=\\frac{1}{2}\\overarc{AC}\\)，\\(\\angle BCD=\\frac{1}{2}\\overarc{BD}\\)，\\(\\therefore \\overarc{AC}=\\overarc{BD}\\)",
     "\\(\\overarc{AC}=\\frac{1}{2}（360\\degree-\\overarc{AB}-\\overarc{CD}）=\\frac{1}{2}（360\\degree-90\\degree-150\\degree）\\)"
@@ -10431,139 +10320,80 @@ window.SOLUTIONS = {
      }
     ]
    },
-   "figs": [
+   "solfigs": [
     {
-     "type": "circle-figure",
-     "unit": 105,
-     "circles": [
-      {
-       "x": 0,
-       "y": 0,
-       "r": 1,
-       "fill": "#DCE9F7"
-      }
-     ],
-     "points": [
-      {
-       "x": -0.707,
-       "y": 0.707,
-       "label": "$A$"
-      },
-      {
-       "x": 0.707,
-       "y": 0.707,
-       "label": "$B$"
-      },
-      {
-       "x": -0.966,
-       "y": -0.259,
-       "label": "$C$",
-       "nudge": [
-        -12,
-        24
-       ]
-      },
-      {
-       "x": 0.966,
-       "y": -0.259,
-       "label": "$D$",
-       "nudge": [
-        12,
-        24
-       ]
-      },
-      {
-       "x": 0,
-       "y": 0,
-       "label": "$O$",
-       "nudge": [
-        12,
-        -16
-       ]
-      }
-     ],
-     "lines": [
-      {
-       "from": 0,
-       "to": 1,
-       "extend": 0.28
-      },
-      {
-       "from": 2,
-       "to": 3,
-       "extend": 0.28
-      }
-     ]
-    },
-    {
-     "type": "circle-figure",
-     "segments": [
-      {
-       "from": 1,
-       "to": 2,
-       "accent": true
-      }
-     ],
-     "unit": 105,
-     "circles": [
-      {
-       "x": 0,
-       "y": 0,
-       "r": 1,
-       "fill": "#DCE9F7"
-      }
-     ],
-     "points": [
-      {
-       "x": -0.707,
-       "y": 0.707,
-       "label": "$A$"
-      },
-      {
-       "x": 0.707,
-       "y": 0.707,
-       "label": "$B$"
-      },
-      {
-       "x": -0.966,
-       "y": -0.259,
-       "label": "$C$",
-       "nudge": [
-        -12,
-        24
-       ]
-      },
-      {
-       "x": 0.966,
-       "y": -0.259,
-       "label": "$D$",
-       "nudge": [
-        12,
-        24
-       ]
-      },
-      {
-       "x": 0,
-       "y": 0,
-       "label": "$O$",
-       "nudge": [
-        12,
-        -16
-       ]
-      }
-     ],
-     "lines": [
-      {
-       "from": 0,
-       "to": 1,
-       "extend": 0.28
-      },
-      {
-       "from": 2,
-       "to": 3,
-       "extend": 0.28
-      }
-     ]
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "role": "solution",
+      "segments": [
+       {
+        "from": 1,
+        "to": 2,
+        "accent": true
+       }
+      ],
+      "unit": 105,
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 1,
+        "fill": "#DCE9F7"
+       }
+      ],
+      "points": [
+       {
+        "x": -0.707,
+        "y": 0.707,
+        "label": "$A$"
+       },
+       {
+        "x": 0.707,
+        "y": 0.707,
+        "label": "$B$"
+       },
+       {
+        "x": -0.966,
+        "y": -0.259,
+        "label": "$C$",
+        "nudge": [
+         -12,
+         24
+        ]
+       },
+       {
+        "x": 0.966,
+        "y": -0.259,
+        "label": "$D$",
+        "nudge": [
+         12,
+         24
+        ]
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         12,
+         -16
+        ]
+       }
+      ],
+      "lines": [
+       {
+        "from": 0,
+        "to": 1,
+        "extend": 0.28
+       },
+       {
+        "from": 2,
+        "to": 3,
+        "extend": 0.28
+       }
+      ]
+     }
     }
    ]
   },
@@ -11712,13 +11542,14 @@ window.SOLUTIONS = {
    "src": "習作",
    "page": "印 36",
    "title": "精熟題第 1 題",
-   "q": "如圖，\\(A\\)、\\(B\\)、\\(C\\) 皆在圓 \\(O\\) 上，\\(\\angle A=60\\degree\\)、\\(\\angle C=30\\degree\\)。傑克與安琪想作圓內接正三角形 \\(ADE\\)：\n傑克：以 \\(A\\) 為圓心、\\(\\overline{BC}\\) 為半徑畫弧，交圓 \\(O\\) 於 \\(D\\)、\\(E\\)。\n安琪：以 \\(C\\) 為圓心、\\(\\overline{AB}\\) 為半徑畫弧，交圓 \\(O\\) 於 \\(D\\)、\\(E\\)。\n兩人都把 \\(D\\)、\\(E\\) 連成 \\(\\triangle ADE\\)。關於兩人的作圖方法，下列敘述何者正確？\n（A）兩人皆正確　（B）兩人皆錯誤　（C）僅傑克正確　（D）僅安琪正確\n承上，\\(\\angle A=60\\degree\\)、\\(\\angle C=30\\degree\\)。\n兩人作出的 \\(\\triangle ADE\\) 都滿足 \\(\\overarc{AD}=\\overarc{AE}=\\overarc{DE}=120\\degree\\)。",
+   "q": "如圖，\\(A\\)、\\(B\\)、\\(C\\) 皆在圓 \\(O\\) 上，\\(\\angle A=60\\degree\\)、\\(\\angle C=30\\degree\\)。傑克與安琪想作圓內接正三角形 \\(ADE\\)：\n傑克：以 \\(A\\) 為圓心、\\(\\overline{BC}\\) 為半徑畫弧，交圓 \\(O\\) 於 \\(D\\)、\\(E\\)。\n安琪：以 \\(C\\) 為圓心、\\(\\overline{AB}\\) 為半徑畫弧，交圓 \\(O\\) 於 \\(D\\)、\\(E\\)。\n兩人都把 \\(D\\)、\\(E\\) 連成 \\(\\triangle ADE\\)。關於兩人的作圖方法，下列敘述何者正確？\n（A）兩人皆正確　（B）兩人皆錯誤　（C）僅傑克正確　（D）僅安琪正確\n承上，\\(\\angle A=60\\degree\\)、\\(\\angle C=30\\degree\\)。",
    "ref": "圖見習作 p.36",
    "steps": [
     "傑克：\\(\\because \\angle BAC=60\\degree\\)，\\(\\therefore \\overarc{BC}=120\\degree\\)",
     "　　又 \\(\\overline{AD}=\\overline{AE}=\\overline{BC}\\)，\\(\\therefore \\overarc{AD}=\\overarc{AE}=\\overarc{BC}=120\\degree\\)",
     "安琪：\\(\\because \\angle ACB=30\\degree\\)，\\(\\therefore \\overarc{AB}=60\\degree\\)",
     "　　又 \\(\\overline{CD}=\\overline{CE}=\\overline{AB}\\)，\\(\\therefore \\overarc{CD}=\\overarc{CE}=60\\degree\\)，則 \\(\\overarc{AD}=\\overarc{AE}=120\\degree\\)",
+    "兩人作出的 \\(\\triangle ADE\\) 都滿足 \\(\\overarc{AD}=\\overarc{AE}=\\overarc{DE}=120\\degree\\)。",
     "\\(\\therefore \\angle ADE=\\angle AED=\\angle DAE=60\\degree\\)",
     "故 \\(\\triangle ADE\\) 為圓內接正三角形，兩人的作法都作得出來"
    ],
@@ -11775,126 +11606,78 @@ window.SOLUTIONS = {
      }
     ]
    },
-   "figs": [
+   "solfigs": [
     {
-     "type": "circle-figure",
-     "unit": 88,
-     "circles": [
-      {
-       "x": 0,
-       "y": 0,
-       "r": 1,
-       "fill": "#E8DCF0"
-      }
-     ],
-     "points": [
-      {
-       "x": 0.0,
-       "y": 1.0,
-       "label": "$A$"
-      },
-      {
-       "x": -0.866,
-       "y": 0.5,
-       "label": "$B$"
-      },
-      {
-       "x": -0.0,
-       "y": -1.0,
-       "label": "$C$"
-      },
-      {
-       "x": 0,
-       "y": 0,
-       "label": "$O$",
-       "nudge": [
-        14,
-        -4
-       ]
-      }
-     ],
-     "segments": [
-      {
-       "from": 0,
-       "to": 1
-      },
-      {
-       "from": 1,
-       "to": 2
-      },
-      {
-       "from": 0,
-       "to": 2
-      }
-     ]
-    },
-    {
-     "type": "circle-figure",
-     "unit": 88,
-     "circles": [
-      {
-       "x": 0,
-       "y": 0,
-       "r": 1,
-       "fill": "#E8DCF0"
-      }
-     ],
-     "points": [
-      {
-       "x": 0.0,
-       "y": 1.0,
-       "label": "$A$"
-      },
-      {
-       "x": -0.866,
-       "y": 0.5,
-       "label": "$B$"
-      },
-      {
-       "x": -0.0,
-       "y": -1.0,
-       "label": "$C$"
-      },
-      {
-       "x": -0.866,
-       "y": -0.5,
-       "label": "$D$"
-      },
-      {
-       "x": 0.866,
-       "y": -0.5,
-       "label": "$E$"
-      }
-     ],
-     "segments": [
-      {
-       "from": 0,
-       "to": 1
-      },
-      {
-       "from": 1,
-       "to": 2
-      },
-      {
-       "from": 0,
-       "to": 2
-      },
-      {
-       "from": 0,
-       "to": 3,
-       "accent": true
-      },
-      {
-       "from": 3,
-       "to": 4,
-       "accent": true
-      },
-      {
-       "from": 4,
-       "to": 0,
-       "accent": true
-      }
-     ]
+     "from": 4,
+     "fig": {
+      "type": "circle-figure",
+      "role": "solution",
+      "unit": 88,
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 1,
+        "fill": "#E8DCF0"
+       }
+      ],
+      "points": [
+       {
+        "x": 0.0,
+        "y": 1.0,
+        "label": "$A$"
+       },
+       {
+        "x": -0.866,
+        "y": 0.5,
+        "label": "$B$"
+       },
+       {
+        "x": -0.0,
+        "y": -1.0,
+        "label": "$C$"
+       },
+       {
+        "x": -0.866,
+        "y": -0.5,
+        "label": "$D$"
+       },
+       {
+        "x": 0.866,
+        "y": -0.5,
+        "label": "$E$"
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 3,
+        "accent": true
+       },
+       {
+        "from": 3,
+        "to": 4,
+        "accent": true
+       },
+       {
+        "from": 4,
+        "to": 0,
+        "accent": true
+       }
+      ]
+     }
     }
    ]
   },
@@ -12151,12 +11934,14 @@ window.SOLUTIONS = {
    "src": "課本・隨堂練習",
    "page": "印 143",
    "title": "隨堂練習 課P143",
-   "q": "如圖，\\(\\overline{AB}=\\overline{AC}\\)，\\(\\overline{CE} \\perp \\overline{AB}\\)，\\(\\overline{BD} \\perp \\overline{AC}\\)，\\(\\overline{BD}\\) 與 \\(\\overline{CE}\\) 交於 \\(F\\) 點，求證：\n① \\(\\overline{AD}=\\overline{AE}\\)。\n② \\(\\angle 1=\\angle 2\\)。\n① 在 \\(\\triangle ABD\\) 與 \\(\\triangle ACE\\) 中：\n② 在 \\(\\triangle AEF\\) 與 \\(\\triangle ADF\\) 中：",
+   "q": "如圖，\\(\\overline{AB}=\\overline{AC}\\)，\\(\\overline{CE} \\perp \\overline{AB}\\)，\\(\\overline{BD} \\perp \\overline{AC}\\)，\\(\\overline{BD}\\) 與 \\(\\overline{CE}\\) 交於 \\(F\\) 點，求證：\n① \\(\\overline{AD}=\\overline{AE}\\)。\n② \\(\\angle 1=\\angle 2\\)。",
    "ref": "圖見課本 p.143",
    "steps": [
+    "① 在 \\(\\triangle ABD\\) 與 \\(\\triangle ACE\\) 中：",
     "\\(\\overline{AB}=\\overline{AC}\\)（已知）",
     "\\(\\angle ADB=\\angle AEC=90\\degree\\)，\\(\\angle BAD=\\angle CAE\\)（公用角）",
     "\\(\\therefore \\triangle ABD \\cong \\triangle ACE\\)（\\(AAS\\)）",
+    "② 在 \\(\\triangle AEF\\) 與 \\(\\triangle ADF\\) 中：",
     "\\(\\overline{AE}=\\overline{AD}\\)（由①可知），\\(\\overline{AF}=\\overline{AF}\\)（公用邊）",
     "\\(\\angle AEF=\\angle ADF=90\\degree\\)",
     "\\(\\therefore \\triangle AEF \\cong \\triangle ADF\\)（\\(RHS\\)）"
@@ -12276,334 +12061,228 @@ window.SOLUTIONS = {
     ],
     "placement": "right"
    },
-   "figs": [
+   "solfigs": [
     {
-     "type": "polygon-group",
-     "unit": 52,
-     "shapes": [
-      {
-       "points": [
-        {
-         "x": 0,
-         "y": 0,
-         "label": "$A$"
-        },
-        {
-         "x": 4.096,
-         "y": 2.868,
-         "label": "$B$"
-        },
-        {
-         "x": 4.096,
-         "y": -2.868,
-         "label": "$C$"
-        },
-        {
-         "x": 1.401,
-         "y": -0.981,
-         "label": "$D$",
-         "nudge": [
-          -4,
-          18
-         ]
-        },
-        {
-         "x": 1.401,
-         "y": 0.981,
-         "label": "$E$",
-         "nudge": [
-          -4,
-          -8
-         ]
-        },
-        {
-         "x": 2.088,
-         "y": 0,
-         "label": "$F$",
-         "nudge": [
-          16,
-          4
-         ]
-        }
-       ],
-       "outlines": [
-        [
-         4,
-         1,
-         5
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "role": "solution",
+      "unit": 48,
+      "gap": 70,
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 4.096,
+          "y": 2.868,
+          "label": "$B$"
+         },
+         {
+          "x": 1.401,
+          "y": -0.981,
+          "label": "$D$",
+          "nudge": [
+           -4,
+           18
+          ]
+         }
         ],
-        [
-         3,
-         2,
-         5
+        "rightAngles": [
+         {
+          "at": 2,
+          "toward": [
+           0,
+           1
+          ]
+         }
+        ],
+        "angles": [
+         {
+          "at": 0,
+          "mark": 1
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "ticks": 1
+         }
         ]
-       ],
-       "segments": [
-        {
-         "from": 0,
-         "to": 1
-        },
-        {
-         "from": 0,
-         "to": 2
-        },
-        {
-         "from": 0,
-         "to": 5
-        }
-       ],
-       "rightAngles": [
-        {
-         "at": 4,
-         "toward": [
-          0,
-          2
-         ]
-        },
-        {
-         "at": 3,
-         "toward": [
-          0,
-          1
-         ]
-        }
-       ],
-       "angles": [
-        {
-         "at": 0,
-         "toward": [
-          4,
-          5
-         ],
-         "text": "$1$"
-        },
-        {
-         "at": 0,
-         "toward": [
-          5,
-          3
-         ],
-         "text": "$2$"
-        }
-       ],
-       "fill": "#DCE9F7"
-      }
-     ],
-     "placement": "right"
+       },
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 4.096,
+          "y": -2.868,
+          "label": "$C$"
+         },
+         {
+          "x": 1.401,
+          "y": 0.981,
+          "label": "$E$",
+          "nudge": [
+           -4,
+           -8
+          ]
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 2,
+          "toward": [
+           0,
+           1
+          ]
+         }
+        ],
+        "angles": [
+         {
+          "at": 0,
+          "mark": 1
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "ticks": 1
+         }
+        ]
+       }
+      ],
+      "placement": "right"
+     }
     },
     {
-     "type": "polygon-group",
-     "unit": 48,
-     "gap": 70,
-     "shapes": [
-      {
-       "points": [
-        {
-         "x": 0,
-         "y": 0,
-         "label": "$A$"
-        },
-        {
-         "x": 4.096,
-         "y": 2.868,
-         "label": "$B$"
-        },
-        {
-         "x": 1.401,
-         "y": -0.981,
-         "label": "$D$",
-         "nudge": [
-          -4,
-          18
-         ]
-        }
-       ],
-       "rightAngles": [
-        {
-         "at": 2,
-         "toward": [
-          0,
-          1
-         ]
-        }
-       ],
-       "angles": [
-        {
-         "at": 0,
-         "mark": 1
-        }
-       ],
-       "sides": [
-        {
-         "from": 0,
-         "to": 1,
-         "ticks": 1
-        }
-       ]
-      },
-      {
-       "points": [
-        {
-         "x": 0,
-         "y": 0,
-         "label": "$A$"
-        },
-        {
-         "x": 4.096,
-         "y": -2.868,
-         "label": "$C$"
-        },
-        {
-         "x": 1.401,
-         "y": 0.981,
-         "label": "$E$",
-         "nudge": [
-          -4,
-          -8
-         ]
-        }
-       ],
-       "rightAngles": [
-        {
-         "at": 2,
-         "toward": [
-          0,
-          1
-         ]
-        }
-       ],
-       "angles": [
-        {
-         "at": 0,
-         "mark": 1
-        }
-       ],
-       "sides": [
-        {
-         "from": 0,
-         "to": 1,
-         "ticks": 1
-        }
-       ]
-      }
-     ],
-     "placement": "right"
-    },
-    {
-     "type": "polygon-group",
-     "unit": 86,
-     "gap": 40,
-     "shapes": [
-      {
-       "points": [
-        {
-         "x": 0,
-         "y": 0,
-         "label": "$A$"
-        },
-        {
-         "x": 1.401,
-         "y": 0.981,
-         "label": "$E$",
-         "nudge": [
-          -4,
-          -8
-         ]
-        },
-        {
-         "x": 2.088,
-         "y": 0,
-         "label": "$F$"
-        }
-       ],
-       "rightAngles": [
-        {
-         "at": 1,
-         "toward": [
-          0,
-          2
-         ]
-        }
-       ],
-       "angles": [
-        {
-         "at": 0,
-         "toward": [
-          1,
-          2
-         ],
-         "text": "$1$"
-        }
-       ],
-       "sides": [
-        {
-         "from": 0,
-         "to": 1,
-         "ticks": 1
-        },
-        {
-         "from": 0,
-         "to": 2,
-         "ticks": 2
-        }
-       ]
-      },
-      {
-       "points": [
-        {
-         "x": 0,
-         "y": 0,
-         "label": "$A$"
-        },
-        {
-         "x": 2.088,
-         "y": 0,
-         "label": "$F$"
-        },
-        {
-         "x": 1.401,
-         "y": -0.981,
-         "label": "$D$",
-         "nudge": [
-          -4,
-          18
-         ]
-        }
-       ],
-       "rightAngles": [
-        {
-         "at": 2,
-         "toward": [
-          0,
-          1
-         ]
-        }
-       ],
-       "angles": [
-        {
-         "at": 0,
-         "toward": [
-          1,
-          2
-         ],
-         "text": "$2$"
-        }
-       ],
-       "sides": [
-        {
-         "from": 0,
-         "to": 2,
-         "ticks": 1
-        },
-        {
-         "from": 0,
-         "to": 1,
-         "ticks": 2
-        }
-       ]
-      }
-     ],
-     "placement": "right"
+     "from": 4,
+     "fig": {
+      "type": "polygon-group",
+      "role": "solution",
+      "unit": 86,
+      "gap": 40,
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 1.401,
+          "y": 0.981,
+          "label": "$E$",
+          "nudge": [
+           -4,
+           -8
+          ]
+         },
+         {
+          "x": 2.088,
+          "y": 0,
+          "label": "$F$"
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           2
+          ]
+         }
+        ],
+        "angles": [
+         {
+          "at": 0,
+          "toward": [
+           1,
+           2
+          ],
+          "text": "$1$"
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "ticks": 1
+         },
+         {
+          "from": 0,
+          "to": 2,
+          "ticks": 2
+         }
+        ]
+       },
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 2.088,
+          "y": 0,
+          "label": "$F$"
+         },
+         {
+          "x": 1.401,
+          "y": -0.981,
+          "label": "$D$",
+          "nudge": [
+           -4,
+           18
+          ]
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 2,
+          "toward": [
+           0,
+           1
+          ]
+         }
+        ],
+        "angles": [
+         {
+          "at": 0,
+          "toward": [
+           1,
+           2
+          ],
+          "text": "$2$"
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 2,
+          "ticks": 1
+         },
+         {
+          "from": 0,
+          "to": 1,
+          "ticks": 2
+         }
+        ]
+       }
+      ],
+      "placement": "right"
+     }
     }
    ]
   },
@@ -13973,9 +13652,10 @@ window.SOLUTIONS = {
    "src": "課本・隨堂練習",
    "page": "印 159",
    "title": "隨堂練習 課P159 第 1 題",
-   "q": "如圖，\\(A\\)、\\(B\\)、\\(C\\) 為公園裡的三個涼亭，想蓋一座公廁到三個涼亭的距離相等，利用尺規作圖找出公廁的位置。\n【作法】",
+   "q": "如圖，\\(A\\)、\\(B\\)、\\(C\\) 為公園裡的三個涼亭，想蓋一座公廁到三個涼亭的距離相等，利用尺規作圖找出公廁的位置。",
    "ref": "圖見課本 p.159 第 1 題。題幹只有三個涼亭的位置；作圖痕跡在下一頁",
    "steps": [
+    "【作法】",
     "① 作 \\(\\overline{AB}\\) 的中垂線",
     "② 作 \\(\\overline{AC}\\) 的中垂線",
     "③ 兩條中垂線的交點 \\(O\\) 即為公廁位置"
@@ -14023,178 +13703,140 @@ window.SOLUTIONS = {
      }
     ]
    },
-   "figs": [
+   "solfigs": [
     {
-     "type": "circle-figure",
-     "unit": 52,
-     "circles": [
-      {
-       "x": 0.9,
-       "y": 3.2,
-       "r": 0.0769,
-       "fill": "#17212B"
-      },
-      {
-       "x": -2.6,
-       "y": 1.0,
-       "r": 0.0769,
-       "fill": "#17212B"
-      },
-      {
-       "x": 2.9,
-       "y": -1.1,
-       "r": 0.0769,
-       "fill": "#17212B"
-      }
-     ],
-     "arcs": [],
-     "points": [
-      {
-       "x": 0.9,
-       "y": 3.2,
-       "label": "$A$"
-      },
-      {
-       "x": -2.6,
-       "y": 1.0,
-       "label": "$B$"
-      },
-      {
-       "x": 2.9,
-       "y": -1.1,
-       "label": "$C$"
-      }
-     ]
-    },
-    {
-     "type": "circle-figure",
-     "unit": 34,
-     "circles": [
-      {
-       "x": 0.9,
-       "y": 3.2,
-       "r": 2.811,
-       "outline": false
-      },
-      {
-       "x": -2.6,
-       "y": 1.0,
-       "r": 2.811,
-       "outline": false
-      },
-      {
-       "x": 0.9,
-       "y": 3.2,
-       "r": 3.225,
-       "outline": false
-      },
-      {
-       "x": 2.9,
-       "y": -1.1,
-       "r": 3.225,
-       "outline": false
-      },
-      {
-       "x": 0.9,
-       "y": 3.2,
-       "r": 0.0769,
-       "fill": "#17212B"
-      },
-      {
-       "x": -2.6,
-       "y": 1.0,
-       "r": 0.0769,
-       "fill": "#17212B"
-      },
-      {
-       "x": 2.9,
-       "y": -1.1,
-       "r": 0.0769,
-       "fill": "#17212B"
-      },
-      {
-       "x": 0.283,
-       "y": 0.298,
-       "r": 0.0769,
-       "fill": "#17212B"
-      }
-     ],
-     "arcs": [
-      {
-       "circle": 0,
-       "from": 153.48,
-       "to": 270.82
-      },
-      {
-       "circle": 1,
-       "from": 333.48,
-       "to": 450.82
-      },
-      {
-       "circle": 2,
-       "from": 236.28,
-       "to": 353.61
-      },
-      {
-       "circle": 3,
-       "from": 56.28,
-       "to": 173.61
-      }
-     ],
-     "points": [
-      {
-       "x": 0.9,
-       "y": 3.2,
-       "label": "$A$"
-      },
-      {
-       "x": -2.6,
-       "y": 1.0,
-       "label": "$B$"
-      },
-      {
-       "x": 2.9,
-       "y": -1.1,
-       "label": "$C$"
-      },
-      {
-       "x": 0.283,
-       "y": 0.298,
-       "label": "$O$",
-       "nudge": [
-        14,
-        10
-       ]
-      },
-      {
-       "x": 0.164,
-       "y": 0.487
-      },
-      {
-       "x": -1.864,
-       "y": 3.713
-      },
-      {
-       "x": 3.882,
-       "y": 1.972
-      },
-      {
-       "x": -0.082,
-       "y": 0.128
-      }
-     ],
-     "lines": [
-      {
-       "from": 4,
-       "to": 5,
-       "extend": 0.3
-      },
-      {
-       "from": 6,
-       "to": 7,
-       "extend": 0.3
-      }
-     ]
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "role": "solution",
+      "unit": 34,
+      "circles": [
+       {
+        "x": 0.9,
+        "y": 3.2,
+        "r": 2.811,
+        "outline": false
+       },
+       {
+        "x": -2.6,
+        "y": 1.0,
+        "r": 2.811,
+        "outline": false
+       },
+       {
+        "x": 0.9,
+        "y": 3.2,
+        "r": 3.225,
+        "outline": false
+       },
+       {
+        "x": 2.9,
+        "y": -1.1,
+        "r": 3.225,
+        "outline": false
+       },
+       {
+        "x": 0.9,
+        "y": 3.2,
+        "r": 0.0769,
+        "fill": "#17212B"
+       },
+       {
+        "x": -2.6,
+        "y": 1.0,
+        "r": 0.0769,
+        "fill": "#17212B"
+       },
+       {
+        "x": 2.9,
+        "y": -1.1,
+        "r": 0.0769,
+        "fill": "#17212B"
+       },
+       {
+        "x": 0.283,
+        "y": 0.298,
+        "r": 0.0769,
+        "fill": "#17212B"
+       }
+      ],
+      "arcs": [
+       {
+        "circle": 0,
+        "from": 153.48,
+        "to": 270.82
+       },
+       {
+        "circle": 1,
+        "from": 333.48,
+        "to": 450.82
+       },
+       {
+        "circle": 2,
+        "from": 236.28,
+        "to": 353.61
+       },
+       {
+        "circle": 3,
+        "from": 56.28,
+        "to": 173.61
+       }
+      ],
+      "points": [
+       {
+        "x": 0.9,
+        "y": 3.2,
+        "label": "$A$"
+       },
+       {
+        "x": -2.6,
+        "y": 1.0,
+        "label": "$B$"
+       },
+       {
+        "x": 2.9,
+        "y": -1.1,
+        "label": "$C$"
+       },
+       {
+        "x": 0.283,
+        "y": 0.298,
+        "label": "$O$",
+        "nudge": [
+         14,
+         10
+        ]
+       },
+       {
+        "x": 0.164,
+        "y": 0.487
+       },
+       {
+        "x": -1.864,
+        "y": 3.713
+       },
+       {
+        "x": 3.882,
+        "y": 1.972
+       },
+       {
+        "x": -0.082,
+        "y": 0.128
+       }
+      ],
+      "lines": [
+       {
+        "from": 4,
+        "to": 5,
+        "extend": 0.3
+       },
+       {
+        "from": 6,
+        "to": 7,
+        "extend": 0.3
+       }
+      ]
+     }
     }
    ]
   },
@@ -14202,9 +13844,10 @@ window.SOLUTIONS = {
    "src": "課本・隨堂練習",
    "page": "印 159",
    "title": "隨堂練習 課P159 第 2 題",
-   "q": "右圖中的 \\(\\overarc{ABC}\\) 是圓的一部分，找出圓心並完成此圓。\n【作法】",
+   "q": "右圖中的 \\(\\overarc{ABC}\\) 是圓的一部分，找出圓心並完成此圓。",
    "ref": "圖見課本 p.159 第 2 題。題幹只有 $\\overarc{ABC}$；作圖痕跡與完成的圓在下一頁",
    "steps": [
+    "【作法】",
     "① 作 \\(\\overline{AB}\\) 的中垂線　② 作 \\(\\overline{BC}\\) 的中垂線",
     "③ 兩條中垂線交於 \\(O\\) 點　④ 以 \\(O\\) 為圓心、\\(\\overline{OA}\\) 為半徑畫圓"
    ],
@@ -14263,206 +13906,156 @@ window.SOLUTIONS = {
      }
     ]
    },
-   "figs": [
+   "solfigs": [
     {
-     "type": "circle-figure",
-     "unit": 44,
-     "circles": [
-      {
-       "x": 0,
-       "y": 0,
-       "r": 3.0,
-       "outline": false
-      },
-      {
-       "x": -2.819,
-       "y": -1.026,
-       "r": 0.0909,
-       "fill": "#17212B"
-      },
-      {
-       "x": 0.261,
-       "y": 2.989,
-       "r": 0.0909,
-       "fill": "#17212B"
-      },
-      {
-       "x": 2.898,
-       "y": -0.776,
-       "r": 0.0909,
-       "fill": "#17212B"
-      }
-     ],
-     "arcs": [
-      {
-       "circle": 0,
-       "from": -15,
-       "to": 200
-      }
-     ],
-     "points": [
-      {
-       "x": -2.819,
-       "y": -1.026,
-       "label": "$A$"
-      },
-      {
-       "x": 0.261,
-       "y": 2.989,
-       "label": "$B$"
-      },
-      {
-       "x": 2.898,
-       "y": -0.776,
-       "label": "$C$"
-      }
-     ]
-    },
-    {
-     "type": "circle-figure",
-     "unit": 33,
-     "circles": [
-      {
-       "x": -2.819,
-       "y": -1.026,
-       "r": 3.4,
-       "outline": false
-      },
-      {
-       "x": 0.261,
-       "y": 2.989,
-       "r": 3.4,
-       "outline": false
-      },
-      {
-       "x": 0.261,
-       "y": 2.989,
-       "r": 3.4,
-       "outline": false
-      },
-      {
-       "x": 2.898,
-       "y": -0.776,
-       "r": 3.4,
-       "outline": false
-      },
-      {
-       "x": 0,
-       "y": 0,
-       "r": 3.0
-      },
-      {
-       "x": 0,
-       "y": 0,
-       "r": 3.0,
-       "outline": false
-      },
-      {
-       "x": -2.819,
-       "y": -1.026,
-       "r": 0.0909,
-       "fill": "#17212B"
-      },
-      {
-       "x": 0.261,
-       "y": 2.989,
-       "r": 0.0909,
-       "fill": "#17212B"
-      },
-      {
-       "x": 2.898,
-       "y": -0.776,
-       "r": 0.0909,
-       "fill": "#17212B"
-      },
-      {
-       "x": 0,
-       "y": 0,
-       "r": 0.0909,
-       "fill": "#17212B"
-      }
-     ],
-     "arcs": [
-      {
-       "circle": 0,
-       "from": -5.41,
-       "to": 110.41
-      },
-      {
-       "circle": 1,
-       "from": 174.59,
-       "to": 290.41
-      },
-      {
-       "circle": 2,
-       "from": 241.53,
-       "to": 368.47
-      },
-      {
-       "circle": 3,
-       "from": 61.53,
-       "to": 188.47
-      },
-      {
-       "circle": 5,
-       "from": -15,
-       "to": 200
-      }
-     ],
-     "points": [
-      {
-       "x": -2.819,
-       "y": -1.026,
-       "label": "$A$"
-      },
-      {
-       "x": 0.261,
-       "y": 2.989,
-       "label": "$B$"
-      },
-      {
-       "x": 2.898,
-       "y": -0.776,
-       "label": "$C$"
-      },
-      {
-       "x": 0,
-       "y": 0,
-       "label": "$O$",
-       "nudge": [
-        12,
-        10
-       ]
-      },
-      {
-       "x": -3.081,
-       "y": 2.364
-      },
-      {
-       "x": 0.523,
-       "y": -0.401
-      },
-      {
-       "x": 3.632,
-       "y": 2.543
-      },
-      {
-       "x": -0.473,
-       "y": -0.331
-      }
-     ],
-     "lines": [
-      {
-       "from": 4,
-       "to": 5,
-       "extend": 0.2
-      },
-      {
-       "from": 6,
-       "to": 7,
-       "extend": 0.2
-      }
-     ]
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "role": "solution",
+      "unit": 33,
+      "circles": [
+       {
+        "x": -2.819,
+        "y": -1.026,
+        "r": 3.4,
+        "outline": false
+       },
+       {
+        "x": 0.261,
+        "y": 2.989,
+        "r": 3.4,
+        "outline": false
+       },
+       {
+        "x": 0.261,
+        "y": 2.989,
+        "r": 3.4,
+        "outline": false
+       },
+       {
+        "x": 2.898,
+        "y": -0.776,
+        "r": 3.4,
+        "outline": false
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "r": 3.0
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "r": 3.0,
+        "outline": false
+       },
+       {
+        "x": -2.819,
+        "y": -1.026,
+        "r": 0.0909,
+        "fill": "#17212B"
+       },
+       {
+        "x": 0.261,
+        "y": 2.989,
+        "r": 0.0909,
+        "fill": "#17212B"
+       },
+       {
+        "x": 2.898,
+        "y": -0.776,
+        "r": 0.0909,
+        "fill": "#17212B"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "r": 0.0909,
+        "fill": "#17212B"
+       }
+      ],
+      "arcs": [
+       {
+        "circle": 0,
+        "from": -5.41,
+        "to": 110.41
+       },
+       {
+        "circle": 1,
+        "from": 174.59,
+        "to": 290.41
+       },
+       {
+        "circle": 2,
+        "from": 241.53,
+        "to": 368.47
+       },
+       {
+        "circle": 3,
+        "from": 61.53,
+        "to": 188.47
+       },
+       {
+        "circle": 5,
+        "from": -15,
+        "to": 200
+       }
+      ],
+      "points": [
+       {
+        "x": -2.819,
+        "y": -1.026,
+        "label": "$A$"
+       },
+       {
+        "x": 0.261,
+        "y": 2.989,
+        "label": "$B$"
+       },
+       {
+        "x": 2.898,
+        "y": -0.776,
+        "label": "$C$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         12,
+         10
+        ]
+       },
+       {
+        "x": -3.081,
+        "y": 2.364
+       },
+       {
+        "x": 0.523,
+        "y": -0.401
+       },
+       {
+        "x": 3.632,
+        "y": 2.543
+       },
+       {
+        "x": -0.473,
+        "y": -0.331
+       }
+      ],
+      "lines": [
+       {
+        "from": 4,
+        "to": 5,
+        "extend": 0.2
+       },
+       {
+        "from": 6,
+        "to": 7,
+        "extend": 0.2
+       }
+      ]
+     }
     }
    ]
   },
@@ -14965,19 +14558,28 @@ window.SOLUTIONS = {
    "src": "課本・隨堂練習",
    "page": "印 167",
    "title": "隨堂練習 課P167",
-   "q": "如圖，利用尺規作圖，求作：\n① \\(\\triangle ABC\\) 的內心。\n② 直角三角形 \\(DEF\\) 的內切圓（\\(I\\) 點為內心）。\n① 【作法】\n② 求作直角三角形 \\(DEF\\) 的內切圓。",
-   "ref": "圖見課本 p.167 ①。題幹只有 $\\triangle ABC$；角平分線的作圖痕跡在下一頁",
+   "q": "如圖，利用尺規作圖，求作：\n① \\(\\triangle ABC\\) 的內心。\n② 直角三角形 \\(DEF\\) 的內切圓（\\(I\\) 點為內心）。",
+   "ref": "圖見課本 p.167。題幹印 ① 的 $\\triangle ABC$ 與 ② 的直角 $\\triangle DEF$（含內心 $I$），成品照原書上下排；作圖痕跡在續頁",
    "steps": [
+    "① 【作法】",
     "① 作 \\(\\angle BAC\\) 的角平分線　② 作 \\(\\angle BCA\\) 的角平分線",
     "③ 兩條角平分線交於 \\(I\\) 點，即為所求",
+    "② 求作直角三角形 \\(DEF\\) 的內切圓。",
     "① 過 \\(I\\) 點作一垂線，與 \\(\\overline{EF}\\) 交於切點 \\(Q\\)",
     "② 以 \\(I\\) 為圓心、\\(\\overline{IQ}\\) 為半徑畫圓即為所求"
    ],
    "ans": "三角形的三條角平分線交於一點，該點就是內心　內心到三邊的距離相等，此圓與三邊都相切",
    "fig": {
     "type": "circle-figure",
-    "unit": 50,
-    "circles": [],
+    "unit": 40,
+    "circles": [
+     {
+      "x": 2.225,
+      "y": -5.825,
+      "r": 0.08,
+      "fill": "#17212B"
+     }
+    ],
     "arcs": [],
     "points": [
      {
@@ -14999,8 +14601,40 @@ window.SOLUTIONS = {
       "y": -1.4,
       "label": "$C$",
       "nudge": [
-       6,
-       16
+       14,
+       40
+      ]
+     },
+     {
+      "x": 3.6,
+      "y": -3.6,
+      "label": "$D$"
+     },
+     {
+      "x": -3.6,
+      "y": -7.2,
+      "label": "$E$",
+      "nudge": [
+       -18,
+       4
+      ]
+     },
+     {
+      "x": 3.6,
+      "y": -7.2,
+      "label": "$F$",
+      "nudge": [
+       14,
+       4
+      ]
+     },
+     {
+      "x": 2.225,
+      "y": -5.825,
+      "label": "$I$",
+      "nudge": [
+       12,
+       -4
       ]
      }
     ],
@@ -15011,314 +14645,299 @@ window.SOLUTIONS = {
        1,
        2
       ]
+     },
+     {
+      "points": [
+       3,
+       4,
+       5
+      ]
+     }
+    ],
+    "rightAngles": [
+     {
+      "at": 5,
+      "toward": [
+       3,
+       4
+      ],
+      "size": 0.3
      }
     ]
    },
-   "figs": [
+   "solfigs": [
     {
-     "type": "circle-figure",
-     "unit": 50,
-     "circles": [],
-     "arcs": [],
-     "points": [
-      {
-       "x": 3.4,
-       "y": 2.6,
-       "label": "$A$"
-      },
-      {
-       "x": -3.2,
-       "y": -1.4,
-       "label": "$B$",
-       "nudge": [
-        -18,
-        4
-       ]
-      },
-      {
-       "x": 1.6,
-       "y": -1.4,
-       "label": "$C$",
-       "nudge": [
-        6,
-        16
-       ]
-      }
-     ],
-     "polygons": [
-      {
-       "points": [
-        0,
-        1,
-        2
-       ]
-      }
-     ]
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "role": "solution",
+      "unit": 50,
+      "circles": [
+       {
+        "x": 3.4,
+        "y": 2.6,
+        "r": 1.842,
+        "outline": false
+       },
+       {
+        "x": 1.824,
+        "y": 1.645,
+        "r": 1.437,
+        "outline": false
+       },
+       {
+        "x": 2.644,
+        "y": 0.92,
+        "r": 1.437,
+        "outline": false
+       },
+       {
+        "x": 1.6,
+        "y": -1.4,
+        "r": 1.842,
+        "outline": false
+       },
+       {
+        "x": 2.356,
+        "y": 0.28,
+        "r": 1.437,
+        "outline": false
+       },
+       {
+        "x": -0.242,
+        "y": -1.4,
+        "r": 1.437,
+        "outline": false
+       },
+       {
+        "x": 0.866,
+        "y": -0.264,
+        "r": 0.08,
+        "fill": "#17212B"
+       }
+      ],
+      "arcs": [
+       {
+        "circle": 0,
+        "from": 201.22,
+        "to": 255.77
+       },
+       {
+        "circle": 1,
+        "from": 238.88,
+        "to": 262.88
+       },
+       {
+        "circle": 2,
+        "from": 194.11,
+        "to": 218.11
+       },
+       {
+        "circle": 3,
+        "from": 55.77,
+        "to": 190.0
+       },
+       {
+        "circle": 4,
+        "from": 200.88,
+        "to": 224.88
+       },
+       {
+        "circle": 5,
+        "from": 20.89,
+        "to": 44.89
+       }
+      ],
+      "points": [
+       {
+        "x": 3.4,
+        "y": 2.6,
+        "label": "$A$"
+       },
+       {
+        "x": -3.2,
+        "y": -1.4,
+        "label": "$B$",
+        "nudge": [
+         -18,
+         4
+        ]
+       },
+       {
+        "x": 1.6,
+        "y": -1.4,
+        "label": "$C$",
+        "nudge": [
+         6,
+         16
+        ]
+       },
+       {
+        "x": 0.866,
+        "y": -0.264,
+        "label": "$I$",
+        "nudge": [
+         -16,
+         6
+        ]
+       },
+       {
+        "x": 1.354,
+        "y": 0.287
+       },
+       {
+        "x": 1.057,
+        "y": -0.56
+       }
+      ],
+      "polygons": [
+       {
+        "points": [
+         0,
+         1,
+         2
+        ]
+       }
+      ],
+      "lines": [
+       {
+        "from": 0,
+        "to": 4,
+        "extend": 0.9
+       },
+       {
+        "from": 2,
+        "to": 5,
+        "extend": 0.9
+       }
+      ]
+     }
     },
     {
-     "type": "circle-figure",
-     "unit": 50,
-     "circles": [
-      {
-       "x": 3.4,
-       "y": 2.6,
-       "r": 1.842,
-       "outline": false
-      },
-      {
-       "x": 1.824,
-       "y": 1.645,
-       "r": 1.437,
-       "outline": false
-      },
-      {
-       "x": 2.644,
-       "y": 0.92,
-       "r": 1.437,
-       "outline": false
-      },
-      {
-       "x": 1.6,
-       "y": -1.4,
-       "r": 1.842,
-       "outline": false
-      },
-      {
-       "x": 2.356,
-       "y": 0.28,
-       "r": 1.437,
-       "outline": false
-      },
-      {
-       "x": -0.242,
-       "y": -1.4,
-       "r": 1.437,
-       "outline": false
-      },
-      {
-       "x": 0.866,
-       "y": -0.264,
-       "r": 0.08,
-       "fill": "#17212B"
-      }
-     ],
-     "arcs": [
-      {
-       "circle": 0,
-       "from": 201.22,
-       "to": 255.77
-      },
-      {
-       "circle": 1,
-       "from": 238.88,
-       "to": 262.88
-      },
-      {
-       "circle": 2,
-       "from": 194.11,
-       "to": 218.11
-      },
-      {
-       "circle": 3,
-       "from": 55.77,
-       "to": 190.0
-      },
-      {
-       "circle": 4,
-       "from": 200.88,
-       "to": 224.88
-      },
-      {
-       "circle": 5,
-       "from": 20.89,
-       "to": 44.89
-      }
-     ],
-     "points": [
-      {
-       "x": 3.4,
-       "y": 2.6,
-       "label": "$A$"
-      },
-      {
-       "x": -3.2,
-       "y": -1.4,
-       "label": "$B$",
-       "nudge": [
-        -18,
-        4
-       ]
-      },
-      {
-       "x": 1.6,
-       "y": -1.4,
-       "label": "$C$",
-       "nudge": [
-        6,
-        16
-       ]
-      },
-      {
-       "x": 0.866,
-       "y": -0.264,
-       "label": "$I$",
-       "nudge": [
-        -16,
-        6
-       ]
-      },
-      {
-       "x": 1.354,
-       "y": 0.287
-      },
-      {
-       "x": 1.057,
-       "y": -0.56
-      }
-     ],
-     "polygons": [
-      {
-       "points": [
-        0,
-        1,
-        2
-       ]
-      }
-     ],
-     "lines": [
-      {
-       "from": 0,
-       "to": 4,
-       "extend": 0.9
-      },
-      {
-       "from": 2,
-       "to": 5,
-       "extend": 0.9
-      }
-     ]
-    },
-    {
-     "type": "circle-figure",
-     "unit": 50,
-     "circles": [
-      {
-       "x": 2.225,
-       "y": 0.175,
-       "r": 2.063,
-       "outline": false
-      },
-      {
-       "x": 2.225,
-       "y": -2.575,
-       "r": 2.063,
-       "outline": false
-      },
-      {
-       "x": 2.225,
-       "y": 0.175,
-       "r": 1.375
-      },
-      {
-       "x": 2.225,
-       "y": 0.175,
-       "r": 0.08,
-       "fill": "#17212B"
-      },
-      {
-       "x": 2.225,
-       "y": -1.2,
-       "r": 0.08,
-       "fill": "#17212B"
-      }
-     ],
-     "arcs": [
-      {
-       "circle": 0,
-       "from": 205.81,
-       "to": 334.19
-      },
-      {
-       "circle": 1,
-       "from": 25.81,
-       "to": 154.19
-      }
-     ],
-     "points": [
-      {
-       "x": 3.6,
-       "y": 2.4,
-       "label": "$D$"
-      },
-      {
-       "x": -3.6,
-       "y": -1.2,
-       "label": "$E$",
-       "nudge": [
-        -18,
-        4
-       ]
-      },
-      {
-       "x": 3.6,
-       "y": -1.2,
-       "label": "$F$",
-       "nudge": [
-        14,
-        4
-       ]
-      },
-      {
-       "x": 2.225,
-       "y": 0.175,
-       "label": "$I$",
-       "nudge": [
-        12,
-        -4
-       ]
-      },
-      {
-       "x": 2.225,
-       "y": -1.2,
-       "label": "$Q$",
-       "nudge": [
-        -4,
-        18
-       ]
-      }
-     ],
-     "polygons": [
-      {
-       "points": [
-        0,
-        1,
-        2
-       ]
-      }
-     ],
-     "segments": [
-      {
-       "from": 3,
-       "to": 4
-      }
-     ],
-     "rightAngles": [
-      {
-       "at": 4,
-       "toward": [
-        1,
-        3
-       ]
-      },
-      {
-       "at": 2,
-       "toward": [
-        0,
-        1
-       ],
-       "size": 0.3
-      }
-     ]
+     "from": 3,
+     "fig": {
+      "type": "circle-figure",
+      "role": "solution",
+      "unit": 50,
+      "circles": [
+       {
+        "x": 2.225,
+        "y": 0.175,
+        "r": 2.063,
+        "outline": false
+       },
+       {
+        "x": 2.225,
+        "y": -2.575,
+        "r": 2.063,
+        "outline": false
+       },
+       {
+        "x": 2.225,
+        "y": 0.175,
+        "r": 1.375
+       },
+       {
+        "x": 2.225,
+        "y": 0.175,
+        "r": 0.08,
+        "fill": "#17212B"
+       },
+       {
+        "x": 2.225,
+        "y": -1.2,
+        "r": 0.08,
+        "fill": "#17212B"
+       }
+      ],
+      "arcs": [
+       {
+        "circle": 0,
+        "from": 205.81,
+        "to": 334.19
+       },
+       {
+        "circle": 1,
+        "from": 25.81,
+        "to": 154.19
+       }
+      ],
+      "points": [
+       {
+        "x": 3.6,
+        "y": 2.4,
+        "label": "$D$"
+       },
+       {
+        "x": -3.6,
+        "y": -1.2,
+        "label": "$E$",
+        "nudge": [
+         -18,
+         4
+        ]
+       },
+       {
+        "x": 3.6,
+        "y": -1.2,
+        "label": "$F$",
+        "nudge": [
+         14,
+         4
+        ]
+       },
+       {
+        "x": 2.225,
+        "y": 0.175,
+        "label": "$I$",
+        "nudge": [
+         12,
+         -4
+        ]
+       },
+       {
+        "x": 2.225,
+        "y": -1.2,
+        "label": "$Q$",
+        "nudge": [
+         -4,
+         18
+        ]
+       }
+      ],
+      "polygons": [
+       {
+        "points": [
+         0,
+         1,
+         2
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 3,
+        "to": 4
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 4,
+        "toward": [
+         1,
+         3
+        ]
+       },
+       {
+        "at": 2,
+        "toward": [
+         0,
+         1
+        ],
+        "size": 0.3
+       }
+      ]
+     }
     }
    ]
   },
@@ -17076,9 +16695,10 @@ window.SOLUTIONS = {
    "src": "習作",
    "page": "印 49",
    "title": "基礎題第 5 題",
-   "q": "如圖，\\(I\\) 點為 \\(\\triangle ABC\\) 的內心，有一直線通過 \\(I\\) 點且分別與 \\(\\overline{AB}\\)、\\(\\overline{AC}\\) 相交於 \\(D\\)、\\(E\\) 兩點。若 \\(\\overline{AD}=\\overline{DE}=13\\)，\\(\\overline{AE}=10\\)，求：\n① \\(\\triangle ADE\\) 的面積。\n② \\(\\triangle ABC\\) 的內切圓半徑。\n① 作 \\(\\triangle ADE\\) 的高 \\(\\overline{DM}\\)。\n② 連接 \\(\\overline{AI}\\)。\\(I\\) 為內心，設 \\(I\\) 到三邊的距離 \\(=x\\)。",
+   "q": "如圖，\\(I\\) 點為 \\(\\triangle ABC\\) 的內心，有一直線通過 \\(I\\) 點且分別與 \\(\\overline{AB}\\)、\\(\\overline{AC}\\) 相交於 \\(D\\)、\\(E\\) 兩點。若 \\(\\overline{AD}=\\overline{DE}=13\\)，\\(\\overline{AE}=10\\)，求：\n① \\(\\triangle ADE\\) 的面積。\n② \\(\\triangle ABC\\) 的內切圓半徑。\n② 連接 \\(\\overline{AI}\\)。\\(I\\) 為內心，設 \\(I\\) 到三邊的距離 \\(=x\\)。",
    "ref": "圖見習作 p.49 第 5 題（$110$ 會考第 $26$ 題）。$\\overline{AD}=\\overline{DE}$ 用等長記號重現",
    "steps": [
+    "① 作 \\(\\triangle ADE\\) 的高 \\(\\overline{DM}\\)。",
     "\\(\\because \\overline{AD}=\\overline{DE}=13\\)，\\(\\therefore \\overline{AM}=\\overline{ME}=5\\)",
     "\\(\\overline{DM}=\\sqrt{13^2-5^2}=12\\)",
     "\\(\\triangle ADE\\) 的面積 \\(=\\triangle ADI\\) 的面積 \\(+\\triangle AEI\\) 的面積",
@@ -17170,169 +16790,88 @@ window.SOLUTIONS = {
     ],
     "placement": "right"
    },
-   "figs": [
+   "solfigs": [
     {
-     "type": "polygon-group",
-     "unit": 19,
-     "shapes": [
-      {
-       "points": [
-        {
-         "x": 0,
-         "y": 0,
-         "label": "$A$"
-        },
-        {
-         "x": -9.009,
-         "y": -14.417,
-         "label": "$B$",
-         "nudge": [
-          -4,
-          18
-         ]
-        },
-        {
-         "x": 7.949,
-         "y": -12.721,
-         "label": "$C$",
-         "nudge": [
-          14,
-          4
-         ]
-        },
-        {
-         "x": -6.889,
-         "y": -11.025,
-         "label": "$D$",
-         "nudge": [
-          -18,
-          4
-         ]
-        },
-        {
-         "x": 5.299,
-         "y": -8.48,
-         "label": "$E$",
-         "nudge": [
-          14,
-          4
-         ]
-        },
-        {
-         "x": -0.795,
-         "y": -9.753,
-         "label": "$I$",
-         "nudge": [
-          -4,
-          18
-         ]
-        }
-       ],
-       "outline": [
-        0,
-        1,
-        2
-       ],
-       "segments": [
-        {
-         "from": 3,
-         "to": 4
-        }
-       ],
-       "sides": [
-        {
-         "from": 0,
-         "to": 3,
-         "ticks": 1
-        },
-        {
-         "from": 3,
-         "to": 4,
-         "ticks": 1
-        }
-       ],
-       "fill": "#DCF0E4"
-      }
-     ],
-     "placement": "right"
-    },
-    {
-     "type": "polygon-group",
-     "unit": 19,
-     "shapes": [
-      {
-       "points": [
-        {
-         "x": 0,
-         "y": 0,
-         "label": "$A$"
-        },
-        {
-         "x": -6.889,
-         "y": -11.025,
-         "label": "$D$",
-         "nudge": [
-          -18,
-          4
-         ]
-        },
-        {
-         "x": 5.299,
-         "y": -8.48,
-         "label": "$E$",
-         "nudge": [
-          14,
-          4
-         ]
-        },
-        {
-         "x": 2.65,
-         "y": -4.24,
-         "label": "$M$",
-         "nudge": [
-          8,
-          14
-         ]
-        }
-       ],
-       "outline": [
-        0,
-        1,
-        2
-       ],
-       "segments": [
-        {
-         "from": 1,
-         "to": 3,
-         "dashed": true
-        }
-       ],
-       "rightAngles": [
-        {
-         "at": 3,
-         "toward": [
-          1,
-          2
-         ],
-         "size": 0.9
-        }
-       ],
-       "sides": [
-        {
-         "from": 0,
-         "to": 1,
-         "ticks": 1
-        },
-        {
-         "from": 1,
-         "to": 2,
-         "ticks": 1
-        }
-       ],
-       "fill": "#DCF0E4"
-      }
-     ],
-     "placement": "right"
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "role": "solution",
+      "unit": 19,
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": -6.889,
+          "y": -11.025,
+          "label": "$D$",
+          "nudge": [
+           -18,
+           4
+          ]
+         },
+         {
+          "x": 5.299,
+          "y": -8.48,
+          "label": "$E$",
+          "nudge": [
+           14,
+           4
+          ]
+         },
+         {
+          "x": 2.65,
+          "y": -4.24,
+          "label": "$M$",
+          "nudge": [
+           8,
+           14
+          ]
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "segments": [
+         {
+          "from": 1,
+          "to": 3,
+          "dashed": true
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 3,
+          "toward": [
+           1,
+           2
+          ],
+          "size": 0.9
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "ticks": 1
+         },
+         {
+          "from": 1,
+          "to": 2,
+          "ticks": 1
+         }
+        ],
+        "fill": "#DCF0E4"
+       }
+      ],
+      "placement": "right"
+     }
     }
    ],
    "key": "① \\(60\\)　② \\(\\frac{120}{23}\\)"
