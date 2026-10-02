@@ -325,3 +325,40 @@ body.bd-open #dkPrev, body.bd-open #dkNext { display: none; }
   background: #fff; color: var(--ct);
   border: 1.5px solid color-mix(in srgb, var(--ct) 35%, #fff);
 }
+
+/* ---------- 13. 暖色主題（theme.js；Roger 2026-10-01 課本版試用，10-02 推到三站） ----------
+   <html data-theme="warm"> 時生效；預設仍是各站原色。站別的版本色（與課本版的深框線）在各站 deck-overrides.css。
+   寫死在 inline style 的顏色（章節色、練習卡片、九上的按鈕）由 theme.js 照對照表換；章內的圖（SVG）不換。
+   ⚠ 對比沿用課本版 9/23 的投影標準，所以不照抄 Claude 的陶土色 #cc785c（拿來寫字只有 3.1:1），一律加深。
+   各色對面板底 #fdfcf9：內文 #1f1c17 16.6、次要 #45403a 10.0、說明 #57514a 7.6；
+   章色 陶土 #8a3b1e 7.5、梅 #5a3d78 8.6、橄欖 #3d5a26 7.6、赭 #704708 7.9、酒紅 #8a2638 8.5。
+   ⚠ `:root[data-theme="warm"]` 的權重高於 deck-overrides.css 的 `:root`，所以課本版加深的變數會被這裡蓋過，與載入順序無關。 */
+:root[data-theme="warm"] {
+  --ink: #1f1c17;
+  --muted: #45403a;
+  --faint: #57514a;
+  --line: #d9cfc0;
+  --paper: #f5f1ea;
+  --panel: #fdfcf9;
+  --blue: #8a3b1e;
+  --violet: #a8492a;
+  --teal: #704708;
+  --shadow-sm: 0 6px 18px rgba(60, 42, 24, 0.08);
+  --shadow: 0 18px 50px rgba(60, 42, 24, 0.13);
+}
+:root[data-theme="warm"] body { background: var(--paper); }
+:root[data-theme="warm"] .topbar,
+:root[data-theme="warm"] .toc { background: #faf7f1; }
+:root[data-theme="warm"] .cover-start { box-shadow: 0 14px 30px rgba(138, 59, 30, 0.25); }
+:root[data-theme="warm"] .toc-chead:hover,
+:root[data-theme="warm"] .toc-shead:hover,
+:root[data-theme="warm"] .toc-item:hover { background: rgba(138, 59, 30, 0.06); }
+:root[data-theme="warm"] .toc-item.active { background: rgba(138, 59, 30, 0.09); }
+:root[data-theme="warm"] .toc-shead .ts-n,
+:root[data-theme="warm"] .toc-ghead .tg-n { background: #efe8dd; color: var(--muted); }
+:root[data-theme="warm"] .dbtn:hover { background: rgba(138, 59, 30, 0.10); }
+:root[data-theme="warm"] .bd-q { background: #f8f4ec; border-color: #cfc4b3; }
+:root[data-theme="warm"] .slide-title { color: var(--ink); }
+:root[data-theme="warm"] .slide-visual { background: linear-gradient(180deg, #fcfaf6, #f6f1e9); }
+:root[data-theme="warm"] .progress-track { background: #e6dccd; }
+:root[data-theme="warm"] .formula .formula-label .pgref { background: #efe8dd; color: var(--muted); }

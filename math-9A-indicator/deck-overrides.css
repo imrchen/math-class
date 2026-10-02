@@ -248,3 +248,11 @@
   user-select: none;
 }
 .zoom-modal.zp-on.zp-drag { cursor: grabbing; }
+
+/* ===== 暖色主題：本站的版本色（Roger 2026-10-02，三站都可切換）=====
+   三站共通的部分在 common.css 第 13 節，切換與 inline 色號對照在 theme.js。
+   版本色維持「洋紅」（三站一眼分得出來那條，Roger 2026-09-15），只加深一點配米白底：白字 7.3:1。 */
+:root[data-theme="warm"] {
+  --edition: #a3204f;
+  --edition-soft: #f7e8ee;
+}

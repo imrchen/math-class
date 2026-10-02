@@ -7,35 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>國中數學 八上 互動教學</title>
   <meta name="description" content="光明國中八上數學課堂投影用互動教材" />
-  <link rel="stylesheet" href="style.css?v=20261001k" />
-  <link rel="stylesheet" href="common.css?v=20261001k" />
-  <link rel="stylesheet" href="deck-overrides.css?v=20261001k" />
+  <link rel="stylesheet" href="style.css?v=20261002a" />
+  <link rel="stylesheet" href="common.css?v=20261002a" />
+  <link rel="stylesheet" href="deck-overrides.css?v=20261002a" />
+  <script src="theme.js?v=20261002a"></script>
   <script>
-    /* 配色主題（Roger 2026-10-01 試用）：「原色」是 9/23 為投影加深的那套，「暖色」是米白底＋陶土色系。
-       在 <head> 先決定，畫面不會先閃一下原色。切換鈕在教具列「字級」面板（text-scale.js 看到 DECK_THEME 才顯示）；
-       網址加 ?theme=warm／?theme= 也能直接切。記在這台電腦的 localStorage。
-       檢討卡與章節色是畫面產生時就寫死的，所以換主題要重新載入（停在同一頁）。 */
-    window.DECK_THEME = (function () {
-      var key = 'mathdeck.theme:' + location.pathname.replace(/[^\/]*$/, ''), cur = '';
-      try {
-        var m = location.search.match(/[?&]theme=(\w*)/);
-        if (m) { cur = m[1]; localStorage.setItem(key, cur); } else cur = localStorage.getItem(key) || '';
-      } catch (e) {}
-      if (cur !== 'warm') cur = '';
-      if (cur) document.documentElement.dataset.theme = cur;
-      return {
-        list: [{ id: '', label: '原色' }, { id: 'warm', label: '暖色' }],
-        current: cur,
-        set: function (id) {
-          try { localStorage.setItem(key, id); } catch (e) {}
-          /* 網址拿掉 ?theme=（不然重新載入又被它蓋回去），帶上目前這一頁 */
-          var on = document.querySelector('.toc-item.active');
-          var q = location.search.replace(/([?&])theme=\w*&?/, '$1').replace(/[?&]$/, '');
-          history.replaceState(null, '', location.pathname + q + (on ? '#p=' + on.dataset.i : ''));
-          location.reload();
-        }
-      };
-    })();
+    /* 課本版與共通對照表不同的格子：卡片框線用深一階（9/23 的投影標準，框線 2.5:1 以上） */
+    Object.assign(window.DECK_THEME.colors, { '#dce3ee': '#a0927c' });
   </script>
   <script>
     window.MathJax = {
@@ -52,7 +30,7 @@
   </script>
   <!-- MathJax 改為隨站打包：教室電腦不一定有網路，CDN 掛掉整份公式就不會排版。
        來源 https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js（2026-09-12 取得，與指標版同一份）。 -->
-  <script src="../vendor/tex-svg.js?v=20261001k" id="MathJax-script" async></script>
+  <script src="../vendor/tex-svg.js?v=20261002a" id="MathJax-script" async></script>
 </head>
 <body>
   <!-- 封面 -->
@@ -147,10 +125,10 @@
     </div>
   </div>
 
-  <script src="svg.js?v=20261001k"></script>
+  <script src="svg.js?v=20261002a"></script>
   <!-- 檢討頁的資料與元件（本站自有；自我評量只有這一站用） -->
-  <script src="solutions.js?v=20261001k"></script>
-  <script src="figures.js?v=20261001k"></script>
+  <script src="solutions.js?v=20261002a"></script>
+  <script src="figures.js?v=20261002a"></script>
   <script>
     /* 練習／檢討元件（practice.js，與八上-指標版共用同一份檔）的站別設定：題層級列、一段一畫面、大字級。 */
     window.PRACTICE_CONFIG = {
@@ -170,22 +148,14 @@
                    '習作・附錄本（精熟題型）': '#3d5a26', '試卷・課堂評量': '#3f5368', '試卷・平時練習卷': '#3f5368' }
     });
   </script>
-  <script src="answer-key.js?v=20261001k"></script>
-  <script src="practice.js?v=20261001k"></script>
-  <script src="ch1.js?v=20261001k"></script>
-  <script src="ch2.js?v=20261001k"></script>
-  <script src="ch3.js?v=20261001k"></script>
-  <script src="ch4.js?v=20261001k"></script>
-  <script src="ch5.js?v=20261001k"></script>
-  <script>
-    /* 暖色主題的章節色：engine 從各章的 color 讀，這裡在 engine 之前換掉（目錄、徽章、標題色、封面頁都跟著變）。
-       章內的圖（chN.js 的 SVG）照原色畫——那是內容，不在這次試用的範圍。 */
-    if (window.DECK_THEME.current === 'warm') {
-      var WARM_CH = { '#1e40af': '#8a3b1e', '#6d28d9': '#5a3d78', '#065f46': '#3d5a26', '#92400e': '#704708', '#be123c': '#8a2638' };
-      (window.DECK || []).forEach(function (c) { if (WARM_CH[c.color]) c.color = WARM_CH[c.color]; });
-    }
-  </script>
-  <script src="engine.js?v=20261001k"></script>
+  <script src="answer-key.js?v=20261002a"></script>
+  <script src="practice.js?v=20261002a"></script>
+  <script src="ch1.js?v=20261002a"></script>
+  <script src="ch2.js?v=20261002a"></script>
+  <script src="ch3.js?v=20261002a"></script>
+  <script src="ch4.js?v=20261002a"></script>
+  <script src="ch5.js?v=20261002a"></script>
+  <script src="engine.js?v=20261002a"></script>
   <script>
     /* 目錄第三層：節之內依類別折疊（Roger 2026-09-23）。規則由 toc-sections.js 讀，
        依序比對標題、第一個命中的算數；都沒命中的是講解頁。
@@ -202,13 +172,13 @@
     ];
     window.TOC_GROUP_REST = '講解';
   </script>
-  <script src="toc-sections.js?v=20261001k"></script>
-  <script src="zoom-mixed.js?v=20261001k"></script>
-  <script src="zoom-pan.js?v=20261001k"></script>
-  <script src="board.js?v=20261001k"></script>
-  <script src="highlighter.js?v=20261001k"></script>
-  <script src="text-scale.js?v=20261001k"></script>
-  <script src="dock-tips.js?v=20261001k"></script>
-  <script src="mathjax-catchup.js?v=20261001k"></script>
+  <script src="toc-sections.js?v=20261002a"></script>
+  <script src="zoom-mixed.js?v=20261002a"></script>
+  <script src="zoom-pan.js?v=20261002a"></script>
+  <script src="board.js?v=20261002a"></script>
+  <script src="highlighter.js?v=20261002a"></script>
+  <script src="text-scale.js?v=20261002a"></script>
+  <script src="dock-tips.js?v=20261002a"></script>
+  <script src="mathjax-catchup.js?v=20261002a"></script>
 </body>
 </html>
