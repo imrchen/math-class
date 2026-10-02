@@ -23,7 +23,7 @@
     var h = vis && vis.querySelector(':scope > .visual-host');
     if (!h) { used = 1; return sync(); }
 
-    if (h.querySelector(':scope > div > svg') || h.querySelector('.ictrl')) {
+    if (h.querySelector(':scope > div > svg')) {
       vis.style.removeProperty('--ts-hz'); vis.style.removeProperty('--ts-fit');
       used = 1; return sync();
     }
@@ -62,10 +62,10 @@
     used = hz;
 
     var floor = practice ? practiceFloor() : FLOOR, z = 1;
-    for (var n = 0; n < 4 && !fits() && z > floor; n++) {
+    for (var n = 0; n < 8 && !fits() && z > floor; n++) {
       var need = h.scrollHeight - pad, have = h.clientHeight - pad;
-      var r = Math.min(have > 0 && need > 0 ? have / need : 1, h.clientWidth / (h.scrollWidth || 1));
-      z = Math.max(floor, z * r * 0.985);
+      var r = Math.min(have > 0 && need > 0 ? have / need : 1, h.clientWidth / (h.scrollWidth || 1)) * 0.985;
+      z = Math.max(floor, z * (n ? Math.min(r, 0.95) : r));
       if (practice) kids.forEach(function (k) { k.style.zoom = z.toFixed(3); });
       else vis.style.setProperty('--ts-fit', z.toFixed(3));
     }
