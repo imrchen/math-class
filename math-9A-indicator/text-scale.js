@@ -61,7 +61,7 @@
     setHz(hz);
     used = hz;
 
-    var floor = practice ? practiceFloor() : FLOOR, z = 1;
+    var floor = h.querySelector('.ak-root') ? 0.3 : practice ? practiceFloor() : FLOOR, z = 1;
     for (var n = 0; n < 8 && !fits() && z > floor; n++) {
       var need = h.scrollHeight - pad, have = h.clientHeight - pad;
       var r = Math.min(have > 0 && need > 0 ? have / need : 1, h.clientWidth / (h.scrollWidth || 1)) * 0.985;

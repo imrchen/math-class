@@ -132,7 +132,7 @@ window.ANSWER_KEY = (function () {
         root.dataset.mode = 'normal';
       } else akLayout(root, 'cols');
 
-      A.fit(host, 0.3);
+      cur.fit(host, 0.3);
       return;
     }
 
