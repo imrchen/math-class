@@ -3019,6 +3019,67 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-3', secName: '縮放與相似',
+        title: '隨堂 1 再看一次：A′、B′ 正好是兩邊的中點',
+        points: [
+          '隨堂 1 把 \\(\\overline{OA}\\)、\\(\\overline{OB}\\) 各取一半——\\(A\'\\)、\\(B\'\\) 就是三角形 \\(OAB\\) <b>兩邊的中點</b>。',
+          '縮放告訴我們：\\(\\overline{A\'B\'}\\) <b>平行</b> \\(\\overline{AB}\\)，長度是<b>一半</b>。',
+          '反過來，看到<b>兩個中點</b>，就想成「從頂點縮一半」：連線平行第三邊、長度一半。'
+        ],
+        formula: { label: '兩個中點：平行、一半<span class="pgref">課本 印 44 隨堂 1</span>', tex: '\\overline{A\'B\'}\\parallel\\overline{AB}\\ ,\\quad \\overline{A\'B\'}=\\tfrac12\\overline{AB}' },
+        visual: (h) => {
+          const gx = (x) => 30 + 40 * x, gy = (y) => 40 + 40 * (5 - y);
+          const pt = (x, y) => [gx(x), gy(y)];
+          const O = pt(1, 3), A = pt(5, 5), B = pt(3, 1), A2 = pt(3, 4), B2 = pt(2, 2);
+          const dot = (p, c, r) => `<circle cx="${p[0]}" cy="${p[1]}" r="${r || 4.8}" fill="#fff" stroke="${c}" stroke-width="2.6"/>`;
+          const seg = (p, q, c, w, dash) => SV.seg(p[0], p[1], q[0], q[1], c, w, dash || '');
+          let grid = '';
+          for (let i = 0; i <= 6; i++) grid += SV.seg(gx(i), gy(0), gx(i), gy(5), LINE, 1.2, '');
+          for (let j = 0; j <= 5; j++) grid += SV.seg(gx(0), gy(j), gx(6), gy(j), LINE, 1.2, '');
+          const labels = SV.vlabel(O[0] - 24, O[1] + 6, 'O') + SV.vlabel(A[0] + 8, A[1] + 6, 'A') + SV.vlabel(B[0] + 8, B[1] + 14, 'B');
+          const primes = SV.vlabel(A2[0] + 6, A2[1] - 8, 'A′') + SV.vlabel(B2[0] - 28, B2[1] + 6, 'B′');
+          const answer = (sides) => grid
+            + (sides ? `<polygon points="${O} ${A} ${B}" fill="rgba(37,99,235,.06)" stroke="none"/>` : '')
+            + seg(O, A, sides ? BLU : GREY, sides ? 2.4 : 2, sides ? '' : '6 5') + seg(O, B, sides ? BLU : GREY, sides ? 2.4 : 2, sides ? '' : '6 5')
+            + seg(A, B, BLU, 3.4) + seg(A2, B2, AMB, 3.4)
+            + dot(A, BLU) + dot(B, BLU) + dot(A2, AMB) + dot(B2, AMB) + dot(O, RED, 5.4) + labels + primes;
+          const ticks = SV.ticks(O[0], O[1], A2[0], A2[1], 1, VIO) + SV.ticks(A2[0], A2[1], A[0], A[1], 1, VIO)
+            + SV.ticks(O[0], O[1], B2[0], B2[1], 2, VIO) + SV.ticks(B2[0], B2[1], B[0], B[1], 2, VIO);
+          const stairs = seg(B, [A[0], B[1]], BLU, 2, '5 4') + seg([A[0], B[1]], A, BLU, 2, '5 4')
+            + seg(B2, [A2[0], B2[1]], AMB, 2, '5 4') + seg([A2[0], B2[1]], A2, AMB, 2, '5 4');
+          const R = 361;
+          SV.stepper(h, '0 0 440 272', [
+            { t: '這是隨堂 1 的答案：以 O 為中心，把 AB 縮成 <b>1/2</b> 倍，得到 A′B′。',
+              d: () => answer(false) + TX(R, 70, '隨堂 1', { anchor: 'middle', fs: 18, c: INK })
+                + TX(R, 98, '以 O 為中心', { anchor: 'middle', fs: 15, c: GREY }) + TX(R, 122, '縮 1/2 倍', { anchor: 'middle', fs: 15, c: GREY }) },
+            { t: '把 O、A、B 連起來：這是一個<b>三角形 OAB</b>。',
+              d: () => answer(true) + TX(R, 70, '△OAB', { anchor: 'middle', fs: 20, c: BLU }) },
+            { t: 'OA、OB 各取<b>一半</b>——A′、B′ 正好是兩邊的<b>中點</b>。',
+              d: () => answer(true) + ticks + TX(R, 70, '△OAB', { anchor: 'middle', fs: 20, c: BLU })
+                + TX(R, 104, 'A′ 是 OA 的中點', { anchor: 'middle', fs: 15, c: VIO }) + TX(R, 128, 'B′ 是 OB 的中點', { anchor: 'middle', fs: 15, c: VIO }) },
+            { t: '數格子：AB 走「右 2、上 4」，A′B′ 走「右 1、上 2」——<b>方向一樣、步數一半</b>。',
+              d: () => answer(true) + ticks + stairs
+                + TX(R, 92, 'AB：右 2、上 4', { anchor: 'middle', fs: 16, c: BLU }) + TX(R, 122, 'A′B′：右 1、上 2', { anchor: 'middle', fs: 16, c: AMB }) },
+            { t: '所以：三角形<b>兩邊的中點</b>連起來，<b>平行</b>第三邊、長度是<b>一半</b>。',
+              d: () => answer(true) + ticks + stairs
+                + TX(R, 92, 'AB：右 2、上 4', { anchor: 'middle', fs: 16, c: BLU }) + TX(R, 122, 'A′B′：右 1、上 2', { anchor: 'middle', fs: 16, c: AMB })
+                + BOX(286, 160, 150, 70, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(R, 189, 'A′B′ ∥ AB', { anchor: 'middle', fs: 16, c: GRN }) + TX(R, 216, 'A′B′ ＝ AB 的一半', { anchor: 'middle', fs: 15, c: GRN }) }
+          ], { acc: false });
+        },
+        caption: '這就是 1-2「看到兩個中點，就寫兩句話：平行、一半」；梯形版見 1-2「梯形兩腰的中點連線」那頁。',
+        example: {
+          q: '\\(D\\)、\\(E\\) 分別是 \\(\\overline{AB}\\)、\\(\\overline{AC}\\) 的中點，\\(\\overline{BC}=10\\)，求 \\(\\overline{DE}\\)。'
+            + exTri({ t: 0.5, tick: 1, names: ['D', 'E'], pq: '?', bc: '10' }),
+          steps: [
+            '\\(D\\)、\\(E\\) 是兩邊的中點：就像從 \\(A\\) 把 \\(\\overline{BC}\\) 縮成一半。',
+            '所以 \\(\\overline{DE}\\parallel\\overline{BC}\\)，\\(\\overline{DE}=10\\div2\\)。'
+          ],
+          ans: '\\(\\overline{DE}=5\\)'
+        }
+      },
+
+      {
+        sec: '1-3', secName: '縮放與相似',
         title: '練習｜課本隨堂（相似多邊形）',
         points: [
           '判斷相似：<b>先看邊，再看角</b>，兩道門都要過。',
