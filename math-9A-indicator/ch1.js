@@ -583,6 +583,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '連比例',
+        title: '練習｜課本隨堂（連比的意義與合併）',
+        points: [
+          '先看<b>共同項有沒有一樣</b>，一樣就直接接起來。',
+          '不一樣就用<b>最小公倍數</b>把共同項湊成一樣再接。',
+          '每一題都<b>抄到本子上</b>再算，不要只用看的。'
+        ],
+        formula: { label: '這一節在練', tex: 'x:y:z' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-1', [
+            { src: '課本・隨堂練習', page: '印 9–11', sub: '化最簡整數比、共同項一樣就直接接', tags: ['課P9', '課P10', '課P11 第1題', '課P11 第2題'] }
+          ]);
+        },
+        caption: '點任一題看詳解。'
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
         title: 'x ＝ 2y 讀成「一個 x 換得到兩個 y」',
 
         points: [
@@ -875,6 +895,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '連比例',
+        title: '練習｜課本隨堂（分數比與由等式求連比）',
+        points: [
+          '比裡出現<b>分數或小數</b>，先化成最簡整數比再合併。',
+          '看到 <b>\\(x-2y=0\\)</b> 這種等式，先移項變成「誰比誰」。',
+          '點任一題可以看逐行詳解。'
+        ],
+        formula: { label: '這一節在練', tex: 'x-2y=0\\Rightarrow x:y=2:1' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-1', [
+            { src: '課本・隨堂練習', page: '印 12–13', sub: '分數比、小數比、由等式求連比', tags: ['課P12 第1題', '課P12 第2題', '課P13 第1題', '課P13 第2題'] }
+          ]);
+        },
+        caption: '點任一題看詳解。'
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
         title: '比不能每項各加一個數，加了就變成別的比',
         points: [
           '每一項<b>同乘</b>或<b>同除</b>一個數，比不變。',
@@ -1138,6 +1178,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-1', secName: '連比例',
+        title: '練習｜課本隨堂（連比例式與應用）',
+        points: [
+          '連比例式先寫成<b>份數</b>，再算一份是多少。',
+          '應用題把「誰比誰」先抄下來，不要邊讀邊算。',
+          '五題都要寫過程。'
+        ],
+        formula: { label: '這一節在練', tex: 'a:b:c=d:e:f' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-1', [
+            { src: '課本・隨堂練習', page: '印 14–18', sub: '連比例式、分配與應用', tags: ['課P14', '課P15', '課P16', '課P17', '課P18'] }
+          ]);
+        },
+        caption: '點任一題看詳解。'
+      },
+
+      {
+        sec: '1-1', secName: '連比例',
         title: '回頭看：四種長相，其實只有兩個動作',
         points: [
           '題目有<b>四種長相</b>，但前三種都在做同一件事：<b>變成一個比</b>。',
@@ -1211,66 +1271,6 @@ window.DECK = window.DECK || [];
           ],
           ans: '不行，應是 \\(9:12:14\\)'
         }
-      },
-
-      {
-        sec: '1-1', secName: '連比例',
-        title: '練習｜課本隨堂（連比的意義與合併）',
-        points: [
-          '先看<b>共同項有沒有一樣</b>，一樣就直接接起來。',
-          '不一樣就用<b>最小公倍數</b>把共同項湊成一樣再接。',
-          '每一題都<b>抄到本子上</b>再算，不要只用看的。'
-        ],
-        formula: { label: '這一節在練', tex: 'x:y:z' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-1', [
-            { src: '課本・隨堂練習', page: '印 9–11', sub: '化最簡整數比、共同項一樣就直接接', tags: ['課P9', '課P10', '課P11 第1題', '課P11 第2題'] }
-          ]);
-        },
-        caption: '點任一題看詳解。'
-      },
-
-      {
-        sec: '1-1', secName: '連比例',
-        title: '練習｜課本隨堂（分數比與由等式求連比）',
-        points: [
-          '比裡出現<b>分數或小數</b>，先化成最簡整數比再合併。',
-          '看到 <b>\\(x-2y=0\\)</b> 這種等式，先移項變成「誰比誰」。',
-          '點任一題可以看逐行詳解。'
-        ],
-        formula: { label: '這一節在練', tex: 'x-2y=0\\Rightarrow x:y=2:1' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-1', [
-            { src: '課本・隨堂練習', page: '印 12–13', sub: '分數比、小數比、由等式求連比', tags: ['課P12 第1題', '課P12 第2題', '課P13 第1題', '課P13 第2題'] }
-          ]);
-        },
-        caption: '點任一題看詳解。'
-      },
-
-      {
-        sec: '1-1', secName: '連比例',
-        title: '練習｜課本隨堂（連比例式與應用）',
-        points: [
-          '連比例式先寫成<b>份數</b>，再算一份是多少。',
-          '應用題把「誰比誰」先抄下來，不要邊讀邊算。',
-          '五題都要寫過程。'
-        ],
-        formula: { label: '這一節在練', tex: 'a:b:c=d:e:f' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-1', [
-            { src: '課本・隨堂練習', page: '印 14–18', sub: '連比例式、分配與應用', tags: ['課P14', '課P15', '課P16', '課P17', '課P18'] }
-          ]);
-        },
-        caption: '點任一題看詳解。'
       },
 
       {
@@ -1706,6 +1706,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '比例線段',
+        title: '練習｜課本隨堂（上段比下段、部分比全體）',
+        points: [
+          '看到平行線先問：<b>哪兩段對哪兩段</b>，寫下來再算。',
+          '比例式的分母要用<b>整條邊</b>還是<b>一段</b>，先圈清楚。',
+          '點任一題，圖會跟著步驟一起出現。'
+        ],
+        formula: { label: '這一節在練', tex: '\\overline{AP}:\\overline{PB}=\\overline{AQ}:\\overline{QC}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-2', [
+            { src: '課本・隨堂練習', page: '印 23–28', sub: '比例線段的兩層', tags: ['課P23', '課P24', '課P28 第1題', '課P28 第2題'] }
+          ]);
+        },
+        caption: '四題都抄到本子上再算。'
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
         title: '要比 PQ 和 BC，分母一定是整條 AB',
         points: [
           '\\(PQ:BC\\) 要配的是 <b>\\(AP:AB\\)</b>，不是 \\(AP:PB\\)。',
@@ -1932,6 +1952,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '比例線段',
+        title: '練習｜課本隨堂（中點連線與等分線段）',
+        points: [
+          '中點連線一定寫<b>兩句話</b>：平行、而且是一半。',
+          '等分線段先數<b>被分成幾等份</b>，再決定比。',
+          '點任一題看逐行詳解。'
+        ],
+        formula: { label: '這一節在練', tex: '\\overline{PQ}\\parallel\\overline{BC}\\ ,\\ \\overline{PQ}=\\tfrac12\\overline{BC}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-2', [
+            { src: '課本・隨堂練習', page: '印 30–32', sub: '中點連線、等分線段', tags: ['課P30 第1題', '課P30 第2題', '課P31', '課P32'] }
+          ]);
+        },
+        caption: '中點連線的題目，兩句話都要寫。'
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
         title: '為什麼「複製一個角」，兩條線就會平行',
         points: [
           '斜射線 \\(L\\) 同時穿過 \\(P_1\\) 和 \\(P_3\\)，它是<b>截線</b>。',
@@ -2101,6 +2141,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-2', secName: '比例線段',
+        title: '練習｜課本隨堂（應用）',
+        points: [
+          '應用題先把<b>每一段的長度標在圖上</b>，再列比例式。',
+          '題幹長，<b>先讀完再動筆</b>，不要看到數字就算。',
+          '三題都是圖形題，詳解會把圖和步驟一起推進。'
+        ],
+        formula: { label: '這一節在練', tex: '\\overline{AP}:\\overline{AB}=\\overline{PQ}:\\overline{BC}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-2', [
+            { src: '課本・隨堂練習', page: '印 35–38', sub: '應用', tags: ['課P35', '課P37', '課P38'] }
+          ]);
+        },
+        caption: '這三題題幹長，一題一題來。'
+      },
+
+      {
+        sec: '1-2', secName: '比例線段',
         title: '回頭看：四個名字，其實是同一式',
         points: [
           '<b>等高三角形</b>是這些性質的<b>來源</b>，不是解題的招式。',
@@ -2167,66 +2227,6 @@ window.DECK = window.DECK || [];
           ],
           ans: '不夠，要兩句'
         }
-      },
-
-      {
-        sec: '1-2', secName: '比例線段',
-        title: '練習｜課本隨堂（上段比下段、部分比全體）',
-        points: [
-          '看到平行線先問：<b>哪兩段對哪兩段</b>，寫下來再算。',
-          '比例式的分母要用<b>整條邊</b>還是<b>一段</b>，先圈清楚。',
-          '點任一題，圖會跟著步驟一起出現。'
-        ],
-        formula: { label: '這一節在練', tex: '\\overline{AP}:\\overline{PB}=\\overline{AQ}:\\overline{QC}' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-2', [
-            { src: '課本・隨堂練習', page: '印 23–28', sub: '比例線段的兩層', tags: ['課P23', '課P24', '課P28 第1題', '課P28 第2題'] }
-          ]);
-        },
-        caption: '四題都抄到本子上再算。'
-      },
-
-      {
-        sec: '1-2', secName: '比例線段',
-        title: '練習｜課本隨堂（中點連線與等分線段）',
-        points: [
-          '中點連線一定寫<b>兩句話</b>：平行、而且是一半。',
-          '等分線段先數<b>被分成幾等份</b>，再決定比。',
-          '點任一題看逐行詳解。'
-        ],
-        formula: { label: '這一節在練', tex: '\\overline{PQ}\\parallel\\overline{BC}\\ ,\\ \\overline{PQ}=\\tfrac12\\overline{BC}' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-2', [
-            { src: '課本・隨堂練習', page: '印 30–32', sub: '中點連線、等分線段', tags: ['課P30 第1題', '課P30 第2題', '課P31', '課P32'] }
-          ]);
-        },
-        caption: '中點連線的題目，兩句話都要寫。'
-      },
-
-      {
-        sec: '1-2', secName: '比例線段',
-        title: '練習｜課本隨堂（應用）',
-        points: [
-          '應用題先把<b>每一段的長度標在圖上</b>，再列比例式。',
-          '題幹長，<b>先讀完再動筆</b>，不要看到數字就算。',
-          '三題都是圖形題，詳解會把圖和步驟一起推進。'
-        ],
-        formula: { label: '這一節在練', tex: '\\overline{AP}:\\overline{AB}=\\overline{PQ}:\\overline{BC}' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-2', [
-            { src: '課本・隨堂練習', page: '印 35–38', sub: '應用', tags: ['課P35', '課P37', '課P38'] }
-          ]);
-        },
-        caption: '這三題題幹長，一題一題來。'
       },
 
       {
