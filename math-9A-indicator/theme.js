@@ -38,6 +38,7 @@
   var HEX = /#[0-9a-fA-F]{6}\b/g;
   function fix(el) {
     if (el.nodeType !== 1 || el instanceof SVGElement) return;
+    if (el.classList.contains('dcolor')) return;
     var s = el.getAttribute('style');
     if (!s || s.indexOf('#') < 0) return;
     var t = s.replace(HEX, function (h) { return T.colors[h.toLowerCase()] || h; });

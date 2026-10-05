@@ -163,12 +163,15 @@ window.DECK = window.DECK || [];
             {
               t: '列直式：只看最後那一格', d: k => {
 
+                const cx = [232, 286, 334];
+                const C = (i, y, t, c) => TX(cx[i], y, t, { anchor: 'middle', fs: 16, c, op: k });
                 let s = TX(220, 116, '長除法直式', { anchor: 'middle', fs: 13, c: GREY, op: k });
-                s += TX(270, 142, '商：x ＋ 3', { anchor: 'middle', fs: 16, c: BLU, op: k });
-                s += SV.seg(190, 152, 350, 152, INK, 2);
+                s += TX(196, 142, '商', { anchor: 'end', fs: 13, c: GREY, op: k });
+                s += C(0, 142, 'x', BLU) + C(1, 142, '＋ 3', BLU);
+                s += SV.seg(190, 152, 360, 152, INK, 2);
                 s += SV.seg(190, 152, 190, 188, INK, 2);
                 s += TX(182, 176, '2x − 1', { anchor: 'end', fs: 16, c: INK, op: k });
-                s += TX(200, 176, '2x² ＋ 5x − 3', { fs: 16, c: INK, op: k });
+                s += C(0, 176, '2x²', INK) + C(1, 176, '＋ 5x', INK) + C(2, 176, '− 3', INK);
                 s += BOX(200, 190, 150, 32, { r: 9, fill: '#eef7f2', stroke: GRN, op: k });
                 s += TX(275, 212, '餘式 0', { anchor: 'middle', fs: 16, c: GRN, op: k });
                 return s;
