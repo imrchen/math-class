@@ -2333,7 +2333,24 @@ window.DECK = window.DECK || [];
             SV.vlabel(P[0][0] - 6, P[0][1] - 10, nm[0])
             + SV.vlabel(P[1][0] - 20, P[1][1] + 20, nm[1])
             + SV.vlabel(P[2][0] + 8, P[2][1] + 20, nm[2]);
+
+          const P3 = (x, y, z) => [52 + z + 0.5 * x, 120 - y + 0.4 * x];
+          const sq = (z, s) => [[-s, s], [s, s], [s, -s], [-s, -s]].map(([x, y]) => P3(x, y, z));
+          const A0 = [52, 120], paper = sq(130, 26), wall = sq(320, 26 * 320 / 130);
+          const torch = () => `<rect x="12" y="111" width="32" height="18" rx="5" fill="${INK}"/>`
+            + `<rect x="42" y="107" width="11" height="26" rx="3" fill="${GREY}"/>`
+            + SV.poly([A0, wall[0], wall[1], wall[2]], 'rgba(250,204,21,.20)', 'none', 0)
+            + wall.map(p => SV.seg(A0[0], A0[1], p[0], p[1], GREY, 1.2, '5 4')).join('')
+            + SV.poly(wall, 'rgba(100,116,139,.55)', '#64748b', 2)
+            + SV.poly(paper, 'rgba(124,58,237,.78)', VIO, 2)
+            + SV.vlabel(A0[0] - 4, A0[1] - 16, 'A')
+            + TX(paper[0][0] + 6, paper[0][1] - 10, '色紙', { anchor: 'middle', fs: 14, c: VIO })
+            + TX(wall[3][0] + 32, wall[2][1] + 22, '牆上的影子', { anchor: 'middle', fs: 14, c: '#475569' });
           SV.stepper(h, SECVB, [
+            { t: '手電筒從 <b>A 點</b>照色紙，牆上的影子<b>形狀一樣、大小不同</b>——這就是縮放。',
+              d: () => SECBG + torch()
+                + TX(220, 258, '影子就是色紙的縮放圖形：形狀一樣，只是變大', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 280, 'A 點就是後面要講的「縮放中心」', { anchor: 'middle', fs: 13.5, c: GREY }) },
             { t: '兩個圖形<b>形狀一樣</b>、大小不一樣，就叫相似。',
               d: () => SECBG + shape(L) + shape(R)
                 + TX(104, 186, '小的', { anchor: 'middle', fs: 14, c: GREY })

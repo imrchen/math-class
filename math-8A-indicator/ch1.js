@@ -2076,24 +2076,26 @@ window.DECK = window.DECK || [];
         ],
         formula: { label: '第一題<span class="pgref">課本 印 42–43</span>', tex: '(2x^2+6x)\\div(x+3)=2x' },
         visual: (h) => {
-          const bx = 150, by = 96;
+
+          const bx = 150, by = 96, cx = [bx + 46, bx + 126];
+          const C = (i, y, s, o) => TX(cx[i], y, s, Object.assign({ anchor: 'middle', fs: 18, c: INK }, o));
           const frame = `${SV.seg(bx - 12, by - 26, bx + 190, by - 26, INK, 2)}
             ${SV.seg(bx - 12, by - 26, bx - 12, by + 96, INK, 2)}
-            ${TX(bx - 24, by + 4, 'x ＋ 3', { anchor: 'end', fs: 17, c: INK })}
-            ${TX(bx + 84, by + 4, '2x² ＋ 6x', { anchor: 'middle', fs: 17, c: INK })}`;
+            ${TX(bx - 24, by + 4, 'x ＋ 3', { anchor: 'end', fs: 18, c: INK })}
+            ${C(0, by + 4, '2x²')}${C(1, by + 4, '＋ 6x')}`;
           SV.stepper(h, '0 0 440 288', [
             {
               t: '試商：x 乘什麼會得到 2x²？答 2x', d: k =>
-                frame + TX(bx + 84, by - 40, '2x', { anchor: 'middle', fs: 19, c: BLU, op: k })
+                frame + C(0, by - 40, '2x', { fs: 19, c: BLU, op: k })
             },
             {
               t: '乘回：2x 要乘完整個 (x＋3)', d: k =>
-                TX(bx + 84, by + 40, '2x² ＋ 6x', { anchor: 'middle', fs: 17, c: AMB, op: k }) +
+                C(0, by + 40, '2x²', { c: AMB, op: k }) + C(1, by + 40, '＋ 6x', { c: AMB, op: k }) +
                 SV.seg(bx + 2, by + 52, bx + 166, by + 52, '#c3cddd', 1.8)
             },
             {
               t: '整列相減：整列都要變號', d: k =>
-                TX(bx + 84, by + 84, '0', { anchor: 'middle', fs: 19, c: GRN, op: k }) +
+                C(1, by + 84, '0', { fs: 19, c: GRN, op: k }) +
                 TX(bx - 24, by + 44, '－)', { anchor: 'end', fs: 16, c: RED, op: k })
             },
             {

@@ -10,7 +10,7 @@ window.DECK = window.DECK || [];
     const cx = [106, 170, 224];
     const T = (col, y, s, c, fs) => `<text x="${cx[col]}" y="${y}" text-anchor="middle" font-size="${fs || 22}" font-weight="800" fill="${c}">${s}</text>`;
     return `<svg viewBox="0 0 250 262" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
-      + T(1, 40, '7x', GRN) + T(2, 40, '－2', GRN)
+      + T(0, 40, '7x', GRN) + T(1, 40, '－2', GRN)
       + `<text x="60" y="84" text-anchor="end" font-size="22" font-weight="800" fill="${VIO}">3x＋1</text>`
       + `<path d="M65,96 Q78,77 65,56 H248" fill="none" stroke="${INK}" stroke-width="2.4"/>`
       + T(0, 84, '21x²', INK) + T(1, 84, '＋x', INK) + T(2, 84, '－2', INK)
@@ -2751,31 +2751,31 @@ window.DECK = window.DECK || [];
         ],
         formula: { label: '一輪三動作<span class="pgref">課本 印 44–45</span>', tex: '\\text{除}\\rightarrow\\text{乘回}\\rightarrow\\text{相減}' },
         visual: (h) => {
-          const L = 150, R = 396;
+
+          const L = 150, R = 396, cx = [200, 268, 336];
           const bar = () => `<path d="M${L} 66 L${L} 116 L${R} 116" fill="none" stroke="${INK}" stroke-width="2"/>` +
             `<line x1="${L}" y1="66" x2="${R}" y2="66" stroke="${INK}" stroke-width="2"/>`;
-          const dividend = () => TX(166, 106, 'x² + 5x + 6', { fs: 19 }) + TX(60, 106, 'x + 2', { fs: 19 });
-          const q = (t, c) => TX(190, 56, t, { fs: 19, c: c || GRN });
-          const sub = (y, t, c) => TX(178, y, t, { fs: 18, c: c || RED });
+          const C = (i, y, t, c, fs) => TX(cx[i], y, t, { anchor: 'middle', fs: fs || 19, c: c || INK });
+          const row = (i0, y, ts, c, minus) => ts.map((t, j) => C(i0 + j, y, t, c, 18)).join('')
+            + (minus ? TX(cx[i0] - 34, y, '−', { anchor: 'end', fs: 18, c }) : '');
+          const rule = (i0, y) => `<line x1="${cx[i0] - 30}" y1="${y}" x2="${R - 20}" y2="${y}" stroke="${INK}" stroke-width="1.6"/>`;
+          const dividend = () => C(0, 106, 'x²') + C(1, 106, '+ 5x') + C(2, 106, '+ 6') + TX(60, 106, 'x + 2', { fs: 19 });
+          const q = (n, c) => C(0, 56, 'x', c || GRN) + (n > 1 ? C(1, 56, '+ 3', c || GRN) : '');
           SV.stepper(h, '0 0 440 268', [
             { t: '被除式 x²＋5x＋6，除式 x＋2。先看最高次：x² ÷ x ＝ x。',
-              d: () => bar() + dividend() + q('x') },
+              d: () => bar() + dividend() + q(1) },
             { t: '把商的 x <b>乘回</b>除式：x(x＋2) ＝ x²＋2x，寫在下面。',
-              d: () => bar() + dividend() + q('x') + sub(140, 'x² + 2x', BLU) },
+              d: () => bar() + dividend() + q(1) + row(0, 140, ['x²', '+ 2x'], BLU) },
             { t: '<b>相減</b>：(x²＋5x)−(x²＋2x) ＝ 3x，再把 ＋6 帶下來。',
-              d: () => bar() + dividend() + q('x') + sub(140, '− ) x² + 2x', BLU) +
-                       `<line x1="166" y1="152" x2="330" y2="152" stroke="${INK}" stroke-width="1.6"/>` +
-                       sub(176, '3x + 6', RED) },
+              d: () => bar() + dividend() + q(1) + row(0, 140, ['x²', '+ 2x'], BLU, true) + rule(0, 152) +
+                       row(1, 176, ['3x', '+ 6'], RED) },
             { t: '再來一輪：3x ÷ x ＝ 3，商補上 ＋3；3(x＋2) ＝ 3x＋6。',
-              d: () => bar() + dividend() + q('x + 3') + sub(140, '− ) x² + 2x', GREY) +
-                       `<line x1="166" y1="152" x2="330" y2="152" stroke="${INK}" stroke-width="1.6"/>` +
-                       sub(176, '3x + 6', INK) + sub(206, '− ) 3x + 6', BLU) },
+              d: () => bar() + dividend() + q(2) + row(0, 140, ['x²', '+ 2x'], GREY, true) + rule(0, 152) +
+                       row(1, 176, ['3x', '+ 6'], INK) + row(1, 206, ['3x', '+ 6'], BLU, true) },
             { t: '相減得 0，餘式是 0。商 ＝ x＋3，整除。',
-              d: () => bar() + dividend() + q('x + 3') + sub(140, '− ) x² + 2x', GREY) +
-                       `<line x1="166" y1="152" x2="330" y2="152" stroke="${INK}" stroke-width="1.6"/>` +
-                       sub(176, '3x + 6', GREY) + sub(206, '− ) 3x + 6', GREY) +
-                       `<line x1="166" y1="216" x2="330" y2="216" stroke="${INK}" stroke-width="1.6"/>` +
-                       TX(300, 242, '餘式 0', { anchor: 'middle', fs: 18, c: GRN }) }
+              d: () => bar() + dividend() + q(2) + row(0, 140, ['x²', '+ 2x'], GREY, true) + rule(0, 152) +
+                       row(1, 176, ['3x', '+ 6'], GREY) + row(1, 206, ['3x', '+ 6'], GREY, true) + rule(1, 216) +
+                       C(2, 242, '0', GRN) + TX(cx[2] - 22, 242, '餘式', { anchor: 'end', fs: 15, c: GRN }) }
           ], { acc: false });
         },
         caption: '停止條件：<b>餘式的次數比除式低</b>就不能再除了。',
@@ -2799,28 +2799,30 @@ window.DECK = window.DECK || [];
         ],
         formula: { label: '相減＝整列變號再相加<span class="pgref">課本 印 45</span>', tex: '(2x^2+6x)-(2x^2-6x)=12x' },
         visual: (h) => {
+
+          const cx = [204, 272, 340];
+          const C = (i, y, t, c, fs) => TX(cx[i], y, t, { anchor: 'middle', fs: fs || 18, c: c || INK });
+          const M = (i, y, c) => TX(cx[i] - 34, y, '−', { anchor: 'end', fs: 17, c });
+          const rule = (i0, y, c) => `<line x1="${cx[i0] - 30}" y1="${y}" x2="380" y2="${y}" stroke="${c || INK}" stroke-width="1.6"/>`;
           const bar = () => `<path d="M150 62 L150 112 L400 112" fill="none" stroke="${INK}" stroke-width="2"/>` +
             `<line x1="150" y1="62" x2="400" y2="62" stroke="${INK}" stroke-width="2"/>`;
-          const head = () => TX(64, 102, 'x − 3', { fs: 18 }) + TX(166, 102, '2x² + 6x + 7', { fs: 18 });
+          const head = () => TX(64, 102, 'x − 3', { fs: 18 }) + C(0, 102, '2x²') + C(1, 102, '+ 6x') + C(2, 102, '+ 7');
           SV.stepper(h, '0 0 440 268', [
             { t: '題目 (2x²＋6x＋7) ÷ (x−3)。第一輪商是 2x，乘回得 2x²−6x。',
-              d: () => bar() + head() + TX(190, 52, '2x', { fs: 18, c: GRN }) + TX(178, 136, '2x² − 6x', { fs: 17, c: BLU }) },
+              d: () => bar() + head() + C(0, 52, '2x', GRN) + C(0, 136, '2x²', BLU, 17) + C(1, 136, '− 6x', BLU, 17) },
             { t: '仕軒的錯誤：只把第一項相減，−6x 那一項忘了變號，直接抄成 7。',
-              d: () => bar() + head() + TX(190, 52, '2x', { fs: 18, c: RED }) + TX(178, 136, '2x² − 6x', { fs: 17, c: RED }) +
-                       `<line x1="166" y1="148" x2="360" y2="148" stroke="${RED}" stroke-width="1.6"/>` +
-                       TX(320, 172, '7', { fs: 18, c: RED }) +
+              d: () => bar() + head() + C(0, 52, '2x', RED) + C(0, 136, '2x²', RED, 17) + C(1, 136, '− 6x', RED, 17) +
+                       rule(0, 148, RED) + C(2, 172, '7', RED) +
                        TX(220, 218, '✗ 誤以為只剩常數，除法就結束了', { anchor: 'middle', fs: 15, c: RED }) },
             { t: '正確：整列變號 → 6x −(−6x) ＝ 6x＋6x ＝ 12x，不是 0。',
-              d: () => bar() + head() + TX(190, 52, '2x', { fs: 18, c: GRN }) + TX(166, 136, '− ) 2x² − 6x', { fs: 17, c: GRN }) +
-                       `<line x1="166" y1="148" x2="360" y2="148" stroke="${INK}" stroke-width="1.6"/>` +
-                       TX(230, 172, '12x + 7', { fs: 18, c: GRN }) +
+              d: () => bar() + head() + C(0, 52, '2x', GRN) + M(0, 136, GRN) + C(0, 136, '2x²', GRN, 17) + C(1, 136, '− 6x', GRN, 17) +
+                       rule(0, 148) + C(1, 172, '12x', GRN) + C(2, 172, '+ 7', GRN) +
                        TX(220, 218, '6x −(−6x) ＝ 12x，還要再除一輪', { anchor: 'middle', fs: 15, c: GRN }) },
             { t: '再一輪：12x ÷ x ＝ 12，12(x−3) ＝ 12x−36，相減得 43。',
-              d: () => bar() + head() + TX(196, 52, '2x + 12', { fs: 18, c: GRN }) + TX(166, 136, '− ) 2x² − 6x', { fs: 17, c: GREY }) +
-                       `<line x1="166" y1="148" x2="360" y2="148" stroke="${INK}" stroke-width="1.6"/>` +
-                       TX(230, 172, '12x + 7', { fs: 17, c: INK }) + TX(218, 200, '− ) 12x − 36', { fs: 17, c: BLU }) +
-                       `<line x1="212" y1="212" x2="360" y2="212" stroke="${INK}" stroke-width="1.6"/>` +
-                       TX(330, 238, '43', { fs: 19, c: GRN }) }
+              d: () => bar() + head() + C(0, 52, '2x', GRN) + C(1, 52, '+ 12', GRN) + M(0, 136, GREY) + C(0, 136, '2x²', GREY, 17) + C(1, 136, '− 6x', GREY, 17) +
+                       rule(0, 148) + C(1, 172, '12x', INK, 17) + C(2, 172, '+ 7', INK, 17) +
+                       M(1, 200, BLU) + C(1, 200, '12x', BLU, 17) + C(2, 200, '− 36', BLU, 17) +
+                       rule(1, 212) + C(2, 238, '43', GRN, 19) }
           ], { acc: false });
         },
         caption: '把仕軒的錯誤版本先抄在黑板上讓全班找錯，比抽象講「要變號」有效。',
