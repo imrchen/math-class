@@ -4101,7 +4101,7 @@ window.SOLUTIONS = {
    "ans": "\\(\\overline{BC}=12.8\\)",
    "fig": {
     "type": "polygon-group",
-    "unit": 44,
+    "unit": 100,
     "gap": 90,
     "shapes": [
      {
@@ -4111,28 +4111,28 @@ window.SOLUTIONS = {
         "y": 0,
         "label": "$A$",
         "nudge": [
-         14,
-         -6
+         24,
+         -14
         ]
        },
        {
-        "x": -2,
-        "y": 1.6,
+        "x": 1.902,
+        "y": 0.618,
         "label": "$E$"
        },
        {
-        "x": 4,
-        "y": 1.6,
+        "x": 3.867,
+        "y": -1.023,
         "label": "$F$"
        },
        {
-        "x": -1,
-        "y": -2,
+        "x": -0.967,
+        "y": 0.256,
         "label": "$B$"
        },
        {
-        "x": 2,
-        "y": -2,
+        "x": -1.902,
+        "y": -0.618,
         "label": "$C$"
        }
       ],
@@ -4152,7 +4152,11 @@ window.SOLUTIONS = {
        {
         "from": 0,
         "to": 3,
-        "text": "$10$"
+        "text": "$10$",
+        "nudge": [
+         0,
+         -12
+        ]
        },
        {
         "from": 0,
@@ -4167,12 +4171,20 @@ window.SOLUTIONS = {
        {
         "from": 0,
         "to": 2,
-        "text": "$40$"
+        "text": "$40$",
+        "nudge": [
+         -6,
+         28
+        ]
        },
        {
         "from": 1,
         "to": 2,
-        "text": "$25.6$"
+        "text": "$25.6$",
+        "nudge": [
+         16,
+         0
+        ]
        },
        {
         "from": 3,

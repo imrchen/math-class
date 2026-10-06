@@ -219,7 +219,10 @@ window.FIG = (function () {
         const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
         const dx = mx - cx, dy = my - cy, n = Math.hypot(dx, dy) || 1;
         if (g.ticks) body += tickMarks(a, b, g.ticks);
-        if (g.text) labels.push({ x: mx, y: my, ux: dx / n, uy: dy / n, text: tx(g.text), fs: 13.5,
+
+        const sl = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1, su = [(b[0] - a[0]) / sl, (b[1] - a[1]) / sl];
+        const sd = Math.abs(dx / n * su[1] - dy / n * su[0]) < 0.2 ? awayDir([mx, my], [su], [dx / n, dy / n]) : [dx / n, dy / n];
+        if (g.text) labels.push({ x: mx, y: my, ux: sd[0], uy: sd[1], text: tx(g.text), fs: 13.5,
                       c: g.accent ? ANS : '#3b4a5e', fw: g.accent ? 900 : undefined, d0: 17 });
       });
 
@@ -256,7 +259,24 @@ window.FIG = (function () {
         if (!p.label) return;
         const dx = P[i][0] - cx, dy = P[i][1] - cy, n = Math.hypot(dx, dy) || 1;
 
-        labels.push({ x: P[i][0], y: P[i][1], ux: dx / n, uy: dy / n, text: tx(p.label) });
+        const inc = [], seen = new Set();
+        rings.concat((sh.segments || []).map(g => [g.from, g.to])).forEach(r => {
+          if (!r || r.length < 2) return;
+          r.forEach((a, k) => {
+            const nb = r.length === 2 ? (k === 0 ? [r[1]] : []) : [r[(k + 1) % r.length]];
+            nb.forEach(b => {
+              if (a !== i && b !== i) return;
+              const j = a === i ? b : a, q = P[j]; if (!q || seen.has(j)) return;
+              seen.add(j);
+              const ex = q[0] - P[i][0], ey = q[1] - P[i][1], en = Math.hypot(ex, ey) || 1;
+              inc.push([ex / en, ey / en]);
+            });
+          });
+        });
+        const onLine = inc.length >= 4 && (n < 4 || inc.some(u => dx * u[0] + dy * u[1] > 0 && Math.abs(dx / n * u[1] - dy / n * u[0]) < 0.3));
+        const vd = onLine ? awayDir(P[i], inc, n < 4 ? null : [dx / n, dy / n]) : [dx / n, dy / n];
+
+        labels.push({ x: P[i][0], y: P[i][1], ux: vd[0], uy: vd[1], text: tx(p.label) });
       });
       if (sh.caption) body += T(x0 + S.w / 2, PAD + Math.max(...shapes.map(s => s.h)) + capDrop, tx(sh.caption), { fs: 14, c: '#3b4a5e' });
       x0 += S.w + gap;
