@@ -186,6 +186,7 @@ window.PRACTICE = (function () {
         r.onmouseenter = () => { r.style.background = T.hover; };
         r.onmouseleave = () => { r.style.background = ''; };
         r.onclick = () => detail(h, sec, tag, render, opt);
+        ldRowButton(r, sec, tag);
       });
       MJx(h);
       fit(h);
@@ -328,9 +329,12 @@ window.PRACTICE = (function () {
     const all = S(sec);
     if (!SUBRE.test(tag) || !all[tag]) return null;
     const d = merged(sec, tag);
-    const q = String(d && d.q || '').split('\n').slice(-1)[0].replace(/\s+/g, '');
-    const mm = /^\$\((.+)\)\\div\((.+)\)\$$/.exec(q);
-    if (!mm) return null;
+
+    const qAll = String(d && d.q || '');
+    if (/[(（]A[)）]/.test(qAll) || !/商式/.test(qAll) || !/餘式/.test(qAll)) return null;
+    const q = qAll.split('\n').slice(-1)[0].replace(/\s+/g, '');
+    const mm = /\$\(([^$]+)\)\\div\(([^$]+)\)\$/.exec(q);
+    if (!mm || (q.match(/\\div/g) || []).length !== 1) return null;
     const N = parsePoly(mm[1]), D = parsePoly(mm[2]);
     if (!N || !D || !D[0].n || N.length < D.length) return null;
     const n = N.length - 1, m = D.length - 1, r = N.slice(), rounds = [], Q = [];
@@ -341,7 +345,7 @@ window.PRACTICE = (function () {
       rounds.push({ k, q: qk, prod, rem: r.slice(k + 1, Math.min(n, k + m + 1) + 1) });
     }
     const Qt = ldPoly(Q, n - m), Rt = ldPoly(r.slice(n - m + 1), m - 1);
-    const key = String(d.key || '').split('、');
+    const key = String(d.key || '').split(/[、，,]/);
     if (key.length !== 2 || ldPlain(key[0]) !== ldPlain(Qt) || ldPlain(key[1]) !== ldPlain(Rt)) return null;
     const C = n + 1, M = (t) => `\\(${t}\\)`;
     const td = (cls, html) => `<td${cls ? ` class="${cls}"` : ''}>${html || ''}</td>`;
@@ -364,6 +368,31 @@ window.PRACTICE = (function () {
   }
 
   const ldFix = (c) => Object.assign(c, { html: c.html.replace(/data-r="(\d+)"/g, (_, v) => `data-r="${v - 1}"`) });
+
+  function ldOpen(cells, base) {
+    if (!window.BOARD) return;
+    const groups = [];
+    for (let i = 0; i < cells.length; i += 2) {
+      const part = cells.slice(i, i + 2);
+      groups.push({ label: base + (cells.length > 1 ? ' ' + part.map(c => c.no).join('') : ''), cells: part });
+    }
+    window.BOARD.openQuad({ title: '計算紙（直式兩題）', note: '點一格看下一回合', stepWord: '下一回合', cols: 2, rows: 1, groups });
+  }
+  function ldRowButton(r, sec, tag) {
+    if (typeof document === 'undefined') return;
+    const all = S(sec), subs = [];
+    for (const no of CIRC) { if (all[tag + ' ' + no]) subs.push(no); else break; }
+    if (!subs.length) return;
+    const cells = subs.map(no => { const c = ldCell(sec, tag + ' ' + no); return c && Object.assign({ no: subs.length > 1 ? no : '' }, ldFix(c)); });
+    if (cells.some(x => !x)) return;
+    const go = r.querySelector('span:last-child');
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'p-quad';
+    b.textContent = '直式';
+    b.style.cssText = `flex:0 0 auto;align-self:center;border:1.5px solid ${C};background:#fff;color:${C};font-weight:900;font-size:13px;border-radius:999px;padding:1px 10px;cursor:pointer`;
+    b.onclick = (e) => { e.stopPropagation(); ldOpen(cells, rowLabel(tag, merged(sec, tag) || {})); };
+    r.insertBefore(b, go);
+  }
 
   function quadButtons(h, sec) {
 
