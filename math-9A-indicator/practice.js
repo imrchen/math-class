@@ -91,6 +91,8 @@ window.PRACTICE = (function () {
     const loc = (window.FIGS_LOCAL || {})[sec + ' ' + tag];
     if (loc && loc.length && !d.fig) d = Object.assign({}, d, { fig: loc[0], figs: loc });
 
+    const rep = (window.FIGS_REPLACE || {})[sec + ' ' + tag];
+    if (rep && rep.length) d = Object.assign({}, d, { fig: rep[0], figs: rep, solfigs: [] });
     const extra = (window.FIGS_EXTRA || {})[sec + ' ' + tag];
     if (extra && extra.length) d = Object.assign({}, d, { figs: (d.figs && d.figs.length ? d.figs : (d.fig ? [d.fig] : [])).concat(extra) });
 
