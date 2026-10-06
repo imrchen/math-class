@@ -4375,7 +4375,7 @@ window.SOLUTIONS = {
    "page": "印 13",
    "title": "暖身題第 1 題",
    "q": "如圖，判別這兩個圖形是否相似？\n(A) 是　(B) 否",
-   "ref": "圖見習作 p.13 第 1 題。原書在五個角都標 $108\\degree$，但小五邊形只有約 100 px 寬、五個標籤會疊成一團，因此只標一個角，「每個角都是 $108\\degree$」寫在理由裡；邊長五個都標（在外側，不相疊）",
+   "ref": "圖見習作 p.13 第 1 題。照原書五個角都標 $108\\degree$、五個邊長都標；為了讓小五邊形裡的角度字不相疊，unit 由 40 放大到 70（2026-10-06，math-deck 回報）",
    "steps": [
     "兩個都是正五邊形，每個角都是 \\(108\\degree\\)，對應角相等",
     "對應邊成比例：\\(2：4=1：2\\)",
@@ -4385,7 +4385,7 @@ window.SOLUTIONS = {
    "ans": "\\((A)\\) 是",
    "fig": {
     "type": "polygon-group",
-    "unit": 40,
+    "unit": 70,
     "gap": 60,
     "shapes": [
      {
@@ -4414,6 +4414,30 @@ window.SOLUTIONS = {
       "angles": [
        {
         "at": 0,
+        "text": "$108\\degree$"
+       },
+       {
+        "at": 1,
+        "text": "$108\\degree$"
+       },
+       {
+        "at": 2,
+        "text": "$108\\degree$",
+        "nudge": [
+         -5,
+         -12
+        ]
+       },
+       {
+        "at": 3,
+        "text": "$108\\degree$",
+        "nudge": [
+         5,
+         -12
+        ]
+       },
+       {
+        "at": 4,
         "text": "$108\\degree$"
        }
       ],
@@ -4472,6 +4496,22 @@ window.SOLUTIONS = {
       "angles": [
        {
         "at": 0,
+        "text": "$108\\degree$"
+       },
+       {
+        "at": 1,
+        "text": "$108\\degree$"
+       },
+       {
+        "at": 2,
+        "text": "$108\\degree$"
+       },
+       {
+        "at": 3,
+        "text": "$108\\degree$"
+       },
+       {
+        "at": 4,
         "text": "$108\\degree$"
        }
       ],

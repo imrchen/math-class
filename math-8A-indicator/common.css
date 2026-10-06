@@ -251,6 +251,25 @@ body.bd-open #dkPrev, body.bd-open #dkNext { display: none; }
   background: #fff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 14px 18px;
 }
 .bd-steps:empty { display: none !important; }
+/* 四題計算紙（board.js 的 openQuad；Roger 2026-10-06）：兩欄兩列，字級由 board.js 依視窗設在每格上，這裡都用 em。
+   每格角落的「下一步」是 fixed、z 1300（同頂列），畫筆開著也按得到；講解板關掉時由 board.js 移除。 */
+.bd-quad { position: absolute; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.bd-quad.hidden { display: none; }
+.bd-qc { position: relative; padding: .45em .65em; overflow: hidden; cursor: pointer; color: #172033;
+  border-right: 1.5px dashed #cbd5e1; border-bottom: 1.5px dashed #cbd5e1; }
+.bd-qc:nth-child(2n) { border-right: none; }
+.bd-qc:nth-child(n+3) { border-bottom: none; }
+.bd-qc-q { display: flex; gap: .35em; align-items: baseline; font-weight: 800; line-height: 1.4; }
+.bd-qc-no { color: var(--edition); flex: 0 0 auto; }
+.bd-qc-steps { margin: .35em 0 0 1.3em; display: flex; flex-direction: column; gap: .3em; font-size: .89em; font-weight: 700; line-height: 1.45; }
+.bd-qc-ln { visibility: hidden; white-space: nowrap; }   /* 不換行：「原式」被擠到單獨一行時，續行的「=」就對不齊了 */
+.bd-qc-ln.on { visibility: visible; }
+.bd-qc-ln.fin.on { color: #15803d; }
+.bd-qc-ln.cont { padding-left: 2.05em; }   /* 續行的「=」對齊到「原式」後面那個等號 */
+.bd-qc-why { display: block; font-size: .6em; line-height: 1.3; color: #64748b; }   /* 放在算式上方：放前面的話續行的「=」會對歪 */
+.bd-qnext { position: fixed; z-index: 1300; border: 2px solid var(--edition); color: var(--edition); background: #fff; }
+.bd-qnext.bd-on { background: var(--edition); color: #fff; }
+body:not(.bd-open) .bd-qnext { display: none; }
 
 /* ---------- 9. 字級面板（text-scale.js；Roger 2026-10-01，三站相同） ----------
    教具列的「字級」鈕打開，面板貼在教具列左邊（教具列的 absolute 子元素，不另開圖層）。

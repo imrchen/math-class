@@ -6,6 +6,7 @@
 
   var layer = null, bar = null, badge = null, qbox = null, figArea = null, stepsBox = null;
   var bQ = null, bS = null, bPrev = null, bNext = null;
+  var quad = null, bAll = null, bNone = null, quadCells = [], quadMode = false;
   var cur = null;
   var showQ = true, showS = false;
   var TOP = 78, LEFT = 28, DOCK = 104;
@@ -29,6 +30,7 @@
     qbox = el('div', 'bd-q', layer);
     figArea = el('div', 'bd-fig', layer);
     stepsBox = el('div', 'bd-steps', layer);
+    quad = el('div', 'bd-quad hidden', layer);
     bar = el('div', 'zoom-bar bd-bar hidden', document.body);
     bar.id = 'bdBar';
     badge = el('div', 'zoom-badge', bar);
@@ -37,6 +39,8 @@
     bS = b('bdS', '步驟');
     bPrev = b('bdPrev', '‹ 上一步');
     bNext = b('bdNext', '下一步 ›');
+    bAll = b('bdAll', '全部顯示');
+    bNone = b('bdNone', '全部收起');
     b('bdClose', '✕ 關閉', 'zoom-x').onclick = close;
 
     bQ.onclick = function () { showQ = !showQ; clearPen(); place(); paintToggles(); };
@@ -47,7 +51,9 @@
     };
     bPrev.onclick = function () { step(-1); };
     bNext.onclick = function () { step(1); };
-    window.addEventListener('resize', function () { if (isOpen()) place(); });
+    bAll.onclick = function () { quadCells.forEach(function (c) { c.k = c.n; c.paint(); }); };
+    bNone.onclick = function () { quadCells.forEach(function (c) { c.k = 0; c.paint(); }); };
+    window.addEventListener('resize', function () { if (!isOpen()) return; if (quadMode) placeQuad(); else place(); });
   }
 
   var picked = new WeakMap();
@@ -200,6 +206,8 @@
   }
 
   function paintToggles() {
+    bAll.style.display = bNone.style.display = quadMode ? '' : 'none';
+    if (quadMode) { bQ.style.display = bS.style.display = bPrev.style.display = bNext.style.display = 'none'; return; }
     var hasQ = qbox.childNodes.length > 0;
     bQ.style.display = hasQ ? '' : 'none';
     bQ.classList.toggle('bd-on', showQ);
@@ -233,6 +241,7 @@
     cur = { host: host, figBox: figBox,
             hook: figBox && figBox.__board ? figBox.__board : (hs && host.contains(hs.live) ? hs : null) };
     showQ = true; showS = false;
+    leaveQuad();
     var q = question(host);
     fillQuestion(q);
     badge.innerHTML = '';
@@ -253,12 +262,89 @@
     if (!isOpen()) return;
     clearPen();
     qbox.innerHTML = ''; figArea.innerHTML = ''; stepsBox.innerHTML = '';
+    leaveQuad();
     cur = null;
     layer.classList.add('hidden');
     bar.classList.add('hidden');
     document.body.classList.remove('bd-open');
     if (btn) btn.classList.remove('active');
   }
+
+  function leaveQuad() {
+    quadMode = false;
+    if (!quad) return;
+    quad.classList.add('hidden'); quad.innerHTML = '';
+    quadCells.forEach(function (c) { if (c.btn) c.btn.remove(); });
+    quadCells = [];
+    qbox.style.display = '';
+  }
+
+  function openQuad(spec) {
+    ensure();
+    leaveQuad();
+    quadMode = true;
+    cur = null; showQ = false; showS = false;
+    qbox.innerHTML = ''; figArea.innerHTML = ''; stepsBox.innerHTML = '';
+    qbox.style.display = 'none'; figArea.style.display = 'none'; stepsBox.style.display = 'none';
+    badge.innerHTML = '';
+    badge.appendChild(document.createTextNode('計算紙（四題）' + (spec.label ? '　' + spec.label : '')));
+    el('span', 'bd-note', badge).textContent = '點一格看下一步　關閉後筆跡不保留';
+    quad.classList.remove('hidden');
+    (spec.cells || []).forEach(function (cd) {
+      var cell = el('div', 'bd-qc', quad);
+      var q = el('div', 'bd-qc-q', cell);
+      el('span', 'bd-qc-no', q).textContent = cd.no || '';
+      var qb = el('span', '', q);
+      if (cd.q) { var c = cd.q.cloneNode(true); c.removeAttribute('style'); qb.appendChild(c); }
+      var box = el('div', 'bd-qc-steps', cell);
+      box.innerHTML = (cd.lines || []).map(function (l) {
+        return '<div class="bd-qc-ln' + (l.cont ? ' cont' : '') + (l.fin ? ' fin' : '') + '">' +
+          (l.why ? '<span class="bd-qc-why">' + l.why + '</span>' : '') + l.html + '</div>';
+      }).join('');
+      var lns = box.querySelectorAll('.bd-qc-ln');
+      var nb = el('button', 'zoom-btn bd-qnext', document.body);
+      nb.type = 'button';
+      var it = { cell: cell, btn: nb, k: 0, n: lns.length };
+      it.paint = function () {
+        Array.prototype.forEach.call(lns, function (x, i) { x.classList.toggle('on', i < it.k); });
+        nb.textContent = it.k >= it.n ? '✓ 收起' : (cd.no || '') + ' 下一步 ›';
+        nb.classList.toggle('bd-on', it.k >= it.n);
+      };
+      it.go = function () { it.k = it.k >= it.n ? 0 : it.k + 1; it.paint(); };
+      nb.onclick = function (e) { e.stopPropagation(); it.go(); };
+      cell.onclick = it.go;
+      it.paint();
+      quadCells.push(it);
+    });
+    clearPen();
+    document.body.classList.add('bd-open');
+    layer.classList.remove('hidden');
+    bar.classList.remove('hidden');
+    if (btn) btn.classList.add('active');
+    paintToggles();
+    placeQuad();
+    var mj = window.MathJax && window.MathJax.typesetPromise;
+    if (mj) window.MathJax.typesetPromise([quad]).then(placeQuad).catch(placeQuad);
+    if (!app.classList.contains('pen-on')) document.getElementById('dkPen').click();
+  }
+
+  function placeQuad() {
+    if (!quadMode) return;
+    var vw = window.innerWidth, vh = window.innerHeight;
+    quad.style.top = (TOP - 8) + 'px'; quad.style.left = '0px';
+    quad.style.width = (vw - DOCK) + 'px'; quad.style.height = (vh - TOP + 8) + 'px';
+    var base = Math.max(16, Math.min(44, vw * 0.024, vh * 0.044));
+    quadCells.forEach(function (it) {
+      var fs = base;
+      it.cell.style.fontSize = fs + 'px';
+      while ((it.cell.scrollHeight > it.cell.clientHeight + 1 || it.cell.scrollWidth > it.cell.clientWidth + 1) && fs > 16) { fs -= 2; it.cell.style.fontSize = fs + 'px'; }
+      var r = it.cell.getBoundingClientRect();
+      it.btn.style.top = Math.round(r.bottom - 52) + 'px';
+      it.btn.style.left = Math.round(r.right - it.btn.offsetWidth - 16) + 'px';
+    });
+  }
+
+  window.BOARD = { openQuad: openQuad };
 
   if (btn) btn.onclick = function () { if (isOpen()) close(); else open(null); };
 

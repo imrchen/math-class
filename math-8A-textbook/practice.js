@@ -249,10 +249,87 @@ window.PRACTICE = (function () {
         row.onclick = () => detail(h, sec, tag, render, opt);
       });
       pRelabel(h, sec);
+      if (all) quadButtons(h, sec);
       MJx(h);
       pAfter(h);
     };
     render();
+  }
+
+  const QWHY = /^([^$：:]{2,20})[：:]\s*(.+)$/;
+
+  function splitChain(line) {
+    const m = /^(.*?)\$([^$]+)\$\s*$/.exec(line);
+    if (!m) return [line];
+    const pre = m[1], math = m[2], parts = [];
+    let depth = 0, cur = '';
+    for (const ch of math) {
+      if ('({['.includes(ch)) depth++;
+      if (')}]'.includes(ch)) depth--;
+      if (ch === '=' && depth === 0) { parts.push(cur); cur = ''; } else cur += ch;
+    }
+    parts.push(cur);
+    if (parts.length <= 2) return [line];
+    const head = parts[0].trim();
+    return parts.slice(1).map((q, i) => i === 0 ? `${pre}$${head ? head + ' ' : ''}=${q}$` : `$=${q}$`);
+  }
+  const plain = (t) => String(t || '').replace(/\$|\s/g, '');
+  function quadCell(sec, tag) {
+    const all = S(sec);
+    if (!SUBRE.test(tag) || !all[tag]) return null;
+    const d = merged(sec, tag);
+    if (!d || d.fig || d.table || !d.steps.length || d.steps.some(t => QNUM.test(String(t)))) return null;
+    const lines = [];
+    d.steps.forEach(st => {
+      const w = QWHY.exec(String(st));
+      (w ? splitChain(w[2]) : splitChain(String(st)))
+        .forEach((t, i) => lines.push({ why: w && i === 0 ? w[1] : '', t }));
+    });
+    const ans = cleanAns(d.key || d.ans);
+    if (ans && !plain(lines[lines.length - 1].t).includes(plain(ans))) lines.push({ why: '', t: '答：' + ans });
+    if (lines.length > 4 || lines.some(l => texWide(l.t) > 46)) return null;
+    return { steps: d.steps, lines: lines.map((l, i) => ({ why: l.why, html: tex(l.t), cont: /^\$=/.test(l.t), fin: i === lines.length - 1 })) };
+  }
+  function quadButtons(h, sec) {
+
+    if (typeof document === 'undefined') return;
+    const cards = new Map();
+    h.querySelectorAll('.p-row').forEach(r => {
+      const c = r.parentElement && r.parentElement.parentElement;
+      if (!c) return;
+      if (!cards.has(c)) cards.set(c, []);
+      cards.get(c).push(r);
+    });
+    cards.forEach((rows, c) => {
+      if (rows.length < 2 || rows.length > 4) return;
+      const cells = rows.map(r => quadCell(sec, r.dataset.tag));
+      if (cells.some(x => !x)) return;
+      const sig = cells.map(x => JSON.stringify(x.steps));
+      if (new Set(sig).size < sig.length) return;
+      const head = c.firstElementChild, pageBadge = head && head.lastElementChild;
+      if (!head || !pageBadge) return;
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'p-quad';
+      b.textContent = '四題一起檢討';
+      b.style.cssText = 'margin-left:auto;margin-right:8px;border:1.5px solid #fff;background:rgba(255,255,255,.18);color:#fff;font-weight:900;font-size:12px;border-radius:999px;padding:1px 10px;cursor:pointer';
+      b.onclick = (e) => {
+        e.stopPropagation();
+        if (!window.BOARD) return;
+        const labs = rows.map(r => { const t = r.querySelector('.p-tag'); return t ? t.textContent.trim() : r.dataset.tag; });
+        const no = (l) => { const m = /[①-⑳]/.exec(l); return m ? m[0] : l; };
+
+        const grp = [];
+        labs.forEach(l => { const base = l.replace(SUBRE, ''), g = grp[grp.length - 1];
+          if (g && g.base === base) g.nos.push(no(l)); else grp.push({ base, nos: [no(l)] }); });
+        const run = (ns) => ns.length >= 3 && ns.every((n, i) => !i || CIRC.indexOf(n) === CIRC.indexOf(ns[i - 1]) + 1)
+          ? ns[0] + '～' + ns[ns.length - 1] : ns.join('');
+        window.BOARD.openQuad({
+          label: grp.map(g => g.base + ' ' + run(g.nos)).join('、'),
+          cells: rows.map((r, i) => ({ no: no(labs[i]), q: r.querySelector('.p-tag + span'), lines: cells[i].lines })),
+        });
+      };
+      head.insertBefore(b, pageBadge);
+    });
   }
 
   const detail = (h, sec, tag, back, opt) =>
