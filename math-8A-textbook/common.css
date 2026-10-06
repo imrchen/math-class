@@ -262,9 +262,19 @@ body.bd-open #dkPrev, body.bd-open #dkNext { display: none; }
 .bd-qc-q { display: flex; gap: .35em; align-items: baseline; font-weight: 800; line-height: 1.4; }
 .bd-qc-no { color: var(--edition); flex: 0 0 auto; }
 .bd-qc-steps { margin: .35em 0 0 1.3em; display: flex; flex-direction: column; gap: .3em; font-size: .89em; font-weight: 700; line-height: 1.45; }
-.bd-qc-ln { visibility: hidden; white-space: nowrap; }   /* 不換行：「原式」被擠到單獨一行時，續行的「=」就對不齊了 */
-.bd-qc-ln.on { visibility: visible; }
-.bd-qc-ln.fin.on { color: #15803d; }
+.bd-qc-ln { white-space: nowrap; }   /* 不換行：「原式」被擠到單獨一行時，續行的「=」就對不齊了 */
+.bd-r { visibility: hidden; }   /* 逐步揭露：第 k 次點擊露出 data-r < k 的（board.js） */
+.bd-r.on { visibility: visible; }
+.bd-qc-ln.fin.on, .bd-ld-fin.on { color: #15803d; }
+/* 直式除法（practice.js 的 ldCell；Roger 2026-10-06）：每一項一欄、商寫在它所除的那一項正上方（presentation.md 那條） */
+.bd-qc-free { margin-left: .4em; display: block; }
+table.bd-ld { border-collapse: separate; border-spacing: 0; }   /* collapse 的話框線歸表格畫，列藏起來線還在 */
+table.bd-ld td { padding: .12em .2em; text-align: right; white-space: nowrap; height: 1.5em; vertical-align: middle; }   /* height 是下限：分數（\dfrac）會把列撐高 */
+.bd-qc.bd-qc-ld { padding-bottom: 2.6em; }   /* 角落「下一回合」鈕的位置，不要壓到最後一行 */
+table.bd-ld td.vin { border-top: 2.5px solid #172033; }
+table.bd-ld td.paren { text-align: center; font-size: 1.25em; padding: 0 .1em 0 .05em; }
+table.bd-ld td.uline { border-bottom: 2px solid #172033; }
+.bd-ld-fin { margin-top: .4em; font-weight: 800; white-space: nowrap; }
 .bd-qc-ln.cont { padding-left: 2.05em; }   /* 續行的「=」對齊到「原式」後面那個等號 */
 .bd-qc-why { display: block; font-size: .6em; line-height: 1.3; color: #64748b; }   /* 放在算式上方：放前面的話續行的「=」會對歪 */
 .bd-qnext { position: fixed; z-index: 1300; border: 2px solid var(--edition); color: var(--edition); background: #fff; }

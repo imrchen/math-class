@@ -6,7 +6,7 @@
 
   var layer = null, bar = null, badge = null, qbox = null, figArea = null, stepsBox = null;
   var bQ = null, bS = null, bPrev = null, bNext = null;
-  var quad = null, bAll = null, bNone = null, quadCells = [], quadMode = false;
+  var quad = null, bAll = null, bNone = null, bGPrev = null, bGNext = null, quadCells = [], quadMode = false;
   var cur = null;
   var showQ = true, showS = false;
   var TOP = 78, LEFT = 28, DOCK = 104;
@@ -39,6 +39,8 @@
     bS = b('bdS', '步驟');
     bPrev = b('bdPrev', '‹ 上一步');
     bNext = b('bdNext', '下一步 ›');
+    bGPrev = b('bdGPrev', '‹ 上一組');
+    bGNext = b('bdGNext', '下一組 ›');
     bAll = b('bdAll', '全部顯示');
     bNone = b('bdNone', '全部收起');
     b('bdClose', '✕ 關閉', 'zoom-x').onclick = close;
@@ -53,6 +55,8 @@
     bNext.onclick = function () { step(1); };
     bAll.onclick = function () { quadCells.forEach(function (c) { c.k = c.n; c.paint(); }); };
     bNone.onclick = function () { quadCells.forEach(function (c) { c.k = 0; c.paint(); }); };
+    bGPrev.onclick = function () { quadGo(-1); };
+    bGNext.onclick = function () { quadGo(1); };
     window.addEventListener('resize', function () { if (!isOpen()) return; if (quadMode) placeQuad(); else place(); });
   }
 
@@ -207,6 +211,7 @@
 
   function paintToggles() {
     bAll.style.display = bNone.style.display = quadMode ? '' : 'none';
+    bGPrev.style.display = bGNext.style.display = quadMode && quadSpec && quadSpec.groups && quadSpec.groups.length > 1 ? '' : 'none';
     if (quadMode) { bQ.style.display = bS.style.display = bPrev.style.display = bNext.style.display = 'none'; return; }
     var hasQ = qbox.childNodes.length > 0;
     bQ.style.display = hasQ ? '' : 'none';
@@ -271,7 +276,7 @@
   }
 
   function leaveQuad() {
-    quadMode = false;
+    quadMode = false; quadSpec = null;
     if (!quad) return;
     quad.classList.add('hidden'); quad.innerHTML = '';
     quadCells.forEach(function (c) { if (c.btn) c.btn.remove(); });
@@ -279,35 +284,59 @@
     qbox.style.display = '';
   }
 
+  var quadSpec = null, quadGroup = 0;
   function openQuad(spec) {
     ensure();
     leaveQuad();
-    quadMode = true;
+    quadMode = true; quadSpec = spec; quadGroup = 0;
     cur = null; showQ = false; showS = false;
     qbox.innerHTML = ''; figArea.innerHTML = ''; stepsBox.innerHTML = '';
     qbox.style.display = 'none'; figArea.style.display = 'none'; stepsBox.style.display = 'none';
+    clearPen();
+    document.body.classList.add('bd-open');
+    layer.classList.remove('hidden');
+    bar.classList.remove('hidden');
+    if (btn) btn.classList.add('active');
+    fillQuad();
+    if (!app.classList.contains('pen-on')) document.getElementById('dkPen').click();
+  }
+
+  function fillQuad() {
+    var spec = quadSpec, gs = spec.groups || [{ label: spec.label, cells: spec.cells }];
+    var g = gs[quadGroup] || gs[0];
+    quadCells.forEach(function (c) { if (c.btn) c.btn.remove(); });
+    quadCells = [];
+    quad.innerHTML = '';
+    quad.style.gridTemplateColumns = 'repeat(' + (spec.cols || 2) + ', 1fr)';
+    quad.style.gridTemplateRows = 'repeat(' + (spec.rows || 2) + ', 1fr)';
     badge.innerHTML = '';
-    badge.appendChild(document.createTextNode('計算紙（四題）' + (spec.label ? '　' + spec.label : '')));
-    el('span', 'bd-note', badge).textContent = '點一格看下一步　關閉後筆跡不保留';
+    badge.appendChild(document.createTextNode((spec.title || '計算紙（四題）') + (g.label ? '　' + g.label : '')));
+    el('span', 'bd-note', badge).textContent = (spec.note || '點一格看下一步') + '　關閉後筆跡不保留';
     quad.classList.remove('hidden');
-    (spec.cells || []).forEach(function (cd) {
+    (g.cells || []).forEach(function (cd) {
       var cell = el('div', 'bd-qc', quad);
       var q = el('div', 'bd-qc-q', cell);
       el('span', 'bd-qc-no', q).textContent = cd.no || '';
       var qb = el('span', '', q);
       if (cd.q) { var c = cd.q.cloneNode(true); c.removeAttribute('style'); qb.appendChild(c); }
+      else if (cd.qHtml) qb.innerHTML = cd.qHtml;
       var box = el('div', 'bd-qc-steps', cell);
-      box.innerHTML = (cd.lines || []).map(function (l) {
-        return '<div class="bd-qc-ln' + (l.cont ? ' cont' : '') + (l.fin ? ' fin' : '') + '">' +
-          (l.why ? '<span class="bd-qc-why">' + l.why + '</span>' : '') + l.html + '</div>';
-      }).join('');
-      var lns = box.querySelectorAll('.bd-qc-ln');
+      var n;
+      if (cd.html) { box.classList.add('bd-qc-free'); cell.classList.add('bd-qc-ld'); box.innerHTML = cd.html; n = cd.n; }
+      else {
+        box.innerHTML = (cd.lines || []).map(function (l, i) {
+          return '<div class="bd-qc-ln bd-r' + (l.cont ? ' cont' : '') + (l.fin ? ' fin' : '') + '" data-r="' + i + '">' +
+            (l.why ? '<span class="bd-qc-why">' + l.why + '</span>' : '') + l.html + '</div>';
+        }).join('');
+        n = (cd.lines || []).length;
+      }
+      var rs = box.querySelectorAll('.bd-r');
       var nb = el('button', 'zoom-btn bd-qnext', document.body);
       nb.type = 'button';
-      var it = { cell: cell, btn: nb, k: 0, n: lns.length };
+      var it = { cell: cell, btn: nb, k: 0, n: n };
       it.paint = function () {
-        Array.prototype.forEach.call(lns, function (x, i) { x.classList.toggle('on', i < it.k); });
-        nb.textContent = it.k >= it.n ? '✓ 收起' : (cd.no || '') + ' 下一步 ›';
+        Array.prototype.forEach.call(rs, function (x) { x.classList.toggle('on', +x.getAttribute('data-r') < it.k); });
+        nb.textContent = it.k >= it.n ? '✓ 收起' : (cd.no || '') + ' ' + (spec.stepWord || '下一步') + ' ›';
         nb.classList.toggle('bd-on', it.k >= it.n);
       };
       it.go = function () { it.k = it.k >= it.n ? 0 : it.k + 1; it.paint(); };
@@ -316,16 +345,17 @@
       it.paint();
       quadCells.push(it);
     });
-    clearPen();
-    document.body.classList.add('bd-open');
-    layer.classList.remove('hidden');
-    bar.classList.remove('hidden');
-    if (btn) btn.classList.add('active');
     paintToggles();
     placeQuad();
     var mj = window.MathJax && window.MathJax.typesetPromise;
     if (mj) window.MathJax.typesetPromise([quad]).then(placeQuad).catch(placeQuad);
-    if (!app.classList.contains('pen-on')) document.getElementById('dkPen').click();
+  }
+  function quadGo(d) {
+    var gs = quadSpec && quadSpec.groups;
+    if (!gs || gs.length < 2) return;
+    quadGroup = (quadGroup + d + gs.length) % gs.length;
+    clearPen();
+    fillQuad();
   }
 
   function placeQuad() {
@@ -333,7 +363,8 @@
     var vw = window.innerWidth, vh = window.innerHeight;
     quad.style.top = (TOP - 8) + 'px'; quad.style.left = '0px';
     quad.style.width = (vw - DOCK) + 'px'; quad.style.height = (vh - TOP + 8) + 'px';
-    var base = Math.max(16, Math.min(44, vw * 0.024, vh * 0.044));
+    var big = quadSpec && quadSpec.rows === 1 ? 1.25 : 1;
+    var base = Math.max(16, Math.min(44 * big, vw * 0.024 * big, vh * 0.044 * big));
     quadCells.forEach(function (it) {
       var fs = base;
       it.cell.style.fontSize = fs + 'px';

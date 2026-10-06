@@ -290,6 +290,81 @@ window.PRACTICE = (function () {
     if (lines.length > 4 || lines.some(l => texWide(l.t) > 46)) return null;
     return { steps: d.steps, lines: lines.map((l, i) => ({ why: l.why, html: tex(l.t), cont: /^\$=/.test(l.t), fin: i === lines.length - 1 })) };
   }
+
+  const gcdN = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a || 1; };
+  const Fr = (n, d = 1) => { if (d < 0) { n = -n; d = -d; } const g = gcdN(n, d); return { n: n / g, d: d / g }; };
+  const fSub = (a, b) => Fr(a.n * b.d - b.n * a.d, a.d * b.d);
+  const fMul = (a, b) => Fr(a.n * b.n, a.d * b.d);
+  const fDiv = (a, b) => Fr(a.n * b.d, a.d * b.n);
+  function parsePoly(src) {
+    const s = src.replace(/\s+/g, '').replace(/\\[dt]?frac\{(\d+)\}\{(\d+)\}/g, '$1/$2');
+    const co = {}; let max = 0;
+    for (const t of s.match(/[+-]?[^+-]+/g) || []) {
+      const m = /^([+-]?)(\d+(?:\/\d+)?)?(x(?:\^\{?(\d+)\}?)?)?$/.exec(t);
+      if (!m || (!m[2] && !m[3])) return null;
+      const sg = m[1] === '-' ? -1 : 1;
+      let c = Fr(sg);
+      if (m[2]) { const [p, q] = m[2].split('/').map(Number); c = Fr(sg * p, q || 1); }
+      const deg = m[3] ? (m[4] ? +m[4] : 1) : 0;
+      co[deg] = c; max = Math.max(max, deg);
+    }
+    const arr = [];
+    for (let k = max; k >= 0; k--) arr.push(co[k] || Fr(0));
+    return arr;
+  }
+  const ldTerm = (c, deg, first) => {
+    const a = Fr(Math.abs(c.n), c.d);
+    const num = a.d === 1 ? String(a.n) : `\\dfrac{${a.n}}{${a.d}}`;
+    const x = deg === 0 ? '' : deg === 1 ? 'x' : `x^{${deg}}`;
+    return (c.n < 0 ? '-' : first ? '' : '+\\,') + (deg > 0 && a.n === 1 && a.d === 1 ? x : num + x);
+  };
+  const ldPoly = (cs, top) => {
+    const out = []; cs.forEach((c, i) => { if (c.n) out.push(ldTerm(c, top - i, !out.length)); });
+    return out.length ? out.join('') : '0';
+  };
+
+  const ldPlain = (t) => String(t || '').replace(/商式|餘式|為|\$|\\\(|\\\)|\\,|\\[dt]?frac|\s/g, '');
+  function ldCell(sec, tag) {
+    const all = S(sec);
+    if (!SUBRE.test(tag) || !all[tag]) return null;
+    const d = merged(sec, tag);
+    const q = String(d && d.q || '').split('\n').slice(-1)[0].replace(/\s+/g, '');
+    const mm = /^\$\((.+)\)\\div\((.+)\)\$$/.exec(q);
+    if (!mm) return null;
+    const N = parsePoly(mm[1]), D = parsePoly(mm[2]);
+    if (!N || !D || !D[0].n || N.length < D.length) return null;
+    const n = N.length - 1, m = D.length - 1, r = N.slice(), rounds = [], Q = [];
+    for (let k = 0; k <= n - m; k++) {
+      const qk = fDiv(r[k], D[0]); Q.push(qk);
+      const prod = D.map(x => fMul(qk, x));
+      prod.forEach((p, j) => { r[k + j] = fSub(r[k + j], p); });
+      rounds.push({ k, q: qk, prod, rem: r.slice(k + 1, Math.min(n, k + m + 1) + 1) });
+    }
+    const Qt = ldPoly(Q, n - m), Rt = ldPoly(r.slice(n - m + 1), m - 1);
+    const key = String(d.key || '').split('、');
+    if (key.length !== 2 || ldPlain(key[0]) !== ldPlain(Qt) || ldPlain(key[1]) !== ldPlain(Rt)) return null;
+    const C = n + 1, M = (t) => `\\(${t}\\)`;
+    const td = (cls, html) => `<td${cls ? ` class="${cls}"` : ''}>${html || ''}</td>`;
+    const row = (cells, attr, under) => `<tr${attr}>${td()}${td()}${[...Array(C).keys()].map(i => td(under && under.has(i) ? 'uline' : '', cells[i])).join('')}</tr>`;
+    const qc = {};
+    rounds.forEach((rd, i) => { qc[rd.k] = `<span class="bd-r" data-r="${i + 1}">${M(ldTerm(rd.q, n - m - rd.k, i === 0))}</span>`; });
+    let rows = `<tr>${td()}${td()}${[...Array(C).keys()].map(i => td('', qc[i])).join('')}</tr>`;
+    rows += `<tr>${td('', M(ldPoly(D, m)))}${td('paren', ')')}${N.map((c, i) => td('vin', M(ldTerm(c, n - i, i === 0)))).join('')}</tr>`;
+    rounds.forEach((rd, i) => {
+      const pc = {}, under = new Set(), rc = {};
+      rd.prod.forEach((p, j) => { pc[rd.k + j] = M(ldTerm(p, n - rd.k - j, j === 0)); });
+      for (let j = rd.k; j <= Math.min(n, rd.k + m + 1); j++) under.add(j);
+      rows += row(pc, ` class="bd-r" data-r="${i + 1}"`, under);
+      let first = true;
+      rd.rem.forEach((c, j) => { if (first && !c.n && j < rd.rem.length - 1) return; rc[rd.k + 1 + j] = M(ldTerm(c, n - rd.k - 1 - j, first)); first = false; });
+      rows += row(rc, ` class="bd-r" data-r="${i + 1}"`);
+    });
+    return { qHtml: M(`(${mm[1]})\\div(${mm[2]})`), n: rounds.length + 1,
+             html: `<table class="bd-ld">${rows}</table><div class="bd-ld-fin bd-r" data-r="${rounds.length + 1}">商式為 ${M(Qt)}，餘式為 ${M(Rt)}</div>` };
+  }
+
+  const ldFix = (c) => Object.assign(c, { html: c.html.replace(/data-r="(\d+)"/g, (_, v) => `data-r="${v - 1}"`) });
+
   function quadButtons(h, sec) {
 
     if (typeof document === 'undefined') return;
@@ -302,6 +377,29 @@ window.PRACTICE = (function () {
     });
     cards.forEach((rows, c) => {
       if (rows.length < 2 || rows.length > 4) return;
+      const head0 = c.firstElementChild, badge0 = head0 && head0.lastElementChild;
+      const lds = rows.map(r => ldCell(sec, r.dataset.tag));
+      if (head0 && badge0 && lds.every(Boolean)) {
+        const labsOf = () => rows.map(r => { const t = r.querySelector('.p-tag'); return t ? t.textContent.trim() : r.dataset.tag; });
+        const noOf = (l) => { const m = /[①-⑳]/.exec(l); return m ? m[0] : l; };
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'p-quad';
+        b.textContent = '直式兩題一起檢討';
+        b.style.cssText = 'margin-left:auto;margin-right:8px;border:1.5px solid #fff;background:rgba(255,255,255,.18);color:#fff;font-weight:900;font-size:12px;border-radius:999px;padding:1px 10px;cursor:pointer';
+        b.onclick = (e) => {
+          e.stopPropagation();
+          if (!window.BOARD) return;
+          const labs = labsOf(), groups = [];
+          for (let i = 0; i < rows.length; i += 2) {
+            const idx = [i, i + 1].filter(j => j < rows.length);
+            groups.push({ label: labs[idx[0]].replace(SUBRE, '') + ' ' + idx.map(j => noOf(labs[j])).join(''),
+                          cells: idx.map(j => Object.assign({ no: noOf(labs[j]) }, ldFix(Object.assign({}, lds[j])))) });
+          }
+          window.BOARD.openQuad({ title: '計算紙（直式兩題）', note: '點一格看下一回合', stepWord: '下一回合', cols: 2, rows: 1, groups });
+        };
+        head0.insertBefore(b, badge0);
+        return;
+      }
       const cells = rows.map(r => quadCell(sec, r.dataset.tag));
       if (cells.some(x => !x)) return;
       const sig = cells.map(x => JSON.stringify(x.steps));
