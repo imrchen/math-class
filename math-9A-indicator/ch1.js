@@ -348,6 +348,52 @@ window.DECK = window.DECK || [];
     BOX(x, y, w, 44, { r: 11, fill: col === RED ? 'rgba(225,29,72,.07)' : 'rgba(5,150,105,.09)', stroke: col, sw: 2 })
     + TX(x + w / 2, y + 29, t, { anchor: 'middle', fs: 18, c: col });
 
+  window.FIGS_LOCAL = window.FIGS_LOCAL || {};
+  {
+    const quad = (pts, k, dx) => pts.map(([x, y, label]) => ({ x: +(x * k + dx).toFixed(3), y: +(y * k).toFixed(3), label }));
+
+    const ang = [[0, 0, '$A$'], [-1.7, 4.7, '$B$'], [2.3, 4.85, '$C$'], [9, 0.3, '$D$']];
+
+    const len = [[0, 0, '$A$'], [4.5, 7.794, '$B$'], [7.747, 3.992, '$C$'], [8, 0, '$D$']];
+    const ren = (pts) => pts.map((p, i) => Object.assign({}, p, { label: ['$P$', '$Q$', '$R$', '$S$'][i] }));
+    window.FIGS_LOCAL['1-3 基礎2'] = [
+      { type: 'polygon-group', unit: 22, gap: 60, shapes: [
+        { points: quad(ang, 1, 0), outline: [0, 1, 2, 3], fill: '#dbeafe',
+          angles: [{ at: 3, text: '$36\\degree$' }], caption: '① 角度照題目' },
+        { points: ren(quad(ang, 1.3, 0)), outline: [0, 1, 2, 3], fill: '#dbeafe',
+          angles: [{ at: 1, text: '$?$' }, { at: 2, text: '$?$' }] } ] },
+      { type: 'polygon-group', unit: 20, gap: 60, shapes: [
+        { points: quad(len, 1, 0), outline: [0, 1, 2, 3], fill: '#fde9d9',
+          sides: [{ from: 0, to: 1, text: '9份' }, { from: 1, to: 2, text: '5份' },
+                  { from: 2, to: 3, text: '4份' }, { from: 3, to: 0, text: '8份' }],
+          caption: '② 邊長比照題目' },
+        { points: ren(quad(len, 1.6, 0)), outline: [0, 1, 2, 3], fill: '#fde9d9',
+          sides: [{ from: 2, to: 3, text: '$16$' },
+                  { from: 0, to: 1, text: '$?$', accent: true }, { from: 3, to: 0, text: '$?$', accent: true }] } ] }
+    ];
+  }
+
+  window.FIGS_EXTRA = window.FIGS_EXTRA || {};
+  {
+    const P = (x, y, l) => ({ x, y, label: '$' + l + '$' });
+
+    window.FIGS_EXTRA['1-3 基礎3'] = [{ type: 'polygon-group', unit: 30, gap: 70, align: 'bottom', shapes: [
+      { points: [P(3, 8.485, 'A'), P(0, 0, 'B'), P(6, 0, 'C')], outline: [0, 1, 2], fill: '#dbeafe',
+        sides: [{ from: 0, to: 1, text: '$9$' }, { from: 0, to: 2, text: '$9$' }, { from: 1, to: 2, text: '$6$' }],
+        angles: [{ at: 1, mark: 1 }, { at: 2, mark: 1 }], caption: '△ABC' },
+      { points: [P(2, 5.657, 'B'), P(0, 0, 'D'), P(4, 0, 'C')], outline: [0, 1, 2], fill: '#dbeafe',
+        sides: [{ from: 0, to: 1, text: '$6$' }, { from: 0, to: 2, text: '$6$' }, { from: 1, to: 2, text: '$?$', accent: true }],
+        angles: [{ at: 1, mark: 1 }, { at: 2, mark: 1 }], caption: '△BDC' }] }];
+
+    window.FIGS_EXTRA['1-3 基礎4'] = [{ type: 'polygon-group', unit: 46, gap: 70, align: 'bottom', shapes: [
+      { points: [P(2.25, 1.985, 'A'), P(0, 0, 'E'), P(2.5, 0, 'D')], outline: [0, 1, 2], fill: '#fde9d9',
+        sides: [{ from: 0, to: 2, text: '$2$' }, { from: 0, to: 1, text: '$3$' }, { from: 1, to: 2, text: '$2.5$' }],
+        angles: [{ at: 0, mark: 1 }], caption: '△ADE' },
+      { points: [P(4.5, 3.969, 'A'), P(0, 0, 'B'), P(5, 0, 'C')], outline: [0, 1, 2], fill: '#fde9d9',
+        sides: [{ from: 0, to: 2, text: '$4$' }, { from: 0, to: 1, text: '$6$' }, { from: 1, to: 2, text: '$?$', accent: true }],
+        angles: [{ at: 0, mark: 1 }], caption: '△ACB' }] }];
+  }
+
   window.DECK.push({
     ch: 1,
     title: '相似形與三角比',

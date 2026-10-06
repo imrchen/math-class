@@ -176,7 +176,8 @@ window.FIG = (function () {
     shapes.forEach(S => {
       const { sh, pts } = S;
 
-      const P = pts.map(p => [x0 + (p.x - S.minX) * unit, PAD + (S.maxY - p.y) * unit]);
+      const dropY = f.align === 'bottom' ? Math.max(...shapes.map(s => s.h)) - S.h : 0;
+      const P = pts.map(p => [x0 + (p.x - S.minX) * unit, PAD + dropY + (S.maxY - p.y) * unit]);
       const cx = P.reduce((a, p) => a + p[0], 0) / P.length;
       const cy = P.reduce((a, p) => a + p[1], 0) / P.length;
 

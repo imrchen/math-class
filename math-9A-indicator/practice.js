@@ -85,8 +85,14 @@ window.PRACTICE = (function () {
   };
 
   function detail(h, sec, tag, back) {
-    const d = S(sec)[tag];
+    let d = S(sec)[tag];
     if (!d) return false;
+
+    const loc = (window.FIGS_LOCAL || {})[sec + ' ' + tag];
+    if (loc && loc.length && !d.fig) d = Object.assign({}, d, { fig: loc[0], figs: loc });
+
+    const extra = (window.FIGS_EXTRA || {})[sec + ' ' + tag];
+    if (extra && extra.length) d = Object.assign({}, d, { figs: (d.figs && d.figs.length ? d.figs : (d.fig ? [d.fig] : [])).concat(extra) });
 
     const fig = d.fig;
     const canDraw = (f) => !!(f && window.FIG && window.FIG.render(f, { accentStep: 0 }));
