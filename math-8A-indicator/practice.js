@@ -187,6 +187,7 @@ window.PRACTICE = (function () {
         r.onmouseleave = () => { r.style.background = ''; };
         r.onclick = () => detail(h, sec, tag, render, opt);
         ldRowButton(r, sec, tag);
+        quadRowButton(r, sec, tag);
       });
       MJx(h);
       fit(h);
@@ -391,6 +392,52 @@ window.PRACTICE = (function () {
     b.textContent = '直式';
     b.style.cssText = `flex:0 0 auto;align-self:center;border:1.5px solid ${C};background:#fff;color:${C};font-weight:900;font-size:13px;border-radius:999px;padding:1px 10px;cursor:pointer`;
     b.onclick = (e) => { e.stopPropagation(); ldOpen(cells, rowLabel(tag, merged(sec, tag) || {})); };
+    r.insertBefore(b, go);
+  }
+
+  function quadRowButton(r, sec, tag) {
+    if (typeof document === 'undefined' || r.querySelector('.p-quad')) return;
+    const all = S(sec), subs = [];
+    for (const no of CIRC) { if (all[tag + ' ' + no]) subs.push(no); else break; }
+    if (subs.length < 2) return;
+
+    if (/[(（]A[)）]/.test(String((merged(sec, tag) || {}).q || ''))) return;
+    const qs = new Set();
+    const cells = subs.map(no => {
+      const t = tag + ' ' + no, c = quadCell(sec, t), d = merged(sec, t);
+      const q0 = String(d && d.q || '');
+      if (/承上|[(（]A[)）]/.test(q0) || qs.has(q0)) return null;
+      qs.add(q0);
+
+      const q = String(d && d.q || '').split('\n').slice(-1)[0].replace(/[①-⑳]\s*/g, '')
+        .replace(/^(計算|化簡)[^$：:]{0,12}[：:]\s*(?=\$)/, '').trim();
+
+      if (!c || !q || texWide(q) > 46 || /\$\s*[：:][^$]*$/.test(q)) return null;
+      return { no, qHtml: tex(q), lines: c.lines, steps: c.steps };
+    });
+    if (cells.some(x => !x)) return;
+    const sig = cells.map(x => JSON.stringify(x.steps));
+    if (new Set(sig).size < sig.length) return;
+    const go = r.querySelector('span:last-child');
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'p-quad';
+    b.textContent = '四題';
+    b.title = '四題一起檢討';
+    b.style.cssText = `flex:0 0 auto;align-self:center;border:1.5px solid ${C};background:#fff;color:${C};font-weight:900;font-size:13px;border-radius:999px;padding:1px 10px;cursor:pointer`;
+    b.onclick = (e) => {
+      e.stopPropagation();
+      if (!window.BOARD) return;
+
+      const d0 = merged(sec, tag) || {}, q1 = String((merged(sec, tag + ' ' + subs[0]) || {}).q || '').split('\n');
+      const stem = q1.length > 1 ? q1[0].trim() : '';
+      const base = rowLabel(tag, d0), tail = /[：:]$/.test(stem) && !/\$/.test(stem) && stem.length <= 24 && !/^(計算|化簡|求下列各式的值)/.test(stem) ? '　' + stem : '', groups = [];
+      for (let i = 0; i < cells.length; i += 4) {
+        const part = cells.slice(i, i + 4);
+        groups.push({ label: base + ' ' + (part.length >= 3 ? part[0].no + '～' + part[part.length - 1].no : part.map(c => c.no).join('')) + tail,
+                      cells: part });
+      }
+      window.BOARD.openQuad({ groups });
+    };
     r.insertBefore(b, go);
   }
 
