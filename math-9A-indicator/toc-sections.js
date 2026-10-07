@@ -1,12 +1,14 @@
 (function () {
   if (typeof document === 'undefined') return;
 
-  const NAME = {};
-  (window.DECK || []).forEach(c => (c.slides || []).forEach(s => {
-    if (s.sec && s.secName && !NAME[s.sec]) NAME[s.sec] = s.secName;
-  }));
+  const NAMES = (window.DECK || []).map(c => {
+    const name = {};
+    (c.slides || []).forEach(s => { if (s.sec && s.secName && !name[s.sec]) name[s.sec] = s.secName; });
+    return name;
+  });
 
-  function group(chap) {
+  function group(chap, ci) {
+    const NAME = NAMES[ci] || {};
     const items = chap.querySelector('.toc-items');
     if (!items || items.dataset.sectioned) return;
     const kids = [...items.children];
@@ -103,7 +105,7 @@
     if (!toc) return false;
     const chaps = toc.querySelectorAll('.toc-chapter');
     if (!chaps.length) return false;
-    chaps.forEach(group);
+    chaps.forEach((chap, ci) => group(chap, ci));
     openActive();
 
     new MutationObserver((muts) => {
