@@ -96,20 +96,28 @@ window.ANSWER_KEY = (function () {
     root.querySelectorAll('.ak-grid').forEach(g => {
       const cells = [...g.children];
       let n = +g.dataset[key] || 1;
+
+      let near = 0;
       const lay = () => {
         g.style.gridTemplateColumns = `repeat(${n},minmax(0,1fr))`;
         cells.forEach(c => {
           c.style.gridColumn = '';
           const a = c.querySelector('.ak-a'); if (a) a.style.whiteSpace = 'nowrap';
         });
-        let wide = 0;
+        const gap = parseFloat(window.getComputedStyle(g).columnGap) || 0;
+        const col = (k) => (g.clientWidth - gap * (k - 1)) / k;
+        let wide = 0; near = 0;
         cells.forEach(c => {
           const a = c.querySelector('.ak-a');
-          if (n > 1 && a && a.scrollWidth > a.clientWidth + 1) { c.style.gridColumn = '1 / -1'; wide += 1; }
+          const over = a ? a.scrollWidth - a.clientWidth : 0;
+          if (n > 1 && over > 1) {
+            c.style.gridColumn = '1 / -1'; wide += 1;
+            if (over + 4 <= col(n - 1) - col(n)) near += 1;
+          }
         });
         return wide;
       };
-      while (n > 1 && lay() * 2 > cells.length) n -= 1;
+      while (n > 1 && (lay() * 2 > cells.length || near > 0)) n -= 1;
       lay();
 
       cells.forEach(c => {
