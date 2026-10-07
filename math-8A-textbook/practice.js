@@ -401,6 +401,9 @@ window.PRACTICE = (function () {
     for (const no of CIRC) { if (all[tag + ' ' + no]) subs.push(no); else break; }
     if (subs.length < 2) return;
 
+    const ansNos = String((merged(sec, tag) || {}).ans || '').replace(/\$[^$]*\$/g, '').match(/[①-⑳]/g) || [];
+    if (ansNos.some(no => !subs.includes(no))) return;
+
     if (/[(（]A[)）]/.test(String((merged(sec, tag) || {}).q || ''))) return;
     const qs = new Set();
     const cells = subs.map(no => {

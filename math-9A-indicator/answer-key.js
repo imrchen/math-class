@@ -10,7 +10,7 @@ window.ANSWER_KEY = (function () {
     const A = cur, M = A.math === 'paren' ? MATH.paren : MATH.dollar;
     const K = '#0b1220', ANS = '#1e3a8a', MISS = '#b91c1c';
 
-    const letter = (a) => { const m = /^選?\s*[\(（]\s*([A-Ea-e])\s*[\)）]/.exec(String(a).replace(/\\[()]/g, '').trim()); return m ? m[1].toUpperCase() : null; };
+    const letter = (a) => { const t = String(a).replace(/\\[()]/g, '').trim(); const m = /^選?\s*[\(（]\s*([A-Ea-e])\s*[\)）]/.exec(t); if (m) return m[1].toUpperCase(); const c = /^選?\s*([㈠-㈩])/.exec(t); return c ? c[1] : null; };
 
     const vis = (a) => a.replace(/\\[dt]?frac\{([^}]*)\}\{([^}]*)\}/g, '$1/$2')
       .replace(/\\[()]/g, '').replace(/\\[a-zA-Z]+/g, 'x').replace(/[${}^_\s]/g, '').length;
