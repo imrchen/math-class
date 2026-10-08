@@ -1444,6 +1444,64 @@ window.DECK = window.DECK || [];
       },
 
       {
+        sec: '1-1', secName: '連比例',
+        title: '練習｜課本自我評量（1～4）',
+        points: [
+          '課本節末的<b>自我評量</b>，寫完自己對一次詳解。',
+          '第 1、2 題是<b>合併連比</b>：中間那一項先湊成一樣。',
+          '第 3 題設 \\(k\\)：\\(x=5k\\)、\\(y=6k\\)、\\(z=3k\\)，再代進去。'
+        ],
+        formula: { label: '這一節在練', tex: 'x:y:z' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-1', [
+            { src: '課本・自我評量', page: '印 20–21', sub: '課本節末自我評量', tags: ['自評1', '自評2', '自評3', '自評4'] }
+          ]);
+        },
+        caption: '自我評量前四題，寫完自己對詳解。'
+      },
+      {
+        sec: '1-1', secName: '連比例',
+        title: '練習｜課本自我評量（5～7）',
+        points: [
+          '應用題先找出<b>誰比誰</b>，再寫成連比。',
+          '第 6 題先合併 \\(A:B:C\\)，再算兩家工廠的總和。',
+          '第 7 題熱量相等：\\(50x=30y=70z\\)，跟 \\(5x=6y=7z\\) 同一型。'
+        ],
+        formula: { label: '這一節在練', tex: 'x:y:z' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-1', [
+            { src: '課本・自我評量', page: '印 21–22', sub: '課本節末自我評量', tags: ['自評5', '自評6', '自評7'] }
+          ]);
+        },
+        caption: '自我評量到這裡寫完。'
+      },
+      {
+        sec: '1-1', secName: '連比例',
+        title: '對答案｜課本自我評量',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的自我評量頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-1', [
+            { label: '自評 1～3（印 20–21）', cols: 3, items: [['1', '自評1'], ['2', '自評2'], ['3', '自評3']] },
+            { label: '自評 4～7（印 21–22）', cols: 2, items: [['4', '自評4'], ['5', '自評5'], ['6', '自評6'], ['7', '自評7']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的自我評量頁點題號看詳解</b>。'
+      },
+
+      {
         sec: '1-2', secName: '比例線段',
         title: '這一節只做兩件事：讀出比、解出未知',
         points: [
@@ -2400,6 +2458,63 @@ window.DECK = window.DECK || [];
       },
 
       {
+        sec: '1-2', secName: '比例線段',
+        title: '練習｜課本自我評量（1～3）',
+        points: [
+          '課本節末的<b>自我評量</b>，寫完自己對一次詳解。',
+          '第 1 題是<b>摺紙</b>：摺疊前後兩個三角形完全重合，面積一樣。',
+          '第 2 題 \\(\\overline{MN}\\parallel\\overline{BC}\\)：上段比下段，兩邊一樣。'
+        ],
+        formula: { label: '這一節在練', tex: '\\overline{PQ}\\parallel\\overline{BC}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-2', [
+            { src: '課本・自我評量', page: '印 40', sub: '課本節末自我評量', tags: ['自評1', '自評2', '自評3'] }
+          ]);
+        },
+        caption: '自我評量前三題，寫完自己對詳解。'
+      },
+      {
+        sec: '1-2', secName: '比例線段',
+        title: '練習｜課本自我評量（4～5）',
+        points: [
+          '第 4 題是<b>尺規作圖</b>：先照步驟把線段等分，再回答比。',
+          '第 5 題兩組<b>中點連線</b>都和 \\(\\overline{BD}\\) 平行、長度是它的一半。'
+        ],
+        formula: { label: '這一節在練', tex: '\\overline{PQ}\\parallel\\overline{BC}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-2', [
+            { src: '課本・自我評量', page: '印 41', sub: '課本節末自我評量', tags: ['自評4', '自評5'] }
+          ]);
+        },
+        caption: '自我評量到這裡寫完。'
+      },
+      {
+        sec: '1-2', secName: '比例線段',
+        title: '對答案｜課本自我評量',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的自我評量頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-2', [
+            { label: '自評 1～3（印 40）', cols: 3, items: [['1', '自評1'], ['2', '自評2'], ['3', '自評3']] },
+            { label: '自評 4、5（印 41）', cols: 2, items: [['4', '自評4'], ['5', '自評5']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的自我評量頁點題號看詳解</b>。'
+      },
+
+      {
         sec: '1-3', secName: '縮放與相似',
         title: '這一節在問一句話：這兩個圖形像不像',
         points: [
@@ -3303,6 +3418,64 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '只到「答」這一層——<b>為什麼錯，回前面的練習頁點題號看詳解</b>。'
+      },
+
+      {
+        sec: '1-3', secName: '縮放與相似',
+        title: '練習｜課本自我評量（1～3）',
+        points: [
+          '課本節末的<b>自我評量</b>，寫完自己對一次詳解。',
+          '第 1 題是<b>作圖</b>：從 \\(O\\) 量出去，長度變 2 倍。',
+          '第 2 題兩道門都要過：<b>角相等、邊成比例</b>；第 3 題對應邊照<b>名字順序</b>對。'
+        ],
+        formula: { label: '這一節在練', tex: '\\triangle ABC\\sim\\triangle DEF' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-3', [
+            { src: '課本・自我評量', page: '印 60–61', sub: '課本節末自我評量', tags: ['自評1', '自評2', '自評3'] }
+          ]);
+        },
+        caption: '自我評量前三題，寫完自己對詳解。'
+      },
+      {
+        sec: '1-3', secName: '縮放與相似',
+        title: '練習｜課本自我評量（4～6）',
+        points: [
+          '第 4 題六個三角形逐一判斷，寫出用哪一個：<b>SSS、SAS、AA</b>。',
+          '第 5、6 題先判斷相似，再用<b>對應邊成比例</b>求長度。'
+        ],
+        formula: { label: '這一節在練', tex: '\\triangle ABC\\sim\\triangle DEF' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-3', [
+            { src: '課本・自我評量', page: '印 61–62', sub: '課本節末自我評量', tags: ['自評4', '自評5', '自評6'] }
+          ]);
+        },
+        caption: '自我評量到這裡寫完。'
+      },
+      {
+        sec: '1-3', secName: '縮放與相似',
+        title: '對答案｜課本自我評量',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的自我評量頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-3', [
+            { label: '自評 1、2（印 60）', cols: 2, items: [['1', '自評1'], ['2', '自評2']] },
+            { label: '自評 3、4（印 61）', cols: 1, items: [['3', '自評3'], ['4', '自評4']] },
+            { label: '自評 5、6（印 62）', cols: 2, items: [['5', '自評5'], ['6', '自評6']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的自我評量頁點題號看詳解</b>。'
       },
 
       {

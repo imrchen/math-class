@@ -1,5 +1,438 @@
 window.SOLUTIONS = {
  "1-1": {
+  "自評1": {
+   "src": "課本・自我評量",
+   "page": "印 20",
+   "title": "自我評量第 1 題",
+   "q": "求下列各題的連比：\n① \\(x：z=11：5\\)，\\(y：z=7：5\\)，則 \\(x：y：z=\\)＿＿＿＿\n② \\(x：y=2：3\\)，\\(y：z=4：5\\)，則 \\(x：y：z=\\)＿＿＿＿\n③ \\(y：z=\\frac{1}{3}：\\frac{1}{2}\\)，\\(x：z=\\frac{1}{5}：\\frac{1}{6}\\)，則 \\(x：y：z=\\)＿＿＿＿",
+   "ref": null,
+   "steps": [
+    "① \\(x：z=11：5\\)，\\(y：z=7：5\\)，求 \\(x：y：z\\)。",
+    "兩式中 \\(z\\) 對應的數都是 \\(5\\)，可以直接合併",
+    "② \\(x：y=2：3\\)，\\(y：z=4：5\\)，求 \\(x：y：z\\)。",
+    "\\(3\\)、\\(4\\) 的最小公倍數 \\(〔3，4〕=12\\)",
+    "把兩式的 \\(y\\) 都化成 \\(12\\)：",
+    "③ \\(y：z=\\frac{1}{3}：\\frac{1}{2}\\)，\\(x：z=\\frac{1}{5}：\\frac{1}{6}\\)，求 \\(x：y：z\\)。",
+    "\\(y：z\\) 兩項同乘 \\(6\\) 得 \\(2：3\\)",
+    "\\(x：z\\) 兩項同乘 \\(30\\) 得 \\(6：5\\)"
+   ],
+   "ans": "① \\(11：7：5\\)　② \\(8：12：15\\)　③ \\(18：10：15\\)",
+   "fig": {
+    "type": "ratio-table",
+    "header": [
+     "x",
+     "y",
+     "z"
+    ],
+    "rows": [
+     [
+      "11",
+      null,
+      "5"
+     ],
+     [
+      null,
+      "7",
+      "5"
+     ],
+     [
+      "11",
+      "7",
+      "5"
+     ]
+    ],
+    "rulesAfter": [
+     1
+    ],
+    "box": {
+     "col": 2,
+     "from": 0,
+     "to": 2
+    },
+    "role": "solution"
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "ratio-table",
+      "header": [
+       "x",
+       "y",
+       "z"
+      ],
+      "rows": [
+       [
+        "11",
+        null,
+        "5"
+       ],
+       [
+        null,
+        "7",
+        "5"
+       ],
+       [
+        "11",
+        "7",
+        "5"
+       ]
+      ],
+      "rulesAfter": [
+       1
+      ],
+      "box": {
+       "col": 2,
+       "from": 0,
+       "to": 2
+      },
+      "role": "solution"
+     }
+    },
+    {
+     "from": 2,
+     "fig": {
+      "type": "ratio-table",
+      "header": [
+       "x",
+       "y",
+       "z"
+      ],
+      "rows": [
+       [
+        "2",
+        "3",
+        null
+       ],
+       [
+        null,
+        "4",
+        "5"
+       ],
+       [
+        "8",
+        "12",
+        "15"
+       ]
+      ],
+      "rulesAfter": [
+       1
+      ],
+      "box": {
+       "col": 1,
+       "from": 0,
+       "to": 2
+      },
+      "role": "solution"
+     }
+    },
+    {
+     "from": 5,
+     "fig": {
+      "type": "ratio-table",
+      "header": [
+       "x",
+       "y",
+       "z"
+      ],
+      "rows": [
+       [
+        null,
+        "2",
+        "3"
+       ],
+       [
+        "6",
+        null,
+        "5"
+       ],
+       [
+        "18",
+        "10",
+        "15"
+       ]
+      ],
+      "rulesAfter": [
+       1
+      ],
+      "box": {
+       "col": 2,
+       "from": 0,
+       "to": 2
+      },
+      "role": "solution"
+     }
+    }
+   ]
+  },
+  "自評2": {
+   "src": "課本・自我評量",
+   "page": "印 20",
+   "title": "自我評量第 2 題",
+   "q": "已知 \\(a\\)、\\(b\\)、\\(c\\) 皆不等於 \\(0\\)，且 \\(2a=3b\\)，\\(4b=5c\\)，求 \\(a：b：c\\)。",
+   "ref": null,
+   "steps": [
+    "由 \\(2a=3b\\)，得 \\(a：b=3：2\\)",
+    "由 \\(4b=5c\\)，得 \\(b：c=5：4\\)"
+   ],
+   "ans": "\\(a：b：c=15：10：8\\)",
+   "fig": {
+    "type": "ratio-table",
+    "header": [
+     "a",
+     "b",
+     "c"
+    ],
+    "rows": [
+     [
+      "3",
+      "2",
+      null
+     ],
+     [
+      null,
+      "5",
+      "4"
+     ],
+     [
+      "15",
+      "10",
+      "8"
+     ]
+    ],
+    "rulesAfter": [
+     1
+    ],
+    "box": {
+     "col": 1,
+     "from": 0,
+     "to": 2
+    }
+   }
+  },
+  "自評3": {
+   "src": "課本・自我評量",
+   "page": "印 21",
+   "title": "自我評量第 3 題",
+   "q": "已知 \\(\\frac{x}{5}=\\frac{y}{6}=\\frac{z}{3}\\)，且 \\(x+3y-4z=33\\)，求 \\(z\\) 的值。",
+   "ref": null,
+   "steps": [
+    "設 \\(\\frac{x}{5}=\\frac{y}{6}=\\frac{z}{3}=r\\)，\\(r≠0\\)，則 \\(x=5r\\)，\\(y=6r\\)，\\(z=3r\\)",
+    "代入 \\(x+3y-4z=33\\)，得 \\(5r+3×6r-4×3r=33\\)",
+    "　　\\(11r=33\\)，\\(r=3\\)",
+    "故 \\(z=3×3=9\\)"
+   ],
+   "ans": "\\(z=9\\)",
+   "fig": null
+  },
+  "自評4": {
+   "src": "課本・自我評量",
+   "page": "印 21",
+   "title": "自我評量第 4 題",
+   "q": "好喝奶茶新推出「烏龍拿鐵」，它的祕密配方是烏龍茶、新鮮牛奶與楓糖水的比為 \\(7：3：1\\)，如果要調配一杯 \\(550\\) 毫升的烏龍拿鐵，則需要用到烏龍茶多少毫升？",
+   "ref": null,
+   "steps": [
+    "設烏龍茶、新鮮牛奶、楓糖水分別有 \\(7r\\)、\\(3r\\)、\\(r\\) 毫升，\\(r≠0\\)",
+    "依題意可列出 \\(7r+3r+r=550\\)，\\(11r=550\\)，\\(r=50\\)",
+    "所以需要用到烏龍茶 \\(7×50=350\\)（毫升）"
+   ],
+   "ans": "\\(350\\) 毫升",
+   "fig": null
+  },
+  "自評5": {
+   "src": "課本・自我評量",
+   "page": "印 21",
+   "title": "自我評量第 5 題",
+   "q": "威利在社群發起年度最愛手遊的單選投票，選項包含仙境、峽谷及三國，已知有 \\(75\\) 人參與投票，且選擇仙境、峽谷及三國手遊的人數比為 \\(4：5：6\\)，則此社群有多少人選擇仙境手遊？",
+   "ref": null,
+   "steps": [
+    "設選擇仙境、峽谷、三國分別有 \\(4r\\)、\\(5r\\)、\\(6r\\) 人，\\(r≠0\\)",
+    "依題意可列出 \\(4r+5r+6r=75\\)，\\(15r=75\\)，\\(r=5\\)",
+    "所以選擇仙境手遊有 \\(4×5=20\\)（人）"
+   ],
+   "ans": "\\(20\\) 人",
+   "fig": null
+  },
+  "自評6": {
+   "src": "課本・自我評量",
+   "page": "印 22",
+   "title": "自我評量第 6 題",
+   "q": "有 \\(A\\)、\\(B\\)、\\(C\\) 三種機器人，已知 \\(A\\)、\\(B\\) 兩種機器人每天工作量的比是 \\(7：9\\)，\\(B\\)、\\(C\\) 兩種機器人每天工作量的比是 \\(6：7\\)。若甲工廠三種機器人各買 \\(2\\) 個，乙工廠 \\(A\\)、\\(B\\) 機器人各買 \\(3\\) 個，在操作完全正常的情形下，甲、乙兩工廠機器人每天工作量總和的比是多少？\n承上，\\(x：y：z=14：18：21\\)。",
+   "ref": null,
+   "steps": [
+    "設 \\(A\\)、\\(B\\)、\\(C\\) 每天的工作量分別是 \\(x\\)、\\(y\\)、\\(z\\) 單位",
+    "即 \\(x：y=7：9\\)，\\(y：z=6：7\\)",
+    "\\(〔9，6〕=18\\)",
+    "把兩式的 \\(y\\) 都化成 \\(18\\)：",
+    "所以 \\(x：y：z=14：18：21\\)",
+    "故可設 \\(x=14r\\)，\\(y=18r\\)，\\(z=21r\\)，\\(r≠0\\)",
+    "依題意可列出 \\(（2x+2y+2z）：（3x+3y）\\)",
+    "　　\\(=（28r+36r+42r）：（42r+54r）\\)",
+    "　　\\(=106r：96r\\)",
+    "　　\\(=53：48\\)"
+   ],
+   "ans": "甲、乙兩工廠機器人每天工作量總和的比是 \\(53：48\\)",
+   "fig": {
+    "type": "ratio-table",
+    "header": [
+     "x",
+     "y",
+     "z"
+    ],
+    "rows": [
+     [
+      "7",
+      "9",
+      null
+     ],
+     [
+      null,
+      "6",
+      "7"
+     ],
+     [
+      "14",
+      "18",
+      "21"
+     ]
+    ],
+    "rulesAfter": [
+     1
+    ],
+    "box": {
+     "col": 1,
+     "from": 0,
+     "to": 2
+    },
+    "role": "solution"
+   },
+   "solfigs": [
+    {
+     "from": 2,
+     "fig": {
+      "type": "ratio-table",
+      "header": [
+       "x",
+       "y",
+       "z"
+      ],
+      "rows": [
+       [
+        "7",
+        "9",
+        null
+       ],
+       [
+        null,
+        "6",
+        "7"
+       ],
+       [
+        "14",
+        "18",
+        "21"
+       ]
+      ],
+      "rulesAfter": [
+       1
+      ],
+      "box": {
+       "col": 1,
+       "from": 0,
+       "to": 2
+      },
+      "role": "solution"
+     }
+    }
+   ]
+  },
+  "自評7": {
+   "src": "課本・自我評量",
+   "page": "印 22",
+   "title": "自我評量第 7 題",
+   "q": "已知米飯 \\(50\\) 公克、餃子皮 \\(30\\) 公克及蘿蔔糕 \\(70\\) 公克三者所含的熱量相等，則 \\(1\\) 公克米飯、\\(1\\) 公克餃子皮和 \\(1\\) 公克蘿蔔糕所含熱量的比是多少？",
+   "ref": null,
+   "steps": [
+    "設 \\(1\\) 公克米飯、餃子皮、蘿蔔糕所含的熱量分別是 \\(x\\)、\\(y\\)、\\(z\\) 單位",
+    "依題意可列式得 \\(50x=30y=70z\\)",
+    "由 \\(50x=30y\\)，得 \\(x：y=3：5\\)",
+    "由 \\(30y=70z\\)，得 \\(y：z=7：3\\)"
+   ],
+   "ans": "\\(21：35：15\\)",
+   "fig": {
+    "type": "ratio-table",
+    "header": [
+     "x",
+     "y",
+     "z"
+    ],
+    "rows": [
+     [
+      "3",
+      "5",
+      null
+     ],
+     [
+      null,
+      "7",
+      "3"
+     ],
+     [
+      "21",
+      "35",
+      "15"
+     ]
+    ],
+    "rulesAfter": [
+     1
+    ],
+    "box": {
+     "col": 1,
+     "from": 0,
+     "to": 2
+    },
+    "role": "solution"
+   },
+   "solfigs": [
+    {
+     "from": 2,
+     "fig": {
+      "type": "ratio-table",
+      "header": [
+       "x",
+       "y",
+       "z"
+      ],
+      "rows": [
+       [
+        "3",
+        "5",
+        null
+       ],
+       [
+        null,
+        "7",
+        "3"
+       ],
+       [
+        "21",
+        "35",
+        "15"
+       ]
+      ],
+      "rulesAfter": [
+       1
+      ],
+      "box": {
+       "col": 1,
+       "from": 0,
+       "to": 2
+      },
+      "role": "solution"
+     }
+    }
+   ]
+  },
   "課P9": {
    "src": "課本・隨堂練習",
    "page": "印 9",
@@ -1277,6 +1710,645 @@ window.SOLUTIONS = {
   }
  },
  "1-2": {
+  "自評1": {
+   "src": "課本・自我評量",
+   "page": "印 40",
+   "title": "自我評量第 1 題",
+   "q": "如圖一，有一張三角形 \\(ABC\\) 的紙片，\\(P\\) 點在 \\(\\overline{BC}\\) 上。將 \\(A\\) 點摺至 \\(P\\) 點時，\\(\\overline{BD}\\) 為摺痕，其中 \\(D\\) 點在 \\(\\overline{AC}\\) 上，如圖二。若 \\(\\triangle ABC\\) 的面積為 \\(100\\)，\\(\\triangle DBC\\) 的面積為 \\(60\\)，求 \\(\\overline{BP}\\)：\\(\\overline{PC}\\)。\n承上，摺疊前後 \\(\\triangle BDP\\) 與 \\(\\triangle BDA\\) 完全重合。\n承上，\\(\\triangle BDP\\) 的面積 \\(=40\\)，\\(\\triangle DPC\\) 的面積 \\(=20\\)。",
+   "ref": "圖見課本 p.40（圖一、圖二）",
+   "steps": [
+    "\\(\\because \\triangle DBC\\) 的面積為 \\(60\\)",
+    "\\(\\therefore \\triangle ADB\\) 的面積 \\(=\\triangle ABC\\) 的面積 \\(-\\triangle DBC\\) 的面積 \\(=100-60=40\\)",
+    "\\(\\because \\triangle BDP\\) 的面積 \\(=\\triangle ADB\\) 的面積 \\(=40\\)",
+    "\\(\\therefore \\triangle DPC\\) 的面積 \\(=\\triangle DBC\\) 的面積 \\(-\\triangle DBP\\) 的面積 \\(=60-40=20\\)",
+    "故 \\(\\overline{BP}\\)：\\(\\overline{PC}\\)\\(=\\triangle BDP\\) 的面積：\\(\\triangle DPC\\) 的面積",
+    "　　\\(=40：20=2：1\\)（同高）"
+   ],
+   "ans": "\\(2：1\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 13,
+    "gap": 110,
+    "placement": "below",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 18,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 6,
+        "y": 10.392,
+        "label": "$A$"
+       },
+       {
+        "x": 12,
+        "y": 0,
+        "label": "$P$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCF0E4",
+      "caption": "圖一"
+     },
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 12,
+        "y": 0,
+        "label": "$P$"
+       },
+       {
+        "x": 18,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 10.8,
+        "y": 6.235,
+        "label": "$D$"
+       },
+       {
+        "x": 6,
+        "y": 10.392,
+        "label": "$A$"
+       }
+      ],
+      "outline": [
+       0,
+       2,
+       3
+      ],
+      "fill": "#DCF0E4",
+      "polygons": [
+       {
+        "points": [
+         0,
+         1,
+         3
+        ],
+        "fill": "#A8D8BC"
+       }
+      ],
+      "segments": [
+       {
+        "from": 3,
+        "to": 1
+       },
+       {
+        "from": 0,
+        "to": 4,
+        "dashed": true
+       },
+       {
+        "from": 4,
+        "to": 3,
+        "dashed": true
+       }
+      ],
+      "caption": "圖二"
+     }
+    ]
+   }
+  },
+  "自評2": {
+   "src": "課本・自我評量",
+   "page": "印 40",
+   "title": "自我評量第 2 題",
+   "q": "如圖，在 \\(\\triangle ABC\\) 中，\\(\\overline{MN}\\)\\(\\parallel\\)\\(\\overline{BC}\\)，若 \\(\\overline{AM}\\)\\(=2x+4\\)，\\(\\overline{MB}\\)\\(=x+1\\)，\\(\\overline{AN}\\)\\(=7\\)，\\(\\overline{NC}\\)\\(=3\\)，求 \\(x\\) 的值。\n承上，求 \\(x\\) 的值。",
+   "ref": "圖見課本 p.40",
+   "steps": [
+    "在 \\(\\triangle ABC\\) 中，\\(\\because\\)\\(\\overline{MN}\\)\\(\\parallel\\)\\(\\overline{BC}\\)",
+    "\\(\\therefore\\)\\(\\overline{AM}\\)：\\(\\overline{MB}\\)\\(=\\)\\(\\overline{AN}\\)：\\(\\overline{NC}\\)",
+    "　　\\(（2x+4）：（x+1）=7：3\\)",
+    "　　\\(6x+12=7x+7\\)",
+    "　　\\(x=5\\)"
+   ],
+   "ans": "\\(x=5\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 40,
+    "gap": 90,
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 8.15,
+        "y": 3.75,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 10.6,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 2.445,
+        "y": 1.125,
+        "label": "$M$",
+        "nudge": [
+         -10,
+         -4
+        ]
+       },
+       {
+        "x": 9.865,
+        "y": 1.125,
+        "label": "$N$",
+        "nudge": [
+         10,
+         -4
+        ]
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 3,
+        "to": 4
+       }
+      ]
+     }
+    ],
+    "placement": "right"
+   }
+  },
+  "自評3": {
+   "src": "課本・自我評量",
+   "page": "印 40",
+   "title": "自我評量第 3 題",
+   "q": "如圖，\\(E\\)、\\(F\\) 分別是 \\(\\overline{BC}\\)、\\(\\overline{CD}\\) 的中點，連接 \\(\\overline{AE}\\)、\\(\\overline{AF}\\)。若 \\(G\\)、\\(H\\) 分別在 \\(\\overline{AE}\\)、\\(\\overline{AF}\\) 上，且 \\(\\overline{AG}\\)：\\(\\overline{GE}\\)\\(=3：2\\)，\\(\\overline{AH}\\)：\\(\\overline{HF}\\)\\(=3：2\\)。\n回答下列問題：\n① \\(\\overline{GH}\\) 和 \\(\\overline{EF}\\) 是否平行？\n② \\(\\overline{GH}\\)：\\(\\overline{EF}\\)\\(=\\)？\n③ \\(\\overline{GH}\\)：\\(\\overline{BD}\\)\\(=\\)？",
+   "ref": "圖見課本 p.40",
+   "steps": [
+    "① 在 \\(\\triangle AEF\\) 中，\\(\\overline{AG}\\)：\\(\\overline{GE}\\)\\(=\\)\\(\\overline{AH}\\)：\\(\\overline{HF}\\)",
+    "　　所以 \\(\\overline{GH}\\)\\(\\parallel\\)\\(\\overline{EF}\\)",
+    "② \\(\\overline{GH}\\)：\\(\\overline{EF}\\)\\(=\\)\\(\\overline{AG}\\)：\\(\\overline{AE}\\)\\(=3：（3+2）=3：5\\)",
+    "③ 在 \\(\\triangle BCD\\) 中，\\(E\\)、\\(F\\) 是中點，所以 \\(\\overline{EF}\\)\\(=\\frac{1}{2}\\)\\(\\overline{BD}\\)",
+    "　　設 \\(\\overline{GH}\\)\\(=3k\\)，則 \\(\\overline{EF}\\)\\(=5k\\)，\\(\\overline{BD}\\)\\(=10k\\)",
+    "　　\\(\\overline{GH}\\)：\\(\\overline{BD}\\)\\(=3：10\\)"
+   ],
+   "ans": "① 是　② \\(3：5\\)　③ \\(3：10\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 17,
+    "gap": 90,
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 8.7,
+        "y": 16.8,
+        "label": "$A$"
+       },
+       {
+        "x": 0.0,
+        "y": 1.8,
+        "label": "$B$"
+       },
+       {
+        "x": 8.5,
+        "y": 0.0,
+        "label": "$C$"
+       },
+       {
+        "x": 17.2,
+        "y": 1.8,
+        "label": "$D$"
+       },
+       {
+        "x": 4.25,
+        "y": 0.9,
+        "label": "$E$"
+       },
+       {
+        "x": 12.85,
+        "y": 0.9,
+        "label": "$F$"
+       },
+       {
+        "x": 6.03,
+        "y": 7.26,
+        "label": "$G$"
+       },
+       {
+        "x": 11.19,
+        "y": 7.26,
+        "label": "$H$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 1,
+        "to": 3
+       },
+       {
+        "from": 0,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 5
+       },
+       {
+        "from": 6,
+        "to": 7
+       }
+      ]
+     }
+    ],
+    "placement": "right"
+   }
+  },
+  "自評4": {
+   "src": "課本・自我評量",
+   "page": "印 41",
+   "title": "自我評量第 4 題",
+   "q": "如圖，已知 \\(\\triangle ABC\\)，回答下列問題：\n① 依步驟利用尺規完成作圖，步驟見下一頁。\n② 在 ① 的完成圖中回答三個小題，題目見（續三）。\n① 的作圖步驟：\n步驟 1：過 \\(A\\) 點作一條異於 \\(\\overline{AB}\\) 的直線 \\(L\\)。\n步驟 2：在 \\(L\\) 上依序取 \\(P_1\\)、\\(P_2\\)、\\(P_3\\)、\\(P_4\\) 四點，使得 \\(\\overline{AP_1}=\\overline{P_1P_2}=\\overline{P_2P_3}=\\overline{P_3P_4}\\)。\n步驟 3：連接 \\(\\overline{P_4B}\\)。\n步驟 4：過 \\(P_1\\) 作 \\(\\overline{P_1D}\\parallel\\overline{P_4B}\\)，交 \\(\\overline{AB}\\) 於 \\(D\\) 點。\n② 在 ① 的完成圖中：\n②-1 \\(\\overline{AP_1}：\\overline{P_1P_4}=\\)＿＿：＿＿。\n②-2 為什麼 \\(\\overline{AD}：\\overline{BD}=\\overline{AP_1}：\\overline{P_1P_4}\\)？\n②-3 連接 \\(\\overline{CD}\\)，求 \\(\\triangle ABC\\) 與 \\(\\triangle ADC\\) 的面積比。",
+   "ref": "圖見課本 p.41",
+   "steps": [
+    "① 的完成圖：",
+    "\\(P_1\\)～\\(P_4\\) 等距",
+    "\\(\\overline{P_4B}\\)、\\(\\overline{P_1D}\\) 互相平行",
+    "\\(D\\) 點即為所求",
+    "②-2 \\(\\because \\overline{P_1D}\\parallel\\overline{P_4B}\\)，\\(\\therefore \\overline{AD}：\\overline{BD}=\\overline{AP_1}：\\overline{P_1P_4}\\)",
+    "②-3 \\(\\triangle ABC\\) 與 \\(\\triangle ADC\\) 同高，面積比等於底的比，\\(4：1\\)"
+   ],
+   "ans": "②-1 \\(1：3\\)　②-3 \\(4：1\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 13,
+    "gap": 90,
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 25.3,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 15.9,
+        "y": 11.8,
+        "label": "$C$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCF0E4"
+     }
+    ],
+    "placement": "right"
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 12,
+      "gap": 90,
+      "role": "solution",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 25.3,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 15.9,
+          "y": 11.8,
+          "label": "$C$"
+         },
+         {
+          "x": 6.1,
+          "y": -2.47,
+          "label": "$P_1$"
+         },
+         {
+          "x": 12.2,
+          "y": -4.94,
+          "label": "$P_2$"
+         },
+         {
+          "x": 18.3,
+          "y": -7.41,
+          "label": "$P_3$"
+         },
+         {
+          "x": 24.4,
+          "y": -9.88,
+          "label": "$P_4$"
+         },
+         {
+          "x": 29.28,
+          "y": -11.856,
+          "label": "$L$"
+         },
+         {
+          "x": 6.325,
+          "y": 0,
+          "label": "$D$",
+          "accent": true
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCF0E4",
+        "segments": [
+         {
+          "from": 0,
+          "to": 7
+         },
+         {
+          "from": 6,
+          "to": 1,
+          "accent": true
+         },
+         {
+          "from": 3,
+          "to": 8,
+          "accent": true
+         },
+         {
+          "from": 2,
+          "to": 8,
+          "accent": true,
+          "dashed": true
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 3,
+          "ticks": 1
+         },
+         {
+          "from": 3,
+          "to": 4,
+          "ticks": 1
+         },
+         {
+          "from": 4,
+          "to": 5,
+          "ticks": 1
+         },
+         {
+          "from": 5,
+          "to": 6,
+          "ticks": 1
+         }
+        ]
+       }
+      ],
+      "placement": "right"
+     }
+    }
+   ]
+  },
+  "自評5": {
+   "src": "課本・自我評量",
+   "page": "印 41",
+   "title": "自我評量第 5 題",
+   "q": "如圖，在四邊形 \\(ABCD\\) 中，\\(E\\)、\\(F\\) 分別為 \\(\\overline{AB}\\)、\\(\\overline{AD}\\) 的中點，\\(G\\)、\\(H\\) 分別為 \\(\\overline{BC}\\)、\\(\\overline{CD}\\) 的中點，若 \\(\\overline{BD}\\)\\(=8\\)。\n① \\(\\overline{EF}\\)\\(+\\)\\(\\overline{GH}\\) 的長。",
+   "ref": "圖見課本 p.41",
+   "steps": [
+    "① 在 \\(\\triangle ABD\\) 中，\\(E\\)、\\(F\\) 分別為 \\(\\overline{AB}\\)、\\(\\overline{AD}\\) 的中點",
+    "　　\\(\\therefore\\)\\(\\overline{EF}\\)\\(\\parallel\\)\\(\\overline{BD}\\)，且 \\(\\overline{EF}\\)\\(=\\frac{1}{2}\\)\\(\\overline{BD}\\)\\(=\\frac{1}{2}×8=4\\)",
+    "　　同理，\\(\\overline{GH}\\parallel\\overline{BD}\\)，\\(\\overline{GH}=4\\)，故 \\(\\overline{EF}+\\overline{GH}=8\\)",
+    "② 連接 \\(\\overline{EG}\\)、\\(\\overline{FH}\\)，則四邊形 \\(EFHG\\) 是否為平行四邊形？為什麼？",
+    "② \\(\\because\\)\\(\\overline{EF}\\)\\(\\parallel\\)\\(\\overline{BD}\\)，\\(\\overline{GH}\\)\\(\\parallel\\)\\(\\overline{BD}\\)，\\(\\therefore\\)\\(\\overline{EF}\\)\\(\\parallel\\)\\(\\overline{GH}\\)",
+    "　　又 \\(\\overline{EF}\\)\\(=\\)\\(\\overline{GH}\\)，故四邊形 \\(EFHG\\) 為平行四邊形"
+   ],
+   "ans": "① \\(8\\)　② 是",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 13,
+    "gap": 90,
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 5.3,
+        "y": 26.8,
+        "label": "$A$"
+       },
+       {
+        "x": 0.0,
+        "y": 11.9,
+        "label": "$B$"
+       },
+       {
+        "x": 1.5,
+        "y": 0.0,
+        "label": "$C$"
+       },
+       {
+        "x": 17.0,
+        "y": 11.9,
+        "label": "$D$"
+       },
+       {
+        "x": 2.65,
+        "y": 19.35,
+        "label": "$E$",
+        "nudge": [
+         -8,
+         0
+        ]
+       },
+       {
+        "x": 11.15,
+        "y": 19.35,
+        "label": "$F$"
+       },
+       {
+        "x": 0.75,
+        "y": 5.95,
+        "label": "$G$",
+        "nudge": [
+         -10,
+         0
+        ]
+       },
+       {
+        "x": 9.25,
+        "y": 5.95,
+        "label": "$H$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 4,
+        "to": 5
+       },
+       {
+        "from": 1,
+        "to": 3
+       },
+       {
+        "from": 6,
+        "to": 7
+       }
+      ]
+     }
+    ],
+    "placement": "right"
+   },
+   "solfigs": [
+    {
+     "from": 3,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 13,
+      "gap": 90,
+      "role": "solution",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 5.3,
+          "y": 26.8,
+          "label": "$A$"
+         },
+         {
+          "x": 0.0,
+          "y": 11.9,
+          "label": "$B$"
+         },
+         {
+          "x": 1.5,
+          "y": 0.0,
+          "label": "$C$"
+         },
+         {
+          "x": 17.0,
+          "y": 11.9,
+          "label": "$D$"
+         },
+         {
+          "x": 2.65,
+          "y": 19.35,
+          "label": "$E$",
+          "nudge": [
+           -8,
+           0
+          ]
+         },
+         {
+          "x": 11.15,
+          "y": 19.35,
+          "label": "$F$"
+         },
+         {
+          "x": 0.75,
+          "y": 5.95,
+          "label": "$G$",
+          "nudge": [
+           -10,
+           0
+          ]
+         },
+         {
+          "x": 9.25,
+          "y": 5.95,
+          "label": "$H$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2,
+         3
+        ],
+        "fill": "#DCF0E4",
+        "segments": [
+         {
+          "from": 4,
+          "to": 5
+         },
+         {
+          "from": 1,
+          "to": 3
+         },
+         {
+          "from": 6,
+          "to": 7
+         },
+         {
+          "from": 4,
+          "to": 6,
+          "accent": true
+         },
+         {
+          "from": 5,
+          "to": 7,
+          "accent": true
+         }
+        ]
+       }
+      ],
+      "placement": "right"
+     }
+    }
+   ]
+  },
   "課P23": {
    "src": "課本・隨堂練習",
    "page": "印 23",
@@ -3369,6 +4441,840 @@ window.SOLUTIONS = {
   }
  },
  "1-3": {
+  "自評1": {
+   "src": "課本・自我評量",
+   "page": "印 60",
+   "title": "自我評量第 1 題",
+   "q": "如圖，在 \\(\\overrightarrow{OA}\\)、\\(\\overrightarrow{OB}\\)、\\(\\overrightarrow{OC}\\) 上分別取 \\(A'\\)、\\(B'\\)、\\(C'\\) 三點，使 \\(\\triangle A'B'C'\\sim\\triangle ABC\\)，且 \\(\\overline{A'B'}=2\\overline{AB}\\)。（只要作圖，不必寫出作法）",
+   "ref": "圖見課本 p.60",
+   "steps": [
+    "作圖結果：",
+    "以 \\(O\\) 為中心，在三條射線上分別取",
+    "　　\\(\\overline{OA'}=2\\overline{OA}\\)",
+    "　　\\(\\overline{OB'}=2\\overline{OB}\\)",
+    "　　\\(\\overline{OC'}=2\\overline{OC}\\)",
+    "連接 \\(A'\\)、\\(B'\\)、\\(C'\\)"
+   ],
+   "ans": "\\(\\triangle A'B'C'\\) 即為所求",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 11,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$"
+       },
+       {
+        "x": 14,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 4.8,
+        "y": 4.3,
+        "label": "$B$"
+       },
+       {
+        "x": 1,
+        "y": 13.7,
+        "label": "$C$"
+       },
+       {
+        "x": 33,
+        "y": 0
+       },
+       {
+        "x": 21.6,
+        "y": 19.35
+       },
+       {
+        "x": 2.3,
+        "y": 31.3
+       }
+      ],
+      "outline": [
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 0,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 5
+       },
+       {
+        "from": 0,
+        "to": 6
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 11,
+      "gap": 90,
+      "placement": "right",
+      "role": "solution",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$O$"
+         },
+         {
+          "x": 14,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 4.8,
+          "y": 4.3,
+          "label": "$B$"
+         },
+         {
+          "x": 1,
+          "y": 13.7,
+          "label": "$C$"
+         },
+         {
+          "x": 33,
+          "y": 0
+         },
+         {
+          "x": 21.6,
+          "y": 19.35
+         },
+         {
+          "x": 2.3,
+          "y": 31.3
+         },
+         {
+          "x": 28,
+          "y": 0,
+          "label": "$A'$",
+          "accent": true
+         },
+         {
+          "x": 9.6,
+          "y": 8.6,
+          "label": "$B'$",
+          "accent": true,
+          "nudge": [
+           16,
+           4
+          ]
+         },
+         {
+          "x": 2,
+          "y": 27.4,
+          "label": "$C'$",
+          "accent": true
+         }
+        ],
+        "outline": [
+         1,
+         2,
+         3
+        ],
+        "fill": "#DCF0E4",
+        "segments": [
+         {
+          "from": 0,
+          "to": 4
+         },
+         {
+          "from": 0,
+          "to": 5
+         },
+         {
+          "from": 0,
+          "to": 6
+         },
+         {
+          "from": 7,
+          "to": 8,
+          "accent": true
+         },
+         {
+          "from": 8,
+          "to": 9,
+          "accent": true
+         },
+         {
+          "from": 9,
+          "to": 7,
+          "accent": true
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "ticks": 1
+         },
+         {
+          "from": 1,
+          "to": 7,
+          "ticks": 1
+         },
+         {
+          "from": 0,
+          "to": 2,
+          "ticks": 2
+         },
+         {
+          "from": 2,
+          "to": 8,
+          "ticks": 2
+         },
+         {
+          "from": 0,
+          "to": 3,
+          "ticks": 3
+         },
+         {
+          "from": 3,
+          "to": 9,
+          "ticks": 3
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "自評2": {
+   "src": "課本・自我評量",
+   "page": "印 60",
+   "title": "自我評量第 2 題",
+   "q": "如圖，四邊形 \\(ABCD\\) 為等腰梯形，\\(\\overline{AD}\\)\\(\\parallel\\)\\(\\overline{BC}\\)，\\(E\\)、\\(F\\) 分別為 \\(\\overline{AB}\\)、\\(\\overline{DC}\\) 的中點，已知 \\(\\overline{AD}\\)\\(=3\\)，\\(\\overline{BC}\\)\\(=7\\)。\n① 四邊形 \\(AEFD\\) 與四邊形 \\(EBCF\\)：對應角是否相等？對應邊是否成比例？兩圖形是否相似？\n② 四邊形 \\(AEFD\\) 與四邊形 \\(ABCD\\)：對應角是否相等？對應邊是否成比例？兩圖形是否相似？",
+   "ref": "圖見課本 p.60",
+   "steps": [
+    "\\(\\overline{EF}\\)\\(=\\frac{3+7}{2}=5\\)，且 \\(\\overline{AD}\\)\\(\\parallel\\)\\(\\overline{EF}\\)\\(\\parallel\\)\\(\\overline{BC}\\)",
+    "對應角：\\(\\angle A=\\angle BEF\\)，\\(\\angle AEF=\\angle B\\)，\\(\\angle EFD=\\angle C\\)，\\(\\angle D=\\angle EFC\\)",
+    "對應邊：\\(\\overline{AE}\\)：\\(\\overline{EB}\\)\\(=1：1\\)，\\(\\overline{EF}\\)：\\(\\overline{BC}\\)\\(=5：7\\)，不成比例",
+    "對應角：\\(\\angle A=\\angle A\\)，\\(\\angle AEF=\\angle B\\)，\\(\\angle EFD=\\angle C\\)，\\(\\angle D=\\angle D\\)",
+    "對應邊：\\(\\overline{AE}\\)：\\(\\overline{AB}\\)\\(=1：2\\)，\\(\\overline{AD}\\)：\\(\\overline{AD}\\)\\(=1：1\\)，不成比例"
+   ],
+   "ans": "① 對應角相等：是　對應邊成比例：否　相似：否　② 對應角相等：是　對應邊成比例：否　相似：否",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 34,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 2,
+        "y": 4.9,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 7,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 5,
+        "y": 4.9,
+        "label": "$D$"
+       },
+       {
+        "x": 1,
+        "y": 2.45,
+        "label": "$E$"
+       },
+       {
+        "x": 6,
+        "y": 2.45,
+        "label": "$F$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 4,
+        "to": 5
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "自評3": {
+   "src": "課本・自我評量",
+   "page": "印 61",
+   "title": "自我評量第 3 題",
+   "q": "已知四邊形 \\(ABCD\\sim\\) 四邊形 \\(A'B'C'D'\\)，\\(A\\)、\\(B\\)、\\(C\\)、\\(D\\) 對應頂點為 \\(A'\\)、\\(B'\\)、\\(C'\\)、\\(D'\\)，回答下列問題：\n① 若 \\(\\overline{AB}\\)：\\(\\overline{BC}\\)：\\(\\overline{CD}\\)：\\(\\overline{DA}\\)\\(=1：3：4：2\\)，四邊形 \\(A'B'C'D'\\) 的周長為 \\(50\\)，求 \\(\\overline{A'B'}\\) 及 \\(\\overline{C'D'}\\) 的長。\n② 若 \\(\\angle A：\\angle B：\\angle C=2：5：3\\)，\\(\\angle D=100\\degree\\)，求 \\(\\angle A'\\) 及 \\(\\angle B'\\) 的度數。",
+   "ref": null,
+   "steps": [
+    "對應邊成比例：\\(\\overline{A'B'}：\\overline{B'C'}：\\overline{C'D'}：\\overline{D'A'}=1：3：4：2\\)",
+    "故 \\(\\overline{A'B'}=50×\\frac{1}{10}=5\\)，\\(\\overline{C'D'}=50×\\frac{4}{10}=20\\)（\\(1+3+4+2=10\\)）",
+    "設 \\(\\angle A=（2r）\\degree\\)，\\(\\angle B=（5r）\\degree\\)，\\(\\angle C=（3r）\\degree\\)，\\(r≠0\\)",
+    "\\(\\because \\angle A+\\angle B+\\angle C+\\angle D=360\\degree\\)",
+    "\\(\\therefore 2r+5r+3r+100=360\\)，\\(r=26\\)",
+    "故 \\(\\angle A'=（2×26）\\degree=52\\degree\\)，\\(\\angle B'=（5×26）\\degree=130\\degree\\)"
+   ],
+   "ans": "① \\(\\overline{A'B'}=5\\)，\\(\\overline{C'D'}=20\\)　② \\(\\angle A'=52\\degree\\)，\\(\\angle B'=130\\degree\\)",
+   "fig": null
+  },
+  "自評4": {
+   "src": "課本・自我評量",
+   "page": "印 61",
+   "title": "自我評量第 4 題",
+   "q": "下列哪些三角形與 \\(\\triangle ABC\\) 相似？在 \\(\\square\\) 中打「\\(\\checkmark\\)」，並寫出所用的相似性質。\n選項 ①、②：\n選項 ③、④：\n選項 ⑤、⑥：",
+   "ref": "圖見課本 p.61（△ABC 與 ⑴～⑹ 六個三角形）",
+   "steps": [
+    "① 有兩角 \\(a\\degree\\)、\\(b\\degree\\) 對應相等 → 相似（\\(AA\\)）",
+    "② 邊長 \\(16：16：20\\) 與 \\(16：20：24\\) 不成比例 → 不相似",
+    "③ 夾 \\(b\\degree\\) 的兩邊 \\(30：24=20：16\\) → 相似（\\(SAS\\)）",
+    "④ 有兩角 \\(c\\degree\\)、\\(a\\degree\\) 對應相等 → 相似（\\(AA\\)）",
+    "⑤ \\(12：16=15：20=18：24\\)，相似（\\(SSS\\)）",
+    "⑥ 夾 \\(a\\degree\\) 的兩邊 \\(30：20≠20：16\\) → 不相似"
+   ],
+   "ans": "① \\(\\checkmark\\) \\(AA\\)　② 不相似　③ \\(\\checkmark\\) \\(SAS\\)　④ \\(\\checkmark\\) \\(AA\\)　⑤ \\(\\checkmark\\) \\(SSS\\)　⑥ 不相似",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 12,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 15.87,
+        "label": "$C$"
+       },
+       {
+        "x": 20,
+        "y": 15.87,
+        "label": "$A$"
+       },
+       {
+        "x": 18,
+        "y": 0,
+        "label": "$B$"
+       }
+      ],
+      "fill": "#DCF0E4",
+      "angles": [
+       {
+        "at": 0,
+        "text": "$c\\degree$"
+       },
+       {
+        "at": 1,
+        "text": "$a\\degree$"
+       },
+       {
+        "at": 2,
+        "text": "$b\\degree$"
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$20$"
+       },
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$16$"
+       },
+       {
+        "from": 0,
+        "to": 2,
+        "text": "$24$"
+       }
+      ]
+     }
+    ]
+   },
+   "figs": [
+    {
+     "type": "polygon-group",
+     "unit": 12,
+     "gap": 90,
+     "placement": "right",
+     "shapes": [
+      {
+       "points": [
+        {
+         "x": 0,
+         "y": 15.87,
+         "label": "$C$"
+        },
+        {
+         "x": 20,
+         "y": 15.87,
+         "label": "$A$"
+        },
+        {
+         "x": 18,
+         "y": 0,
+         "label": "$B$"
+        }
+       ],
+       "fill": "#DCF0E4",
+       "angles": [
+        {
+         "at": 0,
+         "text": "$c\\degree$"
+        },
+        {
+         "at": 1,
+         "text": "$a\\degree$"
+        },
+        {
+         "at": 2,
+         "text": "$b\\degree$"
+        }
+       ],
+       "sides": [
+        {
+         "from": 0,
+         "to": 1,
+         "text": "$20$"
+        },
+        {
+         "from": 1,
+         "to": 2,
+         "text": "$16$"
+        },
+        {
+         "from": 0,
+         "to": 2,
+         "text": "$24$"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "polygon-group",
+     "unit": 17,
+     "gap": 50,
+     "placement": "right",
+     "shapes": [
+      {
+       "points": [
+        {
+         "x": 0.0,
+         "y": 0.3
+        },
+        {
+         "x": 7.2,
+         "y": 9.0
+        },
+        {
+         "x": 6.5,
+         "y": 0.0
+        }
+       ],
+       "fill": "#FDF6C3",
+       "angles": [
+        {
+         "at": 0,
+         "text": "$b\\degree$"
+        },
+        {
+         "at": 2,
+         "text": "$a\\degree$"
+        }
+       ],
+       "caption": "①"
+      },
+      {
+       "points": [
+        {
+         "x": 0.0,
+         "y": 3.6
+        },
+        {
+         "x": 8.3,
+         "y": 6.7
+        },
+        {
+         "x": 6.2,
+         "y": 0.0
+        }
+       ],
+       "fill": "#E8DCF0",
+       "sides": [
+        {
+         "from": 0,
+         "to": 1,
+         "text": "$20$"
+        },
+        {
+         "from": 1,
+         "to": 2,
+         "text": "$16$"
+        },
+        {
+         "from": 0,
+         "to": 2,
+         "text": "$16$"
+        }
+       ],
+       "caption": "②"
+      }
+     ]
+    },
+    {
+     "type": "polygon-group",
+     "unit": 17,
+     "gap": 50,
+     "placement": "right",
+     "shapes": [
+      {
+       "points": [
+        {
+         "x": 0.0,
+         "y": 0.0
+        },
+        {
+         "x": 9.9,
+         "y": 9.1
+        },
+        {
+         "x": 11.2,
+         "y": 0.0
+        }
+       ],
+       "fill": "#DCEEF8",
+       "angles": [
+        {
+         "at": 1,
+         "text": "$b\\degree$"
+        }
+       ],
+       "sides": [
+        {
+         "from": 0,
+         "to": 1,
+         "text": "$30$"
+        },
+        {
+         "from": 1,
+         "to": 2,
+         "text": "$20$"
+        }
+       ],
+       "caption": "③"
+      },
+      {
+       "points": [
+        {
+         "x": 0.0,
+         "y": 10.3
+        },
+        {
+         "x": 1.3,
+         "y": 0.0
+        },
+        {
+         "x": 9.4,
+         "y": 1.7
+        }
+       ],
+       "fill": "#FDE8DC",
+       "angles": [
+        {
+         "at": 0,
+         "text": "$c\\degree$"
+        },
+        {
+         "at": 1,
+         "text": "$a\\degree$"
+        }
+       ],
+       "caption": "④"
+      }
+     ]
+    },
+    {
+     "type": "polygon-group",
+     "unit": 17,
+     "gap": 50,
+     "placement": "right",
+     "shapes": [
+      {
+       "points": [
+        {
+         "x": 2.0,
+         "y": 6.0
+        },
+        {
+         "x": 0.0,
+         "y": 3.1
+        },
+        {
+         "x": 7.4,
+         "y": 0.0
+        }
+       ],
+       "fill": "#FBE0E4",
+       "sides": [
+        {
+         "from": 1,
+         "to": 0,
+         "text": "$12$"
+        },
+        {
+         "from": 0,
+         "to": 2,
+         "text": "$15$"
+        },
+        {
+         "from": 1,
+         "to": 2,
+         "text": "$18$",
+         "nudge": [
+          0,
+          10
+         ]
+        }
+       ],
+       "caption": "⑤"
+      },
+      {
+       "points": [
+        {
+         "x": 0.0,
+         "y": 9.0
+        },
+        {
+         "x": 0.2,
+         "y": 0.0
+        },
+        {
+         "x": 13.5,
+         "y": 7.3
+        }
+       ],
+       "fill": "#E8DCF0",
+       "angles": [
+        {
+         "at": 0,
+         "text": "$a\\degree$"
+        }
+       ],
+       "sides": [
+        {
+         "from": 0,
+         "to": 2,
+         "text": "$30$"
+        },
+        {
+         "from": 0,
+         "to": 1,
+         "text": "$20$"
+        }
+       ],
+       "caption": "⑥"
+      }
+     ]
+    }
+   ]
+  },
+  "自評5": {
+   "src": "課本・自我評量",
+   "page": "印 62",
+   "title": "自我評量第 5 題",
+   "q": "如圖，四邊形 \\(ABCD\\) 是邊長為 \\(8\\) 的正方形，\\(E\\)、\\(F\\) 分別在 \\(\\overline{AB}\\)、\\(\\overline{CD}\\) 上，\\(\\overline{AE}\\)\\(=2\\)，且 \\(F\\) 是 \\(\\overline{CD}\\) 的中點，自 \\(F\\) 作 \\(\\overline{EC}\\) 的垂線，分別交 \\(\\overline{EC}\\)、\\(\\overline{BC}\\) 於 \\(H\\)、\\(G\\)。\n① \\(\\triangle EBC\\) 與 \\(\\triangle GCF\\) 是否相似？為什麼？　② 求 \\(\\overline{BG}\\) 的長。",
+   "ref": "圖見課本 p.62",
+   "steps": [
+    "在 \\(\\triangle EBC\\) 與 \\(\\triangle GCF\\) 中",
+    "\\(\\angle B=\\angle GCF=90\\degree\\)（四邊形 \\(ABCD\\) 為正方形）",
+    "又 \\(\\angle ECB+\\angle BEC=\\angle ECB+\\angle FGC=90\\degree\\)",
+    "\\(\\therefore \\angle BEC=\\angle FGC\\)",
+    "故 \\(\\triangle EBC\\sim\\triangle GCF\\)（\\(AA\\) 相似性質）",
+    "\\(\\because \\triangle EBC\\sim\\triangle GCF\\)",
+    "\\(\\therefore \\frac{\\overline{EB}}{\\overline{GC}}=\\frac{\\overline{BC}}{\\overline{CF}}\\)，\\(\\frac{6}{\\overline{GC}}=\\frac{8}{4}\\)，\\(\\overline{GC}\\)\\(=3\\)",
+    "故 \\(\\overline{BG}\\)\\(=\\)\\(\\overline{BC}\\)\\(-\\)\\(\\overline{GC}\\)\\(=8-3=5\\)"
+   ],
+   "ans": "① 是　② \\(5\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 30,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 8,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 8,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 8,
+        "y": 8,
+        "label": "$D$"
+       },
+       {
+        "x": 0,
+        "y": 6,
+        "label": "$E$"
+       },
+       {
+        "x": 8,
+        "y": 4,
+        "label": "$F$"
+       },
+       {
+        "x": 5,
+        "y": 0,
+        "label": "$G$"
+       },
+       {
+        "x": 6.08,
+        "y": 1.44,
+        "label": "$H$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 4,
+        "to": 2
+       },
+       {
+        "from": 5,
+        "to": 6
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 7,
+        "toward": [
+         2,
+         5
+        ],
+        "size": 0.45
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "自評6": {
+   "src": "課本・自我評量",
+   "page": "印 62",
+   "title": "自我評量第 6 題",
+   "q": "如圖，\\(\\overline{AB}\\)\\(=3\\)，\\(\\overline{BC}\\)\\(=10\\)，\\(\\overline{CD}\\)\\(=6\\)，\\(\\overline{BD}\\)\\(=14\\)，且 \\(E\\) 是 \\(\\overline{BC}\\) 的中點，若 \\(\\angle ABC=\\angle DCB=120\\degree\\)。\n① \\(\\triangle ABE\\) 與 \\(\\triangle DCB\\) 是否相似？為什麼？\n② 求 \\(\\overline{AE}\\) 的長。",
+   "ref": "圖見課本 p.62",
+   "steps": [
+    "\\(\\because E\\) 是 \\(\\overline{BC}\\) 的中點，\\(\\therefore\\)\\(\\overline{BE}\\)\\(=5\\)",
+    "在 \\(\\triangle ABE\\) 與 \\(\\triangle DCB\\) 中，\\(\\overline{AB}\\)：\\(\\overline{DC}\\)\\(=3：6=1：2\\)",
+    "　　\\(\\overline{BE}\\)：\\(\\overline{CB}\\)\\(=5：10=1：2\\)",
+    "又 \\(\\angle ABC=\\angle DCB=120\\degree\\)（已知）",
+    "\\(\\therefore \\triangle ABE\\sim\\triangle DCB\\)（\\(SAS\\) 相似性質）",
+    "\\(\\because \\triangle ABE\\sim\\triangle DCB\\)",
+    "\\(\\therefore\\)\\(\\overline{AE}\\)：\\(\\overline{DB}\\)\\(=\\)\\(\\overline{AB}\\)：\\(\\overline{DC}\\)",
+    "　　\\(\\overline{AE}\\)\\(：14=3：6\\)",
+    "　　\\(\\overline{AE}\\)\\(=7\\)"
+   ],
+   "ans": "① 是　② \\(7\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 26,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": -1.5,
+        "y": 2.598,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 5,
+        "y": 0,
+        "label": "$E$"
+       },
+       {
+        "x": 10,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 13,
+        "y": 5.196,
+        "label": "$D$"
+       }
+      ],
+      "outlines": [
+       [
+        0,
+        1,
+        2
+       ],
+       [
+        4,
+        3,
+        1
+       ]
+      ],
+      "fill": "#DCF0E4"
+     }
+    ]
+   }
+  },
   "課P44 第1題": {
    "src": "課本・隨堂練習",
    "page": "印 44",
@@ -4806,7 +6712,7 @@ window.SOLUTIONS = {
    "page": "印 14",
    "title": "基礎題第 1 題",
    "q": "如圖，\\(\\triangle DEF\\) 為 \\(\\triangle ABC\\) 的縮放圖。已知 \\(\\overline{AC}=14\\)，\\(\\overline{BC}=x+5\\)，\\(\\overline{DF}=35\\)，\\(\\overline{EF}=4x+2\\)，求 \\(\\overline{BC}\\) 的長。\n承上，\\(\\triangle DEF\\) 為 \\(\\triangle ABC\\) 的縮放圖。",
-   "ref": "圖見習作 p.14",
+   "ref": "圖見習作 p.14（原書以位似中心 O 畫兩個三角形；此處改為左右並列，同課本 P48）",
    "steps": [
     "縮放圖的對應邊成比例，\\(\\frac{\\overline{DF}}{\\overline{AC}}=\\frac{\\overline{EF}}{\\overline{BC}}\\)",
     "　　\\(\\frac{35}{14}=\\frac{4x+2}{x+5}\\)，\\(35（x+5）=14（4x+2）\\)",
@@ -4815,74 +6721,60 @@ window.SOLUTIONS = {
    "ans": "\\(\\overline{BC}=7+5=12\\)",
    "fig": {
     "type": "polygon-group",
-    "unit": 26,
-    "gap": 90,
+    "unit": 9,
+    "gap": 130,
     "shapes": [
      {
       "points": [
        {
-        "x": 6,
-        "y": 1.8,
-        "label": "$A$"
-       },
-       {
-        "x": 7.4,
-        "y": -0.6,
-        "label": "$B$"
-       },
-       {
-        "x": 5.0,
-        "y": -1.2,
-        "label": "$C$"
-       },
-       {
-        "x": 1.5,
-        "y": 4.5,
+        "x": 0,
+        "y": 0,
         "label": "$D$"
        },
        {
-        "x": 5.0,
-        "y": -1.5,
+        "x": 30.0,
+        "y": 0,
         "label": "$E$"
        },
        {
-        "x": -1.0,
-        "y": -3.0,
+        "x": 20.417,
+        "y": 28.428,
         "label": "$F$"
-       },
-       {
-        "x": 9,
-        "y": 0,
-        "label": "$O$"
        }
       ],
-      "outlines": [
-       [
-        0,
-        1,
-        2
-       ],
-       [
-        3,
-        4,
-        5
-       ]
-      ],
-      "segments": [
+      "sides": [
        {
-        "from": 6,
-        "to": 3,
-        "dashed": true
+        "from": 0,
+        "to": 2,
+        "text": "$35$"
        },
        {
-        "from": 6,
-        "to": 4,
-        "dashed": true
+        "from": 1,
+        "to": 2,
+        "text": "$4x+2$",
+        "nudge": [
+         12,
+         0
+        ]
+       }
+      ]
+     },
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
        },
        {
-        "from": 6,
-        "to": 5,
-        "dashed": true
+        "x": 12,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 8.167,
+        "y": 11.371,
+        "label": "$C$"
        }
       ],
       "sides": [
@@ -4892,26 +6784,24 @@ window.SOLUTIONS = {
         "text": "$14$"
        },
        {
-        "from": 3,
-        "to": 5,
-        "text": "$35$"
-       },
-       {
-        "from": 4,
-        "to": 5,
-        "text": "$4x+2$"
-       },
-       {
         "from": 1,
         "to": 2,
-        "text": "$x+5$"
+        "text": "$x+5$",
+        "nudge": [
+         10,
+         0
+        ]
        },
        {
         "from": 1,
         "to": 2,
         "text": "$12$",
         "accent": true,
-        "step": 1
+        "step": 1,
+        "nudge": [
+         10,
+         0
+        ]
        }
       ]
      }

@@ -1,6 +1,6 @@
 window.PRACTICE = (function () {
   const INK = '#172033', GREY = '#8a94a6', ANS = '#059669';
-  const SRCCOL = { '課本・隨堂練習': '#2563eb', '習作': '#d97706', '習作・章末總習題': '#7c3aed', '習作・暖身題': '#0891b2' };
+  const SRCCOL = { '課本・隨堂練習': '#2563eb', '習作': '#d97706', '習作・章末總習題': '#7c3aed', '習作・暖身題': '#0891b2', '課本・自我評量': '#9d174d' };
 
   const S = (sec) => (window.SOLUTIONS || {})[sec] || {};
 
