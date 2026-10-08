@@ -377,11 +377,11 @@ window.DECK = window.DECK || [];
   {
     const P = (x, y, l) => ({ x, y, label: '$' + l + '$' });
     window.FIGS_REPLACE['1-3 基礎1'] = [{ type: 'polygon-group', unit: 40, gap: 70, align: 'bottom', shapes: [
-      { points: [P(3.5625, 6.025, 'D'), P(6, 0, 'E'), P(0, 0, 'F')], outline: [0, 1, 2], fill: '#dbeafe',
-        sides: [{ from: 0, to: 2, text: '$35$' }, { from: 1, to: 2, text: '$4x+2$' }],
+      { points: [P(0, 0, 'D'), P(6.5, 0, 'E'), P(4.25, 5.5621, 'F')], outline: [0, 1, 2], fill: '#dbeafe',
+        sides: [{ from: 0, to: 2, text: '$35$' }, { from: 1, to: 2, text: '$4x+2$', d0: 28 }],
         caption: '△DEF' },
-      { points: [P(1.425, 2.41, 'A'), P(2.4, 0, 'B'), P(0, 0, 'C')], outline: [0, 1, 2], fill: '#dbeafe',
-        sides: [{ from: 0, to: 2, text: '$14$' }, { from: 1, to: 2, text: '$x+5$' }, { from: 1, to: 2, text: '$12$', accent: true, step: 1 }],
+      { points: [P(0, 0, 'A'), P(2.6, 0, 'B'), P(1.7, 2.2249, 'C')], outline: [0, 1, 2], fill: '#dbeafe',
+        sides: [{ from: 0, to: 2, text: '$14$' }, { from: 1, to: 2, text: '$x+5$', d0: 24 }, { from: 1, to: 2, text: '$12$', accent: true, step: 1, d0: 20 }],
         caption: '△ABC' }] }];
   }
 
@@ -404,6 +404,35 @@ window.DECK = window.DECK || [];
       { points: [P(4.5, 3.969, 'A'), P(0, 0, 'B'), P(5, 0, 'C')], outline: [0, 1, 2], fill: '#fde9d9',
         sides: [{ from: 0, to: 2, text: '$4$' }, { from: 0, to: 1, text: '$6$' }, { from: 1, to: 2, text: '$?$', accent: true }],
         angles: [{ at: 0, mark: 1 }], caption: '△ACB' }] }];
+
+    window.FIGS_EXTRA['1-3 精熟1'] = [{ type: 'polygon-group', unit: 26, gap: 50, align: 'bottom', shapes: [
+      { points: [P(0, 0, 'B'), P(8, 0, 'F'), P(2.5, 4.33, 'D'), P(11.143, -2.474, 'A'), P(11.5, 0, 'G')],
+        outlines: [[0, 1, 2], [3, 1, 4]], fill: '#fde9d9',
+        sides: [{ from: 0, to: 2, text: '$5$' }, { from: 0, to: 1, text: '$8$' }, { from: 2, to: 1, text: '$7$' },
+                { from: 3, to: 1, text: '$4$', d0: 24 }, { from: 1, to: 4, text: '$?$', accent: true, dir: [0, -1], d0: 14 }],
+        angles: [{ at: 0, toward: [1, 2], mark: 1, text: '$60°$' }, { at: 3, toward: [1, 4], mark: 1, text: '$60°$' },
+                 { at: 1, toward: [0, 2], mark: 2 }, { at: 1, toward: [3, 4], mark: 2 }],
+        caption: '蝴蝶結（從圖二拿出來）' },
+      { points: [P(0, 0, 'B'), P(8, 0, 'F'), P(2.5, 4.33, 'D')], outline: [0, 1, 2], fill: '#fde9d9',
+        sides: [{ from: 0, to: 2, text: '$5$' }, { from: 0, to: 1, text: '$8$' }, { from: 2, to: 1, text: '$7$' }],
+        angles: [{ at: 0, mark: 1 }, { at: 1, mark: 2 }], caption: '△BFD' },
+      { points: [P(0, 0, 'A'), P(4, 0, 'F'), P(1.25, 2.165, 'G')], outline: [0, 1, 2], fill: '#fde9d9',
+        sides: [{ from: 0, to: 1, text: '$4$' }, { from: 2, to: 1, text: '$?$', accent: true }],
+        angles: [{ at: 0, mark: 1 }, { at: 1, mark: 2 }], caption: '△AFG' }] }];
+
+    window.FIGS_EXTRA['1-3 精熟2'] = [{ type: 'polygon-group', unit: 34, gap: 60, align: 'bottom', shapes: [
+      { points: [P(1, 4, 'A'), Object.assign(P(2.667, 2.667, 'G'), { dir: [-1, 0], d0: 20 }), P(4, 4, 'F'), P(6, 0, 'C'), P(0, 0, 'B')],
+        outlines: [[0, 1, 2], [3, 1, 4]], fill: '#fde9d9',
+        sides: [{ from: 1, to: 2, text: '$3$' }, { from: 1, to: 4, text: '$6$' }],
+        angles: [{ at: 0, toward: [1, 2], mark: 1 }, { at: 3, toward: [1, 4], mark: 1 },
+                 { at: 1, toward: [0, 2], mark: 2 }, { at: 1, toward: [3, 4], mark: 2 }],
+        caption: '①△AGF∼△CGB（AD、BC 平行）' },
+      { points: [P(1, 4, 'A'), Object.assign(P(2.667, 2.667, 'G'), { dir: [0, -1], d0: 22 }), P(0, 0, 'B'), P(6, 0, 'C'), P(8, 8, 'E')],
+        outlines: [[0, 1, 2], [3, 1, 4]], fill: '#dbeafe',
+        sides: [{ from: 1, to: 2, text: '$6$' }, { from: 1, to: 4, text: '$?$', accent: true }],
+        angles: [{ at: 2, toward: [0, 1], mark: 1 }, { at: 4, toward: [3, 1], mark: 1 },
+                 { at: 1, toward: [0, 2], mark: 2 }, { at: 1, toward: [3, 4], mark: 2 }],
+        caption: '②△AGB∼△CGE（AB、CE 平行）' }] }];
   }
 
   window.DECK.push({

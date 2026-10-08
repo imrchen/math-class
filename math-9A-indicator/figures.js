@@ -222,9 +222,11 @@ window.FIG = (function () {
         if (g.ticks) body += tickMarks(a, b, g.ticks);
 
         const sl = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1, su = [(b[0] - a[0]) / sl, (b[1] - a[1]) / sl];
-        const sd = Math.abs(dx / n * su[1] - dy / n * su[0]) < 0.2 ? awayDir([mx, my], [su], [dx / n, dy / n]) : [dx / n, dy / n];
+
+        const sd = Array.isArray(g.dir) ? g.dir.map(v => v / (Math.hypot(g.dir[0], g.dir[1]) || 1))
+          : Math.abs(dx / n * su[1] - dy / n * su[0]) < 0.2 ? awayDir([mx, my], [su], [dx / n, dy / n]) : [dx / n, dy / n];
         if (g.text) labels.push({ x: mx, y: my, ux: sd[0], uy: sd[1], text: tx(g.text), fs: 13.5,
-                      c: g.accent ? ANS : '#3b4a5e', fw: g.accent ? 900 : undefined, d0: 17 });
+                      c: g.accent ? ANS : '#3b4a5e', fw: g.accent ? 900 : undefined, d0: g.d0 || 17 });
       });
 
       const ring0 = rings[0] || pts.map((_, i) => i);
@@ -275,9 +277,11 @@ window.FIG = (function () {
           });
         });
         const onLine = inc.length >= 4 && (n < 4 || inc.some(u => dx * u[0] + dy * u[1] > 0 && Math.abs(dx / n * u[1] - dy / n * u[0]) < 0.3));
-        const vd = onLine ? awayDir(P[i], inc, n < 4 ? null : [dx / n, dy / n]) : [dx / n, dy / n];
 
-        labels.push({ x: P[i][0], y: P[i][1], ux: vd[0], uy: vd[1], text: tx(p.label) });
+        const vd = Array.isArray(p.dir) ? p.dir.map(v => v / (Math.hypot(p.dir[0], p.dir[1]) || 1))
+          : onLine ? awayDir(P[i], inc, n < 4 ? null : [dx / n, dy / n]) : [dx / n, dy / n];
+
+        labels.push({ x: P[i][0], y: P[i][1], ux: vd[0], uy: vd[1], text: tx(p.label), d0: p.d0 });
       });
       if (sh.caption) body += T(x0 + S.w / 2, PAD + Math.max(...shapes.map(s => s.h)) + capDrop, tx(sh.caption), { fs: 14, c: '#3b4a5e' });
       x0 += S.w + gap;
