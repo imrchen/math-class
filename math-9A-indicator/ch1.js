@@ -377,12 +377,12 @@ window.DECK = window.DECK || [];
   {
     const P = (x, y, l) => ({ x, y, label: '$' + l + '$' });
     window.FIGS_REPLACE['1-3 基礎1'] = [{ type: 'polygon-group', unit: 40, gap: 70, align: 'bottom', shapes: [
-      { points: [P(1.425, 2.41, 'A'), P(2.4, 0, 'B'), P(0, 0, 'C')], outline: [0, 1, 2], fill: '#dbeafe',
-        sides: [{ from: 0, to: 2, text: '$14$' }, { from: 1, to: 2, text: '$x+5$' }, { from: 1, to: 2, text: '$12$', accent: true, step: 1 }],
-        caption: '△ABC' },
       { points: [P(3.5625, 6.025, 'D'), P(6, 0, 'E'), P(0, 0, 'F')], outline: [0, 1, 2], fill: '#dbeafe',
         sides: [{ from: 0, to: 2, text: '$35$' }, { from: 1, to: 2, text: '$4x+2$' }],
-        caption: '△DEF' }] }];
+        caption: '△DEF' },
+      { points: [P(1.425, 2.41, 'A'), P(2.4, 0, 'B'), P(0, 0, 'C')], outline: [0, 1, 2], fill: '#dbeafe',
+        sides: [{ from: 0, to: 2, text: '$14$' }, { from: 1, to: 2, text: '$x+5$' }, { from: 1, to: 2, text: '$12$', accent: true, step: 1 }],
+        caption: '△ABC' }] }];
   }
 
   window.FIGS_EXTRA = window.FIGS_EXTRA || {};
