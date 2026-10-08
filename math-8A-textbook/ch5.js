@@ -69,7 +69,7 @@ window.DECK = window.DECK || [];
     ch: 5,
     title: '統計資料處理與圖表',
     color: C,
-    sections: ['5-1 相對與累積次數分配圖表'],
+    sections: ['5-1 相對與累積次數分配圖表', '會考練習 試卷（5-1）'],
     slides: [
 
       {
@@ -120,7 +120,46 @@ window.DECK = window.DECK || [];
           steps: ['第一步。', '第二步。'],
           ans: '答案'
         }
-      }
+      },
+
+      {
+        sec: '會考練習', secName: '試卷（5-1）',
+        title: '對答案｜會考試題練習卷',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁，老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '第5章', [
+            { label: '5-1 第 1～2 題（印 1）', cols: 2, items: [
+              ['1', '會1'], ['2', '會2']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '會考練習', secName: '試卷（5-1）',
+        title: '檢討｜會考試題練習卷（第 1～2 題）',
+        points: [
+          '這是<b>第 5 章的會考試題練習卷</b>：2 題都是歷屆會考的選擇題，題首標著哪一年。',
+          '題號跟卷子一樣，老師唸題號、學生看卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第5章', [
+            { src: '試卷・會考試題練習卷', page: '印 1', sub: '5-1 第 1～2 題', tags: ['會1', '會2'] }
+          ]);
+        },
+        caption: '一頁最多四題；為什麼錯，點題號一行一行看。'
+      },
     ]
   });
 })();

@@ -65,11 +65,20 @@ window.DECK = window.DECK || [];
     });
   };
 
+  window.FIGURES_LOCAL = window.FIGURES_LOCAL || {};
+  window.FIGURES_LOCAL['hexagon-two-rects-two-triangles'] = (() => {
+    const T = (x, y, t, fs) => `<text x="${x}" y="${y}" text-anchor="middle" font-size="${fs}" font-weight="800" fill="#17212B">${t}</text>`;
+    let g = `<path d="M42,176.35 L6,140.35 L140.35,6 L212.35,6 L346.7,140.35 L310.7,176.35 Z" fill="#FFFFFF" stroke="#17212B" stroke-width="2.6" stroke-linejoin="round"/>`
+      + `<path d="M140.35,6 L310.7,176.35 M212.35,6 L42,176.35 M42,176.35 L310.7,176.35" fill="none" stroke="#17212B" stroke-width="2.2"/>`;
+    g += T(91, 102, '甲', 30) + T(261, 102, '乙', 30) + T(176.35, 146, '丙', 30) + T(176.35, 34, '丁', 24);
+    return `<svg viewBox="-8 -8 368.7 198.35" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">${g}</svg>`;
+  })();
+
   window.DECK.push({
     ch: 4,
     title: '一元二次方程式',
     color: C,
-    sections: ['4-1 因式分解法解一元二次方程式', '4-2 配方法與一元二次方程式的公式解', '4-3 一元二次方程式的應用'],
+    sections: ['4-1 因式分解法解一元二次方程式', '4-2 配方法與一元二次方程式的公式解', '4-3 一元二次方程式的應用', '會考練習 試卷（4-1～4-3）'],
     slides: [
 
       {
@@ -220,7 +229,88 @@ window.DECK = window.DECK || [];
           steps: ['第一步。', '第二步。'],
           ans: '答案'
         }
-      }
+      },
+
+      {
+        sec: '會考練習', secName: '試卷（4-1～4-3）',
+        title: '對答案｜會考試題練習卷',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁，老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '第4章', [
+            { label: '4-1 第 1～3 題（印 1）', cols: 3, items: [
+              ['1', '會1'], ['2', '會2'], ['3', '會3']
+            ] },
+            { label: '4-2 第 4～7 題（印 2–3）', cols: 4, items: [
+              ['4', '會4'], ['5', '會5'], ['6', '會6'], ['7', '會7']
+            ] },
+            { label: '4-3 第 8～9 題（印 4–5）', cols: 2, items: [
+              ['8', '會8'], ['9', '會9']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '會考練習', secName: '試卷（4-1～4-3）',
+        title: '檢討｜會考試題練習卷 ①（第 1～3 題）',
+        points: [
+          '這是<b>第 4 章的會考試題練習卷</b>：9 題都是歷屆會考的選擇題，題首標著哪一年。',
+          '題號跟卷子一樣，老師唸題號、學生看卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第4章', [
+            { src: '試卷・會考試題練習卷', page: '印 1', sub: '4-1 第 1～3 題', tags: ['會1', '會2', '會3'] }
+          ]);
+        },
+        caption: '一頁最多四題；為什麼錯，點題號一行一行看。'
+      },
+      {
+        sec: '會考練習', secName: '試卷（4-1～4-3）',
+        title: '檢討｜會考試題練習卷 ②（第 4～7 題）',
+        points: [
+          '這是<b>第 4 章的會考試題練習卷</b>：9 題都是歷屆會考的選擇題，題首標著哪一年。',
+          '題號跟卷子一樣，老師唸題號、學生看卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第4章', [
+            { src: '試卷・會考試題練習卷', page: '印 2–3', sub: '4-2 第 4～7 題', tags: ['會4', '會5', '會6', '會7'] }
+          ]);
+        },
+        caption: '一頁最多四題；為什麼錯，點題號一行一行看。'
+      },
+      {
+        sec: '會考練習', secName: '試卷（4-1～4-3）',
+        title: '檢討｜會考試題練習卷 ③（第 8～9 題）',
+        points: [
+          '這是<b>第 4 章的會考試題練習卷</b>：9 題都是歷屆會考的選擇題，題首標著哪一年。',
+          '題號跟卷子一樣，老師唸題號、學生看卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第4章', [
+            { src: '試卷・會考試題練習卷', page: '印 4–5', sub: '4-3 第 8～9 題', tags: ['會8', '會9'] }
+          ]);
+        },
+        caption: '一頁最多四題；為什麼錯，點題號一行一行看。'
+      },
     ]
   });
 })();

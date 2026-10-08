@@ -77,6 +77,17 @@ window.DECK = window.DECK || [];
     return `<svg viewBox="-30 2 390 114" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">${g}</svg>`;
   })();
 
+  window.FIGURES_LOCAL['number-line-abcd-half'] = (() => {
+    const X = (v) => 225 + v * 75;
+    const T = (x, y, t, o = '') => `<text x="${x}" y="${y}" text-anchor="middle" font-size="34" font-weight="800" fill="#17212B"${o}>${t}</text>`;
+    let g = `<line x1="-12" y1="60" x2="342" y2="60" stroke="#17212B" stroke-width="2.6"/>`;
+    for (let v = -3; v <= 1; v++) g += `<line x1="${X(v)}" y1="50" x2="${X(v)}" y2="70" stroke="#17212B" stroke-width="2.6"/>` + T(X(v), 106, v < 0 ? '−' + (-v) : v);
+    [['A', -2.5], ['B', -1.5], ['C', -0.5], ['D', 0.5]].forEach(([n, v]) => {
+      g += `<circle cx="${X(v)}" cy="60" r="7" fill="#17212B"/>` + T(X(v), 34, n, ' font-style="italic"');
+    });
+    return `<svg viewBox="-30 2 390 114" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">${g}</svg>`;
+  })();
+
   const FIG = (vb, g) => `<svg viewBox="${vb}" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">${g}</svg>`;
   const FT = (x, y, s, fs, o = '') => `<text x="${x}" y="${y}" font-size="${fs}" font-weight="800" fill="#17212B"${o}>${s}</text>`;
 
@@ -112,7 +123,7 @@ window.DECK = window.DECK || [];
     ch: 2,
     title: '平方根與畢氏定理',
     color: C,
-    sections: ['2-1 平方根與近似值', '段考 第一次（1-1～2-1）', '2-2 根式的運算', '2-3 畢氏定理', '總習題 習作（2-1～2-3）', '附錄本 精熟、素養題型'],
+    sections: ['2-1 平方根與近似值', '段考 第一次（1-1～2-1）', '2-2 根式的運算', '2-3 畢氏定理', '總習題 習作（2-1～2-3）', '附錄本 精熟、素養題型', '會考練習 試卷（2-1～2-2）'],
     slides: [
 
       {
@@ -2889,6 +2900,102 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '一頁最多四題；這一類是整章的綜合題，沒有對答案頁。'
+      },
+
+      {
+        sec: '會考練習', secName: '試卷（2-1～2-2）',
+        title: '對答案｜會考試題練習卷',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁，老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '第2章', [
+            { label: '2-1 第 1～4 題（印 1）', cols: 4, items: [
+              ['1', '會1'], ['2', '會2'], ['3', '會3'], ['4', '會4']
+            ] },
+            { label: '2-2 第 5～13 題（印 2–3）', cols: 5, items: [
+              ['5', '會5'], ['6', '會6'], ['7', '會7'], ['8', '會8'], ['9', '會9'], ['10', '會10'], ['11', '會11'], ['12', '會12'], ['13', '會13']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '會考練習', secName: '試卷（2-1～2-2）',
+        title: '檢討｜會考試題練習卷 ①（第 1～4 題）',
+        points: [
+          '這是<b>第 2 章的會考試題練習卷</b>：13 題都是歷屆會考的選擇題，題首標著哪一年。',
+          '題號跟卷子一樣，老師唸題號、學生看卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第2章', [
+            { src: '試卷・會考試題練習卷', page: '印 1', sub: '2-1 第 1～4 題', tags: ['會1', '會2', '會3', '會4'] }
+          ]);
+        },
+        caption: '一頁最多四題；為什麼錯，點題號一行一行看。'
+      },
+      {
+        sec: '會考練習', secName: '試卷（2-1～2-2）',
+        title: '檢討｜會考試題練習卷 ②（第 5～7 題）',
+        points: [
+          '這是<b>第 2 章的會考試題練習卷</b>：13 題都是歷屆會考的選擇題，題首標著哪一年。',
+          '題號跟卷子一樣，老師唸題號、學生看卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第2章', [
+            { src: '試卷・會考試題練習卷', page: '印 2', sub: '2-2 第 5～7 題', tags: ['會5', '會6', '會7'] }
+          ]);
+        },
+        caption: '一頁最多四題；為什麼錯，點題號一行一行看。'
+      },
+      {
+        sec: '會考練習', secName: '試卷（2-1～2-2）',
+        title: '檢討｜會考試題練習卷 ③（第 8～10 題）',
+        points: [
+          '這是<b>第 2 章的會考試題練習卷</b>：13 題都是歷屆會考的選擇題，題首標著哪一年。',
+          '題號跟卷子一樣，老師唸題號、學生看卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第2章', [
+            { src: '試卷・會考試題練習卷', page: '印 2', sub: '2-2 第 8～10 題', tags: ['會8', '會9', '會10'] }
+          ]);
+        },
+        caption: '一頁最多四題；為什麼錯，點題號一行一行看。'
+      },
+      {
+        sec: '會考練習', secName: '試卷（2-1～2-2）',
+        title: '檢討｜會考試題練習卷 ④（第 11～13 題）',
+        points: [
+          '這是<b>第 2 章的會考試題練習卷</b>：13 題都是歷屆會考的選擇題，題首標著哪一年。',
+          '題號跟卷子一樣，老師唸題號、學生看卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '第2章', [
+            { src: '試卷・會考試題練習卷', page: '印 3', sub: '2-2 第 11～13 題', tags: ['會11', '會12', '會13'] }
+          ]);
+        },
+        caption: '一頁最多四題；為什麼錯，點題號一行一行看。'
       },
     ]
   });

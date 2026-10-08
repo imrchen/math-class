@@ -31,14 +31,22 @@ window.PRACTICE = (function () {
 
   const isFill = (q) => /完成/.test(String(q || ''));
 
+  const solFigHtml = (svg) => `<div class="q-fig" style="height:190px;display:flex;align-items:center;justify-content:center">${svg}</div>`;
+
   const cellHtml = (c) => {
     const segs = String(c == null ? '' : c).replace(/～/g, '～\u0000').replace(/（/g, '\u0000（').split('\u0000').filter(Boolean);
     const ok = segs.every(s => (s.match(/\$/g) || []).length % 2 === 0);
     return (ok ? segs : [String(c == null ? '' : c)]).map(s => `<span style="white-space:nowrap">${tex(s)}</span>`).join('');
   };
-  const tblHtml = (rows) => `<table style="border-collapse:collapse;font-size:16px;margin:2px 0;color:${INK}">${
+  const tblHtml = (rows) => `<table class="p-tbl" style="border-collapse:collapse;font-size:16px;margin:2px 0;color:${INK}">${
     (rows || []).map((r, i) => `<tr>${r.map((c, j) => `<td style="border:1.5px solid ${T.border};padding:3px 8px;text-align:center;${
       j === 0 ? 'font-weight:800;background:#f3f6fb;' : ''}${i === 0 ? 'font-weight:800;' : ''}">${cellHtml(c)}</td>`).join('')}</tr>`).join('')}</table>`;
+
+  const fitTables = (h) => h.querySelectorAll('.p-tbl').forEach(t => {
+    t.style.zoom = '';
+    const w = t.parentElement && t.parentElement.clientWidth;
+    if (w && t.scrollWidth > w) t.style.zoom = (w / t.scrollWidth * 0.98).toFixed(3);
+  });
 
   function merged(sec, tag) {
     const all = S(sec);
@@ -556,7 +564,8 @@ window.PRACTICE = (function () {
       const q = String(d.q || '').trim();
       raw.push({
         q: (!q || BOILER.test(q)) ? String(d0.q || '') : q,
-        steps: d.steps || [], ans: d.ans || '', fig: d.fig || d0.fig || null, table: d.table || null
+        steps: d.steps || [], ans: d.ans || '', fig: d.fig || d0.fig || null, table: d.table || null,
+        figSol: !!(d.fig ? d.figSol : d0.figSol)
       });
     }
 
@@ -569,7 +578,8 @@ window.PRACTICE = (function () {
         last.ans = [last.ans, p.ans].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join('　');
         last.fig = last.fig || p.fig;
         last.table = last.table || p.table;
-      } else out.push({ q: p.q, steps: p.steps.slice(), ans: p.ans, fig: p.fig, table: p.table });
+        last.figSol = last.figSol || p.figSol;
+      } else out.push({ q: p.q, steps: p.steps.slice(), ans: p.ans, fig: p.fig, table: p.table, figSol: p.figSol });
     }
     return out;
   }
@@ -586,6 +596,7 @@ window.PRACTICE = (function () {
       const svg = figSvg(p);
       const lines = [...p.steps.map(t => ({ t: tex(t), q: QNUM.test(String(t)) })),
                      ...(p.table && isFill(p.q) ? [{ t: tblHtml(p.table) }] : []),
+                     ...(svg && p.figSol ? [{ t: solFigHtml(svg) }] : []),
                      ...(p.ans ? [{ t: '答：' + tex(p.ans), fin: 1 }] : [])];
 
       const n = lines.length + (svg ? 3 : 0);
@@ -608,7 +619,7 @@ window.PRACTICE = (function () {
           <div class="p-qtext" style="flex:1 1 0;min-width:0;font-size:18px;color:${INK};line-height:1.5">${qHtml(p.q)}
             ${p.table && !isFill(p.q) ? `<div style="margin-top:6px">${tblHtml(p.table)}</div>` : ''}
             ${p.fig && !svg ? `<div style="margin-top:6px;font-size:13px;font-weight:900;color:#8a5a00;background:#fff4d6;border:1px solid #f0dba8;border-radius:8px;padding:4px 10px;display:inline-block">⚠ ocho 沒有這張圖，請看紙本 ${d0.page}</div>` : ''}</div>
-          ${svg ? `<div class="q-fig" style="flex:0 0 40%;max-width:40%;height:220px;display:flex;align-items:center;justify-content:center">${svg}</div>` : ''}
+          ${svg && !p.figSol ? `<div class="q-fig" style="flex:0 0 40%;max-width:40%;height:220px;display:flex;align-items:center;justify-content:center">${svg}</div>` : ''}
         </div>
       </div>
       <div style="background:#fff;border:1.5px solid ${T.border};border-radius:14px;padding:13px 18px 22px;display:flex;flex-direction:column;gap:${gap}px;min-height:${Math.max(130, lines.length * 52)}px">
@@ -646,6 +657,7 @@ window.PRACTICE = (function () {
     const fig = figSvg(d);
     const lines = [...d.steps.map(t => ({ t: tex(t), q: QNUM.test(String(t)) })),
                    ...(d.table && isFill(d.q) ? [{ t: tblHtml(d.table) }] : []),
+                   ...(fig && d.figSol ? [{ t: solFigHtml(fig) }] : []),
                    ...(d.ans ? [{ t: '答：' + tex(d.ans), fin: 1 }] : [])];
     h.innerHTML =
       `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:10px">
@@ -658,7 +670,7 @@ window.PRACTICE = (function () {
              <div class="p-qtext" style="font-size:19px;color:${INK};line-height:1.5">${String(d.q || '').split('\n').filter(Boolean).map((seg, i) => `<div style="${i ? 'margin-top:7px' : ''}">${tex(seg)}</div>`).join('')}
                ${d.table && !isFill(d.q) ? `<div style="margin-top:8px">${tblHtml(d.table)}</div>` : ''}
                ${d.fig && !fig ? `<div style="margin-top:6px;font-size:13px;font-weight:900;color:#8a5a00;background:#fff4d6;border:1px solid #f0dba8;border-radius:8px;padding:4px 10px;display:inline-block">⚠ ocho 沒有這張圖，請看紙本 ${d.page}</div>` : ''}</div>
-             ${fig ? `<div class="q-fig" style="margin-top:8px;width:100%;height:220px;display:flex;align-items:center;justify-content:center">${fig}</div>` : ''}
+             ${fig && !d.figSol ? `<div class="q-fig" style="margin-top:8px;width:100%;height:220px;display:flex;align-items:center;justify-content:center">${fig}</div>` : ''}
            </div>
          </div>
          <div style="background:#fff;border:1.5px solid ${T.border};border-radius:14px;padding:14px 18px 30px;display:flex;flex-direction:column;gap:26px;min-height:${Math.max(150, lines.length * 62)}px">
@@ -704,6 +716,7 @@ window.PRACTICE = (function () {
       const st = h.firstElementChild;
       if (!st || !h.clientHeight) return;
       st.style.zoom = '';
+      fitTables(h);
       const cs = window.getComputedStyle(h);
       const pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
       const need = st.scrollHeight, have = h.clientHeight - pad;
@@ -719,6 +732,7 @@ window.PRACTICE = (function () {
     const stack = h.firstElementChild;
     if (!stack || !h.clientHeight) return;
     stack.style.zoom = '';
+    fitTables(h);
 
     const cs = window.getComputedStyle(h);
     const pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
