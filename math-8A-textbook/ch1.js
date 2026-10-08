@@ -24,6 +24,29 @@ window.DECK = window.DECK || [];
       + `</svg>`;
   })();
 
+  window.FIGURES_LOCAL['long-division-10x3-by-5x2'] = (() => {
+    const cx = [108, 180, 254, 318];
+    const T = (col, y, s, c) => `<text x="${cx[col]}" y="${y}" text-anchor="middle" font-size="24" font-weight="800" fill="${c}">${s}</text>`;
+    const fx = cx[1] + 10;
+    return `<svg viewBox="0 0 350 282" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + T(0, 52, '2x', GRN)
+      + `<text x="${cx[1] - 16}" y="52" text-anchor="middle" font-size="24" font-weight="800" fill="${GRN}">＋</text>`
+      + `<text x="${fx}" y="34" text-anchor="middle" font-size="22" font-weight="800" fill="${GRN}">7</text>`
+      + `<line x1="${fx - 10}" y1="43" x2="${fx + 10}" y2="43" stroke="${GRN}" stroke-width="2.2"/>`
+      + `<text x="${fx}" y="66" text-anchor="middle" font-size="22" font-weight="800" fill="${GRN}">5</text>`
+      + `<text x="60" y="104" text-anchor="end" font-size="24" font-weight="800" fill="${VIO}">5x²</text>`
+      + `<path d="M65,116 Q78,97 65,76 H346" fill="none" stroke="${INK}" stroke-width="2.4"/>`
+      + T(0, 104, '10x³', INK) + T(1, 104, '＋7x²', INK) + T(2, 104, '＋15x', INK) + T(3, 104, '－5', INK)
+      + T(0, 142, '10x³', BLU)
+      + `<line x1="76" y1="156" x2="346" y2="156" stroke="${INK}" stroke-width="2"/>`
+      + T(1, 186, '7x²', INK) + T(2, 186, '＋15x', INK) + T(3, 186, '－5', INK)
+      + T(1, 224, '7x²', BLU)
+      + `<line x1="144" y1="238" x2="346" y2="238" stroke="${INK}" stroke-width="2"/>`
+      + T(2, 270, '15x', GRN) + T(3, 270, '－5', GRN)
+      + `<text x="${cx[2] - 36}" y="270" text-anchor="end" font-size="15" font-weight="800" fill="${GREY}">餘式</text>`
+      + `</svg>`;
+  })();
+
   window.FIGURES_LOCAL['door-six-panes'] = '<svg viewBox="-24 -4 356 306" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="Noto Sans TC, PingFang TC, sans-serif"><rect x="56" y="40" width="180" height="220" fill="#EFE3D2" stroke="#17212B" stroke-width="2.4"/><rect x="72" y="52" width="62" height="44" fill="#FFFFFF" stroke="#1e40af" stroke-width="3.2"/><rect x="158" y="52" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="104" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="156" width="62" height="44" fill="#FFFFFF" stroke="#17212B" stroke-width="1.6"/><rect x="72" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><rect x="158" y="208" width="62" height="46" fill="#E4C79E" stroke="#17212B" stroke-width="1.6"/><line x1="72" y1="52" x2="72" y2="18" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="134" y1="52" x2="134" y2="18" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="24" x2="134" y2="24" stroke="#1e40af" stroke-width="1.8"/><line x1="72" y1="18" x2="72" y2="30" stroke="#1e40af" stroke-width="1.8"/><line x1="134" y1="18" x2="134" y2="30" stroke="#1e40af" stroke-width="1.8"/><text x="103" y="16" text-anchor="middle" font-size="20" font-weight="800" fill="#1e40af">x－1</text><line x1="72" y1="52" x2="30" y2="52" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="72" y1="96" x2="30" y2="96" stroke="#1e40af" stroke-width="1.2" stroke-dasharray="3 3"/><line x1="38" y1="52" x2="38" y2="96" stroke="#1e40af" stroke-width="1.8"/><line x1="32" y1="52" x2="44" y2="52" stroke="#1e40af" stroke-width="1.8"/><line x1="32" y1="96" x2="44" y2="96" stroke="#1e40af" stroke-width="1.8"/><text x="30" y="81" text-anchor="end" font-size="20" font-weight="800" fill="#1e40af">x＋1</text><line x1="56" y1="272" x2="236" y2="272" stroke="#17212B" stroke-width="1.8"/><line x1="56" y1="266" x2="56" y2="278" stroke="#17212B" stroke-width="1.8"/><line x1="236" y1="266" x2="236" y2="278" stroke="#17212B" stroke-width="1.8"/><text x="146" y="296" text-anchor="middle" font-size="22" font-weight="800" fill="#17212B">3x－2</text><line x1="248" y1="40" x2="248" y2="260" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="40" x2="254" y2="40" stroke="#17212B" stroke-width="1.8"/><line x1="242" y1="260" x2="254" y2="260" stroke="#17212B" stroke-width="1.8"/><text x="256" y="158" text-anchor="start" font-size="22" font-weight="800" fill="#17212B">7x＋11</text></svg>';
 
   window.FIGURES_LOCAL['four-squares-layout'] = (() => {
