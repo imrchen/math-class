@@ -326,16 +326,25 @@ window.PRACTICE = (function () {
   };
 
   const ldPlain = (t) => String(t || '').replace(/商式|餘式|為|\$|\\\(|\\\)|\\,|\\[dt]?frac|\s/g, '');
-  function ldCell(sec, tag) {
+  function ldCell(sec, tag, whole) {
     const all = S(sec);
-    if (!SUBRE.test(tag) || !all[tag]) return null;
+    if ((!whole && !SUBRE.test(tag)) || !all[tag]) return null;
     const d = merged(sec, tag);
 
     const qAll = String(d && d.q || '');
-    if (/[(（]A[)）]/.test(qAll) || !/商式/.test(qAll) || !/餘式/.test(qAll)) return null;
-    const q = qAll.split('\n').slice(-1)[0].replace(/\s+/g, '');
-    const mm = /\$\(([^$]+)\)\\div\(([^$]+)\)\$/.exec(q);
-    if (!mm || (q.match(/\\div/g) || []).length !== 1) return null;
+
+    const choice = /[(（]A[)）]/.test(qAll);
+    let mm;
+    if (choice) {
+      const m2 = /\$([^$]+)\$\s*除以\s*\$([^$]+)\$/.exec(qAll);
+      if (!m2 || (qAll.match(/除以/g) || []).length !== 1) return null;
+      mm = [null, m2[1], m2[2]];
+    } else {
+      if (!/商式/.test(qAll) || !/餘式/.test(qAll)) return null;
+      const q = qAll.split('\n').slice(-1)[0].replace(/\s+/g, '');
+      mm = /\$\(([^$]+)\)\\div\(([^$]+)\)\$/.exec(q);
+      if (!mm || (q.match(/\\div/g) || []).length !== 1) return null;
+    }
     const N = parsePoly(mm[1]), D = parsePoly(mm[2]);
     if (!N || !D || !D[0].n || N.length < D.length) return null;
     const n = N.length - 1, m = D.length - 1, r = N.slice(), rounds = [], Q = [];
@@ -346,26 +355,47 @@ window.PRACTICE = (function () {
       rounds.push({ k, q: qk, prod, rem: r.slice(k + 1, Math.min(n, k + m + 1) + 1) });
     }
     const Qt = ldPoly(Q, n - m), Rt = ldPoly(r.slice(n - m + 1), m - 1);
-    const key = String(d.key || '').split(/[、，,]/);
-    if (key.length !== 2 || ldPlain(key[0]) !== ldPlain(Qt) || ldPlain(key[1]) !== ldPlain(Rt)) return null;
+    let fin = `商式為 \\(${Qt}\\)，餘式為 \\(${Rt}\\)`;
+    if (choice) {
+
+      const L = (/[(（]([A-D])[)）]/.exec(String(d.key || d.ans || '')) || [])[1];
+      const om = L && new RegExp(`[(（]${L}[)）]` + /\s*(.+?)(?=\s*[(（][A-D][)）]|　|\n|$)/.source).exec(qAll);
+      if (!om) return null;
+      const opt = ldPlain(om[1]);
+      const R = r.slice(n - m + 1), sum = Q.map((c, i) => { const j = i - (Q.length - R.length); return j >= 0 ? Fr(c.n * R[j].d + R[j].n * c.d, c.d * R[j].d) : c; });
+      const St = ldPoly(sum, n - m);
+      if (opt === ldPlain(Rt) || opt === ldPlain(Qt) || opt === ldPlain(Qt) + '，' + ldPlain(Rt)) fin += `，選 (${L})`;
+      else if (opt === ldPlain(St) && R.length <= Q.length) fin += `，兩者之和為 \\(${St}\\)，選 (${L})`;
+      else return null;
+    } else {
+      const key = String(d.key || '').split(/[、，,]/);
+      if (key.length !== 2 || ldPlain(key[0]) !== ldPlain(Qt) || ldPlain(key[1]) !== ldPlain(Rt)) return null;
+    }
     const C = n + 1, M = (t) => `\\(${t}\\)`;
     const td = (cls, html) => `<td${cls ? ` class="${cls}"` : ''}>${html || ''}</td>`;
     const row = (cells, attr, under) => `<tr${attr}>${td()}${td()}${[...Array(C).keys()].map(i => td(under && under.has(i) ? 'uline' : '', cells[i])).join('')}</tr>`;
     const qc = {};
     rounds.forEach((rd, i) => { qc[rd.k] = `<span class="bd-r" data-r="${i + 1}">${M(ldTerm(rd.q, n - m - rd.k, i === 0))}</span>`; });
     let rows = `<tr>${td()}${td()}${[...Array(C).keys()].map(i => td('', qc[i])).join('')}</tr>`;
-    rows += `<tr>${td('', M(ldPoly(D, m)))}${td('paren', ')')}${N.map((c, i) => td('vin', M(ldTerm(c, n - i, i === 0)))).join('')}</tr>`;
+
+    let last = N.length - 1; while (last > 0 && !N[last].n) last--;
+    rounds.forEach(rd => D.forEach((x, j) => { if (x.n && rd.prod[j].n) last = Math.max(last, rd.k + j); }));
+    rows += `<tr>${td('', M(ldPoly(D, m)))}${td('paren', ')')}${N.map((c, i) => td('vin', i > last ? '' : M(ldTerm(c, n - i, i === 0)))).join('')}</tr>`;
     rounds.forEach((rd, i) => {
       const pc = {}, under = new Set(), rc = {};
-      rd.prod.forEach((p, j) => { pc[rd.k + j] = M(ldTerm(p, n - rd.k - j, j === 0)); });
+      rd.prod.forEach((p, j) => { if (j > 0 && !D[j].n) return; pc[rd.k + j] = M(ldTerm(p, n - rd.k - j, j === 0)); });
       for (let j = rd.k; j <= Math.min(n, rd.k + m + 1); j++) under.add(j);
       rows += row(pc, ` class="bd-r" data-r="${i + 1}"`, under);
       let first = true;
-      rd.rem.forEach((c, j) => { if (first && !c.n && j < rd.rem.length - 1) return; rc[rd.k + 1 + j] = M(ldTerm(c, n - rd.k - 1 - j, first)); first = false; });
+      rd.rem.forEach((c, j) => {
+        if (first && !c.n && j < rd.rem.length - 1) return;
+        if (!first && !c.n && rd.k + 1 + j > last) return;
+        rc[rd.k + 1 + j] = M(ldTerm(c, n - rd.k - 1 - j, first)); first = false;
+      });
       rows += row(rc, ` class="bd-r" data-r="${i + 1}"`);
     });
     return { qHtml: M(`(${mm[1]})\\div(${mm[2]})`), n: rounds.length + 1,
-             html: `<table class="bd-ld">${rows}</table><div class="bd-ld-fin bd-r" data-r="${rounds.length + 1}">商式為 ${M(Qt)}，餘式為 ${M(Rt)}</div>` };
+             html: `<table class="bd-ld">${rows}</table><div class="bd-ld-fin bd-r" data-r="${rounds.length + 1}">${fin}</div>` };
   }
 
   const ldFix = (c) => Object.assign(c, { html: c.html.replace(/data-r="(\d+)"/g, (_, v) => `data-r="${v - 1}"`) });
@@ -384,7 +414,9 @@ window.PRACTICE = (function () {
     const all = S(sec), subs = [];
     for (const no of CIRC) { if (all[tag + ' ' + no]) subs.push(no); else break; }
     if (!subs.length) return;
-    const cells = subs.map(no => { const c = ldCell(sec, tag + ' ' + no); return c && Object.assign({ no: subs.length > 1 ? no : '' }, ldFix(c)); });
+    let cells = subs.map(no => { const c = ldCell(sec, tag + ' ' + no); return c && Object.assign({ no: subs.length > 1 ? no : '' }, ldFix(c)); });
+
+    if (cells.some(x => !x) && all[tag + ' 續']) { const c = ldCell(sec, tag, true); cells = c ? [Object.assign({ no: '' }, ldFix(c))] : [null]; }
     if (cells.some(x => !x)) return;
     const go = r.querySelector('span:last-child');
     const b = document.createElement('button');
