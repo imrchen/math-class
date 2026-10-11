@@ -1,6 +1,6 @@
 window.PRACTICE = (function () {
   const INK = '#172033', GREY = '#8a94a6', ANS = '#059669';
-  const SRCCOL = { '課本・隨堂練習': '#2563eb', '習作': '#d97706', '習作・章末總習題': '#7c3aed', '習作・暖身題': '#0891b2', '課本・自我評量': '#9d174d' };
+  const SRCCOL = { '課本・隨堂練習': '#2563eb', '習作': '#d97706', '習作・章末總習題': '#7c3aed', '習作・暖身題': '#0891b2', '課本・自我評量': '#9d174d', '試卷・段考即時通': '#475569' };
 
   const S = (sec) => (window.SOLUTIONS || {})[sec] || {};
 
@@ -137,7 +137,8 @@ window.PRACTICE = (function () {
       </div>
       <div class="q-body" style="display:flex;gap:10px;align-items:stretch">
         ${hasFig ? `<div class="q-fig" style="flex:0 0 44%;min-width:0;overflow:hidden;background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:6px;display:flex;align-items:center;justify-content:center"></div>` : ''}
-        <div class="q-stepbox" style="flex:1 1 0;min-width:0;background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:12px 16px 26px">
+        <div class="q-stepbox" style="position:relative;flex:1 1 0;min-width:0;background:#fff;border:1.5px solid #dce3ee;border-radius:14px;padding:12px 16px 26px">
+          ${(d.segs && d.segs.length > 1 && lines.length > 10) ? `<div class="q-seg" style="position:absolute;right:10px;bottom:5px;font-size:11.5px;font-weight:900;color:${GREY}"></div>` : ''}
           <div class="q-steps" style="display:flex;flex-direction:column;gap:20px">${stepsHtml}</div>
         </div>
       </div>
@@ -165,8 +166,20 @@ window.PRACTICE = (function () {
                 : figList.map((f, idx) => window.FIG.render(f,
                     { accentStep: idx === 0 ? figStepAt(kk) : window.FIG.accentCount(f) }) || '').join('');
     };
+
+    const segs = (d.segs && d.segs.length > 1 && lines.length > 10) ? d.segs : null;
+    const segOf = (i) => { let j = 0; segs.forEach((s0, n) => { if (i >= s0) j = n; }); return j; };
+    const segTag = h.querySelector('.q-seg');
+    let curSeg = -1;
     const paint = () => {
       els.forEach((e, i) => { e.style.visibility = (isAsk[i] || i < Math.min(k, lines.length)) ? 'visible' : 'hidden'; });
+      if (segs) {
+        const cur = k <= 0 ? 0 : segOf(Math.min(k, lines.length) - 1);
+        els.forEach((e, i) => { e.style.display = segOf(i) === cur ? '' : 'none'; });
+        if (segTag) segTag.textContent = '第 ' + (cur + 1) + '／' + segs.length + ' 段';
+        if (cur !== curSeg && curSeg >= 0) setTimeout(() => { const box = h.querySelector('.q-stepbox'); if (box) fitSteps(box); }, 0);
+        curSeg = cur;
+      }
       if (figBox) {
         figBox.innerHTML = `<div class="q-figin" style="width:100%;display:flex;flex-direction:column;gap:6px">`
           + figAt(k) + `</div>`;

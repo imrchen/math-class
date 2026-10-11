@@ -19498,5 +19498,3063 @@ window.SOLUTIONS = {
    },
    "key": "\\(24\\)"
   }
+ },
+ "第1次段考（一）": {
+  "選1": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "選擇題第 1 題",
+   "q": "下列選項中，何者一定是相似形？\n(A) 任意兩個矩形　　　　(B) 任意兩個等腰三角形\n(C) 任意兩個平行四邊形　(D) 任意兩個正三角形",
+   "ref": null,
+   "steps": [
+    "逐項判斷：",
+    "(A) 矩形的角都是 \\(90\\degree\\)，但長寬比不一定相同，不一定相似",
+    "(B) 等腰三角形的頂角不一定相同，對應角不一定相等，不一定相似",
+    "(C) 平行四邊形的內角與邊長比都可以不同，不一定相似",
+    "(D) 正三角形的內角都是 \\(60\\degree\\)，三組對應角相等，由 \\(AA\\) 一定相似"
+   ],
+   "ans": "\\((D)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "選2": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "選擇題第 2 題",
+   "q": "有一個等腰三角形，其頂角為 \\(40\\degree\\)，透過放大 \\(3\\) 倍的放大鏡觀察，則其中一個底角為幾度？\n(A) \\(80\\degree\\)　　(B) \\(70\\degree\\)　　(C) \\(60\\degree\\)　　(D) \\(50\\degree\\)",
+   "ref": null,
+   "steps": [
+    "頂角 \\(40\\degree\\) 的等腰三角形放大 \\(3\\) 倍後，其中一個底角為幾度？",
+    "放大鏡只把邊長放大，看到的三角形與原三角形相似，對應角相等，角度不變",
+    "底角 \\(=(180\\degree-40\\degree)\\div2=70\\degree\\)"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "選3": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "選擇題第 3 題",
+   "q": "如圖，\\(\\overline{AD}=4\\)，\\(\\overline{BD}=8\\)，\\(\\overline{AE}=6\\)，\\(\\overline{EC}=2\\)，\\(\\angle A=80\\degree\\)，\\(\\angle ADE=60\\degree\\)，則 \\(\\triangle ABC\\) 與 \\(\\triangle AED\\) 是否相似？\n(A) 由 \\(SAS\\) 相似性質可得二者相似\n(B) 由 \\(SSS\\) 相似性質可得二者相似\n(C) 由 \\(AA\\) 相似性質可得二者相似\n(D) 不相似",
+   "ref": "圖見段考即時通 p.1 選擇題第 3 題；原圖沒有標長度，此處把題幹給的四段長度標上",
+   "steps": [
+    "判斷是否相似：",
+    "\\(\\overline{AB}=4+8=12\\)，\\(\\overline{AC}=6+2=8\\)",
+    "\\(\\overline{AE}：\\overline{AB}=6：12=1：2\\)",
+    "\\(\\overline{AD}：\\overline{AC}=4：8=1：2\\)",
+    "又 \\(\\angle A=\\angle A\\)（公用角）",
+    "\\(\\therefore \\triangle AED\\sim\\triangle ABC\\)（\\(SAS\\)）"
+   ],
+   "ans": "\\((A)\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 24,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 9,
+        "y": 9,
+        "label": "$A$"
+       },
+       {
+        "x": 0.368,
+        "y": 0.664,
+        "label": "$B$"
+       },
+       {
+        "x": 13.474,
+        "y": 2.368,
+        "label": "$C$"
+       },
+       {
+        "x": 6.123,
+        "y": 6.221,
+        "label": "$D$"
+       },
+       {
+        "x": 12.355,
+        "y": 4.026,
+        "label": "$E$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 3,
+        "to": 4
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 3,
+        "text": "$4$"
+       },
+       {
+        "from": 3,
+        "to": 1,
+        "text": "$8$"
+       },
+       {
+        "from": 0,
+        "to": 4,
+        "text": "$6$"
+       },
+       {
+        "from": 4,
+        "to": 2,
+        "text": "$2$",
+        "nudge": [
+         -24,
+         2
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 24,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 9,
+          "y": 9,
+          "label": "$A$"
+         },
+         {
+          "x": 0.368,
+          "y": 0.664,
+          "label": "$B$"
+         },
+         {
+          "x": 13.474,
+          "y": 2.368,
+          "label": "$C$"
+         },
+         {
+          "x": 6.123,
+          "y": 6.221,
+          "label": "$D$"
+         },
+         {
+          "x": 12.355,
+          "y": 4.026,
+          "label": "$E$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 3,
+          "to": 4
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 3,
+          "text": "$4$"
+         },
+         {
+          "from": 3,
+          "to": 1,
+          "text": "$8$"
+         },
+         {
+          "from": 0,
+          "to": 4,
+          "text": "$6$"
+         },
+         {
+          "from": 4,
+          "to": 2,
+          "text": "$2$",
+          "nudge": [
+           -24,
+           2
+          ]
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "選4": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "選擇題第 4 題",
+   "q": "如圖，\\(\\overline{AD}\\parallel\\overline{BE}\\parallel\\overline{CF}\\)，\\(\\overline{AB}=4\\)，\\(\\overline{BC}=6\\)，\\(\\overline{DE}=3x-7\\)，\\(\\overline{EF}=-x+6\\)，則下列敘述何者正確？\n(A) \\(\\overline{DE}=4\\)\n(B) \\(\\overline{EF}=3\\)\n(C) \\(\\overline{AB}：\\overline{BC}=2：5\\)\n(D) \\(\\overline{BE}：\\overline{CF}=3：5\\)",
+   "ref": "圖見段考即時通 p.1 選擇題第 4 題",
+   "steps": [
+    "先求 \\(x\\)：",
+    "\\(\\because \\overline{AD}\\parallel\\overline{BE}\\parallel\\overline{CF}\\)　\\(\\therefore \\overline{AB}：\\overline{BC}=\\overline{DE}：\\overline{EF}\\)",
+    "\\(4：6=(3x-7)：(-x+6)\\)，\\(6(3x-7)=4(-x+6)\\)",
+    "\\(18x-42=-4x+24\\)，\\(22x=66\\)，\\(x=3\\)",
+    "\\(\\overline{DE}=3\\times3-7=2\\)，\\(\\overline{EF}=-3+6=3\\)",
+    "\\(\\overline{DE}=2\\)，\\(\\overline{EF}=3\\)，判斷哪一個敘述正確：",
+    "(A) 錯，\\(\\overline{DE}=2\\)",
+    "(B) 對，\\(\\overline{EF}=3\\)",
+    "(C) 錯，\\(\\overline{AB}：\\overline{BC}=4：6=2：3\\)",
+    "(D) 題目沒有給 \\(\\overline{BE}\\)、\\(\\overline{CF}\\) 的長，無法得知是 \\(3：5\\)"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 30,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 7.5,
+        "y": 5,
+        "label": "$A$",
+        "nudge": [
+         -34,
+         0
+        ]
+       },
+       {
+        "x": 5.1,
+        "y": 3,
+        "label": "$B$"
+       },
+       {
+        "x": 1.5,
+        "y": 0,
+        "label": "$C$",
+        "nudge": [
+         0,
+         -30
+        ]
+       },
+       {
+        "x": 9.5,
+        "y": 5,
+        "label": "$D$"
+       },
+       {
+        "x": 9.5,
+        "y": 3,
+        "label": "$E$"
+       },
+       {
+        "x": 9.5,
+        "y": 0,
+        "label": "$F$"
+       },
+       {
+        "x": 0,
+        "y": 5
+       },
+       {
+        "x": 10.4,
+        "y": 5
+       },
+       {
+        "x": 0,
+        "y": 3
+       },
+       {
+        "x": 10.4,
+        "y": 3
+       },
+       {
+        "x": 0,
+        "y": 0
+       },
+       {
+        "x": 10.4,
+        "y": 0
+       },
+       {
+        "x": 0.6,
+        "y": -0.75
+       },
+       {
+        "x": 8.4,
+        "y": 5.75
+       },
+       {
+        "x": 9.5,
+        "y": -0.8
+       },
+       {
+        "x": 9.5,
+        "y": 5.8
+       }
+      ],
+      "outline": [],
+      "segments": [
+       {
+        "from": 6,
+        "to": 7
+       },
+       {
+        "from": 8,
+        "to": 9
+       },
+       {
+        "from": 10,
+        "to": 11
+       },
+       {
+        "from": 12,
+        "to": 13
+       },
+       {
+        "from": 14,
+        "to": 15
+       }
+      ]
+     }
+    ]
+   },
+   "segs": [
+    0,
+    5
+   ]
+  },
+  "選5": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "選擇題第 5 題",
+   "q": "如圖，在平行四邊形 \\(ABCD\\) 中，延長 \\(\\overline{AE}\\) 和 \\(\\overline{BC}\\) 交於 \\(F\\) 點，則下列敘述何者錯誤？\n(A) \\(\\overline{AD}：\\overline{CF}=\\overline{DE}：\\overline{EC}\\)\n(B) \\(\\triangle ADE\\sim\\triangle FCE\\)\n(C) \\(\\overline{EC}：\\overline{AB}=\\overline{EF}：\\overline{AE}\\)\n(D) \\(\\triangle ADE\\sim\\triangle FBA\\)",
+   "ref": "圖見段考即時通 p.1 選擇題第 5 題",
+   "steps": [
+    "先看 (B)、(A)：",
+    "\\(\\overline{AD}\\parallel\\overline{CF}\\)，內錯角相等：",
+    "\\(\\angle DAE=\\angle CFE\\)，\\(\\angle D=\\angle ECF\\)",
+    "\\(\\triangle ADE\\sim\\triangle FCE\\)（\\(AA\\)）",
+    "(B) 正確",
+    "\\(\\overline{AD}：\\overline{FC}=\\overline{DE}：\\overline{CE}\\)，(A) 正確",
+    "再看 (C)：",
+    "\\(\\because \\overline{CE}\\parallel\\overline{BA}\\)",
+    "\\(\\therefore \\triangle FCE\\sim\\triangle FBA\\)（\\(AA\\)）",
+    "\\(\\overline{EC}：\\overline{AB}=\\overline{EF}：\\overline{AF}\\)",
+    "不是 \\(\\overline{EF}：\\overline{AE}\\)，(C) 錯誤",
+    "最後看 (D)：",
+    "\\(\\angle DAE=\\angle BFA\\)（內錯角相等）",
+    "\\(\\angle D=\\angle B\\)（平行四邊形對角相等）",
+    "\\(\\therefore \\triangle ADE\\sim\\triangle FBA\\)（\\(AA\\)）",
+    "(D) 正確"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 52,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 1,
+        "y": 2.2,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 3,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 4,
+        "y": 2.2,
+        "label": "$D$"
+       },
+       {
+        "x": 3.4,
+        "y": 0.88,
+        "label": "$E$"
+       },
+       {
+        "x": 5,
+        "y": 0,
+        "label": "$F$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 0,
+        "to": 5
+       },
+       {
+        "from": 2,
+        "to": 5
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 52,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 1,
+          "y": 2.2,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 3,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 4,
+          "y": 2.2,
+          "label": "$D$"
+         },
+         {
+          "x": 3.4,
+          "y": 0.88,
+          "label": "$E$"
+         },
+         {
+          "x": 5,
+          "y": 0,
+          "label": "$F$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2,
+         3
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 0,
+          "to": 5
+         },
+         {
+          "from": 2,
+          "to": 5
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 6,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 52,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 1,
+          "y": 2.2,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 3,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 4,
+          "y": 2.2,
+          "label": "$D$"
+         },
+         {
+          "x": 3.4,
+          "y": 0.88,
+          "label": "$E$"
+         },
+         {
+          "x": 5,
+          "y": 0,
+          "label": "$F$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2,
+         3
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 0,
+          "to": 5
+         },
+         {
+          "from": 2,
+          "to": 5
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 11,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 52,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 1,
+          "y": 2.2,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 3,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 4,
+          "y": 2.2,
+          "label": "$D$"
+         },
+         {
+          "x": 3.4,
+          "y": 0.88,
+          "label": "$E$"
+         },
+         {
+          "x": 5,
+          "y": 0,
+          "label": "$F$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2,
+         3
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 0,
+          "to": 5
+         },
+         {
+          "from": 2,
+          "to": 5
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    6,
+    11
+   ]
+  },
+  "選6": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "選擇題第 6 題",
+   "q": "設 \\(a\\)、\\(b\\)、\\(c\\) 為三角形的三邊長，若 \\(5a+b-4c=0\\) 且 \\(a-2b+c=0\\)，則 \\(a：b：c=\\)？\n(A) \\(7：9：11\\)　　(B) \\(11：9：7\\)\n(C) \\(9：7：11\\)　　(D) \\(7：11：9\\)",
+   "ref": null,
+   "steps": [
+    "由 \\(5a+b-4c=0\\) 且 \\(a-2b+c=0\\)，求 \\(a：b：c\\)。",
+    "把 \\(c\\) 看成已知數：①\\(5a+b=4c\\)，②\\(a-2b=-c\\)",
+    "①\\(\\times2\\)＋②：\\(11a=7c\\)",
+    "②\\(\\times5\\)－①：\\(-11b+9c=0\\)，\\(11b=9c\\)",
+    "設 \\(c=11k\\)，則 \\(a=7k\\)，\\(b=9k\\)，\\(a：b：c=7：9：11\\)"
+   ],
+   "ans": "\\((A)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "選7": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "選擇題第 7 題",
+   "q": "如圖，在正五邊形 \\(ABCDE\\) 中，\\(\\overline{AC}\\)、\\(\\overline{BE}\\)、\\(\\overline{AD}\\) 為對角線，則下列敘述何者錯誤？\n(A) \\(\\triangle ABP\\cong\\triangle AEQ\\)\n(B) \\(\\triangle APQ\\sim\\triangle ACD\\)\n(C) 梯形 \\(PQDC\\sim\\) 梯形 \\(CDEB\\)\n(D) 四邊形 \\(BCDQ\\sim\\) 四邊形 \\(EDCP\\)",
+   "ref": "圖見段考即時通 p.1 選擇題第 7 題",
+   "steps": [
+    "先看 (A)：",
+    "\\(\\triangle ABC\\)、\\(\\triangle ABE\\)、\\(\\triangle AED\\)",
+    "都是頂角 \\(108\\degree\\) 的等腰三角形",
+    "底角都是 \\(36\\degree\\)，\\(\\overline{AB}=\\overline{AE}\\)",
+    "\\(\\angle BAP=\\angle EAQ=36\\degree\\)",
+    "\\(\\angle ABP=\\angle AEQ=36\\degree\\)",
+    "\\(\\triangle ABP\\cong\\triangle AEQ\\)（\\(ASA\\)），正確",
+    "再看 (B)、(D)：",
+    "(B) \\(\\overline{BE}\\parallel\\overline{CD}\\)，即 \\(\\overline{PQ}\\parallel\\overline{CD}\\)",
+    "\\(\\triangle APQ\\sim\\triangle ACD\\)（\\(AA\\)）",
+    "(D) 正五邊形左右對稱",
+    "四邊形 \\(BCDQ\\) 與 \\(EDCP\\) 對稱",
+    "兩者全等，所以相似",
+    "(B)、(D) 都正確",
+    "最後看 (C)：",
+    "對應角都相等，再看對應邊：",
+    "\\(\\angle QDE=36\\degree\\)，\\(\\angle QED=72\\degree\\)",
+    "\\(\\angle DQE=72\\degree\\)，\\(\\overline{QD}=\\overline{DE}\\)",
+    "\\(\\overline{PQ}<\\overline{CD}\\)，對應邊不成比例",
+    "(C) 錯誤"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 55,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 3.0,
+        "y": 5.0,
+        "label": "$A$"
+       },
+       {
+        "x": 1.098,
+        "y": 3.618,
+        "label": "$B$"
+       },
+       {
+        "x": 1.824,
+        "y": 1.382,
+        "label": "$C$"
+       },
+       {
+        "x": 4.176,
+        "y": 1.382,
+        "label": "$D$"
+       },
+       {
+        "x": 4.902,
+        "y": 3.618,
+        "label": "$E$"
+       },
+       {
+        "x": 2.551,
+        "y": 3.618,
+        "label": "$P$",
+        "nudge": [
+         2,
+         38
+        ]
+       },
+       {
+        "x": 3.449,
+        "y": 3.618,
+        "label": "$Q$",
+        "nudge": [
+         -2,
+         38
+        ]
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 3
+       },
+       {
+        "from": 1,
+        "to": 4
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 55,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 3.0,
+          "y": 5.0,
+          "label": "$A$"
+         },
+         {
+          "x": 1.098,
+          "y": 3.618,
+          "label": "$B$"
+         },
+         {
+          "x": 1.824,
+          "y": 1.382,
+          "label": "$C$"
+         },
+         {
+          "x": 4.176,
+          "y": 1.382,
+          "label": "$D$"
+         },
+         {
+          "x": 4.902,
+          "y": 3.618,
+          "label": "$E$"
+         },
+         {
+          "x": 2.551,
+          "y": 3.618,
+          "label": "$P$",
+          "nudge": [
+           2,
+           38
+          ]
+         },
+         {
+          "x": 3.449,
+          "y": 3.618,
+          "label": "$Q$",
+          "nudge": [
+           -2,
+           38
+          ]
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2,
+         3,
+         4
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 0,
+          "to": 2
+         },
+         {
+          "from": 0,
+          "to": 3
+         },
+         {
+          "from": 1,
+          "to": 4
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 7,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 55,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 3.0,
+          "y": 5.0,
+          "label": "$A$"
+         },
+         {
+          "x": 1.098,
+          "y": 3.618,
+          "label": "$B$"
+         },
+         {
+          "x": 1.824,
+          "y": 1.382,
+          "label": "$C$"
+         },
+         {
+          "x": 4.176,
+          "y": 1.382,
+          "label": "$D$"
+         },
+         {
+          "x": 4.902,
+          "y": 3.618,
+          "label": "$E$"
+         },
+         {
+          "x": 2.551,
+          "y": 3.618,
+          "label": "$P$",
+          "nudge": [
+           2,
+           38
+          ]
+         },
+         {
+          "x": 3.449,
+          "y": 3.618,
+          "label": "$Q$",
+          "nudge": [
+           -2,
+           38
+          ]
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2,
+         3,
+         4
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 0,
+          "to": 2
+         },
+         {
+          "from": 0,
+          "to": 3
+         },
+         {
+          "from": 1,
+          "to": 4
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 14,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 55,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 3.0,
+          "y": 5.0,
+          "label": "$A$"
+         },
+         {
+          "x": 1.098,
+          "y": 3.618,
+          "label": "$B$"
+         },
+         {
+          "x": 1.824,
+          "y": 1.382,
+          "label": "$C$"
+         },
+         {
+          "x": 4.176,
+          "y": 1.382,
+          "label": "$D$"
+         },
+         {
+          "x": 4.902,
+          "y": 3.618,
+          "label": "$E$"
+         },
+         {
+          "x": 2.551,
+          "y": 3.618,
+          "label": "$P$",
+          "nudge": [
+           2,
+           38
+          ]
+         },
+         {
+          "x": 3.449,
+          "y": 3.618,
+          "label": "$Q$",
+          "nudge": [
+           -2,
+           38
+          ]
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2,
+         3,
+         4
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 0,
+          "to": 2
+         },
+         {
+          "from": 0,
+          "to": 3
+         },
+         {
+          "from": 1,
+          "to": 4
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    7,
+    14
+   ]
+  },
+  "選8": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "選擇題第 8 題",
+   "q": "作一個三角形，使它與已知三角形的三個內角皆相等，則最多可作出幾種不同的三角形？\n(A) 兩種　　(B) 三種　　(C) 四種　　(D) 無限多種",
+   "ref": null,
+   "steps": [
+    "與已知三角形三個內角皆相等的三角形，最多可作出幾種？",
+    "三個內角都相等的兩個三角形，由 \\(AA\\) 相似性質一定相似",
+    "相似形可以任意放大或縮小，邊長可以是原來的任何正數倍",
+    "所以可以作出無限多種大小不同的三角形"
+   ],
+   "ans": "\\((D)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "選9": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "選擇題第 9 題",
+   "q": "若 \\(\\triangle ABC\\sim\\triangle DEF\\)，且 \\(\\angle B=\\angle E\\)，\\(\\angle C=\\angle F\\)，\\(\\overline{DE}=3\\overline{AB}\\)，則下列敘述何者錯誤？\n(A) \\(\\triangle DEF\\) 的周長是 \\(\\triangle ABC\\) 周長的 \\(3\\) 倍\n(B) \\(\\triangle DEF\\) 的面積是 \\(\\triangle ABC\\) 面積的 \\(6\\) 倍\n(C) \\(\\angle A+\\angle E+\\angle F=180\\degree\\)\n(D) 若 \\(\\overline{DH}\\perp\\overline{EF}\\) 於 \\(H\\) 點，\\(\\overline{AG}\\perp\\overline{BC}\\) 於 \\(G\\) 點，則 \\(\\overline{DH}=3\\overline{AG}\\)",
+   "ref": null,
+   "steps": [
+    "對應邊長比 \\(\\overline{AB}：\\overline{DE}=1：3\\)，逐項判斷：",
+    "(A) 周長比等於對應邊長比 \\(1：3\\)，正確",
+    "(B) 面積比 \\(=1^2：3^2=1：9\\)，是 \\(9\\) 倍，錯誤",
+    "(C) \\(\\angle A=\\angle D\\)，而 \\(\\angle D+\\angle E+\\angle F=180\\degree\\)，正確",
+    "(D) 對應高的比等於對應邊長比 \\(1：3\\)，正確"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "選10": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "選擇題第 10 題",
+   "q": "如圖，在四邊形 \\(ABCD\\) 中，若 \\(\\overline{AC}\\) 為 \\(\\angle BCD\\) 的角平分線，下列敘述何者錯誤？\n(A) \\(\\overline{AB}：\\overline{DA}=3：4\\)\n(B) \\(\\angle BCA=\\angle ACD\\)\n(C) \\(\\angle B=\\angle ACD\\)\n(D) \\(\\angle D=\\angle CAB\\)",
+   "ref": "圖見段考即時通 p.1 選擇題第 10 題",
+   "steps": [
+    "\\(\\overline{AC}\\) 平分 \\(\\angle BCD\\)：",
+    "\\(\\angle BCA=\\angle ACD\\)，(B) 正確",
+    "\\(\\overline{BC}：\\overline{AC}=9：12=3：4\\)",
+    "\\(\\overline{AC}：\\overline{DC}=12：16=3：4\\)",
+    "\\(\\therefore \\triangle BCA\\sim\\triangle ACD\\)（\\(SAS\\)）",
+    "對應頂點：\\(B\\) 對 \\(A\\)、\\(A\\) 對 \\(D\\)",
+    "\\(\\triangle BCA\\sim\\triangle ACD\\)：",
+    "對應邊比 \\(\\overline{BC}：\\overline{AC}=3：4\\)",
+    "(A) \\(\\overline{AB}：\\overline{DA}=3：4\\)，正確",
+    "(C) \\(\\angle B=\\angle CAD\\)",
+    "不等於 \\(\\angle ACD\\)，錯誤",
+    "(D) \\(\\angle D=\\angle CAB\\)，正確"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 13,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 7.954,
+        "y": 11.954,
+        "label": "$A$"
+       },
+       {
+        "x": 0.307,
+        "y": 2.329,
+        "label": "$B$"
+       },
+       {
+        "x": 9,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 23.501,
+        "y": 6.762,
+        "label": "$D$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 0,
+        "to": 2
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 2,
+        "text": "$12$"
+       },
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$9$"
+       },
+       {
+        "from": 2,
+        "to": 3,
+        "text": "$16$"
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 13,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 7.954,
+          "y": 11.954,
+          "label": "$A$"
+         },
+         {
+          "x": 0.307,
+          "y": 2.329,
+          "label": "$B$"
+         },
+         {
+          "x": 9,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 23.501,
+          "y": 6.762,
+          "label": "$D$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2,
+         3
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 0,
+          "to": 2
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 2,
+          "text": "$12$"
+         },
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$9$"
+         },
+         {
+          "from": 2,
+          "to": 3,
+          "text": "$16$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 6,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 13,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 7.954,
+          "y": 11.954,
+          "label": "$A$"
+         },
+         {
+          "x": 0.307,
+          "y": 2.329,
+          "label": "$B$"
+         },
+         {
+          "x": 9,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 23.501,
+          "y": 6.762,
+          "label": "$D$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2,
+         3
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 0,
+          "to": 2
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 2,
+          "text": "$12$"
+         },
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$9$"
+         },
+         {
+          "from": 2,
+          "to": 3,
+          "text": "$16$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    6
+   ]
+  },
+  "填1": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "填充題第 1 題",
+   "q": "如圖一，已知 \\(B(-17,0)\\)、\\(C(8,0)\\)、\\(D(0,6)\\)，則 \\(\\overline{AB}=\\) ＿＿＿＿。",
+   "ref": "圖見段考即時通 p.1 圖一；原圖坐標軸有箭頭，此處只畫線",
+   "steps": [
+    "圖中 \\(\\angle A=90\\degree\\)：",
+    "\\(\\overline{BC}=8-(-17)=25\\)",
+    "\\(\\overline{CD}=\\sqrt{8^2+6^2}=10\\)",
+    "\\(\\angle C=\\angle C\\)（公用角）",
+    "\\(\\angle CAB=\\angle COD=90\\degree\\)",
+    "\\(\\therefore \\triangle CAB\\sim\\triangle COD\\)（\\(AA\\)）",
+    "\\(\\triangle CAB\\sim\\triangle COD\\)，求 \\(\\overline{AB}\\)：",
+    "\\(\\overline{AB}：\\overline{OD}=\\overline{BC}：\\overline{DC}\\)",
+    "\\(\\overline{AB}：6=25：10\\)",
+    "\\(\\overline{AB}=15\\)"
+   ],
+   "ans": "\\(15\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 10,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 11,
+        "y": 13.5,
+        "label": "$A$"
+       },
+       {
+        "x": 2,
+        "y": 1.5,
+        "label": "$B$",
+        "nudge": [
+         17,
+         16
+        ]
+       },
+       {
+        "x": 27,
+        "y": 1.5,
+        "label": "$C$",
+        "nudge": [
+         -17,
+         15
+        ]
+       },
+       {
+        "x": 19,
+        "y": 7.5,
+        "label": "$D$"
+       },
+       {
+        "x": 19,
+        "y": 1.5,
+        "label": "$O$"
+       },
+       {
+        "x": 0,
+        "y": 1.5
+       },
+       {
+        "x": 29.5,
+        "y": 1.5
+       },
+       {
+        "x": 19,
+        "y": 0.0
+       },
+       {
+        "x": 19,
+        "y": 15.5
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 5,
+        "to": 6
+       },
+       {
+        "from": 7,
+        "to": 8
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 0,
+        "toward": [
+         1,
+         2
+        ],
+        "size": 1.3
+       }
+      ],
+      "caption": "圖一"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 10,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 11,
+          "y": 13.5,
+          "label": "$A$"
+         },
+         {
+          "x": 2,
+          "y": 1.5,
+          "label": "$B$",
+          "nudge": [
+           17,
+           16
+          ]
+         },
+         {
+          "x": 27,
+          "y": 1.5,
+          "label": "$C$",
+          "nudge": [
+           -17,
+           15
+          ]
+         },
+         {
+          "x": 19,
+          "y": 7.5,
+          "label": "$D$"
+         },
+         {
+          "x": 19,
+          "y": 1.5,
+          "label": "$O$"
+         },
+         {
+          "x": 0,
+          "y": 1.5
+         },
+         {
+          "x": 29.5,
+          "y": 1.5
+         },
+         {
+          "x": 19,
+          "y": 0.0
+         },
+         {
+          "x": 19,
+          "y": 15.5
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 5,
+          "to": 6
+         },
+         {
+          "from": 7,
+          "to": 8
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 0,
+          "toward": [
+           1,
+           2
+          ],
+          "size": 1.3
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 6,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 10,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 11,
+          "y": 13.5,
+          "label": "$A$"
+         },
+         {
+          "x": 2,
+          "y": 1.5,
+          "label": "$B$",
+          "nudge": [
+           17,
+           16
+          ]
+         },
+         {
+          "x": 27,
+          "y": 1.5,
+          "label": "$C$",
+          "nudge": [
+           -17,
+           15
+          ]
+         },
+         {
+          "x": 19,
+          "y": 7.5,
+          "label": "$D$"
+         },
+         {
+          "x": 19,
+          "y": 1.5,
+          "label": "$O$"
+         },
+         {
+          "x": 0,
+          "y": 1.5
+         },
+         {
+          "x": 29.5,
+          "y": 1.5
+         },
+         {
+          "x": 19,
+          "y": 0.0
+         },
+         {
+          "x": 19,
+          "y": 15.5
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 5,
+          "to": 6
+         },
+         {
+          "from": 7,
+          "to": 8
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 0,
+          "toward": [
+           1,
+           2
+          ],
+          "size": 1.3
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    6
+   ]
+  },
+  "填2": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "填充題第 2 題",
+   "q": "如圖二，在 \\(\\triangle ABC\\) 中，\\(\\overline{DE}\\parallel\\overline{BC}\\)，\\(\\overline{EF}\\parallel\\overline{DC}\\)，\\(\\overline{AF}=8\\)，\\(\\overline{AB}=18\\)，則 \\(\\overline{DF}=\\) ＿＿＿＿。",
+   "ref": "圖見段考即時通 p.1 圖二",
+   "steps": [
+    "兩組平行線各給一個比例式：",
+    "\\(\\triangle ADC\\) 中，\\(\\overline{EF}\\parallel\\overline{DC}\\)",
+    "\\(\\overline{AF}：\\overline{AD}=\\overline{AE}：\\overline{AC}\\)",
+    "\\(\\triangle ABC\\) 中，\\(\\overline{DE}\\parallel\\overline{BC}\\)",
+    "\\(\\overline{AD}：\\overline{AB}=\\overline{AE}：\\overline{AC}\\)",
+    "\\(\\therefore \\overline{AF}：\\overline{AD}=\\overline{AD}：\\overline{AB}\\)",
+    "求 \\(\\overline{DF}\\)：",
+    "\\(8：\\overline{AD}=\\overline{AD}：18\\)",
+    "\\(\\overline{AD}^2=144\\)，\\(\\overline{AD}=12\\)",
+    "\\(\\overline{DF}=\\overline{AD}-\\overline{AF}=12-8=4\\)"
+   ],
+   "ans": "\\(4\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 40,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 6.2,
+        "y": 5,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 7,
+        "y": 1.2,
+        "label": "$C$"
+       },
+       {
+        "x": 2.067,
+        "y": 1.667,
+        "label": "$D$"
+       },
+       {
+        "x": 6.733,
+        "y": 2.467,
+        "label": "$E$"
+       },
+       {
+        "x": 3.444,
+        "y": 2.778,
+        "label": "$F$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 3,
+        "to": 4
+       },
+       {
+        "from": 4,
+        "to": 5
+       },
+       {
+        "from": 3,
+        "to": 2
+       }
+      ],
+      "caption": "圖二"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 40,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 6.2,
+          "y": 5,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 7,
+          "y": 1.2,
+          "label": "$C$"
+         },
+         {
+          "x": 2.067,
+          "y": 1.667,
+          "label": "$D$"
+         },
+         {
+          "x": 6.733,
+          "y": 2.467,
+          "label": "$E$"
+         },
+         {
+          "x": 3.444,
+          "y": 2.778,
+          "label": "$F$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 3,
+          "to": 4
+         },
+         {
+          "from": 4,
+          "to": 5
+         },
+         {
+          "from": 3,
+          "to": 2
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 6,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 40,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 6.2,
+          "y": 5,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 7,
+          "y": 1.2,
+          "label": "$C$"
+         },
+         {
+          "x": 2.067,
+          "y": 1.667,
+          "label": "$D$"
+         },
+         {
+          "x": 6.733,
+          "y": 2.467,
+          "label": "$E$"
+         },
+         {
+          "x": 3.444,
+          "y": 2.778,
+          "label": "$F$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 3,
+          "to": 4
+         },
+         {
+          "from": 4,
+          "to": 5
+         },
+         {
+          "from": 3,
+          "to": 2
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    6
+   ]
+  },
+  "填3": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "填充題第 3 題",
+   "q": "如圖三，在平行四邊形 \\(ABCD\\) 中，\\(\\overline{CE}=2\\overline{DE}\\)，\\(\\overline{DF}=2\\overline{AF}\\)，則 \\(\\overline{CG}：\\overline{FG}=\\) ＿＿＿＿。",
+   "ref": "圖見段考即時通 p.1 圖三",
+   "steps": [
+    "延長 \\(\\overline{BE}\\) 得交點 \\(H\\)：",
+    "設 \\(\\overline{AD}=\\overline{BC}=6a\\)",
+    "則 \\(\\overline{AF}=2a\\)，\\(\\overline{FD}=4a\\)",
+    "\\(\\triangle EDH\\sim\\triangle ECB\\)（\\(AA\\)）",
+    "\\(\\overline{DH}：\\overline{CB}=\\overline{DE}：\\overline{CE}=1：2\\)",
+    "\\(\\overline{DH}=3a\\)，\\(\\overline{FH}=4a+3a=7a\\)",
+    "\\(\\overline{FH}=7a\\)，\\(\\overline{BC}=6a\\)，求 \\(\\overline{CG}：\\overline{FG}\\)：",
+    "\\(\\overline{FH}\\parallel\\overline{BC}\\)，\\(\\triangle GFH\\sim\\triangle GCB\\)（\\(AA\\)）",
+    "\\(\\overline{CG}：\\overline{FG}=\\overline{CB}：\\overline{FH}=6a：7a=6：7\\)",
+    "※ 教用本與解答篇都印 \\(7：6\\)，那是 \\(\\overline{FG}：\\overline{CG}\\)；依題意應為 \\(6：7\\)，此處更正"
+   ],
+   "ans": "\\(6：7\\)（教用本印 \\(7：6\\)，已更正）",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 40,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 1.8,
+        "y": 3,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 6,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 7.8,
+        "y": 3,
+        "label": "$D$"
+       },
+       {
+        "x": 7.2,
+        "y": 2.0,
+        "label": "$E$"
+       },
+       {
+        "x": 3.8,
+        "y": 3.0,
+        "label": "$F$"
+       },
+       {
+        "x": 4.985,
+        "y": 1.385,
+        "label": "$G$",
+        "nudge": [
+         -2,
+         12
+        ]
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 1,
+        "to": 4
+       },
+       {
+        "from": 5,
+        "to": 2
+       }
+      ],
+      "caption": "圖三"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 36,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 1.8,
+          "y": 3,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 6,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 7.8,
+          "y": 3,
+          "label": "$D$"
+         },
+         {
+          "x": 7.2,
+          "y": 2.0,
+          "label": "$E$"
+         },
+         {
+          "x": 3.8,
+          "y": 3.0,
+          "label": "$F$"
+         },
+         {
+          "x": 4.985,
+          "y": 1.385,
+          "label": "$G$",
+          "nudge": [
+           -2,
+           12
+          ]
+         },
+         {
+          "x": 10.8,
+          "y": 3,
+          "label": "$H$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2,
+         3
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 1,
+          "to": 4
+         },
+         {
+          "from": 5,
+          "to": 2
+         },
+         {
+          "from": 4,
+          "to": 7,
+          "dashed": true
+         },
+         {
+          "from": 3,
+          "to": 7,
+          "dashed": true
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    6
+   ]
+  },
+  "填4": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "填充題第 4 題",
+   "q": "文平、小中、小登三人參加 \\(21\\) 公里的馬拉松比賽，假設在全程中，三人的速率皆維持相同，且當文平抵達終點時，小中還剩下 \\(3\\) 公里，小登還落後小中 \\(5\\) 公里，則文平、小中、小登三人的速率比為 ＿＿＿＿。",
+   "ref": null,
+   "steps": [
+    "文平跑完 \\(21\\) 公里時，小中還剩 \\(3\\) 公里，小登落後小中 \\(5\\) 公里，求三人的速率比。",
+    "速率都維持不變，同一段時間內，速率比等於跑的距離比",
+    "文平跑 \\(21\\) 公里，小中跑 \\(21-3=18\\) 公里",
+    "小登跑 \\(18-5=13\\) 公里",
+    "速率比 \\(=21：18：13\\)"
+   ],
+   "ans": "\\(21：18：13\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "填5": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "填充題第 5 題",
+   "q": "小林有 \\(40\\) 個相同的正方形拼圖，他用其中 \\(3\\) 個拼成一個長方形；小張從剩下的正方形中，最多可以用 ＿＿＿＿ 個正方形拼圖，拼出和小林拼出來的長方形相似。",
+   "ref": null,
+   "steps": [
+    "剩下的正方形最多可用幾個，拼出與 \\(1\\times3\\) 長方形相似的長方形？",
+    "小林拼的長方形是 \\(1\\times3\\)，長：寬 \\(=3：1\\)",
+    "和它相似的長方形是 \\(k\\times3k\\)（\\(k\\) 為正整數），要用 \\(3k^2\\) 個正方形",
+    "剩下 \\(40-3=37\\) 個：\\(k=3\\) 時 \\(3\\times9=27\\le37\\)",
+    "\\(k=4\\) 時 \\(3\\times16=48>37\\)，不夠",
+    "最多用 \\(27\\) 個，拼成 \\(3\\times9\\) 的長方形"
+   ],
+   "ans": "\\(27\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "填6": {
+   "src": "試卷・段考即時通",
+   "page": "印 1",
+   "title": "填充題第 6 題",
+   "q": "妙麗在水果攤買了草莓、橘子和蘋果三種水果，其中草莓與橘子的數量比是 \\(7：3\\)，而橘子與蘋果的數量比是 \\(12：25\\)，則草莓、橘子、蘋果三種水果的數量比為 ＿＿＿＿。",
+   "ref": null,
+   "steps": [
+    "草莓：橘子 \\(=7：3\\)，橘子：蘋果 \\(=12：25\\)，求三種水果的數量比。",
+    "橘子在兩個比裡分別是 \\(3\\) 與 \\(12\\)，化成相同的 \\(12\\)",
+    "草莓：橘子 \\(=7：3=28：12\\)",
+    "橘子：蘋果 \\(=12：25\\)",
+    "草莓：橘子：蘋果 \\(=28：12：25\\)"
+   ],
+   "ans": "\\(28：12：25\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "計1": {
+   "src": "試卷・段考即時通",
+   "page": "印 2",
+   "title": "計算題第 1 題",
+   "q": "如圖，在 \\(\\triangle ABC\\) 中，\\(\\angle C=90\\degree\\)，\\(\\overline{DE}\\perp\\overline{AC}\\)，\\(\\overline{AE}=3\\overline{DE}\\)，\\(\\overline{EC}=12\\)，梯形 \\(DECB\\) 的面積為 \\(108\\)，則 \\(\\triangle ADE\\) 的面積為何？",
+   "ref": "圖見段考即時通 p.2 計算題第 1 題；原圖沒有標長度，此處標上題幹給的 $\\overline{EC}=12$",
+   "steps": [
+    "先證 \\(\\triangle ABC\\sim\\triangle ADE\\)：",
+    "\\(\\angle C=\\angle AED=90\\degree\\)",
+    "\\(\\angle A=\\angle A\\)（公用角）",
+    "\\(\\therefore \\triangle ABC\\sim\\triangle ADE\\)（\\(AA\\)）",
+    "設 \\(\\overline{DE}=x\\)，則 \\(\\overline{AE}=3x\\)",
+    "\\(\\overline{DE}=x\\)，\\(\\overline{AE}=3x\\)，\\(\\overline{EC}=12\\)，用 \\(x\\) 表示 \\(\\overline{BC}\\)：",
+    "\\(\\overline{AE}：\\overline{DE}=\\overline{AC}：\\overline{BC}\\)",
+    "\\(3x：x=(3x+12)：\\overline{BC}\\)",
+    "\\(3x\\cdot\\overline{BC}=3x^2+12x\\)",
+    "\\(\\overline{BC}=x+4\\)",
+    "\\(\\overline{BC}=x+4\\)，梯形 \\(DECB\\) 面積 \\(108\\)：",
+    "梯形 \\(DECB\\) 的面積 \\(=\\frac{1}{2}\\times(x+x+4)\\times12=108\\)",
+    "\\(2x+4=18\\)，\\(x=7\\)",
+    "\\(\\triangle ADE\\) 的面積 \\(=\\frac{1}{2}\\times3x\\times x=\\frac{1}{2}\\times21\\times7=\\frac{147}{2}\\)"
+   ],
+   "ans": "\\(\\frac{147}{2}\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 12,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 21,
+        "y": 0,
+        "label": "$E$",
+        "nudge": [
+         -12,
+         6
+        ]
+       },
+       {
+        "x": 33,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 33,
+        "y": 11,
+        "label": "$B$"
+       },
+       {
+        "x": 21,
+        "y": 7,
+        "label": "$D$"
+       }
+      ],
+      "outline": [
+       0,
+       2,
+       3
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 1,
+        "to": 4
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         2,
+         4
+        ],
+        "size": 1.3
+       },
+       {
+        "at": 2,
+        "toward": [
+         0,
+         3
+        ],
+        "size": 1.3
+       }
+      ],
+      "sides": [
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$12$"
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 12,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 21,
+          "y": 0,
+          "label": "$E$",
+          "nudge": [
+           -12,
+           6
+          ]
+         },
+         {
+          "x": 33,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 33,
+          "y": 11,
+          "label": "$B$"
+         },
+         {
+          "x": 21,
+          "y": 7,
+          "label": "$D$"
+         }
+        ],
+        "outline": [
+         0,
+         2,
+         3
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 1,
+          "to": 4
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           2,
+           4
+          ],
+          "size": 1.3
+         },
+         {
+          "at": 2,
+          "toward": [
+           0,
+           3
+          ],
+          "size": 1.3
+         }
+        ],
+        "sides": [
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$12$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 5,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 12,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 21,
+          "y": 0,
+          "label": "$E$",
+          "nudge": [
+           -12,
+           6
+          ]
+         },
+         {
+          "x": 33,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 33,
+          "y": 11,
+          "label": "$B$"
+         },
+         {
+          "x": 21,
+          "y": 7,
+          "label": "$D$"
+         }
+        ],
+        "outline": [
+         0,
+         2,
+         3
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 1,
+          "to": 4
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           2,
+           4
+          ],
+          "size": 1.3
+         },
+         {
+          "at": 2,
+          "toward": [
+           0,
+           3
+          ],
+          "size": 1.3
+         }
+        ],
+        "sides": [
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$12$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    5,
+    10
+   ]
+  },
+  "計2": {
+   "src": "試卷・段考即時通",
+   "page": "印 2",
+   "title": "計算題第 2 題",
+   "q": "如圖，在 \\(\\triangle ABC\\) 和 \\(\\triangle CDE\\) 中，已知 \\(\\overline{AB}\\parallel\\overline{CD}\\)，\\(\\overline{BC}\\parallel\\overline{DE}\\)，若 \\(\\overline{AB}=21\\)，\\(\\overline{AE}=9\\)，\\(\\overline{CD}=14\\)，則 \\(\\overline{CE}=\\)？",
+   "ref": "圖見段考即時通 p.2 計算題第 2 題；原圖沒有標長度，此處標上 $\\overline{AB}=21$、$\\overline{CD}=14$ 與所求；$\\overline{AE}=9$ 太短，標上會與 $A$、$E$ 疊字，只寫在題幹",
+   "steps": [
+    "\\(\\overline{BC}\\parallel\\overline{DE}\\)：",
+    "\\(\\angle A=\\angle ECD\\)（內錯角相等）",
+    "\\(\\angle BCA=\\angle CED\\)（內錯角相等）",
+    "\\(\\therefore \\triangle ABC\\sim\\triangle CDE\\)（\\(AA\\)）",
+    "\\(\\triangle ABC\\sim\\triangle CDE\\)，\\(\\overline{AB}=21\\)，\\(\\overline{AE}=9\\)，\\(\\overline{CD}=14\\)，求 \\(\\overline{CE}\\)。",
+    "\\(\\overline{AB}：\\overline{CD}=\\overline{AC}：\\overline{CE}\\)",
+    "\\(21：14=(9+\\overline{CE})：\\overline{CE}\\)",
+    "\\(126+14\\overline{CE}=21\\overline{CE}\\)，\\(\\overline{CE}=18\\)"
+   ],
+   "ans": "\\(18\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 8,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 3.85,
+        "y": 20.64,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 21.257,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 23.823,
+        "y": 13.76,
+        "label": "$D$"
+       },
+       {
+        "x": 9.652,
+        "y": 13.76,
+        "label": "$E$"
+       }
+      ],
+      "outlines": [
+       [
+        0,
+        1,
+        2
+       ],
+       [
+        2,
+        3,
+        4
+       ]
+      ],
+      "fill": "#DCEEF8",
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$21$"
+       },
+       {
+        "from": 2,
+        "to": 3,
+        "text": "$14$"
+       },
+       {
+        "from": 4,
+        "to": 2,
+        "text": "$?$",
+        "accent": true,
+        "step": 1
+       },
+       {
+        "from": 4,
+        "to": 2,
+        "text": "$18$",
+        "accent": true,
+        "step": 2
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 8,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 3.85,
+          "y": 20.64,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 21.257,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 23.823,
+          "y": 13.76,
+          "label": "$D$"
+         },
+         {
+          "x": 9.652,
+          "y": 13.76,
+          "label": "$E$"
+         }
+        ],
+        "outlines": [
+         [
+          0,
+          1,
+          2
+         ],
+         [
+          2,
+          3,
+          4
+         ]
+        ],
+        "fill": "#DCEEF8",
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$21$"
+         },
+         {
+          "from": 2,
+          "to": 3,
+          "text": "$14$"
+         },
+         {
+          "from": 4,
+          "to": 2,
+          "text": "$?$",
+          "accent": true,
+          "step": 1
+         },
+         {
+          "from": 4,
+          "to": 2,
+          "text": "$18$",
+          "accent": true,
+          "step": 2
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 4,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 8,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 3.85,
+          "y": 20.64,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 21.257,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 23.823,
+          "y": 13.76,
+          "label": "$D$"
+         },
+         {
+          "x": 9.652,
+          "y": 13.76,
+          "label": "$E$"
+         }
+        ],
+        "outlines": [
+         [
+          0,
+          1,
+          2
+         ],
+         [
+          2,
+          3,
+          4
+         ]
+        ],
+        "fill": "#DCEEF8",
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$21$"
+         },
+         {
+          "from": 2,
+          "to": 3,
+          "text": "$14$"
+         },
+         {
+          "from": 4,
+          "to": 2,
+          "text": "$?$",
+          "accent": true,
+          "step": 1
+         },
+         {
+          "from": 4,
+          "to": 2,
+          "text": "$18$",
+          "accent": true,
+          "step": 2
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "計3": {
+   "src": "試卷・段考即時通",
+   "page": "印 2",
+   "title": "計算題第 3 題",
+   "q": "如圖，將正方形色紙 \\(ABCD\\) 沿著 \\(\\overline{EF}\\) 對摺，使得 \\(A\\) 點的位置移至 \\(A'\\) 點，若 \\(A'\\) 點在 \\(\\overline{CD}\\) 上，且 \\(\\overline{A'D}：\\overline{DE}：\\overline{EA'}=3：4：5\\)，則 \\(\\overline{GF}：\\overline{A'E}：\\overline{A'G}=\\)？",
+   "ref": "圖見段考即時通 p.2 計算題第 3 題；原圖兩個正方形之間有「⇨」，此處只並排",
+   "steps": [
+    "找出三個相似三角形：",
+    "\\(\\angle D=\\angle C=\\angle B'=90\\degree\\)",
+    "\\(\\angle EA'G=\\angle A=90\\degree\\)",
+    "\\(\\angle DA'E=90\\degree-\\angle CA'G=\\angle CGA'\\)",
+    "\\(\\angle CGA'=\\angle B'GF\\)（對頂角）",
+    "由 \\(AA\\) 相似性質：",
+    "\\(\\triangle DA'E\\sim\\triangle CGA'\\sim\\triangle B'GF\\)",
+    "\\(\\triangle DA'E\\sim\\triangle CGA'\\)，設 \\(\\overline{A'D}=6k\\)：",
+    "\\(\\overline{DE}=8k\\)，\\(\\overline{EA'}=\\overline{EA}=10k\\)",
+    "正方形邊長 \\(=8k+10k=18k\\)，\\(\\overline{A'C}=18k-6k=12k\\)",
+    "\\(\\overline{A'C}：\\overline{A'G}=\\overline{DE}：\\overline{EA'}=4：5\\)，\\(\\overline{A'G}=15k\\)",
+    "\\(\\overline{CG}：\\overline{CA'}=\\overline{DA'}：\\overline{DE}=3：4\\)，\\(\\overline{CG}=9k\\)",
+    "\\(\\overline{A'E}=10k\\)，\\(\\overline{A'G}=15k\\)，\\(\\overline{CG}=9k\\)，求 \\(\\overline{GF}\\)：",
+    "\\(\\overline{GB}=18k-9k=9k\\)，又 \\(\\overline{B'F}=\\overline{BF}\\)",
+    "\\(\\overline{GF}：\\overline{FB}=\\overline{GF}：\\overline{B'F}=\\overline{EA'}：\\overline{DE}=5：4\\)",
+    "\\(\\overline{GF}+\\overline{FB}=9k\\)，\\(\\overline{GF}=5k\\)",
+    "\\(\\overline{GF}：\\overline{A'E}：\\overline{A'G}=5k：10k：15k=1：2：3\\)"
+   ],
+   "ans": "\\(1：2：3\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 19,
+    "gap": 70,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 9,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 9,
+        "y": 9,
+        "label": "$C$"
+       },
+       {
+        "x": 0,
+        "y": 9,
+        "label": "$D$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCEEF8"
+     },
+     {
+      "points": [
+       {
+        "x": 13,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 22,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 22,
+        "y": 9,
+        "label": "$C$"
+       },
+       {
+        "x": 13,
+        "y": 9,
+        "label": "$D$"
+       },
+       {
+        "x": 13,
+        "y": 5,
+        "label": "$E$"
+       },
+       {
+        "x": 16,
+        "y": 9,
+        "label": "$A'$"
+       },
+       {
+        "x": 22,
+        "y": 4.5,
+        "label": "$G$"
+       },
+       {
+        "x": 22,
+        "y": 2,
+        "label": "$F$"
+       },
+       {
+        "x": 23.2,
+        "y": 3.6,
+        "label": "$B'$"
+       }
+      ],
+      "outlines": [
+       [
+        4,
+        3,
+        2,
+        7
+       ],
+       [
+        4,
+        5,
+        8,
+        7
+       ]
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 4,
+        "to": 0,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "dashed": true
+       },
+       {
+        "from": 1,
+        "to": 7,
+        "dashed": true
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 22,
+      "gap": 70,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 13,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 22,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 22,
+          "y": 9,
+          "label": "$C$"
+         },
+         {
+          "x": 13,
+          "y": 9,
+          "label": "$D$"
+         },
+         {
+          "x": 13,
+          "y": 5,
+          "label": "$E$"
+         },
+         {
+          "x": 16,
+          "y": 9,
+          "label": "$A'$"
+         },
+         {
+          "x": 22,
+          "y": 4.5,
+          "label": "$G$"
+         },
+         {
+          "x": 22,
+          "y": 2,
+          "label": "$F$"
+         },
+         {
+          "x": 23.2,
+          "y": 3.6,
+          "label": "$B'$"
+         }
+        ],
+        "outlines": [
+         [
+          4,
+          3,
+          2,
+          7
+         ],
+         [
+          4,
+          5,
+          8,
+          7
+         ]
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 4,
+          "to": 0,
+          "dashed": true
+         },
+         {
+          "from": 0,
+          "to": 1,
+          "dashed": true
+         },
+         {
+          "from": 1,
+          "to": 7,
+          "dashed": true
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    7,
+    12
+   ]
+  },
+  "計4": {
+   "src": "試卷・段考即時通",
+   "page": "印 2",
+   "title": "計算題第 4 題",
+   "q": "如圖，有一個側面為梯形的容器，高為 \\(24\\) 公分，其內部裝入高為 \\(16\\) 公分的水，今將一根長為 \\(35\\) 公分的細棒置入容器中，且有 \\(5\\) 公分露出容器外，則細棒在水中部分的長度為多少公分？",
+   "ref": "圖見段考即時通 p.2 計算題第 4 題；原圖用弧形括號標 5、16、24，此處改標在線段旁",
+   "steps": [
+    "容器內的細棒長 \\(35-5=30\\)：",
+    "\\(\\angle A\\) 公用，\\(\\angle ADE=\\angle B=90\\degree\\)",
+    "\\(\\therefore \\triangle ADE\\sim\\triangle ABC\\)（\\(AA\\)）",
+    "\\(\\overline{AE}：\\overline{DE}=\\overline{AC}：\\overline{BC}\\)",
+    "\\(\\overline{AE}：16=30：24\\)，\\(\\overline{AE}=20\\)"
+   ],
+   "ans": "\\(20\\) 公分",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 9,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 24
+       },
+       {
+        "x": 2,
+        "y": 0
+       },
+       {
+        "x": 18,
+        "y": 0
+       },
+       {
+        "x": 20,
+        "y": 24
+       },
+       {
+        "x": 0.667,
+        "y": 16
+       },
+       {
+        "x": 19.333,
+        "y": 16
+       },
+       {
+        "x": 23,
+        "y": 28
+       },
+       {
+        "x": 14,
+        "y": 16
+       },
+       {
+        "x": 14,
+        "y": 0
+       },
+       {
+        "x": 20,
+        "y": 0
+       }
+      ],
+      "outline": [],
+      "segments": [
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 2,
+        "to": 3
+       },
+       {
+        "from": 4,
+        "to": 5
+       },
+       {
+        "from": 1,
+        "to": 6
+       },
+       {
+        "from": 7,
+        "to": 8,
+        "dashed": true
+       },
+       {
+        "from": 3,
+        "to": 9,
+        "dashed": true
+       }
+      ],
+      "sides": [
+       {
+        "from": 7,
+        "to": 8,
+        "text": "$16$",
+        "nudge": [
+         -24,
+         0
+        ]
+       },
+       {
+        "from": 3,
+        "to": 9,
+        "text": "$24$"
+       },
+       {
+        "from": 3,
+        "to": 6,
+        "text": "$5$"
+       }
+      ],
+      "caption": "（單位：公分）"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 9,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 12,
+          "y": 0,
+          "label": "$D$"
+         },
+         {
+          "x": 18,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 18,
+          "y": 24,
+          "label": "$C$",
+          "nudge": [
+           -16,
+           4
+          ]
+         },
+         {
+          "x": 12,
+          "y": 16,
+          "label": "$E$"
+         },
+         {
+          "x": 21,
+          "y": 28
+         }
+        ],
+        "outline": [
+         0,
+         2,
+         3
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 4,
+          "to": 1,
+          "dashed": true
+         },
+         {
+          "from": 3,
+          "to": 5
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           4
+          ],
+          "size": 1.3
+         },
+         {
+          "at": 2,
+          "toward": [
+           0,
+           3
+          ],
+          "size": 1.3
+         }
+        ],
+        "sides": [
+         {
+          "from": 4,
+          "to": 1,
+          "text": "$16$",
+          "nudge": [
+           -24,
+           0
+          ]
+         },
+         {
+          "from": 2,
+          "to": 3,
+          "text": "$24$"
+         },
+         {
+          "from": 3,
+          "to": 5,
+          "text": "$5$",
+          "nudge": [
+           10,
+           -4
+          ]
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "計5": {
+   "src": "試卷・段考即時通",
+   "page": "印 2",
+   "title": "計算題第 5 題",
+   "q": "有一座長為 \\(30\\) 公尺、寬為 \\(20\\) 公尺的游泳池進行擴建，預計將寬增加為 \\(24\\) 公尺，若要讓擴建後的游泳池與原來的游泳池相似，則應將長增加多少公尺？",
+   "ref": null,
+   "steps": [
+    "長 \\(30\\)、寬 \\(20\\) 的游泳池，寬增為 \\(24\\)，設長增加 \\(x\\) 公尺：",
+    "擴建後與原來的游泳池相似，對應邊成比例",
+    "\\(30：20=(30+x)：24\\)",
+    "\\(20(30+x)=30\\times24\\)",
+    "\\(600+20x=720\\)，\\(20x=120\\)，\\(x=6\\)"
+   ],
+   "ans": "\\(6\\) 公尺",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  }
  }
 };
