@@ -408,6 +408,91 @@ window.PRACTICE = (function () {
 
   const ldFix = (c) => Object.assign(c, { html: c.html.replace(/data-r="(\d+)"/g, (_, v) => `data-r="${v - 1}"`) });
 
+  function vaCell(sec, tag) {
+    const all = S(sec);
+    if (!SUBRE.test(tag) || !all[tag]) return null;
+    const d = merged(sec, tag), q = String(d && d.q || '');
+    if (!/直式/.test(q) || /[(（]A[)）]/.test(q)) return null;
+    const ms = [...q.matchAll(/\$\(([^$()]+)\)([+-])\(([^$()]+)\)\$/g)];
+    if (ms.length !== 1) return null;
+    const [, as, op, bs] = ms[0];
+    const A = parsePoly(as), B = parsePoly(bs), R0 = parsePoly(String(d.ans || '').replace(/\$/g, ''));
+    if (!A || !B || !R0) return null;
+    const n = Math.max(A.length, B.length) - 1, C = n + 1;
+    const pad = (p) => { const out = []; for (let i = 0; i < C - p.length; i++) out.push(null); return out.concat(p); };
+    const A2 = pad(A), B2 = pad(B);
+    const R = A2.map((a, i) => { const x = a || Fr(0), y = B2[i] || Fr(0); return Fr(op === '+' ? x.n * y.d + y.n * x.d : x.n * y.d - y.n * x.d, x.d * y.d); });
+    const R1 = pad(R0).map(c => c || Fr(0));
+    if (R.some((c, i) => c.n !== R1[i].n || c.d !== R1[i].d)) return null;
+    const M = (t) => `\\(${t}\\)`;
+    const P = [A, B].some(p => p.some(c => !c.n)) ? 1 : 0;
+    const cells = (p, src) => {
+      let first = true;
+      return p.map((c, i) => {
+        if (!c) return '';
+        const t = M(ldTerm(c, n - i, first)); first = false;
+        return src[i - (C - src.length)].n ? t : `<span class="bd-r" data-r="1" style="color:#b45309">${t}</span>`;
+      });
+    };
+    const ca = cells(A2, A), cb = cells(B2, B);
+    let lead = R.findIndex(c => c.n); if (lead < 0) lead = C - 1;
+    const td = (cls, html) => `<td${cls ? ` class="${cls}"` : ''}>${html || ''}</td>`;
+    const rows = `<tr>${td()}${ca.map(h => td('', h)).join('')}</tr>`
+      + `<tr>${td('uline', M(op === '+' ? '+)' : '-)'))}${cb.map(h => td('uline', h)).join('')}</tr>`
+      + `<tr>${td()}${R.map((c, i) => td('', i < lead ? '' : `<span class="bd-r" data-r="${P + 1 + i}">${M(ldTerm(c, n - i, i === lead))}</span>`)).join('')}</tr>`;
+    return { qHtml: M(`(${as})${op}(${bs})`), n: P + C + 1, va: true,
+             html: `<table class="bd-ld">${rows}</table><div class="bd-ld-fin bd-r" data-r="${P + C + 1}">答：${M(ldPoly(R, n).replace(/\\,/g, ''))}</div>` };
+  }
+
+  function vmCell(sec, tag) {
+    const all = S(sec);
+    if (!SUBRE.test(tag) || !all[tag]) return null;
+    const d = merged(sec, tag), q = String(d && d.q || '');
+    if (!/直式/.test(q) || /[(（]A[)）]/.test(q)) return null;
+    const ms = [...q.matchAll(/\$\(([^$()]+)\)\(([^$()]+)\)\$/g)];
+    if (ms.length !== 1) return null;
+    const [, as, bs] = ms[0];
+    const A = parsePoly(as), B = parsePoly(bs), R0 = parsePoly(String(d.ans || '').replace(/\$/g, ''));
+    if (!A || !B || !R0) return null;
+    const dA = A.length - 1, dB = B.length - 1, n = dA + dB, C = n + 1;
+    const fAdd = (a, b) => Fr(a.n * b.d + b.n * a.d, a.d * b.d);
+    const parts = [];
+    for (let j = dB; j >= 0; j--) {
+      if (!B[j].n) continue;
+      const row = Array(C).fill(null);
+      A.forEach((a, i) => { row[n - ((dA - i) + (dB - j))] = fMul(a, B[j]); });
+      parts.push(row);
+    }
+    const R = Array(C).fill(0).map((_, k) => parts.reduce((s, p) => p[k] ? fAdd(s, p[k]) : s, Fr(0)));
+    const R1 = Array(Math.max(0, C - R0.length)).fill(Fr(0)).concat(R0);
+    if (R1.length !== C || R.some((c, i) => c.n !== R1[i].n || c.d !== R1[i].d)) return null;
+    const M = (t) => `\\(${t}\\)`;
+    const P = [A, B].some(p => p.some(c => !c.n)) ? 1 : 0;
+    const right = (p) => Array(C - p.length).fill(null).concat(p);
+    const terms = (row, amber, r) => {
+      let first = true;
+      return row.map((c, i) => {
+        if (!c) return '';
+        const t = M(ldTerm(c, n - i, first)); first = false;
+        if (amber && !c.n) return `<span class="bd-r" data-r="1" style="color:#b45309">${t}</span>`;
+        return r ? `<span class="bd-r" data-r="${r}">${t}</span>` : t;
+      });
+    };
+    const td = (cls, html) => `<td${cls ? ` class="${cls}"` : ''}>${html || ''}</td>`;
+    const K = parts.length, sum = K > 1;
+    let rows = `<tr>${td()}${terms(right(A), true).map(h => td('', h)).join('')}</tr>`
+      + `<tr>${td('uline', M('\\times)'))}${terms(right(B), true).map(h => td('uline', h)).join('')}</tr>`;
+    parts.forEach((p, k) => {
+      const u = sum && k === K - 1 ? 'uline' : '';
+
+      rows += `<tr class="bd-r" data-r="${P + 1 + k}">${td(u)}${terms(p, false).map(h => td(u, h)).join('')}</tr>`;
+    });
+    if (sum) rows += `<tr>${td()}${terms(R.map((c, i) => i < R.findIndex(x => x.n) ? null : c), false, P + K + 1).map(h => td('', h)).join('')}</tr>`;
+    const fin = P + K + (sum ? 2 : 1);
+    return { qHtml: M(`(${as})(${bs})`), n: fin, va: true,
+             html: `<table class="bd-ld">${rows}</table><div class="bd-ld-fin bd-r" data-r="${fin}">答：${M(ldPoly(R, n).replace(/\\,/g, ''))}</div>` };
+  }
+
   function ldOpen(cells, base) {
     if (!window.BOARD) return;
     const groups = [];
@@ -415,14 +500,17 @@ window.PRACTICE = (function () {
       const part = cells.slice(i, i + 2);
       groups.push({ label: base + (cells.length > 1 ? ' ' + part.map(c => c.no).join('') : ''), cells: part });
     }
-    window.BOARD.openQuad({ title: '計算紙（直式兩題）', note: '點一格看下一回合', stepWord: '下一回合', cols: 2, rows: 1, groups });
+
+    const va = cells.every(c => c.va);
+    window.BOARD.openQuad({ title: va ? '計算紙（直式）' : '計算紙（直式兩題）', note: va ? '點一格看下一步' : '點一格看下一回合',
+                            stepWord: va ? '下一步' : '下一回合', cols: 2, rows: 1, groups });
   }
   function ldRowButton(r, sec, tag) {
     if (typeof document === 'undefined') return;
     const all = S(sec), subs = [];
     for (const no of CIRC) { if (all[tag + ' ' + no]) subs.push(no); else break; }
     if (!subs.length) return;
-    let cells = subs.map(no => { const c = ldCell(sec, tag + ' ' + no); return c && Object.assign({ no: subs.length > 1 ? no : '' }, ldFix(c)); });
+    let cells = subs.map(no => { const c = ldCell(sec, tag + ' ' + no) || vaCell(sec, tag + ' ' + no) || vmCell(sec, tag + ' ' + no); return c && Object.assign({ no: subs.length > 1 ? no : '' }, ldFix(c)); });
 
     if (cells.some(x => !x) && all[tag + ' 續']) { const c = ldCell(sec, tag, true); cells = c ? [Object.assign({ no: '' }, ldFix(c))] : [null]; }
     if (cells.some(x => !x)) return;
