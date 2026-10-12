@@ -20158,10 +20158,11 @@ window.SOLUTIONS = {
     "先看 (A)：",
     "\\(\\triangle ABC\\)、\\(\\triangle ABE\\)、\\(\\triangle AED\\)",
     "都是頂角 \\(108\\degree\\) 的等腰三角形",
-    "底角都是 \\(36\\degree\\)，\\(\\overline{AB}=\\overline{AE}\\)",
     "\\(\\angle BAP=\\angle EAQ=36\\degree\\)",
     "\\(\\angle ABP=\\angle AEQ=36\\degree\\)",
-    "\\(\\triangle ABP\\cong\\triangle AEQ\\)（\\(ASA\\)），正確",
+    "\\(\\triangle ABP\\sim\\triangle AEQ\\)（\\(AA\\)）",
+    "對應邊 \\(\\overline{AB}=\\overline{AE}\\)，相似比 \\(1：1\\)",
+    "所以兩者全等，(A) 正確",
     "再看 (B)、(D)：",
     "(B) \\(\\overline{BE}\\parallel\\overline{CD}\\)，即 \\(\\overline{PQ}\\parallel\\overline{CD}\\)",
     "\\(\\triangle APQ\\sim\\triangle ACD\\)（\\(AA\\)）",
@@ -20337,7 +20338,7 @@ window.SOLUTIONS = {
      }
     },
     {
-     "from": 7,
+     "from": 8,
      "fig": {
       "type": "polygon-group",
       "unit": 55,
@@ -20418,7 +20419,7 @@ window.SOLUTIONS = {
      }
     },
     {
-     "from": 14,
+     "from": 15,
      "fig": {
       "type": "polygon-group",
       "unit": 55,
@@ -20501,8 +20502,8 @@ window.SOLUTIONS = {
    ],
    "segs": [
     0,
-    7,
-    14
+    8,
+    15
    ]
   },
   "選8": {

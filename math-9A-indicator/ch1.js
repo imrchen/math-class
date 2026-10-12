@@ -442,6 +442,12 @@ window.DECK = window.DECK || [];
     '1-3': ['選1', '選2', '選3', '選5', '選7', '選8', '選9', '選10', '填1', '填3', '填5', '計1', '計2', '計3', '計4', '計5']
   }).forEach(([s, tags]) => tags.forEach(t => { window.FROM_SEC['第1次段考（一） ' + t] = s; }));
 
+  window.Q_LEVEL = window.Q_LEVEL || {};
+  Object.entries({
+    '基本': ['選1', '選2', '選6', '選8', '選9', '填2', '填4', '填5', '填6', '計2', '計4', '計5'],
+    '中等': ['選3', '選4', '選5', '選10', '填1', '計1']
+  }).forEach(([lv, tags]) => tags.forEach(t => { window.Q_LEVEL['第1次段考（一） ' + t] = lv; }));
+
   window.DECK.push({
     ch: 1,
     title: '相似形與三角比',

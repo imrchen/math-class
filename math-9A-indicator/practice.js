@@ -66,12 +66,18 @@ window.PRACTICE = (function () {
   };
 
   const fromSec = (sec, tag) => (window.FROM_SEC || {})[sec + ' ' + tag] || '';
+
+  const qLevel = (sec, tag) => (window.Q_LEVEL || {})[sec + ' ' + tag] || '';
+  const LVCOL = { '基本': '#047857', '中等': '#b45309' };
+  const lvBadge = (lv) => `<span style="display:inline-block;font-size:11px;font-weight:900;color:#fff;background:${LVCOL[lv] || '#475569'};border-radius:6px;padding:0 6px;margin-left:4px">${lv}</span>`;
   const SECBADGE = 'display:inline-block;font-size:11px;font-weight:900;color:#334155;background:#e2e8f0;border-radius:6px;padding:0 6px;margin-left:4px';
 
   function row(sec, tag, opt) {
     const d = S(sec)[tag];
     if (!d) return '';
-    const lv = opt && opt.level ? `<span style="flex:0 0 auto;font-size:11px;font-weight:900;color:${ANS}">${opt.level}</span>` : '';
+    const ql = qLevel(sec, tag);
+    const lv = ql ? `<span style="flex:0 0 auto">${lvBadge(ql)}</span>`
+      : opt && opt.level ? `<span style="flex:0 0 auto;font-size:11px;font-weight:900;color:${ANS}">${opt.level}</span>` : '';
     const fs = fromSec(sec, tag);
     return `<div class="q-row" data-tag="${tag}" style="display:flex;gap:9px;align-items:baseline;padding:3px 0;border-radius:8px;cursor:pointer">
       <span style="flex:0 0 92px;font-size:11.5px;font-weight:900;color:${GREY};white-space:nowrap">${tag}${fs ? ` <span style="${SECBADGE}">${fs}</span>` : ''}</span>
@@ -131,7 +137,7 @@ window.PRACTICE = (function () {
     h.innerHTML = `<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:9px">
       <div style="background:#fff;border:1.5px solid #dce3ee;border-radius:14px;overflow:hidden">
         <div style="display:flex;justify-content:space-between;align-items:center;background:${col};padding:4px 13px">
-          <span style="font-size:13px;font-weight:900;color:#fff">${d.src} ${tag}${fromSec(sec, tag) ? `<span style="${SECBADGE};background:#fff">${fromSec(sec, tag)}</span>` : ''}</span>
+          <span style="font-size:13px;font-weight:900;color:#fff">${d.src} ${tag}${fromSec(sec, tag) ? `<span style="${SECBADGE};background:#fff">${fromSec(sec, tag)}</span>` : ''}${qLevel(sec, tag) ? lvBadge(qLevel(sec, tag)) : ''}</span>
           <span style="font-size:13px;font-weight:900;color:#fff;background:rgba(255,255,255,.22);border-radius:8px;padding:1px 9px">${d.page}</span>
         </div>
         ${cptHtml}
