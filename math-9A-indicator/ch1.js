@@ -435,6 +435,13 @@ window.DECK = window.DECK || [];
         caption: '②△AGB∼△CGE（AB、CE 平行）' }] }];
   }
 
+  window.FROM_SEC = window.FROM_SEC || {};
+  Object.entries({
+    '1-1': ['選6', '填4', '填6'],
+    '1-2': ['選4', '填2'],
+    '1-3': ['選1', '選2', '選3', '選5', '選7', '選8', '選9', '選10', '填1', '填3', '填5', '計1', '計2', '計3', '計4', '計5']
+  }).forEach(([s, tags]) => tags.forEach(t => { window.FROM_SEC['第1次段考（一） ' + t] = s; }));
+
   window.DECK.push({
     ch: 1,
     title: '相似形與三角比',
