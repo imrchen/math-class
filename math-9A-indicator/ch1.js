@@ -435,6 +435,18 @@ window.DECK = window.DECK || [];
         caption: '②△AGB∼△CGE（AB、CE 平行）' }] }];
   }
 
+  {
+    const up = ((window.SOLUTIONS || {})['第1次段考（一）'] || {})['選3'];
+    const P = (x, y, l) => ({ x, y, label: '$' + l + '$' });
+    if (up && up.fig) window.FIGS_REPLACE['第1次段考（一） 選3'] = [up.fig, { type: 'polygon-group', unit: 17, gap: 60, align: 'bottom', shapes: [
+      { points: [P(4.817, 3.577, 'A'), P(0, 0, 'E'), P(6.608, 0, 'D')], outline: [0, 1, 2], fill: '#fde9d9',
+        sides: [{ from: 0, to: 1, text: '$6$' }, { from: 0, to: 2, text: '$4$' }],
+        angles: [{ at: 0, mark: 1, text: '$80\\degree$' }], caption: '△AED' },
+      { points: [P(9.635, 7.153, 'A'), P(0, 0, 'B'), P(13.216, 0, 'C')], outline: [0, 1, 2], fill: '#fde9d9',
+        sides: [{ from: 0, to: 1, text: '$12$' }, { from: 0, to: 2, text: '$8$' }],
+        angles: [{ at: 0, mark: 1, text: '$80\\degree$' }], caption: '△ABC' }] }];
+  }
+
   window.FROM_SEC = window.FROM_SEC || {};
   Object.entries({
     '1-1': ['選6', '填4', '填6'],
@@ -444,8 +456,8 @@ window.DECK = window.DECK || [];
 
   window.Q_LEVEL = window.Q_LEVEL || {};
   Object.entries({
-    '基本': ['選1', '選2', '選6', '選8', '選9', '填2', '填4', '填5', '填6', '計2', '計4', '計5'],
-    '中等': ['選3', '選4', '選5', '選10', '填1', '計1']
+    '基本': ['選1', '選2', '選8', '選9', '填4', '填5', '填6', '計2', '計4', '計5'],
+    '中等': ['選3', '選4', '選5', '選6', '選10', '填1', '填2', '計1']
   }).forEach(([lv, tags]) => tags.forEach(t => { window.Q_LEVEL['第1次段考（一） ' + t] = lv; }));
 
   window.DECK.push({
