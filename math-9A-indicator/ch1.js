@@ -3505,6 +3505,391 @@ window.DECK = window.DECK || [];
 
       {
         sec: '段考', secName: '第一次（1-1～1-3）',
+        title: '重點複習 ①｜中間先湊成一樣',
+        points: [
+          '兩個比要接成連比，<b>共用的那一項</b>要先一樣大。',
+          '不一樣就湊<b>最小公倍數</b>，而且<b>兩列都要乘</b>。',
+          '能這樣湊，是因為每一項同乘一個數，<b>比不變</b>。',
+          '段考即時通 <b>填 6</b> 就是這一型。'
+        ],
+        formula: { label: '比的性質<span class="pgref">課本 印 19 重點回顧</span>', tex: 'a:b:c=ma:mb:mc\\quad(m\\ne0)' },
+        visual: (h) => {
+
+          const colon = (y) => TX(VBX[1], y + 26, ':', { anchor: 'middle', fs: 20, c: GREY });
+          const amb = { hi: [2], fill: 'rgba(217,119,6,.18)', col: AMB };
+          const base2 = () => vbHead(20)
+            + vbRow(28, ['3', null, '4'], amb) + colon(28)
+            + vbRow(70, [null, '7', '6'], amb);
+          const worked = () => vbRule(116)
+            + vbTag(124, '× 3', AMB) + vbRow(124, ['(3×3)', null, '(4×3)'], { fs: 15 }) + colon(124)
+            + vbTag(166, '× 2', AMB) + vbRow(166, [null, '(7×2)', '(6×2)'], { fs: 15 });
+          SV.stepper(h, '0 0 440 278', [
+            { t: '課本的第一個例子：<b>共用的 y 已經一樣</b>（都是 3），直接接起來。',
+              d: () => vbHead(20)
+                + vbRow(28, ['2', '3', null], { hi: [1], fill: 'rgba(217,119,6,.18)', col: AMB })
+                + vbRow(70, [null, '3', '5'], { hi: [1], fill: 'rgba(217,119,6,.18)', col: AMB })
+                + vbRule(116) + vbRow(124, ['2', '3', '5'], { hi: [0, 1, 2] })
+                + TX(220, 204, '中間一樣，直接接', { anchor: 'middle', fs: 17, c: GREY }) },
+            { t: '第二個例子給的是 x:z 和 y:z，<b>共用的是 z</b>：4 和 6 不一樣。',
+              d: () => base2()
+                + TX(220, 150, '4 和 6 的最小公倍數是 12', { anchor: 'middle', fs: 18, c: AMB })
+                + TX(220, 184, '兩列都要動', { anchor: 'middle', fs: 17, c: GREY }) },
+            { t: '上列整列乘 3、下列整列乘 2，<b>乘數寫在括號裡</b>。',
+              d: () => base2() + worked() },
+            { t: '兩列的 z 都變成 12，接起來：<b>9 : 14 : 12</b>。',
+              d: () => base2() + worked() + vbRule(212)
+                + vbRow(220, ['9', '14', '12'], { hi: [0, 1, 2] }) }
+          ], { acc: false });
+        },
+        caption: '直式上<b>橫線下面空一格，就是漏乘了</b>。細節在 1-1〈兩邊都要乘〉那一頁。',
+        example: {
+          q: '\\(x:y=5:4\\)、\\(y:z=6:7\\)，求 \\(x:y:z\\)。',
+          steps: [
+            '共用的 \\(y\\)：4 和 6 不一樣，最小公倍數是 \\(12\\)。',
+            '上列乘 \\(3\\) 變 \\(15:12\\)，下列乘 \\(2\\) 變 \\(12:14\\)。'
+          ],
+          ans: '\\(x:y:z=15:12:14\\)'
+        }
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～1-3）',
+        title: '重點複習 ②｜有總量就設 r',
+        points: [
+          '三種寫法意思一樣：<b>分母是什麼，比就是什麼</b>。',
+          '題目有<b>總量</b>就設 \\(r\\)，\\(r\\) 是「一份」有多少。',
+          '⚠ 2、3、5 是<b>份數</b>，要乘上 \\(r\\) 才是答案。',
+          '段考即時通 <b>填 4</b>、<b>選 6</b>：先把題目變成一個比。'
+        ],
+        formula: { label: '全部回到這一式<span class="pgref">課本 印 19 重點回顧</span>', tex: 'x:y:z=a:b:c\\ \\Leftrightarrow\\ x=ar,\\ y=br,\\ z=cr' },
+        visual: (h) => {
+
+          const row = (y, hgt) => BOX(40, y, 360, hgt, { r: 12, fill: '#fbfcfe', stroke: '#dce3ee', sw: 1.6 });
+          const eqs = (cy) => FRS(150, cy, 'x', '2') + TX(190, cy + 7, '＝', { anchor: 'middle', fs: 20 })
+            + FRS(230, cy, 'y', '3') + TX(270, cy + 7, '＝', { anchor: 'middle', fs: 20 })
+            + FRS(310, cy, 'z', '5');
+          const line = (y, t, c, fs) => TX(220, y, t, { anchor: 'middle', fs: fs || 20, c: c || INK });
+          SV.stepper(h, SECVB, [
+            { t: '課本節末的例子：同一個比，有<b>三種寫法</b>。',
+              d: () => SECBG
+                + row(20, 52) + line(54, 'x : y : z ＝ 2 : 3 : 5')
+                + line(96, '⇕', GREY, 18)
+                + row(104, 70) + eqs(136)
+                + line(198, '⇕', GREY, 18)
+                + row(206, 52) + line(240, 'x ＝ 2r，y ＝ 3r，z ＝ 5r', BLU) },
+            { t: '題目再給 x＋y＋z＝40：三個都換成 r，<b>先求一份</b>。',
+              d: () => SECBG
+                + line(52, 'x ＋ y ＋ z ＝ 40')
+                + line(100, '2r ＋ 3r ＋ 5r ＝ 40', BLU)
+                + line(148, '10r ＝ 40', BLU)
+                + BOX(110, 176, 220, 52, { r: 12, fill: 'rgba(5,150,105,.09)', stroke: GRN, sw: 2.2 })
+                + line(210, 'r ＝ 4　（一份是 4）', GRN) },
+            { t: '最後一步別忘了<b>乘回去</b>：2、3、5 是份數，不是答案。',
+              d: () => SECBG
+                + xoBar(16, 24, 196, '✗ x ＝ 2', RED) + xoBar(228, 24, 196, '✓ x ＝ 2r ＝ 8', GRN)
+                + line(112, 'x ＝ 2 × 4 ＝ 8')
+                + line(152, 'y ＝ 3 × 4 ＝ 12')
+                + line(192, 'z ＝ 5 × 4 ＝ 20')
+                + line(246, '驗算：8 ＋ 12 ＋ 20 ＝ 40 ✓', GRN, 17) }
+          ], { acc: false });
+        },
+        caption: '細節在 1-1〈看到分母就設 r〉〈同一件事的三種寫法〉。',
+        example: {
+          q: '\\(\\dfrac{x}{3}=\\dfrac{y}{4}=\\dfrac{z}{5}\\)，且 \\(x+y+z=72\\)，求 \\(z\\)。',
+          steps: [
+            '設 \\(x=3r\\)、\\(y=4r\\)、\\(z=5r\\)。',
+            '\\(3r+4r+5r=12r=72\\)，所以 \\(r=6\\)。'
+          ],
+          ans: '\\(z=5\\times6=30\\)'
+        }
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～1-3）',
+        title: '重點複習 ③｜有平行才有比例',
+        points: [
+          '先確認<b>有平行</b>，比例式才能列。',
+          '比 \\(\\overline{PQ}:\\overline{BC}\\) 時，<b>分母要用整條 \\(\\overline{AB}\\)</b>。',
+          '反過來：比例對了就平行；<b>兩邊中點連線</b>＝平行而且一半。',
+          '段考即時通 <b>選 4</b>、<b>填 2</b>。'
+        ],
+        formula: { label: '同一張圖<span class="pgref">課本 印 39 重點回顧</span>', tex: '\\overline{PQ}\\parallel\\overline{BC}\\ \\Rightarrow\\ \\overline{AP}:\\overline{PB}=\\overline{AQ}:\\overline{QC}' },
+        visual: (h) => {
+          const A = [220, 30], B = [96, 152], C = [344, 152];
+          const at = (u, v, t) => [u[0] + t * (v[0] - u[0]), u[1] + t * (v[1] - u[1])];
+          const seg = (u, v, col, w) =>
+            `<line x1="${u[0]}" y1="${u[1]}" x2="${v[0]}" y2="${v[1]}" stroke="${col}" stroke-width="${w}"/>`;
+          const tri = (t, mid) => {
+            const P = at(A, B, t), Q = at(A, C, t);
+            let g = SV.poly([A, B, C], 'rgba(37,99,235,.05)', BLU, 2);
+            g += seg(A, P, BLU, 6) + seg(A, Q, BLU, 6) + seg(P, B, AMB, 6) + seg(Q, C, AMB, 6);
+            g += seg(P, Q, GRN, 2.6);
+            if (mid) g += SV.ticks(A[0], A[1], P[0], P[1], 1, VIO) + SV.ticks(P[0], P[1], B[0], B[1], 1, VIO)
+              + SV.ticks(A[0], A[1], Q[0], Q[1], 2, VIO) + SV.ticks(Q[0], Q[1], C[0], C[1], 2, VIO);
+            g += SV.vlabel(A[0] - 5, A[1] - 9, 'A') + SV.vlabel(B[0] - 19, B[1] + 9, 'B')
+               + SV.vlabel(C[0] + 9, C[1] + 9, 'C')
+               + SV.vlabel(P[0] - 20, P[1] + 4, 'P') + SV.vlabel(Q[0] + 10, Q[1] + 4, 'Q');
+            return { g, P, Q };
+          };
+          const eq = (y, txt, col, fs) => TX(220, y, txt, { anchor: 'middle', fs: fs || 22, c: col || INK });
+
+          const lines3 = () => {
+            const ys = [44, 96, 168];
+            const L1 = (y) => [110 + 40 * (y - 24) / 168, y], L2 = (y) => [262 + 84 * (y - 24) / 168, y];
+            let g = ys.map(y => SV.seg(56, y, 400, y, GREY, 2)).join('');
+            g += SV.seg(110, 24, 150, 192, INK, 2) + SV.seg(262, 24, 346, 192, INK, 2);
+            const [a, b, c] = ys.map(L1), [d, e, f] = ys.map(L2);
+            g += seg(a, b, BLU, 6) + seg(d, e, BLU, 6) + seg(b, c, AMB, 6) + seg(e, f, AMB, 6);
+            [[a, 'A'], [b, 'B'], [c, 'C']].forEach(([p, n]) => g += SV.vlabel(p[0] - 22, p[1] - 6, n));
+            [[d, 'D'], [e, 'E'], [f, 'F']].forEach(([p, n]) => g += SV.vlabel(p[0] + 10, p[1] - 6, n));
+            return g;
+          };
+          SV.stepper(h, '0 0 440 282', [
+            { t: '先看有沒有<b>平行</b>：PQ ∥ BC，比例式才能列。上段比下段，左右一樣。',
+              d: () => tri(0.4).g
+                + eq(200, 'AP : PB ＝ AQ : QC')
+                + TX(220, 236, '藍比琥珀，左右各讀一次', { anchor: 'middle', fs: 16, c: GREY }) },
+            { t: '要比 <b>PQ 和 BC</b>，分母一定是<b>整條 AB</b>（上段加下段）。',
+              d: () => tri(0.4).g + ARC(A, B, 20, GRN, '', 1)
+                + eq(200, 'PQ : BC ＝ AP : AB', GRN)
+                + TX(220, 236, '✗ PQ : BC ＝ AP : PB　分母用錯了', { anchor: 'middle', fs: 16, c: RED }) },
+            { t: '反過來：P、Q 是<b>兩邊中點</b>，PQ 就和 BC 平行，而且是 BC 的一半。',
+              d: () => tri(0.5, true).g
+                + eq(200, 'PQ ∥ BC　而且　PQ ＝ ½ BC', GRN, 20)
+                + TX(220, 236, '要寫兩句：平行、一半', { anchor: 'middle', fs: 16, c: GREY }) },
+            { t: '三條平行線截兩條線：還是<b>上段比下段</b>。',
+              d: () => lines3()
+                + eq(226, 'AB : BC ＝ DE : EF')
+                + TX(220, 262, '段考即時通選 4 就是這張圖', { anchor: 'middle', fs: 16, c: GREY }) }
+          ], { acc: false });
+        },
+        caption: '細節在 1-2〈同一張圖，三種比法〉〈分母一定是整條 AB〉〈看到兩個中點〉。',
+        example: {
+          q: '\\(\\overline{PQ}\\parallel\\overline{BC}\\)，\\(\\overline{AP}=2\\)、\\(\\overline{PB}=3\\)、\\(\\overline{BC}=10\\)，求 \\(\\overline{PQ}\\)。'
+            + exTri({ t: 0.4, ap: '2', pb: '3', bc: '10', pq: '?' }),
+          steps: [
+            '比的是 \\(\\overline{PQ}\\) 和 \\(\\overline{BC}\\)，分母用整條 \\(\\overline{AB}=2+3=5\\)。',
+            '\\(\\overline{PQ}:10=2:5\\)，所以 \\(5\\overline{PQ}=20\\)。'
+          ],
+          ans: '\\(\\overline{PQ}=4\\)'
+        }
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～1-3）',
+        title: '重點複習 ④｜相似要過兩道門',
+        points: [
+          '縮放 \\(r\\) 倍：<b>角度不變</b>，邊長變成 \\(r\\) 倍。',
+          '多邊形相似要過<b>兩道門</b>：對應角相等、對應邊成比例。',
+          '四邊形以上，<b>少一道就不一定相似</b>（課本的「註」）。',
+          '段考即時通 <b>選 1、2、8</b>，<b>填 5</b>，<b>計 5</b>。'
+        ],
+        formula: { label: '兩道門<span class="pgref">課本 印 59 重點回顧</span>', tex: '\\text{相似}\\ \\Leftrightarrow\\ \\text{對應角相等}\\ \\text{且}\\ \\text{對應邊成比例}' },
+        visual: (h) => {
+          const P = (pts, col) => SV.poly(pts, 'rgba(37,99,235,.06)', col || BLU, 2.4);
+          const note = (y, t, c, fs) => TX(220, y, t, { anchor: 'middle', fs: fs || 17, c: c || GREY });
+          const ra = (x, y, d0, d1) => SV.rightAngle(x, y, d0, d1, 12, '#7b8699');
+
+          const tri = (x, y, k) => [[x, y], [x + 80 * k, y], [x + 24 * k, y - 56 * k]];
+          const gate = (x, t1, t2, c) => BOX(x, 70, 168, 74, { r: 14, fill: 'rgba(37,99,235,.06)', stroke: c, sw: 2.2 })
+            + TX(x + 84, 102, t1, { anchor: 'middle', fs: 18, c })
+            + TX(x + 84, 130, t2, { anchor: 'middle', fs: 15, c: INK });
+
+          const rh = (cx, cy) => [[cx - 69.3, cy], [cx, cy - 40], [cx + 69.3, cy], [cx, cy + 40]];
+          SV.stepper(h, '0 0 440 282', [
+            { t: '縮放 2 倍：<b>邊長變成 2 倍，角度一樣大</b>。放大鏡看，角不會變大。',
+              d: () => P(tri(40, 196, 1)) + P(tri(200, 216, 2), VIO)
+                + SV.angle(40, 196, 22, 0, 66.8, AMB, '') + SV.angle(200, 216, 22, 0, 66.8, AMB, '')
+                + TX(80, 214, '4', { anchor: 'middle', fs: 16, c: BLU }) + TX(280, 236, '8', { anchor: 'middle', fs: 16, c: VIO })
+                + note(266, '邊 × 2，角不變', INK) },
+            { t: '一般的多邊形要相似，<b>兩道門都要過</b>。',
+              d: () => gate(30, '① 對應角相等', '每個角都一樣大', BLU)
+                + TX(220, 116, '＋', { anchor: 'middle', fs: 26, c: GREY })
+                + gate(242, '② 對應邊成比例', '每條邊同一個倍數', GRN)
+                + BOX(140, 176, 160, 50, { r: 12, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 208, '才是相似', { anchor: 'middle', fs: 20, c: GRN })
+                + note(258, '四邊形以上，少一道就不一定相似') },
+            { t: '長方形對正方形：角都是 90°（第一道過了），但邊不成比例 → <b>不相似</b>。',
+              d: () => `<rect x="40" y="86" width="150" height="75" fill="rgba(37,99,235,.06)" stroke="${BLU}" stroke-width="2.4"/>`
+                + `<rect x="262" y="72" width="104" height="104" fill="rgba(37,99,235,.06)" stroke="${VIO}" stroke-width="2.4"/>`
+                + ra(40, 161, 0, 90) + ra(262, 176, 0, 90)
+                + TX(115, 80, '2', { anchor: 'middle', fs: 16, c: BLU }) + TX(30, 129, '1', { anchor: 'middle', fs: 16, c: BLU })
+                + TX(314, 66, '1', { anchor: 'middle', fs: 16, c: VIO }) + TX(252, 129, '1', { anchor: 'middle', fs: 16, c: VIO })
+                + note(214, '角 ✓　　邊 ✗（2:1 對 1:1）', INK)
+                + note(250, '不相似', RED, 20) },
+            { t: '菱形對正方形：邊都一樣長（邊成比例），但角不一樣 → <b>不相似</b>。',
+              d: () => P(rh(120, 122)) + P([[282, 82], [362, 82], [362, 162], [282, 162]], VIO)
+                + SV.angle(50.7, 122, 24, -30, 30, AMB, '60°', { fs: 14, lr: 16 }) + ra(282, 162, 0, 90)
+                + TX(176, 92, '4', { anchor: 'middle', fs: 16, c: BLU }) + TX(322, 76, '4', { anchor: 'middle', fs: 16, c: VIO })
+                + note(214, '邊 ✓　　角 ✗（60° 對 90°）', INK)
+                + note(250, '不相似', RED, 20) },
+            { t: '形狀固定、只差大小的，<b>一定相似</b>：兩個正三角形、兩個正方形。',
+              d: () => P([[40, 168], [100, 168], [70, 116]]) + P([[120, 168], [220, 168], [170, 81.4]])
+                + P([[262, 118], [312, 118], [312, 168], [262, 168]], VIO) + P([[326, 88], [406, 88], [406, 168], [326, 168]], VIO)
+                + note(214, '形狀固定，只差大小 → 一定相似', GRN, 18)
+                + note(250, '任意兩個矩形、兩個等腰三角形：不一定') }
+          ], { acc: false });
+        },
+        caption: '細節在 1-3〈邊長會變，角度不會變〉〈兩道門都要過〉〈三角形會相似，梯形不會〉。',
+        example: {
+          q: '長 6、寬 4 的長方形，放大成寬 12 的相似長方形，長是多少？'
+            + exWrap(`<rect x="20" y="78" width="54" height="36" fill="rgba(37,99,235,.06)" stroke="${BLU}" stroke-width="1.8"/>`
+              + exTX(47, 72, '6', { anchor: 'middle', c: BLU }) + exTX(12, 100, '4', { anchor: 'middle', c: BLU })
+              + `<rect x="106" y="24" width="108" height="72" fill="rgba(124,58,237,.06)" stroke="${VIO}" stroke-width="1.8"/>`
+              + exTX(160, 18, '?', { anchor: 'middle', c: VIO }) + exTX(98, 64, '12', { anchor: 'middle', c: VIO })),
+          steps: [
+            '相似：長和寬要放大<b>同一個倍數</b>。',
+            '寬 \\(4\\to12\\) 是 \\(3\\) 倍，所以長是 \\(6\\times3\\)。'
+          ],
+          ans: '長是 \\(18\\)'
+        }
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～1-3）',
+        title: '重點複習 ⑤｜三角形的三張捷徑',
+        points: [
+          '三角形不必兩道門都查，<b>過一張捷徑就相似</b>。',
+          '給三邊用 <b>SSS</b>：先排序，最短對最短。',
+          '給兩邊一角用 <b>SAS</b>，角要<b>夾在兩邊中間</b>；給兩角用 <b>AA</b>。',
+          '段考即時通 <b>選 3</b>、<b>選 10</b>、<b>計 2</b>。'
+        ],
+        formula: { label: '三張裡過一張就夠<span class="pgref">課本 印 59 重點回顧</span>', tex: '\\text{SSS}\\ \\text{或}\\ \\text{SAS}\\ \\text{或}\\ \\text{AA}\\ \\Rightarrow\\ \\triangle ABC\\sim\\triangle DEF' },
+        visual: (h) => {
+          const shape = [[-10, -60], [-60, 35], [60, 35]];
+          const mk = (cx, cy, k) => shape.map(([x, y]) => [cx + x * k, cy + y * k]);
+          const L = mk(110, 140, 1), R = mk(320, 135, 1.35);
+          const mid = (p, q) => [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
+
+          const arc = (V, P, Q, col, n, r0) => {
+            const u = (A, B) => { const dx = B[0] - A[0], dy = B[1] - A[1], d = Math.hypot(dx, dy) || 1; return [dx / d, dy / d]; };
+            const u1 = u(V, P), u2 = u(V, Q), sw = (u1[0] * u2[1] - u1[1] * u2[0]) > 0 ? 1 : 0;
+            let g = '';
+            for (let i = 0; i < (n || 1); i++) {
+              const r = (r0 || 20) + i * 6;
+              g += `<path d="M${V[0] + u1[0] * r},${V[1] + u1[1] * r} A${r},${r} 0 0,${sw} ${V[0] + u2[0] * r},${V[1] + u2[1] * r}" fill="none" stroke="${col}" stroke-width="2.4"/>`;
+            }
+            return g;
+          };
+
+          const T = (V, names, col, o = {}) => {
+            let g = SV.poly(V, 'rgba(37,99,235,.06)', col, 2.4);
+            (o.a || []).forEach(([i, c, n]) => g += arc(V[i], V[(i + 1) % 3], V[(i + 2) % 3], c, n));
+            const s = o.s || [];
+            const m0 = mid(V[0], V[1]), m1 = mid(V[0], V[2]), m2 = mid(V[1], V[2]);
+            if (s[0]) g += TX(m0[0] - 16, m0[1] + 4, s[0], { anchor: 'middle', fs: 17, c: col });
+            if (s[1]) g += TX(m1[0] + 16, m1[1] + 4, s[1], { anchor: 'middle', fs: 17, c: col });
+            if (s[2]) g += TX(m2[0], m2[1] + 22, s[2], { anchor: 'middle', fs: 17, c: col });
+            g += TX(V[0][0], V[0][1] - 9, names[0], { anchor: 'middle', fs: 16 })
+              + TX(V[1][0] - 12, V[1][1] + 16, names[1], { anchor: 'middle', fs: 16 })
+              + TX(V[2][0] + 12, V[2][1] + 16, names[2], { anchor: 'middle', fs: 16 });
+            return g;
+          };
+          const pair = (oL, oR) => T(L, ['A', 'B', 'C'], BLU, oL) + T(R, ['D', 'E', 'F'], VIO, oR);
+          const line = (y, t, c, fs) => TX(220, y, t, { anchor: 'middle', fs: fs || 18, c: c || INK });
+          SV.stepper(h, '0 0 440 282', [
+            { t: '<b>SSS</b>：三條邊都是同一個比。先排序，最短對最短。',
+              d: () => pair({ s: ['4', '6', '8'] }, { s: ['6', '9', '12'] })
+                + line(240, '4 : 6 ＝ 6 : 9 ＝ 8 : 12 ＝ 2 : 3', GRN)
+                + line(270, '三組都一樣 → 相似', GREY, 15) },
+            { t: '<b>SAS</b>：兩條邊成比例，加上<b>夾在這兩條邊中間</b>的角相等。',
+              d: () => pair({ s: ['4', '6'], a: [[0, AMB, 1]] }, { s: ['6', '9'], a: [[0, AMB, 1]] })
+                + line(240, '4 : 6 ＝ 6 : 9，∠A ＝ ∠D', GRN)
+                + line(270, '∠A 夾在 4 和 6 中間', GREY, 15) },
+            { t: '<b>AA</b>：兩個角相等就夠了，邊完全不用查。',
+              d: () => pair({ a: [[1, AMB, 1], [2, RED, 2]] }, { a: [[1, AMB, 1], [2, RED, 2]] })
+                + line(240, '∠B ＝ ∠E，∠C ＝ ∠F', GRN)
+                + line(270, '第三個角一定也相等（內角和 180°）', GREY, 15) },
+            { t: '最常錯：SAS 的角<b>不在兩條邊中間</b>，就不能用 SAS。',
+              d: () => pair({ s: ['4', '6'], a: [[1, RED, 1]] }, { s: ['6', '9'], a: [[1, RED, 1]] })
+                + xoBar(60, 216, 320, '✗ ∠B 不夾在 4 和 6 中間', RED) }
+          ], { acc: false });
+        },
+        caption: '細節在 1-3 的 SSS、SAS、AA 三頁，和〈兩道門，和三張捷徑〉。',
+        example: {
+          q: '\\(\\overline{AB}=6\\)、\\(\\overline{AC}=9\\)，\\(\\overline{DE}=4\\)、\\(\\overline{DF}=6\\)，\\(\\angle A=\\angle D=50^\\circ\\)。兩個三角形相似嗎？'
+            + exTriPair({ l: { k: 0.9, ab: '6', ac: '9', ang: 'A' },
+                          r: { k: 0.9, ab: '4', ac: '6', ang: 'D', names: ['D', 'E', 'F'] },
+                          note: '兩個都畫成示意圖——用數字判斷' }),
+          steps: [
+            '\\(6:4=3:2\\)、\\(9:6=3:2\\)，兩邊成比例。',
+            '\\(\\angle A\\)、\\(\\angle D\\) 都夾在這兩邊中間，SAS 成立。'
+          ],
+          ans: '相似（SAS），\\(\\triangle ABC\\sim\\triangle DEF\\)'
+        }
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～1-3）',
+        title: '重點複習 ⑥｜名字的順序就是對應',
+        points: [
+          '寫相似式時，<b>名字的順序就是對應</b>：第 1 對第 1、第 2 對第 2。',
+          '比例式照相似式的順序抄，<b>不要看圖上誰在上面</b>。',
+          '小三角形倒過來放時，<b>先找相等的角</b>，再寫名字。',
+          '這一類段考即時通最多：<b>選 5、9</b>，<b>填 1、3</b>，<b>計 1、3、4</b>。'
+        ],
+        formula: { label: '△AED ∼ △ABC，照順序抄<span class="pgref">課本 印 59 重點回顧</span>', tex: '\\overline{AE}:\\overline{AB}=\\overline{AD}:\\overline{AC}=\\overline{ED}:\\overline{BC}' },
+        visual: (h) => {
+          const u = 16, A = [150, 34];
+          const dir = (deg) => [Math.sin(deg * Math.PI / 180), Math.cos(deg * Math.PI / 180)];
+          const dB = dir(-38), dC = dir(24);
+          const go = (d, n) => [A[0] + d[0] * n * u, A[1] + d[1] * n * u];
+          const B = go(dB, 12), Cc = go(dC, 9), D = go(dB, 3), E = go(dC, 4);
+          const arc = (V, P, Q, col, r) => {
+            const un = (p, q) => { const dx = q[0] - p[0], dy = q[1] - p[1], d = Math.hypot(dx, dy) || 1; return [dx / d, dy / d]; };
+            const u1 = un(V, P), u2 = un(V, Q), sw = (u1[0] * u2[1] - u1[1] * u2[0]) > 0 ? 1 : 0;
+            return `<path d="M${V[0] + u1[0] * r},${V[1] + u1[1] * r} A${r},${r} 0 0,${sw} ${V[0] + u2[0] * r},${V[1] + u2[1] * r}" fill="none" stroke="${col}" stroke-width="2.6"/>`;
+          };
+          const fig = (nums) => {
+            let g = SV.poly([A, B, Cc], 'rgba(37,99,235,.05)', BLU, 2.2);
+            g += SV.seg(D[0], D[1], E[0], E[1], GRN, 2.6);
+            g += arc(E, A, D, VIO, 15) + arc(B, A, Cc, VIO, 20);
+            g += TX(A[0], A[1] - 9, 'A', { anchor: 'middle', fs: 16 })
+              + TX(B[0] - 12, B[1] + 14, 'B', { anchor: 'middle', fs: 16 })
+              + TX(Cc[0] + 12, Cc[1] + 14, 'C', { anchor: 'middle', fs: 16 })
+              + TX(D[0] - 13, D[1] + 4, 'D', { anchor: 'middle', fs: 16 })
+              + TX(E[0] + 13, E[1] + 4, 'E', { anchor: 'middle', fs: 16 });
+            if (nums) {
+              const m = (p, q, t, dx, dy) => TX((p[0] + q[0]) / 2 + dx, (p[1] + q[1]) / 2 + dy, t, { anchor: 'middle', fs: 15, c: AMB });
+              g += m(A, D, '3', -12, 0) + m(A, E, '4', 13, -2) + m(E, Cc, '5', 14, 2);
+            }
+            return g;
+          };
+          const R = (y, t, c, fs) => TX(330, y, t, { anchor: 'middle', fs: fs || 18, c: c || INK });
+          SV.stepper(h, '0 0 440 282', [
+            { t: '圖上 <b>∠AED ＝ ∠B</b>，又共用 ∠A，所以 AA 相似。',
+              d: () => fig() + R(70, '∠AED ＝ ∠B', VIO) + R(106, '∠A 共用', GREY)
+                + R(150, '△AED ∼ △ABC', GRN, 20) + R(184, '（AA）', GREY, 15) },
+            { t: '<b>名字的順序就是對應</b>：A 對 A、E 對 B、D 對 C。',
+              d: () => fig() + R(56, '△AED ∼ △ABC', GRN, 20)
+                + R(100, 'A → A', INK) + R(134, 'E → B', VIO) + R(168, 'D → C', INK)
+                + R(214, 'E 的角＝B 的角，所以 E 對 B', GREY, 14) },
+            { t: '比例式<b>照相似式的順序抄</b>，不要看圖上誰在上面。',
+              d: () => fig() + R(56, '△AED ∼ △ABC', GRN, 20)
+                + R(104, 'AE : AB', BLU) + R(136, '＝ AD : AC', BLU) + R(168, '＝ ED : BC', BLU)
+                + R(214, '第 1、2 個字母配第 1、2 個', GREY, 14) },
+            { t: '代數字：AE＝4、AD＝3、EC＝5，所以 AC＝9。求 AB。',
+              d: () => fig(true) + R(52, 'AE : AB ＝ AD : AC', BLU, 16)
+                + R(88, '4 : AB ＝ 3 : 9') + R(122, '3 AB ＝ 36') + R(158, 'AB ＝ 12', GRN, 20)
+                + xoBar(222, 186, 214, '✗ AD : AB ＝ AE : AC', RED)
+                + TX(329, 252, 'DE 沒有平行 BC，不能這樣比', { anchor: 'middle', fs: 13.5, c: GREY }) }
+          ], { acc: false });
+        },
+        caption: '細節在 1-3〈對應關係看名字的順序〉〈先把小三角形翻過來再對〉。',
+        example: {
+          q: '\\(\\triangle ABC\\sim\\triangle DEF\\)，\\(\\overline{AB}=6\\)、\\(\\overline{BC}=8\\)、\\(\\overline{DE}=9\\)，求 \\(\\overline{EF}\\)。'
+            + exTriPair({ l: { k: 0.8, ab: '6', bc: '8' },
+                          r: { k: 1.05, ab: '9', bc: '?', names: ['D', 'E', 'F'] } }),
+          steps: [
+            '照名字順序：\\(AB\\leftrightarrow DE\\)、\\(BC\\leftrightarrow EF\\)。',
+            '\\(6:9=8:\\overline{EF}\\)，所以 \\(6\\overline{EF}=72\\)。'
+          ],
+          ans: '\\(\\overline{EF}=12\\)'
+        }
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～1-3）',
         title: '對答案｜段考即時通 ①（選擇 1～10）',
         points: [
           '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
