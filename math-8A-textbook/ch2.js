@@ -1157,37 +1157,36 @@ window.DECK = window.DECK || [];
         sec: '段考', secName: '第一次（1-1～2-1）',
         title: '習作交付狀態',
         points: [
-          '1-1：<b>全部準時交</b>。',
-          '1-2：7 人<b>沒有訂正上一節的錯誤</b>。',
-          '1-3：8 人補交，1 人還在等，1 人<b>未交</b>。',
-          '第一章、2-1 各 2 人說要補交；2-1 另有 2 人<b>交了，但沒有寫</b>。'
+          '1-1：26 人準時，1 人<b>補交但只完成一部分</b>。',
+          '1-2：7 人<b>沒有訂正上次的錯誤</b>。',
+          '1-3：8 人補交、1 人還在等、1 人<b>沒交或空白</b>。',
+          '第一章 3 人、2-1 2 人說要補交；2-1 另有 2 人<b>沒交或空白</b>。'
         ],
         visual: (h) => {
 
           const CAT = [
             ['ok', '準時交付', '#2f9e6e'],
             ['late', '補交', '#2563eb'],
+            ['part', '補交只完成部分', '#2563eb', true],
             ['wait', '說要補交', '#c2620a'],
-            ['fix', '沒訂正上一節', '#7c3aed'],
-            ['blank', '交了但沒寫', 'url(#hwHatch)'],
-            ['miss', '未交付', '#d4204f'],
-            ['other', '其他', '#94a3b8']
+            ['fix', '沒訂正上次錯誤', '#7c3aed'],
+            ['miss', '沒交或空白', '#d4204f']
           ];
           const ROWS = [
-            ['1-1', { ok: 26 }],
-            ['1-2', { ok: 19, fix: 7, other: 1 }],
+            ['1-1', { ok: 26, part: 1 }],
+            ['1-2', { ok: 20, fix: 7 }],
             ['1-3', { ok: 17, late: 8, wait: 1, miss: 1 }],
-            ['第一章', { ok: 24, wait: 2 }],
-            ['2-1', { ok: 22, wait: 2, blank: 2 }]
+            ['第一章', { ok: 24, wait: 3 }],
+            ['2-1', { ok: 23, wait: 2, miss: 2 }]
           ];
 
           const X0 = 74, W = 316, MAX = 27, u = W / MAX, BH = 24, Y0 = 54, GAP = 31;
 
           const used = CAT.filter(([k]) => ROWS.some(([, d]) => d[k]));
           let g = '';
-          used.forEach(([, name, col], i) => {
-            const x = 10 + (i % 4) * 106, y = 6 + Math.floor(i / 4) * 22;
-            g += BOX(x, y, 14, 14, { r: 3, fill: col, stroke: col.startsWith('url') ? '#d4204f' : col, sw: 1 })
+          used.forEach(([, name, col, hatch], i) => {
+            const x = 10 + (i % 3) * 142, y = 6 + Math.floor(i / 3) * 22;
+            g += BOX(x, y, 14, 14, { r: 3, fill: hatch ? 'url(#hwHatch)' : col, stroke: col, sw: 1.2 })
               + TX(x + 20, y + 12, name, { fs: 13.5, c: INK, fw: 700 });
           });
           ROWS.forEach(([sec, d], r) => {
@@ -1195,14 +1194,13 @@ window.DECK = window.DECK || [];
             const tot = Object.values(d).reduce((a, b) => a + b, 0);
             g += TX(X0 - 10, y + BH / 2 + 5.5, sec, { anchor: 'end', fs: 15, c: INK });
             let x = X0;
-            CAT.forEach(([k, name, col]) => {
+            CAT.forEach(([k, name, col, hatch]) => {
               const n = d[k];
               if (!n) return;
               const w = n * u;
 
-              g += `<rect x="${x}" y="${y}" width="${Math.max(w - 2, 1)}" height="${BH}" rx="3" fill="${col}"><title>${sec} ${name}：${n} 人</title></rect>`;
-              const hatch = col.startsWith('url');
-              if (hatch) g += `<rect x="${x + 0.75}" y="${y + 0.75}" width="${Math.max(w - 3.5, 1)}" height="${BH - 1.5}" rx="3" fill="none" stroke="#d4204f" stroke-width="1.5"/>`;
+              g += `<rect x="${x}" y="${y}" width="${Math.max(w - 2, 1)}" height="${BH}" rx="3" fill="${hatch ? 'url(#hwHatch)' : col}"><title>${sec} ${name}：${n} 人</title></rect>`;
+              if (hatch) g += `<rect x="${x + 0.75}" y="${y + 0.75}" width="${Math.max(w - 3.5, 1)}" height="${BH - 1.5}" rx="3" fill="none" stroke="${col}" stroke-width="1.5"/>`;
               if (w >= 16) g += hatch
                 ? `<text x="${x + (w - 2) / 2}" y="${y + BH / 2 + 5}" text-anchor="middle" font-size="13.5" font-weight="800" fill="${INK}" stroke="#fff" stroke-width="3" paint-order="stroke">${n}</text>`
                 : TX(x + (w - 2) / 2, y + BH / 2 + 5, n, { anchor: 'middle', fs: 13.5, c: '#fff' });
@@ -1213,10 +1211,10 @@ window.DECK = window.DECK || [];
 
           h.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">`
             + `<svg viewBox="0 0 440 210" style="width:100%;height:auto;max-height:100%">`
-            + `<defs><pattern id="hwHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fff"/><rect width="2.4" height="6" fill="#d4204f"/></pattern></defs>`
+            + `<defs><pattern id="hwHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fff"/><rect width="2.4" height="6" fill="#2563eb"/></pattern></defs>`
             + `<rect x="0" y="0" width="440" height="210" fill="#fff"/>${g}</svg></div>`;
         },
-        caption: '2026-10-13 的登記。只列人數，不列名字與座號；特殊狀況不在這裡交的不算進來。'
+        caption: '2026-10-13 的統計，每節 27 人。只列人數，不列名字與座號。'
       },
 
       {
