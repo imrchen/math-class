@@ -119,6 +119,17 @@ window.DECK = window.DECK || [];
     + [['A', 6, 18], ['F', 200, 18], ['E', 202, 218], ['D', 134, 218], ['C', 132, 116], ['B', 4, 146]]
       .map(([n, x, y]) => FT(x, y, n, 22, ' font-style="italic"')).join(''));
 
+  function gradeRows(rows) {
+    return `<div class="xo-wrap" style="width:99.5%;margin:0 auto;display:flex;flex-direction:column;gap:9px">` +
+      rows.map(r => `<div class="xo-row" style="border:1.5px solid #94a3b8;border-radius:12px;background:#fff;padding:9px 13px">
+        <div class="xo-tag" style="font-size:14px;font-weight:900;color:${C};margin-bottom:5px">${r.tag}</div>
+        <div class="xo-body" style="display:flex;gap:8px;align-items:baseline;font-size:15px;line-height:1.6;color:${INK}">
+          <span style="flex:0 0 auto;font-weight:900;color:${RED}">✗</span><span style="flex:1;min-width:0">${r.bad}</span></div>
+        <div class="xo-body" style="display:flex;gap:8px;align-items:baseline;font-size:15px;line-height:1.6;color:${INK}">
+          <span style="flex:0 0 auto;font-weight:900;color:${GRN}">✓</span><span style="flex:1;min-width:0">${r.good}</span></div>
+      </div>`).join('') + `</div>`;
+  }
+
   window.DECK.push({
     ch: 2,
     title: '平方根與畢氏定理',
@@ -1140,6 +1151,101 @@ window.DECK = window.DECK || [];
           ],
           ans: '錯'
         }
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '習作交付狀態',
+        points: [
+          '1-1：<b>全部準時交</b>。',
+          '1-2：7 人<b>沒有訂正上一節的錯誤</b>。',
+          '1-3：8 人補交，1 人還在等，1 人<b>未交</b>。',
+          '第一章、2-1 各 2 人說要補交；2-1 另有 2 人<b>交了，但沒有寫</b>。'
+        ],
+        visual: (h) => {
+
+          const CAT = [
+            ['ok', '準時交付', '#2f9e6e'],
+            ['late', '補交', '#2563eb'],
+            ['wait', '說要補交', '#c2620a'],
+            ['fix', '沒訂正上一節', '#7c3aed'],
+            ['blank', '交了但沒寫', 'url(#hwHatch)'],
+            ['miss', '未交付', '#d4204f'],
+            ['other', '其他', '#94a3b8']
+          ];
+          const ROWS = [
+            ['1-1', { ok: 26 }],
+            ['1-2', { ok: 19, fix: 7, other: 1 }],
+            ['1-3', { ok: 17, late: 8, wait: 1, miss: 1 }],
+            ['第一章', { ok: 24, wait: 2 }],
+            ['2-1', { ok: 22, wait: 2, blank: 2 }]
+          ];
+
+          const X0 = 74, W = 316, MAX = 27, u = W / MAX, BH = 24, Y0 = 54, GAP = 31;
+
+          const used = CAT.filter(([k]) => ROWS.some(([, d]) => d[k]));
+          let g = '';
+          used.forEach(([, name, col], i) => {
+            const x = 10 + (i % 4) * 106, y = 6 + Math.floor(i / 4) * 22;
+            g += BOX(x, y, 14, 14, { r: 3, fill: col, stroke: col.startsWith('url') ? '#d4204f' : col, sw: 1 })
+              + TX(x + 20, y + 12, name, { fs: 13.5, c: INK, fw: 700 });
+          });
+          ROWS.forEach(([sec, d], r) => {
+            const y = Y0 + r * GAP;
+            const tot = Object.values(d).reduce((a, b) => a + b, 0);
+            g += TX(X0 - 10, y + BH / 2 + 5.5, sec, { anchor: 'end', fs: 15, c: INK });
+            let x = X0;
+            CAT.forEach(([k, name, col]) => {
+              const n = d[k];
+              if (!n) return;
+              const w = n * u;
+
+              g += `<rect x="${x}" y="${y}" width="${Math.max(w - 2, 1)}" height="${BH}" rx="3" fill="${col}"><title>${sec} ${name}：${n} 人</title></rect>`;
+              const hatch = col.startsWith('url');
+              if (hatch) g += `<rect x="${x + 0.75}" y="${y + 0.75}" width="${Math.max(w - 3.5, 1)}" height="${BH - 1.5}" rx="3" fill="none" stroke="#d4204f" stroke-width="1.5"/>`;
+              if (w >= 16) g += hatch
+                ? `<text x="${x + (w - 2) / 2}" y="${y + BH / 2 + 5}" text-anchor="middle" font-size="13.5" font-weight="800" fill="${INK}" stroke="#fff" stroke-width="3" paint-order="stroke">${n}</text>`
+                : TX(x + (w - 2) / 2, y + BH / 2 + 5, n, { anchor: 'middle', fs: 13.5, c: '#fff' });
+              x += w;
+            });
+            g += TX(X0 + tot * u + 6, y + BH / 2 + 5, tot + ' 人', { fs: 12.5, c: GREY, fw: 700 });
+          });
+
+          h.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">`
+            + `<svg viewBox="0 0 440 210" style="width:100%;height:auto;max-height:100%">`
+            + `<defs><pattern id="hwHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fff"/><rect width="2.4" height="6" fill="#d4204f"/></pattern></defs>`
+            + `<rect x="0" y="0" width="440" height="210" fill="#fff"/>${g}</svg></div>`;
+        },
+        caption: '2026-10-13 的登記。只列人數，不列名字與座號；特殊狀況不在這裡交的不算進來。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '第一章總習題檢討',
+        points: [
+          '這四筆是<b>這次改第一章總習題真的看到的</b>。',
+          '計算題、素養題 1：<b>只有答案，沒有過程</b>。',
+          '素養題 2：算式要<b>說明從哪裡來</b>；「試說明」要寫<b>因為…所以…</b>。'
+        ],
+        formula: { label: '「試說明」直接這樣回答<span class="pgref">習作 印 17–18</span>', tex: '\\text{因為}\\ \\cdots\\cdots\\text{，所以}\\ \\cdots\\cdots' },
+        visual: (h) => {
+          h.innerHTML = gradeRows([
+            { tag: '計算 1、2　很多人沒有寫過程',
+              bad: '只有 \\(A=11x^2+4x-2\\)、\\(c>b>a\\)，<b>看不出怎麼來的</b>',
+              good: '計 1：先寫 \\(A-(5x^2-x-4)=(3x+4)(2x-1)+6\\)；計 2：\\(a=150^2-5^2\\)、\\(b=150^2-3^2\\)、\\(c=150^2-1^2\\)' },
+            { tag: '素養 1　八成的人沒有過程',
+              bad: '五個字母<b>只寫答案</b>',
+              good: '\\(x\\cdot ax=3x^2\\)，\\(a=3\\)；\\(3x\\cdot c=6x\\)，\\(c=2\\)；\\(10x-6x=dx\\)，\\(d=4\\)；\\(x\\cdot b=4x\\)，\\(b=4\\)；\\(13-e=5\\)，\\(e=8\\)' },
+            { tag: '素養 2（1）　l 和道路面積都沒有說明',
+              bad: '直接寫 \\(l=4a+4b\\)、面積 \\(4ab+4b^2\\)，<b>沒說怎麼來的</b>',
+              good: '分向線是邊長 \\(a+b\\) 的正方形，\\(l=4(a+b)\\)；道路面積＝大正方形－小正方形＝\\((a+2b)^2-a^2=4ab+4b^2\\)' },
+            { tag: '素養 2（2）　「試說明」沒有直球對決',
+              bad: '只列算式，<b>沒有「因為…所以…」</b>',
+              good: '因為 \\(l\\times b=(4a+4b)\\times b=4ab+4b^2\\)，和（1）的道路面積相同，所以道路面積 \\(=l\\times b\\)' }
+          ]);
+          MJ(h);
+        },
+        caption: '左邊是這次本子上的樣子；右邊多寫的那幾行，就是給分的地方。題目在「總習題」節點題號看詳解。'
       },
 
       {
