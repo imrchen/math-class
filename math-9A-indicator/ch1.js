@@ -447,6 +447,14 @@ window.DECK = window.DECK || [];
         angles: [{ at: 0, mark: 1, text: '$80\\degree$' }], caption: '△ABC' }] }];
   }
 
+  {
+    const d = ((window.SOLUTIONS || {})['第1次段考（一）'] || {})['計1'];
+    const was = '\\(\\overline{BC}=x+4\\)，梯形 \\(DECB\\) 面積 \\(108\\)：';
+    const i = d && d.segs ? d.segs[2] : -1;
+    if (d && d.steps && d.steps[i] === was)
+      d.steps[i] = '\\(\\overline{BC}=x+4\\)（第 2 段算出來的），梯形 \\(DECB\\) 面積 \\(108\\)：';
+  }
+
   window.FROM_SEC = window.FROM_SEC || {};
   Object.entries({
     '1-1': ['選6', '填4', '填6'],
