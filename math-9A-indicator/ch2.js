@@ -135,7 +135,7 @@ window.DECK = window.DECK || [];
     ch: 2,
     title: '圓形',
     color: C,
-    sections: ['2-1 點、直線與圓之間的位置關係', '2-2 圓心角、圓周角與弧的關係'],
+    sections: ['2-1 點、直線與圓之間的位置關係', '2-2 圓心角、圓周角與弧的關係', '段考 第二次（1-4～2-2）'],
     slides: [
 
       {
@@ -1508,6 +1508,25 @@ window.DECK = window.DECK || [];
         },
         caption: '只到「答」這一層——<b>為什麼錯，回前面的練習頁點題號看詳解</b>。'
       },
+
+      {
+        sec: '段考', secName: '第二次（1-4～2-2）',
+        title: '第二次段考的範圍：1-4～2-2',
+        points: [
+          '日期：<b>12/1（二）–12/2（三）</b>。',
+          '範圍：<b>1-4～2-2</b>。',
+          '這一節之後會放<b>段考即時通</b>的模擬卷。'
+        ],
+        visual: (h) => {
+
+          h.innerHTML = `<div style="width:100%;max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:12px">`
+            + `<div style="font-size:15px;font-weight:800;color:${GREY}">第二次段考考這幾節</div>`
+            + ['1-4 相似三角形的應用', '2-1 點、直線與圓', '2-2 圓心角與圓周角'].map(t => `<div style="border:1.6px solid #dce3ee;background:#fbfcfe;border-radius:11px;padding:10px 14px;font-size:17px;font-weight:800;color:${INK}">${t}</div>`).join('')
+            + `</div>`;
+        },
+        caption: '範圍以學校公告為準。'
+      }
+
     ]
   });
 })();

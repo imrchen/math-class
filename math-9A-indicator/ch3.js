@@ -175,7 +175,7 @@ window.DECK = window.DECK || [];
     ch: 3,
     title: '推理證明與三角形的心',
     color: C,
-    sections: ['3-1 推理證明', '3-2 三角形的外心、內心與重心'],
+    sections: ['3-1 推理證明', '3-2 三角形的外心、內心與重心', '段考 第三次（3-1～3-2、第 6 冊 1-1）'],
     slides: [
 
       {
@@ -1778,7 +1778,26 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '只到「答」這一層——<b>為什麼錯，回前面的練習頁點題號看詳解</b>。'
+      },
+
+      {
+        sec: '段考', secName: '第三次（3-1～3-2、第 6 冊 1-1）',
+        title: '第三次段考的範圍：3-1～3-2，另含第 6 冊 1-1',
+        points: [
+          '日期：<b>1/19（二）–1/20（三）</b>。',
+          '範圍：<b>3-1～3-2，另含第 6 冊 1-1</b>。',
+          '這一節之後會放<b>段考即時通</b>的模擬卷。'
+        ],
+        visual: (h) => {
+
+          h.innerHTML = `<div style="width:100%;max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:12px">`
+            + `<div style="font-size:15px;font-weight:800;color:${GREY}">第三次段考考這幾節</div>`
+            + ['3-1 推理證明', '3-2 外心、內心與重心', '第 6 冊 1-1'].map(t => `<div style="border:1.6px solid #dce3ee;background:#fbfcfe;border-radius:11px;padding:10px 14px;font-size:17px;font-weight:800;color:${INK}">${t}</div>`).join('')
+            + `</div>`;
+        },
+        caption: '範圍以學校公告為準。'
       }
+
     ]
   });
 })();

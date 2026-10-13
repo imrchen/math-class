@@ -22,7 +22,31 @@ window.PRACTICE = (function () {
 
   const BOILER = /^承上[，,]?[^$]{0,24}。?$/;
 
-  const S = (sec) => (window.SOLUTIONS || {})[sec] || {};
+  const S = (sec) => {
+    const all = (window.SOLUTIONS || {})[sec];
+    if (!all) return {};
+    if (!SCRUBBED.has(sec)) { SCRUBBED.add(sec); scrubNotes(all); }
+    return all;
+  };
+
+  const SCRUBBED = new Set();
+  const NOTE_LINE = /^\s*(（教材更正）|※\s*教用)/;
+  const NOTE_IN = /（教材更正）[^。]*。|（[^（）]*教用[^（）]*更正[^（）]*）/g;
+  function scrubNotes(all) {
+    for (const d of Object.values(all)) {
+      if (!d || typeof d !== 'object') continue;
+      if (Array.isArray(d.steps) && d.steps.some(t => NOTE_LINE.test(String(t)))) {
+        const before = []; let c = 0;
+        d.steps.forEach((t, i) => { before[i] = c; if (!NOTE_LINE.test(String(t))) c++; });
+        before[d.steps.length] = c;
+        if (Array.isArray(d.segs)) d.segs = d.segs.map(s => before[Math.min(s, d.steps.length)])
+          .filter((v, i, a) => i === 0 || v !== a[i - 1]);
+        d.steps = d.steps.filter(t => !NOTE_LINE.test(String(t)));
+      }
+      for (const f of ['q', 'ans', 'key']) if (typeof d[f] === 'string' && NOTE_IN.test(d[f])) d[f] = d[f].replace(NOTE_IN, '').trim();
+      NOTE_IN.lastIndex = 0;
+    }
+  }
 
   const figSvg = (d) => (d && d.fig && ((window.FIGURES_LOCAL || {})[d.fig] || (window.FIGURES || {})[d.fig])) || null;
 
