@@ -1160,7 +1160,7 @@ window.DECK = window.DECK || [];
           '1-1：26 人準時，1 人<b>補交但只完成一部分</b>。',
           '1-2：7 人<b>沒有訂正上次的錯誤</b>。',
           '1-3：8 人補交、1 人還在等、1 人<b>沒交或空白</b>。',
-          '第一章 3 人、2-1 2 人說要補交；2-1 另有 2 人<b>沒交或空白</b>。'
+          '第一章、2-1 各 1 人補交、1 人還在等；第一章另 1 人<b>只完成一部分</b>，2-1 另 2 人<b>沒交或空白</b>。'
         ],
         visual: (h) => {
 
@@ -1176,8 +1176,8 @@ window.DECK = window.DECK || [];
             ['1-1', { ok: 26, part: 1 }],
             ['1-2', { ok: 20, fix: 7 }],
             ['1-3', { ok: 17, late: 8, wait: 1, miss: 1 }],
-            ['第一章', { ok: 24, wait: 3 }],
-            ['2-1', { ok: 23, wait: 2, miss: 2 }]
+            ['第一章', { ok: 24, late: 1, part: 1, wait: 1 }],
+            ['2-1', { ok: 23, late: 1, wait: 1, miss: 2 }]
           ];
 
           const X0 = 74, W = 316, MAX = 27, u = W / MAX, BH = 24, Y0 = 54, GAP = 31;
@@ -1214,7 +1214,7 @@ window.DECK = window.DECK || [];
             + `<defs><pattern id="hwHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fff"/><rect width="2.4" height="6" fill="#2563eb"/></pattern></defs>`
             + `<rect x="0" y="0" width="440" height="210" fill="#fff"/>${g}</svg></div>`;
         },
-        caption: '2026-10-13 的統計，每節 27 人。只列人數，不列名字與座號。'
+        caption: '2026-10-14 的統計，每節 27 人。只列人數，不列名字與座號。'
       },
 
       {
