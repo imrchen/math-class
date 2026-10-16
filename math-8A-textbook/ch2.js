@@ -5,6 +5,61 @@ window.DECK = window.DECK || [];
   const RED = '#be123c', GRN = '#065f46', BLU = '#1e40af', VIO = '#6d28d9', AMB = '#92400e';
   const INK = '#0b1220', GREY = '#475569', LINE = '#94a3b8', XO_BAD = '#e0849b', XO_GOOD = '#5fb28e';
 
+  window.FIGURES_LOCAL = window.FIGURES_LOCAL || {};
+  window.FIGURES_LOCAL['long-division-8x2-minus-2'] = (() => {
+    const cx = [108, 190, 262];
+    const T = (col, y, s, c) => `<text x="${cx[col]}" y="${y}" text-anchor="middle" font-size="24" font-weight="800" fill="${c}">${s}</text>`;
+    return `<svg viewBox="0 0 300 282" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + T(0, 52, '4x', GRN) + T(1, 52, '＋6', GRN)
+      + `<text x="60" y="104" text-anchor="end" font-size="24" font-weight="800" fill="${VIO}">2x－3</text>`
+      + `<path d="M65,116 Q78,97 65,76 H296" fill="none" stroke="${INK}" stroke-width="2.4"/>`
+      + T(0, 104, '8x²', INK) + T(1, 104, '＋0x', INK) + T(2, 104, '－2', INK)
+      + T(0, 142, '8x²', BLU) + T(1, 142, '－12x', BLU)
+      + `<line x1="76" y1="156" x2="296" y2="156" stroke="${INK}" stroke-width="2"/>`
+      + T(1, 186, '12x', INK) + T(2, 186, '－2', INK)
+      + T(1, 224, '12x', BLU) + T(2, 224, '－18', BLU)
+      + `<line x1="150" y1="238" x2="296" y2="238" stroke="${INK}" stroke-width="2"/>`
+      + T(2, 270, '16', GRN)
+      + `<text x="${cx[2] - 30}" y="270" text-anchor="end" font-size="15" font-weight="800" fill="${GREY}">餘式</text>`
+      + `</svg>`;
+  })();
+
+  window.FIGURES_LOCAL['square-triangle-roof'] = (() => {
+    const X = 84, Y = 24, S = 170, T = 110, ax = X + Math.round(0.39 * S);
+    const L = (x, y, t, a) => `<text x="${x}" y="${y}" text-anchor="${a || 'middle'}" font-size="24" font-weight="800" fill="${INK}">${t}</text>`;
+    return `<svg viewBox="0 -64 270 410" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + `<polygon points="${ax},${Y} ${X + S},${Y + T} ${X},${Y + T}" fill="#E3E6EA" stroke="${INK}" stroke-width="2.4"/>`
+      + `<rect x="${X}" y="${Y + T}" width="${S}" height="${S}" fill="#E3E6EA" stroke="${INK}" stroke-width="2.4"/>`
+      + `<line x1="${ax}" y1="${Y}" x2="${ax}" y2="${Y + T}" stroke="${INK}" stroke-width="1.8" stroke-dasharray="6 4"/>`
+      + `<rect x="${ax}" y="${Y + T - 12}" width="12" height="12" fill="none" stroke="${INK}" stroke-width="1.4"/>`
+      + `<text x="${ax + 8}" y="${Y + T / 2 + 14}" font-size="26" font-weight="800" font-style="italic" fill="${INK}">h</text>`
+      + L(X - 8, Y + T + S / 2 + 8, '4x－4', 'end')
+      + L(X + S / 2, Y + T + S + 32, '4x－4')
+      + `</svg>`;
+  })();
+  window.FIGURES_LOCAL['long-division-8x2-minus-2x-minus-6'] = (() => {
+    const cx = [108, 190, 262];
+    const T = (col, y, s, c) => `<text x="${cx[col]}" y="${y}" text-anchor="middle" font-size="24" font-weight="800" fill="${c}">${s}</text>`;
+    const fx = cx[1] + 12;
+    return `<svg viewBox="0 0 300 282" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + T(0, 52, '2x', GRN)
+      + `<text x="${cx[1] - 14}" y="52" text-anchor="middle" font-size="24" font-weight="800" fill="${GRN}">＋</text>`
+      + `<text x="${fx}" y="34" text-anchor="middle" font-size="22" font-weight="800" fill="${GRN}">3</text>`
+      + `<line x1="${fx - 10}" y1="43" x2="${fx + 10}" y2="43" stroke="${GRN}" stroke-width="2.2"/>`
+      + `<text x="${fx}" y="66" text-anchor="middle" font-size="22" font-weight="800" fill="${GRN}">2</text>`
+      + `<text x="60" y="104" text-anchor="end" font-size="24" font-weight="800" fill="${VIO}">4x－4</text>`
+      + `<path d="M65,116 Q78,97 65,76 H296" fill="none" stroke="${INK}" stroke-width="2.4"/>`
+      + T(0, 104, '8x²', INK) + T(1, 104, '－2x', INK) + T(2, 104, '－6', INK)
+      + T(0, 142, '8x²', BLU) + T(1, 142, '－8x', BLU)
+      + `<line x1="76" y1="156" x2="296" y2="156" stroke="${INK}" stroke-width="2"/>`
+      + T(1, 186, '6x', INK) + T(2, 186, '－6', INK)
+      + T(1, 224, '6x', BLU) + T(2, 224, '－6', BLU)
+      + `<line x1="150" y1="238" x2="296" y2="238" stroke="${INK}" stroke-width="2"/>`
+      + T(2, 270, '0', GRN)
+      + `<text x="${cx[2] - 22}" y="270" text-anchor="end" font-size="15" font-weight="800" fill="${GREY}">餘式</text>`
+      + `</svg>`;
+  })();
+
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;
   }
@@ -2058,6 +2113,236 @@ window.DECK = window.DECK || [];
           }
           PRACTICE.page(h, '段1', [
             { src: '試卷・核心概念重點卷', page: '印 2', sub: '2-1 概念 3、4、5', tags: ['核2-1概3-1', '核2-1概3-2', '核2-1概4-1', '核2-1概5-1'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '成績統計｜段考卷',
+        points: [
+          '總分：平均 <b>52.97</b>，高標 72、低標 31，標準差 23.74。',
+          '選擇題：平均 <b>48.28</b>，高標 64、低標 28。',
+          '非選擇題（填空 2 題、計算 1 題）：平均 <b>4.69</b>，高標 8、<b>低標 0</b>。'
+        ],
+        visual: (h) => {
+          const COLS = ['選擇題', '非選擇題', '總分'];
+          const ROWS = [
+            ['平均', ['48.28', '4.69', '52.97']],
+            ['高標', ['64.00', '8.00', '72.00']],
+            ['低標', ['28.00', '0.00', '31.00']],
+            ['標準差', ['20.20', '4.44', '23.74']]
+          ];
+
+          const W0 = 110, CW = 110, RH = 40, Y0 = 6;
+          const T = (x, y, t, o) => `<text x="${x}" y="${y}" text-anchor="middle" font-size="${o.fs}" font-weight="${o.fw || 700}" fill="${o.c || INK}">${t}</text>`;
+          let g = `<rect x="0" y="${Y0}" width="440" height="${RH}" fill="#eef2f8"/>`
+            + `<rect x="${W0 + 2 * CW}" y="${Y0}" width="${CW}" height="${RH * 5}" fill="#1e40af" fill-opacity="0.07"/>`;
+          g += T(W0 / 2, Y0 + 27, '第一次段考', { fs: 17 });
+          COLS.forEach((c, j) => { g += T(W0 + CW * j + CW / 2, Y0 + 27, c, { fs: 18, fw: 800 }); });
+          ROWS.forEach(([lab, vals], i) => {
+            const y = Y0 + RH * (i + 1);
+            g += T(W0 / 2, y + 27, lab, { fs: 18, fw: 800 });
+            vals.forEach((v, j) => { g += T(W0 + CW * j + CW / 2, y + 28, v, { fs: 21, fw: j === 2 ? 800 : 700, c: j === 2 ? '#1e3a8a' : INK }); });
+          });
+          for (let i = 0; i <= 5; i++) g += `<line x1="0" y1="${Y0 + RH * i}" x2="440" y2="${Y0 + RH * i}" stroke="${INK}" stroke-width="${i === 0 || i === 5 ? 2 : i === 1 ? 1.6 : 0.8}"/>`;
+          for (let j = 1; j <= 3; j++) g += `<line x1="${W0 + CW * (j - 1)}" y1="${Y0}" x2="${W0 + CW * (j - 1)}" y2="${Y0 + RH * 5}" stroke="${INK}" stroke-width="${j === 1 ? 1.6 : 0.8}"/>`;
+          h.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">`
+            + `<svg viewBox="0 0 440 210" style="width:100%;height:auto;max-height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+            + `<rect x="0" y="0" width="440" height="210" fill="#fff"/>${g}</svg></div>`;
+        },
+        caption: '只列統計數字，不列個人分數。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '對答案｜段考卷 ①（選擇 1～12）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），唸題號，照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '校段1', [
+            { label: '選擇 1～7（題目卷第 1 頁）', cols: 4, items: [['選 1', '選1'], ['選 2', '選2'], ['選 3', '選3'], ['選 4', '選4'], ['選 5', '選5'], ['選 6', '選6'], ['選 7', '選7']] },
+            { label: '選擇 8～12（題目卷第 2 頁）', cols: 4, items: [['選 8', '選8'], ['選 9', '選9'], ['選 10', '選10'], ['選 11', '選11'], ['選 12', '選12']] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的檢討頁再講。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '對答案｜段考卷 ②（選擇 13～22、填空、計算）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），唸題號，照著改同學的卷子。',
+          '選擇第 17 題<b>送分</b>（出題老師公告）：題目的兩個條件不能同時成立，檢討頁有說明。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '校段1', [
+            { label: '選擇 13～16（題目卷第 2 頁）', cols: 4, items: [['選 13', '選13'], ['選 14', '選14'], ['選 15', '選15'], ['選 16', '選16']] },
+            { label: '選擇 17～22（題目卷第 3 頁）', cols: 4, items: [['選 17', '選17'], ['選 18', '選18'], ['選 19', '選19'], ['選 20', '選20'], ['選 21', '選21'], ['選 22', '選22']] },
+            { label: '填空、計算（答案卷）', cols: 4, items: [['填 1', '填1'], ['填 2', '填2'], ['計 1', '計1']] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的檢討頁再講。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '檢討｜段考卷 ③（選擇 1～4）',
+        points: [
+          '<b>學校的第一次段考卷</b>（範圍 1-1～2-1），題號跟卷子一樣。',
+          '唸題號、翻卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '校段1', [
+            { src: '試卷・段考卷', page: '題目卷 第 1 頁', sub: '選擇 1～4', tags: ['選1', '選2', '選3', '選4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '檢討｜段考卷 ④（選擇 5～7）',
+        points: [
+          '<b>學校的第一次段考卷</b>（範圍 1-1～2-1），題號跟卷子一樣。',
+          '唸題號、翻卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '校段1', [
+            { src: '試卷・段考卷', page: '題目卷 第 1 頁', sub: '選擇 5～7', tags: ['選5', '選6', '選7'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '檢討｜段考卷 ⑤（選擇 8～10）',
+        points: [
+          '<b>學校的第一次段考卷</b>（範圍 1-1～2-1），題號跟卷子一樣。',
+          '唸題號、翻卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '校段1', [
+            { src: '試卷・段考卷', page: '題目卷 第 2 頁', sub: '選擇 8～10', tags: ['選8', '選9', '選10'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '檢討｜段考卷 ⑥（選擇 11～13）',
+        points: [
+          '<b>學校的第一次段考卷</b>（範圍 1-1～2-1），題號跟卷子一樣。',
+          '唸題號、翻卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '校段1', [
+            { src: '試卷・段考卷', page: '題目卷 第 2 頁', sub: '選擇 11～13', tags: ['選11', '選12', '選13'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '檢討｜段考卷 ⑦（選擇 14～16）',
+        points: [
+          '<b>學校的第一次段考卷</b>（範圍 1-1～2-1），題號跟卷子一樣。',
+          '唸題號、翻卷子；<b>錯的人多的先講</b>。',
+          '第 14 題的直式除法排在詳解最後，按「下一行」才出現。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '校段1', [
+            { src: '試卷・段考卷', page: '題目卷 第 2 頁', sub: '選擇 14～16', tags: ['選14', '選15', '選16'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '檢討｜段考卷 ⑧（選擇 17～19）',
+        points: [
+          '<b>學校的第一次段考卷</b>（範圍 1-1～2-1），題號跟卷子一樣。',
+          '唸題號、翻卷子；<b>錯的人多的先講</b>。',
+          '第 17 題<b>送分</b>：詳解第二段說明兩個條件為什麼不能同時成立。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '校段1', [
+            { src: '試卷・段考卷', page: '題目卷 第 3 頁', sub: '選擇 17～19', tags: ['選17', '選18', '選19'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '檢討｜段考卷 ⑨（選擇 20～22）',
+        points: [
+          '<b>學校的第一次段考卷</b>（範圍 1-1～2-1），題號跟卷子一樣。',
+          '唸題號、翻卷子；<b>錯的人多的先講</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '校段1', [
+            { src: '試卷・段考卷', page: '題目卷 第 3 頁', sub: '選擇 20～22', tags: ['選20', '選21', '選22'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '段考', secName: '第一次（1-1～2-1）',
+        title: '檢討｜段考卷 ⑩（填空 1、2，計算 1）',
+        points: [
+          '<b>學校的第一次段考卷</b>（範圍 1-1～2-1），題號跟卷子一樣。',
+          '唸題號、翻卷子；<b>錯的人多的先講</b>。',
+          '計算題的步驟照<b>出題老師公布的解法</b>：兩邊乘 2，再用直式除以 \\(4x-4\\)。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '校段1', [
+            { src: '試卷・段考卷', page: '答案卷', sub: '填空 1、2，計算 1', tags: ['填1', '填2', '計1'] }
           ]);
         },
         caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
