@@ -341,8 +341,8 @@ window.DECK = window.DECK || [];
   };
 
   const EXTRA = (t) =>
-    BOX(300, 6, 132, 26, { r: 13, fill: '#f4f6fa', stroke: '#d7dde8', sw: 1.4 })
-    + TX(366, 24, t || '額外的，不是過關條件', { anchor: 'middle', fs: 12, c: GREY });
+    BOX(356, 6, 76, 26, { r: 13, fill: '#f4f6fa', stroke: '#d7dde8', sw: 1.4 })
+    + TX(394, 24, t || '額外的', { anchor: 'middle', fs: 12.5, c: GREY });
 
   const xoBar = (x, y, w, t, col) =>
     BOX(x, y, w, 44, { r: 11, fill: col === RED ? 'rgba(225,29,72,.07)' : 'rgba(5,150,105,.09)', stroke: col, sw: 2 })
@@ -4249,49 +4249,63 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-4', secName: '相似三角形的應用',
-        title: '這一節在學：用相似去量量不到的東西',
+        title: '1-4 走三站：高和面積、兩款三角板、坡道',
         points: [
-          '前面學<b>怎麼判斷相似</b>，這一節學<b>相似有什麼用</b>。',
-          '工具只有兩個：<b>由邊比推面積比</b>、<b>由角度讀出邊長比</b>。',
-          '兩個工具都從同一句話開始：<b>邊比是幾比幾？</b>',
-          '樹高、湖寬這些<b>量不到的長度</b>，就是這樣算出來的。'
+          '第一站：兩個三角形相似，邊變 2 倍，<b>高和面積</b>各變幾倍？',
+          '第二站：三角板有<b>兩款</b>，看角度就知道三邊的比。',
+          '第三站：輪椅坡道為什麼規定<b>每走 12 公尺，最多升高 1 公尺</b>？',
+          '三站都靠上一節學的<b>相似</b>：形狀一樣，比就不會變。'
         ],
-        formula: { label: '這一節的主角<span class="pgref">課本 印 63–77</span>', tex: '\\text{邊比}=k\\ \\Rightarrow\\ \\text{高比}=k,\\ \\text{面積比}=k^2' },
+        formula: { label: '1-4 的三站<span class="pgref">課本 印 63–77</span>', tex: '\\text{形狀一樣（相似）}\\ \\Rightarrow\\ \\text{比不會變}' },
         visual: (h) => {
+
           const tri = (cx, cy, k, col) => {
             const P = [[cx, cy - 34 * k], [cx - 38 * k, cy + 26 * k], [cx + 46 * k, cy + 26 * k]];
             return SV.poly(P, 'rgba(37,99,235,.06)', col || BLU, 2.2);
           };
+          const col3 = (x, title, l1, l2, c, fill) =>
+            BOX(x, 50, 128, 124, { r: 12, fill: fill, stroke: c, sw: 2 })
+            + TX(x + 64, 80, title, { anchor: 'middle', fs: 16, c: c })
+            + TX(x + 64, 118, l1, { anchor: 'middle', fs: 15, c: INK })
+            + TX(x + 64, 150, l2, { anchor: 'middle', fs: 15, c: INK });
           SV.stepper(h, SECVB, [
-            { t: '前面三節在問「像不像」，這一節開始問「<b>那又怎樣</b>」。',
+            { t: '第一站：兩個三角形相似，邊長變 2 倍，<b>高</b>和<b>面積</b>各變幾倍？',
               d: () => SECBG
-                + TX(220, 34, '1-3 問「像不像」，1-4 問「所以呢」', { anchor: 'middle', fs: 16, c: GREY })
-                + tri(120, 130, 0.78) + tri(300, 124, 1.18)
-                + TX(220, 214, '像，就可以拿小的去算大的', { anchor: 'middle', fs: 18, c: INK })
-                + TX(220, 248, '樹有多高、湖有多寬，不必爬上去也不必游過去', { anchor: 'middle', fs: 14, c: GREY }) },
-            { t: '工具只有兩個：<b>邊比 → 面積比</b>，以及<b>角度 → 邊長比</b>。',
-              d: () => SECBG + TX(220, 32, '整節只有兩個工具', { anchor: 'middle', fs: 16, c: GREY })
-                + BOX(16, 50, 200, 96, { r: 12, fill: 'rgba(5,150,105,.07)', stroke: GRN, sw: 2 })
-                + TX(116, 78, '① 邊比 → 面積比', { anchor: 'middle', fs: 16, c: GRN })
-                + TX(116, 106, '邊 2 倍，面積 4 倍', { anchor: 'middle', fs: 15, c: INK })
-                + TX(116, 132, '（不是 2 倍）', { anchor: 'middle', fs: 13.5, c: RED })
-                + BOX(224, 50, 200, 96, { r: 12, fill: 'rgba(37,99,235,.07)', stroke: BLU, sw: 2 })
-                + TX(324, 78, '② 角度 → 邊長比', { anchor: 'middle', fs: 16, c: BLU })
-                + TX(324, 106, '看到 30°、45°', { anchor: 'middle', fs: 15, c: INK })
-                + TX(324, 132, '三邊的比就固定了', { anchor: 'middle', fs: 13.5, c: INK })
-                + TX(220, 182, '兩個工具都先問同一句話', { anchor: 'middle', fs: 15, c: GREY })
-                + BOX(120, 196, 200, 44, { r: 11, fill: '#fff', stroke: AMB, sw: 2.2 })
-                + TX(220, 226, '邊比是幾比幾？', { anchor: 'middle', fs: 19, c: AMB })
-                + TX(220, 266, '答得出來，後面都是算術', { anchor: 'middle', fs: 14, c: GREY }) },
-            { t: '過關條件只有兩條；<b>測量</b>和<b>三角比</b>是額外的，右上角會標出來。',
-              d: () => SECBG + TX(220, 34, '哪些是過關條件', { anchor: 'middle', fs: 16, c: GREY })
-                + secActTwo([
-                    ['① 邊比、高比、面積比', '邊 k 倍 → 高 k 倍 → 面積 k² 倍', GRN],
-                    ['② 兩款三角板的邊長比', '1 : 1 : 根號2　和　1 : 根號3 : 2', BLU]
-                  ], ['量樹高、算坡度、sin cos tan 都是額外的', '頁面右上角有「額外」兩個字的就是']) }
+                + TX(220, 34, '第一站　相似三角形的高與面積', { anchor: 'middle', fs: 16, c: GRN })
+                + tri(118, 138, 0.6) + tri(300, 124, 1.2, AMB)
+                + TX(118, 186, '小的', { anchor: 'middle', fs: 14, c: BLU })
+                + TX(300, 186, '邊長 2 倍', { anchor: 'middle', fs: 14, c: AMB })
+                + TX(220, 228, '高是幾倍？面積是幾倍？', { anchor: 'middle', fs: 18, c: INK })
+                + TX(220, 262, '課本 印 63–68', { anchor: 'middle', fs: 13, c: GREY }) },
+            { t: '第二站：三角板有<b>兩款</b>，看角度就知道三邊的比。',
+              d: () => SECBG
+                + TX(220, 34, '第二站　兩款三角板', { anchor: 'middle', fs: 16, c: BLU })
+                + RTRI(62, 178, 100, '45').g + RTRI(238, 178, 80, '30').g
+                + TX(112, 204, '45°-45°-90°', { anchor: 'middle', fs: 15, c: BLU })
+                + TX(307, 204, '30°-60°-90°', { anchor: 'middle', fs: 15, c: BLU })
+                + TX(220, 238, '三邊的比，看角度就知道', { anchor: 'middle', fs: 17, c: INK })
+                + TX(220, 266, '課本 印 69–71', { anchor: 'middle', fs: 13, c: GREY }) },
+            { t: '第三站：門口的<b>輪椅坡道</b>，為什麼規定每走 12 公尺，最多升高 1 公尺？',
+              d: () => SECBG + EXTRA()
+                + TX(200, 34, '第三站　坡道', { anchor: 'middle', fs: 16, c: AMB })
+                + SV.poly([[40, 196], [400, 196], [400, 166]], 'rgba(217,119,6,.10)', AMB, 2.4)
+                + SV.rightAngle(400, 196, 90, 180, 11, '#7b8699')
+                + TX(220, 220, '水平走 12 公尺', { anchor: 'middle', fs: 15, c: BLU })
+                + TX(392, 154, '最多升高 1 公尺', { anchor: 'end', fs: 15, c: GRN })
+                + TX(220, 116, '這麼平，是為了誰？', { anchor: 'middle', fs: 18, c: INK })
+                + TX(220, 266, '課本 印 72–77', { anchor: 'middle', fs: 13, c: GREY }) },
+            { t: '三站都靠上一節學的<b>相似</b>：形狀一樣，比就不會變。',
+              d: () => SECBG + TX(220, 34, '三站，靠的是同一件事', { anchor: 'middle', fs: 16, c: GREY })
+                + col3(16, '第一站', '高 × k', '面積 × k²', GRN, 'rgba(5,150,105,.07)')
+                + col3(156, '第二站', '1 : 1 : ' + RT(2), '1 : ' + RT(3) + ' : 2', BLU, 'rgba(37,99,235,.07)')
+                + col3(296, '第三站', '高 ÷ 水平', '比值不變', AMB, 'rgba(217,119,6,.07)')
+                + BOX(40, 196, 360, 70, { r: 12, fill: '#fff', stroke: '#dce3ee', sw: 1.6 })
+                + TX(220, 224, '兩個三角形形狀一樣（相似）', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 252, '→ 它們的比就不會變', { anchor: 'middle', fs: 17, c: GRN }) }
           ], { acc: false });
+          withRad(h);
         },
-        caption: '整節只問一句話：<b>邊比是幾比幾</b>？答得出來，剩下都是算術。'
+        caption: '三站都靠上一節學的<b>相似</b>：形狀一樣，比就不會變。'
       },
 
       {
@@ -4347,6 +4361,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜課本隨堂（對應高）',
+        points: [
+          '先找<b>對應邊</b>：哪一條邊配哪一條邊。',
+          '邊變幾倍，<b>高就變幾倍</b>。',
+          '列成比例式，<b>交叉相乘</b>解出來。'
+        ],
+        formula: { label: '這一段在練<span class="pgref">課本 印 64</span>', tex: '\\text{底的比}=\\text{高的比}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '課本・隨堂練習', page: '印 64', sub: '對應高', tags: ['課P64'] }
+          ]);
+        },
+        caption: '底從 6 變成 9，高 4 會變成多少？'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
         title: '邊長 2 倍，面積是 4 倍不是 2 倍',
         points: [
           '一張 A3 對摺是 A4，再對摺是 A5——<b>邊長剛好 2 倍</b>。',
@@ -4390,7 +4424,7 @@ window.DECK = window.DECK || [];
                 + TX(220, 252, '不是 2 倍', { anchor: 'middle', fs: 15, c: RED }) }
           ], { acc: false });
         },
-        caption: '⚠ 這一頁要<b>先看見</b>再記公式——只講「平方」講不動，先數紙張數。'
+        caption: '先數一數：要<b>幾張 A5</b> 才蓋得滿一張 A3？'
       },
 
       {
@@ -4442,7 +4476,7 @@ window.DECK = window.DECK || [];
                 + TX(220, 252, '跟平方算出來的一樣', { anchor: 'middle', fs: 15, c: INK }) }
           ], { acc: false });
         },
-        caption: '⚠ 這一節<b>只做順推</b>（邊比 → 面積比）。由面積比反推邊比留到練習頁，老師帶著做。',
+        caption: '順序不要反過來：<b>先讀邊比，再平方</b>。',
         example: {
           q: '\\(\\triangle ABC\\sim\\triangle DEF\\)，\\(\\overline{AB}:\\overline{DE}=1:4\\)，\\(\\triangle ABC\\) 的面積是 \\(3\\)，求 \\(\\triangle DEF\\) 的面積。'
             + exTriPair({ l: { k: 0.6, ab: '1' }, r: { k: 1.3, names: ['D', 'E', 'F'], ab: '4' }, note: '面積比＝邊比的平方' }),
@@ -4456,13 +4490,144 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-4', secName: '相似三角形的應用',
-        title: '今天的教具你已經帶來了：兩款三角板',
+        title: '練習｜課本隨堂（面積比）',
         points: [
-          '直角三角板只有<b>兩款</b>：45°-45°-90° 和 30°-60°-90°。',
+          '先把<b>邊比</b>讀出來，再<b>平方</b>，就是面積比。',
+          '第二題要先說明兩個三角形<b>為什麼相似</b>，再算面積。',
+          '先抄問句再作答——<b>問誰在前，誰就寫前面</b>。'
+        ],
+        formula: { label: '這一段在練<span class="pgref">課本 印 65–66</span>', tex: '\\text{邊比}=a:b\\Rightarrow\\text{面積比}=a^2:b^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '課本・隨堂練習', page: '印 65–66', sub: '面積比', tags: ['課P65', '課P66'] }
+          ]);
+        },
+        caption: '問「甲和乙的面積比」，就把<b>甲寫在前面</b>。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '量不到的長度：把它放進一對相似三角形',
+        points: [
+          '人和樹<b>站在同一片陽光下</b>，影子的方向一樣，兩個三角形相似。',
+          '所以 <b>身高 : 影長</b> ＝ <b>樹高 : 樹影長</b>。',
+          '⚠ 四個數字要<b>同一個單位</b>，先全部換成公分再列式。'
+        ],
+        formula: { label: '一條比例式就夠<span class="pgref">課本 印 67</span>', tex: '\\text{身高}:\\text{影長}=\\text{樹高}:\\text{樹影長}' },
+        visual: (h) => {
+          const G = 210;
+          SV.stepper(h, '0 0 440 268', [
+            { t: '小妍身高 <b>160</b>，影子長 <b>200</b>；旁邊的樹影長 <b>500</b>。',
+              d: () => EXTRA()
+                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
+                + SV.seg(70, G, 70, G - 58, BLU, 4)
+                + SV.seg(70, G, 140, G, AMB, 4)
+                + TX(58, G - 28, '160', { anchor: 'end', fs: 14, c: BLU })
+                + TX(105, G + 20, '200', { anchor: 'middle', fs: 14, c: AMB })
+                + SV.seg(250, G, 250, G - 130, GRN, 5)
+                + SV.seg(250, G, 420, G, AMB, 4)
+                + TX(238, G - 66, '?', { anchor: 'end', fs: 22, c: RED })
+                + TX(335, G + 20, '500', { anchor: 'middle', fs: 14, c: AMB })
+                + TX(220, 258, '單位全部是公分', { anchor: 'middle', fs: 14, c: GREY }) },
+            { t: '兩個都是<b>直角三角形</b>，而且<b>太陽的角度一樣</b>——所以相似。',
+              d: () => EXTRA()
+                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
+                + SV.poly([[70, G], [140, G], [70, G - 58]], 'rgba(37,99,235,.08)', BLU, 2.2)
+                + SV.poly([[250, G], [420, G], [250, G - 130]], 'rgba(5,150,105,.08)', GRN, 2.2)
+                + SV.angle(140, G, 26, 180, 180 - 40, VIO, '', { w: 2.2 })
+                + SV.angle(420, G, 26, 180, 180 - 40, VIO, '', { w: 2.2 })
+                + TX(220, 252, '兩個三角形的角度一模一樣 → 相似', { anchor: 'middle', fs: 16, c: INK }) },
+            { t: '列式：\\(160:200=?:500\\)。用<b>頭尾相乘＝中間相乘</b>解。',
+              d: () => EXTRA()
+                + BOX(50, 44, 340, 44, { r: 11, fill: '#fff', stroke: BLU, sw: 2 })
+                + TX(220, 74, '160 : 200 ＝ ? : 500', { anchor: 'middle', fs: 20, c: INK })
+                + TX(220, 118, '160 × 500 ＝ 200 × ?', { anchor: 'middle', fs: 18, c: GREY })
+                + TX(220, 152, '80000 ＝ 200 × ?', { anchor: 'middle', fs: 18, c: GREY })
+                + BOX(120, 172, 200, 46, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 203, '? ＝ 400 公分', { anchor: 'middle', fs: 20, c: GRN })
+                + TX(220, 244, '樹高 400 公分 ＝ 4 公尺', { anchor: 'middle', fs: 16, c: INK }) }
+          ], { acc: false });
+        },
+        caption: '樹有多高，不必爬上去量——<b>一條比例式</b>就算得出來。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '算出來的是哪一段？牆高要記得加眼高',
+        points: [
+          '比例式算出來的，常常<b>只是其中一段</b>，不是全部。',
+          '視線題：算出來的是<b>眼睛以上</b>那一段，要<b>再加上眼高</b>。',
+          '習慣動作：算完先問一句「<b>我算的是哪一段</b>」。'
+        ],
+        formula: { label: '最後一步別忘了<span class="pgref">課本 印 68</span>', tex: '\\text{總高}=\\text{算出來的那段}+\\text{眼高}' },
+        visual: (h) => {
+          const G = 224, WX = 330, EX = 90;
+          SV.stepper(h, '0 0 440 272', [
+            { t: '艾美站在牆前，<b>眼睛高 1.6</b>，往上看牆頂。',
+              d: () => EXTRA()
+                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
+                + SV.seg(WX, G, WX, G - 150, '#8a94a6', 6)
+                + SV.seg(EX, G, EX, G - 52, BLU, 4)
+                + SV.seg(EX, G - 52, WX, G - 150, RED, 2.4, '6 4')
+                + TX(EX - 12, G - 26, '1.6', { anchor: 'end', fs: 15, c: BLU })
+                + TX(WX + 12, G - 78, '牆高 4', { fs: 15, c: GREY })
+                + TX(220, 256, '虛線是視線', { anchor: 'middle', fs: 14, c: RED }) },
+            { t: '比例式算出來的是<b>眼睛以上</b>那一段——圖上的綠色那段。',
+              d: () => EXTRA()
+                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
+                + SV.seg(WX, G, WX, G - 52, '#c9d3e2', 6)
+                + SV.seg(WX, G - 52, WX, G - 150, GRN, 6)
+                + SV.seg(EX, G, EX, G - 52, BLU, 4)
+                + SV.seg(EX, G - 52, WX, G - 150, RED, 2.4, '6 4')
+                + SV.seg(EX, G - 52, WX, G - 52, '#9aa3b2', 1.8, '4 4')
+                + TX(WX + 12, G - 104, '這一段', { fs: 15, c: GRN })
+                + TX(WX + 12, G - 24, '這一段是 1.6', { fs: 14, c: '#9aa3b2' })
+                + TX(220, 256, '算出來的只有綠色那一段', { anchor: 'middle', fs: 16, c: INK }) },
+            { t: '所以最後<b>要把 1.6 加回去</b>，才是牆的總高。',
+              d: () => EXTRA()
+                + BOX(60, 60, 320, 46, { r: 11, fill: '#fff', stroke: GRN, sw: 2 })
+                + TX(220, 90, '算出來的那段 ＝ 2.4', { anchor: 'middle', fs: 19, c: GRN })
+                + TX(220, 132, '＋　眼高 1.6', { anchor: 'middle', fs: 18, c: BLU })
+                + BOX(110, 152, 220, 48, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
+                + TX(220, 184, '牆高 ＝ 4', { anchor: 'middle', fs: 21, c: GRN })
+                + TX(220, 234, '算完先問：我算的是哪一段？', { anchor: 'middle', fs: 16, c: RED }) }
+          ], { acc: false });
+        },
+        caption: '算對了卻忘記加回去，是這種題<b>最常掉分</b>的地方。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜課本隨堂（簡易測量）',
+        points: [
+          '先把兩個<b>相似三角形</b>找出來，再列一條比例式。',
+          '單位要<b>一樣</b>，不一樣先換。',
+          '第二題算完先問：<b>我算的是哪一段？</b>'
+        ],
+        formula: { label: '這一段在練<span class="pgref">課本 印 67–68</span>', tex: '\\text{相似}\\Rightarrow\\text{比例式}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '課本・隨堂練習', page: '印 67–68', sub: '簡易測量', tags: ['課P67', '課P68'] }
+          ]);
+        },
+        caption: '印 68 那題，算出來的是<b>眼睛以上</b>那一段，最後要加眼高。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '三角板有兩種常見的類型：45-45-90 和 30-60-90',
+        points: [
+          '常見的直角三角板有<b>兩款</b>：45°-45°-90° 和 30°-60°-90°。',
           '同一款的三角板，<b>不管大小，三邊的比都一樣</b>——因為它們相似。',
           '所以只要看<b>角度</b>，就知道三邊的比。'
         ],
-        formula: { label: '兩款，就這兩款<span class="pgref">課本 印 69–71</span>', tex: '45\\degree\\text{-}45\\degree\\text{-}90\\degree\\quad 30\\degree\\text{-}60\\degree\\text{-}90\\degree' },
+        formula: { label: '兩款三角板<span class="pgref">課本 印 69–71</span>', tex: '45\\degree\\text{-}45\\degree\\text{-}90\\degree\\quad 30\\degree\\text{-}60\\degree\\text{-}90\\degree' },
         visual: (h) => {
           h.innerHTML = `<div style="width:100%"><div id="fig"></div>
             <div class="ictrl"><label>三角板大小 <span class="ival" id="kv">中</span></label>
@@ -4527,6 +4692,26 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜課本隨堂（45-45-90）',
+        points: [
+          '先認出它是 <b>45-45-90</b>：兩股一樣長。',
+          '三邊比 \\(1:1:\\sqrt2\\)，<b>斜邊是根號2 份</b>。',
+          '這題給的是<b>斜邊</b>，要倒回去求股——跟著老師一起做。'
+        ],
+        formula: { label: '這一段在練<span class="pgref">課本 印 70</span>', tex: '1:1:\\sqrt2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '課本・隨堂練習', page: '印 70', sub: '斜邊求股，老師帶著做', tags: ['課P70'], level: '標準' }
+          ]);
+        },
+        caption: '斜邊是 \\(\\sqrt2\\) 份，所以一份 ＝ 斜邊 ÷ \\(\\sqrt2\\)。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
         title: '正三角形對摺，就得到 1 : 根號3 : 2',
         points: [
           '正三角形<b>沿中線對摺</b>，摺出來就是 30-60-90。',
@@ -4571,7 +4756,7 @@ window.DECK = window.DECK || [];
           ], { acc: false });
           withRad(h);
         },
-        caption: '⚠ 這一頁用<b>邊長 2</b> 的正三角形——根號3 剛好不用化簡。'
+        caption: '一個正三角形對摺一次，30-60-90 的<b>三條邊就都出來了</b>。'
       },
 
       {
@@ -4602,7 +4787,7 @@ window.DECK = window.DECK || [];
           h.innerHTML = svg('0 0 440 284', s);
           withRad(h);
         },
-        caption: '⚠ 本節的<b>頭號錯誤</b>就是把 \\(\\sqrt3\\) 當成比 2 大。念出來，就不會寫反。'
+        caption: '⚠ 最常見的錯：把 \\(\\sqrt3\\) 當成比 2 大。<b>念出來</b>，就不會寫反。'
       },
 
       {
@@ -4696,102 +4881,77 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-4', secName: '相似三角形的應用',
-        title: '量不到的長度：把它放進一對相似三角形',
+        title: '練習｜課本隨堂（30-60-90）',
         points: [
-          '人和樹<b>站在同一片陽光下</b>，影子的方向一樣，兩個三角形相似。',
-          '所以 <b>身高 : 影長</b> ＝ <b>樹高 : 樹影長</b>。',
-          '⚠ 四個數字要<b>同一個單位</b>，先全部換成公分再列式。'
+          '先找 <b>30°</b> 在哪裡，再看它對的是哪一條邊。',
+          '短股 1 份、長股 根號3 份、<b>斜邊 2 份</b>。',
+          '知道一份是多少，要求的那條邊就出來了。'
         ],
-        formula: { label: '一條比例式就夠<span class="pgref">課本 印 67</span>', tex: '\\text{身高}:\\text{影長}=\\text{樹高}:\\text{樹影長}' },
+        formula: { label: '這一段在練<span class="pgref">課本 印 71</span>', tex: '1:\\sqrt3:2' },
         visual: (h) => {
-          const G = 210;
-          SV.stepper(h, '0 0 440 268', [
-            { t: '小妍身高 <b>160</b>，影子長 <b>200</b>；旁邊的樹影長 <b>500</b>。',
-              d: () => EXTRA()
-                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
-                + SV.seg(70, G, 70, G - 58, BLU, 4)
-                + SV.seg(70, G, 140, G, AMB, 4)
-                + TX(58, G - 28, '160', { anchor: 'end', fs: 14, c: BLU })
-                + TX(105, G + 20, '200', { anchor: 'middle', fs: 14, c: AMB })
-                + SV.seg(250, G, 250, G - 130, GRN, 5)
-                + SV.seg(250, G, 420, G, AMB, 4)
-                + TX(238, G - 66, '?', { anchor: 'end', fs: 22, c: RED })
-                + TX(335, G + 20, '500', { anchor: 'middle', fs: 14, c: AMB })
-                + TX(220, 258, '單位全部是公分', { anchor: 'middle', fs: 14, c: GREY }) },
-            { t: '兩個都是<b>直角三角形</b>，而且<b>太陽的角度一樣</b>——所以相似。',
-              d: () => EXTRA()
-                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
-                + SV.poly([[70, G], [140, G], [70, G - 58]], 'rgba(37,99,235,.08)', BLU, 2.2)
-                + SV.poly([[250, G], [420, G], [250, G - 130]], 'rgba(5,150,105,.08)', GRN, 2.2)
-                + SV.angle(140, G, 26, 180, 180 - 40, VIO, '', { w: 2.2 })
-                + SV.angle(420, G, 26, 180, 180 - 40, VIO, '', { w: 2.2 })
-                + TX(220, 252, '兩個三角形的角度一模一樣 → 相似', { anchor: 'middle', fs: 16, c: INK }) },
-            { t: '列式：\\(160:200=?:500\\)。用<b>頭尾相乘＝中間相乘</b>解。',
-              d: () => EXTRA()
-                + BOX(50, 44, 340, 44, { r: 11, fill: '#fff', stroke: BLU, sw: 2 })
-                + TX(220, 74, '160 : 200 ＝ ? : 500', { anchor: 'middle', fs: 20, c: INK })
-                + TX(220, 118, '160 × 500 ＝ 200 × ?', { anchor: 'middle', fs: 18, c: GREY })
-                + TX(220, 152, '80000 ＝ 200 × ?', { anchor: 'middle', fs: 18, c: GREY })
-                + BOX(120, 172, 200, 46, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
-                + TX(220, 203, '? ＝ 400 公分', { anchor: 'middle', fs: 20, c: GRN })
-                + TX(220, 244, '樹高 400 公分 ＝ 4 公尺', { anchor: 'middle', fs: 16, c: INK }) }
-          ], { acc: false });
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '課本・隨堂練習', page: '印 71', sub: '特殊直角三角形的應用', tags: ['課P71'] }
+          ]);
         },
-        caption: '⚠ 這一頁是<b>額外的</b>，不是過關條件——但它是本節最像「真的用得到」的一段。'
+        caption: '電扶梯的高度是 30° 的<b>對邊</b>——它是 1 份還是 2 份？'
       },
 
       {
         sec: '1-4', secName: '相似三角形的應用',
-        title: '算出來的是哪一段？牆高要記得加眼高',
+        title: '輪椅坡道：每走 12 公尺，最多升高 1 公尺',
         points: [
-          '比例式算出來的，常常<b>只是其中一段</b>，不是全部。',
-          '視線題：算出來的是<b>眼睛以上</b>那一段，要<b>再加上眼高</b>。',
-          '習慣動作：算完先問一句「<b>我算的是哪一段</b>」。'
+          '坐輪椅要上台階，靠的是<b>坡道</b>。坡道太陡，輪椅推不上去。',
+          '法規規定：<b>高度差 ÷ 水平長度</b>不能大於 \\(\\dfrac{1}{12}\\)。',
+          '照這個規定做的坡道，大小不同，<b>形狀都一樣</b>——它們是相似三角形。'
         ],
-        formula: { label: '最後一步別忘了<span class="pgref">課本 印 68</span>', tex: '\\text{總高}=\\text{算出來的那段}+\\text{眼高}' },
+        formula: { label: '無障礙坡道的規定<span class="pgref">課本 印 72</span>', tex: '\\dfrac{\\text{高度差}}{\\text{水平長度}}\\le\\dfrac{1}{12}' },
         visual: (h) => {
-          const G = 224, WX = 330, EX = 90;
-          SV.stepper(h, '0 0 440 272', [
-            { t: '艾美站在牆前，<b>眼睛高 1.6</b>，往上看牆頂。',
-              d: () => EXTRA()
-                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
-                + SV.seg(WX, G, WX, G - 150, '#8a94a6', 6)
-                + SV.seg(EX, G, EX, G - 52, BLU, 4)
-                + SV.seg(EX, G - 52, WX, G - 150, RED, 2.4, '6 4')
-                + TX(EX - 12, G - 26, '1.6', { anchor: 'end', fs: 15, c: BLU })
-                + TX(WX + 12, G - 78, '牆高 4', { fs: 15, c: GREY })
-                + TX(220, 256, '虛線是視線', { anchor: 'middle', fs: 14, c: RED }) },
-            { t: '比例式算出來的是<b>眼睛以上</b>那一段——圖上的綠色那段。',
-              d: () => EXTRA()
-                + SV.seg(20, G, 420, G, '#9aa3b2', 2.6)
-                + SV.seg(WX, G, WX, G - 52, '#c9d3e2', 6)
-                + SV.seg(WX, G - 52, WX, G - 150, GRN, 6)
-                + SV.seg(EX, G, EX, G - 52, BLU, 4)
-                + SV.seg(EX, G - 52, WX, G - 150, RED, 2.4, '6 4')
-                + SV.seg(EX, G - 52, WX, G - 52, '#9aa3b2', 1.8, '4 4')
-                + TX(WX + 12, G - 104, '這一段', { fs: 15, c: GRN })
-                + TX(WX + 12, G - 24, '這一段是 1.6', { fs: 14, c: '#9aa3b2' })
-                + TX(220, 256, '算出來的只有綠色那一段', { anchor: 'middle', fs: 16, c: INK }) },
-            { t: '所以最後<b>要把 1.6 加回去</b>，才是牆的總高。',
-              d: () => EXTRA()
-                + BOX(60, 60, 320, 46, { r: 11, fill: '#fff', stroke: GRN, sw: 2 })
-                + TX(220, 90, '算出來的那段 ＝ 2.4', { anchor: 'middle', fs: 19, c: GRN })
-                + TX(220, 132, '＋　眼高 1.6', { anchor: 'middle', fs: 18, c: BLU })
-                + BOX(110, 152, 220, 48, { r: 11, fill: 'rgba(5,150,105,.10)', stroke: GRN, sw: 2.2 })
-                + TX(220, 184, '牆高 ＝ 4', { anchor: 'middle', fs: 21, c: GRN })
-                + TX(220, 234, '算完先問：我算的是哪一段？', { anchor: 'middle', fs: 16, c: RED }) }
-          ], { acc: false });
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>高度差 <span class="ival" id="hv">5</span> 公分</label>
+            <input type="range" id="hs" min="5" max="30" step="5" value="5"></div></div>`;
+          const draw = () => {
+            const ht = +h.querySelector('#hs').value, L = ht * 12;
+            h.querySelector('#hv').textContent = ht;
+            const x0 = 40, G = 160;
+            let s = EXTRA() + TX(40, 40, '單位：公分', { fs: 13, c: GREY });
+
+            for (let v = 5; v < ht; v += 5)
+              s += SV.poly([[x0, G], [x0 + v * 12, G], [x0 + v * 12, G - v]], 'none', '#c9d3e2', 1.6);
+            const C = [x0 + L, G], B = [x0 + L, G - ht];
+            s += SV.poly([[x0, G], C, B], 'rgba(217,119,6,.12)', AMB, 2.4);
+            s += SV.seg(x0, G, C[0], C[1], BLU, 4);
+            s += SV.seg(C[0], C[1], B[0], B[1], GRN, 4);
+            s += TX(x0 + L / 2, G + 24, '水平 ' + L, { anchor: 'middle', fs: 16, c: BLU });
+            s += TX(B[0], B[1] - 12, '高 ' + ht, { anchor: L > 120 ? 'end' : 'start', fs: 16, c: GRN });
+            s += BOX(80, 200, 280, 46, { r: 11, fill: 'rgba(5,150,105,.09)', stroke: GRN, sw: 2.2 });
+            s += TX(220, 230, ht + ' ÷ ' + L + ' ＝ 1/12', { anchor: 'middle', fs: 19, c: INK });
+            s += TX(220, 272, '高度差變大，水平跟著變長——形狀沒變', { anchor: 'middle', fs: 14.5, c: GREY });
+            h.querySelector('#fig').innerHTML = svg('0 0 440 286', s);
+          };
+          h.querySelector('#hs').oninput = draw;
+          draw();
         },
-        caption: '⚠ 這種題<b>最後一步最常掉</b>——算對了卻忘記加回去。'
+        caption: '坡道要<b>夠平</b>，輪椅才推得上去；\\(\\dfrac{1}{12}\\) 就是「夠平」的標準。',
+        example: {
+          q: '學校門口有一階 \\(30\\) 公分高的台階，要照規定蓋一條輪椅坡道，坡道的水平長度至少要多少公分？',
+          steps: [
+            '高度差 ÷ 水平長度不能大於 \\(\\dfrac{1}{12}\\)，最陡就是剛好 \\(\\dfrac{1}{12}\\)。',
+            '\\(30:\\text{水平}=1:12\\)，水平 \\(=30\\times12\\)。'
+          ],
+          ans: '至少 \\(360\\) 公分（\\(3.6\\) 公尺）'
+        }
       },
 
       {
         sec: '1-4', secName: '相似三角形的應用',
-        title: '三角比：先學會邊怎麼改名字',
+        title: '三角比：坡道的「高 ÷ 水平」叫做 tan',
         points: [
-          '直角三角形裡，<b>斜邊永遠是斜邊</b>（90° 的對邊）。',
-          '另外兩條的名字<b>看你在講哪一個角</b>：對面的叫對邊，靠著的叫鄰邊。',
-          '\\(\\sin\\) 是對邊÷斜邊、\\(\\cos\\) 是鄰邊÷斜邊、\\(\\tan\\) 是對邊÷鄰邊。'
+          '坡道一樣陡，三角形就相似，<b>高 ÷ 水平</b>永遠一樣——這個比有名字。',
+          '看著一個角：對面的邊叫<b>對邊</b>，靠著它的叫<b>鄰邊</b>，<b>斜邊永遠是斜邊</b>。',
+          '\\(\\tan\\) 是對邊÷鄰邊（就是坡道的高÷水平）；\\(\\sin\\) 是對邊÷斜邊、\\(\\cos\\) 是鄰邊÷斜邊。'
         ],
         formula: { label: '三個名字<span class="pgref">課本 印 72–74</span>', tex: '\\sin A=\\dfrac{\\text{對邊}}{\\text{斜邊}},\\ \\cos A=\\dfrac{\\text{鄰邊}}{\\text{斜邊}},\\ \\tan A=\\dfrac{\\text{對邊}}{\\text{鄰邊}}' },
         visual: (h) => {
@@ -4827,16 +4987,36 @@ window.DECK = window.DECK || [];
           h.querySelector('#as').oninput = draw;
           draw();
         },
-        caption: '⚠ 這一頁<b>只練改名字，不算數</b>。先把哪條是對邊講清楚，數字下一步才有意義。'
+        caption: '先問一句：<b>現在在講哪一個角？</b>對邊和鄰邊才叫得出名字。'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜課本隨堂（三角比）',
+        points: [
+          '先問：<b>現在在講哪一個角</b>？',
+          '再找它的<b>對邊、鄰邊</b>，斜邊是 90° 對面那一條。',
+          '\\(\\sin\\) 對÷斜、\\(\\cos\\) 鄰÷斜、\\(\\tan\\) 對÷鄰。'
+        ],
+        formula: { label: '這一段在練<span class="pgref">課本 印 74–76</span>', tex: '\\tan A=\\dfrac{\\text{對邊}}{\\text{鄰邊}}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '課本・隨堂練習', page: '印 74–76', sub: '三角比', tags: ['課P74', '課P76'], level: '標準' }
+          ]);
+        },
+        caption: '同一個三角形，換一個角，<b>對邊和鄰邊就對調</b>。'
       },
 
       {
         sec: '1-4', secName: '相似三角形的應用',
         title: '坡度百分比：鉛直除以水平，不是除以斜坡',
         points: [
-          '坡度百分比 ＝ <b>爬升的高度 ÷ 走過的水平距離</b> × 100%。',
-          '⚠ 分母是<b>水平那一段</b>，不是斜坡本身的長度。',
-          '\\(10\\%\\) 的意思是：水平走 \\(100\\)，就升高 \\(10\\)。'
+          '路標上的「坡度 \\(10\\%\\)」，意思是<b>水平走 100，升高 10</b>。',
+          '坡度百分比 ＝ <b>高 ÷ 水平</b> × 100%，就是 \\(\\tan\\) 再乘 100%。',
+          '輪椅坡道的 \\(\\dfrac{1}{12}\\) 大約是 <b>8.3%</b>。分母是<b>水平</b>，不是斜坡本身。'
         ],
         formula: { label: '分母是水平距離<span class="pgref">課本 印 77</span>', tex: '\\text{坡度}\\%=\\dfrac{\\text{鉛直高度}}{\\text{水平距離}}\\times100\\%' },
         visual: (h) => {
@@ -4849,8 +5029,9 @@ window.DECK = window.DECK || [];
             const x0 = 60, x1 = 360, G = 210;
             const rise = Math.min(140, 300 * p / 100);
             const A = [x0, G], B = [x1, G], T = [x1, G - rise];
-            let s = EXTRA();
+            let s = EXTRA() + TX(40, 40, '虛線：輪椅坡道的上限 1/12（約 8.3%）', { fs: 13, c: GREY });
             s += SV.poly([A, B, T], 'rgba(217,119,6,.08)', AMB, 2.4);
+            s += SV.seg(x0, G, x1, G - 300 / 12, '#9aa3b2', 1.8, '6 4');
             s += SV.rightAngle(B[0], B[1], 90, 180, 13, '#7b8699');
             s += SV.seg(A[0], A[1], B[0], B[1], BLU, 5);
             s += SV.seg(B[0], B[1], T[0], T[1], GRN, 5);
@@ -4863,7 +5044,7 @@ window.DECK = window.DECK || [];
           h.querySelector('#ps').oninput = draw;
           draw();
         },
-        caption: '⚠ 這一頁是<b>額外的</b>。但坡度題只要記住「分母是水平」，就幾乎不會錯。',
+        caption: '分母是<b>水平</b>那一段——記住這一點，坡度題就幾乎不會錯。',
         example: {
           q: '滑板坡道的坡度百分比是 \\(10\\%\\)，水平距離 \\(\\overline{AC}=60\\) 公尺，求垂直高度。',
           steps: [
@@ -4876,37 +5057,64 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-4', secName: '相似三角形的應用',
-        title: '回頭看：兩個工具，一句開場白',
+        title: '練習｜課本隨堂（坡度）',
         points: [
-          '不管題目在問樹高、湖寬還是面積，第一句都是<b>邊比是幾比幾</b>。',
-          '<b>邊比</b>會自己變成高比；<b>平方</b>之後就是面積比。',
-          '看到 30°、45°，<b>邊長比直接讀出來</b>，不必再找相似。',
-          '測量和三角比是<b>額外的</b>，過關條件是上面兩條。'
+          '坡度百分比 ＝ <b>高 ÷ 水平</b> × 100%。',
+          '題目給坡度和水平，要求的是<b>高</b>。',
+          '列式前先確認：分母放的是<b>水平</b>。'
         ],
-        formula: { label: '全部回到這兩句<span class="pgref">課本 印 78–79 重點整理</span>', tex: '\\text{邊比}=k\\Rightarrow\\text{面積比}=k^2\\ ;\\quad 1:1:\\sqrt2\\ ,\\ 1:\\sqrt3:2' },
+        formula: { label: '這一段在練<span class="pgref">課本 印 77</span>', tex: '\\dfrac{\\text{高}}{\\text{水平}}\\times100\\%=\\text{坡度}\\%' },
         visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '1-4', [
+            { src: '課本・隨堂練習', page: '印 77', sub: '坡度', tags: ['課P77'], level: '標準' }
+          ]);
+        },
+        caption: '坡度 10%：水平走 100 升高 10，那水平走 20 呢？'
+      },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '回頭看：三站，各記一句',
+        points: [
+          '第一站：邊變 \\(k\\) 倍，<b>高也是 \\(k\\) 倍</b>，<b>面積是 \\(k^2\\) 倍</b>；量不到的長度，列一條比例式。',
+          '第二站：45-45-90 是 \\(1:1:\\sqrt2\\)，30-60-90 是 \\(1:\\sqrt3:2\\)，<b>看角度直接讀</b>。',
+          '第三站：坡道的<b>高 ÷ 水平</b>叫 \\(\\tan\\)，乘 100% 就是坡度百分比。',
+          '三站都靠<b>相似</b>：形狀一樣，比就不會變。'
+        ],
+        formula: { label: '三站各一句<span class="pgref">課本 印 78–79 重點整理</span>', tex: '\\text{面積比}=k^2\\ ;\\quad 1:1:\\sqrt2\\ ,\\ 1:\\sqrt3:2\\ ;\\quad \\tan A=\\dfrac{\\text{對邊}}{\\text{鄰邊}}' },
+        visual: (h) => {
+
           const CARD = [
-            ['算面積', '邊比平方就好', GRN],
-            ['算量不到的長度', '列一條比例式', BLU],
-            ['看到 30°、45°', '邊長比直接讀', VIO],
-            ['算坡度、sin cos tan', '額外的，不是過關條件', GREY]
+            ['算高、算面積', '高 × k，面積 × k²', GRN],
+            ['量不到的長度', '列一條比例式', GRN],
+            ['看到 30°、45°', '邊長比直接讀', BLU],
+            ['坡道有多陡', '高 ÷ 水平', AMB]
           ];
+          const col3 = (x, title, l1, l2, c, fill) =>
+            BOX(x, 50, 128, 124, { r: 12, fill: fill, stroke: c, sw: 2 })
+            + TX(x + 64, 80, title, { anchor: 'middle', fs: 16, c: c })
+            + TX(x + 64, 118, l1, { anchor: 'middle', fs: 15, c: INK })
+            + TX(x + 64, 150, l2, { anchor: 'middle', fs: 15, c: INK });
           SV.stepper(h, SECVB, [
             { t: '這一節的題目長成<b>四種樣子</b>。',
               d: () => SECBG + TX(14, 34, '題目的四種問法', { fs: 15, c: GREY }) + secCards(CARD, false, -1) },
-            { t: '但前三種都從<b>同一句話</b>開始：邊比是幾比幾。',
-              d: () => SECBG + TX(14, 34, '前三種的第一步是同一句', { fs: 15, c: GREY })
-                + secCards(CARD, true, -1)
-                + TX(220, 278, '第四種是額外的，不影響過關', { anchor: 'middle', fs: 14.5, c: GREY }) },
-            { t: '所以整節只剩<b>兩個工具</b>，加一句開場白。',
-              d: () => SECBG + TX(220, 34, '整節只剩兩個工具', { anchor: 'middle', fs: 16, c: GREY })
-                + secActTwo([
-                    ['① 邊比 → 高比 → 面積比', '高跟著邊走；面積要平方', GRN],
-                    ['② 角度 → 邊長比', '1 : 1 : 根號2　和　1 : 根號3 : 2', BLU]
-                  ], ['開場白永遠是那一句：邊比是幾比幾？']) }
+            { t: '每一種，第一步要做什麼？',
+              d: () => SECBG + TX(14, 34, '每一種的第一步', { fs: 15, c: GREY }) + secCards(CARD, true, -1) },
+            { t: '收成三站：都靠<b>相似</b>——形狀一樣，比就不會變。',
+              d: () => SECBG + TX(220, 34, '三站，靠的是同一件事', { anchor: 'middle', fs: 16, c: GREY })
+                + col3(16, '第一站', '高 × k', '面積 × k²', GRN, 'rgba(5,150,105,.07)')
+                + col3(156, '第二站', '1 : 1 : ' + RT(2), '1 : ' + RT(3) + ' : 2', BLU, 'rgba(37,99,235,.07)')
+                + col3(296, '第三站', '高 ÷ 水平', '就是 tan', AMB, 'rgba(217,119,6,.07)')
+                + BOX(40, 196, 360, 70, { r: 12, fill: '#fff', stroke: '#dce3ee', sw: 1.6 })
+                + TX(220, 224, '兩個三角形形狀一樣（相似）', { anchor: 'middle', fs: 16, c: INK })
+                + TX(220, 252, '→ 它們的比就不會變', { anchor: 'middle', fs: 17, c: GRN }) }
           ], { acc: false });
+          withRad(h);
         },
-        caption: '四種問法看起來差很多，但<b>前三種的第一步是同一句話</b>。'
+        caption: '每一站記一句；三站靠的都是<b>相似</b>。'
       },
 
       {
@@ -4936,72 +5144,11 @@ window.DECK = window.DECK || [];
 
       {
         sec: '1-4', secName: '相似三角形的應用',
-        title: '練習｜課本隨堂（邊比、高比與面積比）',
-        points: [
-          '三題都是<b>順推</b>：先把邊比讀出來。',
-          '問面積比就<b>平方</b>，問長度就<b>直接用邊比</b>。',
-          '⚠ 先抄問句再作答——<b>問誰在前，誰就寫前面</b>。'
-        ],
-        formula: { label: '這一節在練<span class="pgref">課本 印 64–66</span>', tex: '\\text{邊比}=a:b\\Rightarrow\\text{面積比}=a^2:b^2' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-4', [
-            { src: '課本', page: '印 64–66', sub: '隨堂練習', tags: ['課P64', '課P65', '課P66'] }
-          ]);
-        },
-        caption: '⚠ 問「甲和乙的面積比」就<b>甲在前</b>——順序寫反是本節常見的丟分。'
-      },
-
-      {
-        sec: '1-4', secName: '相似三角形的應用',
-        title: '練習｜課本隨堂（測量與特殊角）',
-        points: [
-          '前兩題是<b>測量</b>：列一條比例式，注意算出來的是哪一段。',
-          '後兩題看<b>角度</b>：先認出 45-45-90 還是 30-60-90。',
-          '測量題屬<b>額外的</b>，但算法跟前面完全一樣。'
-        ],
-        formula: { label: '這一節在練<span class="pgref">課本 印 67–71</span>', tex: '\\text{相似}\\Rightarrow\\text{比例式}' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-4', [
-            { src: '課本', page: '印 67–68', sub: '簡易測量', tags: ['課P67', '課P68'] },
-            { src: '課本', page: '印 70–71', sub: '特殊直角三角形', tags: ['課P70', '課P71'] }
-          ]);
-        },
-        caption: '⚠ 印 68 那題算出來的是<b>眼睛以上</b>那段，最後要加眼高。'
-      },
-
-      {
-        sec: '1-4', secName: '相似三角形的應用',
-        title: '練習｜課本隨堂（三角比與坡度）',
-        points: [
-          '三題都屬<b>額外的</b>，不是過關條件。',
-          '三角比先問：<b>現在在講哪一個角</b>，對邊是哪一條。',
-          '坡度題記住<b>分母是水平距離</b>。'
-        ],
-        formula: { label: '這一節在練<span class="pgref">課本 印 74–77</span>', tex: '\\tan A=\\dfrac{\\text{對邊}}{\\text{鄰邊}}' },
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '1-4', [
-            { src: '課本', page: '印 74–77', sub: '三角比與坡度（額外的）', tags: ['課P74', '課P76', '課P77'], level: '標準' }
-          ]);
-        },
-        caption: '⚠ 這一頁<b>不影響過關</b>——前面的邊長比做熟，比這三題重要。'
-      },
-
-      {
-        sec: '1-4', secName: '相似三角形的應用',
         title: '練習｜習作暖身題',
         points: [
           '三題暖身：一題面積比、兩題特殊角。',
           '暖身 1 是<b>順推</b>：先讀邊比，再平方。',
-          '暖身 2、3 只要<b>認出是哪一款三角板</b>就會了。'
+          '暖身 2、3 先<b>認出是哪一款三角板</b>，三邊的比就出來了。'
         ],
         formula: { label: '暖身重點', tex: '\\text{邊比}\\to\\text{面積比}\\ ;\\ 1:1:\\sqrt2\\ ,\\ 1:\\sqrt3:2' },
         visual: (h) => {
@@ -5019,7 +5166,7 @@ window.DECK = window.DECK || [];
         sec: '1-4', secName: '相似三角形的應用',
         title: '練習｜習作基礎（1～3）',
         points: [
-          '<b>基礎 1 是底線題</b>，每個人都要做完。',
+          '<b>基礎 1</b> 每個人都要做完。',
           '基礎 2 是<b>由面積比反推邊比</b>——反過來想，老師帶著做。',
           '基礎 3 是樹折斷的測量題，先把<b>直角三角形找出來</b>。'
         ],
@@ -5033,16 +5180,16 @@ window.DECK = window.DECK || [];
             { src: '習作', page: '印 18–19', sub: '老師帶著做', tags: ['基礎2', '基礎3'], level: '標準' }
           ]);
         },
-        caption: '⚠ 基礎 2 是<b>逆推</b>，講解頁沒教過——那一題跟著老師做，不算獨立作業。'
+        caption: '基礎 2 是從面積比<b>倒回去</b>找邊比——這一題跟著老師一起做。'
       },
 
       {
         sec: '1-4', secName: '相似三角形的應用',
         title: '練習｜習作基礎（4～6）與精熟',
         points: [
-          '基礎 4、6 自己做；<b>基礎 5 要用到根式化簡</b>，老師搭鷹架。',
-          '精熟兩題是<b>會考題</b>，課堂上一起完成，不是回家作業。',
-          '第 5 節結束前<b>把基礎 1～6 收齊</b>。'
+          '基礎 4、6 自己做；<b>基礎 5 要化簡根號</b>，跟著老師一起做。',
+          '精熟兩題是<b>會考題</b>，課堂上一起做。',
+          '基礎 1～6 寫完，<b>交給老師</b>。'
         ],
         formula: { label: '這一節在練<span class="pgref">課本 印 69–77</span>', tex: '1:\\sqrt3:2' },
         visual: (h) => {
@@ -5051,11 +5198,11 @@ window.DECK = window.DECK || [];
           }
           PRACTICE.page(h, '1-4', [
             { src: '習作', page: '印 19–20', sub: '基礎題，今天寫完', tags: ['基礎4', '基礎6'] },
-            { src: '習作', page: '印 20', sub: '含根式化簡，老師搭鷹架', tags: ['基礎5'], level: '標準' },
+            { src: '習作', page: '印 20', sub: '要化簡根號，老師帶著做', tags: ['基礎5'], level: '標準' },
             { src: '習作', page: '印 21', sub: '會考題，課堂共同完成', tags: ['精熟1', '精熟2'], level: '進階' }
           ]);
         },
-        caption: '⚠ 精熟兩題<b>課內一起做</b>，不當回家獨立題——作業抽查看的是基礎 1～6。'
+        caption: '精熟兩題是會考題，<b>課堂上一起做</b>。'
       },
 
       {
