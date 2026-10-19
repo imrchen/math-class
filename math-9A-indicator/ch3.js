@@ -809,17 +809,17 @@ window.DECK = window.DECK || [];
         sec: '3-1', secName: '推理證明',
         title: '練習｜習作基礎（4～7）',
         points: [
-          '基礎 4、5 <b>老師帶著做</b>：相似鏈、輔助線加角度整理。',
+          '基礎 4、5 <b>一起做</b>：相似鏈、輔助線加角度整理。',
           '基礎 6 是最適合自己完成的代數證明：\\(A=2a+1\\)。',
-          '基礎 7 老師給骨架，你補「\\(b-a\\lt 0\\)、\\(ab>0\\)」和結論。'
+          '基礎 7 骨架已經給你，你補「\\(b-a\\lt 0\\)、\\(ab>0\\)」和結論。'
         ],
         formula: { label: '這一節在練<span class="pgref">課本 印 145–150</span>', tex: 'A=(a+1)^2-a^2=2a+1' },
         visual: (h) => {
           if (!PRAC(h)) return;
           PRACTICE.page(h, '3-1', [
-            { src: '習作', page: '印 44、45', sub: '老師帶著做', tags: ['基礎4', '基礎5'], level: '標準' },
+            { src: '習作', page: '印 44、45', sub: '一起做', tags: ['基礎4', '基礎5'], level: '額外的' },
             { src: '習作', page: '印 45', sub: '代數證明，自己寫', tags: ['基礎6'] },
-            { src: '習作', page: '印 45', sub: '老師給骨架，補空格', tags: ['基礎7'], level: '標準' }
+            { src: '習作', page: '印 45', sub: '補空格', tags: ['基礎7'], level: '額外的' }
           ]);
         },
         caption: '基礎 5 只要先做一件事：<b>連 \\(AC\\)</b>，把四邊形切成兩個三角形。'
@@ -831,7 +831,7 @@ window.DECK = window.DECK || [];
         points: [
           '精熟 1：兩個全等，ASA。',
           '精熟 2：要先畫輔助線 \\(AM\\)，用面積拆開。',
-          '兩題都是行有餘力，做不完不影響過關。'
+          '兩題都是行有餘力，做不完不要緊。'
         ],
         formula: { label: '精熟重點', tex: '\\triangle ABF\\cong\\triangle ADE\\;(ASA)' },
         visual: (h) => {
@@ -1079,7 +1079,7 @@ window.DECK = window.DECK || [];
                 + note([['OB² ＝ OD² ＋ BD²', INK], ['x² ＝ (8 − x)² ＋ 6²', RED], ['16x ＝ 100', INK], ['x ＝ 25/4', GRN]]) }
           ], { acc: false });
         },
-        caption: '習作基礎 2 就是這一型——<b>老師帶著列式</b>，不當自己過關的題。',
+        caption: '習作基礎 2 就是這一型——<b>一起列式</b>，行有餘力。',
         example: {
           q: '承上，為什麼外心一定在高 \\(AD\\) 上？',
           steps: ['\\(AD\\) 平分底邊又垂直底邊，就是 \\(BC\\) 的中垂線'],
@@ -1112,7 +1112,7 @@ window.DECK = window.DECK || [];
                 + note([['∠BOC ＝ 2∠A', RED], ['　＝ 2 × 67°', INK], ['　＝ 134°', GRN]]) }
           ], { acc: false });
         },
-        caption: '用的是上一章那兩行板書：<b>圓心角＝弧、圓周角＝弧÷2</b>。⚠ 鈍角三角形要另算，課本隨堂印 162 第 2 題就是。',
+        caption: '用的是上一章那兩句：<b>圓心角＝弧、圓周角＝弧÷2</b>。⚠ 鈍角三角形要另算，課本隨堂印 162 第 2 題就是。',
         example: {
           q: '\\(O\\) 是銳角 \\(\\triangle ABC\\) 的外心，\\(\\angle A=50^\\circ\\)，\\(\\angle BOC=\\)？',
           steps: ['\\(\\angle BOC=2\\angle A\\)'],
@@ -1565,7 +1565,7 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           if (!PRAC(h)) return;
           PRACTICE.page(h, '3-2', [
-            { src: '課本', page: '印 159', sub: '作圖，老師示範', tags: ['課P159 第1題', '課P159 第2題'], level: '標準' },
+            { src: '課本', page: '印 159', sub: '作圖，看懂就好', tags: ['課P159 第1題', '課P159 第2題'], level: '額外的' },
             { src: '課本', page: '印 160', sub: '直角三角形的外心', tags: ['課P160 第1題', '課P160 第2題'] }
           ]);
         },
@@ -1603,7 +1603,7 @@ window.DECK = window.DECK || [];
         visual: (h) => {
           if (!PRAC(h)) return;
           PRACTICE.page(h, '3-2', [
-            { src: '課本', page: '印 167', sub: '作圖，老師示範', tags: ['課P167'], level: '標準' },
+            { src: '課本', page: '印 167', sub: '作圖，看懂就好', tags: ['課P167'], level: '額外的' },
             { src: '課本', page: '印 168、169', sub: '內心與角度、面積比', tags: ['課P168 第1題', '課P168 第2題', '課P169 第1題', '課P169 第2題'] }
           ]);
         },
@@ -1670,7 +1670,7 @@ window.DECK = window.DECK || [];
         title: '練習｜習作基礎（1～3，外心）',
         points: [
           '基礎 1：直角三角形，外接圓半徑 ＝ 斜邊一半。',
-          '基礎 2 是等腰三角形列方程式，<b>老師帶著做</b>。',
+          '基礎 2 是等腰三角形列方程式，<b>一起做</b>。',
           '基礎 3：銳角三角形，∠BOC ＝ 2∠A。'
         ],
         formula: { label: '這一節在練<span class="pgref">課本 印 160–162</span>', tex: 'R=\\dfrac{\\text{斜邊}}{2}' },
@@ -1678,7 +1678,7 @@ window.DECK = window.DECK || [];
           if (!PRAC(h)) return;
           PRACTICE.page(h, '3-2', [
             { src: '習作', page: '印 48', sub: '外心', tags: ['基礎1'] },
-            { src: '習作', page: '印 48', sub: '老師帶著做', tags: ['基礎2'], level: '標準' },
+            { src: '習作', page: '印 48', sub: '一起做', tags: ['基礎2'], level: '額外的' },
             { src: '習作', page: '印 48', sub: '外心與角度', tags: ['基礎3'] }
           ]);
         },
@@ -1690,7 +1690,7 @@ window.DECK = window.DECK || [];
         title: '練習｜習作基礎（4～6，內心）',
         points: [
           '基礎 4：已知 \\(\\angle EIF\\)，倒推 \\(\\angle D\\)。',
-          '基礎 5 是會考仿題，<b>老師帶著做</b>。',
+          '基礎 5 是會考仿題，<b>一起做</b>。',
           '基礎 6：直角三角形的內切圓半徑——這一題要自己會。'
         ],
         formula: { label: '這一節在練<span class="pgref">課本 印 168–173</span>', tex: 'r=\\dfrac{\\text{兩股和}-\\text{斜邊}}{2}' },
@@ -1698,7 +1698,7 @@ window.DECK = window.DECK || [];
           if (!PRAC(h)) return;
           PRACTICE.page(h, '3-2', [
             { src: '習作', page: '印 49', sub: '內心與角度', tags: ['基礎4'] },
-            { src: '習作', page: '印 49', sub: '老師帶著做', tags: ['基礎5'], level: '標準' },
+            { src: '習作', page: '印 49', sub: '一起做', tags: ['基礎5'], level: '額外的' },
             { src: '習作', page: '印 50', sub: '直角三角形的內切圓', tags: ['基礎6'] }
           ]);
         },
@@ -1710,7 +1710,7 @@ window.DECK = window.DECK || [];
         title: '練習｜習作基礎（7～9，重心）',
         points: [
           '基礎 7：先圈出「\\(D\\)、\\(E\\) 是中點」，認出重心，再用 2：3。',
-          '基礎 8 混了外心、重心、面積，<b>老師帶著做</b>。',
+          '基礎 8 混了外心、重心、面積，<b>一起做</b>。',
           '基礎 9：重心面積三分——這一題要自己會。'
         ],
         formula: { label: '這一節在練<span class="pgref">課本 印 176–179</span>', tex: '\\triangle AGB=\\tfrac13\\triangle ABC' },
@@ -1718,11 +1718,11 @@ window.DECK = window.DECK || [];
           if (!PRAC(h)) return;
           PRACTICE.page(h, '3-2', [
             { src: '習作', page: '印 50', sub: '重心與比例', tags: ['基礎7'] },
-            { src: '習作', page: '印 51', sub: '老師帶著做', tags: ['基礎8'], level: '標準' },
+            { src: '習作', page: '印 51', sub: '一起做', tags: ['基礎8'], level: '額外的' },
             { src: '習作', page: '印 51', sub: '重心與面積', tags: ['基礎9'] }
           ]);
         },
-        caption: '第 9 節收齊基礎 1～9；<b>2、5、8 三題向老師口頭說出一個關鍵步驟</b>就算過。'
+        caption: '基礎 1～9 寫完交給老師；<b>2、5、8 三題能說出一個關鍵步驟</b>就可以。'
       },
 
       {
@@ -1731,7 +1731,7 @@ window.DECK = window.DECK || [];
         points: [
           '精熟 1：等腰三角形的外接圓，連 \\(BO\\) 列畢氏。',
           '精熟 2：平行四邊形裡的重心，先連對角線 \\(BD\\)。',
-          '兩題都是行有餘力，做不完不影響過關。'
+          '兩題都是行有餘力，做不完不要緊。'
         ],
         formula: { label: '精熟重點', tex: 'BG=GF=FD' },
         visual: (h) => {

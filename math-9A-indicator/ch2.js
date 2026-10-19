@@ -776,7 +776,7 @@ window.DECK = window.DECK || [];
             { src: '課本', page: '印 97–99', sub: '坐標與直線', tags: ['課P97', '課P99'], level: '標準' }
           ]);
         },
-        caption: '⚠ 印 97 要算兩點距離——<b>圓心在原點</b>的版本才是底線，其他的算進階。'
+        caption: '印 97 要算兩點距離——先把<b>圓心在原點</b>的做熟，其他的行有餘力。'
       },
 
       {
@@ -813,7 +813,7 @@ window.DECK = window.DECK || [];
             { src: '課本', page: '印 105–107', sub: '弦心距與弦長', tags: ['課P105', '課P107 第1題', '課P107 第2題'] }
           ]);
         },
-        caption: '⚠ 每一題都先描弦——這是官方指定的動作，不是建議。'
+        caption: '⚠ 每一題都先<b>描弦</b>——不是建議，是每題必做的第一步。'
       },
 
       {
@@ -838,7 +838,7 @@ window.DECK = window.DECK || [];
         sec: '2-1', secName: '點、直線與圓之間的位置關係',
         title: '練習｜習作基礎（1～4）',
         points: [
-          '四題都是底線題，<b>每個人都要做完</b>。',
+          '四題<b>每個人都要做完</b>。',
           '基礎 1 是節拍器（扇形）、基礎 2 是三條直線、基礎 3、4 是切線。',
           '基礎 3 要用到<b>完全平方展開</b>，卡住就舉手。'
         ],
@@ -856,7 +856,7 @@ window.DECK = window.DECK || [];
         sec: '2-1', secName: '點、直線與圓之間的位置關係',
         title: '練習｜習作基礎（5～8）',
         points: [
-          '基礎 6 是底線（等腰三角形的內切圓）；<b>5、7、8 老師帶著做</b>。',
+          '基礎 6 每個人都要做完（等腰三角形的內切圓）；<b>5、7、8 一起做</b>。',
           '基礎 5 要先看出<b>正三角形</b>，基礎 7 是會考仿題。',
           '基礎 8(2) 是進階，行有餘力再做。'
         ],
@@ -865,7 +865,7 @@ window.DECK = window.DECK || [];
           if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
           PRACTICE.page(h, '2-1', [
             { src: '習作', page: '印 30', sub: '基礎題，今天寫完', tags: ['基礎6'] },
-            { src: '習作', page: '印 30–31', sub: '老師帶著做', tags: ['基礎5', '基礎7', '基礎8'], level: '標準' }
+            { src: '習作', page: '印 30–31', sub: '一起做', tags: ['基礎5', '基礎7', '基礎8'], level: '額外的' }
           ]);
         },
         caption: '⚠ 基礎 8 第 (2) 小題要由不等式推出整數，<b>那一小題算進階</b>。'
@@ -877,7 +877,7 @@ window.DECK = window.DECK || [];
         points: [
           '兩題都是<b>進階</b>，不強迫全班都做。',
           '精熟 1 是坐標平面上的圓心，精熟 2 用到兩切線段等長。',
-          '⚠ 這一節的作業抽查看的是<b>暖身和基礎</b>。'
+          '<b>暖身和基礎</b>一定要寫完。'
         ],
         formula: { label: '額外收穫<span class="pgref">課本 印 96–103</span>', tex: '\\overline{PA}=\\overline{PB}' },
         visual: (h) => {
@@ -886,7 +886,7 @@ window.DECK = window.DECK || [];
             { src: '習作', page: '印 32', sub: '精熟題，行有餘力', tags: ['精熟1', '精熟2'], level: '進階' }
           ]);
         },
-        caption: '⚠ 12/14–12/16 作業抽查的範圍是 1-1 ~ 2-2，<b>基礎題一定要收齊</b>。'
+        caption: '<b>基礎題一定要寫完</b>，精熟行有餘力。'
       },
 
       {
@@ -963,7 +963,7 @@ window.DECK = window.DECK || [];
           '整個圓是 \\(360\\degree\\)，半圓就是 \\(180\\degree\\)。',
           '所以<b>圓心角和弧可以直接畫等號</b>，不必換算。'
         ],
-        formula: { label: '第一行板書<span class="pgref">課本 印 112</span>', tex: '\\angle AOB=\\overarc{AB}' },
+        formula: { label: '第一句<span class="pgref">課本 印 112</span>', tex: '\\angle AOB=\\overarc{AB}' },
         visual: (h) => {
           h.innerHTML = `<div style="width:100%"><div id="fig"></div>
             <div class="ictrl"><label>圓心角 <span class="ival" id="av">120</span>°</label>
@@ -985,7 +985,7 @@ window.DECK = window.DECK || [];
             s += BOX(252, 150, 174, 62, { r: 11, fill: 'rgba(217,119,6,.07)', stroke: AMB, sw: 2 });
             s += TX(339, 176, '弧 AB 的度數', { anchor: 'middle', fs: 15, c: GREY });
             s += TX(339, 202, x + '°', { anchor: 'middle', fs: 22, c: AMB });
-            s += TX(220, 258, '兩個數字永遠一樣——這就是第一行板書', { anchor: 'middle', fs: 16, c: INK });
+            s += TX(220, 258, '兩個數字永遠一樣——這就是第一句', { anchor: 'middle', fs: 16, c: INK });
             h.querySelector('#fig').innerHTML = svg('0 0 440 272', s);
           };
           h.querySelector('#as').oninput = draw;
@@ -1033,7 +1033,7 @@ window.DECK = window.DECK || [];
           '它的度數是<b>所對那段弧的一半</b>——不是相等。',
           '跟圓心角對照著記：<b>圓心角一樣大，圓周角小一半</b>。'
         ],
-        formula: { label: '第二行板書<span class="pgref">課本 印 117</span>', tex: '\\angle ACB=\\tfrac12\\,\\overarc{AB}' },
+        formula: { label: '第二句<span class="pgref">課本 印 117</span>', tex: '\\angle ACB=\\tfrac12\\,\\overarc{AB}' },
         visual: (h) => {
           h.innerHTML = `<div style="width:100%"><div id="fig"></div>
             <div class="ictrl"><label>弧 AB ＝ <span class="ival" id="av">100</span>°</label>
@@ -1360,7 +1360,7 @@ window.DECK = window.DECK || [];
         sec: '2-2', secName: '圓心角、圓周角與弧的關係',
         title: '練習｜課本隨堂（圓心角與弧）',
         points: [
-          '三題都在第 1 節的範圍：<b>弧的度數就是圓心角</b>。',
+          '三題都只用第一句：<b>弧的度數就是圓心角</b>。',
           '印 115 是同心圓那題——<b>度數一樣，弧長不一樣</b>。',
           '印 116 只問「這個角對哪一段弧」，不必算。'
         ],
@@ -1378,7 +1378,7 @@ window.DECK = window.DECK || [];
         sec: '2-2', secName: '圓心角、圓周角與弧的關係',
         title: '練習｜課本隨堂（圓周角）',
         points: [
-          '四題都靠第二行板書：<b>圓周角 ＝ 弧 ÷ 2</b>。',
+          '四題都靠第二句：<b>圓周角 ＝ 弧 ÷ 2</b>。',
           '印 118 第 1 題是<b>等分點</b>，先算出一份是幾度。',
           '⚠ 每一題都先把弧描出來再動筆。'
         ],
@@ -1416,7 +1416,7 @@ window.DECK = window.DECK || [];
         title: '練習｜課本隨堂（圓內接四邊形）',
         points: [
           '印 124 兩題：一題對角互補、一題外角等於內對角。',
-          '印 126 是<b>作圖題</b>，老師示範就好，不要求自己畫。',
+          '印 126 是<b>作圖題</b>，看懂就好，不要求自己畫。',
           '⚠ 內對角要找<b>斜對面</b>那個。'
         ],
         formula: { label: '這一節在練<span class="pgref">課本 印 124–126</span>', tex: '\\angle A+\\angle C=180\\degree' },
@@ -1424,10 +1424,10 @@ window.DECK = window.DECK || [];
           if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
           PRACTICE.page(h, '2-2', [
             { src: '課本', page: '印 124', sub: '對角互補與外角', tags: ['課P124 第1題', '課P124 第2題'] },
-            { src: '課本', page: '印 126', sub: '作圖，老師示範', tags: ['課P126'], level: '標準' }
+            { src: '課本', page: '印 126', sub: '作圖，看懂就好', tags: ['課P126'], level: '額外的' }
           ]);
         },
-        caption: '⚠ 印 126 的<b>尺規作圖只示範</b>——那不是本節的過關條件。'
+        caption: '印 126 的<b>尺規作圖看懂就好</b>，不用自己會畫。'
       },
 
       {
@@ -1452,7 +1452,7 @@ window.DECK = window.DECK || [];
         sec: '2-2', secName: '圓心角、圓周角與弧的關係',
         title: '練習｜習作基礎（1～3）',
         points: [
-          '三題都是底線題，<b>每個人都要做完</b>。',
+          '三題<b>每個人都要做完</b>。',
           '基礎 1 是直徑分圓、基礎 2 是內接梯形、基礎 3 是碗的剖面。',
           '基礎 3 用的是<b>平行弦截等弧</b>那一條。'
         ],
@@ -1470,7 +1470,7 @@ window.DECK = window.DECK || [];
         sec: '2-2', secName: '圓心角、圓周角與弧的關係',
         title: '練習｜習作基礎（4～6）與精熟',
         points: [
-          '基礎 4 是底線；<b>基礎 5、6 老師帶著做</b>。',
+          '基礎 4 每個人都要做完；<b>基礎 5、6 一起做</b>。',
           '基礎 6 看起來是作圖題，<b>其實是畢氏定理</b>。',
           '精熟兩題是進階，行有餘力再做。'
         ],
@@ -1479,11 +1479,11 @@ window.DECK = window.DECK || [];
           if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
           PRACTICE.page(h, '2-2', [
             { src: '習作', page: '印 35', sub: '基礎題，今天寫完', tags: ['基礎4'] },
-            { src: '習作', page: '印 35', sub: '老師帶著做', tags: ['基礎5', '基礎6'], level: '標準' },
+            { src: '習作', page: '印 35', sub: '一起做', tags: ['基礎5', '基礎6'], level: '額外的' },
             { src: '習作', page: '印 36', sub: '精熟題，行有餘力', tags: ['精熟1', '精熟2'], level: '進階' }
           ]);
         },
-        caption: '⚠ 第 4 節末<b>收齊基礎 1～6</b>——12/14–12/16 作業抽查含這一節。'
+        caption: '<b>基礎 1～6 寫完交給老師</b>。'
       },
 
       {

@@ -152,7 +152,7 @@ window.DECK = window.DECK || [];
           '<span class="k">32×45</span> 拆成 <b>(30+2)×(40+5)</b>。',
           '這是用你<b>早就會的乘法</b>，走出四項展開的形狀。'
         ],
-        formula: { label: '官方示範（110 年版 p132）<span class="pgref">課本 印 8 例 1 同型</span>', tex: '32\\times45=30\\times40+2\\times40+30\\times5+2\\times5' },
+        formula: { label: '切兩刀，四塊<span class="pgref">課本 印 8 例 1 同型</span>', tex: '32\\times45=30\\times40+2\\times40+30\\times5+2\\times5' },
         visual: (h) => {
 
           const u = 4.6;
@@ -830,7 +830,7 @@ window.DECK = window.DECK || [];
         title: '對答案｜習作（基礎、精熟練習）',
         points: [
           '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
-          '交換改：按右上角 <b>🔍 放大</b> 投成整頁，老師唸題號，改同學的本子。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁，改同學的本子。',
           '答案錯的那幾題，回前面的練習頁點題號看<b>逐行詳解</b>。'
         ],
         visual: (h) => {
@@ -860,7 +860,7 @@ window.DECK = window.DECK || [];
           '同一張表，把 <b>10 換成 x</b>，寫出來就是多項式。',
           '多項式不是新東西，是<b>換個底</b>的位值表。'
         ],
-        formula: { label: '教育部教材的例子<span class="pgref">課本 印 21–22</span>', tex: '15x^3+7x^2+18x+(-9)' },
+        formula: { label: '同一個多項式<span class="pgref">課本 印 21–22</span>', tex: '15x^3+7x^2+18x+(-9)' },
         visual: (h) => {
           const x0 = 44, w = 88, y0 = 58, hh = 44;
           const table = (heads, vals, col, k) => {
@@ -933,7 +933,7 @@ window.DECK = window.DECK || [];
           s += tile(304, 36, plain('－3x² ＋ 2x － 1', 15), '是', '二次多項式', true);
           s += tile(86, 158, frac, '不是', 'x 在分母', false);
           s += tile(232, 158, plain('| x |'), '不是', 'x 在絕對值裡', false);
-          s += TX(220, 286, '每一項都要是「數字 × x 的次方」，才過關', { anchor: 'middle', fs: 14, c: GREY });
+          s += TX(220, 286, '每一項都要是「數字 × x 的次方」，才算多項式', { anchor: 'middle', fs: 14, c: GREY });
           h.innerHTML = svg('0 0 440 296', s);
         },
         caption: '先問「每一項長得對不對」，再談次數、係數那些名詞。',
@@ -1361,7 +1361,7 @@ window.DECK = window.DECK || [];
               pItem('基礎4 ③', '(5x^3-x^2+8x+9)-(9-2x^2+4x^3)') +
               pItem('基礎4 ④', '(2-4x-3x^2)-[(2x^2-5x+7)+(x^2+x-3)]')), '1-2');
         },
-        caption: '⚠ ④ 是<b>兩層括號</b>，超出本節底線——做不出來不要卡住，先把①②③交出來。'
+        caption: '⚠ ④ 是<b>兩層括號</b>——做不出來不要卡住，先把①②③交出來。'
       },
       {
         sec: '1-2', secName: '多項式與其加減運算',
