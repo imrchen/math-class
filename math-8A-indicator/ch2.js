@@ -60,6 +60,24 @@ window.DECK = window.DECK || [];
       + `</svg>`;
   })();
 
+  window.FIGURES_LOCAL['long-division-6x2-plus-7x-minus-5'] = (() => {
+    const cx = [108, 190, 262];
+    const T = (col, y, s, c) => `<text x="${cx[col]}" y="${y}" text-anchor="middle" font-size="24" font-weight="800" fill="${c}">${s}</text>`;
+    return `<svg viewBox="0 0 300 282" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + T(0, 52, '3x', GRN) + T(1, 52, '－1', GRN)
+      + `<text x="60" y="104" text-anchor="end" font-size="24" font-weight="800" fill="${VIO}">2x＋3</text>`
+      + `<path d="M65,116 Q78,97 65,76 H296" fill="none" stroke="${INK}" stroke-width="2.4"/>`
+      + T(0, 104, '6x²', INK) + T(1, 104, '＋7x', INK) + T(2, 104, '－5', INK)
+      + T(0, 142, '6x²', BLU) + T(1, 142, '＋9x', BLU)
+      + `<line x1="76" y1="156" x2="296" y2="156" stroke="${INK}" stroke-width="2"/>`
+      + T(1, 186, '－2x', INK) + T(2, 186, '－5', INK)
+      + T(1, 224, '－2x', BLU) + T(2, 224, '－3', BLU)
+      + `<line x1="150" y1="238" x2="296" y2="238" stroke="${INK}" stroke-width="2"/>`
+      + T(2, 270, '－2', GRN)
+      + `<text x="${cx[2] - 30}" y="270" text-anchor="end" font-size="15" font-weight="800" fill="${GREY}">餘式</text>`
+      + `</svg>`;
+  })();
+
   function svg(vb, inner) {
     return `<div style="width:100%;text-align:center"><svg viewBox="${vb}" style="max-width:100%">${inner}</svg></div>`;
   }
