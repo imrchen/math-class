@@ -4310,7 +4310,7 @@ window.DECK = window.DECK || [];
           const draw = () => {
             const k = +h.querySelector('#ks').value;
             h.querySelector('#kv').textContent = k;
-            const u = 34;
+            const u = 30;
             const one = (ox, oy, m, col, nm) => {
               const b = 2 * u * m, ht = 1.6 * u * m;
               const B = [ox, oy], C = [ox + b, oy], A = [ox + b * 0.42, oy - ht];
@@ -4319,16 +4319,17 @@ window.DECK = window.DECK || [];
               g += SV.seg(A[0], A[1], F[0], F[1], GREY, 2, '5 4');
               g += SV.rightAngle(F[0], F[1], 0, 90, 9, '#9aa3b2');
               g += TX((B[0] + C[0]) / 2, oy + 20, '底 ' + (2 * m).toFixed(1).replace('.0', ''), { anchor: 'middle', fs: 14, c: col });
-              g += TX(F[0] + 7, oy - ht / 2, '高 ' + (1.6 * m).toFixed(2).replace(/\.?0+$/, ''), { fs: 13.5, c: GREY });
+
+              g += TX((A[0] + C[0]) / 2 + 6, oy - ht / 2 + 5, '高 ' + (1.6 * m).toFixed(2).replace(/\.?0+$/, ''), { fs: 13.5, c: GREY });
               g += TX(ox + b / 2, oy - ht - 14, nm, { anchor: 'middle', fs: 14, c: col });
               return g;
             };
-            let s = one(28, 150, 1, BLU, '小的');
-            s += one(210, 150 + 0, k, AMB, '大的');
-            s += BOX(70, 190, 300, 58, { r: 12, fill: 'rgba(5,150,105,.09)', stroke: GRN, sw: 2.2 });
-            s += TX(220, 214, '底的比 ＝ 1 : ' + k, { anchor: 'middle', fs: 17, c: INK });
-            s += TX(220, 240, '高的比 ＝ 1 : ' + k + '　（一樣）', { anchor: 'middle', fs: 17, c: GRN });
-            h.querySelector('#fig').innerHTML = svg('0 0 440 256', s);
+            let s = one(28, 178, 1, BLU, '小的');
+            s += one(210, 178, k, AMB, '大的');
+            s += BOX(70, 218, 300, 58, { r: 12, fill: 'rgba(5,150,105,.09)', stroke: GRN, sw: 2.2 });
+            s += TX(220, 242, '底的比 ＝ 1 : ' + k, { anchor: 'middle', fs: 17, c: INK });
+            s += TX(220, 268, '高的比 ＝ 1 : ' + k + '　（一樣）', { anchor: 'middle', fs: 17, c: GRN });
+            h.querySelector('#fig').innerHTML = svg('0 0 440 286', s);
           };
           h.querySelector('#ks').oninput = draw;
           draw();
