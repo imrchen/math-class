@@ -1413,64 +1413,6 @@ window.DECK = window.DECK || [];
 
       {
         sec: '2-2', secName: '根式的運算',
-        title: '乘可以合進同一個根號，加不行',
-        points: [
-          '\\(\\sqrt{a}\\times\\sqrt{b}\\) 可以合起來寫成 \\(\\sqrt{ab}\\)，<b>永遠成立</b>。',
-          '\\(\\sqrt{a}+\\sqrt{b}\\) <b>不等於</b> \\(\\sqrt{a+b}\\)，拖滑桿看小數就知道。',
-          '本節兩條規則的分界線，就在這一頁。'
-        ],
-        formula: { label: '溫故啟思<span class="pgref">課本 印 75、85</span>', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\qquad \\sqrt{a}+\\sqrt{b}\\ne\\sqrt{a+b}' },
-        visual: (h) => {
-          h.innerHTML = `<div style="width:100%"><div class="fig"></div>
-            <div class="ictrl">
-              <label>左邊 a <span class="ival av">4</span>　　右邊 b <span class="ival bv">9</span></label>
-              <input type="range" class="as" min="2" max="16" step="1" value="4">
-              <input type="range" class="bs" min="2" max="16" step="1" value="9">
-            </div></div>`;
-          const d2 = (v) => (Math.round(v * 100) / 100).toFixed(2);
-          const draw = () => {
-            const a = +h.querySelector('.as').value, b = +h.querySelector('.bs').value;
-            h.querySelector('.av').textContent = a;
-            h.querySelector('.bv').textContent = b;
-            const mul = Math.sqrt(a) * Math.sqrt(b), add = Math.sqrt(a) + Math.sqrt(b);
-            let s = '';
-            s += BOX(8, 8, 208, 110, { r: 14, fill: 'rgba(5,150,105,.07)', stroke: GRN, sw: 2 });
-            s += TX(112, 32, '乘法', { anchor: 'middle', fs: 14, c: GRN });
-            s += TX(112, 62, `${RT(a)} × ${RT(b)} ＝ ${RT(a * b)}`, { anchor: 'middle', fs: 18, c: INK });
-            s += TX(112, 88, `${d2(mul)} ＝ ${d2(Math.sqrt(a * b))}`, { anchor: 'middle', fs: 15, c: GRN });
-            s += TX(112, 112, '✓ 兩邊一樣', { anchor: 'middle', fs: 14, c: GRN });
-            s += BOX(224, 8, 208, 110, { r: 14, fill: 'rgba(225,29,72,.06)', stroke: RED, sw: 2 });
-            s += TX(328, 32, '加法', { anchor: 'middle', fs: 14, c: RED });
-            s += TX(328, 62, `${RT(a)} ＋ ${RT(b)} 和 ${RT(a + b)}`, { anchor: 'middle', fs: 18, c: INK });
-            s += TX(328, 88, `${d2(add)} 和 ${d2(Math.sqrt(a + b))}`, { anchor: 'middle', fs: 15, c: RED });
-            s += TX(328, 112, add.toFixed(3) === Math.sqrt(a + b).toFixed(3) ? '？再看清楚' : '✗ 兩邊不一樣',
-              { anchor: 'middle', fs: 14, c: RED });
-
-            const u = 24, wA = Math.sqrt(a) * u, wB = Math.sqrt(b) * u;
-
-            const x0 = 220 - wB / 2, y0 = 152;
-            s += `<rect x="${x0}" y="${y0}" width="${wB}" height="${wA}" fill="${VIO}" opacity=".18" stroke="${VIO}" stroke-width="2"/>`;
-            s += TX(x0 + wB / 2, y0 + wA / 2 + 6, `面積 ${a * b}`, { anchor: 'middle', fs: 15, c: INK });
-            s += TX(x0 + wB / 2, y0 - 10, `${RT(b)}`, { anchor: 'middle', fs: 14, c: VIO });
-            s += TX(x0 - 10, y0 + wA / 2 + 5, `${RT(a)}`, { anchor: 'end', fs: 14, c: VIO });
-            s += TX(220, 268, '長方形的兩邊相乘＝面積，所以乘法合得起來', { anchor: 'middle', fs: 13.5, c: GREY });
-            h.querySelector('.fig').innerHTML = svg('0 0 440 276', s);
-            radBars(h);
-          };
-          h.querySelector('.as').oninput = draw;
-          h.querySelector('.bs').oninput = draw;
-          draw();
-        },
-        caption: '課本印 85 的探索活動就是用計算機按這兩行：乘法對得上，加法對不上。',
-        example: {
-          q: '\\(\\sqrt{2}+\\sqrt{3}\\) 等於 \\(\\sqrt{5}\\) 嗎？',
-          steps: ['\\(\\sqrt{2}\\doteq1.414\\)、\\(\\sqrt{3}\\doteq1.732\\)，加起來約 \\(3.146\\)', '\\(\\sqrt{5}\\doteq2.236\\)'],
-          ans: '不相等'
-        }
-      },
-
-      {
-        sec: '2-2', secName: '根式的運算',
         title: '數和根式相乘，只動前面那個數',
         points: [
           '\\(a\\times\\sqrt{b}\\) 省略乘號寫成 \\(a\\sqrt{b}\\)；\\(\\sqrt{b}\\div a\\) 寫成 \\(\\dfrac{\\sqrt{b}}{a}\\)。',
@@ -1990,6 +1932,64 @@ window.DECK = window.DECK || [];
               pItem('印13 ②', '\\sqrt{\\tfrac{4}{7}}-\\sqrt{28}')), '2-2');
         },
         caption: '有兩個家族的題：\\(\\sqrt{2}\\) 一邊、\\(\\sqrt{3}\\) 一邊，各自合併。'
+      },
+
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '回頭看：乘可以合進同一個根號，加不行',
+        points: [
+          '\\(\\sqrt{a}\\times\\sqrt{b}\\) 可以合起來寫成 \\(\\sqrt{ab}\\)，<b>永遠成立</b>。',
+          '\\(\\sqrt{a}+\\sqrt{b}\\) <b>不等於</b> \\(\\sqrt{a+b}\\)，拖滑桿看小數就知道。',
+          '乘法前面就會了；加法只有<b>同類方根</b>才能合併，\\(\\sqrt{2}+\\sqrt{3}\\) 就留著。'
+        ],
+        formula: { label: '溫故啟思<span class="pgref">課本 印 75、85</span>', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\qquad \\sqrt{a}+\\sqrt{b}\\ne\\sqrt{a+b}' },
+        visual: (h) => {
+          h.innerHTML = `<div style="width:100%"><div class="fig"></div>
+            <div class="ictrl">
+              <label>左邊 a <span class="ival av">4</span>　　右邊 b <span class="ival bv">9</span></label>
+              <input type="range" class="as" min="2" max="16" step="1" value="4">
+              <input type="range" class="bs" min="2" max="16" step="1" value="9">
+            </div></div>`;
+          const d2 = (v) => (Math.round(v * 100) / 100).toFixed(2);
+          const draw = () => {
+            const a = +h.querySelector('.as').value, b = +h.querySelector('.bs').value;
+            h.querySelector('.av').textContent = a;
+            h.querySelector('.bv').textContent = b;
+            const mul = Math.sqrt(a) * Math.sqrt(b), add = Math.sqrt(a) + Math.sqrt(b);
+            let s = '';
+            s += BOX(8, 8, 208, 110, { r: 14, fill: 'rgba(5,150,105,.07)', stroke: GRN, sw: 2 });
+            s += TX(112, 32, '乘法', { anchor: 'middle', fs: 14, c: GRN });
+            s += TX(112, 62, `${RT(a)} × ${RT(b)} ＝ ${RT(a * b)}`, { anchor: 'middle', fs: 18, c: INK });
+            s += TX(112, 88, `${d2(mul)} ＝ ${d2(Math.sqrt(a * b))}`, { anchor: 'middle', fs: 15, c: GRN });
+            s += TX(112, 112, '✓ 兩邊一樣', { anchor: 'middle', fs: 14, c: GRN });
+            s += BOX(224, 8, 208, 110, { r: 14, fill: 'rgba(225,29,72,.06)', stroke: RED, sw: 2 });
+            s += TX(328, 32, '加法', { anchor: 'middle', fs: 14, c: RED });
+            s += TX(328, 62, `${RT(a)} ＋ ${RT(b)} 和 ${RT(a + b)}`, { anchor: 'middle', fs: 18, c: INK });
+            s += TX(328, 88, `${d2(add)} 和 ${d2(Math.sqrt(a + b))}`, { anchor: 'middle', fs: 15, c: RED });
+            s += TX(328, 112, add.toFixed(3) === Math.sqrt(a + b).toFixed(3) ? '？再看清楚' : '✗ 兩邊不一樣',
+              { anchor: 'middle', fs: 14, c: RED });
+
+            const u = 24, wA = Math.sqrt(a) * u, wB = Math.sqrt(b) * u;
+
+            const x0 = 220 - wB / 2, y0 = 152;
+            s += `<rect x="${x0}" y="${y0}" width="${wB}" height="${wA}" fill="${VIO}" opacity=".18" stroke="${VIO}" stroke-width="2"/>`;
+            s += TX(x0 + wB / 2, y0 + wA / 2 + 6, `面積 ${a * b}`, { anchor: 'middle', fs: 15, c: INK });
+            s += TX(x0 + wB / 2, y0 - 10, `${RT(b)}`, { anchor: 'middle', fs: 14, c: VIO });
+            s += TX(x0 - 10, y0 + wA / 2 + 5, `${RT(a)}`, { anchor: 'end', fs: 14, c: VIO });
+            s += TX(220, 268, '長方形的兩邊相乘＝面積，所以乘法合得起來', { anchor: 'middle', fs: 13.5, c: GREY });
+            h.querySelector('.fig').innerHTML = svg('0 0 440 276', s);
+            radBars(h);
+          };
+          h.querySelector('.as').oninput = draw;
+          h.querySelector('.bs').oninput = draw;
+          draw();
+        },
+        caption: '課本印 85 的探索活動就是用計算機按這兩行：乘法對得上，加法對不上。',
+        example: {
+          q: '\\(\\sqrt{2}+\\sqrt{3}\\) 等於 \\(\\sqrt{5}\\) 嗎？',
+          steps: ['\\(\\sqrt{2}\\doteq1.414\\)、\\(\\sqrt{3}\\doteq1.732\\)，加起來約 \\(3.146\\)', '\\(\\sqrt{5}\\doteq2.236\\)'],
+          ans: '不相等'
+        }
       },
 
       {
