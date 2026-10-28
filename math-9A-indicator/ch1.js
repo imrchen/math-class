@@ -435,38 +435,7 @@ window.DECK = window.DECK || [];
         caption: '②△AGB∼△CGE（AB、CE 平行）' }] }];
   }
 
-  {
-    const up = ((window.SOLUTIONS || {})['第1次段考（一）'] || {})['選3'];
-    const P = (x, y, l) => ({ x, y, label: '$' + l + '$' });
-    if (up && up.fig) window.FIGS_REPLACE['第1次段考（一） 選3'] = [up.fig, { type: 'polygon-group', unit: 17, gap: 60, align: 'bottom', shapes: [
-      { points: [P(4.817, 3.577, 'A'), P(0, 0, 'E'), P(6.608, 0, 'D')], outline: [0, 1, 2], fill: '#fde9d9',
-        sides: [{ from: 0, to: 1, text: '$6$' }, { from: 0, to: 2, text: '$4$' }],
-        angles: [{ at: 0, mark: 1, text: '$80\\degree$' }], caption: '△AED' },
-      { points: [P(9.635, 7.153, 'A'), P(0, 0, 'B'), P(13.216, 0, 'C')], outline: [0, 1, 2], fill: '#fde9d9',
-        sides: [{ from: 0, to: 1, text: '$12$' }, { from: 0, to: 2, text: '$8$' }],
-        angles: [{ at: 0, mark: 1, text: '$80\\degree$' }], caption: '△ABC' }] }];
-  }
-
-  {
-    const d = ((window.SOLUTIONS || {})['第1次段考（一）'] || {})['計1'];
-    const was = '\\(\\overline{BC}=x+4\\)，梯形 \\(DECB\\) 面積 \\(108\\)：';
-    const i = d && d.segs ? d.segs[2] : -1;
-    if (d && d.steps && d.steps[i] === was)
-      d.steps[i] = '\\(\\overline{BC}=x+4\\)（第 2 段算出來的），梯形 \\(DECB\\) 面積 \\(108\\)：';
-  }
-
   window.FROM_SEC = window.FROM_SEC || {};
-  Object.entries({
-    '1-1': ['選6', '填4', '填6'],
-    '1-2': ['選4', '填2'],
-    '1-3': ['選1', '選2', '選3', '選5', '選7', '選8', '選9', '選10', '填1', '填3', '填5', '計1', '計2', '計3', '計4', '計5']
-  }).forEach(([s, tags]) => tags.forEach(t => { window.FROM_SEC['第1次段考（一） ' + t] = s; }));
-
-  window.Q_LEVEL = window.Q_LEVEL || {};
-  Object.entries({
-    '基本': ['選1', '選2', '選8', '選9', '填4', '填5', '填6', '計2', '計4', '計5'],
-    '中等': ['選3', '選4', '選5', '選6', '選10', '填1', '填2', '計1']
-  }).forEach(([lv, tags]) => tags.forEach(t => { window.Q_LEVEL['第1次段考（一） ' + t] = lv; }));
 
   Object.entries({
     '1-1': ['是1', '是2', '是3', '是4', '是5', '是6', '選9', '選10', '選24', '計2'],
@@ -3523,8 +3492,7 @@ window.DECK = window.DECK || [];
         points: [
           '兩個比要接成連比，<b>共用的那一項</b>要先一樣大。',
           '不一樣就湊<b>最小公倍數</b>，而且<b>兩列都要乘</b>。',
-          '能這樣湊，是因為每一項同乘一個數，<b>比不變</b>。',
-          '段考即時通 <b>填 6</b> 就是這一型。'
+          '能這樣湊，是因為每一項同乘一個數，<b>比不變</b>。'
         ],
         formula: { label: '比的性質<span class="pgref">課本 印 19 重點回顧</span>', tex: 'a:b:c=ma:mb:mc\\quad(m\\ne0)' },
         visual: (h) => {
@@ -3572,8 +3540,7 @@ window.DECK = window.DECK || [];
         points: [
           '三種寫法意思一樣：<b>分母是什麼，比就是什麼</b>。',
           '題目有<b>總量</b>就設 \\(r\\)，\\(r\\) 是「一份」有多少。',
-          '⚠ 2、3、5 是<b>份數</b>，要乘上 \\(r\\) 才是答案。',
-          '段考即時通 <b>填 4</b>、<b>選 6</b>：先把題目變成一個比。'
+          '⚠ 2、3、5 是<b>份數</b>，要乘上 \\(r\\) 才是答案。'
         ],
         formula: { label: '全部回到這一式<span class="pgref">課本 印 19 重點回顧</span>', tex: 'x:y:z=a:b:c\\ \\Leftrightarrow\\ x=ar,\\ y=br,\\ z=cr' },
         visual: (h) => {
@@ -3624,8 +3591,7 @@ window.DECK = window.DECK || [];
         points: [
           '先確認<b>有平行</b>，比例式才能列。',
           '比 \\(\\overline{PQ}:\\overline{BC}\\) 時，<b>分母要用整條 \\(\\overline{AB}\\)</b>。',
-          '反過來：比例對了就平行；<b>兩邊中點連線</b>＝平行而且一半。',
-          '段考即時通 <b>選 4</b>、<b>填 2</b>。'
+          '反過來：比例對了就平行；<b>兩邊中點連線</b>＝平行而且一半。'
         ],
         formula: { label: '同一張圖<span class="pgref">課本 印 39 重點回顧</span>', tex: '\\overline{PQ}\\parallel\\overline{BC}\\ \\Rightarrow\\ \\overline{AP}:\\overline{PB}=\\overline{AQ}:\\overline{QC}' },
         visual: (h) => {
@@ -3673,8 +3639,7 @@ window.DECK = window.DECK || [];
                 + TX(220, 236, '要寫兩句：平行、一半', { anchor: 'middle', fs: 16, c: GREY }) },
             { t: '三條平行線截兩條線：還是<b>上段比下段</b>。',
               d: () => lines3()
-                + eq(226, 'AB : BC ＝ DE : EF')
-                + TX(220, 262, '段考即時通選 4 就是這張圖', { anchor: 'middle', fs: 16, c: GREY }) }
+                + eq(226, 'AB : BC ＝ DE : EF') }
           ], { acc: false });
         },
         caption: '細節在 1-2〈同一張圖，三種比法〉〈分母一定是整條 AB〉〈看到兩個中點〉。',
@@ -3695,8 +3660,7 @@ window.DECK = window.DECK || [];
         points: [
           '縮放 \\(r\\) 倍：<b>角度不變</b>，邊長變成 \\(r\\) 倍。',
           '多邊形相似要過<b>兩道門</b>：對應角相等、對應邊成比例。',
-          '四邊形以上，<b>少一道就不一定相似</b>（課本的「註」）。',
-          '段考即時通 <b>選 1、2、8</b>，<b>填 5</b>，<b>計 5</b>。'
+          '四邊形以上，<b>少一道就不一定相似</b>（課本的「註」）。'
         ],
         formula: { label: '兩道門<span class="pgref">課本 印 59 重點回顧</span>', tex: '\\text{相似}\\ \\Leftrightarrow\\ \\text{對應角相等}\\ \\text{且}\\ \\text{對應邊成比例}' },
         visual: (h) => {
@@ -3765,8 +3729,7 @@ window.DECK = window.DECK || [];
         points: [
           '三角形不必兩道門都查，<b>過一張捷徑就相似</b>。',
           '給三邊用 <b>SSS</b>：先排序，最短對最短。',
-          '給兩邊一角用 <b>SAS</b>，角要<b>夾在兩邊中間</b>；給兩角用 <b>AA</b>。',
-          '段考即時通 <b>選 3</b>、<b>選 10</b>、<b>計 2</b>。'
+          '給兩邊一角用 <b>SAS</b>，角要<b>夾在兩邊中間</b>；給兩角用 <b>AA</b>。'
         ],
         formula: { label: '三張裡過一張就夠<span class="pgref">課本 印 59 重點回顧</span>', tex: '\\text{SSS}\\ \\text{或}\\ \\text{SAS}\\ \\text{或}\\ \\text{AA}\\ \\Rightarrow\\ \\triangle ABC\\sim\\triangle DEF' },
         visual: (h) => {
@@ -3839,8 +3802,7 @@ window.DECK = window.DECK || [];
         points: [
           '寫相似式時，<b>名字的順序就是對應</b>：第 1 對第 1、第 2 對第 2。',
           '比例式照相似式的順序抄，<b>不要看圖上誰在上面</b>。',
-          '小三角形倒過來放時，<b>先找相等的角</b>，再寫名字。',
-          '這一類段考即時通最多：<b>選 5、9</b>，<b>填 1、3</b>，<b>計 1、3、4</b>。'
+          '小三角形倒過來放時，<b>先找相等的角</b>，再寫名字。'
         ],
         formula: { label: '△AED ∼ △ABC，照順序抄<span class="pgref">課本 印 59 重點回顧</span>', tex: '\\overline{AE}:\\overline{AB}=\\overline{AD}:\\overline{AC}=\\overline{ED}:\\overline{BC}' },
         visual: (h) => {
@@ -3900,171 +3862,6 @@ window.DECK = window.DECK || [];
           ],
           ans: '\\(\\overline{EF}=12\\)'
         }
-      },
-
-      {
-        sec: '段考', secName: '第一次（1-1～1-3）',
-        title: '對答案｜段考即時通 ①（選擇 1～10）',
-        points: [
-          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
-          '交換改：按右上角 <b>🔍 放大</b> 投成整頁，改同學的卷子。',
-          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
-        ],
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
-          }
-          PRACTICE.answerKey(h, '第1次段考（一）', [
-            { label: '選擇 1～10（卷 p.1）', cols: 3, items: [['1', '選1'], ['2', '選2'], ['3', '選3'], ['4', '選4'], ['5', '選5'], ['6', '選6'], ['7', '選7'], ['8', '選8'], ['9', '選9'], ['10', '選10']] }
-          ]);
-        },
-        caption: '只到「答」這一層——為什麼錯，留到後面的檢討頁再講。'
-      },
-
-      {
-        sec: '段考', secName: '第一次（1-1～1-3）',
-        title: '對答案｜段考即時通 ②（填充、計算）',
-        points: [
-          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
-          '交換改：按右上角 <b>🔍 放大</b> 投成整頁，改同學的卷子。',
-          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
-        ],
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
-          }
-          PRACTICE.answerKey(h, '第1次段考（一）', [
-            { label: '填充 1～6（卷 p.1）', cols: 3, items: [['填 1', '填1'], ['填 2', '填2'], ['填 3', '填3'], ['填 4', '填4'], ['填 5', '填5'], ['填 6', '填6']] },
-            { label: '計算 1～5（卷 p.2）', cols: 3, items: [['計 1', '計1'], ['計 2', '計2'], ['計 3', '計3'], ['計 4', '計4'], ['計 5', '計5']] }
-          ]);
-        },
-        caption: '只到「答」這一層——為什麼錯，留到後面的檢討頁再講。'
-      },
-
-      {
-        sec: '段考', secName: '第一次（1-1～1-3）',
-        title: '檢討｜段考即時通 ①（選擇 1～4）',
-        points: [
-          '<b>第一次段考的模擬卷</b>（範圍 1-1～1-3），題號跟卷子一樣。',
-          '點題號看<b>逐行詳解</b>，有圖的題，圖會跟著步驟換。'
-        ],
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '第1次段考（一）', [
-            { src: '試卷・段考即時通', page: '印 1', sub: '選擇 1～4', tags: ['選1', '選2', '選3', '選4'] }
-          ]);
-        },
-        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
-      },
-
-      {
-        sec: '段考', secName: '第一次（1-1～1-3）',
-        title: '檢討｜段考即時通 ②（選擇 5～7）',
-        points: [
-          '<b>第一次段考的模擬卷</b>（範圍 1-1～1-3），題號跟卷子一樣。',
-          '點題號看<b>逐行詳解</b>，有圖的題，圖會跟著步驟換。'
-        ],
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '第1次段考（一）', [
-            { src: '試卷・段考即時通', page: '印 1', sub: '選擇 5～7', tags: ['選5', '選6', '選7'] }
-          ]);
-        },
-        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
-      },
-
-      {
-        sec: '段考', secName: '第一次（1-1～1-3）',
-        title: '檢討｜段考即時通 ③（選擇 8～10）',
-        points: [
-          '<b>第一次段考的模擬卷</b>（範圍 1-1～1-3），題號跟卷子一樣。',
-          '點題號看<b>逐行詳解</b>，有圖的題，圖會跟著步驟換。'
-        ],
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '第1次段考（一）', [
-            { src: '試卷・段考即時通', page: '印 1', sub: '選擇 8～10', tags: ['選8', '選9', '選10'] }
-          ]);
-        },
-        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
-      },
-
-      {
-        sec: '段考', secName: '第一次（1-1～1-3）',
-        title: '檢討｜段考即時通 ④（填充 1～3）',
-        points: [
-          '<b>第一次段考的模擬卷</b>（範圍 1-1～1-3），題號跟卷子一樣。',
-          '填充 3 的答案是 <b>6：7</b>（教用本印成 7：6，那是 FG：CG），詳解最後有說明。'
-        ],
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '第1次段考（一）', [
-            { src: '試卷・段考即時通', page: '印 1', sub: '填充 1～3', tags: ['填1', '填2', '填3'] }
-          ]);
-        },
-        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
-      },
-
-      {
-        sec: '段考', secName: '第一次（1-1～1-3）',
-        title: '檢討｜段考即時通 ⑤（填充 4～6）',
-        points: [
-          '<b>第一次段考的模擬卷</b>（範圍 1-1～1-3），題號跟卷子一樣。',
-          '填 4、填 6 是<b>連比</b>（1-1）：先對齊同一個量再合併；填 5 是長方形相似，長寬要同一個倍數。'
-        ],
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '第1次段考（一）', [
-            { src: '試卷・段考即時通', page: '印 1', sub: '填充 4～6', tags: ['填4', '填5', '填6'] }
-          ]);
-        },
-        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
-      },
-
-      {
-        sec: '段考', secName: '第一次（1-1～1-3）',
-        title: '檢討｜段考即時通 ⑥（計算 1～3）',
-        points: [
-          '<b>第一次段考的模擬卷</b>（範圍 1-1～1-3），題號跟卷子一樣。',
-          '計算題要寫過程：<b>先寫哪兩個三角形相似、用哪一個性質</b>。'
-        ],
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '第1次段考（一）', [
-            { src: '試卷・段考即時通', page: '印 2', sub: '計算 1～3', tags: ['計1', '計2', '計3'] }
-          ]);
-        },
-        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
-      },
-
-      {
-        sec: '段考', secName: '第一次（1-1～1-3）',
-        title: '檢討｜段考即時通 ⑦（計算 4、5）',
-        points: [
-          '<b>第一次段考的模擬卷</b>（範圍 1-1～1-3），題號跟卷子一樣。',
-          '計算題要寫過程：<b>先寫哪兩個三角形相似、用哪一個性質</b>。'
-        ],
-        visual: (h) => {
-          if (typeof PRACTICE === 'undefined') {
-            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
-          }
-          PRACTICE.page(h, '第1次段考（一）', [
-            { src: '試卷・段考即時通', page: '印 2', sub: '計算 4、5', tags: ['計4', '計5'] }
-          ]);
-        },
-        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
       },
 
       {
