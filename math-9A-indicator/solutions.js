@@ -7353,6 +7353,522 @@ window.SOLUTIONS = {
   }
  },
  "1-4": {
+  "自評1": {
+   "src": "課本・自我評量",
+   "page": "印 79",
+   "title": "自我評量第 1 題",
+   "q": "如圖，在 \\(\\triangle ABC\\) 中，\\(D\\)、\\(E\\) 分別為 \\(\\overline{AB}\\)、\\(\\overline{AC}\\) 的中點，若 \\(\\triangle ABC\\) 的面積為 \\(16\\) 平方公分，求 \\(\\triangle ADE\\) 的面積。\n承上，求 \\(\\triangle ADE\\) 的面積。\n承上，\\(\\triangle ADE\\sim\\triangle ABC\\)，求 \\(\\triangle ADE\\) 的面積。",
+   "ref": "圖見課本 p.79",
+   "steps": [
+    "\\(\\because D\\)、\\(E\\) 分別為 \\(\\overline{AB}\\)、\\(\\overline{AC}\\) 的中點",
+    "\\(\\therefore \\overline{DE}\\parallel\\overline{BC}\\)，且 \\(\\overline{DE}=\\frac{1}{2}\\overline{BC}\\)",
+    "又 \\(\\overline{AD}=\\frac{1}{2}\\overline{AB}\\)，\\(\\overline{AE}=\\frac{1}{2}\\overline{AC}\\)",
+    "\\(\\therefore \\triangle ADE\\sim\\triangle ABC\\)（\\(SSS\\) 相似性質）",
+    "故 \\(\\triangle ADE\\) 的面積：\\(\\triangle ABC\\) 的面積 \\(=\\overline{DE}^2：\\overline{BC}^2\\)",
+    "\\(\\triangle ADE\\) 的面積：\\(16=1^2：2^2=1：4\\)",
+    "\\(\\triangle ADE\\) 的面積 \\(=4\\)（平方公分）"
+   ],
+   "ans": "\\(4\\) 平方公分",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 20,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 8.7,
+        "y": 9.5,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 13,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 4.35,
+        "y": 4.75,
+        "label": "$D$"
+       },
+       {
+        "x": 10.85,
+        "y": 4.75,
+        "label": "$E$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 3,
+        "to": 4
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "自評2": {
+   "src": "課本・自我評量",
+   "page": "印 79",
+   "title": "自我評量第 2 題",
+   "q": "如圖，在 \\(\\triangle ABC\\) 中，\\(\\angle C=90\\degree\\)，已知 \\(\\overline{BC}=6\\)，\\(\\overline{AC}=8\\)，\\(D\\) 為 \\(\\overline{AC}\\) 的中點，\\(\\overline{DE}\\perp\\overline{AB}\\)，求：\n① \\(\\overline{DE}\\) 的長。\n② 四邊形 \\(DEBC\\) 的面積。\n① 求 \\(\\overline{DE}\\) 的長。\n② 求四邊形 \\(DEBC\\) 的面積。\n② 承上，\\(\\triangle AED\\) 的面積 \\(=\\frac{96}{25}\\)，求四邊形 \\(DEBC\\) 的面積。",
+   "ref": "圖見課本 p.79",
+   "steps": [
+    "\\(\\because \\angle A=\\angle A\\)（公用角），\\(\\angle AED=\\angle C=90\\degree\\)",
+    "\\(\\therefore \\triangle AED\\sim\\triangle ACB\\)（\\(AA\\) 相似性質）",
+    "由畢氏定理，\\(\\overline{AB}=10\\)；又 \\(\\overline{AD}=4\\)",
+    "\\(\\overline{AD}：\\overline{AB}=\\overline{DE}：\\overline{BC}\\)，\\(4：10=\\overline{DE}：6\\)，\\(\\overline{DE}=\\frac{12}{5}\\)",
+    "\\(\\because \\triangle AED\\sim\\triangle ACB\\)",
+    "\\(\\therefore \\triangle AED\\) 的面積：\\(\\triangle ACB\\) 的面積 \\(=\\overline{AD}^2：\\overline{AB}^2\\)",
+    "\\(\\triangle AED\\) 的面積：\\(（\\frac{1}{2}×6×8）=4^2：10^2\\)",
+    "\\(\\triangle AED\\) 的面積：\\(24=16：100\\)",
+    "\\(\\triangle AED\\) 的面積 \\(=\\frac{96}{25}\\)",
+    "四邊形 \\(DEBC\\) 的面積 \\(=\\triangle ACB\\) 的面積 \\(-\\triangle AED\\) 的面積",
+    "\\(=24-\\frac{96}{25}=\\frac{504}{25}\\)"
+   ],
+   "ans": "① \\(\\frac{12}{5}\\)　② \\(\\frac{504}{25}\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 30,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 8,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 8,
+        "y": 6,
+        "label": "$B$"
+       },
+       {
+        "x": 4,
+        "y": 0,
+        "label": "$D$"
+       },
+       {
+        "x": 2.56,
+        "y": 1.92,
+        "label": "$E$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 3,
+        "to": 4
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.5
+       },
+       {
+        "at": 4,
+        "toward": [
+         0,
+         3
+        ],
+        "size": 0.5
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "自評3": {
+   "src": "課本・自我評量",
+   "page": "印 80",
+   "title": "自我評量第 3 題",
+   "q": "如圖，威利在地上放了一面鏡子，透過鏡子的反射（入射角等於反射角），他可以看見樹梢。已知威利與鏡子的距離是 \\(1.2\\) 公尺，鏡子與樹的距離是 \\(6\\) 公尺，威利眼睛離地面的高度是 \\(1.5\\) 公尺，求樹高。\n承上，鏡子在 \\(C\\) 點，威利眼睛在 \\(E\\) 點，樹高為 \\(\\overline{AB}\\)。",
+   "ref": "原書為人物、鏡子與樹的情境插畫，此處簡化為示意幾何圖：$E$ 是眼睛、$D$ 是腳、$C$ 是鏡子、$\\overline{AB}$ 是樹；圖見課本 p.80",
+   "steps": [
+    "在 \\(\\triangle EDC\\) 與 \\(\\triangle ABC\\) 中",
+    "\\(\\because \\angle EDC=\\angle ABC=90\\degree\\)，\\(\\angle 1=\\angle 2\\)",
+    "\\(\\therefore \\triangle EDC\\sim\\triangle ABC\\)（\\(AA\\) 相似性質）",
+    "則 \\(\\overline{DC}：\\overline{BC}=\\overline{DE}：\\overline{AB}\\)",
+    "\\(1.2：6=1.5：\\overline{AB}\\)，\\(\\overline{AB}=7.5\\)"
+   ],
+   "ans": "\\(7.5\\) 公尺",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 34,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$D$"
+       },
+       {
+        "x": 0,
+        "y": 2.4,
+        "label": "$E$"
+       },
+       {
+        "x": 2.6,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 8,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 8,
+        "y": 4.985,
+        "label": "$A$"
+       }
+      ],
+      "outlines": [
+       [
+        1,
+        0,
+        2
+       ],
+       [
+        4,
+        3,
+        2
+       ]
+      ],
+      "fill": "#DCF0E4",
+      "angles": [
+       {
+        "at": 2,
+        "text": "$1$",
+        "toward": [
+         1,
+         0
+        ]
+       },
+       {
+        "at": 2,
+        "text": "$2$",
+        "toward": [
+         4,
+         3
+        ]
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 0,
+        "toward": [
+         1,
+         2
+        ],
+        "size": 0.4
+       },
+       {
+        "at": 3,
+        "toward": [
+         4,
+         2
+        ],
+        "size": 0.4
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 2,
+        "text": "$1.2$",
+        "nudge": [
+         6,
+         14
+        ]
+       },
+       {
+        "from": 2,
+        "to": 3,
+        "text": "$6$"
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$1.5$"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "自評4": {
+   "src": "課本・自我評量",
+   "page": "印 80",
+   "title": "自我評量第 4 題",
+   "q": "如圖，在 \\(\\triangle ABC\\) 中，若 \\(\\angle A=30\\degree\\)，\\(\\angle ABC=60\\degree\\)，\\(\\angle C=90\\degree\\)，且 \\(D\\) 在 \\(\\overline{AC}\\) 上，\\(\\angle BDC=45\\degree\\)，若 \\(\\overline{BC}=12\\)，求：\n① \\(\\overline{AD}\\) 的長。\n② \\(\\triangle ABD\\) 的面積。\n① 求 \\(\\overline{AD}\\) 的長。\n① 承上，\\(\\overline{DC}=12\\)，求 \\(\\overline{AD}\\) 的長。\n② 求 \\(\\triangle ABD\\) 的面積。",
+   "ref": "圖見課本 p.80",
+   "steps": [
+    "\\(\\because \\angle BDC=\\angle DBC=45\\degree\\)，\\(\\angle C=90\\degree\\)",
+    "\\(\\therefore \\overline{BC}：\\overline{DC}：\\overline{BD}=1：1：\\sqrt{2}\\)",
+    "\\(12：\\overline{DC}：\\overline{BD}=1：1：\\sqrt{2}\\)，因此 \\(\\overline{DC}=12\\)",
+    "又 \\(\\angle A=30\\degree\\)，\\(\\angle ABC=60\\degree\\)，\\(\\angle C=90\\degree\\)",
+    "\\(\\therefore \\overline{BC}：\\overline{AC}：\\overline{AB}=1：\\sqrt{3}：2\\)，因此 \\(\\overline{AC}=12\\sqrt{3}\\)",
+    "故 \\(\\overline{AD}=\\overline{AC}-\\overline{DC}=12\\sqrt{3}-12\\)",
+    "\\(\\triangle ABD\\) 的面積 \\(=\\frac{1}{2}×\\overline{AD}×\\overline{BC}\\)",
+    "\\(=\\frac{1}{2}×（12\\sqrt{3}-12）×12=72\\sqrt{3}-72\\)"
+   ],
+   "ans": "① \\(12\\sqrt{3}-12\\)　② \\(72\\sqrt{3}-72\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 13,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 20.78,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 20.78,
+        "y": 12,
+        "label": "$B$"
+       },
+       {
+        "x": 8.78,
+        "y": 0,
+        "label": "$D$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 3,
+        "to": 2
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 1.1
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "自評5": {
+   "src": "課本・自我評量",
+   "page": "印 81",
+   "title": "自我評量第 5 題",
+   "q": "如圖，在 \\(\\triangle ABC\\) 中，\\(\\angle A=60\\degree\\)，\\(\\angle B=30\\degree\\)，\\(\\angle C=90\\degree\\)，求：\n① \\(\\frac{\\text{∠A 的對邊長}}{\\text{斜邊長}}\\)\n② \\(\\frac{\\text{∠A 的鄰邊長}}{\\text{斜邊長}}\\)\n③ \\(\\frac{\\text{∠A 的對邊長}}{\\text{∠A 的鄰邊長}}\\)\n承上，\\(\\angle A=60\\degree\\)，\\(\\angle B=30\\degree\\)，\\(\\angle C=90\\degree\\)。",
+   "ref": "圖見課本 p.81",
+   "steps": [
+    "\\(\\therefore \\overline{AC}：\\overline{BC}：\\overline{AB}=1：\\sqrt{3}：2\\)",
+    "① \\(\\frac{\\overline{BC}}{\\overline{AB}}=\\frac{\\sqrt{3}}{2}\\)　② \\(\\frac{\\overline{AC}}{\\overline{AB}}=\\frac{1}{2}\\)　③ \\(\\frac{\\overline{BC}}{\\overline{AC}}=\\sqrt{3}\\)"
+   ],
+   "ans": "① \\(\\frac{\\sqrt{3}}{2}\\)　② \\(\\frac{1}{2}\\)　③ \\(\\sqrt{3}\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 34,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 4,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 4,
+        "y": 6.928,
+        "label": "$B$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCF0E4",
+      "angles": [
+       {
+        "at": 0,
+        "text": "$60\\degree$"
+       },
+       {
+        "at": 2,
+        "text": "$30\\degree$"
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.4
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "自評6": {
+   "src": "課本・自我評量",
+   "page": "印 81",
+   "title": "自我評量第 6 題",
+   "q": "通常計算坡度時會用「坡度百分比」表示：坡度百分比 \\(=\\)（鉛直上升高度 \\(÷\\) 水平移動距離）\\(×100\\%\\)。\\(A\\)、\\(B\\)、\\(C\\) 三地的海拔高度與水平距離的關係如右圖。若 \\(A\\) 地到 \\(B\\) 地的海拔高度持續上升，坡度為 \\(6\\%\\)；\\(B\\) 地到 \\(C\\) 地的海拔高度仍持續上升，坡度為 \\(4\\%\\)，則 \\(C\\) 地的海拔高度為多少公尺？\n承上，\\(A\\) 在原點，\\(B\\)、\\(C\\) 的水平距離分別是 \\(8\\) 公里、\\(12\\) 公里。\n承上，\\(A\\) 地到 \\(B\\) 地上升 \\(480\\) 公尺。",
+   "ref": "原書為方格座標圖（海拔 0～1000 公尺、水平距離 0～12 公里，A 在原點），此處簡化為示意圖，只標 B、C 的水平距離；圖見課本 p.81",
+   "steps": [
+    "\\(A\\) 地到 \\(B\\) 地：\\(\\frac{\\text{鉛直上升高度}}{8000}×100\\%=6\\%\\)",
+    "鉛直上升高度 \\(=8000×\\frac{6}{100}=480\\)（公尺）",
+    "\\(B\\) 地到 \\(C\\) 地：\\(\\frac{\\text{鉛直上升高度}}{4000}×100\\%=4\\%\\)",
+    "鉛直上升高度 \\(=4000×\\frac{4}{100}=160\\)（公尺）",
+    "故 \\(C\\) 地的海拔高度為 \\(480+160=640\\)（公尺）"
+   ],
+   "ans": "\\(640\\) 公尺",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 26,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 8,
+        "y": 4.8,
+        "label": "$B$"
+       },
+       {
+        "x": 12,
+        "y": 6.4,
+        "label": "$C$"
+       },
+       {
+        "x": 15,
+        "y": 0,
+        "label": "公里",
+        "nudge": [
+         16,
+         0
+        ]
+       },
+       {
+        "x": 0,
+        "y": 8,
+        "label": "公尺"
+       },
+       {
+        "x": 8,
+        "y": 0,
+        "label": "$8$",
+        "nudge": [
+         0,
+         6
+        ]
+       },
+       {
+        "x": 12,
+        "y": 0,
+        "label": "$12$",
+        "nudge": [
+         0,
+         18
+        ]
+       }
+      ],
+      "outline": [],
+      "segments": [
+       {
+        "from": 0,
+        "to": 3
+       },
+       {
+        "from": 0,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 1,
+        "to": 5,
+        "dashed": true
+       },
+       {
+        "from": 2,
+        "to": 6,
+        "dashed": true
+       }
+      ]
+     }
+    ]
+   }
+  },
   "課P64": {
    "src": "課本・隨堂練習",
    "page": "印 64",
