@@ -913,6 +913,60 @@ window.DECK = window.DECK || [];
       },
 
       {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '練習｜課本自我評量（1～3）',
+        points: [
+          '課本節末的<b>自我評量</b>，寫完自己對一次詳解。',
+          '第 1 題弓形：<b>扇形面積減掉三角形</b>。第 2 題先用<b>畢氏定理</b>求 \\(\\overline{CO}\\)，再比距離和半徑。',
+          '第 3 題只比一件事：<b>圓心到直線的距離</b>和半徑 5 誰大。'
+        ],
+        formula: { label: '點、直線和圓：比距離和半徑', tex: 'd\\lt r,\\;d=r,\\;d\\gt r' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-1', [
+            { src: '課本・自我評量', page: '印 110', sub: '課本節末自我評量', tags: ['自評1', '自評2', '自評3'] }
+          ]);
+        },
+        caption: '自我評量前三題，寫完自己對詳解。'
+      },
+      {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '練習｜課本自我評量（4～6）',
+        points: [
+          '第 4 題<b>看到切線，先連圓心到切點</b>，就有直角三角形。',
+          '第 5 題用<b>兩條切線段一樣長</b>；第 6 題<b>弦心距平分弦</b>，算出來的是一半，要再乘 2。',
+          '答案有根號，<b>留著就是答案</b>。'
+        ],
+        formula: { label: '切線段等長', tex: '\\overline{PA}=\\overline{PB}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-1', [
+            { src: '課本・自我評量', page: '印 111', sub: '課本節末自我評量', tags: ['自評4', '自評5', '自評6'] }
+          ]);
+        },
+        caption: '自我評量到這裡寫完。'
+      },
+      {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '對答案｜課本自我評量',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的自我評量頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-1', [
+            { label: '自評 1～3（印 110）', cols: 2, items: [['1', '自評1'], ['2', '自評2'], ['3', '自評3']] },
+            { label: '自評 4～6（印 111）', cols: 2, items: [['4', '自評4'], ['5', '自評5'], ['6', '自評6']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的自我評量頁點題號看詳解</b>。'
+      },
+
+      {
         sec: '2-2', secName: '圓心角、圓周角與弧的關係',
         title: '這一節只有兩行字：圓心角＝弧，圓周角＝弧的一半',
         points: [
@@ -1507,6 +1561,60 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '只到「答」這一層——<b>為什麼錯，回前面的練習頁點題號看詳解</b>。'
+      },
+
+      {
+        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
+        title: '練習｜課本自我評量（1～3）',
+        points: [
+          '課本節末的<b>自我評量</b>，寫完自己對一次詳解。',
+          '第 1、2 題：<b>圓心角的度數＝它對的弧的度數</b>。',
+          '第 3 題：<b>圓周角是同弧圓心角的一半</b>，同一段弧的圓周角都一樣大。'
+        ],
+        formula: { label: '圓周角是圓心角的一半', tex: '\\angle APB=\\tfrac12\\angle AOB' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-2', [
+            { src: '課本・自我評量', page: '印 128', sub: '課本節末自我評量', tags: ['自評1', '自評2', '自評3'] }
+          ]);
+        },
+        caption: '自我評量前三題，寫完自己對詳解。'
+      },
+      {
+        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
+        title: '練習｜課本自我評量（4～6）',
+        points: [
+          '第 4、6 題：先找<b>同一段弧</b>的圓周角，再用三角形內角和。',
+          '第 5 題是<b>作圖</b>：直角的圓周角，對的一定是<b>直徑</b>。',
+          '第 6 題用到<b>平行弦截出的弧相等</b>。'
+        ],
+        formula: { label: '半圓的圓周角是直角', tex: '\\angle ACB=90^\\circ' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-2', [
+            { src: '課本・自我評量', page: '印 129', sub: '課本節末自我評量', tags: ['自評4', '自評5', '自評6'] }
+          ]);
+        },
+        caption: '自我評量到這裡寫完。第 5 題是作圖，看詳解對做法。'
+      },
+      {
+        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
+        title: '對答案｜課本自我評量',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的自我評量頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-2', [
+            { label: '自評 1～3（印 128）', cols: 2, items: [['1', '自評1'], ['2', '自評2'], ['3', '自評3']] },
+            { label: '自評 4、6（印 129；第 5 題是作圖，點題號看詳解）', cols: 2, items: [['4', '自評4'], ['6', '自評6']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的自我評量頁點題號看詳解</b>。'
       },
 
       {
