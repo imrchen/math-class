@@ -18470,6 +18470,605 @@ window.SOLUTIONS = {
   }
  },
  "3-1": {
+  "自評1": {
+   "src": "課本・自我評量",
+   "page": "印 154",
+   "title": "自我評量第 1 題",
+   "q": "如圖，在 \\(\\triangle ABC\\) 中，\\(\\overline{AB}=\\overline{AC}\\)，\\(D\\) 為 \\(\\overline{BC}\\) 中點，求證：\\(\\angle BAD=\\angle CAD\\)。\n【證明】在 \\(\\triangle ABD\\) 與 \\(\\triangle ACD\\) 中：",
+   "ref": "圖見課本 p.154",
+   "steps": [
+    "\\(\\because \\overline{AB}=\\overline{AC}\\)（已知）",
+    "　　\\(\\overline{BD}=\\overline{DC}\\)（\\(D\\) 為 \\(\\overline{BC}\\) 中點）",
+    "　　\\(\\overline{AD}=\\overline{AD}\\)（公用邊）",
+    "\\(\\therefore \\triangle ABD\\cong\\triangle ACD\\)（\\(SSS\\) 全等性質）"
+   ],
+   "ans": "故 \\(\\angle BAD=\\angle CAD\\)（對應角相等）",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 38,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 2,
+        "y": 4.4,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 4,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 2,
+        "y": 0,
+        "label": "$D$",
+        "nudge": [
+         0,
+         10
+        ]
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 0,
+        "to": 3
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "自評2": {
+   "src": "課本・自我評量",
+   "page": "印 154",
+   "title": "自我評量第 2 題",
+   "q": "如圖，已知四邊形 \\(ABDE\\)、\\(ACFG\\) 均為正方形，求證：\\(\\triangle AEC\\cong\\triangle ABG\\)。\n原書【思路分析】將 \\(\\triangle AEC\\) 與 \\(\\triangle ABG\\) 中，各組相等的對應邊或對應角用記號標出來。\n【證明】② 在 \\(\\triangle AEC\\) 與 \\(\\triangle ABG\\) 中：",
+   "ref": "圖見課本 p.154",
+   "steps": [
+    "【證明】① 先說明 \\(\\angle EAC=\\angle BAG\\)：",
+    "如右圖，\\(\\because \\angle 1=\\angle 3=90\\degree\\)",
+    "\\(\\therefore \\angle 1+\\angle 2=\\angle 3+\\angle 2\\)",
+    "\\(\\because \\overline{AE}=\\overline{AB}\\)（四邊形 \\(ABDE\\) 為正方形）",
+    "　　\\(\\angle EAC=\\angle BAG\\)（由①可知）",
+    "　　\\(\\overline{AC}=\\overline{AG}\\)（四邊形 \\(ACFG\\) 為正方形）"
+   ],
+   "ans": "因此 \\(\\angle EAC=\\angle BAG\\)　\\(\\therefore \\triangle AEC\\cong\\triangle ABG\\)（\\(SAS\\) 全等性質）",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 46,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 2.2,
+        "y": 3.0,
+        "label": "$A$",
+        "nudge": [
+         0,
+         -6
+        ]
+       },
+       {
+        "x": 1.4,
+        "y": 0.6,
+        "label": "$B$"
+       },
+       {
+        "x": 3.6,
+        "y": -0.2,
+        "label": "$C$"
+       },
+       {
+        "x": -1.0,
+        "y": 1.4,
+        "label": "$D$"
+       },
+       {
+        "x": -0.2,
+        "y": 3.8,
+        "label": "$E$"
+       },
+       {
+        "x": 6.8,
+        "y": 1.2,
+        "label": "$F$"
+       },
+       {
+        "x": 5.4,
+        "y": 4.4,
+        "label": "$G$"
+       }
+      ],
+      "outlines": [
+       [
+        0,
+        4,
+        3,
+        1
+       ],
+       [
+        0,
+        2,
+        5,
+        6
+       ],
+       [
+        0,
+        1,
+        2
+       ]
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 4,
+        "to": 2
+       },
+       {
+        "from": 1,
+        "to": 6
+       }
+      ]
+     }
+    ]
+   },
+   "figs": [
+    {
+     "type": "polygon-group",
+     "unit": 46,
+     "gap": 90,
+     "placement": "right",
+     "shapes": [
+      {
+       "points": [
+        {
+         "x": 2.2,
+         "y": 3.0,
+         "label": "$A$",
+         "nudge": [
+          0,
+          -6
+         ]
+        },
+        {
+         "x": 1.4,
+         "y": 0.6,
+         "label": "$B$"
+        },
+        {
+         "x": 3.6,
+         "y": -0.2,
+         "label": "$C$"
+        },
+        {
+         "x": -1.0,
+         "y": 1.4,
+         "label": "$D$"
+        },
+        {
+         "x": -0.2,
+         "y": 3.8,
+         "label": "$E$"
+        },
+        {
+         "x": 6.8,
+         "y": 1.2,
+         "label": "$F$"
+        },
+        {
+         "x": 5.4,
+         "y": 4.4,
+         "label": "$G$"
+        }
+       ],
+       "outlines": [
+        [
+         0,
+         4,
+         3,
+         1
+        ],
+        [
+         0,
+         2,
+         5,
+         6
+        ],
+        [
+         0,
+         1,
+         2
+        ]
+       ],
+       "fill": "#DCF0E4",
+       "segments": [
+        {
+         "from": 4,
+         "to": 2
+        },
+        {
+         "from": 1,
+         "to": 6
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "polygon-group",
+     "unit": 46,
+     "gap": 60,
+     "placement": "right",
+     "shapes": [
+      {
+       "points": [
+        {
+         "x": -0.2,
+         "y": 3.8,
+         "label": "$E$"
+        },
+        {
+         "x": 2.2,
+         "y": 3.0,
+         "label": "$A$"
+        },
+        {
+         "x": 3.6,
+         "y": -0.2,
+         "label": "$C$"
+        }
+       ],
+       "outline": [
+        0,
+        1,
+        2
+       ],
+       "fill": "#FFFFFF",
+       "sides": [
+        {
+         "from": 1,
+         "to": 0,
+         "ticks": 1
+        },
+        {
+         "from": 1,
+         "to": 2,
+         "ticks": 2
+        }
+       ],
+       "angles": [
+        {
+         "at": 1,
+         "mark": 1
+        }
+       ]
+      },
+      {
+       "points": [
+        {
+         "x": 1.4,
+         "y": 0.6,
+         "label": "$B$"
+        },
+        {
+         "x": 2.2,
+         "y": 3.0,
+         "label": "$A$"
+        },
+        {
+         "x": 5.4,
+         "y": 4.4,
+         "label": "$G$"
+        }
+       ],
+       "outline": [
+        0,
+        1,
+        2
+       ],
+       "fill": "#FFFFFF",
+       "sides": [
+        {
+         "from": 1,
+         "to": 0,
+         "ticks": 1
+        },
+        {
+         "from": 1,
+         "to": 2,
+         "ticks": 2
+        }
+       ],
+       "angles": [
+        {
+         "at": 1,
+         "mark": 1
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 46,
+      "gap": 90,
+      "placement": "right",
+      "role": "solution",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": -0.2,
+          "y": 3.8,
+          "label": "$E$"
+         },
+         {
+          "x": 2.2,
+          "y": 3.0,
+          "label": "$A$",
+          "nudge": [
+           0,
+           -8
+          ]
+         },
+         {
+          "x": 3.6,
+          "y": -0.2,
+          "label": "$C$"
+         },
+         {
+          "x": 1.4,
+          "y": 0.6,
+          "label": "$B$"
+         },
+         {
+          "x": 5.4,
+          "y": 4.4,
+          "label": "$G$"
+         }
+        ],
+        "outlines": [
+         [
+          0,
+          1,
+          2
+         ],
+         [
+          3,
+          1,
+          4
+         ]
+        ],
+        "fill": "#FDE8DC",
+        "angles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           3
+          ],
+          "text": "$1$",
+          "accent": true
+         },
+         {
+          "at": 1,
+          "toward": [
+           3,
+           2
+          ],
+          "text": "$2$",
+          "accent": true
+         },
+         {
+          "at": 1,
+          "toward": [
+           2,
+           4
+          ],
+          "text": "$3$",
+          "accent": true,
+          "nudge": [
+           10,
+           0
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "自評3": {
+   "src": "課本・自我評量",
+   "page": "印 155",
+   "title": "自我評量第 3 題",
+   "q": "如圖，\\(\\overline{AC}\\) 交 \\(\\overline{BD}\\) 於 \\(O\\) 點，\\(\\overline{AB}=\\overline{DC}\\)，\\(\\overline{AC}=\\overline{DB}\\)。求證：\n① \\(\\angle A=\\angle D\\)。\n② \\(\\overline{AO}=\\overline{DO}\\)。\n② 【證明】在 \\(\\triangle AOB\\) 與 \\(\\triangle DOC\\) 中：",
+   "ref": "圖見課本 p.155",
+   "steps": [
+    "① 【證明】連接 \\(\\overline{BC}\\)，在 \\(\\triangle ABC\\) 與 \\(\\triangle DCB\\) 中：",
+    "\\(\\because \\overline{AB}=\\overline{DC}\\)，\\(\\overline{AC}=\\overline{DB}\\)（已知）",
+    "　　\\(\\overline{BC}=\\overline{BC}\\)（公用邊）",
+    "\\(\\therefore \\triangle ABC\\cong\\triangle DCB\\)（\\(SSS\\)）",
+    "\\(\\because \\angle A=\\angle D\\)（由①可知）",
+    "　　\\(\\angle AOB=\\angle DOC\\)（對頂角相等）",
+    "　　\\(\\overline{AB}=\\overline{DC}\\)（已知）",
+    "\\(\\therefore \\triangle AOB\\cong\\triangle DOC\\)（\\(AAS\\) 全等性質）"
+   ],
+   "ans": "故 \\(\\angle A=\\angle D\\)（對應角相等）　故 \\(\\overline{AO}=\\overline{DO}\\)（對應邊相等）",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 60,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0.6,
+        "y": 2,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 3.6,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 3,
+        "y": 2,
+        "label": "$D$"
+       },
+       {
+        "x": 1.8,
+        "y": 1.2,
+        "label": "$O$",
+        "nudge": [
+         0,
+         -10
+        ]
+       }
+      ],
+      "outlines": [
+       [
+        0,
+        1,
+        4
+       ],
+       [
+        3,
+        2,
+        4
+       ]
+      ],
+      "fill": "#DCF0E4"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 60,
+      "gap": 90,
+      "placement": "right",
+      "role": "solution",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0.6,
+          "y": 2,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 3.6,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 3,
+          "y": 2,
+          "label": "$D$"
+         },
+         {
+          "x": 1.8,
+          "y": 1.2,
+          "label": "$O$",
+          "nudge": [
+           0,
+           -10
+          ]
+         }
+        ],
+        "outlines": [
+         [
+          0,
+          1,
+          4
+         ],
+         [
+          3,
+          2,
+          4
+         ]
+        ],
+        "fill": "#DCF0E4",
+        "segments": [
+         {
+          "from": 1,
+          "to": 2,
+          "dashed": true,
+          "accent": true
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "自評4": {
+   "src": "課本・自我評量",
+   "page": "印 155",
+   "title": "自我評量第 4 題",
+   "q": "已知 \\(5×2+1×3=13\\)，\\(7×2+9×3=41\\)，\\(11×2+9×3=49\\)，由這三個例子猜測「一個奇數的 \\(2\\) 倍，加上另一個奇數的 \\(3\\) 倍，還是奇數。」這個猜測正確嗎？\n【已知】\\(a\\)、\\(b\\) 是奇數。\n【求證】\\(2a+3b\\) 也是奇數。\n【證明】\\(\\because a\\)、\\(b\\) 是奇數，設 \\(a=2m+1\\)，\\(b=2n+1\\)，\\(m\\)、\\(n\\) 皆是整數",
+   "ref": null,
+   "steps": [
+    "\\(\\therefore 2a+3b=2（2m+1）+3（2n+1）\\)",
+    "\\(=4m+2+6n+3\\)",
+    "\\(=2（2m+3n+2）+1\\)",
+    "\\(\\because （2m+3n+2）\\) 是整數，\\(\\therefore 2a+3b\\) 也是奇數"
+   ],
+   "ans": "猜測正確",
+   "fig": null
+  },
+  "自評5": {
+   "src": "課本・自我評量",
+   "page": "印 155",
+   "title": "自我評量第 5 題",
+   "q": "已知 \\(a\\) 是正整數，\\(A=（5a+8）^2+4（5a+8）+4\\)，求證：\\(A\\) 是 \\(25\\) 的倍數。\n【證明】",
+   "ref": null,
+   "steps": [
+    "\\(A=（5a+8）^2+4（5a+8）+4\\)",
+    "\\(=25a^2+80a+64+20a+32+4\\)",
+    "\\(=25a^2+100a+100=25（a^2+4a+4）\\)",
+    "\\(\\because （a^2+4a+4）\\) 為正整數"
+   ],
+   "ans": "\\(\\therefore A\\) 是 \\(25\\) 的倍數",
+   "fig": null
+  },
   "課P140": {
    "src": "課本・隨堂練習",
    "page": "印 140",
@@ -20346,6 +20945,548 @@ window.SOLUTIONS = {
   }
  },
  "3-2": {
+  "自評1": {
+   "src": "課本・自我評量",
+   "page": "印 183",
+   "title": "自我評量第 1 題",
+   "q": "若直角三角形的兩股長為 \\(2\\)、\\(6\\)，求其外心到三個頂點的距離和。\n承上，兩股長為 \\(2\\)、\\(6\\)，求外心到三個頂點的距離和。",
+   "ref": null,
+   "steps": [
+    "斜邊長 \\(=\\sqrt{2^2+6^2}=2\\sqrt{10}\\)",
+    "直角三角形的外心是斜邊中點",
+    "故外心到三頂點的距離和 \\(=3×（\\frac{1}{2}×2\\sqrt{10}）=3\\sqrt{10}\\)"
+   ],
+   "ans": "\\(3\\sqrt{10}\\)",
+   "fig": null
+  },
+  "自評2": {
+   "src": "課本・自我評量",
+   "page": "印 183",
+   "title": "自我評量第 2 題",
+   "q": "在 \\(\\triangle ABC\\) 中，已知 \\(\\angle A=60\\degree\\)，\\(\\angle B=40\\degree\\)，若 \\(O\\) 點為 \\(\\triangle ABC\\) 的外心，求 \\(\\angle BOC\\) 的度數。",
+   "ref": null,
+   "steps": [
+    "如圖，圓 \\(O\\) 為 \\(\\triangle ABC\\) 的外接圓",
+    "\\(\\because O\\) 點為 \\(\\triangle ABC\\) 的外心",
+    "\\(\\therefore \\angle BOC=\\overarc{BC}=2\\angle A=2×60\\degree=120\\degree\\)"
+   ],
+   "ans": "\\(120\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 95,
+    "placement": "right",
+    "role": "solution",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 1
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "r": 0.03,
+      "fill": "#17212B"
+     }
+    ],
+    "points": [
+     {
+      "on": 0,
+      "at": 200,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 320,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 40,
+      "label": "$A$"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       0,
+       -8
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 2,
+      "to": 0
+     },
+     {
+      "from": 3,
+      "to": 0,
+      "accent": true
+     },
+     {
+      "from": 3,
+      "to": 1,
+      "accent": true
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 95,
+      "placement": "right",
+      "role": "solution",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 1
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "r": 0.03,
+        "fill": "#17212B"
+       }
+      ],
+      "points": [
+       {
+        "on": 0,
+        "at": 200,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 320,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 40,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         0,
+         -8
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 2,
+        "to": 0
+       },
+       {
+        "from": 3,
+        "to": 0,
+        "accent": true
+       },
+       {
+        "from": 3,
+        "to": 1,
+        "accent": true
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "自評3": {
+   "src": "課本・自我評量",
+   "page": "印 184",
+   "title": "自我評量第 3 題",
+   "q": "\\(\\triangle ABC\\) 的面積為 \\(24\\)，其內切圓半徑為 \\(2\\)，求 \\(\\triangle ABC\\) 的周長。\n承上，求 \\(\\triangle ABC\\) 的周長。",
+   "ref": null,
+   "steps": [
+    "\\(\\triangle ABC\\) 的面積 \\(=\\frac{1}{2}×\\) 內切圓半徑 \\(×\\triangle ABC\\) 的周長",
+    "\\(24=\\frac{1}{2}×2×\\triangle ABC\\) 的周長",
+    "\\(\\triangle ABC\\) 的周長 \\(=24\\)"
+   ],
+   "ans": "\\(24\\)",
+   "fig": null
+  },
+  "自評4": {
+   "src": "課本・自我評量",
+   "page": "印 184",
+   "title": "自我評量第 4 題",
+   "q": "如圖，在坐標平面上，\\(A（0,3）\\)、\\(B（4,0）\\)，\\(I\\) 點為 \\(\\triangle AOB\\) 的內心，求 \\(I\\) 點的坐標。\n承上，求 \\(I\\) 點的坐標。",
+   "ref": "圖見課本 p.184；坐標軸畫成兩條線段，不畫箭頭",
+   "steps": [
+    "\\(\\overline{OA}=3\\)，\\(\\overline{OB}=4\\)",
+    "\\(\\overline{AB}=\\sqrt{\\overline{OA}^2+\\overline{OB}^2}=\\sqrt{3^2+4^2}=5\\)",
+    "設內切圓半徑為 \\(r\\)，則 \\(\\overline{OA}+\\overline{OB}=\\overline{AB}+2r\\)",
+    "\\(3+4=5+2r\\)，\\(r=1\\)"
+   ],
+   "ans": "\\(I（1,1）\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 42,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 1,
+      "y": 1,
+      "r": 0.05,
+      "fill": "#17212B"
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       -14,
+       16
+      ]
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "label": "$A（0,3）$",
+      "nudge": [
+       -52,
+       0
+      ]
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "label": "$B（4,0）$",
+      "nudge": [
+       10,
+       18
+      ]
+     },
+     {
+      "x": -0.6,
+      "y": 0
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "label": "$x$",
+      "nudge": [
+       4,
+       -16
+      ]
+     },
+     {
+      "x": 0,
+      "y": -0.6
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "label": "$y$",
+      "nudge": [
+       12,
+       6
+      ]
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "label": "$I$",
+      "nudge": [
+       38,
+       0
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 3,
+      "to": 4
+     },
+     {
+      "from": 5,
+      "to": 6
+     },
+     {
+      "from": 1,
+      "to": 2
+     }
+    ]
+   }
+  },
+  "自評5": {
+   "src": "課本・自我評量",
+   "page": "印 185",
+   "title": "自我評量第 5 題",
+   "q": "如圖，在 \\(\\triangle ABC\\) 中，\\(G\\) 為重心，\\(\\overline{AB}=8\\)，\\(\\overline{AC}=15\\)，\\(\\angle B+\\angle C=90\\degree\\)，求 \\(\\overline{AG}\\) 的長。\n承上，\\(O\\) 是斜邊 \\(\\overline{BC}\\) 的中點，\\(\\overline{BC}=17\\)，求 \\(\\overline{AG}\\) 的長。",
+   "ref": "圖見課本 p.185",
+   "steps": [
+    "\\(\\because \\angle A=90\\degree\\)",
+    "\\(\\therefore \\overline{BC}=\\sqrt{8^2+15^2}=17\\)",
+    "延長 \\(\\overline{AG}\\) 交 \\(\\overline{BC}\\) 於 \\(O\\) 點",
+    "\\(\\because G\\) 為重心",
+    "\\(\\therefore O\\) 為斜邊中點（外心）",
+    "\\(\\therefore \\overline{AO}=\\frac{1}{2}\\overline{BC}=\\frac{17}{2}\\)",
+    "因此 \\(\\overline{AG}=\\frac{2}{3}\\overline{AO}=\\frac{2}{3}×\\frac{17}{2}=\\frac{17}{3}\\)"
+   ],
+   "ans": "\\(\\frac{17}{3}\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 15,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 3.765,
+        "y": 7.059,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 17,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 6.922,
+        "y": 2.353,
+        "label": "$G$",
+        "nudge": [
+         12,
+         -4
+        ]
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 0,
+        "to": 3
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 15,
+      "gap": 90,
+      "placement": "right",
+      "role": "solution",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 3.765,
+          "y": 7.059,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 17,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 6.922,
+          "y": 2.353,
+          "label": "$G$",
+          "nudge": [
+           12,
+           -4
+          ]
+         },
+         {
+          "x": 8.5,
+          "y": 0,
+          "label": "$O$",
+          "accent": true,
+          "nudge": [
+           8,
+           6
+          ]
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCF0E4",
+        "segments": [
+         {
+          "from": 0,
+          "to": 3
+         },
+         {
+          "from": 3,
+          "to": 4,
+          "dashed": true,
+          "accent": true
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "自評6": {
+   "src": "課本・自我評量",
+   "page": "印 185",
+   "title": "自我評量第 6 題",
+   "q": "如圖，\\(\\parallelogram ABCD\\) 的面積為 \\(48\\)，\\(E\\)、\\(F\\) 為 \\(\\overline{BC}\\)、\\(\\overline{AD}\\) 中點，對角線 \\(\\overline{BD}\\) 交 \\(\\overline{AE}\\)、\\(\\overline{CF}\\) 於 \\(G\\)、\\(H\\)，求四邊形 \\(AGHF\\) 的面積。\n承上，\\(O\\) 為對角線的交點，求四邊形 \\(AGHF\\) 的面積。\n承上，\\(\\triangle ABC\\) 與 \\(\\triangle ACD\\) 的面積都是 \\(24\\)，求四邊形 \\(AGHF\\) 的面積。",
+   "ref": "圖見課本 p.185",
+   "steps": [
+    "\\(\\because \\overline{AF}=\\overline{FD}\\)，\\(\\overline{BE}=\\overline{EC}\\)，且 \\(O\\) 為 \\(\\parallelogram ABCD\\) 對角線的中點",
+    "\\(\\therefore G\\)、\\(H\\) 分別為 \\(\\triangle ABC\\)、\\(\\triangle ACD\\) 的重心",
+    "\\(\\triangle ABC\\) 的面積 \\(=\\triangle ACD\\) 的面積 \\(=\\frac{1}{2}×48=24\\)",
+    "\\(\\triangle AOG\\) 的面積 \\(=\\frac{1}{6}\\triangle ABC\\) 的面積 \\(=\\frac{1}{6}×24=4\\)",
+    "四邊形 \\(AOHF\\) 的面積 \\(=\\frac{1}{3}\\triangle ACD\\) 的面積 \\(=\\frac{1}{3}×24=8\\)",
+    "四邊形 \\(AGHF\\) 的面積 \\(=4+8=12\\)"
+   ],
+   "ans": "\\(12\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 40,
+    "gap": 90,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 2,
+        "y": 3,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 6,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 8,
+        "y": 3,
+        "label": "$D$"
+       },
+       {
+        "x": 3,
+        "y": 0,
+        "label": "$E$",
+        "nudge": [
+         0,
+         8
+        ]
+       },
+       {
+        "x": 5,
+        "y": 3,
+        "label": "$F$",
+        "nudge": [
+         0,
+         -8
+        ]
+       },
+       {
+        "x": 2.667,
+        "y": 1.0,
+        "label": "$G$",
+        "nudge": [
+         -14,
+         2
+        ]
+       },
+       {
+        "x": 5.333,
+        "y": 2.0,
+        "label": "$H$",
+        "nudge": [
+         14,
+         -2
+        ]
+       },
+       {
+        "x": 4,
+        "y": 1.5,
+        "label": "$O$",
+        "nudge": [
+         2,
+         14
+        ]
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCF0E4",
+      "segments": [
+       {
+        "from": 1,
+        "to": 3
+       },
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 4
+       },
+       {
+        "from": 2,
+        "to": 5
+       }
+      ]
+     }
+    ]
+   }
+  },
   "課P159 第1題": {
    "src": "課本・隨堂練習",
    "page": "印 159",
