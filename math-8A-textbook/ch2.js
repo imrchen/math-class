@@ -192,6 +192,13 @@ window.DECK = window.DECK || [];
     + [['A', 6, 18], ['F', 200, 18], ['E', 202, 218], ['D', 134, 218], ['C', 132, 116], ['B', 4, 146]]
       .map(([n, x, y]) => FT(x, y, n, 22, ' font-style="italic"')).join(''));
 
+  window.FIGURES_LOCAL['two-rectangles-joined'] = FIG('-124 -104 430 316',
+    '<rect x="0" y="0" width="170" height="150" fill="#FFFFFF" stroke="#17212B" stroke-width="2.4"/>'
+    + '<rect x="170" y="26" width="120" height="124" fill="#FFFFFF" stroke="#17212B" stroke-width="2.4"/>'
+    + '<rect x="170" y="136" width="14" height="14" fill="none" stroke="#17212B" stroke-width="1.4"/>'
+    + FT(85, -12, '2√3', 26, ' text-anchor="middle"') + FT(178, 22, '1', 24)
+    + FT(-10, 84, '√3+√2', 26, ' text-anchor="end"') + FT(145, 184, '2√3+√6', 26, ' text-anchor="middle"'));
+
   function gradeRows(rows) {
     return `<div class="xo-wrap" style="width:99.5%;margin:0 auto;display:flex;flex-direction:column;gap:9px">` +
       rows.map(r => `<div class="xo-row" style="border:1.5px solid #94a3b8;border-radius:12px;background:#fff;padding:9px 13px">
@@ -2694,6 +2701,177 @@ window.DECK = window.DECK || [];
           }
           PRACTICE.page(h, '2-2', [
             { src: '試卷・課堂評量', page: '印 18', sub: '計算 1、2', tags: ['評計1', '評計2'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '對答案｜平時練習卷 ①（選擇 1～10）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-2', [
+            { label: '選擇 1～10（印 1）', cols: 3, items: [
+              ['1', '平選1'], ['2', '平選2'], ['3', '平選3'],
+              ['4', '平選4'], ['5', '平選5'], ['6', '平選6'],
+              ['7', '平選7'], ['8', '平選8'], ['9', '平選9'],
+              ['10', '平選10']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '對答案｜平時練習卷 ②（填充、計算）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-2', [
+            { label: '填充 1～5（印 1）', cols: 3, items: [
+              ['填 1', '平填1'], ['填 2', '平填2'], ['填 3', '平填3'], ['填 4', '平填4'], ['填 5', '平填5']
+            ] },
+            { label: '填充 6～9（印 2）', cols: 3, items: [
+              ['填 6', '平填6'], ['填 7', '平填7'], ['填 8', '平填8'], ['填 9', '平填9']
+            ] },
+            { label: '計算（印 2）', cols: 2, items: [
+              ['計 1', '平計1'], ['計 2', '平計2']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜平時練習卷 ①（選擇 1～4）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 1～4', tags: ['平選1', '平選2', '平選3', '平選4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜平時練習卷 ②（選擇 5～7）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 5～7', tags: ['平選5', '平選6', '平選7'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜平時練習卷 ③（選擇 8～10）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 8～10', tags: ['平選8', '平選9', '平選10'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜平時練習卷 ④（填充 1～4）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '填充 1～4', tags: ['平填1', '平填2', '平填3', '平填4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜平時練習卷 ⑤（填充 5～8）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・平時練習卷', page: '印 1–2', sub: '填充 5～8', tags: ['平填5', '平填6', '平填7', '平填8'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜平時練習卷 ⑥（填充 9，計算 1、2）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-2', [
+            { src: '試卷・平時練習卷', page: '印 2', sub: '填充 9，計算 1、2', tags: ['平填9', '平計1', '平計2'] }
           ]);
         },
         caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
