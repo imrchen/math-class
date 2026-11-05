@@ -210,6 +210,22 @@ window.DECK = window.DECK || [];
       </div>`).join('') + `</div>`;
   }
 
+  function bonusList(qs) {
+    return `<div style="width:99.5%;margin:0 auto;padding-top:38px;display:flex;flex-direction:column;gap:9px">` +
+      qs.map((q, i) => `<div style="border:1.5px solid #94a3b8;border-radius:12px;background:#fff;padding:9px 13px;display:flex;gap:10px;align-items:baseline">
+        <span style="flex:0 0 auto;font-size:18px;font-weight:900;color:${C}">${i + 1}.</span>
+        <span style="flex:1;min-width:0;font-size:18px;line-height:1.65;color:${INK}">${q}</span></div>`).join('') + `</div>`;
+  }
+
+  function bonusKey(rows) {
+    const D = (t) => t.replace(/\\tfrac/g, '\\dfrac');
+    return `<div style="width:99.5%;margin:0 auto;padding-top:38px;display:flex;flex-direction:column;gap:9px">` +
+      rows.map((r, i) => `<div style="border:1.5px solid #94a3b8;border-radius:12px;background:#fff;padding:8px 13px">
+        <div style="display:flex;gap:10px;align-items:baseline;font-size:18px;font-weight:800">
+          <span style="color:${C}">${i + 1}.</span><span style="color:${GRN}">${D(r[0])}</span></div>
+        <div style="font-size:16px;line-height:1.7;color:${INK};padding-left:24px">${D(r[1])}</div></div>`).join('') + `</div>`;
+  }
+
   window.DECK.push({
     ch: 2,
     title: '平方根與畢氏定理',
@@ -3485,6 +3501,190 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '一頁最多四題；附錄本的題型與課堂評量互補。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '公式｜正三角形的高與面積：要背，也要推得回來',
+        points: [
+          '課本 印 100 把這兩個結果畫了黃底：它們是<b>公式</b>，九年級會直接拿來用，<b>現在就背起來</b>。',
+          '忘了怎麼辦？<b>對摺 → 底邊剩一半 → 畢氏定理</b>，三步就推回來。',
+          '係數別互換：高是 \\(\\tfrac{\\sqrt{3}}{2}\\)、面積是 \\(\\tfrac{\\sqrt{3}}{4}\\)（面積多乘了一個 \\(\\tfrac12\\)）。'
+        ],
+        formula: { label: '正三角形公式<span class="pgref">課本 印 100 課文</span>', tex: 'h=\\frac{\\sqrt{3}}{2}a\\qquad A=\\frac{\\sqrt{3}}{4}a^2' },
+        visual: (h) => {
+          const L = [120, 200], R = [320, 200], T = [220, 200 - 200 * Math.sqrt(3) / 2];
+          SV.stepper(h, '0 0 440 272', [
+            {
+              t: '邊長都是 a 的正三角形', d: k => {
+                let s = SV.poly([L, R, T], 'rgba(109,40,217,.08)', VIO, 2.6);
+                s += SV.ticks(...L, ...R, 1, VIO, 7) + SV.ticks(...L, ...T, 1, VIO, 7) + SV.ticks(...R, ...T, 1, VIO, 7);
+                s += TX(220, 222, 'a', { anchor: 'middle', fs: 17, c: INK });
+                s += TX(152, 112, 'a', { anchor: 'end', fs: 17, c: INK });
+                s += TX(290, 112, 'a', { fs: 17, c: INK });
+                return s;
+              }
+            },
+            {
+              t: '對摺：高落在底邊中點，兩邊各是 a 的一半', d: k =>
+                SV.seg(220, T[1], 220, 200, GRN, 2.6, '5 4') +
+                SV.rightAngle(220, 200, 0, 90, 12, GRN) +
+                TX(226, 140, 'h', { fs: 17, c: GRN, op: k }) +
+                TX(170, 192, 'a／2', { anchor: 'middle', fs: 15, c: GRN, op: k }) +
+                TX(270, 192, 'a／2', { anchor: 'middle', fs: 15, c: GRN, op: k })
+            },
+            {
+              t: '左半邊是直角三角形，用畢氏定理', d: k =>
+                TX(220, 248, 'h² ＝ a² − (a／2)² ＝ 3a²／4', { anchor: 'middle', fs: 18, c: GRN, op: k })
+            },
+            {
+              t: '開根號得到高；再用「底 × 高 ÷ 2」得到面積', d: k =>
+                TX(330, 60, `h ＝ ${RT(3)} a ／ 2`, { anchor: 'middle', fs: 18, c: GRN, op: k }) +
+                TX(220, 270, `面積 ＝ ½ × a × h ＝ ${RT(3)} a² ／ 4`, { anchor: 'middle', fs: 18, c: AMB, op: k })
+            }
+          ]);
+          radBars(h);
+          { const sl = h.querySelector('.steps-r'); if (sl) sl.addEventListener('input', () => radBars(h)); }
+        },
+        caption: '自我評量 印 110 第 1 題③ 的解答就是直接套這兩個公式；背不起來的人，用這四步一樣算得出來。',
+        example: {
+          q: '邊長 \\(6\\) 的正三角形，高與面積各是多少？（自我評量 印 110 第 1 題③）',
+          steps: ['高 \\(=\\tfrac{\\sqrt{3}}{2}\\times 6\\)', '面積 \\(=\\tfrac{\\sqrt{3}}{4}\\times 6^2=\\tfrac{\\sqrt{3}}{4}\\times 36\\)'],
+          ans: '高 \\(3\\sqrt{3}\\)、面積 \\(9\\sqrt{3}\\)'
+        }
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '公式｜斜邊上的高 ＝ 兩股乘積 ÷ 斜邊',
+        points: [
+          '課本例 3 與隨堂（印 101）用<b>同一個面積算兩次</b>求斜邊上的高。',
+          '把數字換成字母：\\(\\tfrac12 ab=\\tfrac12 ch\\)，兩邊乘 2 再除以 \\(c\\)，就是 \\(h=\\dfrac{ab}{c}\\)。',
+          '九年級課本會<b>直接用這一行</b>，現在就背起來；忘了就回到「面積算兩次」。'
+        ],
+        formula: { label: '斜邊上的高<span class="pgref">課本 印 101 例 3</span>', tex: '\\tfrac12 ab=\\tfrac12 ch\\ \\Rightarrow\\ h=\\frac{ab}{c}' },
+        visual: (h) => {
+          const A = [110, 196], B = [110, 76], C = [350, 196];
+          const dx = C[0] - B[0], dy = C[1] - B[1], t = ((A[0] - B[0]) * dx + (A[1] - B[1]) * dy) / (dx * dx + dy * dy);
+          const D = [B[0] + t * dx, B[1] + t * dy];
+          const aBC = SV.angleOf(...D, ...C), aDA = SV.angleOf(...D, ...A);
+          SV.stepper(h, '0 0 440 272', [
+            {
+              t: '直角三角形：兩股 a、b，斜邊 c', d: k => {
+                let s = SV.poly([A, B, C], 'rgba(109,40,217,.08)', VIO, 2.6);
+                s += SV.rightAngle(...A, 0, 90, 14, RED);
+                s += TX(98, 140, 'a', { anchor: 'end', fs: 17, c: AMB });
+                s += TX(230, 220, 'b', { anchor: 'middle', fs: 17, c: BLU });
+                s += TX(242, 122, 'c', { anchor: 'middle', fs: 17, c: VIO });
+                s += TX(A[0] - 14, A[1] + 18, 'A', { fs: 14, c: GREY }) + TX(B[0] - 16, B[1] - 4, 'B', { fs: 14, c: GREY }) + TX(C[0] + 6, C[1] + 6, 'C', { fs: 14, c: GREY });
+                return s;
+              }
+            },
+            {
+              t: '用兩股當底和高：面積 ＝ ½ab', d: k =>
+                TX(220, 246, '面積 ＝ ½ × a × b', { anchor: 'middle', fs: 18, c: BLU, op: k })
+            },
+            {
+              t: '換斜邊當底：高就是 AD ＝ h，面積 ＝ ½ch', d: k =>
+                SV.seg(...A, ...D, GRN, 2.6, '5 4') +
+                SV.rightAngle(...D, aBC, aDA, 10, GRN) +
+                TX(D[0] - 4, D[1] - 8, 'D', { anchor: 'end', fs: 14, c: GREY, op: k }) +
+                TX((A[0] + D[0]) / 2 + 8, (A[1] + D[1]) / 2 + 14, 'h', { fs: 17, c: GRN, op: k }) +
+                TX(220, 268, '面積 ＝ ½ × c × h', { anchor: 'middle', fs: 18, c: GRN, op: k })
+            },
+            {
+              t: '同一個面積，畫等號：h ＝ ab ÷ c', d: k =>
+                BOX(268, 34, 150, 44, { fill: '#fff', stroke: GRN, sw: 2, op: k }) +
+                TX(343, 63, 'h ＝ ab ／ c', { anchor: 'middle', fs: 20, c: GRN, op: k })
+            }
+          ]);
+        },
+        caption: '印 101 隨堂（兩股 12、16）用這一行驗算：\\(h=\\tfrac{12\\times16}{20}=\\tfrac{48}{5}\\)，跟面積算兩次一樣。',
+        example: {
+          q: '兩股 \\(12\\)、\\(16\\) 的直角三角形，斜邊上的高是多少？（課本 印 101 隨堂）',
+          steps: ['斜邊 \\(=\\sqrt{12^2+16^2}=\\sqrt{400}=20\\)', '\\(h=\\dfrac{12\\times 16}{20}=\\dfrac{192}{20}\\)'],
+          ans: '\\(\\dfrac{48}{5}\\)'
+        }
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '加分題 ①｜正三角形的高與面積',
+        points: [
+          '寫在紙上，<b>過程要寫出來</b>，寫完交給老師，列入平時成績加分。',
+          '第 1 題不能套公式，要從頭推；第 2～4 題可以直接用公式。',
+          '答案<b>不在這一頁</b>，交卷之後再翻。'
+        ],
+        formula: { label: '用得到的公式', tex: 'h=\\frac{\\sqrt{3}}{2}a\\qquad A=\\frac{\\sqrt{3}}{4}a^2' },
+        visual: (h) => {
+          h.innerHTML = bonusList([
+            '<b>不用公式</b>：邊長 \\(a\\) 的正三角形，作高、用畢氏定理，寫出它的高為什麼是 \\(\\dfrac{\\sqrt{3}}{2}a\\)。',
+            '邊長 \\(8\\) 的正三角形，求它的高與面積。',
+            '正三角形的高是 \\(6\\)，求它的邊長與面積。',
+            '正三角形的面積是 \\(36\\sqrt{3}\\)，求它的邊長。'
+          ]);
+        },
+        caption: '第 3、4 題是把公式倒過來用：先列等式，再解出邊長。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '加分題 ②｜斜邊上的高',
+        points: [
+          '寫在紙上，<b>過程要寫出來</b>，寫完交給老師，列入平時成績加分。',
+          '第 1 題不能套公式，要用「面積算兩次」推出來；第 2～4 題可以直接用公式。',
+          '斜邊沒給的，先用畢氏定理求；答案分母有根號要有理化。'
+        ],
+        formula: { label: '用得到的公式', tex: 'h=\\frac{ab}{c}' },
+        visual: (h) => {
+          h.innerHTML = bonusList([
+            '<b>不用公式</b>：直角三角形兩股 \\(a\\)、\\(b\\)，斜邊 \\(c\\)，用「同一個面積算兩次」說明斜邊上的高 \\(h=\\dfrac{ab}{c}\\)。',
+            '直角三角形兩股 \\(5\\)、\\(12\\)，求斜邊上的高。',
+            '直角三角形斜邊 \\(10\\)、一股 \\(6\\)，求斜邊上的高。',
+            '等腰直角三角形兩股都是 \\(4\\)，求斜邊上的高。'
+          ]);
+        },
+        caption: '答案不在這一頁；第 3 題要先求另一股。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '對答案｜加分題 ①（正三角形）',
+        points: [
+          '<b>收完卷再翻到這一頁。</b>',
+          '第 1 題看推導有沒有接得上，不只看最後一行。',
+          '只寫答案、沒有過程的，照老師的規定給分。'
+        ],
+        formula: { label: '正三角形公式', tex: 'h=\\frac{\\sqrt{3}}{2}a\\qquad A=\\frac{\\sqrt{3}}{4}a^2' },
+        visual: (h) => {
+          h.innerHTML = bonusKey([
+            ['推導', '底邊被平分成 \\(\\tfrac a2\\)；\\(h^2=a^2-(\\tfrac a2)^2=\\tfrac34a^2\\)，所以 \\(h=\\tfrac{\\sqrt3}{2}a\\)'],
+            ['高 \\(4\\sqrt3\\)、面積 \\(16\\sqrt3\\)', '\\(\\tfrac{\\sqrt3}{2}\\times8\\)；\\(\\tfrac{\\sqrt3}{4}\\times8^2=\\tfrac{\\sqrt3}{4}\\times64\\)'],
+            ['邊長 \\(4\\sqrt3\\)、面積 \\(12\\sqrt3\\)', '\\(\\tfrac{\\sqrt3}{2}a=6\\Rightarrow a=\\tfrac{12}{\\sqrt3}=4\\sqrt3\\)；面積 \\(\\tfrac12\\times4\\sqrt3\\times6\\)'],
+            ['邊長 \\(12\\)', '\\(\\tfrac{\\sqrt3}{4}a^2=36\\sqrt3\\Rightarrow a^2=144\\)']
+          ]);
+        },
+        caption: '第 3 題的面積也可以用公式：\\(\\tfrac{\\sqrt3}{4}\\times(4\\sqrt3)^2=\\tfrac{\\sqrt3}{4}\\times48\\)，答案一樣。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '對答案｜加分題 ②（斜邊上的高）',
+        points: [
+          '<b>收完卷再翻到這一頁。</b>',
+          '第 1 題看推導有沒有接得上，不只看最後一行。',
+          '只寫答案、沒有過程的，照老師的規定給分。'
+        ],
+        formula: { label: '斜邊上的高', tex: 'h=\\frac{ab}{c}' },
+        visual: (h) => {
+          h.innerHTML = bonusKey([
+            ['推導', '\\(\\tfrac12ab=\\tfrac12ch\\)，兩邊乘 2 得 \\(ab=ch\\)，所以 \\(h=\\tfrac{ab}{c}\\)'],
+            ['\\(\\tfrac{60}{13}\\)', '斜邊 \\(\\sqrt{25+144}=13\\)；\\(h=\\tfrac{5\\times12}{13}\\)'],
+            ['\\(\\tfrac{24}{5}\\)', '另一股 \\(\\sqrt{100-36}=8\\)；\\(h=\\tfrac{6\\times8}{10}=\\tfrac{48}{10}\\)'],
+            ['\\(2\\sqrt2\\)', '斜邊 \\(4\\sqrt2\\)；\\(h=\\tfrac{4\\times4}{4\\sqrt2}=\\tfrac{4}{\\sqrt2}=2\\sqrt2\\)']
+          ]);
+        },
+        caption: '第 4 題也可以這樣想：等腰直角三角形斜邊上的高把斜邊平分，高等於斜邊的一半。'
       },
 
       {
