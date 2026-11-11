@@ -131,6 +131,16 @@ window.DECK = window.DECK || [];
     return row(0, '圓心角', '＝ 弧', '（一樣大）', VIO) + row(1, '圓周角', '＝ 弧 ÷ 2', '（小一半）', GRN);
   };
 
+  const EXW = 236, EXH = 140;
+  const exWrap = (inner, w) =>
+    `<svg viewBox="0 0 ${EXW} ${EXH}" style="width:${w || 62}%;display:block;margin:2px auto 0">${inner}</svg>`;
+  const exTX = (x, y, t, o = {}) =>
+    `<text x="${x}" y="${y}" ${o.anchor ? `text-anchor="${o.anchor}"` : ''} font-size="${o.fs || 12}" font-weight="900" fill="${o.c || INK}">${t}</text>`;
+
+  const xoBar = (x, y, w, t, col) =>
+    BOX(x, y, w, 44, { r: 11, fill: col === RED ? 'rgba(225,29,72,.07)' : 'rgba(5,150,105,.09)', stroke: col, sw: 2 })
+    + TX(x + w / 2, y + 29, t, { anchor: 'middle', fs: 18, c: col });
+
   window.DECK.push({
     ch: 2,
     title: '圓形',
@@ -176,6 +186,108 @@ window.DECK = window.DECK || [];
           ], { acc: false });
         },
         caption: '名詞很多不要緊——<b>先認得圖上是哪一段</b>，名字自然就記住了。'
+      },
+
+      {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '回顧｜畢氏定理：兩股平方相加，再開根號',
+        points: [
+          '<b>斜邊</b>是直角對面的那一邊，也是最長的邊。',
+          '兩股各自平方、加起來，就等於斜邊的平方：\\(a^2+b^2=c^2\\)。',
+          '算到 \\(c^2=25\\) 還沒完，要<b>再開根號</b>：\\(c=5\\)。開不盡的就留根號，下一頁化簡。'
+        ],
+        formula: { label: '畢氏定理（八上學過）', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          const SETS = [[3, 4, '5', '25'], [6, 8, '10', '100'], [5, 12, '13', '169'], [2, 4, null, '20']];
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>換一組兩股：第 <span class="ival" id="pv">1</span> 組</label>
+            <input type="range" id="ps" min="1" max="4" step="1" value="1"></div></div>`;
+          const draw = () => {
+            const i = Math.min(4, Math.max(1, +h.querySelector('#ps').value || 1));
+            h.querySelector('#pv').textContent = i;
+            const [a, b, c, c2] = SETS[i - 1];
+            const sc = Math.min(150 / b, 230 / a, 30);
+            const C = [60, 190], B = [60 + a * sc, 190], A = [60, 190 - b * sc];
+            let s = SV.poly([A, B, C], 'rgba(37,99,235,.06)', INK, 2.2);
+            s += SV.rightAngle(C[0], C[1], 0, 90, 12, GREY);
+            s += SV.seg(A[0], A[1], B[0], B[1], AMB, 4);
+            s += TX((C[0] + B[0]) / 2, 214, '股 ' + a, { anchor: 'middle', fs: 16, c: BLU });
+            s += TX(C[0] - 8, (A[1] + C[1]) / 2 + 5, '股 ' + b, { anchor: 'end', fs: 16, c: BLU });
+            s += TX((A[0] + B[0]) / 2 + 10, (A[1] + B[1]) / 2 - 8, '斜邊 c', { fs: 16, c: AMB });
+            const x = 300;
+            s += TX(x, 70, a + '² ＋ ' + b + '² ＝ c²', { fs: 18, c: INK });
+            s += TX(x, 104, (a * a) + ' ＋ ' + (b * b) + ' ＝ c²', { fs: 18, c: INK });
+            s += TX(x, 138, 'c² ＝ ' + c2, { fs: 18, c: INK });
+            s += c ? TX(x, 176, 'c ＝ ' + RT(c2) + ' ＝ ' + c, { fs: 20, c: GRN })
+                   : TX(x, 176, 'c ＝ ' + RT(c2), { fs: 20, c: AMB });
+            s += TX(x, 206, c ? '開得盡，答案是整數' : '開不盡：下一頁化簡', { fs: 14, c: GREY });
+            s += TX(220, 252, '平方加起來之後，一定要再開一次根號', { anchor: 'middle', fs: 16, c: INK });
+            h.querySelector('#fig').innerHTML = svg('0 0 460 270', s);
+            radBars(h);
+          };
+          h.querySelector('#ps').oninput = draw;
+          draw();
+        },
+        caption: '⚠ 最常漏的一步：寫到 \\(c^2=100\\) 就停。<b>等號左邊有平方，答案就要再開根號</b>。',
+        example: {
+          q: '直角三角形的斜邊是 \\(13\\)，一股是 \\(5\\)，求另一股。'
+            + exWrap(
+                `<polygon points="70,104 130,104 70,18" fill="rgba(37,99,235,.05)" stroke="${BLU}" stroke-width="1.8"/>`
+                + `<polyline points="70,94 80,94 80,104" fill="none" stroke="${GREY}" stroke-width="1.4"/>`
+                + `<line x1="70" y1="18" x2="130" y2="104" stroke="${AMB}" stroke-width="3.2"/>`
+                + exTX(100, 118, '5', { anchor: 'middle', fs: 12, c: BLU })
+                + exTX(58, 64, '?', { anchor: 'middle', fs: 13, c: BLU })
+                + exTX(112, 56, '13', { anchor: 'middle', fs: 12, c: AMB })),
+          steps: [
+            '斜邊是 \\(13\\)，所以 \\(5^2+b^2=13^2\\)。',
+            '\\(b^2=169-25=144\\)。'
+          ],
+          ans: '\\(b=\\sqrt{144}=12\\)'
+        }
+      },
+      {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '回顧｜根式化簡：最大的平方數搬到根號外',
+        points: [
+          '根號裡拆成「<b>平方數 × 剩下的</b>」，平方數開出來，搬到外面。',
+          '要找<b>最大的</b>平方數：4、9、16、25、36……一次搬完。',
+          '答案留根號就是答案。想知道大約多大，用 \\(\\sqrt3\\approx1.7\\)、\\(\\sqrt2\\approx1.4\\) 去乘。'
+        ],
+        formula: { label: '平方數開出來搬到外面', tex: '\\sqrt{27}=\\sqrt{9\\times3}=3\\sqrt3' },
+        visual: (h) => {
+
+          const SETS = [[20, 4, 2, 5, '2 × 2.2 ＝ 4.4'], [27, 9, 3, 3, '3 × 1.7 ＝ 5.1'], [12, 4, 2, 3, '2 × 1.7 ＝ 3.4'],
+                        [32, 16, 4, 2, '4 × 1.4 ＝ 5.6'], [75, 25, 5, 3, '5 × 1.7 ＝ 8.5']];
+          h.innerHTML = `<div style="width:100%"><div id="fig"></div>
+            <div class="ictrl"><label>換一題：第 <span class="ival" id="rv">1</span> 題</label>
+            <input type="range" id="rs" min="1" max="5" step="1" value="1"></div></div>`;
+          const draw = () => {
+            const i = Math.min(5, Math.max(1, +h.querySelector('#rs').value || 1));
+            h.querySelector('#rv').textContent = i;
+            const [n, sq, k, m, est] = SETS[i - 1];
+            let s = TX(230, 44, '根號裡有哪個平方數？', { anchor: 'middle', fs: 16, c: GREY });
+            s += TX(230, 90, RT(n) + ' ＝ ' + RT(sq + ' × ' + m), { anchor: 'middle', fs: 24, c: INK });
+            s += TX(230, 140, '＝ ' + k + RT(m), { anchor: 'middle', fs: 28, c: GRN });
+            s += TX(230, 172, sq + ' 開出來是 ' + k + '，搬到外面；' + m + ' 留在裡面', { anchor: 'middle', fs: 15, c: BLU });
+            s += BOX(80, 196, 300, 44, { r: 10, fill: 'rgba(217,119,6,.08)', stroke: AMB, sw: 2 });
+            s += TX(230, 224, '大約多大：' + est, { anchor: 'middle', fs: 16, c: AMB });
+            s += xoBar(28, 254, 190, '✗ ' + RT(n) + ' ＝ ' + RT(m), RED);
+            s += xoBar(242, 254, 190, '✓ ' + RT(n) + ' ＝ ' + k + RT(m), GRN);
+            h.querySelector('#fig').innerHTML = svg('0 0 460 300', s);
+            radBars(h);
+          };
+          h.querySelector('#rs').oninput = draw;
+          draw();
+        },
+        caption: '⚠ 平方數不能直接丟掉：\\(\\sqrt{12}\\) 不是 \\(\\sqrt3\\)，是 \\(2\\sqrt3\\)。<b>寫出「平方數 × 剩下的」那一步</b>。',
+        example: {
+          q: '30-60-90 的直角三角形，短股是 \\(4\\)，斜邊是 \\(8\\)，用畢氏定理求長股，並化成最簡根式。',
+          steps: [
+            '\\(4^2+b^2=8^2\\)，\\(b^2=64-16=48\\)。',
+            '\\(b=\\sqrt{48}=\\sqrt{16\\times3}\\)。'
+          ],
+          ans: '\\(b=4\\sqrt3\\)（和 \\(1:\\sqrt3:2\\) 算出來的一樣）'
+        }
       },
 
       {

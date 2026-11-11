@@ -199,6 +199,74 @@ window.DECK = window.DECK || [];
     + FT(85, -12, '2√3', 26, ' text-anchor="middle"') + FT(178, 22, '1', 24)
     + FT(-10, 84, '√3+√2', 26, ' text-anchor="end"') + FT(145, 184, '2√3+√6', 26, ' text-anchor="middle"'));
 
+  const FS = 24;
+
+  window.FIGURES_LOCAL['three-semicircles-on-triangle'] = FIG('20 -130 300 372',
+    '<path d="M116.4,10 A98.8,98.8 0 0 0 192.4,192.4 Z" fill="#EAF2E6" stroke="#17212B" stroke-width="2"/>'
+    + '<path d="M192.4,10 A38,38 0 0 0 116.4,10 Z" fill="#EEF3F8" stroke="#17212B" stroke-width="2"/>'
+    + '<path d="M192.4,192.4 A91.2,91.2 0 0 0 192.4,10 Z" fill="#F6E7EC" stroke="#17212B" stroke-width="2"/>'
+    + '<path d="M192.4,10 L192.4,192.4 L116.4,10 Z" fill="none" stroke="#17212B" stroke-width="2" stroke-linejoin="round"/>'
+    + '<rect x="181.4" y="10" width="11" height="11" fill="none" stroke="#17212B" stroke-width="1.2"/>'
+    + FT(196, -4, 'A', FS, ' font-style="italic"') + FT(196, 220, 'B', FS, ' font-style="italic"')
+    + FT(112, -4, 'C', FS, ' font-style="italic" text-anchor="end"')
+    + FT(104, 112, '甲', FS, ' text-anchor="middle"') + FT(154.4, 4, '乙', 20, ' text-anchor="middle"')
+    + FT(240, 110, '丙', FS, ' text-anchor="middle"'));
+
+  window.FIGURES_LOCAL['two-squares-on-legs'] = FIG('-20 -96 224 290',
+    '<rect x="0" y="0" width="96" height="96" fill="#FFFFFF" stroke="#17212B" stroke-width="2"/>'
+    + '<rect x="96" y="96" width="64" height="64" fill="#FFFFFF" stroke="#17212B" stroke-width="2"/>'
+    + '<path d="M96,0 L96,96 L160,96 Z" fill="#FDF6C8" stroke="#17212B" stroke-width="2" stroke-linejoin="round"/>'
+    + '<rect x="96" y="85" width="11" height="11" fill="none" stroke="#17212B" stroke-width="1.2"/>'
+    + FT(100, -8, 'A', FS, ' font-style="italic"') + FT(90, 122, 'B', FS, ' font-style="italic" text-anchor="end"')
+    + FT(166, 90, 'C', FS, ' font-style="italic"')
+    + FT(48, 56, '9 cm²', 22, ' text-anchor="middle"') + FT(128, 136, '4 cm²', 17, ' text-anchor="middle"'));
+
+  window.FIGURES_LOCAL['pinwheel-squares-13'] = FIG('-14 -96 318 426',
+    [[119.6, 0], [0, 46], [46, 165.6], [165.6, 119.6]].map(([x, y]) =>
+      `<rect x="${x}" y="${y}" width="119.6" height="119.6" fill="#FFFFFF" stroke="#17212B" stroke-width="2"/>`).join('')
+    + '<rect x="119.6" y="119.6" width="46" height="46" fill="#FDF6C8" stroke="#17212B" stroke-width="1.8"/>'
+    + '<path d="M119.6,46 L239.2,119.6 L165.6,239.2 L46,165.6 Z" fill="none" stroke="#0B4F9C" stroke-width="2" stroke-dasharray="8 6"/>'
+    + FT(112, 38, 'A', FS, ' font-style="italic" text-anchor="end" fill="#0B4F9C"').replace('fill="#17212B"', '')
+    + FT(40, 190, 'B', FS, ' font-style="italic" text-anchor="end" fill="#0B4F9C"').replace('fill="#17212B"', '')
+    + FT(172, 264, 'C', FS, ' font-style="italic" fill="#0B4F9C"').replace('fill="#17212B"', '')
+    + FT(246, 112, 'D', FS, ' font-style="italic" fill="#0B4F9C"').replace('fill="#17212B"', '')
+    + FT(142.6, 150, '5', 22, ' text-anchor="middle"') + FT(105.8, 312, '13', FS, ' text-anchor="middle"'));
+
+  window.FIGURES_LOCAL['two-squares-shared-vertex'] = FIG('-104 -96 356 372',
+    '<path d="M73.6,27.6 L-64.4,92.65 L0.65,230.65 L138.65,165.6 Z" fill="#FFFFFF" stroke="#17212B" stroke-width="2" stroke-linejoin="round"/>'
+    + '<path d="M73.6,27.6 L211.6,27.6 L211.6,165.6 L73.6,165.6 Z" fill="#FFFFFF" stroke="#17212B" stroke-width="2" stroke-linejoin="round"/>'
+    + '<path d="M73.6,27.6 L138.65,165.6 L73.6,165.6 Z" fill="#FDF6C8" stroke="#17212B" stroke-width="1.8" stroke-linejoin="round"/>'
+    + FT(68, 18, 'A', FS, ' font-style="italic" text-anchor="end"') + FT(218, 22, 'G', FS, ' font-style="italic"')
+    + FT(-72, 100, 'B', FS, ' font-style="italic" text-anchor="end"') + FT(-6, 258, 'C', FS, ' font-style="italic"')
+    + FT(68, 190, 'E', FS, ' font-style="italic" text-anchor="end"') + FT(140, 192, 'D', FS, ' font-style="italic"')
+    + FT(218, 188, 'F', FS, ' font-style="italic"'));
+
+  window.FIGURES_LOCAL['walk-path-ab'] = FIG('-48 -110 296 262',
+    '<path d="M0,102 L102,102 L102,34 L68,34 L68,0 L204,0 Z" fill="none" stroke="#17212B" stroke-width="2.4" stroke-linejoin="round"/>'
+    + FT(-8, 110, 'A', FS, ' font-style="italic" text-anchor="end"') + FT(212, 8, 'B', FS, ' font-style="italic"')
+    + FT(51, 130, '3', FS, ' text-anchor="middle"') + FT(110, 76, '2', FS)
+    + FT(85, 27, '1', FS, ' text-anchor="middle"') + FT(60, 26, '1', FS, ' text-anchor="end"')
+    + FT(136, -10, '4', FS, ' text-anchor="middle"'));
+
+  window.FIGURES_LOCAL['two-squares-diagonal-14-20'] = FIG('-14 -104 320 300',
+    '<rect x="30" y="102" width="52" height="52" fill="#FDF6C8" stroke="#17212B" stroke-width="2"/>'
+    + '<rect x="82" y="4" width="150" height="150" fill="#EEF3F8" stroke="#17212B" stroke-width="2"/>'
+    + '<line x1="82" y1="102" x2="232" y2="102" stroke="#0B4F9C" stroke-width="1.8" stroke-dasharray="8 6"/>'
+    + '<rect x="221" y="91" width="11" height="11" fill="none" stroke="#17212B" stroke-width="1.2"/>'
+    + '<path d="M30,102 L232,4" fill="none" stroke="#C2185B" stroke-width="2.6"/>'
+    + FT(122, 40, '20', FS, ' text-anchor="middle"') + FT(22, 136, 'a', FS, ' font-style="italic" text-anchor="end"')
+    + FT(56, 180, 'a', FS, ' font-style="italic" text-anchor="middle"') + FT(157, 180, '14', FS, ' text-anchor="middle"')
+    + FT(240, 60, '14−a', 22));
+
+  window.FIGURES_LOCAL['right-trapezoid-4-3'] = FIG('-14 -92 316 236',
+    '<path d="M30,26 L157,26 L278,126 L30,126 Z" fill="#EEF3F8" stroke="#17212B" stroke-width="2" stroke-linejoin="round"/>'
+    + '<path d="M157,26 L278,126" fill="none" stroke="#C2185B" stroke-width="3"/>'
+    + '<line x1="157" y1="26" x2="157" y2="126" stroke="#0B4F9C" stroke-width="1.8" stroke-dasharray="8 6"/>'
+    + '<rect x="30" y="26" width="11" height="11" fill="none" stroke="#17212B" stroke-width="1.2"/>'
+    + '<rect x="30" y="115" width="11" height="11" fill="none" stroke="#17212B" stroke-width="1.2"/>'
+    + FT(93.5, 16, '4', FS, ' text-anchor="middle"') + FT(20, 84, '3', FS, ' text-anchor="end"')
+    + FT(93.5, 86, '18 m²', 22, ' text-anchor="middle"') + FT(228, 66, '?', 30, ' fill="#C2185B"').replace('fill="#17212B"', ''));
+
   function gradeRows(rows) {
     return `<div class="xo-wrap" style="width:99.5%;margin:0 auto;display:flex;flex-direction:column;gap:9px">` +
       rows.map(r => `<div class="xo-row" style="border:1.5px solid #94a3b8;border-radius:12px;background:#fff;padding:9px 13px">
@@ -3437,6 +3505,200 @@ window.DECK = window.DECK || [];
           }
           PRACTICE.page(h, '2-3', [
             { src: '試卷・課堂評量', page: '印 21', sub: '計算 1、2', tags: ['評計1', '評計2'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '對答案｜平時練習卷 ①（選擇 1～10）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-3', [
+            { label: '選擇 1～10（印 1）', cols: 3, items: [
+              ['1', '平選1'], ['2', '平選2'], ['3', '平選3'],
+              ['4', '平選4'], ['5', '平選5'], ['6', '平選6'],
+              ['7', '平選7'], ['8', '平選8'], ['9', '平選9'],
+              ['10', '平選10']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '對答案｜平時練習卷 ②（填充、計算、加分題）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），老師唸題號，學生照著改同學的卷子。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-3', [
+            { label: '填充 1～3（印 1）', cols: 3, items: [
+              ['填 1', '平填1'], ['填 2', '平填2'], ['填 3', '平填3']
+            ] },
+            { label: '填充 4～7（印 2）', cols: 2, items: [
+              ['填 4', '平填4'], ['填 5', '平填5'], ['填 6', '平填6'], ['填 7', '平填7']
+            ] },
+            { label: '計算（印 2）', cols: 2, items: [
+              ['計 1', '平計1'], ['計 2', '平計2']
+            ] },
+            { label: '加分題（老師補充）', cols: 2, items: [
+              ['加 1', '平加1'], ['加 2', '平加2']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜平時練習卷 ①（選擇 1～4）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 1～4', tags: ['平選1', '平選2', '平選3', '平選4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜平時練習卷 ②（選擇 5～7）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 5～7', tags: ['平選5', '平選6', '平選7'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜平時練習卷 ③（選擇 8～10）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・平時練習卷', page: '印 1', sub: '選擇 8～10', tags: ['平選8', '平選9', '平選10'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜平時練習卷 ④（填充 1～4）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・平時練習卷', page: '印 1–2', sub: '填充 1～4', tags: ['平填1', '平填2', '平填3', '平填4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜平時練習卷 ⑤（填充 5～7）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・平時練習卷', page: '印 2', sub: '填充 5～7', tags: ['平填5', '平填6', '平填7'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜平時練習卷 ⑥（計算 1、2）',
+        points: [
+          '這是<b>平時練習卷</b>：改完卷子就用這裡逐題檢討。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・平時練習卷', page: '印 2', sub: '計算 1、2', tags: ['平計1', '平計2'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '檢討｜平時練習卷 ⑦（加分題 1、2）',
+        points: [
+          '卷末的兩題<b>加分題</b>：先自己想，再點題號看詳解。',
+          '題號跟紙本一樣（選 / 填 / 計），老師唸題號、學生翻卷子。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'a^2+b^2=c^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '2-3', [
+            { src: '試卷・平時練習卷', page: '老師補充', sub: '加分題 1、2', tags: ['平加1', '平加2'] }
           ]);
         },
         caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
