@@ -141,11 +141,48 @@ window.DECK = window.DECK || [];
     BOX(x, y, w, 44, { r: 11, fill: col === RED ? 'rgba(225,29,72,.07)' : 'rgba(5,150,105,.09)', stroke: col, sw: 2 })
     + TX(x + w / 2, y + 29, t, { anchor: 'middle', fs: 18, c: col });
 
+  const CPA = AMB, CPL = BLU;
+  const LERP = (p, q, k) => [p[0] + (q[0] - p[0]) * k, p[1] + (q[1] - p[1]) * k];
+  const DIST = (p, q) => Math.hypot(q[0] - p[0], q[1] - p[1]);
+  const ANG = (c, p) => SV.angleOf(c[0], c[1], p[0], p[1]);
+
+  const CARC = (c, r, d0, d1, k, col, w) => {
+    const kk = k === undefined ? 1 : k;
+    if (kk <= 0.001) return '';
+    const e = d1 < d0 ? d1 + 360 : d1;
+    return `<polyline points="${SV.arcPoints(c[0], c[1], r, d0, d0 + (e - d0) * kk, 72)}" fill="none" stroke="${col || CPA}" stroke-width="${w || 2.2}" stroke-linecap="round" stroke-linejoin="round"/>`;
+  };
+
+  const CARCAT = (c, p, sp, k, col) => { const a = ANG(c, p); return CARC(c, DIST(c, p), a - sp, a + sp, k, col); };
+
+  const RL = (p, q, k, col, w, dash) => {
+    const kk = k === undefined ? 1 : k;
+    return kk <= 0.001 ? '' : SEG(p, LERP(p, q, kk), col || CPL, w || 2.4, dash);
+  };
+
+  const EXT = (p, q, a, b) => [LERP(p, q, -a), LERP(p, q, 1 + b)];
+
+  const XM = (p, col) => {
+    const s = 5.5, c = col || CPA;
+    return SV.seg(p[0] - s, p[1] - s, p[0] + s, p[1] + s, c, 2.4) + SV.seg(p[0] - s, p[1] + s, p[0] + s, p[1] - s, c, 2.4);
+  };
+
+  const PN = (p, name, dx, dy, col) => DOT(p, col || INK, 3.8) + TX(p[0] + dx, p[1] + dy, name, { fs: 16, c: col || INK });
+
+  const CCI = (c1, r1, c2, r2) => {
+    const d = DIST(c1, c2), a = (r1 * r1 - r2 * r2 + d * d) / (2 * d), hh = Math.sqrt(Math.max(0, r1 * r1 - a * a));
+    const m = LERP(c1, c2, a / d), ux = (c2[0] - c1[0]) / d, uy = (c2[1] - c1[1]) / d;
+    const p1 = [m[0] - hh * uy, m[1] + hh * ux], p2 = [m[0] + hh * uy, m[1] - hh * ux];
+    return p1[1] <= p2[1] ? [p1, p2] : [p2, p1];
+  };
+
+  const RULER = `<span style="color:${CPL}">【直尺】</span>`, COMPASS = `<span style="color:${CPA}">【圓規】</span>`;
+
   window.DECK.push({
     ch: 2,
     title: '圓形',
     color: C,
-    sections: ['2-1 點、直線與圓之間的位置關係', '2-2 圓心角、圓周角與弧的關係', '段考 第二次（1-4～2-2）'],
+    sections: ['2-1 點、直線與圓之間的位置關係', '2-2 圓心角、圓周角與弧的關係', '作圖 尺規作圖', '段考 第二次（1-4～2-2）'],
     slides: [
 
       {
@@ -1582,7 +1619,7 @@ window.DECK = window.DECK || [];
         title: '練習｜課本隨堂（圓內接四邊形）',
         points: [
           '印 124 兩題：一題對角互補、一題外角等於內對角。',
-          '印 126 是<b>作圖題</b>，看懂就好，不要求自己畫。',
+          '印 126 是<b>作圖題</b>，後面「尺規作圖」那一節一步一步畫。',
           '⚠ 內對角要找<b>斜對面</b>那個。'
         ],
         formula: { label: '這一節在練<span class="pgref">課本 印 124–126</span>', tex: '\\angle A+\\angle C=180\\degree' },
@@ -1590,10 +1627,11 @@ window.DECK = window.DECK || [];
           if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
           PRACTICE.page(h, '2-2', [
             { src: '課本', page: '印 124', sub: '對角互補與外角', tags: ['課P124 第1題', '課P124 第2題'] },
-            { src: '課本', page: '印 126', sub: '作圖，看懂就好', tags: ['課P126'], level: '額外的' }
+            { src: '課本', page: '印 126', sub: '過圓外一點的切線', tags: ['課P126'] }
           ]);
         },
-        caption: '印 126 的<b>尺規作圖看懂就好</b>，不用自己會畫。'
+
+        caption: '印 126 的作圖，在「尺規作圖」那一節<b>一步一步畫</b>。'
       },
 
       {
@@ -1727,6 +1765,450 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '只到「答」這一層——<b>為什麼錯，回前面的自我評量頁點題號看詳解</b>。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '尺規作圖：只用直尺和圓規',
+        points: [
+          '<b>直尺</b>只用來連線、延長，不看刻度。',
+          '<b>圓規</b>用來畫弧、畫圓，也可以量一段長度、搬到別的地方。',
+          '畫出來的弧和交叉記號「×」都要<b>留在紙上</b>，那是用尺規畫的證據。',
+          '先練兩個基本功，再畫五種圖。'
+        ],
+        formula: { label: '兩樣工具<span class="pgref">課本 印 121–131</span>', tex: '\\text{直尺：連線}\\quad;\\quad\\text{圓規：畫弧、量長度}' },
+        visual: (h) => {
+          const NEED = [95, 236], PEN = [185, 236], HINGE = [140, 122];
+          const rows = [
+            ['基本功', '找中點、過線上一點畫垂線', GREY],
+            ['切線', '過圓上一點、過圓外一點', BLU],
+            ['直角三角形', '給一弦，畫出直角三角形', GRN],
+            ['正三角形', '圓內接正三角形（兩種畫法）', VIO],
+            ['找圓心', '給一段弧，把圓心找回來', AMB]
+          ];
+          SV.stepper(h, SECVB, [
+            { t: '兩樣工具：直尺只連線，圓規畫弧、量長度。',
+              d: () => SECBG
+                + BOX(40, 30, 360, 40, { r: 6, fill: '#f8fafc', stroke: INK, sw: 2 })
+                + TX(220, 56, '直尺：只連線、延長，不看刻度', { anchor: 'middle', fs: 16, c: CPL })
+                + SV.seg(HINGE[0], HINGE[1], NEED[0], NEED[1], INK, 3.4) + SV.seg(HINGE[0], HINGE[1], PEN[0], PEN[1], INK, 3.4)
+                + `<circle cx="${HINGE[0]}" cy="${HINGE[1]}" r="7" fill="${INK}"/>`
+                + CARC(NEED, 90, -14, 34, 1, CPA, 3)
+                + TX(NEED[0] - 6, NEED[1] + 22, '針尖', { anchor: 'middle', fs: 13, c: GREY })
+                + TX(PEN[0] + 6, PEN[1] + 22, '筆尖', { anchor: 'middle', fs: 13, c: GREY })
+                + TX(250, 150, '圓規：畫弧、畫圓', { fs: 16, c: CPA })
+                + TX(250, 178, '也可以量一段長度，', { fs: 15, c: GREY })
+                + TX(250, 202, '搬到別的地方', { fs: 15, c: GREY }) },
+            { t: '這一節要畫的圖：先練基本功，再畫五種。',
+              d: () => SECBG + rows.map((r, i) => {
+                const y = 22 + i * 52;
+                return BOX(16, y, 408, 42, { r: 11, fill: '#fbfcfe', stroke: '#dce3ee', sw: 1.6 })
+                  + TX(30, y + 28, r[0], { fs: 16, c: r[2] })
+                  + TX(140, y + 28, r[1], { fs: 15, c: INK });
+              }).join('') }
+          ], { acc: false });
+        },
+        caption: '⚠ 畫錯的地方可以重畫，但<b>弧和「×」不要擦掉</b>。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '基本功｜找中點：畫中垂線',
+        points: [
+          '找線段的<b>中點</b>，不能用尺量了再除以 2。',
+          '兩次畫弧，圓規<b>張開的大小要一樣</b>，而且要超過線段的一半。',
+          '兩個交點 C、D 連起來就是<b>中垂線</b>：和線段垂直，又剛好穿過中點。',
+          'C、D 到 A、B 都一樣遠，所以都在中垂線上。'
+        ],
+        formula: { label: '八年級學過', tex: '\\overline{AM}=\\overline{MB}' },
+        visual: (h) => {
+          const A = [100, 150], B = [340, 150], r = 150;
+          const [X1, X2] = CCI(A, r, B, r), M = LERP(A, B, 0.5), [L1, L2] = EXT(X1, X2, 0.1, 0.1);
+          SV.stepper(h, SECVB, [
+            { t: '題目給一條線段 AB，要找它的中點。',
+              d: () => SECBG + SEG(A, B, INK, 2.8) + PN(A, 'A', -22, 6) + PN(B, 'B', 10, 6) },
+            { t: COMPASS + '以 A 為圓心，張開<b>超過 AB 的一半</b>，在上方、下方各畫一段弧。',
+              d: (k) => CARCAT(A, X1, 16, k) + CARCAT(A, X2, 16, k) },
+            { t: COMPASS + '<b>張開的大小不變</b>，改以 B 為圓心，上下各畫一段弧，交出兩點 C、D。',
+              d: (k) => CARCAT(B, X1, 16, k) + CARCAT(B, X2, 16, k)
+                + (k > 0.95 ? XM(X1) + XM(X2) + TX(X1[0] + 10, X1[1] - 6, 'C', { fs: 16, c: CPA }) + TX(X2[0] + 10, X2[1] + 16, 'D', { fs: 16, c: CPA }) : '') },
+            { t: RULER + '連接 C、D 畫成直線：這是 AB 的<b>中垂線</b>，和 AB 交在中點 M。',
+              d: (k) => RL(L1, L2, k) + (k > 0.9
+                ? SV.rightAngle(M[0], M[1], 0, 90, 12, GRN) + SV.ticks(A[0], A[1], M[0], M[1], 1, GRN) + SV.ticks(M[0], M[1], B[0], B[1], 1, GRN)
+                  + PN(M, 'M', 8, 22, GRN) : '') }
+          ]);
+        },
+        caption: '⚠ 弧要畫得<b>夠長</b>才交得到；交不到就把弧再畫長一點。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '基本功｜過直線上一點 P，畫垂線',
+        points: [
+          '先在 P 的左右各截一點 M、N，讓 \\(\\overline{PM}=\\overline{PN}\\)。',
+          '再以 M、N 為圓心、<b>同樣大小</b>（比 PM 大）畫弧，交點 Q 和 P 連起來。',
+          '直線在 P 是 \\(180\\degree\\) 的平角，\\(\\overleftrightarrow{PQ}\\) 把它分成兩個 \\(90\\degree\\)。',
+          '不能用三角板的直角或量角器來畫。'
+        ],
+        formula: { label: '八年級學過', tex: '\\overleftrightarrow{PQ}\\perp\\text{直線}' },
+        visual: (h) => {
+          const Pp = [220, 205], M = [140, 205], N = [300, 205], r2 = 130;
+          const [Q] = CCI(M, r2, N, r2);
+          SV.stepper(h, SECVB, [
+            { t: '題目給一條直線和線上一點 P，要過 P 畫一條和直線垂直的線。',
+              d: () => SECBG + SEG([30, 205], [410, 205], INK, 2.6) + PN(Pp, 'P', -5, 26) },
+            { t: COMPASS + '以 P 為圓心、隨便張開，在 P 的左、右各畫一小段弧，交直線於 M、N。',
+              d: (k) => CARC(Pp, 80, 165, 195, k) + CARC(Pp, 80, -15, 15, k)
+                + (k > 0.95 ? PN(M, 'M', -6, 26, CPA) + PN(N, 'N', -6, 26, CPA) : '') },
+            { t: COMPASS + '張開<b>比 PM 大</b>，以 M 為圓心，在直線上方畫一段弧。',
+              d: (k) => CARCAT(M, Q, 14, k) },
+            { t: COMPASS + '<b>大小不變</b>，改以 N 為圓心畫弧，兩段弧交出「×」，叫它 Q。',
+              d: (k) => CARCAT(N, Q, 14, k) + (k > 0.95 ? XM(Q) + TX(Q[0] + 10, Q[1] - 8, 'Q', { fs: 16, c: CPA }) : '') },
+            { t: RULER + '連接 P、Q，畫成直線，就是過 P 的垂線。',
+              d: (k) => RL([220, 250], [220, 34], k, GRN, 3) + (k > 0.9 ? SV.rightAngle(220, 205, 0, 90, 14, GRN) : '') }
+          ]);
+        },
+        caption: '⚠ 第 3、4 步圓規張開<b>要一樣大</b>，交點才會落在垂線上。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '過圓上一點 P，畫切線',
+        points: [
+          '切線和「圓心到切點」的半徑<b>垂直</b>（2-1 學過）。',
+          '所以只要過 P 畫一條和 \\(\\overline{OP}\\) 垂直的線，就是上一頁的基本功。',
+          '射線 OP 要<b>畫過頭</b>，P 的外側才交得到 N。'
+        ],
+        formula: { label: '切線垂直半徑<span class="pgref">課本 印 126</span>', tex: '\\overleftrightarrow{PQ}\\perp\\overline{OP}' },
+        visual: (h) => {
+          const O = [150, 165], R = 95, th = 25;
+          const u = [Math.cos(th * Math.PI / 180), -Math.sin(th * Math.PI / 180)];
+          const v = [-Math.sin(th * Math.PI / 180), -Math.cos(th * Math.PI / 180)];
+          const at = (p, d, s) => [p[0] + d[0] * s, p[1] + d[1] * s];
+          const Pp = at(O, u, R), END = at(O, u, R * 1.85), M = at(Pp, u, -48), N = at(Pp, u, 48);
+          const [Q] = CCI(M, 75, N, 75), T1 = at(Pp, v, 112), T2 = at(Pp, v, -100);
+          SV.stepper(h, SECVB, [
+            { t: '題目：P 在圓 O 上，要畫通過 P 的切線。',
+              d: () => SECBG + CIRC(O[0], O[1], R) + PN(O, 'O', -20, 6) + PN(Pp, 'P', 12, 18) },
+            { t: RULER + '從 O 經過 P 畫射線，<b>畫過頭</b>，超出 P 一段。',
+              d: (k) => RL(O, END, k, INK, 2.2) },
+            { t: COMPASS + '以 P 為圓心、隨便張開，在射線上 P 的兩側各畫一小段弧，交出 M、N。',
+              d: (k) => CARCAT(Pp, M, 14, k) + CARCAT(Pp, N, 14, k)
+                + (k > 0.95 ? PN(M, 'M', -8, 24, CPA) + PN(N, 'N', 2, 24, CPA) : '') },
+            { t: COMPASS + '張開<b>比 PM 大</b>，分別以 M、N 為圓心畫弧，交出「×」Q。',
+              d: (k) => CARCAT(M, Q, 13, Math.min(1, k * 2)) + CARCAT(N, Q, 13, Math.max(0, k * 2 - 1))
+                + (k > 0.95 ? XM(Q) + TX(Q[0] - 32, Q[1] + 8, 'Q', { fs: 16, c: CPA }) : '') },
+            { t: RULER + '連接 P、Q 畫成直線，就是過 P 的切線。',
+              d: (k) => RL(T2, T1, k, GRN, 3.2) + (k > 0.9 ? SV.rightAngle(Pp[0], Pp[1], th + 90, th + 180, 12, GRN) : '') }
+          ]);
+        },
+        caption: '⚠ 只畫到 P 就停，外側就沒有 N 可以用。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '過圓外一點 P，畫兩條切線',
+        points: [
+          '第 2～5 步是<b>找中點</b>的基本功：找出 \\(\\overline{OP}\\) 的中點 O′。',
+          '以 \\(\\overline{OP}\\) 為直徑畫圓，和圓 O 的兩個交點就是切點 A、B。',
+          '答案有<b>兩條</b>：\\(\\overleftrightarrow{PA}\\) 和 \\(\\overleftrightarrow{PB}\\)，都要畫成直線。'
+        ],
+        formula: { label: '例 8<span class="pgref">課本 印 126</span>', tex: '\\overline{OP}\\ \\text{是圓 O′ 的直徑}' },
+        visual: (h) => {
+          const O = [110, 150], R = 64, Pp = [350, 150], O2 = [230, 150], R2 = 120;
+          const [A, B] = CCI(O, R, O2, R2), [X1, X2] = CCI(O, 150, Pp, 150), [L1, L2] = EXT(X1, X2, 0.06, 0.06);
+          SV.stepper(h, SECVB, [
+            { t: '題目：P 在圓 O 外，要畫通過 P、和圓 O 相切的直線。',
+              d: () => SECBG + CIRC(O[0], O[1], R) + PN(O, 'O', -22, 6) + PN(Pp, 'P', 10, 6) },
+            { t: RULER + '連接 O、P。',
+              d: (k) => RL(O, Pp, k, INK, 2.2) },
+            { t: COMPASS + '以 O 為圓心，張開<b>超過 OP 的一半</b>，上下各畫一段弧。',
+              d: (k) => CARCAT(O, X1, 15, k) + CARCAT(O, X2, 15, k) },
+            { t: COMPASS + '<b>大小不變</b>，以 P 為圓心，上下各畫一段弧，交出兩個「×」。',
+              d: (k) => CARCAT(Pp, X1, 15, k) + CARCAT(Pp, X2, 15, k) + (k > 0.95 ? XM(X1) + XM(X2) : '') },
+            { t: RULER + '連接兩個「×」，和 OP 交於 O′：O′ 是 OP 的中點。',
+              d: (k) => RL(L1, L2, k, GREY, 1.8, '5 4') + (k > 0.9 ? PN(O2, 'O′', 6, 22, VIO) : '') },
+            { t: COMPASS + '以 O′ 為圓心、O′P 為半徑畫一個圓，和圓 O 交於 A、B。',
+              d: (k) => CARC(O2, R2, 0, 360, k) + (k > 0.95 ? PN(A, 'A', -4, -12) + PN(B, 'B', -4, 26) : '') },
+            { t: RULER + '從 P 經過 A、經過 B，各畫一條直線：這兩條就是切線。',
+              d: (k) => RL(Pp, LERP(Pp, A, 1.35), k, GRN, 3.2) + RL(Pp, LERP(Pp, B, 1.35), k, GRN, 3.2) }
+          ]);
+        },
+        caption: '⚠ A、B 一定是<b>兩個圓的交點</b>，不能用眼睛看「好像碰到了」就畫。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '為什麼 PA 是切線：直徑對的圓周角是直角',
+        points: [
+          '\\(\\overline{OP}\\) 是圓 O′ 的直徑，A 在圓 O′ 上。',
+          '直徑所對的圓周角是 \\(90\\degree\\)，所以 \\(\\overline{OA}\\perp\\overleftrightarrow{PA}\\)。',
+          '過圓上的點、又和半徑垂直，就是切線（2-1 學過）。',
+          '畫完常接著算 \\(\\overline{PA}\\)：直角三角形 OAP 用畢氏定理。'
+        ],
+        formula: { label: '算切線段長', tex: '\\overline{PA}^2=\\overline{OP}^2-\\overline{OA}^2' },
+        visual: (h) => {
+          const O = [110, 150], R = 64, Pp = [350, 150], O2 = [230, 150], R2 = 120;
+          const [A, B] = CCI(O, R, O2, R2);
+          SV.stepper(h, SECVB, [
+            { t: 'OP 是圓 O′ 的直徑，A 在圓 O′ 上。',
+              d: () => SECBG + CIRC(O[0], O[1], R) + CIRC(O2[0], O2[1], R2, { stroke: CPA, sw: 1.8 })
+                + SEG(O, Pp, VIO, 3.4) + PN(O, 'O', -22, 6) + PN(Pp, 'P', 10, 6) + PN(O2, 'O′', 6, 22, VIO)
+                + PN(A, 'A', -4, -12) + TX(230, 140, '直徑', { anchor: 'middle', fs: 14, c: VIO }) },
+            { t: '直徑所對的圓周角是 90°，所以 ∠OAP＝90°。',
+              d: () => SV.poly([O, A, Pp], 'rgba(225,29,72,.07)', RED, 2.4)
+                + SV.rightAngle(A[0], A[1], ANG(A, O), ANG(A, Pp), 12, RED) },
+            { t: 'PA 通過圓 O 上的 A，又和半徑 OA 垂直，所以是切線；PB 也一樣。',
+              d: () => CIRC(O[0], O[1], R, { stroke: BLU, sw: 3 })
+                + RL(Pp, LERP(Pp, A, 1.35), 1, GRN, 3.2) + RL(Pp, LERP(Pp, B, 1.35), 1, GRN, 3.2)
+                + SEG(O, B, GREY, 1.8, '5 4') + SV.rightAngle(B[0], B[1], ANG(B, O), ANG(B, Pp), 12, GRN) + PN(B, 'B', -4, 26) }
+          ]);
+        },
+        caption: '⚠ 畫完圖，題目常接著問切線段長；<b>直角就在切點 A</b>。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '給一弦 AB，畫直角三角形（直角在 B）',
+        points: [
+          '斜邊是直徑時，對面的角就是直角（直徑對的圓周角）。',
+          '直角要在 B，所以直徑要從 <b>A</b> 出發、穿過圓心 O。',
+          '這一題<b>只用直尺</b>：圓心 O 題目已經給了。',
+          '⚠ 從 B 畫直徑，直角會跑到 A。'
+        ],
+        formula: { label: '自我評量 5<span class="pgref">課本 印 129</span>', tex: '\\overline{AC}\\ \\text{是直徑}\\Rightarrow\\angle ABC=90\\degree' },
+        visual: (h) => {
+          const O = [150, 150], R = 100;
+          const A = P(150, 150, R, 200), B = P(150, 150, R, 115), Cc = P(150, 150, R, 20);
+          SV.stepper(h, SECVB, [
+            { t: '題目：AB 是圓 O 的一弦，要畫 △ABC，C 在圓上，而且 ∠ABC 是直角。',
+              d: () => SECBG + CIRC(O[0], O[1], R) + PN(O, 'O', -6, 24) + SEG(A, B, INK, 2.8)
+                + PN(A, 'A', -22, 10) + PN(B, 'B', -8, -12) },
+            { t: RULER + '從 A 經過圓心 O，一直畫到圓上，交點叫 C：AC 是直徑。',
+              d: (k) => RL(A, Cc, k) + (k > 0.95 ? PN(Cc, 'C', 10, 6, CPL) : '') },
+            { t: RULER + '連接 B、C，△ABC 就畫好了，直角在 B。',
+              d: (k) => RL(B, Cc, k, GRN, 3) + (k > 0.9
+                ? SV.poly([A, B, Cc], 'rgba(5,150,105,.08)', 'none', 0) + SV.rightAngle(B[0], B[1], ANG(B, A), ANG(B, Cc), 12, GRN)
+                  + BOX(286, 108, 140, 78, { r: 12, fill: 'rgba(5,150,105,.07)', stroke: GRN, sw: 2 })
+                  + TX(356, 140, 'AC 是直徑', { anchor: 'middle', fs: 16, c: INK })
+                  + TX(356, 170, '∠B ＝ 90°', { anchor: 'middle', fs: 17, c: GRN }) : '') }
+          ]);
+        },
+        caption: '⚠ 先看清楚<b>直角要在哪個頂點</b>，再決定直徑從哪裡出發。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '六個等分點：以 AB 為一邊的直角三角形有幾個？',
+        points: [
+          '六等分點裡，<b>隔三格</b>的兩點連起來就是直徑。',
+          '直角三角形的斜邊要是直徑；\\(\\overline{AB}\\) 不是直徑，所以直徑從 A 或 B 出發。',
+          '答案有兩個：\\(\\triangle ABD\\)（直角在 B）、\\(\\triangle ABE\\)（直角在 A）。'
+        ],
+        formula: { label: '隨堂練習 2<span class="pgref">課本 印 121</span>', tex: '\\angle ABD=\\angle BAE=90\\degree' },
+        visual: (h) => {
+          const O = [150, 148], R = 100, NM = ['A', 'B', 'C', 'D', 'E', 'F'];
+          const deg = [150, 90, 30, 330, 270, 210], V = deg.map(d => P(150, 148, R, d));
+          const [A, B, , D, E] = V;
+          const base = () => SECBG + CIRC(O[0], O[1], R) + DOT(O, INK, 3)
+            + V.map((p, i) => { const q = P(150, 148, R + 18, deg[i]); return DOT(p, INK, 3.8) + TX(q[0], q[1] + 6, NM[i], { anchor: 'middle', fs: 16 }); }).join('')
+            + SEG(A, B, INK, 3);
+          const t1 = () => SV.poly([A, B, D], 'rgba(5,150,105,.10)', GRN, 2.4) + SEG(A, D, GRN, 3.4)
+            + SV.rightAngle(B[0], B[1], ANG(B, A), ANG(B, D), 12, GRN);
+          const t2 = () => SV.poly([A, B, E], 'rgba(37,99,235,.08)', BLU, 2.4) + SEG(B, E, BLU, 3.4)
+            + SV.rightAngle(A[0], A[1], ANG(A, B), ANG(A, E), 12, BLU);
+          const note = (rows) => rows.map((r, i) => TX(290, 104 + i * 30, r[0], { fs: 16, c: r[1] })).join('');
+          SV.stepper(h, SECVB, [
+            { t: '六個點把圓周分成 6 等分；AB 是其中一段，不是直徑。', d: () => base() },
+            { t: '從 A 隔三格是 D，AD 是直徑。連 AD、BD：△ABD 的直角在 B。',
+              d: () => base() + t1() + note([['△ABD', GRN], ['直角在 B', INK]]) },
+            { t: '從 B 隔三格是 E，BE 是直徑。連 AE、BE：△ABE 的直角在 A。',
+              d: () => base() + t2() + note([['△ABE', BLU], ['直角在 A', INK]]) },
+            { t: '斜邊一定是直徑，直徑只能從 A 或 B 出發，所以只有兩個。',
+              d: () => base() + t1() + t2() + note([['△ABD', GRN], ['△ABE', BLU], ['只有這兩個', INK]]) }
+          ], { acc: false });
+        },
+        caption: '題目說「所有」，<b>兩個都要畫出來</b>。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '圓內接正三角形：傑克的畫法',
+        points: [
+          '∠A＝60°，所以 \\(\\overarc{BC}=120\\degree\\)（圓周角是弧的一半）。',
+          '\\(\\overline{AD}=\\overline{AE}=\\overline{BC}\\)，等弦對等弧：\\(\\overarc{AD}=\\overarc{AE}=120\\degree\\)。',
+          '剩下的 \\(\\overarc{DE}\\) 也是 \\(120\\degree\\)，三段一樣長，所以是正三角形。',
+          'BC 的長要用<b>圓規量</b>，不能用尺讀刻度。'
+        ],
+        formula: { label: '精熟 1<span class="pgref">習作 印 36</span>', tex: '\\overarc{AD}=\\overarc{AE}=\\overarc{DE}=120\\degree' },
+        visual: (h) => {
+          const O = [150, 150], R = 100;
+          const A = P(150, 150, R, 180), B = P(150, 150, R, 120), Cc = P(150, 150, R, 0), D = P(150, 150, R, 60), E = P(150, 150, R, 300);
+          SV.stepper(h, SECVB, [
+            { t: '題目：A、B、C 在圓 O 上，∠A＝60°、∠C＝30°，要畫圓內接正三角形 ADE。',
+              d: () => SECBG + CIRC(O[0], O[1], R) + PN(O, 'O', -6, 22)
+                + SV.poly([A, B, Cc], 'rgba(124,58,237,.05)', INK, 2.2)
+                + SV.angle(A[0], A[1], 26, 0, ANG(A, B), VIO, '', {}) + TX(A[0] + 50, A[1] - 7, '60°', { anchor: 'middle', fs: 13, c: VIO })
+                + SV.angle(Cc[0], Cc[1], 15, ANG(Cc, B), 180, VIO, '', {}) + TX(Cc[0] - 30, Cc[1] - 6, '30°', { anchor: 'middle', fs: 12.5, c: VIO })
+                + PN(A, 'A', -22, 6) + PN(B, 'B', -10, -12) + PN(Cc, 'C', 10, 6) },
+            { t: COMPASS + '針尖放 B、筆尖放 C：圓規張開的大小就是 BC。',
+              d: (k) => SEG(B, Cc, CPA, 3.6) + CARCAT(B, Cc, 7, k) },
+            { t: COMPASS + '<b>大小不變</b>，針尖移到 A 畫弧，交圓 O 於 D、E。',
+              d: (k) => CARC(A, DIST(B, Cc), -42, 42, k) + (k > 0.95 ? PN(D, 'D', 8, -8, GRN) + PN(E, 'E', 8, 20, GRN) : '') },
+            { t: RULER + '連接 AD、DE、EA，△ADE 就是正三角形。',
+              d: (k) => RL(A, D, k, GRN, 3) + RL(D, E, k, GRN, 3) + RL(E, A, k, GRN, 3) }
+          ]);
+        },
+        caption: '⚠ 圓心是 <b>A</b>、半徑是 <b>BC</b>，不要和下一頁安琪的畫法混在一起。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '圓內接正三角形：安琪的畫法',
+        points: [
+          '∠C＝30°，所以 \\(\\overarc{AB}=60\\degree\\)。\\(\\overline{CD}=\\overline{CE}=\\overline{AB}\\)，所以 \\(\\overarc{CD}=\\overarc{CE}=60\\degree\\)。',
+          '∠B＝180°－60°－30°＝90°，所以 \\(\\overline{AC}\\) 是直徑，半圓是 \\(180\\degree\\)。',
+          '\\(\\overarc{AD}=\\overarc{AE}=180\\degree-60\\degree=120\\degree\\)，三段都是 \\(120\\degree\\)。',
+          '兩人畫出的是<b>同一個</b>正三角形，所以兩種畫法都對。'
+        ],
+        formula: { label: '精熟 1<span class="pgref">習作 印 36</span>', tex: '\\overarc{AD}=180\\degree-60\\degree=120\\degree' },
+        visual: (h) => {
+          const O = [150, 150], R = 100;
+          const A = P(150, 150, R, 180), B = P(150, 150, R, 120), Cc = P(150, 150, R, 0), D = P(150, 150, R, 60), E = P(150, 150, R, 300);
+          SV.stepper(h, SECVB, [
+            { t: '同一題：A、B、C 在圓 O 上，∠A＝60°、∠C＝30°。',
+              d: () => SECBG + CIRC(O[0], O[1], R) + PN(O, 'O', -6, 22)
+                + SV.poly([A, B, Cc], 'rgba(124,58,237,.05)', INK, 2.2)
+                + SV.angle(A[0], A[1], 26, 0, ANG(A, B), VIO, '', {}) + TX(A[0] + 50, A[1] - 7, '60°', { anchor: 'middle', fs: 13, c: VIO })
+                + SV.angle(Cc[0], Cc[1], 15, ANG(Cc, B), 180, VIO, '', {}) + TX(Cc[0] - 30, Cc[1] - 6, '30°', { anchor: 'middle', fs: 12.5, c: VIO })
+                + PN(A, 'A', -22, 6) + PN(B, 'B', -10, -12) + PN(Cc, 'C', 10, 6) },
+            { t: COMPASS + '針尖放 A、筆尖放 B：圓規張開的大小就是 AB。',
+              d: (k) => SEG(A, B, CPA, 3.6) + CARCAT(A, B, 9, k) },
+            { t: COMPASS + '<b>大小不變</b>，針尖移到 C 畫弧，交圓 O 於 D、E。',
+              d: (k) => CARC(Cc, DIST(A, B), 105, 255, k) + (k > 0.95 ? PN(D, 'D', 8, -8, GRN) + PN(E, 'E', 8, 20, GRN) : '') },
+            { t: RULER + '連接 AD、DE、EA：和傑克畫出來的是同一個正三角形。',
+              d: (k) => RL(A, D, k, GRN, 3) + RL(D, E, k, GRN, 3) + RL(E, A, k, GRN, 3) }
+          ]);
+        },
+        caption: '⚠ 安琪的圓心是 <b>C</b>、半徑是 <b>AB</b>；題目問「誰對」時，兩個都要檢查。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '給一段弧，找回圓心：畫兩條弦的中垂線',
+        points: [
+          '弦的中垂線一定<b>通過圓心</b>（2-1 學過）。',
+          '一條中垂線只知道圓心在這條線上；畫<b>兩條</b>，交點就是圓心 O。',
+          '找到 O 以後，以 O 為圓心、\\(\\overline{OC}\\) 為半徑，就能把整個圓畫回來。'
+        ],
+        formula: { label: '一題多解<span class="pgref">課本 印 131</span>', tex: '\\text{兩條弦的中垂線交點}=O' },
+        visual: (h) => {
+          const O = [220, 232], R = 170;
+          const Cc = P(220, 232, R, 148), D = P(220, 232, R, 90), E = P(220, 232, R, 32);
+          const r1 = DIST(Cc, D) * 0.64;
+          const [X1, X2] = CCI(Cc, r1, D, r1), [Y1, Y2] = CCI(D, r1, E, r1);
+          const arcs = (p, q, Xa, Xb, k) => CARCAT(p, Xa, 13, k) + CARCAT(p, Xb, 13, k) + CARCAT(q, Xa, 13, k) + CARCAT(q, Xb, 13, k)
+            + (k > 0.95 ? XM(Xa) + XM(Xb) : '');
+          SV.stepper(h, SECVB, [
+            { t: '題目只給一段圓弧，上面有 C、D、E 三點，要找出圓心。',
+              d: () => SECBG + CARC(O, R, 18, 162, 1, INK, 2.8)
+                + PN(Cc, 'C', -22, 4) + PN(D, 'D', -5, -12) + PN(E, 'E', 10, 4) },
+            { t: RULER + '連接 C、D，得到弦 CD。',
+              d: (k) => RL(Cc, D, k, INK, 2.2) },
+            { t: COMPASS + '分別以 C、D 為圓心、<b>同樣大小</b>（超過 CD 的一半）畫弧，交出兩個「×」。',
+              d: (k) => arcs(Cc, D, X1, X2, k) },
+            { t: RULER + '連接兩個「×」畫成直線：這是 CD 的中垂線，圓心就在這條線上。',
+              d: (k) => RL(X1, LERP(X1, X2, 1.85), k) },
+            { t: '換一條弦 DE，照第 2～4 步再畫一次。',
+              d: (k) => RL(D, E, k, INK, 2.2) + arcs(D, E, Y1, Y2, k) + RL(Y1, LERP(Y1, Y2, 1.85), Math.max(0, k * 2 - 1)) },
+            { t: '兩條中垂線交在一點，那就是圓心 O。',
+              d: () => SEG(O, Cc, GREY, 1.6, '5 4') + SEG(O, D, GREY, 1.6, '5 4') + SEG(O, E, GREY, 1.6, '5 4')
+                + DOT(O, GRN, 5) + TX(O[0] + 12, O[1] + 20, 'O', { fs: 17, c: GRN }) }
+          ]);
+        },
+        caption: '⚠ 兩條弦要<b>不一樣</b>：CD 和 DE，不要同一條畫兩次。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '找回圓心的三種線：任選兩條「不一樣」的',
+        points: [
+          '課本的圖上，三條切線切圓弧於 C、D、E，兩兩交於 A、B。',
+          '三種線都會<b>通過圓心</b>，任選兩條，交點就是 O。',
+          '安琪：切點上畫切線的<b>垂線</b>。艾美：切線夾角的<b>角平分線</b>。傑克：弦的<b>中垂線</b>。',
+          '⚠ ∠CAD 的角平分線和 \\(\\overline{CD}\\) 的中垂線是<b>同一條線</b>，不能一起用。'
+        ],
+        formula: { label: '一題多解<span class="pgref">課本 印 131</span>', tex: '\\text{任選兩條相異的線，交點}=O' },
+        visual: (h) => {
+          const O = [220, 232], R = 170;
+          const Cc = P(220, 232, R, 148), D = P(220, 232, R, 90), E = P(220, 232, R, 32);
+          const ta = R / Math.cos(29 * Math.PI / 180), A = P(220, 232, ta, 119), B = P(220, 232, ta, 61);
+          const base = () => SECBG
+            + SEG(LERP(A, Cc, 1.45), LERP(A, Cc, -0.35), GREY, 1.6) + SEG(LERP(B, A, 1.3), LERP(A, B, 1.3), GREY, 1.6)
+            + SEG(LERP(B, E, 1.45), LERP(B, E, -0.35), GREY, 1.6)
+            + CARC(O, R, 18, 162, 1, INK, 2.8)
+            + PN(Cc, 'C', -22, 4) + PN(D, 'D', 8, 22) + PN(E, 'E', 10, 4)
+            + TX(A[0] - 6, A[1] - 10, 'A', { fs: 15, c: GREY }) + TX(B[0] - 4, B[1] - 10, 'B', { fs: 15, c: GREY });
+          const tag = (t, col) => TX(16, 24, t, { fs: 16, c: col });
+          const OD = () => DOT(O, GRN, 5) + TX(O[0] + 12, O[1] + 20, 'O', { fs: 17, c: GRN });
+          const thru = (p, col, w, dash) => SEG(p, LERP(p, O, 1.12), col, w || 2.6, dash);
+          SV.stepper(h, SECVB, [
+            { t: '安琪：切線垂直半徑。過切點 C、D 各畫切線的垂線，交點是 O。',
+              d: () => base() + tag('安琪：切點上的垂線', VIO) + thru(Cc, VIO) + thru(D, VIO)
+                + SV.rightAngle(Cc[0], Cc[1], ANG(Cc, A), ANG(Cc, O), 11, VIO) + SV.rightAngle(D[0], D[1], 0, 270, 11, VIO) + OD() },
+            { t: '艾美：兩條切線夾角的角平分線過圓心。∠CAD、∠DBE 的角平分線交於 O。',
+              d: () => base() + tag('艾美：切線夾角的角平分線', CPA) + thru(A, CPA) + thru(B, CPA) + OD() },
+            { t: '傑克：弦的中垂線過圓心。CD、DE 的中垂線交於 O。',
+              d: () => base() + tag('傑克：弦的中垂線', BLU) + SEG(Cc, D, INK, 2) + SEG(D, E, INK, 2)
+                + thru(LERP(Cc, D, 0.5), BLU) + thru(LERP(D, E, 0.5), BLU)
+                + SV.ticks(Cc[0], Cc[1], LERP(Cc, D, 0.5)[0], LERP(Cc, D, 0.5)[1], 1, BLU) + SV.ticks(LERP(Cc, D, 0.5)[0], LERP(Cc, D, 0.5)[1], D[0], D[1], 1, BLU) + OD() },
+            { t: '⚠ ∠CAD 的角平分線和 CD 的中垂線是<b>同一條線</b>，兩條一起用交不出點。',
+              d: () => base() + tag('艾美和傑克：同一條線', RED) + SEG(Cc, D, INK, 2)
+                + thru(A, CPA, 5) + thru(LERP(Cc, D, 0.5), BLU, 2.2, '6 5')
+                + TX(A[0] + 62, A[1] + 82, '同一條！', { fs: 16, c: RED }) + OD() }
+          ], { acc: false });
+        },
+        caption: '⚠ 選一種畫熟就好；<b>上一頁的中垂線</b>最常用。'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '作圖最常錯的四件事：痕跡要留著',
+        points: [
+          '尺規作圖只能用<b>直尺連線</b>、<b>圓規畫弧和量長度</b>。',
+          '讀刻度、三角板的直角、量角器、用眼睛對齊，都不算。',
+          '畫過的弧和「×」<b>不要擦</b>，那是用尺規畫的證據。',
+          '作出來的點，要標上題目給的名字。'
+        ],
+        visual: (h) => {
+          h.innerHTML = xoRows([
+            { tag: '找中點', bad: '用尺量 \\(\\overline{OP}\\)，再除以 2', good: '畫兩組弧，連「×」找中垂線' },
+            { tag: '畫垂線', bad: '拿三角板的直角對齊', good: '左右截出 M、N，再畫弧交出 Q' },
+            { tag: '畫切線', bad: '從 P 畫一條「看起來碰到圓」的線', good: 'A、B 是<b>兩個圓的交點</b>' },
+            { tag: '擦乾淨', bad: '畫完把弧和「×」擦掉', good: '弧、「×」、輔助線<b>全部留著</b>' }
+          ]);
+        },
+        caption: '⚠ 交出去之前檢查一次：<b>每個交點旁邊都看得到弧</b>嗎？'
+      },
+
+      {
+        sec: '作圖', secName: '尺規作圖',
+        title: '練習｜自己畫一次：這一節的四題',
+        points: [
+          '四題都在前面畫過，現在拿圓規和直尺，在課本、習作上自己畫一次。',
+          '點題號可以看詳解。',
+          '畫完檢查：弧和「×」都還在嗎？'
+        ],
+        formula: { label: '這一節在練<span class="pgref">課本 印 121–129、習作 印 36</span>', tex: '\\text{直尺：連線}\\quad;\\quad\\text{圓規：畫弧、量長度}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-2', [
+            { src: '課本', page: '印 121–126', sub: '六等分點的直角三角形、過圓外一點的切線', tags: ['課P121 第2題', '課P126'] },
+            { src: '課本・自我評量', page: '印 129', sub: '給一弦，畫直角三角形', tags: ['自評5'] },
+            { src: '習作', page: '印 36', sub: '圓內接正三角形', tags: ['精熟1'] }
+          ]);
+        },
+        caption: '⚠ 印 126 那題畫完圖，還要用畢氏定理算 \\(\\overline{PA}\\)。'
       },
 
       {
