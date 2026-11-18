@@ -2866,7 +2866,8 @@ window.DECK = window.DECK || [];
         points: [
           '從 \\(A\\) 到 \\(B\\)：先數<b>橫著</b>差幾格，再數<b>直著</b>差幾格。',
           '不數格子也可以：把坐標<b>大的減小的</b>。前面減前面、後面減後面。',
-          '有負數時一樣：從 \\(-3\\) 到 \\(4\\) 差 \\(4-(-3)=7\\) 格。'
+          '有負數時一樣：從 \\(-3\\) 到 \\(4\\) 差 \\(4-(-3)=7\\) 格。',
+          '兩段是<b>兩股</b>，\\(A\\)、\\(B\\) 連起來是<b>斜邊</b>：\\(4^2+3^2=25\\)，\\(\\overline{AB}=5\\)。'
         ],
         formula: { label: '從 A(1,2) 到 B(5,5)', tex: '\\text{橫}:\\ 5-1=4\\qquad\\text{直}:\\ 5-2=3' },
         visual: (h) => {
@@ -2876,7 +2877,7 @@ window.DECK = window.DECK || [];
               t: '標出兩個點', d: k =>
                 P.defs + P.svg +
                 SV.dot(P.X(1), P.Y(2), VIO) + SV.dot(P.X(5), P.Y(5), VIO) +
-                SV.vlabel(P.X(1) - 62, P.Y(2) + 5, 'A(1,2)', VIO, 14) +
+                SV.vlabel(P.X(1) - 18, P.Y(2) - 12, 'A(1,2)', VIO, 14) +
                 SV.vlabel(P.X(5) - 20, P.Y(5) - 10, 'B(5,5)', VIO, 14)
             },
             {
@@ -2891,10 +2892,17 @@ window.DECK = window.DECK || [];
                 [1, 2, 3].map(i => TX(P.X(5) + 10, (P.Y(i + 1) + P.Y(i + 2)) / 2 + 5, String(i), { fs: 13, c: AMB, op: k })).join('') +
                 TX(388, 146, '直：5 − 2 ＝ 3', { anchor: 'middle', fs: 16, c: AMB, op: k }) +
                 TX(220, 284, '數格子和相減，答案一樣', { anchor: 'middle', fs: 15, c: INK, op: k })
+            },
+            {
+              t: '連起來就是斜邊', d: k =>
+                SV.rightAngle(P.X(5), P.Y(2), 90, 180, 12, GREY) +
+                SV.seg(P.X(1), P.Y(2), P.X(5), P.Y(5), GRN, 4) +
+                TX(388, 192, '4² ＋ 3² ＝ 25', { anchor: 'middle', fs: 16, c: INK, op: k }) +
+                TX(388, 222, 'AB ＝ 5', { anchor: 'middle', fs: 19, c: GRN, op: k })
             }
           ]);
         },
-        caption: '先數格子，再用相減對一次；兩個答案一樣，就可以只用相減。',
+        caption: '先數格子，再用相減對一次；最後把 A、B 連起來，用畢氏定理算斜邊。',
         example: {
           q: '\\(C(-2,1)\\)、\\(D(3,1)\\) 橫著差幾格？',
           steps: ['前面減前面，大的減小的', '\\(3-(-2)\\)'],
