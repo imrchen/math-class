@@ -2770,6 +2770,140 @@ window.DECK = window.DECK || [];
 
       {
         sec: '2-3', secName: '畢氏定理',
+        title: '補充｜坐標平面：兩條數線交叉成十字',
+        points: [
+          '橫的數線叫 <b>x 軸</b>：往右是正、往左是負。',
+          '直的數線叫 <b>y 軸</b>：往上是正、往下是負。',
+          '兩條軸交在<b>原點 O</b>，它的坐標是 \\((0,0)\\)。'
+        ],
+        formula: { label: '坐標平面', tex: '\\text{原點 } O(0,0)' },
+        visual: (h) => {
+          const P = SV.plane({ x0: 40, y0: 14, w: 300, h: 240, xmin: -5, xmax: 5, ymin: -4, ymax: 4, step: 1 });
+          SV.stepper(h, '0 0 440 290', [
+            {
+              t: '橫的那一條：x 軸', d: k =>
+                P.defs + P.svg +
+                SV.seg(P.X(-5), P.Y(0), P.X(5), P.Y(0), BLU, 4) +
+                TX(P.X(3.5), P.Y(0) - 10, '右邊是正', { anchor: 'middle', fs: 14, c: BLU, op: k }) +
+                TX(P.X(-3.5), P.Y(0) - 10, '左邊是負', { anchor: 'middle', fs: 14, c: BLU, op: k }) +
+                TX(392, 112, 'x 軸', { anchor: 'middle', fs: 18, c: BLU, op: k })
+            },
+            {
+              t: '直的那一條：y 軸', d: k =>
+                SV.seg(P.X(0), P.Y(-4), P.X(0), P.Y(4), AMB, 4) +
+                TX(P.X(0) + 10, P.Y(3.3), '上面是正', { fs: 14, c: AMB, op: k }) +
+                TX(P.X(0) + 10, P.Y(-3.3), '下面是負', { fs: 14, c: AMB, op: k }) +
+                TX(392, 150, 'y 軸', { anchor: 'middle', fs: 18, c: AMB, op: k })
+            },
+            {
+              t: '交在原點', d: k =>
+                SV.dot(P.X(0), P.Y(0), RED, 6) +
+                TX(P.X(0) - 10, P.Y(0) + 22, 'O(0,0)', { anchor: 'end', fs: 15, c: RED, op: k }) +
+                TX(392, 188, '原點 O', { anchor: 'middle', fs: 18, c: RED, op: k }) +
+                TX(220, 282, '每一條軸都是一條數線', { anchor: 'middle', fs: 15, c: INK, op: k })
+            }
+          ]);
+        },
+        caption: '先看橫的，再看直的，最後看兩條交在哪裡。',
+        example: {
+          q: '從原點沿 x 軸往左走 \\(3\\) 格，停在哪個數？',
+          steps: ['往左是負'],
+          ans: '\\(-3\\)'
+        }
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '補充｜點的坐標：先橫著走，再直著走',
+        points: [
+          '坐標寫成 \\((x,y)\\)：<b>前面</b>的數是橫著走幾格，<b>後面</b>的數是直著走幾格。',
+          '都從原點出發；負的就往左、往下走。',
+          '\\((2,3)\\) 和 \\((3,2)\\) 是兩個不同的點，前後不能換。'
+        ],
+        formula: { label: '點的坐標：前面橫、後面直', tex: 'P(x,\\,y)' },
+        visual: (h) => {
+          h.innerHTML = `<div style="width:100%"><div class="fig"></div>
+            <div class="ictrl">
+              <label>橫著走 <span class="ival xv">2</span>　　直著走 <span class="ival yv">3</span></label>
+              <input type="range" class="xs" min="-4" max="4" step="1" value="2">
+              <input type="range" class="ys" min="-3" max="3" step="1" value="3">
+            </div></div>`;
+          const P = SV.plane({ x0: 40, y0: 12, w: 300, h: 210, xmin: -5, xmax: 5, ymin: -3.5, ymax: 3.5, step: 1 });
+          const word = (n, pos, neg) => n === 0 ? '不動' : (n > 0 ? `往${pos} ${n} 格` : `往${neg} ${-n} 格`);
+          const m = n => n < 0 ? '−' + (-n) : String(n);
+          const draw = () => {
+            const x = +h.querySelector('.xs').value, y = +h.querySelector('.ys').value;
+            h.querySelector('.xv').textContent = m(x);
+            h.querySelector('.yv').textContent = m(y);
+            const lx = x >= 0 ? P.X(x) + 8 : P.X(x) - 8;
+            h.querySelector('.fig').innerHTML = svg('0 0 440 262', P.defs + P.svg +
+              SV.seg(P.X(0), P.Y(0), P.X(x), P.Y(0), BLU, 5) +
+              SV.seg(P.X(x), P.Y(0), P.X(x), P.Y(y), AMB, 5) +
+              SV.dot(P.X(0), P.Y(0), GREY) +
+              SV.dot(P.X(x), P.Y(y), RED, 6) +
+              TX(lx, P.Y(y) + (y >= 0 ? -8 : 20), `P(${m(x)},${m(y)})`, { anchor: x >= 0 ? 'start' : 'end', fs: 16, c: RED }) +
+              TX(392, 96, '① 橫', { anchor: 'middle', fs: 15, c: BLU }) +
+              TX(392, 118, word(x, '右', '左'), { anchor: 'middle', fs: 15, c: BLU }) +
+              TX(392, 152, '② 直', { anchor: 'middle', fs: 15, c: AMB }) +
+              TX(392, 174, word(y, '上', '下'), { anchor: 'middle', fs: 15, c: AMB }) +
+              TX(220, 252, `P(${m(x)},${m(y)})：前面 ${m(x)}、後面 ${m(y)}`, { anchor: 'middle', fs: 16, c: INK }));
+          };
+          h.querySelector('.xs').oninput = draw;
+          h.querySelector('.ys').oninput = draw;
+          draw();
+        },
+        caption: '拖兩個滑桿：藍色先橫著走，橘色再直著走，紅點停的地方就是那個坐標。',
+        example: {
+          q: '點 \\(A(-2,3)\\) 從原點怎麼走？',
+          steps: ['前面是 \\(-2\\)：往左 \\(2\\) 格', '後面是 \\(3\\)：再往上 \\(3\\) 格'],
+          ans: '停下來的點就是 \\(A\\)'
+        }
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
+        title: '補充｜兩點之間：橫著差幾格、直著差幾格',
+        points: [
+          '從 \\(A\\) 到 \\(B\\)：先數<b>橫著</b>差幾格，再數<b>直著</b>差幾格。',
+          '不數格子也可以：把坐標<b>大的減小的</b>。前面減前面、後面減後面。',
+          '有負數時一樣：從 \\(-3\\) 到 \\(4\\) 差 \\(4-(-3)=7\\) 格。'
+        ],
+        formula: { label: '從 A(1,2) 到 B(5,5)', tex: '\\text{橫}:\\ 5-1=4\\qquad\\text{直}:\\ 5-2=3' },
+        visual: (h) => {
+          const P = SV.plane({ x0: 40, y0: 14, w: 280, h: 240, xmin: -1, xmax: 6, ymin: -1, ymax: 6, step: 1 });
+          SV.stepper(h, '0 0 440 290', [
+            {
+              t: '標出兩個點', d: k =>
+                P.defs + P.svg +
+                SV.dot(P.X(1), P.Y(2), VIO) + SV.dot(P.X(5), P.Y(5), VIO) +
+                SV.vlabel(P.X(1) - 62, P.Y(2) + 5, 'A(1,2)', VIO, 14) +
+                SV.vlabel(P.X(5) - 20, P.Y(5) - 10, 'B(5,5)', VIO, 14)
+            },
+            {
+              t: '橫著差 4 格', d: k =>
+                SV.seg(P.X(1), P.Y(2), P.X(5), P.Y(2), BLU, 4) +
+                [1, 2, 3, 4].map(i => TX((P.X(i) + P.X(i + 1)) / 2, P.Y(2) + 18, String(i), { anchor: 'middle', fs: 13, c: BLU, op: k })).join('') +
+                TX(388, 112, '橫：5 − 1 ＝ 4', { anchor: 'middle', fs: 16, c: BLU, op: k })
+            },
+            {
+              t: '直著差 3 格', d: k =>
+                SV.seg(P.X(5), P.Y(2), P.X(5), P.Y(5), AMB, 4) +
+                [1, 2, 3].map(i => TX(P.X(5) + 10, (P.Y(i + 1) + P.Y(i + 2)) / 2 + 5, String(i), { fs: 13, c: AMB, op: k })).join('') +
+                TX(388, 146, '直：5 − 2 ＝ 3', { anchor: 'middle', fs: 16, c: AMB, op: k }) +
+                TX(220, 284, '數格子和相減，答案一樣', { anchor: 'middle', fs: 15, c: INK, op: k })
+            }
+          ]);
+        },
+        caption: '先數格子，再用相減對一次；兩個答案一樣，就可以只用相減。',
+        example: {
+          q: '\\(C(-2,1)\\)、\\(D(3,1)\\) 橫著差幾格？',
+          steps: ['前面減前面，大的減小的', '\\(3-(-2)\\)'],
+          ans: '\\(5\\) 格'
+        }
+      },
+
+      {
+        sec: '2-3', secName: '畢氏定理',
         title: '同一條線上的兩點，距離用減的',
         points: [
           '兩點<b>y 坐標相同</b>（同一條水平線）→ 距離就是 x 坐標相減的絕對值。',
