@@ -65,6 +65,22 @@ window.DECK = window.DECK || [];
     });
   };
 
+  function quizGrid(qs, keys) {
+    const half = Math.ceil(qs.length / 2);
+    const cell = (q, i) => `<div style="display:flex;gap:12px;align-items:baseline;padding:7px 4px;border-bottom:1px dashed #cbd5e1">
+        <span style="flex:0 0 2.4em;text-align:right;font-size:20px;font-weight:900;color:${C}">(${i + 1})</span>
+        <span style="flex:1;min-width:0;font-size:22px;color:${INK}">\\(${q}\\)${keys ? `<span style="color:${GRN};font-weight:800">\\(\\;=${keys[i]}\\)</span>` : ''}</span></div>`;
+    const col = (from, to) => `<div style="flex:1;min-width:0">${qs.slice(from, to).map((q, j) => cell(q, from + j)).join('')}</div>`;
+    return `<div style="width:99.5%;margin:0 auto;padding-top:38px">
+      <div style="border:1.5px solid ${LINE};border-radius:12px;background:#fff;padding:10px 16px;display:flex;gap:22px">
+        ${col(0, half)}${col(half, qs.length)}</div></div>`;
+  }
+
+  const Q32 = ['x^2+7x+12', 'x^2-12x+11', 'x^2+12x-45', 'x^2-8x-20', 'x^2-11x+24', 'x^2-x-6', 'x^2-16x+28',
+    'x^2+11x+28', 'x^2+13x-14', 'x^2+2x-35', 'x^2-34x-35', 'x^2-15x+56', 'x^2-46x-96', 'x^2+9x-36'];
+  const K32 = ['(x+3)(x+4)', '(x-1)(x-11)', '(x+15)(x-3)', '(x-10)(x+2)', '(x-3)(x-8)', '(x-3)(x+2)', '(x-2)(x-14)',
+    '(x+4)(x+7)', '(x+14)(x-1)', '(x+7)(x-5)', '(x-35)(x+1)', '(x-7)(x-8)', '(x-48)(x+2)', '(x+12)(x-3)'];
+
   window.DECK.push({
     ch: 3,
     title: '因式分解',
@@ -740,6 +756,27 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '3-2', secName: '利用十字交乘法做因式分解',
+        title: '小考｜十字交乘法因式分解',
+        points: [
+          '因式分解下列各式，寫在紙上。',
+          '按右上角 <b>🔍 放大</b> 投成整頁。'
+        ],
+        visual: (h) => { h.innerHTML = quizGrid(Q32); },
+        caption: '共 14 題。'
+      },
+      {
+        sec: '3-2', secName: '利用十字交乘法做因式分解',
+        title: '對答案｜小考（十字交乘法）',
+        points: [
+          '交換改：老師唸題號，學生照著改同學的紙。',
+          '乘開回去，要和原式一樣。'
+        ],
+        visual: (h) => { h.innerHTML = quizGrid(Q32, K32); },
+        caption: '兩個括號前後對調也對。'
       },
       {
         sec: '3-2', secName: '利用十字交乘法做因式分解',
