@@ -7353,6 +7353,1122 @@ window.SOLUTIONS = {
   }
  },
  "1-4": {
+  "核1-4概10-1": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 5",
+   "title": "1-4 概念 10 第 1 題",
+   "q": "如右圖，已知 \\(\\triangle ABC\\) 與 \\(\\triangle PQR\\) 相似，且 \\(\\overline{AD}\\)、\\(\\overline{PE}\\) 分別為 \\(\\overline{BC}\\)、\\(\\overline{QR}\\) 上的高。若 \\(\\overline{BC}=8\\)，\\(\\overline{QR}=16\\)，\\(\\overline{AD}=10\\)，則 \\(\\overline{PE}=\\) ＿＿＿＿，\\(\\triangle ABC\\) 面積：\\(\\triangle PQR\\) 面積 \\(=1：\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.5 概念 10 第 1 題；原圖沒有標長度，此處標上題幹給的 $8$、$16$（$\\overline{AD}=10$ 標在小三角形裡會與邊相疊，只寫在題幹）",
+   "steps": [
+    "\\(\\overline{AD}\\)、\\(\\overline{PE}\\) 是對應高：",
+    "對應高的比 \\(=\\) 對應邊長的比",
+    "\\(\\overline{AD}：\\overline{PE}=\\overline{BC}：\\overline{QR}=8：16=1：2\\)",
+    "\\(10：\\overline{PE}=1：2\\)，\\(\\overline{PE}=20\\)",
+    "面積比 \\(=1^2：2^2=1：4\\)"
+   ],
+   "ans": "\\(\\overline{PE}=20\\)，面積比 \\(1：4\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 10,
+    "gap": 70,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 5,
+        "y": 10,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 8,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 5,
+        "y": 0,
+        "label": "$D$",
+        "nudge": [
+         10,
+         0
+        ]
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 0,
+        "to": 3
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 3,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.8
+       }
+      ],
+      "sides": [
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$8$",
+        "nudge": [
+         -16,
+         8
+        ]
+       }
+      ]
+     },
+     {
+      "points": [
+       {
+        "x": 10,
+        "y": 20,
+        "label": "$P$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$Q$"
+       },
+       {
+        "x": 16,
+        "y": 0,
+        "label": "$R$"
+       },
+       {
+        "x": 10,
+        "y": 0,
+        "label": "$E$",
+        "nudge": [
+         10,
+         0
+        ]
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 0,
+        "to": 3
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 3,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.8
+       }
+      ],
+      "sides": [
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$16$",
+        "nudge": [
+         -20,
+         8
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 10,
+      "gap": 70,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 5,
+          "y": 10,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 8,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 5,
+          "y": 0,
+          "label": "$D$",
+          "nudge": [
+           10,
+           0
+          ]
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 0,
+          "to": 3
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 3,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 0.8
+         }
+        ],
+        "sides": [
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$8$",
+          "nudge": [
+           -16,
+           8
+          ]
+         }
+        ]
+       },
+       {
+        "points": [
+         {
+          "x": 10,
+          "y": 20,
+          "label": "$P$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$Q$"
+         },
+         {
+          "x": 16,
+          "y": 0,
+          "label": "$R$"
+         },
+         {
+          "x": 10,
+          "y": 0,
+          "label": "$E$",
+          "nudge": [
+           10,
+           0
+          ]
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 0,
+          "to": 3
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 3,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 0.8
+         }
+        ],
+        "sides": [
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$16$",
+          "nudge": [
+           -20,
+           8
+          ]
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核1-4概11-1": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 5",
+   "title": "1-4 概念 11 第 1 題",
+   "q": "如右圖，在直角 \\(\\triangle ABC\\) 中，\\(\\angle A=30\\degree\\)，\\(\\angle C=60\\degree\\)，\\(\\overline{BC}=10\\)，則 \\(\\overline{AB}=\\) ＿＿＿＿，\\(\\overline{AC}=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.5 概念 11 第 1 題",
+   "steps": [
+    "\\(\\overline{BC}=10\\)：",
+    "\\(\\overline{BC}：\\overline{AB}：\\overline{AC}=1：\\sqrt{3}：2\\)",
+    "\\(\\overline{BC}=10\\)",
+    "\\(\\overline{AB}=10\\sqrt{3}\\)，\\(\\overline{AC}=2\\times10=20\\)"
+   ],
+   "ans": "\\(\\overline{AB}=10\\sqrt{3}\\)，\\(\\overline{AC}=20\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 14,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": -17.321,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 0,
+        "y": 10,
+        "label": "$C$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 1.2
+       }
+      ],
+      "angles": [
+       {
+        "at": 0,
+        "text": "$30\\degree$"
+       },
+       {
+        "at": 2,
+        "text": "$60\\degree$"
+       }
+      ],
+      "sides": [
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$10$"
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 14,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": -17.321,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 0,
+          "y": 10,
+          "label": "$C$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 1.2
+         }
+        ],
+        "angles": [
+         {
+          "at": 0,
+          "text": "$30\\degree$"
+         },
+         {
+          "at": 2,
+          "text": "$60\\degree$"
+         }
+        ],
+        "sides": [
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$10$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核1-4概11-2": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 5",
+   "title": "1-4 概念 11 第 2 題",
+   "q": "如右圖，在直角 \\(\\triangle ABC\\) 中，\\(\\angle A=\\angle C=45\\degree\\)，\\(\\overline{BC}=6\\)，則 \\(\\overline{AB}=\\) ＿＿＿＿，\\(\\overline{AC}=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.5 概念 11 第 2 題",
+   "steps": [
+    "\\(\\overline{BC}=6\\)：",
+    "\\(\\overline{BC}：\\overline{AB}：\\overline{AC}=1：1：\\sqrt{2}\\)",
+    "\\(\\overline{AB}=\\overline{BC}=6\\)",
+    "\\(\\overline{AC}=6\\sqrt{2}\\)"
+   ],
+   "ans": "\\(\\overline{AB}=6\\)，\\(\\overline{AC}=6\\sqrt{2}\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 34,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": -6,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 0,
+        "y": 6,
+        "label": "$C$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.5
+       }
+      ],
+      "angles": [
+       {
+        "at": 0,
+        "text": "$45\\degree$"
+       },
+       {
+        "at": 2,
+        "text": "$45\\degree$"
+       }
+      ],
+      "sides": [
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$6$"
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 34,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": -6,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 0,
+          "y": 6,
+          "label": "$C$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 0.5
+         }
+        ],
+        "angles": [
+         {
+          "at": 0,
+          "text": "$45\\degree$"
+         },
+         {
+          "at": 2,
+          "text": "$45\\degree$"
+         }
+        ],
+        "sides": [
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$6$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核1-4概12-1": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 5",
+   "title": "1-4 概念 12 第 1 題",
+   "q": "如右圖，在直角 \\(\\triangle ABC\\) 中，已知 \\(\\overline{AB}=12\\)，\\(\\overline{BC}=5\\)，\\(\\overline{AC}=13\\)（原卷印 \\(6\\)，已更正），則 \\(\\sin A=\\) ＿＿＿＿，\\(\\cos A=\\) ＿＿＿＿，\\(\\tan A=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.5 概念 12 第 1 題；圖上 $\\overline{AC}$ 印 $13$",
+   "steps": [
+    "求 \\(\\angle A\\) 的三角比：",
+    "斜邊 \\(\\overline{AC}=13\\)，對邊 \\(\\overline{BC}=5\\)",
+    "\\(\\sin A=\\frac{\\overline{BC}}{\\overline{AC}}=\\frac{5}{13}\\)",
+    "\\(\\cos A=\\frac{\\overline{AB}}{\\overline{AC}}=\\frac{12}{13}\\)",
+    "再求 \\(\\tan A\\)：",
+    "\\(\\tan A=\\frac{\\overline{BC}}{\\overline{AB}}=\\frac{5}{12}\\)",
+    "※ 原卷印 \\(\\overline{AC}=6\\)，依圖與三邊更正為 \\(13\\)"
+   ],
+   "ans": "\\(\\frac{5}{13}\\)、\\(\\frac{12}{13}\\)、\\(\\frac{5}{12}\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 22,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": -12,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 0,
+        "y": 5,
+        "label": "$C$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.7
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$12$"
+       },
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$5$"
+       },
+       {
+        "from": 0,
+        "to": 2,
+        "text": "$13$"
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 22,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": -12,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 0,
+          "y": 5,
+          "label": "$C$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 0.7
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$12$"
+         },
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$5$"
+         },
+         {
+          "from": 0,
+          "to": 2,
+          "text": "$13$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 4,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 22,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": -12,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 0,
+          "y": 5,
+          "label": "$C$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 0.7
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$12$"
+         },
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$5$"
+         },
+         {
+          "from": 0,
+          "to": 2,
+          "text": "$13$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "核1-4概12-2": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 5",
+   "title": "1-4 概念 12 第 2 題",
+   "q": "右圖的直角 \\(\\triangle ABC\\) 中，\\(\\angle A=40\\degree\\)，\\(\\sin 40\\degree\\approx0.6428\\)，\\(\\cos 40\\degree\\approx0.7660\\)，\\(\\tan 40\\degree\\approx0.8391\\)，若 \\(\\overline{AC}=20\\)，則 \\(\\overline{AB}\\approx\\) ＿＿＿＿，\\(\\overline{BC}\\approx\\) ＿＿＿＿（四捨五入到小數點第二位）。",
+   "ref": "圖見學習單 p.5 概念 12 第 2 題",
+   "steps": [
+    "斜邊 \\(\\overline{AC}=20\\)，設 \\(\\overline{AB}=x\\)：",
+    "\\(\\frac{x}{20}=\\cos 40\\degree\\approx0.7660\\)",
+    "\\(x\\approx20\\times0.7660=15.320\\)",
+    "\\(\\approx15.32\\)",
+    "再求 \\(\\overline{BC}\\)，設 \\(\\overline{BC}=y\\)：",
+    "\\(\\frac{y}{20}=\\sin 40\\degree\\approx0.6428\\)",
+    "\\(y\\approx20\\times0.6428=12.856\\)",
+    "\\(\\approx12.86\\)"
+   ],
+   "ans": "\\(15.32\\)、\\(12.86\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 17,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 15.321,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 15.321,
+        "y": 12.856,
+        "label": "$C$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.9
+       }
+      ],
+      "angles": [
+       {
+        "at": 0,
+        "text": "$40\\degree$"
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 2,
+        "text": "$20$"
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 17,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 15.321,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 15.321,
+          "y": 12.856,
+          "label": "$C$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 0.9
+         }
+        ],
+        "angles": [
+         {
+          "at": 0,
+          "text": "$40\\degree$"
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 2,
+          "text": "$20$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 4,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 17,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 15.321,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 15.321,
+          "y": 12.856,
+          "label": "$C$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 0.9
+         }
+        ],
+        "angles": [
+         {
+          "at": 0,
+          "text": "$40\\degree$"
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 2,
+          "text": "$20$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "核1-4概12-3": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 5",
+   "title": "1-4 概念 12 第 3 題",
+   "q": "右圖的直角 \\(\\triangle ABC\\) 中，\\(\\angle A=25\\degree\\)，\\(\\sin 25\\degree\\approx0.4226\\)，\\(\\cos 25\\degree\\approx0.9063\\)，\\(\\tan 25\\degree\\approx0.4663\\)，若 \\(\\overline{AB}=30\\)，則 \\(\\overline{BC}\\approx\\) ＿＿＿＿（四捨五入到小數點第二位）。",
+   "ref": "圖見學習單 p.5 概念 12 第 3 題",
+   "steps": [
+    "設 \\(\\overline{BC}=x\\)：",
+    "\\(\\overline{BC}\\) 是對邊，\\(\\overline{AB}\\) 是鄰邊",
+    "\\(\\frac{x}{30}=\\tan 25\\degree\\approx0.4663\\)",
+    "\\(x\\approx30\\times0.4663=13.989\\approx13.99\\)"
+   ],
+   "ans": "\\(\\overline{BC}\\approx13.99\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 11,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 30,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 30,
+        "y": 13.989,
+        "label": "$C$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 1.4
+       }
+      ],
+      "angles": [
+       {
+        "at": 0,
+        "text": "$25\\degree$"
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$30$"
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 11,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 30,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 30,
+          "y": 13.989,
+          "label": "$C$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 1.4
+         }
+        ],
+        "angles": [
+         {
+          "at": 0,
+          "text": "$25\\degree$"
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$30$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
   "自評1": {
    "src": "課本・自我評量",
    "page": "印 79",
@@ -12241,6 +13357,2298 @@ window.SOLUTIONS = {
   }
  },
  "2-1": {
+  "核2-1概1、2-1": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 6",
+   "title": "2-1 概念 1、2 第 1 題",
+   "q": "如圖，若圓 \\(O\\) 的半徑為 \\(6\\)，\\(\\angle AOB=120\\degree\\)，則 \\(\\overarc{AB}=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.6 概念 1、2 第 1 題；原圖整個圓是虛線，此處只畫扇形",
+   "steps": [
+    "半徑 \\(6\\)，圓心角 \\(120\\degree\\)，求弧長：",
+    "\\(\\overarc{AB}=2\\pi\\times6\\times\\frac{120}{360}\\)",
+    "\\(=4\\pi\\)"
+   ],
+   "ans": "\\(4\\pi\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 26,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 6,
+      "outline": false
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       -14,
+       6
+      ]
+     },
+     {
+      "on": 0,
+      "at": 90,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": -30,
+      "label": "$B$"
+     }
+    ],
+    "sectors": [
+     {
+      "circle": 0,
+      "from": -30,
+      "to": 90,
+      "fill": "#D9D9D9"
+     }
+    ],
+    "angles": [
+     {
+      "at": 0,
+      "toward": [
+       2,
+       1
+      ],
+      "text": "$120\\degree$"
+     }
+    ],
+    "sides": [
+     {
+      "from": 0,
+      "to": 1,
+      "text": "$6$"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 26,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 6,
+        "outline": false
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         -14,
+         6
+        ]
+       },
+       {
+        "on": 0,
+        "at": 90,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": -30,
+        "label": "$B$"
+       }
+      ],
+      "sectors": [
+       {
+        "circle": 0,
+        "from": -30,
+        "to": 90,
+        "fill": "#D9D9D9"
+       }
+      ],
+      "angles": [
+       {
+        "at": 0,
+        "toward": [
+         2,
+         1
+        ],
+        "text": "$120\\degree$"
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$6$"
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概1、2-2": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 6",
+   "title": "2-1 概念 1、2 第 2 題",
+   "q": "如圖，若圓 \\(O\\) 的半徑為 \\(18\\)，\\(\\angle AOB=80\\degree\\)，則 \\(\\overarc{AB}=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.6 概念 1、2 第 2 題；原圖整個圓是虛線，此處只畫扇形",
+   "steps": [
+    "半徑 \\(18\\)，圓心角 \\(80\\degree\\)，求弧長：",
+    "\\(\\overarc{AB}=2\\pi\\times18\\times\\frac{80}{360}\\)",
+    "\\(=8\\pi\\)"
+   ],
+   "ans": "\\(8\\pi\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 9,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 18,
+      "outline": false
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       -14,
+       6
+      ]
+     },
+     {
+      "on": 0,
+      "at": 90,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 10,
+      "label": "$B$"
+     }
+    ],
+    "sectors": [
+     {
+      "circle": 0,
+      "from": 10,
+      "to": 90,
+      "fill": "#D9D9D9"
+     }
+    ],
+    "angles": [
+     {
+      "at": 0,
+      "toward": [
+       2,
+       1
+      ],
+      "text": "$80\\degree$"
+     }
+    ],
+    "sides": [
+     {
+      "from": 0,
+      "to": 1,
+      "text": "$18$"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 9,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 18,
+        "outline": false
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         -14,
+         6
+        ]
+       },
+       {
+        "on": 0,
+        "at": 90,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 10,
+        "label": "$B$"
+       }
+      ],
+      "sectors": [
+       {
+        "circle": 0,
+        "from": 10,
+        "to": 90,
+        "fill": "#D9D9D9"
+       }
+      ],
+      "angles": [
+       {
+        "at": 0,
+        "toward": [
+         2,
+         1
+        ],
+        "text": "$80\\degree$"
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$18$"
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概1、2-3": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 6",
+   "title": "2-1 概念 1、2 第 3 題",
+   "q": "如圖，若圓 \\(O\\) 的半徑為 \\(12\\)，\\(\\overarc{AB}=10\\pi\\)，則 \\(\\angle AOB=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.6 概念 1、2 第 3 題；原圖整個圓是虛線，此處只畫扇形",
+   "steps": [
+    "半徑 \\(12\\)，\\(\\overarc{AB}=10\\pi\\)，設 \\(\\angle AOB=x\\degree\\)：",
+    "\\(2\\pi\\times12\\times\\frac{x}{360}=10\\pi\\)",
+    "\\(\\frac{x}{15}=10\\)，\\(x=150\\)"
+   ],
+   "ans": "\\(150\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 13,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 12,
+      "outline": false
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       -14,
+       6
+      ]
+     },
+     {
+      "on": 0,
+      "at": 90,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": -60,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 15.0,
+      "label": "$10\\pi$"
+     }
+    ],
+    "sectors": [
+     {
+      "circle": 0,
+      "from": -60,
+      "to": 90,
+      "fill": "#D9D9D9"
+     }
+    ],
+    "angles": [
+     {
+      "at": 0,
+      "toward": [
+       2,
+       1
+      ],
+      "text": "$x\\degree$"
+     }
+    ],
+    "sides": [
+     {
+      "from": 0,
+      "to": 1,
+      "text": "$12$"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 13,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 12,
+        "outline": false
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         -14,
+         6
+        ]
+       },
+       {
+        "on": 0,
+        "at": 90,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": -60,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 15.0,
+        "label": "$10\\pi$"
+       }
+      ],
+      "sectors": [
+       {
+        "circle": 0,
+        "from": -60,
+        "to": 90,
+        "fill": "#D9D9D9"
+       }
+      ],
+      "angles": [
+       {
+        "at": 0,
+        "toward": [
+         2,
+         1
+        ],
+        "text": "$x\\degree$"
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$12$"
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概1、2-4": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 6",
+   "title": "2-1 概念 1、2 第 4 題",
+   "q": "如圖，若圓 \\(O\\) 的半徑為 \\(18\\)，\\(\\overarc{AB}=5\\pi\\)，則 \\(\\angle AOB=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.6 概念 1、2 第 4 題；原圖整個圓是虛線，此處只畫扇形",
+   "steps": [
+    "半徑 \\(18\\)，\\(\\overarc{AB}=5\\pi\\)，設 \\(\\angle AOB=x\\degree\\)：",
+    "\\(2\\pi\\times18\\times\\frac{x}{360}=5\\pi\\)",
+    "\\(\\frac{x}{10}=5\\)，\\(x=50\\)"
+   ],
+   "ans": "\\(50\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 9,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 18,
+      "outline": false
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       -14,
+       6
+      ]
+     },
+     {
+      "on": 0,
+      "at": 90,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 40,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 65.0,
+      "label": "$5\\pi$"
+     }
+    ],
+    "sectors": [
+     {
+      "circle": 0,
+      "from": 40,
+      "to": 90,
+      "fill": "#D9D9D9"
+     }
+    ],
+    "angles": [
+     {
+      "at": 0,
+      "toward": [
+       2,
+       1
+      ],
+      "text": "$x\\degree$"
+     }
+    ],
+    "sides": [
+     {
+      "from": 0,
+      "to": 1,
+      "text": "$18$"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 9,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 18,
+        "outline": false
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         -14,
+         6
+        ]
+       },
+       {
+        "on": 0,
+        "at": 90,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 40,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 65.0,
+        "label": "$5\\pi$"
+       }
+      ],
+      "sectors": [
+       {
+        "circle": 0,
+        "from": 40,
+        "to": 90,
+        "fill": "#D9D9D9"
+       }
+      ],
+      "angles": [
+       {
+        "at": 0,
+        "toward": [
+         2,
+         1
+        ],
+        "text": "$x\\degree$"
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$18$"
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概1、2-5": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 6",
+   "title": "2-1 概念 1、2 第 5 題",
+   "q": "如圖，若圓 \\(O\\) 的半徑為 \\(12\\)，\\(\\angle AOB=200\\degree\\)，則扇形 \\(AOB\\) 的面積 \\(=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.6 概念 1、2 第 5 題；原圖整個圓是虛線，此處只畫扇形",
+   "steps": [
+    "半徑 \\(12\\)，圓心角 \\(200\\degree\\)，求扇形面積：",
+    "扇形面積 \\(=\\pi\\times12^2\\times\\frac{200}{360}\\)",
+    "\\(=144\\pi\\times\\frac{5}{9}=80\\pi\\)"
+   ],
+   "ans": "\\(80\\pi\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 13,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 12,
+      "outline": false
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       -14,
+       6
+      ]
+     },
+     {
+      "on": 0,
+      "at": 90,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": -110,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": -10
+     }
+    ],
+    "sectors": [
+     {
+      "circle": 0,
+      "from": -110,
+      "to": 90,
+      "fill": "#D9D9D9"
+     }
+    ],
+    "angles": [
+     {
+      "at": 0,
+      "toward": [
+       1,
+       3
+      ],
+      "text": "$200\\degree$"
+     }
+    ],
+    "sides": [
+     {
+      "from": 0,
+      "to": 1,
+      "text": "$12$"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 13,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 12,
+        "outline": false
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         -14,
+         6
+        ]
+       },
+       {
+        "on": 0,
+        "at": 90,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": -110,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": -10
+       }
+      ],
+      "sectors": [
+       {
+        "circle": 0,
+        "from": -110,
+        "to": 90,
+        "fill": "#D9D9D9"
+       }
+      ],
+      "angles": [
+       {
+        "at": 0,
+        "toward": [
+         1,
+         3
+        ],
+        "text": "$200\\degree$"
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$12$"
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概3-1": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 6",
+   "title": "2-1 概念 3 第 1 題",
+   "q": "坐標平面上有 \\(A(2,3)\\)、\\(B(-4,3)\\) 兩點，已知圓 \\(O\\) 的半徑為 \\(5\\) 且圓心為原點 \\(O\\)，則有關 \\(A\\)、\\(B\\) 兩點與圓 \\(O\\) 的位置關係，下列敘述何者正確？\n(A) \\(A\\) 點與 \\(B\\) 點皆在圓 \\(O\\) 內\n(B) \\(A\\) 點在圓 \\(O\\) 內，\\(B\\) 點在圓 \\(O\\) 上\n(C) \\(A\\) 點與 \\(B\\) 點皆在圓 \\(O\\) 外\n(D) \\(A\\) 點在圓 \\(O\\) 外，\\(B\\) 點在圓 \\(O\\) 上",
+   "ref": null,
+   "steps": [
+    "比較兩點到圓心的距離與半徑 \\(5\\)：",
+    "\\(\\overline{OA}=\\sqrt{2^2+3^2}=\\sqrt{13}<\\sqrt{25}=5\\)，\\(A\\) 在圓內",
+    "\\(\\overline{OB}=\\sqrt{(-4)^2+3^2}=\\sqrt{25}=5\\)，\\(B\\) 在圓上"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概3-2": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 6",
+   "title": "2-1 概念 3 第 2 題",
+   "q": "坐標平面上有 \\(A(6,-5)\\)、\\(B(-7,-7)\\) 兩點，已知圓 \\(O\\) 的半徑為 \\(8\\) 且圓心為原點 \\(O\\)，則有關 \\(A\\)、\\(B\\) 兩點與圓 \\(O\\) 的位置關係，下列敘述何者正確？\n(A) \\(A\\) 點與 \\(B\\) 點皆在圓 \\(O\\) 內\n(B) \\(A\\) 點在圓 \\(O\\) 內，\\(B\\) 點在圓 \\(O\\) 外\n(C) \\(A\\) 點與 \\(B\\) 點皆在圓 \\(O\\) 外\n(D) \\(A\\) 點在圓 \\(O\\) 外，\\(B\\) 點在圓 \\(O\\) 內",
+   "ref": null,
+   "steps": [
+    "比較兩點到圓心的距離與半徑 \\(8\\)：",
+    "\\(\\overline{OA}=\\sqrt{6^2+(-5)^2}=\\sqrt{61}<\\sqrt{64}=8\\)，\\(A\\) 在圓內",
+    "\\(\\overline{OB}=\\sqrt{(-7)^2+(-7)^2}=7\\sqrt{2}=\\sqrt{98}>8\\)，\\(B\\) 在圓外"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概3-3": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 6",
+   "title": "2-1 概念 3 第 3 題",
+   "q": "坐標平面上有一圓 \\(O\\)，圓心為原點 \\((0,0)\\) 且半徑為 \\(10\\)，則下列敘述何者正確？\n(A) 若直線 \\(L_1\\) 為 \\(x=9\\)，則 \\(L_1\\) 與圓 \\(O\\) 相切\n(B) 若直線 \\(L_2\\) 為 \\(x=-10\\)，則 \\(L_2\\) 與圓 \\(O\\) 不相交\n(C) 若直線 \\(L_3\\) 為 \\(x=11\\)，則 \\(L_3\\) 與圓 \\(O\\) 不相交\n(D) 若直線 \\(L_4\\) 為 \\(x=12\\)，則 \\(L_4\\) 與圓 \\(O\\) 交於兩點",
+   "ref": null,
+   "steps": [
+    "鉛直線 \\(x=a\\) 到圓心的距離是 \\(|a|\\)，與半徑 \\(10\\) 比較：",
+    "(A) 距離 \\(9<10\\)，交於兩點",
+    "(B) 距離 \\(10=10\\)，相切（交於一點）",
+    "(C) 距離 \\(11>10\\)，不相交，正確",
+    "(D) 距離 \\(12>10\\)，不相交"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概4-1": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 7",
+   "title": "2-1 概念 4 第 1 題",
+   "q": "如圖，圓 \\(O\\) 的半徑為 \\(9\\)，直線 \\(L\\) 為圓 \\(O\\) 的切線，\\(P\\) 為切點。若 \\(\\overline{OA}=15\\)，則 \\(\\overline{AP}=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.7 概念 4 第 1 題；原卷寫「圓 O 為半徑為 9」，照意思改寫",
+   "steps": [
+    "連 \\(\\overline{OP}\\)：",
+    "切線垂直過切點的半徑，\\(\\overline{OP}\\perp L\\)",
+    "\\(\\overline{OP}=9\\)，\\(\\overline{OA}=15\\)",
+    "\\(\\overline{AP}=\\sqrt{15^2-9^2}=\\sqrt{144}=12\\)"
+   ],
+   "ans": "\\(12\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 15,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 9
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       0,
+       -6
+      ]
+     },
+     {
+      "x": 0,
+      "y": -9,
+      "label": "$P$",
+      "nudge": [
+       0,
+       6
+      ]
+     },
+     {
+      "x": 12.0,
+      "y": -9,
+      "label": "$A$"
+     },
+     {
+      "x": -5.4,
+      "y": -9,
+      "label": "$L$",
+      "nudge": [
+       -12,
+       0
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 3,
+      "to": 2
+     },
+     {
+      "from": 0,
+      "to": 2
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 15,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 9
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         0,
+         -6
+        ]
+       },
+       {
+        "x": 0,
+        "y": -9,
+        "label": "$P$",
+        "nudge": [
+         0,
+         6
+        ]
+       },
+       {
+        "x": 12.0,
+        "y": -9,
+        "label": "$A$"
+       },
+       {
+        "x": -5.4,
+        "y": -9,
+        "label": "$L$",
+        "nudge": [
+         -12,
+         0
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 3,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "dashed": true
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.9
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$9$"
+       },
+       {
+        "from": 0,
+        "to": 2,
+        "text": "$15$"
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概4-2": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 7",
+   "title": "2-1 概念 4 第 2 題",
+   "q": "如圖，直線 \\(L\\) 為圓 \\(O\\) 的切線，\\(P\\) 為切點。若 \\(\\overline{AP}=12\\)，\\(\\overline{OA}=13\\)，則圓 \\(O\\) 的半徑 \\(=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.7 概念 4 第 2 題",
+   "steps": [
+    "連 \\(\\overline{OP}\\)：",
+    "切線垂直過切點的半徑，\\(\\overline{OP}\\perp L\\)",
+    "\\(\\overline{AP}=12\\)，\\(\\overline{OA}=13\\)",
+    "\\(\\overline{OP}=\\sqrt{13^2-12^2}=\\sqrt{25}=5\\)"
+   ],
+   "ans": "\\(5\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 22,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       0,
+       -6
+      ]
+     },
+     {
+      "x": 0,
+      "y": -5,
+      "label": "$P$",
+      "nudge": [
+       0,
+       6
+      ]
+     },
+     {
+      "x": 12.0,
+      "y": -5,
+      "label": "$A$"
+     },
+     {
+      "x": -3.0,
+      "y": -5,
+      "label": "$L$",
+      "nudge": [
+       -12,
+       0
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 3,
+      "to": 2
+     },
+     {
+      "from": 0,
+      "to": 2
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 22,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         0,
+         -6
+        ]
+       },
+       {
+        "x": 0,
+        "y": -5,
+        "label": "$P$",
+        "nudge": [
+         0,
+         6
+        ]
+       },
+       {
+        "x": 12.0,
+        "y": -5,
+        "label": "$A$"
+       },
+       {
+        "x": -3.0,
+        "y": -5,
+        "label": "$L$",
+        "nudge": [
+         -12,
+         0
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 3,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "dashed": true
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.6
+       }
+      ],
+      "sides": [
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$12$"
+       },
+       {
+        "from": 0,
+        "to": 2,
+        "text": "$13$"
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概4-3": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 7",
+   "title": "2-1 概念 4 第 3 題",
+   "q": "如圖，\\(P\\) 點為圓 \\(O\\) 外的一點，\\(\\overleftrightarrow{PA}\\) 與 \\(\\overleftrightarrow{PB}\\) 分別與圓 \\(O\\) 相切於 \\(A\\) 點與 \\(B\\) 點，\\(\\overline{PO}\\) 與 \\(\\overline{AB}\\) 交於 \\(C\\) 點，且 \\(\\overline{OP}=26\\)，\\(\\overline{AP}=24\\)，則圓 \\(O\\) 的半徑 \\(=\\) ＿＿＿＿，\\(\\overline{AC}=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.7 概念 4 第 3 題",
+   "steps": [
+    "連 \\(\\overline{OA}\\)，先求半徑：",
+    "切線垂直過切點的半徑，\\(\\overline{OA}\\perp\\overline{PA}\\)",
+    "\\(\\overline{OA}=\\sqrt{26^2-24^2}=\\sqrt{100}=10\\)",
+    "\\(\\overline{OA}=10\\)，再求 \\(\\overline{AC}\\)：",
+    "\\(\\overline{PA}=\\overline{PB}\\)，\\(\\overline{OA}=\\overline{OB}\\)",
+    "\\(\\overline{OP}\\) 垂直平分 \\(\\overline{AB}\\)，\\(\\overline{AC}\\perp\\overline{OP}\\)",
+    "\\(\\triangle OAP\\) 面積算兩次：",
+    "\\(\\overline{OP}\\times\\overline{AC}=\\overline{AP}\\times\\overline{OA}\\)",
+    "\\(\\overline{OP}\\times\\overline{AC}=\\overline{AP}\\times\\overline{OA}\\)：",
+    "\\(26\\times\\overline{AC}=24\\times10\\)",
+    "\\(\\overline{AC}=\\frac{240}{26}=\\frac{120}{13}\\)"
+   ],
+   "ans": "半徑 \\(10\\)，\\(\\overline{AC}=\\frac{120}{13}\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 13,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 10,
+      "fill": "#D9D9D9"
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       -16,
+       0
+      ]
+     },
+     {
+      "x": 3.846,
+      "y": 9.231,
+      "label": "$A$"
+     },
+     {
+      "x": 3.846,
+      "y": -9.231,
+      "label": "$B$"
+     },
+     {
+      "x": 26,
+      "y": 0,
+      "label": "$P$"
+     },
+     {
+      "x": 3.846,
+      "y": 0,
+      "label": "$C$",
+      "nudge": [
+       12,
+       -14
+      ]
+     },
+     {
+      "x": -0.142,
+      "y": 10.892
+     },
+     {
+      "x": -0.142,
+      "y": -10.892
+     }
+    ],
+    "segments": [
+     {
+      "from": 3,
+      "to": 5
+     },
+     {
+      "from": 3,
+      "to": 6
+     },
+     {
+      "from": 0,
+      "to": 3
+     },
+     {
+      "from": 1,
+      "to": 2,
+      "dashed": true
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 13,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 10,
+        "fill": "#D9D9D9"
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         -16,
+         0
+        ]
+       },
+       {
+        "x": 3.846,
+        "y": 9.231,
+        "label": "$A$"
+       },
+       {
+        "x": 3.846,
+        "y": -9.231,
+        "label": "$B$"
+       },
+       {
+        "x": 26,
+        "y": 0,
+        "label": "$P$"
+       },
+       {
+        "x": 3.846,
+        "y": 0,
+        "label": "$C$",
+        "nudge": [
+         12,
+         -14
+        ]
+       },
+       {
+        "x": -0.142,
+        "y": 10.892
+       },
+       {
+        "x": -0.142,
+        "y": -10.892
+       }
+      ],
+      "segments": [
+       {
+        "from": 3,
+        "to": 5
+       },
+       {
+        "from": 3,
+        "to": 6
+       },
+       {
+        "from": 0,
+        "to": 3
+       },
+       {
+        "from": 1,
+        "to": 2,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 1
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         3
+        ],
+        "size": 1.2
+       },
+       {
+        "at": 4,
+        "toward": [
+         1,
+         3
+        ],
+        "size": 1.0
+       }
+      ]
+     }
+    },
+    {
+     "from": 3,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 13,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 10,
+        "fill": "#D9D9D9"
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         -16,
+         0
+        ]
+       },
+       {
+        "x": 3.846,
+        "y": 9.231,
+        "label": "$A$"
+       },
+       {
+        "x": 3.846,
+        "y": -9.231,
+        "label": "$B$"
+       },
+       {
+        "x": 26,
+        "y": 0,
+        "label": "$P$"
+       },
+       {
+        "x": 3.846,
+        "y": 0,
+        "label": "$C$",
+        "nudge": [
+         12,
+         -14
+        ]
+       },
+       {
+        "x": -0.142,
+        "y": 10.892
+       },
+       {
+        "x": -0.142,
+        "y": -10.892
+       }
+      ],
+      "segments": [
+       {
+        "from": 3,
+        "to": 5
+       },
+       {
+        "from": 3,
+        "to": 6
+       },
+       {
+        "from": 0,
+        "to": 3
+       },
+       {
+        "from": 1,
+        "to": 2,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 1
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         3
+        ],
+        "size": 1.2
+       },
+       {
+        "at": 4,
+        "toward": [
+         1,
+         3
+        ],
+        "size": 1.0
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0,
+    3,
+    8
+   ]
+  },
+  "核2-1概5-1": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 7",
+   "title": "2-1 概念 5 第 1 題",
+   "q": "如圖，已知圓 \\(O\\) 的半徑為 \\(10\\)，且 \\(\\overline{AB}=16\\)，\\(\\overline{CD}=12\\)，則 \\(\\overline{OE}=\\) ＿＿＿＿，\\(\\overline{OF}=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.7 概念 5 第 1 題；$\\overline{OE}\\perp\\overline{AB}$、$\\overline{OF}\\perp\\overline{CD}$ 由圖上的直角記號給出",
+   "steps": [
+    "連 \\(\\overline{OA}\\)、\\(\\overline{OC}\\)：",
+    "弦心距垂直平分弦，\\(\\overline{AE}=8\\)，\\(\\overline{CF}=6\\)",
+    "\\(\\overline{OE}=\\sqrt{10^2-8^2}=\\sqrt{36}=6\\)",
+    "\\(\\overline{OF}=\\sqrt{10^2-6^2}=\\sqrt{64}=8\\)"
+   ],
+   "ans": "\\(\\overline{OE}=6\\)，\\(\\overline{OF}=8\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 15,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 10,
+      "fill": "#D9D9D9"
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       0,
+       26
+      ]
+     },
+     {
+      "x": -7.866,
+      "y": 6.174,
+      "label": "$A$"
+     },
+     {
+      "x": -3.725,
+      "y": -9.28,
+      "label": "$B$"
+     },
+     {
+      "x": 8,
+      "y": 6,
+      "label": "$C$"
+     },
+     {
+      "x": 8,
+      "y": -6,
+      "label": "$D$"
+     },
+     {
+      "x": -5.796,
+      "y": -1.553,
+      "label": "$E$",
+      "nudge": [
+       -6,
+       0
+      ]
+     },
+     {
+      "x": 8,
+      "y": 0,
+      "label": "$F$",
+      "nudge": [
+       -24,
+       -18
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 3,
+      "to": 4
+     },
+     {
+      "from": 0,
+      "to": 5,
+      "dashed": true
+     },
+     {
+      "from": 0,
+      "to": 6,
+      "dashed": true
+     }
+    ],
+    "rightAngles": [
+     {
+      "at": 5,
+      "toward": [
+       0,
+       1
+      ],
+      "size": 0.8
+     },
+     {
+      "at": 6,
+      "toward": [
+       0,
+       3
+      ],
+      "size": 0.8
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 15,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 10,
+        "fill": "#D9D9D9"
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         0,
+         26
+        ]
+       },
+       {
+        "x": -7.866,
+        "y": 6.174,
+        "label": "$A$"
+       },
+       {
+        "x": -3.725,
+        "y": -9.28,
+        "label": "$B$"
+       },
+       {
+        "x": 8,
+        "y": 6,
+        "label": "$C$"
+       },
+       {
+        "x": 8,
+        "y": -6,
+        "label": "$D$"
+       },
+       {
+        "x": -5.796,
+        "y": -1.553,
+        "label": "$E$",
+        "nudge": [
+         -6,
+         0
+        ]
+       },
+       {
+        "x": 8,
+        "y": 0,
+        "label": "$F$",
+        "nudge": [
+         -24,
+         -18
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 3,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 5,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 6,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 0,
+        "to": 3
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 5,
+        "toward": [
+         0,
+         1
+        ],
+        "size": 0.8
+       },
+       {
+        "at": 6,
+        "toward": [
+         0,
+         3
+        ],
+        "size": 0.8
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概5-2": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 7",
+   "title": "2-1 概念 5 第 2 題",
+   "q": "如圖，已知圓 \\(O\\) 的半徑為 \\(5\\)，且 \\(\\overline{OE}=2\\)，\\(\\overline{OF}=3\\)，則 \\(\\overline{AB}=\\) ＿＿＿＿，\\(\\overline{CD}=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.7 概念 5 第 2 題",
+   "steps": [
+    "連 \\(\\overline{OA}\\)，先求 \\(\\overline{AB}\\)：",
+    "弦心距垂直平分弦",
+    "\\(\\overline{AB}=2\\overline{AE}=2\\sqrt{5^2-2^2}\\)",
+    "\\(=2\\sqrt{21}\\)",
+    "連 \\(\\overline{OC}\\)，再求 \\(\\overline{CD}\\)：",
+    "\\(\\overline{CD}=2\\overline{CF}=2\\sqrt{5^2-3^2}\\)",
+    "\\(=2\\sqrt{16}=8\\)"
+   ],
+   "ans": "\\(\\overline{AB}=2\\sqrt{21}\\)，\\(\\overline{CD}=8\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 28,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5,
+      "fill": "#D9D9D9"
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       4,
+       24
+      ]
+     },
+     {
+      "x": -3.447,
+      "y": 3.622,
+      "label": "$A$"
+     },
+     {
+      "x": -0.312,
+      "y": -4.99,
+      "label": "$B$"
+     },
+     {
+      "x": -0.273,
+      "y": 4.993,
+      "label": "$C$"
+     },
+     {
+      "x": 4.869,
+      "y": -1.136,
+      "label": "$D$"
+     },
+     {
+      "x": -1.879,
+      "y": -0.684,
+      "label": "$E$",
+      "nudge": [
+       -6,
+       0
+      ]
+     },
+     {
+      "x": 2.298,
+      "y": 1.928,
+      "label": "$F$",
+      "nudge": [
+       6,
+       -4
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 3,
+      "to": 4
+     },
+     {
+      "from": 0,
+      "to": 5,
+      "dashed": true
+     },
+     {
+      "from": 0,
+      "to": 6,
+      "dashed": true
+     }
+    ],
+    "rightAngles": [
+     {
+      "at": 5,
+      "toward": [
+       0,
+       1
+      ],
+      "size": 0.4
+     },
+     {
+      "at": 6,
+      "toward": [
+       0,
+       3
+      ],
+      "size": 0.4
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 28,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5,
+        "fill": "#D9D9D9"
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         4,
+         24
+        ]
+       },
+       {
+        "x": -3.447,
+        "y": 3.622,
+        "label": "$A$"
+       },
+       {
+        "x": -0.312,
+        "y": -4.99,
+        "label": "$B$"
+       },
+       {
+        "x": -0.273,
+        "y": 4.993,
+        "label": "$C$"
+       },
+       {
+        "x": 4.869,
+        "y": -1.136,
+        "label": "$D$"
+       },
+       {
+        "x": -1.879,
+        "y": -0.684,
+        "label": "$E$",
+        "nudge": [
+         -6,
+         0
+        ]
+       },
+       {
+        "x": 2.298,
+        "y": 1.928,
+        "label": "$F$",
+        "nudge": [
+         6,
+         -4
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 3,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 5,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 6,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 0,
+        "to": 3
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 5,
+        "toward": [
+         0,
+         1
+        ],
+        "size": 0.4
+       },
+       {
+        "at": 6,
+        "toward": [
+         0,
+         3
+        ],
+        "size": 0.4
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 4,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 28,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5,
+        "fill": "#D9D9D9"
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         4,
+         24
+        ]
+       },
+       {
+        "x": -3.447,
+        "y": 3.622,
+        "label": "$A$"
+       },
+       {
+        "x": -0.312,
+        "y": -4.99,
+        "label": "$B$"
+       },
+       {
+        "x": -0.273,
+        "y": 4.993,
+        "label": "$C$"
+       },
+       {
+        "x": 4.869,
+        "y": -1.136,
+        "label": "$D$"
+       },
+       {
+        "x": -1.879,
+        "y": -0.684,
+        "label": "$E$",
+        "nudge": [
+         -6,
+         0
+        ]
+       },
+       {
+        "x": 2.298,
+        "y": 1.928,
+        "label": "$F$",
+        "nudge": [
+         6,
+         -4
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 3,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 5,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 6,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 0,
+        "to": 3
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 5,
+        "toward": [
+         0,
+         1
+        ],
+        "size": 0.4
+       },
+       {
+        "at": 6,
+        "toward": [
+         0,
+         3
+        ],
+        "size": 0.4
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "核2-1概5-3": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 7",
+   "title": "2-1 概念 5 第 3 題",
+   "q": "如圖，\\(\\overline{AB}\\)、\\(\\overline{CD}\\)、\\(\\overline{EF}\\) 分別為圓 \\(O\\) 的三條弦，\\(\\overline{OP}\\)、\\(\\overline{OQ}\\)、\\(\\overline{OR}\\) 分別為對應的弦心距。已知 \\(\\overline{OP}>\\overline{OQ}>\\overline{OR}\\)，則 \\(\\overline{AB}\\)、\\(\\overline{CD}\\)、\\(\\overline{EF}\\) 的長度關係為 ＿＿＿＿。",
+   "ref": "圖見學習單 p.7 概念 5 第 3 題",
+   "steps": [
+    "\\(\\overline{OP}>\\overline{OQ}>\\overline{OR}\\)：",
+    "同圓中，弦心距相等，弦等長",
+    "弦心距愈短，弦愈長",
+    "\\(\\overline{OR}\\) 最短，\\(\\overline{EF}\\) 最長"
+   ],
+   "ans": "\\(\\overline{AB}<\\overline{CD}<\\overline{EF}\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 28,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       10,
+       22
+      ]
+     },
+     {
+      "x": 2.64,
+      "y": 4.246,
+      "label": "$A$"
+     },
+     {
+      "x": -3.337,
+      "y": 3.723,
+      "label": "$B$"
+     },
+     {
+      "x": -4.409,
+      "y": 2.357,
+      "label": "$C$"
+     },
+     {
+      "x": -1.028,
+      "y": -4.893,
+      "label": "$D$"
+     },
+     {
+      "x": 0.587,
+      "y": -4.965,
+      "label": "$E$"
+     },
+     {
+      "x": 3.641,
+      "y": 3.426,
+      "label": "$F$"
+     },
+     {
+      "x": -0.349,
+      "y": 3.985,
+      "label": "$P$",
+      "nudge": [
+       4,
+       24
+      ]
+     },
+     {
+      "x": -2.719,
+      "y": -1.268,
+      "label": "$Q$",
+      "nudge": [
+       4,
+       -4
+      ]
+     },
+     {
+      "x": 2.114,
+      "y": -0.77,
+      "label": "$R$",
+      "nudge": [
+       0,
+       4
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 3,
+      "to": 4
+     },
+     {
+      "from": 5,
+      "to": 6
+     },
+     {
+      "from": 0,
+      "to": 7
+     },
+     {
+      "from": 0,
+      "to": 8
+     },
+     {
+      "from": 0,
+      "to": 9
+     }
+    ],
+    "rightAngles": [
+     {
+      "at": 7,
+      "toward": [
+       0,
+       1
+      ],
+      "size": 0.4
+     },
+     {
+      "at": 8,
+      "toward": [
+       0,
+       3
+      ],
+      "size": 0.4
+     },
+     {
+      "at": 9,
+      "toward": [
+       0,
+       6
+      ],
+      "size": 0.4
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 28,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         10,
+         22
+        ]
+       },
+       {
+        "x": 2.64,
+        "y": 4.246,
+        "label": "$A$"
+       },
+       {
+        "x": -3.337,
+        "y": 3.723,
+        "label": "$B$"
+       },
+       {
+        "x": -4.409,
+        "y": 2.357,
+        "label": "$C$"
+       },
+       {
+        "x": -1.028,
+        "y": -4.893,
+        "label": "$D$"
+       },
+       {
+        "x": 0.587,
+        "y": -4.965,
+        "label": "$E$"
+       },
+       {
+        "x": 3.641,
+        "y": 3.426,
+        "label": "$F$"
+       },
+       {
+        "x": -0.349,
+        "y": 3.985,
+        "label": "$P$",
+        "nudge": [
+         4,
+         24
+        ]
+       },
+       {
+        "x": -2.719,
+        "y": -1.268,
+        "label": "$Q$",
+        "nudge": [
+         4,
+         -4
+        ]
+       },
+       {
+        "x": 2.114,
+        "y": -0.77,
+        "label": "$R$",
+        "nudge": [
+         0,
+         4
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 3,
+        "to": 4
+       },
+       {
+        "from": 5,
+        "to": 6
+       },
+       {
+        "from": 0,
+        "to": 7
+       },
+       {
+        "from": 0,
+        "to": 8
+       },
+       {
+        "from": 0,
+        "to": 9
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 7,
+        "toward": [
+         0,
+         1
+        ],
+        "size": 0.4
+       },
+       {
+        "at": 8,
+        "toward": [
+         0,
+         3
+        ],
+        "size": 0.4
+       },
+       {
+        "at": 9,
+        "toward": [
+         0,
+         6
+        ],
+        "size": 0.4
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-1概5-4": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 7",
+   "title": "2-1 概念 5 第 4 題",
+   "q": "若 \\(\\overline{AB}\\)、\\(\\overline{CD}\\)、\\(\\overline{EF}\\) 分別為圓 \\(O\\) 的三條弦，\\(\\overline{OP}\\)、\\(\\overline{OQ}\\)、\\(\\overline{OR}\\) 分別為對應的弦心距。已知 \\(\\overline{AB}>\\overline{CD}=\\overline{EF}\\)，則 \\(\\overline{OP}\\)、\\(\\overline{OQ}\\)、\\(\\overline{OR}\\) 的長度關係為 ＿＿＿＿。",
+   "ref": null,
+   "steps": [
+    "\\(\\overline{AB}>\\overline{CD}=\\overline{EF}\\)：",
+    "同圓中，弦等長，弦心距相等：\\(\\overline{OQ}=\\overline{OR}\\)",
+    "弦愈長，弦心距愈短：\\(\\overline{OP}<\\overline{OQ}\\)"
+   ],
+   "ans": "\\(\\overline{OP}<\\overline{OQ}=\\overline{OR}\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
   "自評1": {
    "src": "課本・自我評量",
    "page": "印 110",
@@ -15304,6 +18712,1380 @@ window.SOLUTIONS = {
   }
  },
  "2-2": {
+  "核2-2概6-1": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 8",
+   "title": "2-2 概念 6 第 1 題",
+   "q": "如圖，圓 \\(O\\) 通過五邊形 \\(OABCD\\) 的四個頂點，已知 \\(\\overline{AB}=\\overline{BC}\\)，且 \\(\\overarc{ABD}=160\\degree\\)，\\(\\angle OAB=60\\degree\\)，則 \\(\\angle COD=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.8 概念 6 第 1 題；$O$ 是圓心",
+   "steps": [
+    "\\(\\overline{OA}=\\overline{OB}\\)（半徑）：",
+    "\\(\\angle OBA=\\angle OAB=60\\degree\\)",
+    "\\(\\angle AOB=180\\degree-60\\degree-60\\degree=60\\degree\\)",
+    "\\(\\overline{AB}=\\overline{BC}\\)，等弦對等圓心角",
+    "\\(\\angle BOC=\\angle AOB=60\\degree\\)",
+    "\\(\\angle AOB=\\angle BOC=60\\degree\\)，\\(\\overarc{ABD}=160\\degree\\)：",
+    "圓心角的度數等於所對弧的度數",
+    "\\(\\angle AOD=160\\degree\\)（\\(\\overarc{ABD}\\) 所對）",
+    "\\(\\angle COD=160\\degree-60\\degree-60\\degree=40\\degree\\)"
+   ],
+   "ans": "\\(40\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 30,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       0,
+       -6
+      ]
+     },
+     {
+      "on": 0,
+      "at": 195,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 255,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 315,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 355,
+      "label": "$D$"
+     }
+    ],
+    "polygons": [
+     {
+      "points": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 2
+     },
+     {
+      "from": 0,
+      "to": 3
+     }
+    ],
+    "angles": [
+     {
+      "at": 1,
+      "toward": [
+       0,
+       2
+      ],
+      "text": "$60\\degree$"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 30,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         0,
+         -6
+        ]
+       },
+       {
+        "on": 0,
+        "at": 195,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 255,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 315,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 355,
+        "label": "$D$"
+       }
+      ],
+      "polygons": [
+       {
+        "points": [
+         0,
+         1,
+         2,
+         3,
+         4
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 3
+       }
+      ],
+      "angles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "text": "$60\\degree$"
+       }
+      ],
+      "role": "solution",
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "ticks": 1
+       },
+       {
+        "from": 0,
+        "to": 2,
+        "ticks": 1
+       }
+      ]
+     }
+    },
+    {
+     "from": 5,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 30,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         0,
+         -6
+        ]
+       },
+       {
+        "on": 0,
+        "at": 195,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 255,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 315,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 355,
+        "label": "$D$"
+       }
+      ],
+      "polygons": [
+       {
+        "points": [
+         0,
+         1,
+         2,
+         3,
+         4
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 3
+       }
+      ],
+      "angles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "text": "$60\\degree$"
+       }
+      ],
+      "role": "solution",
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "ticks": 1
+       },
+       {
+        "from": 0,
+        "to": 2,
+        "ticks": 1
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0,
+    5
+   ]
+  },
+  "核2-2概6-2": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 8",
+   "title": "2-2 概念 6 第 2 題",
+   "q": "如圖，已知 \\(A\\)、\\(B\\)、\\(C\\)、\\(D\\) 為圓 \\(O\\) 上四點，且 \\(\\overline{AC}=\\overline{BD}\\)。已知 \\(\\overarc{AD}=160\\degree\\)，\\(\\overarc{BC}=40\\degree\\)，則 \\(\\overarc{CD}=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.8 概念 6 第 2 題；點的位置照弧度數重算，與原圖略有不同",
+   "steps": [
+    "\\(\\overarc{BC}=40\\degree\\)：",
+    "\\(\\overarc{AB}+\\overarc{CD}=360\\degree-160\\degree-40\\degree=160\\degree\\)",
+    "\\(\\overline{AC}=\\overline{BD}\\)，等弦對等弧",
+    "\\(\\overarc{AB}+\\overarc{BC}=\\overarc{CD}+\\overarc{BC}\\)",
+    "\\(\\overarc{AB}=\\overarc{CD}=160\\degree\\div2=80\\degree\\)"
+   ],
+   "ans": "\\(80\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 30,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       16,
+       4
+      ]
+     },
+     {
+      "on": 0,
+      "at": 110,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 190,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 230,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 310,
+      "label": "$D$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 3
+     },
+     {
+      "from": 2,
+      "to": 4
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 30,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         16,
+         4
+        ]
+       },
+       {
+        "on": 0,
+        "at": 110,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 190,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 230,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 310,
+        "label": "$D$"
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 3
+       },
+       {
+        "from": 2,
+        "to": 4
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-2概6-3": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 8",
+   "title": "2-2 概念 6 第 3 題",
+   "q": "如圖，已知 \\(A\\)、\\(B\\)、\\(C\\)、\\(D\\) 為圓 \\(O\\) 上的四個點，若 \\(\\angle B=110\\degree\\)，則 \\(\\angle AOC=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.8 概念 6 第 3 題",
+   "steps": [
+    "\\(\\angle B=\\angle ABC=110\\degree\\) 是圓周角：",
+    "\\(\\overarc{ADC}=2\\angle B=2\\times110\\degree=220\\degree\\)",
+    "\\(\\overarc{ABC}=360\\degree-220\\degree=140\\degree\\)",
+    "\\(\\angle AOC\\) 是 \\(\\overarc{ABC}\\) 所對的圓心角，\\(\\angle AOC=140\\degree\\)"
+   ],
+   "ans": "\\(140\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 30,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       -16,
+       0
+      ]
+     },
+     {
+      "on": 0,
+      "at": 70,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 0,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": -70,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 180,
+      "label": "$D$"
+     }
+    ],
+    "polygons": [
+     {
+      "points": [
+       1,
+       2,
+       3,
+       0
+      ],
+      "fill": "#D9D9D9"
+     }
+    ],
+    "angles": [
+     {
+      "at": 2,
+      "toward": [
+       1,
+       3
+      ],
+      "text": "$110\\degree$",
+      "nudge": [
+       -14,
+       0
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 30,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         -16,
+         0
+        ]
+       },
+       {
+        "on": 0,
+        "at": 70,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 0,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": -70,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 180,
+        "label": "$D$"
+       }
+      ],
+      "polygons": [
+       {
+        "points": [
+         1,
+         2,
+         3,
+         0
+        ],
+        "fill": "#D9D9D9"
+       }
+      ],
+      "angles": [
+       {
+        "at": 2,
+        "toward": [
+         1,
+         3
+        ],
+        "text": "$110\\degree$",
+        "nudge": [
+         -14,
+         0
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-2概7-1": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 8",
+   "title": "2-2 概念 7 第 1 題",
+   "q": "如圖，圓 \\(O\\) 內有兩弦 \\(\\overline{AB}\\)、\\(\\overline{CD}\\)，且 \\(\\overline{AB}\\parallel\\overline{CD}\\)，\\(\\overline{AD}\\) 與 \\(\\overline{BC}\\) 交於 \\(P\\) 點，若 \\(\\angle C=30\\degree\\)，則 \\(\\angle A=\\) ＿＿＿＿，\\(\\angle CPD=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.8 概念 7 第 1 題；$E$、$F$ 照原圖標出（題目沒有用到）",
+   "steps": [
+    "\\(\\angle C=\\angle BCD=30\\degree\\)：",
+    "\\(\\angle A=\\angle BAD\\)、\\(\\angle C=\\angle BCD\\)",
+    "都是 \\(\\overarc{BD}\\) 所對的圓周角",
+    "\\(\\angle A=\\angle C=30\\degree\\)",
+    "再求 \\(\\angle CPD\\)：",
+    "\\(\\overline{AB}\\parallel\\overline{CD}\\)，平行線截等弧",
+    "\\(\\overarc{AC}=\\overarc{BD}\\)",
+    "\\(\\angle D\\) 是 \\(\\overarc{AC}\\) 所對的圓周角",
+    "\\(\\angle D=\\angle C=30\\degree\\)",
+    "\\(\\angle CPD=180\\degree-30\\degree-30\\degree=120\\degree\\)"
+   ],
+   "ans": "\\(30\\degree\\)、\\(120\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 30,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       14,
+       8
+      ]
+     },
+     {
+      "on": 0,
+      "at": 168,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 12,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 228,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 312,
+      "label": "$D$"
+     },
+     {
+      "x": 0,
+      "y": -1.784,
+      "label": "$P$",
+      "nudge": [
+       16,
+       0
+      ]
+     },
+     {
+      "on": 0,
+      "at": 90,
+      "label": "$E$"
+     },
+     {
+      "on": 0,
+      "at": 270,
+      "label": "$F$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 3,
+      "to": 4
+     },
+     {
+      "from": 1,
+      "to": 4
+     },
+     {
+      "from": 2,
+      "to": 3
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 30,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         14,
+         8
+        ]
+       },
+       {
+        "on": 0,
+        "at": 168,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 12,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 228,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 312,
+        "label": "$D$"
+       },
+       {
+        "x": 0,
+        "y": -1.784,
+        "label": "$P$",
+        "nudge": [
+         16,
+         0
+        ]
+       },
+       {
+        "on": 0,
+        "at": 90,
+        "label": "$E$"
+       },
+       {
+        "on": 0,
+        "at": 270,
+        "label": "$F$"
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 3,
+        "to": 4
+       },
+       {
+        "from": 1,
+        "to": 4
+       },
+       {
+        "from": 2,
+        "to": 3
+       }
+      ],
+      "role": "solution",
+      "angles": [
+       {
+        "at": 1,
+        "toward": [
+         2,
+         4
+        ],
+        "mark": 1
+       },
+       {
+        "at": 3,
+        "toward": [
+         2,
+         4
+        ],
+        "mark": 1
+       },
+       {
+        "at": 4,
+        "toward": [
+         1,
+         3
+        ],
+        "mark": 1
+       },
+       {
+        "at": 2,
+        "toward": [
+         1,
+         3
+        ],
+        "mark": 1
+       }
+      ]
+     }
+    },
+    {
+     "from": 4,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 30,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         14,
+         8
+        ]
+       },
+       {
+        "on": 0,
+        "at": 168,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 12,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 228,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 312,
+        "label": "$D$"
+       },
+       {
+        "x": 0,
+        "y": -1.784,
+        "label": "$P$",
+        "nudge": [
+         16,
+         0
+        ]
+       },
+       {
+        "on": 0,
+        "at": 90,
+        "label": "$E$"
+       },
+       {
+        "on": 0,
+        "at": 270,
+        "label": "$F$"
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 3,
+        "to": 4
+       },
+       {
+        "from": 1,
+        "to": 4
+       },
+       {
+        "from": 2,
+        "to": 3
+       }
+      ],
+      "role": "solution",
+      "angles": [
+       {
+        "at": 1,
+        "toward": [
+         2,
+         4
+        ],
+        "mark": 1
+       },
+       {
+        "at": 3,
+        "toward": [
+         2,
+         4
+        ],
+        "mark": 1
+       },
+       {
+        "at": 4,
+        "toward": [
+         1,
+         3
+        ],
+        "mark": 1
+       },
+       {
+        "at": 2,
+        "toward": [
+         1,
+         3
+        ],
+        "mark": 1
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "核2-2概7-2": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 8",
+   "title": "2-2 概念 7 第 2 題",
+   "q": "如圖，\\(\\overarc{BC}\\) 是半圓，\\(O\\) 為圓心，\\(A\\) 點在半圓上，若 \\(\\angle ABC=65\\degree\\)，則 \\(\\angle ACB=\\) ＿＿＿＿，\\(\\overarc{AC}=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.8 概念 7 第 2 題",
+   "steps": [
+    "\\(\\overline{BC}\\) 是直徑，\\(\\angle ABC=65\\degree\\)：",
+    "半圓所對的圓周角是直角，\\(\\angle BAC=90\\degree\\)",
+    "\\(\\angle ACB=90\\degree-65\\degree=25\\degree\\)",
+    "\\(\\overarc{AC}=2\\angle ABC=2\\times65\\degree=130\\degree\\)"
+   ],
+   "ans": "\\(25\\degree\\)、\\(130\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 30,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5,
+      "outline": false
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       0,
+       6
+      ]
+     },
+     {
+      "on": 0,
+      "at": 180,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 0,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 130,
+      "label": "$A$"
+     }
+    ],
+    "arcs": [
+     {
+      "circle": 0,
+      "from": 0,
+      "to": 180
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 1,
+      "to": 3
+     },
+     {
+      "from": 3,
+      "to": 2
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 30,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5,
+        "outline": false
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         0,
+         6
+        ]
+       },
+       {
+        "on": 0,
+        "at": 180,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 0,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 130,
+        "label": "$A$"
+       }
+      ],
+      "arcs": [
+       {
+        "circle": 0,
+        "from": 0,
+        "to": 180
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 1,
+        "to": 3
+       },
+       {
+        "from": 3,
+        "to": 2
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 3,
+        "toward": [
+         1,
+         2
+        ],
+        "size": 0.5
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-2概8-1": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 8",
+   "title": "2-2 概念 8 第 1 題",
+   "q": "如圖，已知四邊形 \\(ABCD\\) 為圓 \\(O\\) 的圓內接四邊形。若 \\(\\angle A=90\\degree\\)，\\(\\angle B=110\\degree\\)，則 \\(\\angle C=\\) ＿＿＿＿，\\(\\angle D=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.8 概念 8 第 1 題",
+   "steps": [
+    "\\(\\angle B=110\\degree\\)：",
+    "圓內接四邊形的對角互補",
+    "\\(\\angle C=180\\degree-\\angle A=180\\degree-90\\degree=90\\degree\\)",
+    "\\(\\angle D=180\\degree-\\angle B=180\\degree-110\\degree=70\\degree\\)"
+   ],
+   "ans": "\\(\\angle C=90\\degree\\)，\\(\\angle D=70\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 30,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       0,
+       26
+      ]
+     },
+     {
+      "on": 0,
+      "at": 75,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 0,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": -65,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 180,
+      "label": "$D$"
+     }
+    ],
+    "polygons": [
+     {
+      "points": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "fill": "#D9D9D9"
+     }
+    ],
+    "rightAngles": [
+     {
+      "at": 1,
+      "toward": [
+       4,
+       2
+      ],
+      "size": 0.5
+     }
+    ],
+    "angles": [
+     {
+      "at": 2,
+      "toward": [
+       1,
+       3
+      ],
+      "text": "$110\\degree$",
+      "nudge": [
+       -12,
+       0
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 30,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         0,
+         26
+        ]
+       },
+       {
+        "on": 0,
+        "at": 75,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 0,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": -65,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 180,
+        "label": "$D$"
+       }
+      ],
+      "polygons": [
+       {
+        "points": [
+         1,
+         2,
+         3,
+         4
+        ],
+        "fill": "#D9D9D9"
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         4,
+         2
+        ],
+        "size": 0.5
+       }
+      ],
+      "angles": [
+       {
+        "at": 2,
+        "toward": [
+         1,
+         3
+        ],
+        "text": "$110\\degree$",
+        "nudge": [
+         -12,
+         0
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "核2-2概8-2": {
+   "src": "試卷・核心概念學習單",
+   "page": "印 8",
+   "title": "2-2 概念 8 第 2 題",
+   "q": "如圖，已知四邊形 \\(ABCD\\) 為圓 \\(O\\) 的圓內接四邊形。若 \\(\\overarc{ADC}=160\\degree\\)，\\(\\angle A=70\\degree\\)，則 \\(\\angle C=\\) ＿＿＿＿，\\(\\angle D=\\) ＿＿＿＿。",
+   "ref": "圖見學習單 p.8 概念 8 第 2 題",
+   "steps": [
+    "\\(\\angle A=70\\degree\\)：",
+    "\\(\\angle C=180\\degree-\\angle A=180\\degree-70\\degree=110\\degree\\)",
+    "\\(\\angle B\\) 是 \\(\\overarc{ADC}\\) 所對的圓周角",
+    "\\(\\angle B=\\frac{1}{2}\\times160\\degree=80\\degree\\)",
+    "\\(\\angle D=180\\degree-\\angle B=180\\degree-80\\degree=100\\degree\\)"
+   ],
+   "ans": "\\(110\\degree\\)、\\(100\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 30,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "on": 0,
+      "at": 200,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 320,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 40,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 100,
+      "label": "$D$"
+     }
+    ],
+    "polygons": [
+     {
+      "points": [
+       0,
+       1,
+       2,
+       3
+      ]
+     }
+    ],
+    "angles": [
+     {
+      "at": 0,
+      "toward": [
+       1,
+       3
+      ],
+      "text": "$70\\degree$"
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 30,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "on": 0,
+        "at": 200,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 320,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 40,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 100,
+        "label": "$D$"
+       }
+      ],
+      "polygons": [
+       {
+        "points": [
+         0,
+         1,
+         2,
+         3
+        ]
+       }
+      ],
+      "angles": [
+       {
+        "at": 0,
+        "toward": [
+         1,
+         3
+        ],
+        "text": "$70\\degree$"
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
   "自評1": {
    "src": "課本・自我評量",
    "page": "印 128",

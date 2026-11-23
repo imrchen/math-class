@@ -1,6 +1,6 @@
 window.PRACTICE = (function () {
   const INK = '#172033', GREY = '#8a94a6', ANS = '#059669';
-  const SRCCOL = { '課本・隨堂練習': '#2563eb', '習作': '#d97706', '習作・章末總習題': '#7c3aed', '習作・暖身題': '#0891b2', '課本・自我評量': '#9d174d', '試卷・段考即時通': '#475569', '試卷・段考卷': '#0f766e' };
+  const SRCCOL = { '課本・隨堂練習': '#2563eb', '習作': '#d97706', '習作・章末總習題': '#7c3aed', '習作・暖身題': '#0891b2', '課本・自我評量': '#9d174d', '試卷・段考即時通': '#475569', '試卷・段考卷': '#0f766e', '試卷・核心概念學習單': '#4d7c0f' };
 
   const S = (sec) => {
     const all = (window.SOLUTIONS || {})[sec];
@@ -10,8 +10,9 @@ window.PRACTICE = (function () {
   };
 
   const SCRUBBED = new Set();
-  const NOTE_LINE = /^\s*(（教材更正）|※\s*教用)/;
-  const NOTE_IN = /（教材更正）[^。]*。|（[^（）]*教用[^（）]*更正[^（）]*）/g;
+
+  const NOTE_LINE = /^\s*(（教材更正）|※\s*(教用|原卷))/;
+  const NOTE_IN = /（教材更正）[^。]*。|（[^（）]*(教用|原卷)[^（）]*更正[^（）]*）/g;
   function scrubNotes(all) {
     for (const d of Object.values(all)) {
       if (!d || typeof d !== 'object') continue;
