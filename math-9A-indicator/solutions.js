@@ -34266,7 +34266,7 @@ window.SOLUTIONS = {
     "\\(49+t^2=16+4t^2\\)",
     "\\(3t^2=33\\)，\\(t=\\sqrt{11}\\)"
    ],
-   "ans": "\\(\\overline{ON}=2t=2\\sqrt{11}\\)",
+   "ans": "\\(\\overline{ON}=2\\sqrt{11}\\)",
    "fig": {
     "type": "circle-figure",
     "unit": 17,
