@@ -182,7 +182,7 @@ window.DECK = window.DECK || [];
     ch: 2,
     title: '圓形',
     color: C,
-    sections: ['2-1 點、直線與圓之間的位置關係', '2-2 圓心角、圓周角與弧的關係', '作圖 尺規作圖', '段考 第二次（1-4～2-2）'],
+    sections: ['2-1 點、直線與圓之間的位置關係', '2-2 圓心角、圓周角與弧的關係', '附錄本 整章綜合', '作圖 尺規作圖', '段考 第二次（1-4～2-2）'],
     slides: [
 
       {
@@ -1116,6 +1116,92 @@ window.DECK = window.DECK || [];
       },
 
       {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '練習｜習作附錄本（選擇 1～4）',
+        points: [
+          '習作最後的<b>附錄本</b>小卷，寫完自己對一次詳解。',
+          '第 1、2 題：扇形面積＝<b>圓面積×圓心角÷360</b>；彩帶長＝<b>兩條半徑＋弧長</b>。',
+          '第 3、4 題：先算<b>點到圓心的距離</b>，再跟半徑比。'
+        ],
+        formula: { label: '扇形面積', tex: 'A=\\pi r^2\\times\\dfrac{x}{360}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-1', [
+            { src: '習作・附錄本', page: '印 12', sub: '習作附錄本 選擇題', tags: ['附選1', '附選2', '附選3', '附選4'] }
+          ]);
+        },
+        caption: '選擇前四題，寫完點題號對詳解。'
+      },
+      {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '練習｜習作附錄本（選擇 5～7）',
+        points: [
+          '第 5、7 題：<b>切線垂直於過切點的半徑</b>，連出直角三角形，用畢氏定理。',
+          '第 6 題：圓心到直線的距離跟半徑比，<b>一樣長就只交一點</b>。'
+        ],
+        formula: { label: '切線與半徑', tex: '\\overline{OA}\\perp\\overleftrightarrow{AP}' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-1', [
+            { src: '習作・附錄本', page: '印 12', sub: '習作附錄本 選擇題', tags: ['附選5', '附選6', '附選7'] }
+          ]);
+        },
+        caption: '選擇題寫完了，點題號對詳解。'
+      },
+      {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '練習｜習作附錄本（填充 1～4）',
+        points: [
+          '第 1 題：用扇形面積<b>反推圓心角</b>。',
+          '第 2 題：算出 \\(B\\) 到圓心的距離，兩種位置都要想，再跟半徑比。',
+          '第 3 題：從圓外一點畫的兩條<b>切線段一樣長</b>。',
+          '第 4 題：弦心距<b>垂直平分弦</b>，半弦、弦心距、半徑圍成直角三角形。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-1', [
+            { src: '習作・附錄本', page: '印 13', sub: '習作附錄本 填充題', tags: ['附填1', '附填2', '附填3', '附填4'] }
+          ]);
+        },
+        caption: '填充四題，寫完點題號對詳解。'
+      },
+      {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '練習｜習作附錄本（計算 1、2）',
+        points: [
+          '第 1 題：先用大圓的弧長求圓心角，<b>同一個圓心角</b>再算小圓的弧長。',
+          '第 2 題：三邊都和圓相切，從每個頂點出發的<b>兩條切線段一樣長</b>，設未知數列式。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-1', [
+            { src: '習作・附錄本', page: '印 13', sub: '習作附錄本 計算題', tags: ['附計1', '附計2'] }
+          ]);
+        },
+        caption: '附錄本這一份寫完了。'
+      },
+      {
+        sec: '2-1', secName: '點、直線與圓之間的位置關係',
+        title: '對答案｜習作附錄本',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的附錄本頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-1', [
+            { label: '選擇（印 12）', cols: 4, items: [['選1', '附選1'], ['選2', '附選2'], ['選3', '附選3'], ['選4', '附選4'], ['選5', '附選5'], ['選6', '附選6'], ['選7', '附選7']] },
+            { label: '填充（印 13）', cols: 4, items: [['填1', '附填1'], ['填2', '附填2'], ['填3', '附填3'], ['填4', '附填4']] },
+            { label: '計算（印 13）', cols: 2, items: [['計1', '附計1'], ['計2', '附計2']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的附錄本頁點題號看詳解</b>。'
+      },
+
+      {
         sec: '2-2', secName: '圓心角、圓周角與弧的關係',
         title: '這一節只有兩行字：圓心角＝弧，圓周角＝弧的一半',
         points: [
@@ -1765,6 +1851,175 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '只到「答」這一層——<b>為什麼錯，回前面的自我評量頁點題號看詳解</b>。'
+      },
+
+      {
+        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
+        title: '練習｜習作附錄本（選擇 1～4）',
+        points: [
+          '習作最後的<b>附錄本</b>小卷，寫完自己對一次詳解。',
+          '第 1、2 題：<b>圓心角的度數＝它對的弧的度數</b>；圓心角一樣時，弧長和半徑成正比。',
+          '第 3 題：<b>圓周角是它對的弧的一半</b>；第 4 題：直徑對的圓周角是 90°。'
+        ],
+        formula: { label: '圓周角是圓心角的一半', tex: '\\angle APB=\\tfrac12\\angle AOB' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作・附錄本', page: '印 14', sub: '習作附錄本 選擇題', tags: ['附選1', '附選2', '附選3', '附選4'] }
+          ]);
+        },
+        caption: '選擇前四題，寫完點題號對詳解。'
+      },
+      {
+        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
+        title: '練習｜習作附錄本（選擇 5～7）',
+        points: [
+          '第 5 題：圓內接四邊形<b>對角互補</b>。',
+          '第 6、7 題：先算<b>每一等分的弧是幾度</b>，圓周角是它對的弧的一半。'
+        ],
+        formula: { label: '內接四邊形對角互補', tex: '\\angle A+\\angle C=180^\\circ' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作・附錄本', page: '印 14', sub: '習作附錄本 選擇題', tags: ['附選5', '附選6', '附選7'] }
+          ]);
+        },
+        caption: '選擇題寫完了，點題號對詳解。'
+      },
+      {
+        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
+        title: '練習｜習作附錄本（填充 1～3）',
+        points: [
+          '第 1 題：弧長占圓周的比，等於度數占 360° 的比。',
+          '第 2 題：內接四邊形的<b>外角等於它的內對角</b>。',
+          '第 3 題：<b>平行弦之間夾的弧相等</b>。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作・附錄本', page: '印 15', sub: '習作附錄本 填充題', tags: ['附填1', '附填2', '附填3'] }
+          ]);
+        },
+        caption: '填充三題，寫完點題號對詳解。'
+      },
+      {
+        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
+        title: '練習｜習作附錄本（計算 1、2）',
+        points: [
+          '第 1 題：圓心角一樣，<b>弧長比就是半徑比</b>。',
+          '第 2 題：∠B、∠E 都是圓周角，先寫出各自<b>對的是哪幾段弧</b>，再相加。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '2-2', [
+            { src: '習作・附錄本', page: '印 15', sub: '習作附錄本 計算題', tags: ['附計1', '附計2'] }
+          ]);
+        },
+        caption: '附錄本這一份寫完了。'
+      },
+      {
+        sec: '2-2', secName: '圓心角、圓周角與弧的關係',
+        title: '對答案｜習作附錄本',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的附錄本頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '2-2', [
+            { label: '選擇（印 14）', cols: 4, items: [['選1', '附選1'], ['選2', '附選2'], ['選3', '附選3'], ['選4', '附選4'], ['選5', '附選5'], ['選6', '附選6'], ['選7', '附選7']] },
+            { label: '填充（印 15）', cols: 4, items: [['填1', '附填1'], ['填2', '附填2'], ['填3', '附填3']] },
+            { label: '計算（印 15）', cols: 2, items: [['計1', '附計1'], ['計2', '附計2']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的附錄本頁點題號看詳解</b>。'
+      },
+
+      {
+        sec: '附錄本', secName: '整章綜合',
+        title: '練習｜習作附錄本（選擇 1～4）',
+        points: [
+          '第 2 章的<b>附錄本</b>小卷，整章混在一起，寫完自己對一次詳解。',
+          '第 1、4 題：<b>圓周角是圓心角的一半</b>、<b>內接四邊形對角互補</b>，再配三角形內角和。',
+          '第 2 題：扇形面積＝\\(\\tfrac12\\)×半徑×弧長；第 3 題：圓心到直線的距離跟半徑比。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '第2章', [
+            { src: '習作・附錄本', page: '印 16', sub: '習作附錄本 選擇題', tags: ['附選1', '附選2', '附選3', '附選4'] }
+          ]);
+        },
+        caption: '選擇前四題，寫完點題號對詳解。'
+      },
+      {
+        sec: '附錄本', secName: '整章綜合',
+        title: '練習｜習作附錄本（選擇 5～7）',
+        points: [
+          '第 5 題：直徑對的圓周角是 90°，<b>切線垂直於半徑</b>，找出直角三角形。',
+          '第 6 題：\\(D\\) 平分弧，先求 ∠BAD；\\(\\overline{AB}\\)、\\(\\overline{AD}\\) 都是半徑。',
+          '第 7 題：<b>弦心距越短，弦越長</b>；先算圓心到三條直線的距離。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '第2章', [
+            { src: '習作・附錄本', page: '印 16', sub: '習作附錄本 選擇題', tags: ['附選5', '附選6', '附選7'] }
+          ]);
+        },
+        caption: '選擇題寫完了，點題號對詳解。'
+      },
+      {
+        sec: '附錄本', secName: '整章綜合',
+        title: '練習｜習作附錄本（填充 1～3）',
+        points: [
+          '第 1 題：切線垂直於半徑，\\(\\overline{OA}\\)、\\(\\overline{PA}\\)、\\(\\overline{OP}\\) 圍成直角三角形。',
+          '第 2 題：弦心距<b>垂直平分弦</b>；兩條半徑一樣長，設未知數列方程式。',
+          '第 3 題：圓周角是它對的弧的一半。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '第2章', [
+            { src: '習作・附錄本', page: '印 17', sub: '習作附錄本 填充題', tags: ['附填1', '附填2', '附填3'] }
+          ]);
+        },
+        caption: '填充三題，寫完點題號對詳解。'
+      },
+      {
+        sec: '附錄本', secName: '整章綜合',
+        title: '練習｜習作附錄本（計算 1、2）',
+        points: [
+          '第 1 題：連 \\(\\overline{OA}\\)，兩條切線段一樣長，∠A 被分成兩個 30°。',
+          '第 2 題：連半徑 \\(\\overline{OA}\\)、\\(\\overline{OC}\\)，弦心距垂直平分弦，各用一次畢氏定理。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '第2章', [
+            { src: '習作・附錄本', page: '印 17', sub: '習作附錄本 計算題', tags: ['附計1', '附計2'] }
+          ]);
+        },
+        caption: '附錄本這一份寫完了。'
+      },
+      {
+        sec: '附錄本', secName: '整章綜合',
+        title: '對答案｜習作附錄本',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的附錄本頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '第2章', [
+            { label: '選擇（印 16）', cols: 4, items: [['選1', '附選1'], ['選2', '附選2'], ['選3', '附選3'], ['選4', '附選4'], ['選5', '附選5'], ['選6', '附選6'], ['選7', '附選7']] },
+            { label: '填充（印 17）', cols: 4, items: [['填1', '附填1'], ['填2', '附填2'], ['填3', '附填3']] },
+            { label: '計算（印 17）', cols: 2, items: [['計1', '附計1'], ['計2', '附計2']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的附錄本頁點題號看詳解</b>。'
       },
 
       {

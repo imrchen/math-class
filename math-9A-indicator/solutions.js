@@ -9795,6 +9795,1566 @@ window.SOLUTIONS = {
     ]
    }
   },
+  "附選1": {
+   "src": "習作・附錄本",
+   "page": "印 8",
+   "title": "選擇題第 1 題",
+   "q": "如圖，已知 \\(\\overline{AB}\\parallel\\overline{CD}\\)，\\(\\overline{AE}=5\\)，\\(\\overline{AD}=10\\)，且 \\(\\triangle EDC\\) 中，\\(\\overline{CD}\\) 上的高為 \\(12\\)，則梯形 \\(ABCD\\) 的高為多少？\n(A) \\(4\\)　　　(B) \\(6\\)\n(C) \\(8\\)　　　(D) \\(10\\)",
+   "ref": "圖見習作附錄本 p.8 選擇題第 1 題",
+   "steps": [
+    "高 \\(\\overline{EH}=12\\)，求梯形的高 \\(\\overline{GH}\\)：",
+    "\\(\\overline{ED}=5+10=15\\)",
+    "\\(\\because \\overline{AB}\\parallel\\overline{CD}\\)",
+    "\\(\\therefore \\triangle EAB\\sim\\triangle EDC\\)（\\(AA\\)）",
+    "相似比 \\(\\overline{AE}：\\overline{ED}=5：15=1：3\\)",
+    "相似比 \\(1：3\\)：",
+    "對應高的比 \\(=\\) 相似比",
+    "\\(\\overline{EG}：\\overline{EH}=1：3\\)",
+    "\\(\\overline{EG}=12\\times\\frac{1}{3}=4\\)",
+    "梯形的高 \\(\\overline{GH}=12-4=8\\)"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 26,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 5,
+        "y": 9,
+        "label": "$E$"
+       },
+       {
+        "x": 3.333,
+        "y": 6,
+        "label": "$A$",
+        "nudge": [
+         -6,
+         0
+        ]
+       },
+       {
+        "x": 7,
+        "y": 6,
+        "label": "$B$",
+        "nudge": [
+         6,
+         0
+        ]
+       },
+       {
+        "x": 11,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$D$"
+       }
+      ],
+      "outline": [
+       4,
+       3,
+       0
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 26,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 5,
+          "y": 9,
+          "label": "$E$"
+         },
+         {
+          "x": 3.333,
+          "y": 6,
+          "label": "$A$",
+          "nudge": [
+           -6,
+           0
+          ]
+         },
+         {
+          "x": 7,
+          "y": 6,
+          "label": "$B$",
+          "nudge": [
+           6,
+           0
+          ]
+         },
+         {
+          "x": 11,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$D$"
+         },
+         {
+          "x": 5,
+          "y": 6,
+          "label": "$G$",
+          "nudge": [
+           8,
+           -8
+          ]
+         },
+         {
+          "x": 5,
+          "y": 0,
+          "label": "$H$"
+         }
+        ],
+        "outline": [
+         4,
+         3,
+         0
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 1,
+          "to": 2
+         },
+         {
+          "from": 0,
+          "to": 6,
+          "dashed": true
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 6,
+          "toward": [
+           0,
+           3
+          ],
+          "size": 0.6
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$5$"
+         },
+         {
+          "from": 1,
+          "to": 4,
+          "text": "$10$"
+         },
+         {
+          "from": 0,
+          "to": 6,
+          "text": "$12$",
+          "nudge": [
+           22,
+           30
+          ]
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 5,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 26,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 5,
+          "y": 9,
+          "label": "$E$"
+         },
+         {
+          "x": 3.333,
+          "y": 6,
+          "label": "$A$",
+          "nudge": [
+           -6,
+           0
+          ]
+         },
+         {
+          "x": 7,
+          "y": 6,
+          "label": "$B$",
+          "nudge": [
+           6,
+           0
+          ]
+         },
+         {
+          "x": 11,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$D$"
+         },
+         {
+          "x": 5,
+          "y": 6,
+          "label": "$G$",
+          "nudge": [
+           8,
+           -8
+          ]
+         },
+         {
+          "x": 5,
+          "y": 0,
+          "label": "$H$"
+         }
+        ],
+        "outline": [
+         4,
+         3,
+         0
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 1,
+          "to": 2
+         },
+         {
+          "from": 0,
+          "to": 6,
+          "dashed": true
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 6,
+          "toward": [
+           0,
+           3
+          ],
+          "size": 0.6
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$5$"
+         },
+         {
+          "from": 1,
+          "to": 4,
+          "text": "$10$"
+         },
+         {
+          "from": 0,
+          "to": 6,
+          "text": "$12$",
+          "nudge": [
+           22,
+           30
+          ]
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    5
+   ]
+  },
+  "附選2": {
+   "src": "習作・附錄本",
+   "page": "印 8",
+   "title": "選擇題第 2 題",
+   "q": "如圖，在 \\(\\triangle ABC\\) 中，\\(D\\)、\\(E\\) 分別為 \\(\\overline{AB}\\)、\\(\\overline{AC}\\) 的中點，則 \\(\\triangle ADE\\) 與四邊形 \\(BCED\\) 的面積比為何？\n(A) \\(1：2\\)　　　(B) \\(1：4\\)\n(C) \\(1：3\\)　　　(D) \\(2：3\\)",
+   "ref": "圖見習作附錄本 p.8 選擇題第 2 題",
+   "steps": [
+    "求面積比：",
+    "中點連線性質：\\(\\overline{DE}\\parallel\\overline{BC}\\)，\\(\\overline{DE}=\\frac{1}{2}\\overline{BC}\\)",
+    "\\(\\triangle ADE\\sim\\triangle ABC\\)，邊長比 \\(1：2\\)",
+    "面積比 \\(\\triangle ADE：\\triangle ABC=1^2：2^2=1：4\\)",
+    "\\(\\triangle ADE：\\) 四邊形 \\(BCED=1：(4-1)=1：3\\)"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 22,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 4,
+        "y": 7,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 8,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 2,
+        "y": 3.5,
+        "label": "$D$",
+        "nudge": [
+         -6,
+         0
+        ]
+       },
+       {
+        "x": 6,
+        "y": 3.5,
+        "label": "$E$",
+        "nudge": [
+         6,
+         0
+        ]
+       }
+      ],
+      "outline": [
+       1,
+       2,
+       0
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 3,
+        "to": 4
+       }
+      ]
+     }
+    ]
+   },
+   "segs": [
+    0
+   ]
+  },
+  "附選3": {
+   "src": "習作・附錄本",
+   "page": "印 8",
+   "title": "選擇題第 3 題",
+   "q": "如圖，在 \\(\\parallelogram ABCD\\) 中，\\(E\\) 為 \\(\\overline{CD}\\) 中點，則 \\(\\triangle DEF\\) 與 \\(\\triangle ABF\\) 的面積比為何？\n(A) \\(1：1\\)　　　(B) \\(1：2\\)\n(C) \\(1：4\\)　　　(D) \\(2：3\\)",
+   "ref": "圖見習作附錄本 p.8 選擇題第 3 題",
+   "steps": [
+    "求 \\(\\triangle DEF\\) 與 \\(\\triangle ABF\\) 的面積比：",
+    "\\(\\overline{DE}\\parallel\\overline{AB}\\)",
+    "\\(\\angle DEF=\\angle BAF\\)（內錯角）",
+    "\\(\\angle DFE=\\angle BFA\\)（對頂角）",
+    "\\(\\therefore \\triangle DEF\\sim\\triangle BAF\\)（\\(AA\\)）",
+    "\\(\\triangle DEF\\sim\\triangle BAF\\)：",
+    "\\(\\overline{DE}=\\frac{1}{2}\\overline{CD}=\\frac{1}{2}\\overline{AB}\\)",
+    "相似比 \\(\\overline{DE}：\\overline{BA}=1：2\\)",
+    "面積比 \\(=1^2：2^2=1：4\\)"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 34,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 1.5,
+        "y": 3,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 7,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 8.5,
+        "y": 3,
+        "label": "$D$"
+       },
+       {
+        "x": 7.75,
+        "y": 1.5,
+        "label": "$E$",
+        "nudge": [
+         8,
+         0
+        ]
+       },
+       {
+        "x": 5.667,
+        "y": 2,
+        "label": "$F$",
+        "nudge": [
+         0,
+         12
+        ]
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 0,
+        "to": 4
+       },
+       {
+        "from": 1,
+        "to": 3
+       }
+      ]
+     }
+    ]
+   },
+   "segs": [
+    0,
+    5
+   ]
+  },
+  "附選4": {
+   "src": "習作・附錄本",
+   "page": "印 8",
+   "title": "選擇題第 4 題",
+   "q": "有一面高為 \\(16\\) 公尺的牆，影子長為 \\(20\\) 公尺，若將牆加高至 \\(24\\) 公尺，此時影子長為多少公尺？\n(A) \\(26\\) 公尺　　　(B) \\(28\\) 公尺\n(C) \\(30\\) 公尺　　　(D) \\(32\\) 公尺",
+   "ref": null,
+   "steps": [
+    "牆高 \\(16\\) 公尺時影長 \\(20\\) 公尺，求牆高 \\(24\\) 公尺時的影長：",
+    "同一時刻，物高與影長成正比",
+    "設影長為 \\(x\\) 公尺",
+    "\\(16：20=24：x\\)",
+    "\\(16x=480\\)，\\(x=30\\)"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附選5": {
+   "src": "習作・附錄本",
+   "page": "印 8",
+   "title": "選擇題第 5 題",
+   "q": "在直角三角形 \\(ABC\\) 中，若 \\(\\overline{AB}：\\overline{BC}：\\overline{CA}=1：2：\\sqrt{3}\\)，則下列敘述何者正確？\n(A) \\(\\angle A=30\\degree\\)　　　(B) \\(\\angle B=45\\degree\\)\n(C) \\(\\angle A：\\angle B：\\angle C=2：1：1\\)\n(D) \\(\\angle A：\\angle B：\\angle C=3：2：1\\)",
+   "ref": "解法示意圖，原卷沒有圖",
+   "steps": [
+    "先判斷直角與 \\(\\angle C\\)：",
+    "\\(\\overline{BC}\\) 最長，是斜邊",
+    "\\(\\therefore \\angle A=90\\degree\\)",
+    "\\(\\overline{AB}\\) 是斜邊的一半",
+    "\\(\\therefore \\angle C=30\\degree\\)",
+    "\\(\\angle A=90\\degree\\)，\\(\\angle C=30\\degree\\)：",
+    "\\(\\angle B=180\\degree-90\\degree-30\\degree=60\\degree\\)",
+    "\\(\\angle A：\\angle B：\\angle C\\)",
+    "\\(=90：60：30=3：2：1\\)"
+   ],
+   "ans": "\\((D)\\)",
+   "fig": null,
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 110,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 1,
+          "label": "$B$"
+         },
+         {
+          "x": 1.732,
+          "y": 0,
+          "label": "$C$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 0,
+          "toward": [
+           1,
+           2
+          ],
+          "size": 0.15
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$1$"
+         },
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$2$"
+         },
+         {
+          "from": 2,
+          "to": 0,
+          "text": "$\\sqrt{3}$"
+         }
+        ],
+        "angles": [
+         {
+          "at": 1,
+          "text": "$60\\degree$"
+         },
+         {
+          "at": 2,
+          "text": "$30\\degree$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 5,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 110,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 1,
+          "label": "$B$"
+         },
+         {
+          "x": 1.732,
+          "y": 0,
+          "label": "$C$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 0,
+          "toward": [
+           1,
+           2
+          ],
+          "size": 0.15
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$1$"
+         },
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$2$"
+         },
+         {
+          "from": 2,
+          "to": 0,
+          "text": "$\\sqrt{3}$"
+         }
+        ],
+        "angles": [
+         {
+          "at": 1,
+          "text": "$60\\degree$"
+         },
+         {
+          "at": 2,
+          "text": "$30\\degree$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    5
+   ]
+  },
+  "附選6": {
+   "src": "習作・附錄本",
+   "page": "印 8",
+   "title": "選擇題第 6 題",
+   "q": "在等腰直角三角形 \\(ABC\\) 中，若 \\(\\angle A=90\\degree\\)，\\(\\overline{AB}=8\\)，則下列敘述何者正確？\n(A) \\(\\overline{BC}=8\\sqrt{3}\\)　　　(B) 此三角形的周長為 \\(16+8\\sqrt{2}\\)\n(C) 此三角形的面積為 \\(16\\)　(D) \\(\\overline{AC}=4\\sqrt{2}\\)",
+   "ref": null,
+   "steps": [
+    "逐項檢查：",
+    "\\(\\overline{AC}=\\overline{AB}=8\\)，(D) 錯",
+    "\\(\\overline{AB}：\\overline{AC}：\\overline{BC}=1：1：\\sqrt{2}\\)",
+    "\\(\\overline{BC}=8\\sqrt{2}\\)，(A) 錯",
+    "\\(\\overline{AB}=\\overline{AC}=8\\)，\\(\\overline{BC}=8\\sqrt{2}\\)：",
+    "周長 \\(=8+8+8\\sqrt{2}=16+8\\sqrt{2}\\)，(B) 對",
+    "面積 \\(=\\frac{1}{2}\\times8\\times8=32\\)，(C) 錯"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": null,
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "附選7": {
+   "src": "習作・附錄本",
+   "page": "印 8",
+   "title": "選擇題第 7 題",
+   "q": "在 \\(\\triangle ABC\\) 中，若 \\(\\angle A=\\angle B=45\\degree\\)，\\(\\angle C=90\\degree\\)，則 \\(\\frac{\\overline{AB}}{\\overline{BC}}=\\)？\n(A) \\(\\sqrt{2}\\)　　　(B) \\(1\\)\n(C) \\(\\frac{\\sqrt{2}}{2}\\)　　　(D) \\(\\frac{1}{2}\\)",
+   "ref": null,
+   "steps": [
+    "求比值：",
+    "\\(\\angle C=90\\degree\\)，\\(\\overline{AB}\\) 是斜邊",
+    "\\(\\overline{BC}：\\overline{AC}：\\overline{AB}=1：1：\\sqrt{2}\\)",
+    "\\(\\frac{\\overline{AB}}{\\overline{BC}}=\\frac{\\sqrt{2}}{1}=\\sqrt{2}\\)"
+   ],
+   "ans": "\\((A)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附填1": {
+   "src": "習作・附錄本",
+   "page": "印 9",
+   "title": "填充題第 1 題",
+   "q": "如圖，\\(\\angle B=90\\degree\\)，\\(\\overline{AB}=15\\)，若 \\(\\frac{\\text{斜邊長}}{\\text{∠A 的鄰邊長}}=\\frac{13}{5}\\)，則 \\(\\overline{BC}=\\)＿＿＿＿。",
+   "ref": "圖見習作附錄本 p.9 填充題第 1 題",
+   "steps": [
+    "先求斜邊 \\(\\overline{AC}\\)：",
+    "斜邊是 \\(\\overline{AC}\\)",
+    "\\(\\angle A\\) 的鄰邊是 \\(\\overline{AB}=15\\)",
+    "\\(\\frac{\\overline{AC}}{15}=\\frac{13}{5}\\)，\\(\\overline{AC}=39\\)",
+    "\\(\\overline{AC}=39\\)，\\(\\overline{AB}=15\\)：",
+    "\\(\\overline{BC}=\\sqrt{39^2-15^2}\\)",
+    "\\(=\\sqrt{1521-225}\\)",
+    "\\(=\\sqrt{1296}=36\\)"
+   ],
+   "ans": "\\(36\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 7,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 36,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 36,
+        "y": 15,
+        "label": "$A$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 1.6
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 7,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 36,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 36,
+          "y": 15,
+          "label": "$A$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 1.6
+         }
+        ],
+        "sides": [
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$15$"
+         },
+         {
+          "from": 2,
+          "to": 0,
+          "text": "$39$"
+         },
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$36$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 4,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 7,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 36,
+          "y": 0,
+          "label": "$B$"
+         },
+         {
+          "x": 36,
+          "y": 15,
+          "label": "$A$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 1,
+          "toward": [
+           0,
+           2
+          ],
+          "size": 1.6
+         }
+        ],
+        "sides": [
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$15$"
+         },
+         {
+          "from": 2,
+          "to": 0,
+          "text": "$39$"
+         },
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$36$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "附填2": {
+   "src": "習作・附錄本",
+   "page": "印 9",
+   "title": "填充題第 2 題",
+   "q": "如圖，在直角三角形 \\(ABC\\) 中，\\(\\angle A=90\\degree\\)，\\(\\angle B=60\\degree\\)，\\(\\overline{BC}=12\\)，則 \\(\\triangle ABC\\) 的面積為＿＿＿＿。",
+   "ref": "圖見習作附錄本 p.9 填充題第 2 題",
+   "steps": [
+    "先求兩股：",
+    "\\(\\angle C=30\\degree\\)",
+    "\\(\\overline{AB}：\\overline{AC}：\\overline{BC}=1：\\sqrt{3}：2\\)",
+    "\\(\\overline{AB}=6\\)，\\(\\overline{AC}=6\\sqrt{3}\\)",
+    "\\(\\overline{AB}=6\\)，\\(\\overline{AC}=6\\sqrt{3}\\)：",
+    "面積 \\(=\\frac{1}{2}\\times6\\times6\\sqrt{3}=18\\sqrt{3}\\)"
+   ],
+   "ans": "\\(18\\sqrt{3}\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 22,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 11.591,
+        "y": 3.106,
+        "label": "$B$"
+       },
+       {
+        "x": 7.348,
+        "y": 7.348,
+        "label": "$A$"
+       }
+      ],
+      "outline": [
+       0,
+       1,
+       2
+      ],
+      "fill": "#DCEEF8",
+      "rightAngles": [
+       {
+        "at": 2,
+        "toward": [
+         0,
+         1
+        ],
+        "size": 0.8
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 22,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 11.591,
+          "y": 3.106,
+          "label": "$B$"
+         },
+         {
+          "x": 7.348,
+          "y": 7.348,
+          "label": "$A$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 2,
+          "toward": [
+           0,
+           1
+          ],
+          "size": 0.8
+         }
+        ],
+        "angles": [
+         {
+          "at": 1,
+          "text": "$60\\degree$"
+         },
+         {
+          "at": 0,
+          "text": "$30\\degree$"
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$12$"
+         },
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$6$"
+         },
+         {
+          "from": 2,
+          "to": 0,
+          "text": "$6\\sqrt{3}$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 4,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 22,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 11.591,
+          "y": 3.106,
+          "label": "$B$"
+         },
+         {
+          "x": 7.348,
+          "y": 7.348,
+          "label": "$A$"
+         }
+        ],
+        "outline": [
+         0,
+         1,
+         2
+        ],
+        "fill": "#DCEEF8",
+        "rightAngles": [
+         {
+          "at": 2,
+          "toward": [
+           0,
+           1
+          ],
+          "size": 0.8
+         }
+        ],
+        "angles": [
+         {
+          "at": 1,
+          "text": "$60\\degree$"
+         },
+         {
+          "at": 0,
+          "text": "$30\\degree$"
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$12$"
+         },
+         {
+          "from": 1,
+          "to": 2,
+          "text": "$6$"
+         },
+         {
+          "from": 2,
+          "to": 0,
+          "text": "$6\\sqrt{3}$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "附填3": {
+   "src": "習作・附錄本",
+   "page": "印 9",
+   "title": "填充題第 3 題",
+   "q": "如圖，在 \\(\\triangle ABD\\) 中，已知 \\(\\overline{AC}=5\\)，\\(\\angle A=90\\degree\\)，\\(\\angle ABC=45\\degree\\)，\\(\\angle CBD=15\\degree\\)，則 \\(\\overline{BD}=\\)＿＿＿＿。",
+   "ref": "圖見習作附錄本 p.9 填充題第 3 題",
+   "steps": [
+    "先求 \\(\\overline{AB}\\) 與 \\(\\angle D\\)：",
+    "\\(\\triangle ABC\\) 是等腰直角三角形",
+    "\\(\\overline{AB}=\\overline{AC}=5\\)",
+    "\\(\\angle ABD=45\\degree+15\\degree=60\\degree\\)",
+    "\\(\\angle D=30\\degree\\)",
+    "\\(\\overline{AB}=5\\)，\\(\\angle D=30\\degree\\)：",
+    "\\(\\overline{AB}：\\overline{BD}=1：2\\)",
+    "\\(\\overline{BD}=2\\times5=10\\)"
+   ],
+   "ans": "\\(10\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 24,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 5,
+        "label": "$B$"
+       },
+       {
+        "x": 5,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 8.66,
+        "y": 0,
+        "label": "$D$"
+       }
+      ],
+      "outline": [
+       0,
+       3,
+       1
+      ],
+      "fill": "#DCEEF8",
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 0,
+        "toward": [
+         1,
+         3
+        ],
+        "size": 0.45
+       }
+      ]
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 24,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 5,
+          "label": "$B$"
+         },
+         {
+          "x": 5,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 8.66,
+          "y": 0,
+          "label": "$D$"
+         }
+        ],
+        "outline": [
+         0,
+         3,
+         1
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 1,
+          "to": 2
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 0,
+          "toward": [
+           1,
+           3
+          ],
+          "size": 0.45
+         }
+        ],
+        "angles": [
+         {
+          "at": 3,
+          "text": "$30\\degree$",
+          "toward": [
+           1,
+           0
+          ]
+         },
+         {
+          "at": 1,
+          "text": "$60\\degree$",
+          "toward": [
+           0,
+           3
+          ]
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$5$"
+         },
+         {
+          "from": 0,
+          "to": 2,
+          "text": "$5$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 5,
+     "fig": {
+      "type": "polygon-group",
+      "unit": 24,
+      "gap": 60,
+      "placement": "right",
+      "shapes": [
+       {
+        "points": [
+         {
+          "x": 0,
+          "y": 0,
+          "label": "$A$"
+         },
+         {
+          "x": 0,
+          "y": 5,
+          "label": "$B$"
+         },
+         {
+          "x": 5,
+          "y": 0,
+          "label": "$C$"
+         },
+         {
+          "x": 8.66,
+          "y": 0,
+          "label": "$D$"
+         }
+        ],
+        "outline": [
+         0,
+         3,
+         1
+        ],
+        "fill": "#DCEEF8",
+        "segments": [
+         {
+          "from": 1,
+          "to": 2
+         }
+        ],
+        "rightAngles": [
+         {
+          "at": 0,
+          "toward": [
+           1,
+           3
+          ],
+          "size": 0.45
+         }
+        ],
+        "angles": [
+         {
+          "at": 3,
+          "text": "$30\\degree$",
+          "toward": [
+           1,
+           0
+          ]
+         },
+         {
+          "at": 1,
+          "text": "$60\\degree$",
+          "toward": [
+           0,
+           3
+          ]
+         }
+        ],
+        "sides": [
+         {
+          "from": 0,
+          "to": 1,
+          "text": "$5$"
+         },
+         {
+          "from": 0,
+          "to": 2,
+          "text": "$5$"
+         }
+        ]
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    5
+   ]
+  },
+  "附計1": {
+   "src": "習作・附錄本",
+   "page": "印 9",
+   "title": "計算題第 1 題",
+   "q": "如圖，已知 \\(\\angle A=45\\degree\\)，\\(\\angle D=30\\degree\\)，\\(\\angle BCA=\\angle DBC=90\\degree\\)，若 \\(\\overline{CD}=10\\)，則 \\(\\overline{AB}=\\)？",
+   "ref": "圖見習作附錄本 p.9 計算題第 1 題",
+   "steps": [
+    "先求 \\(\\overline{BC}\\)：",
+    "在 \\(\\triangle BCD\\) 中，\\(\\angle DBC=90\\degree\\)",
+    "\\(\\angle D=30\\degree\\)，\\(\\angle BCD=60\\degree\\)",
+    "\\(\\therefore \\overline{BC}：\\overline{BD}：\\overline{CD}=1：\\sqrt{3}：2\\)",
+    "\\(\\overline{BC}：\\overline{CD}=\\overline{BC}：10=1：2\\)，\\(\\overline{BC}=5\\)",
+    "\\(\\overline{BC}=5\\)，再求 \\(\\overline{AB}\\)：",
+    "\\(\\triangle ABC\\) 是等腰直角三角形",
+    "\\(\\overline{BC}：\\overline{AB}=5：\\overline{AB}=1：\\sqrt{2}\\)",
+    "\\(\\overline{AB}=5\\sqrt{2}\\)"
+   ],
+   "ans": "\\(\\overline{AB}=5\\sqrt{2}\\)",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 21,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 5,
+        "y": 13.66,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 8.66,
+        "label": "$B$"
+       },
+       {
+        "x": 5,
+        "y": 8.66,
+        "label": "$C$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$D$"
+       }
+      ],
+      "outlines": [
+       [
+        0,
+        1,
+        2
+       ],
+       [
+        1,
+        3,
+        2
+       ]
+      ],
+      "fill": "#DCEEF8",
+      "rightAngles": [
+       {
+        "at": 2,
+        "toward": [
+         1,
+         0
+        ],
+        "size": 0.6
+       },
+       {
+        "at": 1,
+        "toward": [
+         2,
+         3
+        ],
+        "size": 0.6
+       }
+      ]
+     }
+    ]
+   },
+   "segs": [
+    0,
+    5
+   ]
+  },
+  "附計2": {
+   "src": "習作・附錄本",
+   "page": "印 9",
+   "title": "計算題第 2 題",
+   "q": "如圖，天佑設計了兩個三角形來測量河寬 \\(\\overline{AB}\\)，若 \\(\\angle ABD=\\angle ACE=90\\degree\\)，\\(\\overline{BC}=14\\) 公尺，\\(\\overline{BD}=12\\) 公尺，\\(\\overline{CE}=20\\) 公尺，則河寬 \\(\\overline{AB}\\) 為多少公尺？",
+   "ref": "圖見習作附錄本 p.9 計算題第 2 題；原圖河面的網底改成淺藍色區塊",
+   "steps": [
+    "求河寬 \\(\\overline{AB}\\)：",
+    "在 \\(\\triangle ADB\\) 與 \\(\\triangle AEC\\) 中，",
+    "\\(\\because \\angle ABD=\\angle ACE\\)（已知）",
+    "\\(\\angle A=\\angle A\\)（公用角）",
+    "\\(\\therefore \\triangle ADB\\sim\\triangle AEC\\)（\\(AA\\) 相似性質）",
+    "\\(\\triangle ADB\\sim\\triangle AEC\\)：",
+    "\\(\\overline{AB}：\\overline{AC}=\\overline{BD}：\\overline{CE}\\)",
+    "\\(\\overline{AB}：(\\overline{AB}+14)=12：20\\)",
+    "\\(20\\overline{AB}=12\\overline{AB}+168\\)，\\(\\overline{AB}=21\\)"
+   ],
+   "ans": "\\(21\\) 公尺",
+   "fig": {
+    "type": "polygon-group",
+    "unit": 8,
+    "gap": 60,
+    "placement": "right",
+    "shapes": [
+     {
+      "points": [
+       {
+        "x": 20,
+        "y": 35,
+        "label": "$A$"
+       },
+       {
+        "x": 8,
+        "y": 14,
+        "label": "$D$",
+        "nudge": [
+         -8,
+         0
+        ]
+       },
+       {
+        "x": 20,
+        "y": 14,
+        "label": "$B$"
+       },
+       {
+        "x": 20,
+        "y": 0,
+        "label": "$C$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$E$"
+       },
+       {
+        "x": 8,
+        "y": 35
+       }
+      ],
+      "outline": [
+       0,
+       4,
+       3
+      ],
+      "fill": "#FFFFFF",
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       }
+      ],
+      "polygons": [
+       {
+        "points": [
+         5,
+         0,
+         2,
+         1
+        ],
+        "fill": "#DCEEF8"
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 2,
+        "toward": [
+         1,
+         0
+        ],
+        "size": 1.4
+       },
+       {
+        "at": 3,
+        "toward": [
+         4,
+         0
+        ],
+        "size": 1.4
+       }
+      ]
+     }
+    ]
+   },
+   "segs": [
+    0,
+    5
+   ]
+  },
   "暖身1 ⑴": {
    "src": "習作・暖身題",
    "page": "印 17",
@@ -17496,6 +19056,809 @@ window.SOLUTIONS = {
     ]
    }
   },
+  "附選1": {
+   "src": "習作・附錄本",
+   "page": "印 12",
+   "title": "選擇題第 1 題",
+   "q": "有一個扇形的圓心角為 \\(40\\degree\\)，且半徑為 \\(18\\)，則此扇形的面積為何？\n(A) \\(36\\pi\\)　　　(B) \\(42\\pi\\)\n(C) \\(48\\pi\\)　　　(D) \\(54\\pi\\)",
+   "ref": null,
+   "steps": [
+    "半徑 \\(18\\)、圓心角 \\(40\\degree\\)：",
+    "扇形面積 \\(=\\) 圓面積 \\(\\times\\frac{40}{360}\\)",
+    "\\(=18^2\\pi\\times\\frac{40}{360}\\)",
+    "\\(=324\\pi\\times\\frac{1}{9}=36\\pi\\)"
+   ],
+   "ans": "\\((A)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附選2": {
+   "src": "習作・附錄本",
+   "page": "印 12",
+   "title": "選擇題第 2 題",
+   "q": "威利想用彩帶圍出一個半徑為 \\(12\\) 公分、圓心角為 \\(60\\degree\\) 的扇形，則威利需要多少公分的彩帶？\n(A) \\((2\\pi+24)\\) 公分　　　(B) \\((4\\pi+24)\\) 公分\n(C) \\(2\\pi\\) 公分　　　(D) \\(4\\pi\\) 公分",
+   "ref": null,
+   "steps": [
+    "彩帶長就是扇形的周長：",
+    "扇形周長 \\(=\\) 兩條半徑 \\(+\\) 弧長",
+    "弧長 \\(=2\\times12\\times\\pi\\times\\frac{60}{360}=4\\pi\\)",
+    "周長 \\(=12+12+4\\pi=4\\pi+24\\)"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附選3": {
+   "src": "習作・附錄本",
+   "page": "印 12",
+   "title": "選擇題第 3 題",
+   "q": "坐標平面上有 \\(A(10,10)\\)、\\(B(-6,-8)\\)、\\(C(0,8)\\) 三點，若以 \\(D(0,0)\\) 為圓心畫一個面積為 \\(100\\pi\\) 的圓，則下列敘述何者正確？\n(A) \\(A\\) 在圓上，\\(B\\) 在圓內，\\(C\\) 在圓外\n(B) \\(A\\) 在圓外，\\(B\\) 在圓內，\\(C\\) 在圓上\n(C) \\(A\\) 在圓內，\\(B\\) 在圓上，\\(C\\) 在圓外\n(D) \\(A\\) 在圓外，\\(B\\) 在圓上，\\(C\\) 在圓內",
+   "ref": null,
+   "steps": [
+    "比較三點到圓心 \\(D\\) 的距離與半徑：",
+    "\\(\\pi r^2=100\\pi\\)，\\(r=10\\)",
+    "\\(\\overline{DA}=\\sqrt{10^2+10^2}=\\sqrt{200}>10\\)",
+    "\\(A\\) 在圓外",
+    "半徑 \\(10\\)：",
+    "\\(\\overline{DB}=\\sqrt{(-6)^2+(-8)^2}=10\\)，\\(B\\) 在圓上",
+    "\\(\\overline{DC}=8<10\\)，\\(C\\) 在圓內"
+   ],
+   "ans": "\\((D)\\)",
+   "fig": null,
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "附選4": {
+   "src": "習作・附錄本",
+   "page": "印 12",
+   "title": "選擇題第 4 題",
+   "q": "在坐標平面上，若圓 \\(O\\) 的圓心在原點，且 \\(A(15,8)\\) 在圓 \\(O\\) 上，則圓 \\(O\\) 的半徑為多少？\n(A) \\(8\\)　　　(B) \\(15\\)\n(C) \\(17\\)　　　(D) \\(23\\)",
+   "ref": null,
+   "steps": [
+    "半徑就是 \\(\\overline{OA}\\)：",
+    "\\(\\overline{OA}=\\sqrt{15^2+8^2}\\)",
+    "\\(=\\sqrt{289}=17\\)"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附選5": {
+   "src": "習作・附錄本",
+   "page": "印 12",
+   "title": "選擇題第 5 題",
+   "q": "如圖，圓 \\(O\\) 外一點 \\(P\\)，\\(\\overleftrightarrow{AP}\\) 與圓 \\(O\\) 切於 \\(A\\) 點，\\(\\overline{OP}=13\\)，\\(\\overline{AP}=12\\)，則圓 \\(O\\) 的半徑為多少？\n(A) \\(5\\)　　　(B) \\(10\\)\n(C) \\(12\\)　　　(D) \\(13\\)",
+   "ref": "圖見習作附錄本 p.12 選擇題第 5 題",
+   "steps": [
+    "連 \\(\\overline{OA}\\)：",
+    "切線垂直於過切點的半徑",
+    "\\(\\overline{OA}\\perp\\overline{AP}\\)",
+    "\\(\\overline{OA}=\\sqrt{13^2-12^2}\\)",
+    "\\(=\\sqrt{25}=5\\)"
+   ],
+   "ans": "\\((A)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 20,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$"
+     },
+     {
+      "x": 0,
+      "y": -5,
+      "label": "$A$"
+     },
+     {
+      "x": 12,
+      "y": -5,
+      "label": "$P$"
+     },
+     {
+      "x": -6,
+      "y": -5
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 2
+     },
+     {
+      "from": 3,
+      "to": 2
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 20,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$"
+       },
+       {
+        "x": 0,
+        "y": -5,
+        "label": "$A$"
+       },
+       {
+        "x": 12,
+        "y": -5,
+        "label": "$P$"
+       },
+       {
+        "x": -6,
+        "y": -5
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 3,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "dashed": true
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.7
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 2,
+        "text": "$13$"
+       },
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$12$",
+        "nudge": [
+         0,
+         14
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "附選6": {
+   "src": "習作・附錄本",
+   "page": "印 12",
+   "title": "選擇題第 6 題",
+   "q": "已知圓 \\(O\\) 與直線 \\(L_1\\) 的距離為 \\(10\\)，若圓 \\(O\\) 的半徑為 \\(10\\)，則 \\(L_1\\) 與圓 \\(O\\) 的交點關係為何？\n(A) 交於兩點　　　(B) 只交於一點\n(C) 不相交　　　(D) 無法判別",
+   "ref": null,
+   "steps": [
+    "比較圓心到直線的距離與半徑：",
+    "圓心到 \\(L_1\\) 的距離 \\(=10=\\) 半徑",
+    "所以 \\(L_1\\) 與圓 \\(O\\) 相切，只交於一點"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附選7": {
+   "src": "習作・附錄本",
+   "page": "印 12",
+   "title": "選擇題第 7 題",
+   "q": "如圖，\\(\\overleftrightarrow{AP}\\) 為圓 \\(O\\) 的切線，\\(A\\) 為切點，\\(\\overline{OP}\\) 交圓 \\(O\\) 於 \\(B\\) 點，若 \\(\\overline{AP}=15\\)，圓 \\(O\\) 的半徑為 \\(8\\)，則 \\(\\overline{BP}=\\)？\n(A) \\(7\\)　　　(B) \\(8\\)\n(C) \\(9\\)　　　(D) \\(7\\sqrt{2}\\)",
+   "ref": "圖見習作附錄本 p.12 選擇題第 7 題",
+   "steps": [
+    "\\(\\overline{OA}\\perp\\overline{AP}\\)：",
+    "\\(\\overline{OP}=\\sqrt{8^2+15^2}=\\sqrt{289}=17\\)",
+    "\\(\\overline{BP}=\\overline{OP}-\\overline{OB}\\)",
+    "\\(=17-8=9\\)"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 16,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 8
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$"
+     },
+     {
+      "x": 0,
+      "y": 8,
+      "label": "$A$"
+     },
+     {
+      "x": 15,
+      "y": 8,
+      "label": "$P$"
+     },
+     {
+      "on": 0,
+      "at": 28.07,
+      "label": "$B$",
+      "nudge": [
+       4,
+       -10
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 0,
+      "to": 2
+     },
+     {
+      "from": 1,
+      "to": 2
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 16,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 8
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$"
+       },
+       {
+        "x": 0,
+        "y": 8,
+        "label": "$A$"
+       },
+       {
+        "x": 15,
+        "y": 8,
+        "label": "$P$"
+       },
+       {
+        "on": 0,
+        "at": 28.07,
+        "label": "$B$",
+        "nudge": [
+         4,
+         -10
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 1,
+        "to": 2
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.9
+       }
+      ],
+      "sides": [
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$15$"
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$8$"
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "附填1": {
+   "src": "習作・附錄本",
+   "page": "印 13",
+   "title": "填充題第 1 題",
+   "q": "已知扇形的面積為 \\(27\\pi\\) 平方公分，且半徑為 \\(6\\) 公分，則此扇形的圓心角為＿＿＿＿度。",
+   "ref": null,
+   "steps": [
+    "設圓心角為 \\(x\\degree\\)：",
+    "\\(6^2\\pi\\times\\frac{x}{360}=27\\pi\\)",
+    "\\(36\\times\\frac{x}{360}=27\\)",
+    "\\(\\frac{x}{10}=27\\)，\\(x=270\\)"
+   ],
+   "ans": "\\(270\\) 度",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附填2": {
+   "src": "習作・附錄本",
+   "page": "印 13",
+   "title": "填充題第 2 題",
+   "q": "有一個圓 \\(O\\) 的直徑為 \\(14\\)，且 \\(O\\)、\\(A\\)、\\(B\\) 三點在同一條直線上，已知 \\(A\\) 為圓 \\(O\\) 內的一點，\\(\\overline{AO}=4\\)，\\(\\overline{AB}=\\sqrt{8}\\)，則 \\(B\\) 點的位置在＿＿＿＿。",
+   "ref": null,
+   "steps": [
+    "比較 \\(\\overline{OB}\\) 與半徑：",
+    "半徑 \\(=14\\div2=7\\)",
+    "\\(B\\) 在直線 \\(OA\\) 上，\\(\\overline{OB}=4+\\sqrt{8}\\) 或 \\(4-\\sqrt{8}\\)",
+    "\\(\\sqrt{8}<\\sqrt{9}=3\\)",
+    "兩種情形都有 \\(\\overline{OB}<4+3=7\\)"
+   ],
+   "ans": "圓內",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附填3": {
+   "src": "習作・附錄本",
+   "page": "印 13",
+   "title": "填充題第 3 題",
+   "q": "如圖，\\(\\overleftrightarrow{AD}\\)、\\(\\overleftrightarrow{AE}\\)、\\(\\overline{BC}\\) 分別與圓相切於 \\(D\\)、\\(E\\)、\\(F\\) 三點，若切線段 \\(\\overline{AD}\\) 與 \\(\\overline{AE}\\) 皆為 \\(13\\) 公分，則 \\(\\triangle ABC\\) 的周長為＿＿＿＿公分。",
+   "ref": "圖見習作附錄本 p.13 填充題第 3 題",
+   "steps": [
+    "圓外一點到圓的兩切線段等長：",
+    "\\(\\overline{BF}=\\overline{BD}\\)",
+    "\\(\\overline{CF}=\\overline{CE}\\)",
+    "\\(\\overline{BF}=\\overline{BD}\\)，\\(\\overline{CF}=\\overline{CE}\\)：",
+    "周長 \\(=\\overline{AB}+\\overline{BF}+\\overline{CF}+\\overline{AC}\\)",
+    "\\(=\\overline{AB}+\\overline{BD}+\\overline{CE}+\\overline{AC}\\)",
+    "\\(=\\overline{AD}+\\overline{AE}\\)",
+    "\\(=13+13=26\\)"
+   ],
+   "ans": "\\(26\\) 公分",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 17,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 13,
+      "y": 4.732,
+      "r": 4.732
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$A$"
+     },
+     {
+      "x": 7.42,
+      "y": 6.226,
+      "label": "$B$",
+      "nudge": [
+       -10,
+       0
+      ]
+     },
+     {
+      "x": 9.686,
+      "y": 0,
+      "label": "$C$"
+     },
+     {
+      "x": 9.959,
+      "y": 8.356,
+      "label": "$D$",
+      "nudge": [
+       -8,
+       2
+      ]
+     },
+     {
+      "x": 13,
+      "y": 0,
+      "label": "$E$"
+     },
+     {
+      "x": 8.553,
+      "y": 3.114,
+      "label": "$F$",
+      "nudge": [
+       -6,
+       -2
+      ]
+     },
+     {
+      "x": 12.257,
+      "y": 10.285
+     },
+     {
+      "x": 19,
+      "y": 0
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 6
+     },
+     {
+      "from": 0,
+      "to": 7
+     },
+     {
+      "from": 1,
+      "to": 2
+     }
+    ]
+   },
+   "segs": [
+    0,
+    3
+   ]
+  },
+  "附填4": {
+   "src": "習作・附錄本",
+   "page": "印 13",
+   "title": "填充題第 4 題",
+   "q": "已知圓 \\(O\\) 的半徑為 \\(10\\) 公分，弦 \\(\\overline{AB}\\) 的弦心距為 \\(6\\) 公分，則 \\(\\overline{AB}=\\)＿＿＿＿公分。",
+   "ref": "解法示意圖，原卷沒有圖",
+   "steps": [
+    "作弦心距 \\(\\overline{OM}\\)，連 \\(\\overline{OB}\\)：",
+    "弦心距垂直平分弦",
+    "\\(\\overline{BM}=\\sqrt{10^2-6^2}=8\\)",
+    "\\(\\overline{AB}=2\\times8=16\\)"
+   ],
+   "ans": "\\(16\\) 公分",
+   "fig": null,
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 14,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 10
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$"
+       },
+       {
+        "x": -8,
+        "y": -6,
+        "label": "$A$"
+       },
+       {
+        "x": 8,
+        "y": -6,
+        "label": "$B$"
+       },
+       {
+        "x": 0,
+        "y": -6,
+        "label": "$M$"
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 3
+       },
+       {
+        "from": 0,
+        "to": 2,
+        "dashed": true
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 3,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 1.0
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 3,
+        "text": "$6$",
+        "nudge": [
+         -8,
+         12
+        ]
+       },
+       {
+        "from": 0,
+        "to": 2,
+        "text": "$10$"
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "附計1": {
+   "src": "習作・附錄本",
+   "page": "印 13",
+   "title": "計算題第 1 題",
+   "q": "如圖，同心圓的半徑分別為 \\(20\\) 公分、\\(15\\) 公分，若 \\(\\overarc{AB}=12\\pi\\) 公分，求 \\(\\angle AOB\\) 的度數和 \\(\\overarc{CD}\\) 的長。",
+   "ref": "圖見習作附錄本 p.13 計算題第 1 題",
+   "steps": [
+    "先求 \\(\\angle AOB\\)：",
+    "設 \\(\\angle AOB=x\\degree\\)",
+    "\\(\\overarc{AB}\\) 的長 \\(=2\\times20\\times\\pi\\times\\frac{x}{360}\\)",
+    "\\(12\\pi=\\frac{x}{9}\\times\\pi\\)，\\(x=108\\)",
+    "因此 \\(\\angle AOB=108\\degree\\)",
+    "\\(\\angle COD=\\angle AOB=108\\degree\\)：",
+    "\\(\\overarc{CD}\\) 的長 \\(=2\\times15\\times\\pi\\times\\frac{108}{360}\\)",
+    "\\(=9\\pi\\)（公分）"
+   ],
+   "ans": "\\(\\angle AOB=108\\degree\\)，\\(\\overarc{CD}\\) 的長 \\(9\\pi\\) 公分",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 7,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 20
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "r": 15
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       6,
+       10
+      ]
+     },
+     {
+      "on": 0,
+      "at": 165,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 57,
+      "label": "$B$"
+     },
+     {
+      "on": 1,
+      "at": 165,
+      "label": "$C$",
+      "nudge": [
+       6,
+       12
+      ]
+     },
+     {
+      "on": 1,
+      "at": 57,
+      "label": "$D$",
+      "nudge": [
+       10,
+       4
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 0,
+      "to": 2
+     }
+    ]
+   },
+   "segs": [
+    0,
+    5
+   ]
+  },
+  "附計2": {
+   "src": "習作・附錄本",
+   "page": "印 13",
+   "title": "計算題第 2 題",
+   "q": "如圖，\\(\\triangle ABC\\) 三邊分別與圓 \\(O\\) 相切於 \\(D\\)、\\(E\\)、\\(F\\) 三點，已知 \\(\\overline{AB}=11\\)，\\(\\overline{BC}=12\\)，\\(\\overline{AC}=13\\)，求 \\(\\overline{AE}\\) 的長。",
+   "ref": "圖見習作附錄本 p.13 計算題第 2 題",
+   "steps": [
+    "圓外一點到此圓的兩切線段長相等：",
+    "可設 \\(\\overline{AE}=\\overline{AD}=x\\)",
+    "則 \\(\\overline{BD}=\\overline{BF}=11-x\\)",
+    "\\(\\overline{CE}=\\overline{CF}=13-x\\)",
+    "\\(\\overline{BF}+\\overline{CF}=\\overline{BC}=12\\)：",
+    "\\((11-x)+(13-x)=12\\)",
+    "\\(24-2x=12\\)",
+    "\\(x=6\\)"
+   ],
+   "ans": "\\(\\overline{AE}=6\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 22,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 6,
+      "y": 3.416,
+      "r": 3.416
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$A$"
+     },
+     {
+      "x": 5.615,
+      "y": 9.459,
+      "label": "$B$"
+     },
+     {
+      "x": 13,
+      "y": 0,
+      "label": "$C$"
+     },
+     {
+      "x": 3.063,
+      "y": 5.159,
+      "label": "$D$",
+      "nudge": [
+       -8,
+       0
+      ]
+     },
+     {
+      "x": 6,
+      "y": 0,
+      "label": "$E$"
+     },
+     {
+      "x": 8.692,
+      "y": 5.518,
+      "label": "$F$",
+      "nudge": [
+       8,
+       0
+      ]
+     },
+     {
+      "x": 6,
+      "y": 3.416,
+      "label": "$O$",
+      "nudge": [
+       0,
+       12
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 2,
+      "to": 0
+     }
+    ]
+   },
+   "segs": [
+    0,
+    4
+   ]
+  },
   "暖身1 ⑴": {
    "src": "習作・暖身題",
    "page": "印 28",
@@ -22125,6 +24488,1016 @@ window.SOLUTIONS = {
      }
     ]
    }
+  },
+  "附選1": {
+   "src": "習作・附錄本",
+   "page": "印 14",
+   "title": "選擇題第 1 題",
+   "q": "設 \\(\\overline{AB}\\) 是圓 \\(O\\) 的直徑，\\(C\\) 點在圓 \\(O\\) 上，且 \\(\\overarc{AC}=3\\overarc{BC}\\)，則 \\(\\angle BOC=\\)？\n(A) \\(30\\degree\\)　　　(B) \\(45\\degree\\)\n(C) \\(60\\degree\\)　　　(D) \\(75\\degree\\)",
+   "ref": null,
+   "steps": [
+    "\\(\\overline{AB}\\) 是直徑：",
+    "\\(\\overarc{AC}+\\overarc{BC}=180\\degree\\)",
+    "\\(3\\overarc{BC}+\\overarc{BC}=180\\degree\\)，\\(\\overarc{BC}=45\\degree\\)",
+    "\\(\\angle BOC=\\overarc{BC}=45\\degree\\)"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附選2": {
+   "src": "習作・附錄本",
+   "page": "印 14",
+   "title": "選擇題第 2 題",
+   "q": "如圖，兩同心圓中，若 \\(\\overarc{AB}\\) 的長為 \\(9\\pi\\)，\\(\\overarc{CD}\\) 的長為 \\(4\\pi\\)，小圓的直徑為 \\(24\\)，則大圓的半徑為多少？\n(A) \\(54\\)　　　(B) \\(45\\)\n(C) \\(36\\)　　　(D) \\(27\\)",
+   "ref": "圖見習作附錄本 p.14 選擇題第 2 題",
+   "steps": [
+    "小圓半徑 \\(12\\)，設 \\(\\angle AOB=x\\degree\\)：",
+    "\\(\\overarc{CD}\\) 的長 \\(=2\\times12\\times\\pi\\times\\frac{x}{360}\\)",
+    "\\(4\\pi=\\frac{x}{15}\\times\\pi\\)，\\(x=60\\)",
+    "\\(\\angle AOB=60\\degree\\)，設大圓半徑 \\(R\\)：",
+    "\\(\\overarc{AB}\\) 的長 \\(=2\\times R\\times\\pi\\times\\frac{60}{360}\\)",
+    "\\(9\\pi=\\frac{R}{3}\\times\\pi\\)，\\(R=27\\)"
+   ],
+   "ans": "\\((D)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 5,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 27
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "r": 12
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       8,
+       -10
+      ]
+     },
+     {
+      "on": 0,
+      "at": 160,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 100,
+      "label": "$B$"
+     },
+     {
+      "on": 1,
+      "at": 160,
+      "label": "$C$",
+      "nudge": [
+       2,
+       16
+      ]
+     },
+     {
+      "on": 1,
+      "at": 100,
+      "label": "$D$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 0,
+      "to": 2
+     }
+    ]
+   },
+   "segs": [
+    0,
+    3
+   ]
+  },
+  "附選3": {
+   "src": "習作・附錄本",
+   "page": "印 14",
+   "title": "選擇題第 3 題",
+   "q": "如圖，四邊形 \\(ABCD\\) 為圓 \\(O\\) 的內接等腰梯形，\\(\\overline{AD}\\parallel\\overline{BC}\\)，已知 \\(\\overarc{CD}=75\\degree\\)，\\(\\overarc{AD}=125\\degree\\)，則 \\(\\angle BAD\\) 的度數為何？\n(A) \\(70\\degree\\)　　　(B) \\(75\\degree\\)\n(C) \\(80\\degree\\)　　　(D) \\(85\\degree\\)",
+   "ref": "圖見習作附錄本 p.14 選擇題第 3 題",
+   "steps": [
+    "等腰梯形的兩腰相等：",
+    "\\(\\overarc{AB}=\\overarc{CD}=75\\degree\\)",
+    "\\(\\overarc{BC}=360\\degree-125\\degree-75\\degree-75\\degree\\)",
+    "\\(=85\\degree\\)",
+    "\\(\\angle BAD\\) 是圓周角：",
+    "\\(\\angle BAD=\\frac{1}{2}(\\overarc{BC}+\\overarc{CD})\\)",
+    "\\(=\\frac{1}{2}(85\\degree+75\\degree)\\)",
+    "\\(=80\\degree\\)"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 26,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       0,
+       12
+      ]
+     },
+     {
+      "on": 0,
+      "at": 152.5,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 27.5,
+      "label": "$D$"
+     },
+     {
+      "on": 0,
+      "at": -47.5,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": -132.5,
+      "label": "$B$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 4
+     },
+     {
+      "from": 4,
+      "to": 3
+     },
+     {
+      "from": 3,
+      "to": 2
+     },
+     {
+      "from": 2,
+      "to": 1
+     }
+    ]
+   },
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "附選4": {
+   "src": "習作・附錄本",
+   "page": "印 14",
+   "title": "選擇題第 4 題",
+   "q": "如圖，\\(\\overline{AB}\\) 為圓 \\(O\\) 的直徑，若 \\(\\angle BAC=30\\degree\\)，則 \\(\\angle ABC=\\)？\n(A) \\(40\\degree\\)　　　(B) \\(50\\degree\\)\n(C) \\(60\\degree\\)　　　(D) \\(70\\degree\\)",
+   "ref": "圖見習作附錄本 p.14 選擇題第 4 題",
+   "steps": [
+    "\\(\\overline{AB}\\) 是直徑：",
+    "直徑所對的圓周角是直角",
+    "\\(\\angle ACB=90\\degree\\)",
+    "\\(\\angle ABC=180\\degree-90\\degree-30\\degree\\)",
+    "\\(=60\\degree\\)"
+   ],
+   "ans": "\\((C)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 26,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       4,
+       12
+      ]
+     },
+     {
+      "on": 0,
+      "at": 160,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": -20,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": -80,
+      "label": "$C$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 1,
+      "to": 3
+     },
+     {
+      "from": 3,
+      "to": 2
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 26,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 5
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         4,
+         12
+        ]
+       },
+       {
+        "on": 0,
+        "at": 160,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": -20,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": -80,
+        "label": "$C$"
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 1,
+        "to": 3
+       },
+       {
+        "from": 3,
+        "to": 2
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 3,
+        "toward": [
+         1,
+         2
+        ],
+        "size": 0.6
+       }
+      ],
+      "angles": [
+       {
+        "at": 1,
+        "toward": [
+         2,
+         3
+        ],
+        "text": "$30\\degree$",
+        "nudge": [
+         10,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "附選5": {
+   "src": "習作・附錄本",
+   "page": "印 14",
+   "title": "選擇題第 5 題",
+   "q": "如圖，四邊形 \\(ABCD\\) 為圓 \\(O\\) 的內接四邊形，若 \\(\\angle C=115\\degree\\)，\\(\\angle A\\) 比 \\(\\angle B\\) 少 \\(15\\degree\\)，則 \\(\\angle D=\\)？\n(A) \\(95\\degree\\)　　　(B) \\(100\\degree\\)\n(C) \\(105\\degree\\)　　　(D) \\(110\\degree\\)",
+   "ref": "圖見習作附錄本 p.14 選擇題第 5 題",
+   "steps": [
+    "圓內接四邊形對角互補：",
+    "\\(\\angle A=180\\degree-115\\degree=65\\degree\\)",
+    "\\(\\angle B=65\\degree+15\\degree=80\\degree\\)",
+    "\\(\\angle D=180\\degree-80\\degree=100\\degree\\)"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 26,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "on": 0,
+      "at": 70,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 180,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 270,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 310,
+      "label": "$D$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 2,
+      "to": 3
+     },
+     {
+      "from": 3,
+      "to": 0
+     }
+    ]
+   },
+   "segs": [
+    0
+   ]
+  },
+  "附選6": {
+   "src": "習作・附錄本",
+   "page": "印 14",
+   "title": "選擇題第 6 題",
+   "q": "如圖，正六邊形 \\(ABCDEF\\) 的頂點皆在圓 \\(O\\) 上，則 \\(\\angle ECD=\\)？\n(A) \\(15\\degree\\)　　　(B) \\(30\\degree\\)\n(C) \\(45\\degree\\)　　　(D) \\(60\\degree\\)",
+   "ref": "圖見習作附錄本 p.14 選擇題第 6 題",
+   "steps": [
+    "六個頂點把圓周分成 \\(6\\) 段相等的弧：",
+    "每段弧 \\(=360\\degree\\div6=60\\degree\\)",
+    "\\(\\angle ECD=\\frac{1}{2}\\overarc{DE}\\)",
+    "\\(=\\frac{1}{2}\\times60\\degree=30\\degree\\)"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 26,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       0,
+       -12
+      ]
+     },
+     {
+      "on": 0,
+      "at": 120,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 60,
+      "label": "$F$"
+     },
+     {
+      "on": 0,
+      "at": 0,
+      "label": "$E$"
+     },
+     {
+      "on": 0,
+      "at": -60,
+      "label": "$D$"
+     },
+     {
+      "on": 0,
+      "at": -120,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 180,
+      "label": "$B$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 6
+     },
+     {
+      "from": 6,
+      "to": 5
+     },
+     {
+      "from": 5,
+      "to": 4
+     },
+     {
+      "from": 4,
+      "to": 3
+     },
+     {
+      "from": 3,
+      "to": 2
+     },
+     {
+      "from": 2,
+      "to": 1
+     },
+     {
+      "from": 5,
+      "to": 3
+     }
+    ]
+   },
+   "segs": [
+    0
+   ]
+  },
+  "附選7": {
+   "src": "習作・附錄本",
+   "page": "印 14",
+   "title": "選擇題第 7 題",
+   "q": "如圖，將一圓分成 \\(8\\) 等分，則下列敘述何者正確？\n(A) \\(2\\angle 1=\\angle 2+4\\angle 3\\)\n(B) \\(2\\angle 2-\\angle 1=2\\angle 3\\)\n(C) \\(2\\angle 2=3\\angle 3\\)\n(D) \\(\\angle 1=\\angle 2+2\\angle 3\\)",
+   "ref": "圖見習作附錄本 p.14 選擇題第 7 題；原圖的 8 個等分點畫成圓上的頂點",
+   "steps": [
+    "每段弧 \\(=360\\degree\\div8=45\\degree\\)，圓周角是所對弧的一半：",
+    "\\(\\angle 1\\) 對 \\(3\\) 段弧：\\(\\angle 1=\\frac{1}{2}\\times135\\degree=67.5\\degree\\)",
+    "\\(\\angle 2\\) 對 \\(2\\) 段弧：\\(\\angle 2=\\frac{1}{2}\\times90\\degree=45\\degree\\)",
+    "\\(\\angle 3\\) 對 \\(1\\) 段弧：\\(\\angle 3=\\frac{1}{2}\\times45\\degree=22.5\\degree\\)",
+    "代入選項 (A)：",
+    "\\(2\\angle 1=135\\degree\\)",
+    "\\(\\angle 2+4\\angle 3=45\\degree+90\\degree=135\\degree\\)",
+    "所以 \\(2\\angle 1=\\angle 2+4\\angle 3\\)"
+   ],
+   "ans": "\\((A)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 24,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "on": 0,
+      "at": 90
+     },
+     {
+      "on": 0,
+      "at": 45
+     },
+     {
+      "on": 0,
+      "at": 0
+     },
+     {
+      "on": 0,
+      "at": -45
+     },
+     {
+      "on": 0,
+      "at": -90
+     },
+     {
+      "on": 0,
+      "at": -135
+     },
+     {
+      "on": 0,
+      "at": 180
+     },
+     {
+      "on": 0,
+      "at": 135
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 7
+     },
+     {
+      "from": 0,
+      "to": 4
+     },
+     {
+      "from": 1,
+      "to": 6
+     },
+     {
+      "from": 1,
+      "to": 4
+     },
+     {
+      "from": 2,
+      "to": 5
+     },
+     {
+      "from": 2,
+      "to": 4
+     }
+    ],
+    "angles": [
+     {
+      "at": 0,
+      "toward": [
+       7,
+       4
+      ],
+      "text": "$1$"
+     },
+     {
+      "at": 1,
+      "toward": [
+       6,
+       4
+      ],
+      "text": "$2$"
+     },
+     {
+      "at": 2,
+      "toward": [
+       5,
+       4
+      ],
+      "text": "$3$"
+     }
+    ]
+   },
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "附填1": {
+   "src": "習作・附錄本",
+   "page": "印 15",
+   "title": "填充題第 1 題",
+   "q": "如圖，圓 \\(O\\) 的半徑為 \\(16\\)，\\(\\overarc{AB}\\) 的長為 \\(\\frac{20}{3}\\pi\\)，則 \\(\\overarc{AB}\\) 的度數 \\(=\\)＿＿＿＿度。",
+   "ref": "圖見習作附錄本 p.15 填充題第 1 題",
+   "steps": [
+    "設 \\(\\overarc{AB}\\) 的度數為 \\(x\\degree\\)：",
+    "\\(2\\times16\\times\\pi\\times\\frac{x}{360}=\\frac{20}{3}\\pi\\)",
+    "\\(\\frac{4x}{45}=\\frac{20}{3}\\)",
+    "\\(x=75\\)"
+   ],
+   "ans": "\\(75\\) 度",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 9,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 16
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$"
+     },
+     {
+      "on": 0,
+      "at": 60,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": -15,
+      "label": "$B$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 0,
+      "to": 2
+     }
+    ]
+   },
+   "segs": [
+    0
+   ]
+  },
+  "附填2": {
+   "src": "習作・附錄本",
+   "page": "印 15",
+   "title": "填充題第 2 題",
+   "q": "如圖，四邊形 \\(EFGH\\) 為圓 \\(O\\) 的內接四邊形，\\(\\angle FGH\\) 的外角為 \\(85\\degree\\)，且 \\(\\angle F：\\angle H=7：5\\)，則 \\(\\angle E+\\angle F=\\)＿＿＿＿度。",
+   "ref": "圖見習作附錄本 p.15 填充題第 2 題",
+   "steps": [
+    "圓內接四邊形對角互補：",
+    "\\(\\angle FGH=180\\degree-85\\degree=95\\degree\\)",
+    "\\(\\angle E=180\\degree-95\\degree=85\\degree\\)",
+    "\\(\\angle F+\\angle H=180\\degree\\)",
+    "\\(\\angle F：\\angle H=7：5\\)：",
+    "\\(\\angle F=180\\degree\\times\\frac{7}{12}=105\\degree\\)",
+    "\\(\\angle E+\\angle F=85\\degree+105\\degree\\)",
+    "\\(=190\\degree\\)"
+   ],
+   "ans": "\\(190\\) 度",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 26,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "on": 0,
+      "at": 70,
+      "label": "$E$"
+     },
+     {
+      "on": 0,
+      "at": 150,
+      "label": "$F$"
+     },
+     {
+      "on": 0,
+      "at": 220,
+      "label": "$G$"
+     },
+     {
+      "on": 0,
+      "at": 320,
+      "label": "$H$"
+     },
+     {
+      "x": -6.511,
+      "y": -3.214
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 2,
+      "to": 3
+     },
+     {
+      "from": 3,
+      "to": 0
+     },
+     {
+      "from": 2,
+      "to": 4
+     }
+    ]
+   },
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "附填3": {
+   "src": "習作・附錄本",
+   "page": "印 15",
+   "title": "填充題第 3 題",
+   "q": "如圖，圓上兩弦 \\(\\overline{AB}\\) 與 \\(\\overline{CD}\\)，\\(\\overline{AB}\\parallel\\overline{CD}\\)，若 \\(\\overarc{AC}=60\\degree\\)，則 \\(\\angle BAD=\\)＿＿＿＿度。",
+   "ref": "圖見習作附錄本 p.15 填充題第 3 題",
+   "steps": [
+    "\\(\\overline{AB}\\parallel\\overline{CD}\\)：",
+    "\\(\\angle BAD=\\angle ADC\\)（內錯角）",
+    "\\(\\angle ADC=\\frac{1}{2}\\overarc{AC}=30\\degree\\)",
+    "所以 \\(\\angle BAD=30\\degree\\)"
+   ],
+   "ans": "\\(30\\) 度",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 24,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "on": 0,
+      "at": 120,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 60,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 240,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 300,
+      "label": "$D$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 2
+     },
+     {
+      "from": 1,
+      "to": 3
+     },
+     {
+      "from": 0,
+      "to": 3
+     },
+     {
+      "from": 1,
+      "to": 2
+     }
+    ]
+   },
+   "segs": [
+    0
+   ]
+  },
+  "附計1": {
+   "src": "習作・附錄本",
+   "page": "印 15",
+   "title": "計算題第 1 題",
+   "q": "如圖，圓 \\(O_1\\) 的半徑為 \\(15\\)，圓 \\(O_2\\) 的半徑為 \\(9\\)，\\(\\angle AO_1B=135\\degree\\)，\\(\\angle CO_2D=135\\degree\\)，求 \\(\\overarc{AB}\\) 的長度 \\(：\\overarc{CD}\\) 的長度。",
+   "ref": "圖見習作附錄本 p.15 計算題第 1 題",
+   "steps": [
+    "兩弧的圓心角都是 \\(135\\degree\\)：",
+    "\\(\\overarc{AB}\\) 的長度 \\(：\\overarc{CD}\\) 的長度",
+    "\\(=(2\\times15\\times\\pi\\times\\frac{135}{360})：(2\\times9\\times\\pi\\times\\frac{135}{360})\\)",
+    "\\(=15：9=5：3\\)"
+   ],
+   "ans": "\\(5：3\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 6.6,
+    "placement": "below",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 15
+     },
+     {
+      "x": 30,
+      "y": 0,
+      "r": 9
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O_1$"
+     },
+     {
+      "x": 30,
+      "y": 0,
+      "label": "$O_2$"
+     },
+     {
+      "on": 0,
+      "at": 202.5,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": -22.5,
+      "label": "$B$"
+     },
+     {
+      "on": 1,
+      "at": 202.5,
+      "label": "$C$",
+      "nudge": [
+       -12,
+       0
+      ]
+     },
+     {
+      "on": 1,
+      "at": -22.5,
+      "label": "$D$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 2
+     },
+     {
+      "from": 0,
+      "to": 3
+     },
+     {
+      "from": 2,
+      "to": 3
+     },
+     {
+      "from": 1,
+      "to": 4
+     },
+     {
+      "from": 1,
+      "to": 5
+     },
+     {
+      "from": 4,
+      "to": 5
+     }
+    ]
+   },
+   "segs": [
+    0
+   ]
+  },
+  "附計2": {
+   "src": "習作・附錄本",
+   "page": "印 15",
+   "title": "計算題第 2 題",
+   "q": "如圖，圓周上有 \\(A\\)、\\(B\\)、\\(C\\)、\\(D\\)、\\(E\\)、\\(F\\) 六點，若 \\(\\overarc{CD}=52\\degree\\)，\\(\\overarc{AF}=70\\degree\\)，則 \\(\\angle B+\\angle E=\\)？",
+   "ref": "圖見習作附錄本 p.15 計算題第 2 題",
+   "steps": [
+    "圓周角是所對弧的一半：",
+    "\\(\\angle B=\\frac{1}{2}(\\overarc{AF}+\\overarc{FE}+\\overarc{EC})\\)",
+    "\\(\\angle E=\\frac{1}{2}(\\overarc{AF}+\\overarc{AB}+\\overarc{BD})\\)",
+    "兩式相加，六段弧只少 \\(\\overarc{CD}\\)、多一次 \\(\\overarc{AF}\\)：",
+    "\\(\\angle B+\\angle E=\\frac{1}{2}(360\\degree-\\overarc{CD}+\\overarc{AF})\\)",
+    "\\(=\\frac{1}{2}(360\\degree-52\\degree+70\\degree)\\)",
+    "\\(=189\\degree\\)"
+   ],
+   "ans": "\\(189\\degree\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 24,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "on": 0,
+      "at": 140,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 70,
+      "label": "$F$"
+     },
+     {
+      "on": 0,
+      "at": 10,
+      "label": "$E$"
+     },
+     {
+      "on": 0,
+      "at": -45,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": -97,
+      "label": "$D$"
+     },
+     {
+      "on": 0,
+      "at": -130,
+      "label": "$B$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 5,
+      "to": 0
+     },
+     {
+      "from": 5,
+      "to": 3
+     },
+     {
+      "from": 2,
+      "to": 1
+     },
+     {
+      "from": 2,
+      "to": 4
+     }
+    ]
+   },
+   "segs": [
+    0,
+    3
+   ]
   },
   "暖身1 ⑴": {
    "src": "習作・暖身題",
@@ -30176,6 +33549,1796 @@ window.SOLUTIONS = {
     "placement": "right"
    },
    "key": "\\(24\\)"
+  }
+ },
+ "第2章": {
+  "附選1": {
+   "src": "習作・附錄本",
+   "page": "印 16",
+   "title": "選擇題第 1 題",
+   "q": "如圖，若 \\(\\overline{AB}=\\overline{AC}\\)，且 \\(\\angle BAC=32\\degree\\)，則 \\(\\angle AOC=\\)？\n(A) \\(148\\degree\\)　　　(B) \\(152\\degree\\)\n(C) \\(164\\degree\\)　　　(D) \\(296\\degree\\)",
+   "ref": "圖見習作附錄本 p.16 選擇題第 1 題",
+   "steps": [
+    "\\(\\angle BOC\\) 與 \\(\\angle BAC\\) 對同一段弧：",
+    "\\(\\angle BOC=2\\angle BAC=64\\degree\\)",
+    "\\(\\overline{AB}=\\overline{AC}\\)，所以 \\(\\overarc{AB}=\\overarc{AC}\\)",
+    "\\(\\angle AOB=\\angle AOC\\)",
+    "三個圓心角合起來是 \\(360\\degree\\)：",
+    "\\(\\angle AOC=\\frac{1}{2}(360\\degree-64\\degree)\\)",
+    "\\(=148\\degree\\)"
+   ],
+   "ans": "\\((A)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 24,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       12,
+       2
+      ]
+     },
+     {
+      "on": 0,
+      "at": 90,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 238,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 302,
+      "label": "$C$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 1,
+      "to": 3
+     },
+     {
+      "from": 2,
+      "to": 3
+     },
+     {
+      "from": 1,
+      "to": 0
+     },
+     {
+      "from": 0,
+      "to": 2
+     },
+     {
+      "from": 0,
+      "to": 3
+     }
+    ]
+   },
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "附選2": {
+   "src": "習作・附錄本",
+   "page": "印 16",
+   "title": "選擇題第 2 題",
+   "q": "有兩個扇形，已知甲扇形的半徑為 \\(12\\)、弧長為 \\(3\\pi\\)，乙扇形半徑為 \\(16\\)、弧長為 \\(2\\pi\\)，則兩個扇形的面積大小關係為何？\n(A) 甲 \\(>\\) 乙　　　(B) 甲 \\(<\\) 乙\n(C) 甲 \\(=\\) 乙　　　(D) 無法判別",
+   "ref": null,
+   "steps": [
+    "先求甲扇形，設圓心角為 \\(x\\degree\\)：",
+    "\\(2\\times12\\times\\pi\\times\\frac{x}{360}=3\\pi\\)，\\(x=45\\)",
+    "甲的面積 \\(=12^2\\pi\\times\\frac{45}{360}=18\\pi\\)",
+    "再求乙扇形，設圓心角為 \\(y\\degree\\)：",
+    "\\(2\\times16\\times\\pi\\times\\frac{y}{360}=2\\pi\\)，\\(y=22.5\\)",
+    "乙的面積 \\(=16^2\\pi\\times\\frac{22.5}{360}=16\\pi\\)",
+    "\\(18\\pi>16\\pi\\)，甲 \\(>\\) 乙"
+   ],
+   "ans": "\\((A)\\)",
+   "fig": null,
+   "segs": [
+    0,
+    3
+   ]
+  },
+  "附選3": {
+   "src": "習作・附錄本",
+   "page": "印 16",
+   "title": "選擇題第 3 題",
+   "q": "坐標平面上有一圓，圓心為 \\(P(1,-1)\\)，半徑為 \\(\\sqrt{2}\\)，若直線 \\(L\\) 的方程式為 \\(y=0\\)，則 \\(L\\) 與圓 \\(P\\) 有幾個交點？\n(A) \\(2\\) 個　　　(B) \\(1\\) 個\n(C) \\(0\\) 個　　　(D) 無法判別",
+   "ref": null,
+   "steps": [
+    "比較圓心到直線的距離與半徑：",
+    "圓心 \\(P(1,-1)\\) 到 \\(y=0\\) 的距離 \\(=1\\)",
+    "\\(1<\\sqrt{2}\\)，距離小於半徑",
+    "\\(L\\) 與圓 \\(P\\) 交於兩點"
+   ],
+   "ans": "\\((A)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附選4": {
+   "src": "習作・附錄本",
+   "page": "印 16",
+   "title": "選擇題第 4 題",
+   "q": "如圖，四邊形 \\(ABCD\\) 為圓內接四邊形，\\(\\overrightarrow{AB}\\) 與 \\(\\overrightarrow{CD}\\) 交於 \\(P\\) 點，若 \\(\\angle P=45\\degree\\)，\\(\\angle ADC=100\\degree\\)，則 \\(\\angle C\\) 的度數為何？\n(A) \\(50\\degree\\)　　　(B) \\(55\\degree\\)\n(C) \\(60\\degree\\)　　　(D) \\(65\\degree\\)",
+   "ref": "圖見習作附錄本 p.16 選擇題第 4 題",
+   "steps": [
+    "看 \\(\\triangle PAD\\)：",
+    "\\(\\angle PDA=180\\degree-\\angle ADC=80\\degree\\)",
+    "對角互補：\\(\\angle C=180\\degree-\\angle DAB\\)",
+    "所以 \\(\\angle PAD=\\angle C\\)",
+    "\\(\\triangle PAD\\) 的內角和：",
+    "\\(45\\degree+80\\degree+\\angle C=180\\degree\\)",
+    "\\(\\angle C=55\\degree\\)"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 22,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "on": 0,
+      "at": 100,
+      "label": "$D$"
+     },
+     {
+      "on": 0,
+      "at": 70,
+      "label": "$A$",
+      "nudge": [
+       8,
+       -2
+      ]
+     },
+     {
+      "on": 0,
+      "at": -10,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 230,
+      "label": "$C$"
+     },
+     {
+      "x": -0.09,
+      "y": 7.815,
+      "label": "$P$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 4,
+      "to": 2
+     },
+     {
+      "from": 4,
+      "to": 3
+     },
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 3,
+      "to": 2
+     }
+    ]
+   },
+   "segs": [
+    0,
+    4
+   ]
+  },
+  "附選5": {
+   "src": "習作・附錄本",
+   "page": "印 16",
+   "title": "選擇題第 5 題",
+   "q": "如圖，\\(\\overline{AB}\\) 為直徑，\\(\\overline{BP}\\) 為切線段，\\(\\overline{AP}\\) 交圓於 \\(C\\) 點，若 \\(\\overline{AC}=16\\)，\\(\\overline{BC}=12\\)，\\(\\overline{BP}=15\\)，則 \\(\\overline{CP}=\\)？\n(A) \\(6\\)　　　(B) \\(7\\)\n(C) \\(8\\)　　　(D) \\(9\\)",
+   "ref": "圖見習作附錄本 p.16 選擇題第 5 題",
+   "steps": [
+    "\\(\\overline{AB}\\) 是直徑：",
+    "\\(\\angle ACB=90\\degree\\)，\\(\\overline{BC}\\perp\\overline{AP}\\)",
+    "\\(\\triangle BCP\\) 中，\\(\\angle BCP=90\\degree\\)",
+    "\\(\\overline{CP}=\\sqrt{15^2-12^2}=9\\)"
+   ],
+   "ans": "\\((D)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 11,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 10,
+      "r": 10
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 20,
+      "label": "$A$"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$B$"
+     },
+     {
+      "x": 15,
+      "y": 0,
+      "label": "$P$"
+     },
+     {
+      "x": 9.6,
+      "y": 7.2,
+      "label": "$C$",
+      "nudge": [
+       8,
+       -4
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 0,
+      "to": 2
+     },
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 1,
+      "to": 3
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 11,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 10,
+        "r": 10
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 20,
+        "label": "$A$"
+       },
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$B$"
+       },
+       {
+        "x": 15,
+        "y": 0,
+        "label": "$P$"
+       },
+       {
+        "x": 9.6,
+        "y": 7.2,
+        "label": "$C$",
+        "nudge": [
+         8,
+         -4
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 1,
+        "to": 3
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 3,
+        "toward": [
+         1,
+         2
+        ],
+        "size": 1.4
+       }
+      ],
+      "sides": [
+       {
+        "from": 1,
+        "to": 3,
+        "text": "$12$"
+       },
+       {
+        "from": 1,
+        "to": 2,
+        "text": "$15$"
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "附選6": {
+   "src": "習作・附錄本",
+   "page": "印 16",
+   "title": "選擇題第 6 題",
+   "q": "如圖，在扇形 \\(BAC\\) 中，\\(D\\) 點在 \\(\\overarc{BC}\\) 上，若 \\(\\angle BAC=80\\degree\\)，且 \\(D\\) 點平分 \\(\\overarc{BC}\\)，則 \\(\\angle ABD=\\)？\n(A) \\(65\\degree\\)　　　(B) \\(70\\degree\\)\n(C) \\(75\\degree\\)　　　(D) \\(80\\degree\\)",
+   "ref": "圖見習作附錄本 p.16 選擇題第 6 題",
+   "steps": [
+    "連 \\(\\overline{AD}\\)：",
+    "\\(D\\) 平分 \\(\\overarc{BC}\\)，\\(\\angle BAD=40\\degree\\)",
+    "\\(\\overline{AB}=\\overline{AD}\\)（半徑）",
+    "\\(\\angle ABD=\\frac{1}{2}(180\\degree-40\\degree)\\)",
+    "\\(=70\\degree\\)"
+   ],
+   "ans": "\\((B)\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 21,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 8,
+      "outline": false
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 85,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": 5,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": 45,
+      "label": "$D$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 0,
+      "to": 2
+     },
+     {
+      "from": 1,
+      "to": 3
+     },
+     {
+      "from": 3,
+      "to": 2
+     }
+    ],
+    "arcs": [
+     {
+      "circle": 0,
+      "from": 5,
+      "to": 85
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 21,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 8,
+        "outline": false
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": 85,
+        "label": "$B$"
+       },
+       {
+        "on": 0,
+        "at": 5,
+        "label": "$C$"
+       },
+       {
+        "on": 0,
+        "at": 45,
+        "label": "$D$"
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 0,
+        "to": 2
+       },
+       {
+        "from": 1,
+        "to": 3
+       },
+       {
+        "from": 3,
+        "to": 2
+       },
+       {
+        "from": 0,
+        "to": 3,
+        "dashed": true
+       }
+      ],
+      "arcs": [
+       {
+        "circle": 0,
+        "from": 5,
+        "to": 85
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "附選7": {
+   "src": "習作・附錄本",
+   "page": "印 16",
+   "title": "選擇題第 7 題",
+   "q": "坐標平面上有一圓，圓心為 \\(O(2,-3)\\)，此圓分別與 \\(x=5\\)，\\(y=-1\\)，\\(y=-5\\) 交 \\(\\overline{AB}\\)、\\(\\overline{CD}\\)、\\(\\overline{EF}\\) 三弦，則三弦大小關係為何？\n(A) \\(\\overline{AB}=\\overline{EF}>\\overline{CD}\\)　　(B) \\(\\overline{AB}>\\overline{CD}>\\overline{EF}\\)\n(C) \\(\\overline{EF}>\\overline{CD}>\\overline{AB}\\)　　(D) \\(\\overline{CD}=\\overline{EF}>\\overline{AB}\\)",
+   "ref": null,
+   "steps": [
+    "求圓心到三條直線的距離（弦心距）：",
+    "\\(x=5\\)：\\(5-2=3\\)",
+    "\\(y=-1\\)：\\(-1-(-3)=2\\)",
+    "\\(y=-5\\)：\\(-3-(-5)=2\\)",
+    "弦心距越小，弦越長：\\(\\overline{CD}=\\overline{EF}>\\overline{AB}\\)"
+   ],
+   "ans": "\\((D)\\)",
+   "fig": null,
+   "segs": [
+    0
+   ]
+  },
+  "附填1": {
+   "src": "習作・附錄本",
+   "page": "印 17",
+   "title": "填充題第 1 題",
+   "q": "如圖，\\(\\overleftrightarrow{PA}\\)、\\(\\overleftrightarrow{PB}\\) 切圓 \\(O\\) 於 \\(A\\)、\\(B\\) 兩點，若圓 \\(O\\) 的半徑為 \\(14\\)，\\(\\overline{OP}=28\\)，則 \\(\\overline{PA}=\\)＿＿＿＿。",
+   "ref": "圖見習作附錄本 p.17 填充題第 1 題",
+   "steps": [
+    "連 \\(\\overline{OA}\\)：",
+    "切線垂直於過切點的半徑",
+    "\\(\\overline{OA}\\perp\\overline{PA}\\)",
+    "\\(\\overline{PA}=\\sqrt{28^2-14^2}=14\\sqrt{3}\\)"
+   ],
+   "ans": "\\(14\\sqrt{3}\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 7,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 14
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$"
+     },
+     {
+      "x": 28,
+      "y": 0,
+      "label": "$P$"
+     },
+     {
+      "on": 0,
+      "at": 60,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": -60,
+      "label": "$B$"
+     },
+     {
+      "x": 1.75,
+      "y": 15.155
+     },
+     {
+      "x": 1.75,
+      "y": -15.155
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 4
+     },
+     {
+      "from": 1,
+      "to": 5
+     },
+     {
+      "from": 0,
+      "to": 1
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 7,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 14
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$"
+       },
+       {
+        "x": 28,
+        "y": 0,
+        "label": "$P$"
+       },
+       {
+        "on": 0,
+        "at": 60,
+        "label": "$A$"
+       },
+       {
+        "on": 0,
+        "at": -60,
+        "label": "$B$"
+       },
+       {
+        "x": 1.75,
+        "y": 15.155
+       },
+       {
+        "x": 1.75,
+        "y": -15.155
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 4
+       },
+       {
+        "from": 1,
+        "to": 5
+       },
+       {
+        "from": 0,
+        "to": 1
+       },
+       {
+        "from": 0,
+        "to": 2,
+        "dashed": true
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 2,
+        "toward": [
+         0,
+         1
+        ],
+        "size": 2.2
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 2,
+        "text": "$14$"
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$28$",
+        "nudge": [
+         0,
+         14
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0
+   ]
+  },
+  "附填2": {
+   "src": "習作・附錄本",
+   "page": "印 17",
+   "title": "填充題第 2 題",
+   "q": "如圖，\\(\\overline{AB}\\)、\\(\\overline{CD}\\) 為圓 \\(O\\) 的兩弦，\\(M\\)、\\(N\\) 分別為兩弦中點。若 \\(\\overline{AB}\\parallel\\overline{CD}\\)，\\(\\overline{OM}=\\overline{MN}\\)，且 \\(\\overline{AB}=14\\)、\\(\\overline{CD}=8\\)，則 \\(\\overline{ON}=\\)＿＿＿＿。",
+   "ref": "圖見習作附錄本 p.17 填充題第 2 題",
+   "steps": [
+    "連 \\(\\overline{OA}\\)、\\(\\overline{OC}\\)：",
+    "\\(\\overline{OM}\\perp\\overline{AB}\\)，\\(\\overline{ON}\\perp\\overline{CD}\\)",
+    "設 \\(\\overline{OM}=\\overline{MN}=t\\)，\\(\\overline{ON}=2t\\)",
+    "\\(\\overline{OA}^2=7^2+t^2\\)",
+    "\\(\\overline{OC}^2=4^2+(2t)^2\\)",
+    "\\(\\overline{OA}=\\overline{OC}\\)（半徑）：",
+    "\\(49+t^2=16+4t^2\\)",
+    "\\(3t^2=33\\)，\\(t=\\sqrt{11}\\)"
+   ],
+   "ans": "\\(\\overline{ON}=2t=2\\sqrt{11}\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 17,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 7.745966692414834
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       14,
+       8
+      ]
+     },
+     {
+      "x": -7,
+      "y": 3.317,
+      "label": "$A$"
+     },
+     {
+      "x": 7,
+      "y": 3.317,
+      "label": "$B$"
+     },
+     {
+      "x": -4,
+      "y": 6.633,
+      "label": "$C$"
+     },
+     {
+      "x": 4,
+      "y": 6.633,
+      "label": "$D$"
+     },
+     {
+      "x": 0,
+      "y": 3.317,
+      "label": "$M$",
+      "nudge": [
+       -14,
+       14
+      ]
+     },
+     {
+      "x": 0,
+      "y": 6.633,
+      "label": "$N$",
+      "nudge": [
+       -10,
+       10
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 3,
+      "to": 4
+     },
+     {
+      "from": 0,
+      "to": 6
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 17,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 7.745966692414834
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         14,
+         8
+        ]
+       },
+       {
+        "x": -7,
+        "y": 3.317,
+        "label": "$A$"
+       },
+       {
+        "x": 7,
+        "y": 3.317,
+        "label": "$B$"
+       },
+       {
+        "x": -4,
+        "y": 6.633,
+        "label": "$C$"
+       },
+       {
+        "x": 4,
+        "y": 6.633,
+        "label": "$D$"
+       },
+       {
+        "x": 0,
+        "y": 3.317,
+        "label": "$M$",
+        "nudge": [
+         -14,
+         14
+        ]
+       },
+       {
+        "x": 0,
+        "y": 6.633,
+        "label": "$N$",
+        "nudge": [
+         -10,
+         10
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 3,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 6
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 3,
+        "dashed": true
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 5,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.7
+       },
+       {
+        "at": 6,
+        "toward": [
+         0,
+         4
+        ],
+        "size": 0.7
+       }
+      ]
+     }
+    },
+    {
+     "from": 5,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 17,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 7.745966692414834
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         14,
+         8
+        ]
+       },
+       {
+        "x": -7,
+        "y": 3.317,
+        "label": "$A$"
+       },
+       {
+        "x": 7,
+        "y": 3.317,
+        "label": "$B$"
+       },
+       {
+        "x": -4,
+        "y": 6.633,
+        "label": "$C$"
+       },
+       {
+        "x": 4,
+        "y": 6.633,
+        "label": "$D$"
+       },
+       {
+        "x": 0,
+        "y": 3.317,
+        "label": "$M$",
+        "nudge": [
+         -14,
+         14
+        ]
+       },
+       {
+        "x": 0,
+        "y": 6.633,
+        "label": "$N$",
+        "nudge": [
+         -10,
+         10
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 3,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 6
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 3,
+        "dashed": true
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 5,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.7
+       },
+       {
+        "at": 6,
+        "toward": [
+         0,
+         4
+        ],
+        "size": 0.7
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0,
+    5
+   ]
+  },
+  "附填3": {
+   "src": "習作・附錄本",
+   "page": "印 17",
+   "title": "填充題第 3 題",
+   "q": "如圖，\\(A\\)、\\(B\\)、\\(C\\)、\\(D\\) 皆在圓上，若 \\(\\angle CAB=45\\degree\\)，\\(\\angle BAD=75\\degree\\)，則 \\(\\overarc{CD}=\\)＿＿＿＿度。",
+   "ref": "圖見習作附錄本 p.17 填充題第 3 題",
+   "steps": [
+    "\\(\\angle CAD\\) 是 \\(\\overarc{CD}\\) 所對的圓周角：",
+    "\\(\\angle CAD=\\angle BAD-\\angle CAB\\)",
+    "\\(=75\\degree-45\\degree=30\\degree\\)",
+    "\\(\\overarc{CD}=2\\angle CAD=60\\degree\\)"
+   ],
+   "ans": "\\(60\\) 度",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 24,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 5
+     }
+    ],
+    "points": [
+     {
+      "on": 0,
+      "at": 100,
+      "label": "$A$"
+     },
+     {
+      "on": 0,
+      "at": 20,
+      "label": "$B$"
+     },
+     {
+      "on": 0,
+      "at": -70,
+      "label": "$C$"
+     },
+     {
+      "on": 0,
+      "at": -130,
+      "label": "$D$"
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 1
+     },
+     {
+      "from": 0,
+      "to": 2
+     },
+     {
+      "from": 0,
+      "to": 3
+     }
+    ]
+   },
+   "segs": [
+    0
+   ]
+  },
+  "附計1": {
+   "src": "習作・附錄本",
+   "page": "印 17",
+   "title": "計算題第 1 題",
+   "q": "如圖，圓 \\(O\\) 和 \\(\\angle A\\) 相切於 \\(C\\)、\\(D\\) 兩點，若 \\(\\angle A=60\\degree\\)，\\(\\overline{AD}=15\\)，求：\n① 圓 \\(O\\) 的半徑。\n② 四邊形 \\(OCAD\\) 的面積。",
+   "ref": "圖見習作附錄本 p.17 計算題第 1 題",
+   "steps": [
+    "① 求半徑，連 \\(\\overline{AO}\\)：",
+    "圓 \\(O\\) 和 \\(\\angle A\\) 相切於 \\(C\\)、\\(D\\)",
+    "\\(\\overrightarrow{AO}\\) 平分 \\(\\angle A\\)，\\(\\angle DAO=30\\degree\\)",
+    "切點與圓心的連線 \\(\\overline{OD}\\) 與切線垂直",
+    "\\(\\triangle AOD\\) 是 \\(30\\degree\\)-\\(60\\degree\\)-\\(90\\degree\\) 三角形：",
+    "\\(\\overline{OD}：15=1：\\sqrt{3}\\)",
+    "\\(\\overline{OD}=5\\sqrt{3}\\)",
+    "② \\(\\triangle OAC\\) 與 \\(\\triangle OAD\\) 全等：",
+    "面積 \\(=2\\times\\triangle OAD\\)",
+    "\\(=2\\times15\\times5\\sqrt{3}\\times\\frac{1}{2}=75\\sqrt{3}\\)"
+   ],
+   "ans": "① 圓 \\(O\\) 的半徑為 \\(5\\sqrt{3}\\)　② \\(75\\sqrt{3}\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 9.5,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 15,
+      "y": 8.660254037844386,
+      "r": 8.660254037844386
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$A$"
+     },
+     {
+      "x": 15,
+      "y": 0,
+      "label": "$D$"
+     },
+     {
+      "x": 7.5,
+      "y": 12.99,
+      "label": "$C$",
+      "nudge": [
+       -10,
+       0
+      ]
+     },
+     {
+      "x": 15,
+      "y": 8.66,
+      "label": "$O$",
+      "nudge": [
+       10,
+       4
+      ]
+     },
+     {
+      "x": 25,
+      "y": 0
+     },
+     {
+      "x": 11,
+      "y": 19.053
+     }
+    ],
+    "segments": [
+     {
+      "from": 0,
+      "to": 4
+     },
+     {
+      "from": 0,
+      "to": 5
+     },
+     {
+      "from": 3,
+      "to": 2,
+      "dashed": true
+     },
+     {
+      "from": 3,
+      "to": 1,
+      "dashed": true
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 9.5,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 15,
+        "y": 8.660254037844386,
+        "r": 8.660254037844386
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 15,
+        "y": 0,
+        "label": "$D$"
+       },
+       {
+        "x": 7.5,
+        "y": 12.99,
+        "label": "$C$",
+        "nudge": [
+         -10,
+         0
+        ]
+       },
+       {
+        "x": 15,
+        "y": 8.66,
+        "label": "$O$",
+        "nudge": [
+         10,
+         4
+        ]
+       },
+       {
+        "x": 25,
+        "y": 0
+       },
+       {
+        "x": 11,
+        "y": 19.053
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 5
+       },
+       {
+        "from": 3,
+        "to": 2,
+        "dashed": true
+       },
+       {
+        "from": 3,
+        "to": 1,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 3
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         3,
+         0
+        ],
+        "size": 1.2
+       },
+       {
+        "at": 2,
+        "toward": [
+         3,
+         0
+        ],
+        "size": 1.2
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$15$",
+        "nudge": [
+         0,
+         14
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "from": 4,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 9.5,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 15,
+        "y": 8.660254037844386,
+        "r": 8.660254037844386
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 15,
+        "y": 0,
+        "label": "$D$"
+       },
+       {
+        "x": 7.5,
+        "y": 12.99,
+        "label": "$C$",
+        "nudge": [
+         -10,
+         0
+        ]
+       },
+       {
+        "x": 15,
+        "y": 8.66,
+        "label": "$O$",
+        "nudge": [
+         10,
+         4
+        ]
+       },
+       {
+        "x": 25,
+        "y": 0
+       },
+       {
+        "x": 11,
+        "y": 19.053
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 5
+       },
+       {
+        "from": 3,
+        "to": 2,
+        "dashed": true
+       },
+       {
+        "from": 3,
+        "to": 1,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 3
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         3,
+         0
+        ],
+        "size": 1.2
+       },
+       {
+        "at": 2,
+        "toward": [
+         3,
+         0
+        ],
+        "size": 1.2
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$15$",
+        "nudge": [
+         0,
+         14
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "from": 7,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 9.5,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 15,
+        "y": 8.660254037844386,
+        "r": 8.660254037844386
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$A$"
+       },
+       {
+        "x": 15,
+        "y": 0,
+        "label": "$D$"
+       },
+       {
+        "x": 7.5,
+        "y": 12.99,
+        "label": "$C$",
+        "nudge": [
+         -10,
+         0
+        ]
+       },
+       {
+        "x": 15,
+        "y": 8.66,
+        "label": "$O$",
+        "nudge": [
+         10,
+         4
+        ]
+       },
+       {
+        "x": 25,
+        "y": 0
+       },
+       {
+        "x": 11,
+        "y": 19.053
+       }
+      ],
+      "segments": [
+       {
+        "from": 0,
+        "to": 4
+       },
+       {
+        "from": 0,
+        "to": 5
+       },
+       {
+        "from": 3,
+        "to": 2,
+        "dashed": true
+       },
+       {
+        "from": 3,
+        "to": 1,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 3
+       }
+      ],
+      "role": "solution",
+      "rightAngles": [
+       {
+        "at": 1,
+        "toward": [
+         3,
+         0
+        ],
+        "size": 1.2
+       },
+       {
+        "at": 2,
+        "toward": [
+         3,
+         0
+        ],
+        "size": 1.2
+       }
+      ],
+      "sides": [
+       {
+        "from": 0,
+        "to": 1,
+        "text": "$15$",
+        "nudge": [
+         0,
+         14
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "segs": [
+    0,
+    4,
+    7
+   ]
+  },
+  "附計2": {
+   "src": "習作・附錄本",
+   "page": "印 17",
+   "title": "計算題第 2 題",
+   "q": "如圖，\\(\\overline{AB}\\)、\\(\\overline{CD}\\) 為圓 \\(O\\) 上的弦，\\(\\overline{AB}\\parallel\\overline{CD}\\)，若圓 \\(O\\) 的半徑為 \\(10\\)，\\(\\overline{AB}=16\\)，\\(\\overline{CD}=10\\)，求 \\(\\overline{MN}\\) 的長。",
+   "ref": "圖見習作附錄本 p.17 計算題第 2 題",
+   "steps": [
+    "連 \\(\\overline{OA}\\) 與 \\(\\overline{OC}\\)，\\(\\overline{OA}=\\overline{OC}=10\\)：",
+    "\\(\\overline{OM}\\perp\\overline{AB}\\)，且 \\(\\overline{AB}\\parallel\\overline{CD}\\)",
+    "\\(\\therefore \\overline{ON}\\perp\\overline{CD}\\)",
+    "\\(\\overline{OM}\\)、\\(\\overline{ON}\\) 分別垂直平分 \\(\\overline{AB}\\)、\\(\\overline{CD}\\)",
+    "\\(\\overline{AM}=8\\)，\\(\\overline{CN}=5\\)：",
+    "\\(\\overline{OM}=\\sqrt{10^2-8^2}=6\\)",
+    "\\(\\overline{ON}=\\sqrt{10^2-5^2}=5\\sqrt{3}\\)"
+   ],
+   "ans": "\\(\\overline{MN}=6+5\\sqrt{3}\\)",
+   "fig": {
+    "type": "circle-figure",
+    "unit": 11,
+    "placement": "right",
+    "circles": [
+     {
+      "x": 0,
+      "y": 0,
+      "r": 10
+     }
+    ],
+    "points": [
+     {
+      "x": 0,
+      "y": 0,
+      "label": "$O$",
+      "nudge": [
+       10,
+       6
+      ]
+     },
+     {
+      "x": -8,
+      "y": -6,
+      "label": "$A$"
+     },
+     {
+      "x": 8,
+      "y": -6,
+      "label": "$B$"
+     },
+     {
+      "x": 0,
+      "y": -6,
+      "label": "$M$"
+     },
+     {
+      "x": -5,
+      "y": 8.66,
+      "label": "$C$"
+     },
+     {
+      "x": 5,
+      "y": 8.66,
+      "label": "$D$"
+     },
+     {
+      "x": 0,
+      "y": 8.66,
+      "label": "$N$",
+      "nudge": [
+       -10,
+       12
+      ]
+     }
+    ],
+    "segments": [
+     {
+      "from": 1,
+      "to": 2
+     },
+     {
+      "from": 4,
+      "to": 5
+     },
+     {
+      "from": 3,
+      "to": 6
+     }
+    ],
+    "rightAngles": [
+     {
+      "at": 3,
+      "toward": [
+       0,
+       2
+      ],
+      "size": 0.9
+     }
+    ]
+   },
+   "solfigs": [
+    {
+     "from": 0,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 11,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 10
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         10,
+         6
+        ]
+       },
+       {
+        "x": -8,
+        "y": -6,
+        "label": "$A$"
+       },
+       {
+        "x": 8,
+        "y": -6,
+        "label": "$B$"
+       },
+       {
+        "x": 0,
+        "y": -6,
+        "label": "$M$"
+       },
+       {
+        "x": -5,
+        "y": 8.66,
+        "label": "$C$"
+       },
+       {
+        "x": 5,
+        "y": 8.66,
+        "label": "$D$"
+       },
+       {
+        "x": 0,
+        "y": 8.66,
+        "label": "$N$",
+        "nudge": [
+         -10,
+         12
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 4,
+        "to": 5
+       },
+       {
+        "from": 3,
+        "to": 6
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 4,
+        "dashed": true
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 3,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.9
+       }
+      ],
+      "role": "solution"
+     }
+    },
+    {
+     "from": 4,
+     "fig": {
+      "type": "circle-figure",
+      "unit": 11,
+      "placement": "right",
+      "circles": [
+       {
+        "x": 0,
+        "y": 0,
+        "r": 10
+       }
+      ],
+      "points": [
+       {
+        "x": 0,
+        "y": 0,
+        "label": "$O$",
+        "nudge": [
+         10,
+         6
+        ]
+       },
+       {
+        "x": -8,
+        "y": -6,
+        "label": "$A$"
+       },
+       {
+        "x": 8,
+        "y": -6,
+        "label": "$B$"
+       },
+       {
+        "x": 0,
+        "y": -6,
+        "label": "$M$"
+       },
+       {
+        "x": -5,
+        "y": 8.66,
+        "label": "$C$"
+       },
+       {
+        "x": 5,
+        "y": 8.66,
+        "label": "$D$"
+       },
+       {
+        "x": 0,
+        "y": 8.66,
+        "label": "$N$",
+        "nudge": [
+         -10,
+         12
+        ]
+       }
+      ],
+      "segments": [
+       {
+        "from": 1,
+        "to": 2
+       },
+       {
+        "from": 4,
+        "to": 5
+       },
+       {
+        "from": 3,
+        "to": 6
+       },
+       {
+        "from": 0,
+        "to": 1,
+        "dashed": true
+       },
+       {
+        "from": 0,
+        "to": 4,
+        "dashed": true
+       }
+      ],
+      "rightAngles": [
+       {
+        "at": 3,
+        "toward": [
+         0,
+         2
+        ],
+        "size": 0.9
+       }
+      ],
+      "role": "solution"
+     }
+    }
+   ],
+   "segs": [
+    0,
+    4
+   ]
   }
  }
 };

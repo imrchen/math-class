@@ -5071,6 +5071,92 @@ window.DECK = window.DECK || [];
         },
         caption: '只到「答」這一層——<b>為什麼錯，回前面的自我評量頁點題號看詳解</b>。'
       },
+
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜習作附錄本（選擇 1～4）',
+        points: [
+          '習作最後的<b>附錄本</b>小卷，寫完自己對一次詳解。',
+          '第 1～3 題：先找出<b>一對相似三角形</b>，對應邊成比例；面積比是<b>邊長比的平方</b>。',
+          '第 4 題：同一個時間，<b>高與影長成正比</b>。'
+        ],
+        formula: { label: '相似形的面積比', tex: 'a:b\\;\\Rightarrow\\;a^2:b^2' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '1-4', [
+            { src: '習作・附錄本', page: '印 8', sub: '習作附錄本 選擇題', tags: ['附選1', '附選2', '附選3', '附選4'] }
+          ]);
+        },
+        caption: '選擇前四題，寫完點題號對詳解。'
+      },
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜習作附錄本（選擇 5～7）',
+        points: [
+          '三題都是<b>特殊直角三角形</b>，先認出是哪一種。',
+          '30°、60°、90°：三邊比 \\(1:\\sqrt3:2\\)，最長的 2 是斜邊。',
+          '45°、45°、90°：三邊比 \\(1:1:\\sqrt2\\)。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '1-4', [
+            { src: '習作・附錄本', page: '印 8', sub: '習作附錄本 選擇題', tags: ['附選5', '附選6', '附選7'] }
+          ]);
+        },
+        caption: '第 5 題先找斜邊：比例裡最大的那個數。'
+      },
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜習作附錄本（填充 1～3）',
+        points: [
+          '第 1 題：照給的比例，<b>設一份是 \\(k\\)</b>，用已知的邊求 \\(k\\)。',
+          '第 2、3 題：找出 30°、60°、90° 或 45°、45°、90° 的直角三角形，一段一段推。',
+          '面積＝底×高÷2，先把兩股都算出來。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '1-4', [
+            { src: '習作・附錄本', page: '印 9', sub: '習作附錄本 填充題', tags: ['附填1', '附填2', '附填3'] }
+          ]);
+        },
+        caption: '填充三題，寫完點題號對詳解。'
+      },
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '練習｜習作附錄本（計算 1、2）',
+        points: [
+          '第 1 題：兩個都是<b>特殊直角三角形</b>，先在 △BCD 求 \\(\\overline{BC}\\)，再到 △ABC 求 \\(\\overline{AB}\\)。',
+          '第 2 題：找出兩個<b>相似的直角三角形</b>，對應邊列比例式。',
+          '把<b>比例式寫出來</b>再算。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') { h.innerHTML = '<div>練習題目列表（需 practice.js）</div>'; return; }
+          PRACTICE.page(h, '1-4', [
+            { src: '習作・附錄本', page: '印 9', sub: '習作附錄本 計算題', tags: ['附計1', '附計2'] }
+          ]);
+        },
+        caption: '附錄本這一份寫完了。'
+      },
+      {
+        sec: '1-4', secName: '相似三角形的應用',
+        title: '對答案｜習作附錄本',
+        points: [
+          '先<b>交換改</b>：只對答案，不看過程。',
+          '答案錯的那幾題，回前面的附錄本頁<b>點題號看逐行詳解</b>。',
+          '按 🔍 <b>放大</b>投成整頁，後排看得比較清楚。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '1-4', [
+            { label: '選擇（印 8）', cols: 4, items: [['選1', '附選1'], ['選2', '附選2'], ['選3', '附選3'], ['選4', '附選4'], ['選5', '附選5'], ['選6', '附選6'], ['選7', '附選7']] },
+            { label: '填充（印 9）', cols: 4, items: [['填1', '附填1'], ['填2', '附填2'], ['填3', '附填3']] },
+            { label: '計算（印 9）', cols: 2, items: [['計1', '附計1'], ['計2', '附計2']] }
+          ]);
+        },
+        caption: '只到「答」這一層——<b>為什麼錯，回前面的附錄本頁點題號看詳解</b>。'
+      },
     ]
   });
 })();
