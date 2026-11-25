@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>國中數學 八上 互動教學</title>
   <meta name="description" content="光明國中八上數學課堂投影用互動教材" />
-  <link rel="stylesheet" href="style.css?v=20261125c" />
-  <link rel="stylesheet" href="common.css?v=20261125c" />
-  <link rel="stylesheet" href="deck-overrides.css?v=20261125c" />
-  <script src="theme.js?v=20261125c"></script>
+  <link rel="stylesheet" href="style.css?v=20261125f" />
+  <link rel="stylesheet" href="common.css?v=20261125f" />
+  <link rel="stylesheet" href="deck-overrides.css?v=20261125f" />
+  <script src="theme.js?v=20261125f"></script>
   <script>
     /* 課本版與共通對照表不同的格子：卡片框線用深一階（9/23 的投影標準，框線 2.5:1 以上） */
     Object.assign(window.DECK_THEME.colors, { '#dce3ee': '#a0927c' });
@@ -30,7 +30,7 @@
   </script>
   <!-- MathJax 改為隨站打包：教室電腦不一定有網路，CDN 掛掉整份公式就不會排版。
        來源 https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js（2026-09-12 取得，與指標版同一份）。 -->
-  <script src="../vendor/tex-svg.js?v=20261125c" id="MathJax-script" async></script>
+  <script src="../vendor/tex-svg.js?v=20261125f" id="MathJax-script" async></script>
 </head>
 <body>
   <!-- 封面 -->
@@ -125,10 +125,10 @@
     </div>
   </div>
 
-  <script src="svg.js?v=20261125c"></script>
+  <script src="svg.js?v=20261125f"></script>
   <!-- 檢討頁的資料與元件（本站自有；自我評量只有這一站用） -->
-  <script src="solutions.js?v=20261125c"></script>
-  <script src="figures.js?v=20261125c"></script>
+  <script src="solutions.js?v=20261125f"></script>
+  <script src="figures.js?v=20261125f"></script>
   <script>
     /* 練習／檢討元件（practice.js，與八上-指標版共用同一份檔）的站別設定：題層級列、一段一畫面、大字級。 */
     window.PRACTICE_CONFIG = {
@@ -151,14 +151,14 @@
                    '試卷・補充題': '#3f5368' }
     });
   </script>
-  <script src="answer-key.js?v=20261125c"></script>
-  <script src="practice.js?v=20261125c"></script>
-  <script src="ch1.js?v=20261125c"></script>
-  <script src="ch2.js?v=20261125c"></script>
-  <script src="ch3.js?v=20261125c"></script>
-  <script src="ch4.js?v=20261125c"></script>
-  <script src="ch5.js?v=20261125c"></script>
-  <script src="engine.js?v=20261125c"></script>
+  <script src="answer-key.js?v=20261125f"></script>
+  <script src="practice.js?v=20261125f"></script>
+  <script src="ch1.js?v=20261125f"></script>
+  <script src="ch2.js?v=20261125f"></script>
+  <script src="ch3.js?v=20261125f"></script>
+  <script src="ch4.js?v=20261125f"></script>
+  <script src="ch5.js?v=20261125f"></script>
+  <script src="engine.js?v=20261125f"></script>
   <script>
     /* 目錄第三層：節之內依類別折疊（Roger 2026-09-23）。規則由 toc-sections.js 讀，
        依序比對標題、第一個命中的算數；都沒命中的是講解頁。
@@ -173,6 +173,7 @@
       ['段考卷', '段考卷'],   // 學校的第一次段考卷（2026-10-16，資料鍵 校段1）
       ['小考卷', '小考卷'],   // 2-2 小考卷（2026-10-28，資料鍵 小考1）
       ['小考', '小考｜|對答案｜小考（'],   // 3-2 投影用小考（2026-11-19，題目是 Roger 手寫卷、不經 ocho）
+      ['核心概念重點卷', '颱風暴風圈'],   // 2-3 補充題颱風暴風圈（2026-11-25，資料鍵 補充4）夾在第二次段考核心卷 ④⑤ 之間，併進核心卷那組才不會把它拆成兩段；要排在「補充題」之前
       ['補充題', '補充題'],   // 2-2 根式十二題、3-2 因式分解十題（2026-11-25，資料鍵 補充2、補充3，Roger 手寫講義）
       ['課習基礎卷', '課習基礎卷'],
       ['課習類題卷', '課習類題卷'],
@@ -189,13 +190,13 @@
     ];
     window.TOC_GROUP_REST = '講解';
   </script>
-  <script src="toc-sections.js?v=20261125c"></script>
-  <script src="zoom-mixed.js?v=20261125c"></script>
-  <script src="zoom-pan.js?v=20261125c"></script>
-  <script src="board.js?v=20261125c"></script>
-  <script src="highlighter.js?v=20261125c"></script>
-  <script src="text-scale.js?v=20261125c"></script>
-  <script src="dock-tips.js?v=20261125c"></script>
-  <script src="mathjax-catchup.js?v=20261125c"></script>
+  <script src="toc-sections.js?v=20261125f"></script>
+  <script src="zoom-mixed.js?v=20261125f"></script>
+  <script src="zoom-pan.js?v=20261125f"></script>
+  <script src="board.js?v=20261125f"></script>
+  <script src="highlighter.js?v=20261125f"></script>
+  <script src="text-scale.js?v=20261125f"></script>
+  <script src="dock-tips.js?v=20261125f"></script>
+  <script src="mathjax-catchup.js?v=20261125f"></script>
 </body>
 </html>

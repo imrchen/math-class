@@ -1424,6 +1424,24 @@ window.DECK = window.DECK || [];
 
       {
         sec: '段考', secName: '第二次（2-2～3-2）',
+        title: '補充題｜颱風暴風圈（2-3 概念 1、2、3、4）',
+        points: [
+          '先在坐標平面上找出<b>颱風中心到墾丁的距離</b>。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '補充4', [
+            { src: '試卷・補充題', page: '老師補充', sub: '颱風暴風圈', tags: ['補1'] }
+          ]);
+        },
+        caption: '先自己算，再點題號對詳解。'
+      },
+
+      {
+        sec: '段考', secName: '第二次（2-2～3-2）',
         title: '檢討｜核心概念重點卷 ⑤（3-1 概念 1、2、3、4）',
         points: [
           '這是<b>第二次段考的核心概念重點卷</b>：一節一節、一個概念一個概念，把填空的每一格補成完整算式。',

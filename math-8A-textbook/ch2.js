@@ -57,6 +57,33 @@ window.DECK = window.DECK || [];
       + L(ox + 10, (by + gy) / 2 + 14, '70', 'start')
       + `</svg>`;
   })();
+
+  window.FIGURES_LOCAL['typhoon-to-kenting'] = (() => {
+    const k = 0.5, ox = 96, oy = 40, px = ox + 400 * k, py = oy + 300 * k, r = 100 * k;
+    const qx = ox + 0.8 * r, qy = oy + 0.6 * r;
+    const L = (x, y, t, a, c, it, fs) => `<text x="${x}" y="${y}" text-anchor="${a || 'middle'}" font-size="${fs || 24}" font-weight="800"${it ? ' font-style="italic"' : ''} fill="${c || INK}">${t}</text>`;
+    return `<svg viewBox="0 -70 370 360" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + `<line x1="6" y1="${oy}" x2="356" y2="${oy}" stroke="${LINE}" stroke-width="1.8"/>`
+      + `<line x1="${ox}" y1="-40" x2="${ox}" y2="270" stroke="${LINE}" stroke-width="1.8"/>`
+      + `<line x1="${ox}" y1="${oy}" x2="${ox}" y2="${py}" stroke="${INK}" stroke-width="2.6"/>`
+      + `<line x1="${ox}" y1="${py}" x2="${px}" y2="${py}" stroke="${INK}" stroke-width="2"/>`
+      + `<rect x="${ox}" y="${py - 12}" width="12" height="12" fill="none" stroke="${INK}" stroke-width="1.4"/>`
+      + `<line x1="${ox}" y1="${oy}" x2="${px}" y2="${py}" stroke="${BLU}" stroke-width="2.8"/>`
+      + `<circle cx="${px}" cy="${py}" r="${r}" fill="none" stroke="${INK}" stroke-width="2.2"/>`
+      + `<line x1="${px}" y1="${py}" x2="${px + r}" y2="${py}" stroke="${RED}" stroke-width="2"/>`
+      + `<circle cx="${qx}" cy="${qy}" r="${r}" fill="none" stroke="${RED}" stroke-width="1.8" stroke-dasharray="7 5"/>`
+      + `<circle cx="${ox}" cy="${oy}" r="5" fill="${INK}"/><circle cx="${px}" cy="${py}" r="5" fill="${INK}"/><circle cx="${qx}" cy="${qy}" r="4.5" fill="${RED}"/>`
+      + L(352, oy - 10, 'x', 'end', INK, 1)
+      + L(ox + 10, -46, 'y', 'start', INK, 1)
+      + L(ox - 10, oy - 10, 'O', 'end', INK, 1)
+      + L(ox - 36, oy - 10, '墾丁', 'end', INK, 0, 20)
+      + L(qx + 10, qy - 8, 'Q', 'start', RED, 1)
+      + L(ox - 10, (oy + py) / 2 + 8, '300', 'end', BLU)
+      + L((ox + px) / 2 - 20, py + 30, '400', 'middle', BLU)
+      + L(px + r / 2, py - 10, '100', 'middle', RED, 0, 22)
+      + L(px - 10, py + r + 30, 'P(400, －300)', 'middle', INK, 0, 22)
+      + `</svg>`;
+  })();
   window.FIGURES_LOCAL['long-division-8x2-minus-2x-minus-6'] = (() => {
     const cx = [108, 190, 262];
     const T = (col, y, s, c) => `<text x="${cx[col]}" y="${y}" text-anchor="middle" font-size="24" font-weight="800" fill="${c}">${s}</text>`;
