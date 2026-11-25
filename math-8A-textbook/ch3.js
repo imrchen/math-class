@@ -778,6 +778,85 @@ window.DECK = window.DECK || [];
         visual: (h) => { h.innerHTML = quizGrid(Q32, K32); },
         caption: '兩個括號前後對調也對。'
       },
+
+      {
+        sec: '3-2', secName: '利用十字交乘法做因式分解',
+        title: '對答案｜補充題（因式分解十題）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），唸題號，照著改同學的講義。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '補充3', [
+            { label: '第 1～10 題', cols: 2, items: [
+              ['1', '補1'], ['2', '補2'], ['3', '補3'], ['4', '補4'], ['5', '補5'],
+              ['6', '補6'], ['7', '補7'], ['8', '補8'], ['9', '補9'], ['10', '補10']
+            ] }
+          ]);
+        },
+        caption: '兩個括號前後對調也對。'
+      },
+      {
+        sec: '3-2', secName: '利用十字交乘法做因式分解',
+        title: '檢討｜補充題 ①（第 1～4 題）',
+        points: [
+          '這是<b>因式分解十題</b>：對完答案就用這裡逐題檢討。',
+          '題號跟講義一樣，唸題號、翻講義。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'x^2+(a+b)x+ab=(x+a)(x+b)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '補充3', [
+            { src: '試卷・補充題', page: '老師補充', sub: '第 1～4 題', tags: ['補1', '補2', '補3', '補4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完照題號挑。'
+      },
+      {
+        sec: '3-2', secName: '利用十字交乘法做因式分解',
+        title: '檢討｜補充題 ②（第 5～7 題）',
+        points: [
+          '這是<b>因式分解十題</b>：對完答案就用這裡逐題檢討。',
+          '題號跟講義一樣，唸題號、翻講義。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'x^2+(a+b)x+ab=(x+a)(x+b)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '補充3', [
+            { src: '試卷・補充題', page: '老師補充', sub: '第 5～7 題', tags: ['補5', '補6', '補7'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完照題號挑。'
+      },
+      {
+        sec: '3-2', secName: '利用十字交乘法做因式分解',
+        title: '檢討｜補充題 ③（第 8～10 題）',
+        points: [
+          '這是<b>因式分解十題</b>：對完答案就用這裡逐題檢討。',
+          '題號跟講義一樣，唸題號、翻講義。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: 'x^2+(a+b)x+ab=(x+a)(x+b)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '補充3', [
+            { src: '試卷・補充題', page: '老師補充', sub: '第 8～10 題', tags: ['補8', '補9', '補10'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完照題號挑。'
+      },
       {
         sec: '3-2', secName: '利用十字交乘法做因式分解',
         title: '對答案｜習作附錄本（選擇、填充）',

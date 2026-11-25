@@ -37,6 +37,26 @@ window.DECK = window.DECK || [];
       + L(X + S / 2, Y + T + S + 32, '4x－4')
       + `</svg>`;
   })();
+
+  window.FIGURES_LOCAL['swing-pendulum'] = (() => {
+    const ox = 172, oy = 20, by = 120, gy = 270, ay = 246, bx = 30;
+    const L = (x, y, t, a, it) => `<text x="${x}" y="${y}" text-anchor="${a || 'middle'}" font-size="24" font-weight="800"${it ? ' font-style="italic"' : ''} fill="${INK}">${t}</text>`;
+    return `<svg viewBox="0 -100 290 390" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%" font-family="'Noto Sans TC','PingFang TC',sans-serif">`
+      + `<line x1="${ox}" y1="${oy}" x2="${ox}" y2="${gy}" stroke="${INK}" stroke-width="2.2"/>`
+      + `<line x1="${ox}" y1="${oy}" x2="${bx}" y2="${by}" stroke="${INK}" stroke-width="2.2"/>`
+      + `<line x1="${bx}" y1="${by}" x2="${ox}" y2="${by}" stroke="${INK}" stroke-width="2.2"/>`
+      + `<line x1="10" y1="${gy}" x2="280" y2="${gy}" stroke="${INK}" stroke-width="2.4"/>`
+      + `<rect x="${ox - 12}" y="${by}" width="12" height="12" fill="none" stroke="${INK}" stroke-width="1.4"/>`
+      + `<circle cx="${ox}" cy="${oy}" r="4" fill="${INK}"/><circle cx="${bx}" cy="${by}" r="4" fill="${INK}"/><circle cx="${ox}" cy="${ay}" r="4" fill="${INK}"/>`
+      + L(ox - 12, oy + 4, 'O', 'end', 1)
+      + L(bx - 8, by + 8, 'B', 'end', 1)
+      + L(ox + 10, by + 22, 'C', 'start', 1)
+      + L(ox + 10, ay + 2, 'A', 'start', 1)
+      + L(ox + 10, (oy + by) / 2 + 8, '60', 'start')
+      + L((bx + ox) / 2, by + 30, '80')
+      + L(ox + 10, (by + gy) / 2 + 14, '70', 'start')
+      + `</svg>`;
+  })();
   window.FIGURES_LOCAL['long-division-8x2-minus-2x-minus-6'] = (() => {
     const cx = [108, 190, 262];
     const T = (col, y, s, c) => `<text x="${cx[col]}" y="${y}" text-anchor="middle" font-size="24" font-weight="800" fill="${c}">${s}</text>`;
@@ -3114,6 +3134,89 @@ window.DECK = window.DECK || [];
           ]);
         },
         caption: '一頁最多四題，投影出去看得清楚；改完卷子照題號挑。'
+      },
+
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '對答案｜補充題（根式練習十二題）',
+        points: [
+          '<b>先對答案，再檢討。</b>這一頁只給答案，不給過程。',
+          '交換改：按右上角 <b>🔍 放大</b> 投成整頁（那一層字最大），唸題號，照著改同學的講義。',
+          '改完再往後翻——後面每一頁是<b>逐題詳解</b>，點題號就展開。'
+        ],
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>對答案（需 practice.js）</div>'; return;
+          }
+          PRACTICE.answerKey(h, '補充2', [
+            { label: '第 1～6 題', cols: 2, items: [
+              ['1', '補1'], ['2', '補2'], ['3', '補3'],
+              ['4', '補4'], ['5', '補5'], ['6', '補6']
+            ] },
+            { label: '第 7～12 題', cols: 3, items: [
+              ['7', '補7'], ['8', '補8'], ['9', '補9'],
+              ['10', '補10'], ['11', '補11'], ['12', '補12']
+            ] }
+          ]);
+        },
+        caption: '只到「答」這一層——為什麼錯，留到後面的詳解頁再講。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜補充題 ①（第 1～4 題）',
+        points: [
+          '這是<b>根式練習十二題</b>：對完答案就用這裡逐題檢討。',
+          '題號跟講義一樣，唸題號、翻講義。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '補充2', [
+            { src: '試卷・補充題', page: '老師補充', sub: '第 1～4 題', tags: ['補1', '補2', '補3', '補4'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完照題號挑。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜補充題 ②（第 5～8 題）',
+        points: [
+          '這是<b>根式練習十二題</b>：對完答案就用這裡逐題檢討。',
+          '題號跟講義一樣，唸題號、翻講義。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '補充2', [
+            { src: '試卷・補充題', page: '老師補充', sub: '第 5～8 題', tags: ['補5', '補6', '補7', '補8'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完照題號挑。'
+      },
+      {
+        sec: '2-2', secName: '根式的運算',
+        title: '檢討｜補充題 ③（第 9～12 題）',
+        points: [
+          '這是<b>根式練習十二題</b>：對完答案就用這裡逐題檢討。',
+          '題號跟講義一樣，唸題號、翻講義。第 12 題是課本 p.111 的鞦韆，要用畢氏定理。',
+          '點題號看<b>逐行詳解</b>，行間留白可以直接用畫筆補寫。'
+        ],
+        formula: { label: '這一節在檢討', tex: '\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}\\quad(a,b\\ge 0)' },
+        visual: (h) => {
+          if (typeof PRACTICE === 'undefined') {
+            h.innerHTML = '<div>檢討題目列表（需 practice.js）</div>'; return;
+          }
+          PRACTICE.page(h, '補充2', [
+            { src: '試卷・補充題', page: '老師補充', sub: '第 9～12 題', tags: ['補9', '補10', '補11', '補12'] }
+          ]);
+        },
+        caption: '一頁最多四題，投影出去看得清楚；改完照題號挑。'
       },
       {
         sec: '2-2', secName: '根式的運算',
